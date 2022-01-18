@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.Fragment;
+package com.bdappmaniac.bdapp.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
@@ -8,17 +8,15 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
-import com.bdappmaniac.bdapp.CalendarAdapter;
-import com.bdappmaniac.bdapp.CalendarDateModel;
+import com.bdappmaniac.bdapp.adapter.CalendarAdapter;
+import com.bdappmaniac.bdapp.model.CalendarDateModel;
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.Utils.ValidationUtils;
 import com.bdappmaniac.bdapp.databinding.FragmentHomeBinding;
 
 import java.text.SimpleDateFormat;
@@ -28,10 +26,12 @@ import java.util.Date;
 import java.util.Locale;
 
 public class HomeFragment extends BaseFragment {
-   public FragmentHomeBinding binding;
+    public FragmentHomeBinding binding;
     CalendarAdapter adapter;
     Calendar cal = Calendar.getInstance(Locale.ENGLISH);
     ArrayList<Date> dates = new ArrayList<Date>();
+    String selectedDateByCalendar = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+    ;
     ArrayList<CalendarDateModel> calendarList2 = new ArrayList<>();
     int todayDate = Integer.parseInt(new SimpleDateFormat("dd", Locale.getDefault()).format(new Date()));
 
@@ -46,7 +46,20 @@ public class HomeFragment extends BaseFragment {
         binding.calendarDateTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                binding.calendarRecycler.setVisibility(View.VISIBLE);
+                binding.calendarView.setVisibility(View.VISIBLE);
+            }
+        });
+        binding.okCalendarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.calendarDateTxt.setText(selectedDateByCalendar);
+                binding.calendarView.setVisibility(View.GONE);
+            }
+        });
+        binding.cancelCalendarBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.calendarView.setVisibility(View.GONE);
             }
         });
         binding.checkOutTime.setOnClickListener(view -> {
@@ -57,6 +70,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 v.setVisibility(View.GONE);
+                binding.calendarView.setVisibility(View.GONE);
                 binding.saveBtn.setVisibility(View.GONE);
             }
         });
@@ -64,10 +78,27 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 v.setVisibility(View.GONE);
+                binding.calendarView.setVisibility(View.GONE);
                 binding.cancelBtn.setVisibility(View.GONE);
             }
         });
-        adapter = new CalendarAdapter(mContext, todayDate);
+        binding.absentCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    binding.checkInLayout.setVisibility(View.GONE);
+                    binding.absentReasonTxt.setVisibility(View.VISIBLE);
+                    binding.checkOutLayout.setVisibility(View.GONE);
+                    binding.cancelBtn.setVisibility(View.VISIBLE);
+                    binding.saveBtn.setVisibility(View.VISIBLE);
+                } else {
+                    binding.checkInLayout.setVisibility(View.VISIBLE);
+                    binding.checkOutLayout.setVisibility(View.VISIBLE);
+                    binding.absentReasonTxt.setVisibility(View.GONE);
+                }
+            }
+        });
+        adapter = new CalendarAdapter(mContext, todayDate, this);
         binding.calendarRecycler.setAdapter(adapter);
         binding.cancelBtn.addTextChangedListener(new HomeFragment.TextChange(binding.cancelBtn));
         binding.saveBtn.addTextChangedListener(new HomeFragment.TextChange(binding.saveBtn));
@@ -101,7 +132,7 @@ public class HomeFragment extends BaseFragment {
                 }
                 //UIHelper.showLongToastInCenter(context, strHrsToShow + ":" + myCalendar.get(Calendar.MINUTE) + " " + am_pm);
                 textView.setText(strHrsToShow + ":" + sMin + " " + am_pm);
-              editButton();
+                editButton();
             }
         };
         new TimePickerDialog(textView.getContext(), R.style.DatePicker, mTimeSetListener, myCalendar.get(Calendar.HOUR), myCalendar.get(Calendar.MINUTE), false).show();
@@ -146,18 +177,20 @@ public class HomeFragment extends BaseFragment {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
         }
+
         @Override
         public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
 //            binding.cancelBtn.setVisibility(View.VISIBLE);
 //            binding.saveBtn.setVisibility(View.VISIBLE);
         }
+
         @Override
         public void afterTextChanged(Editable s) {
 
         }
     }
-   public void getSelectedCalItem()
-    {
-        Toast.makeText(getActivity(), "TO", Toast.LENGTH_SHORT).show();
+
+    public void getSelectedCalItem(String date) {
+        selectedDateByCalendar = date;
     }
 }

@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.Activity;
+package com.bdappmaniac.bdapp.activity;
 
 import android.view.View;
 

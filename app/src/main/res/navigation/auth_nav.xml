@@ -7,23 +7,23 @@
 
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.bdappmaniac.bdapp.Fragment.LogInFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.LogInFragment"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" />
     <fragment
         android:id="@+id/singUpFragment"
-        android:name="com.bdappmaniac.bdapp.Fragment.SingUpFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.SingUpFragment"
         android:label="fragment_sing_up"
         tools:layout="@layout/fragment_sing_up" />
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.bdappmaniac.bdapp.Fragment.ForgotPasswordFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment"
         tools:layout="@layout/fragment_forgot_password"/>
 
     <fragment
         android:id="@+id/newPasswordFragment"
-        android:name="com.bdappmaniac.bdapp.Fragment.NewPasswordFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.NewPasswordFragment"
         android:label="NewPasswordFragment"
         tools:layout="@layout/fragment_new_password"/>
 </navigation>

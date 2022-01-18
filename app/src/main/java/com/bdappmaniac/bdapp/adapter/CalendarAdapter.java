@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp;
+package com.bdappmaniac.bdapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,11 +14,13 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.bdappmaniac.bdapp.model.CalendarDateModel;
+import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.fragment.HomeFragment;
 import com.bdappmaniac.bdapp.databinding.RowCalendarDateBinding;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 
 public class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -26,11 +28,12 @@ public class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     ArrayList<CalendarDateModel> list = new ArrayList<>();
     int currentPos;
     boolean checkLast = false;
+    HomeFragment homeFragment;
 
-    public CalendarAdapter(Context context, int TodayDate) {
+    public CalendarAdapter(Context context, int TodayDate, HomeFragment homeFragment) {
         this.context = context;
         currentPos = TodayDate;
-        ;
+        this.homeFragment = homeFragment;
     }
 
     @Override
@@ -69,7 +72,6 @@ public class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             checkLast = true;
         }
     }
-
     @Override
     public int getItemCount() {
         return list.size();
@@ -101,13 +103,13 @@ public class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 currentPos = position;
                 notifyDataSetChanged();
                 String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(list.get(position).getDates());
+                homeFragment.getSelectedCalItem(date);
                 Toast.makeText(context, "Get Date : " + date, Toast.LENGTH_SHORT).show();
             });
         }
     }
 
     void dataSelect() {
-
     }
 
     @SuppressLint("NotifyDataSetChanged")

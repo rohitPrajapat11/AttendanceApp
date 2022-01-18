@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.Fragment;
+package com.bdappmaniac.bdapp.fragment;
 
 import android.os.Bundle;
 

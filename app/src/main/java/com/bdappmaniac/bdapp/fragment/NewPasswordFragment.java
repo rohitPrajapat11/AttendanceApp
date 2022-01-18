@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.Fragment;
+package com.bdappmaniac.bdapp.fragment;
 
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -17,7 +17,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.Utils.StringHelper;
+import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.databinding.FragmentNewPasswordBinding;
 
 public class NewPasswordFragment extends BaseFragment {

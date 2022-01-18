@@ -49,4 +49,6 @@
     <string name="home">Home</string>
     <string name="setting">Setting</string>
     <string name="android_developer">Android Developer</string>
+    <string name="ok">Ok</string>
+    <string name="absent">Absent</string>
 </resources>

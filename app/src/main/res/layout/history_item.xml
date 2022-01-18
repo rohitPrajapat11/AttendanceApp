@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -9,35 +9,117 @@
         android:layout_margin="@dimen/_5sdp"
         android:background="@drawable/white_5r_bg"
         android:elevation="@dimen/_3sdp"
-        android:paddingTop="@dimen/_10sdp"
-        android:paddingBottom="@dimen/_8sdp">
+        android:padding="@dimen/_10sdp">
 
         <TextView
-            android:id="@+id/taskTxt"
+            android:id="@+id/dateTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_heavy"
-            android:text="History Task"
-            android:textColor="@color/_192d4d"
-            android:textSize="@dimen/_11sdp"
             android:paddingStart="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="18-01-2022"
+            android:textColor="@color/_002460"
+            android:textSize="@dimen/_13sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/notificationTime"
-            android:layout_width="wrap_content"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/attendLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintTop_toBottomOf="@+id/dateTxt"
+            tools:layout_editor_absoluteX="13dp">
+
+            <TextView
+                android:id="@+id/checkIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_heavy"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="Check In Time"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/checkInTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center"
+                android:paddingStart="@dimen/_25sdp"
+                android:text="09:20 AM"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/checkIn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/checkIn"
+                app:layout_constraintTop_toTopOf="@+id/checkIn" />
+
+            <TextView
+                android:id="@+id/checkOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/font_heavy"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="Check Out Time"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkIn" />
+
+            <TextView
+                android:id="@+id/checkOutTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center"
+                android:paddingStart="@dimen/_15sdp"
+                android:text="06:35 PM"
+                android:textColor="@color/light_black"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/checkOut"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/checkOut"
+                app:layout_constraintTop_toTopOf="@+id/checkOut" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/absentTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:fontFamily="@font/font_heavy"
-            android:text="11:20 AM"
-            android:textColor="@color/_A8A8A8"
-            android:textSize="@dimen/_8ssp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:paddingStart="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/taskTxt"
-            app:layout_constraintTop_toBottomOf="@+id/taskTxt"
-            app:layout_constraintVertical_bias="0.0" />
+            android:gravity="center"
+            android:text="Absent"
+            android:textAllCaps="true"
+            android:textColor="@color/secondary_color"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/dateTxt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dateTxt" />
+
+        <TextView
+            android:id="@+id/reasonTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:fontFamily="@font/font_heavy"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/_12sdp"
+            android:text="Due To fever i did not come."
+            android:textColor="@color/secondary_color"
+            android:textSize="@dimen/_12sdp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/dateTxt"
+            app:layout_constraintTop_toBottomOf="@+id/dateTxt" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

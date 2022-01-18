@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.Utils;
+package com.bdappmaniac.bdapp.utils;
 
 import android.text.TextUtils;
 import android.util.Patterns;

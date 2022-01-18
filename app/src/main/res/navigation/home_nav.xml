@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.bdappmaniac.bdapp.Fragment.HomeFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.HomeFragment"
         android:label="home Fragment"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/taskFragment"
-        android:name="com.bdappmaniac.bdapp.Fragment.TaskFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.TaskFragment"
         android:label="Task Fragment"
         tools:layout="@layout/fragment_task" />
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.bdappmaniac.bdapp.Fragment.HistoryFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.HistoryFragment"
         android:label="History Fragment"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.bdappmaniac.bdapp.Fragment.ProfileFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.ProfileFragment"
         android:label="Profile Fragment"
         tools:layout="@layout/fragment_profile" />
 </navigation>

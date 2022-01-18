@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BdApp">
         <activity
-            android:name=".Activity.HomeActivity"
+            android:name=".activity.HomeActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activity.AuthActivity"
+            android:name=".activity.AuthActivity"
             android:exported="true" />
         <activity
-            android:name=".Activity.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:exported="true">
 
         </activity>

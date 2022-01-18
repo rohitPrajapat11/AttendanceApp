@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.Fragment;
+package com.bdappmaniac.bdapp.fragment;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.bdappmaniac.bdapp.Activity.BaseActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.klinker.android.link_builder.Link;
 import com.klinker.android.link_builder.LinkBuilder;

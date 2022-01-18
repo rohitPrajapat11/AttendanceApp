@@ -1,17 +1,12 @@
-package com.bdappmaniac.bdapp.Activity;
+package com.bdappmaniac.bdapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
 
-import com.bdappmaniac.bdapp.Fragment.LogInFragment;
+import com.bdappmaniac.bdapp.fragment.LogInFragment;
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.Utils.StatusBarUtils;
 
 import java.util.List;
 

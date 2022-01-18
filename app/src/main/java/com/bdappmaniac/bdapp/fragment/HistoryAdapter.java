@@ -1,8 +1,8 @@
-package com.bdappmaniac.bdapp.Fragment;
+package com.bdappmaniac.bdapp.fragment;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.HistoryItemBinding;
+
 import java.util.List;
 
 public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -36,12 +37,24 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         HistoryAdapterHolder vHolder = (HistoryAdapterHolder) holder;
-        vHolder.binding.taskTxt.setText(taskList.get(position));
+        if (position == 3) {
+            vHolder.binding.attendLayout.setVisibility(View.GONE);
+            vHolder.binding.absentTxt.setVisibility(View.VISIBLE);
+            vHolder.binding.reasonTxt.setVisibility(View.VISIBLE);
+        } else if (position == 8) {
+            vHolder.binding.attendLayout.setVisibility(View.GONE);
+            vHolder.binding.absentTxt.setVisibility(View.VISIBLE);
+            vHolder.binding.reasonTxt.setVisibility(View.VISIBLE);
+            vHolder.binding.reasonTxt.setText("I went out of town");
+
+        } else {
+
+        }
     }
 
     @Override
     public int getItemCount() {
-        return taskList.size();
+        return 12;
     }
 
     @Override

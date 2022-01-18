@@ -21,26 +21,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/closeBtn"
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="32dp"
-            android:src="@drawable/icn_close"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/userProfile"
-            app:tint="@color/black" />
 
         <TextView
             android:id="@+id/userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/arial_rounded_mt_bold"
-            android:text="App Developer"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/_20sdp"
+            android:text="Bd App Developer"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/_18sdp"
             app:layout_constraintStart_toStartOf="@+id/userProfile"
             app:layout_constraintTop_toBottomOf="@+id/userProfile" />
 
@@ -48,7 +38,7 @@
             android:id="@+id/userJobTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:fontFamily="@font/font_heavy"
             android:text="@string/android_developer"
             android:textColor="@color/_A8A8A8"
@@ -86,12 +76,12 @@
                         android:layout_width="@dimen/_22sdp"
                         android:layout_height="@dimen/_22sdp"
                         android:layout_marginStart="@dimen/_20sdp"
-                        android:src="@drawable/icn_home"
+                        android:src="@drawable/icn_home_select"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.571"
-                        app:tint="@color/black" />
+                       />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -100,7 +90,7 @@
                         android:layout_marginTop="@dimen/_2sdp"
                         android:fontFamily="@font/font_heavy"
                         android:text="@string/home"
-                        android:textColor="@color/black"
+                        android:textColor="@color/light_primary_color"
                         android:textSize="@dimen/_15sdp"
                         app:layout_constraintBottom_toBottomOf="@+id/homeImg"
                         app:layout_constraintStart_toEndOf="@+id/homeImg"
@@ -129,7 +119,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.571"
-                        app:tint="@color/black" />
+                        app:tint="@color/primary_color" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -138,7 +128,7 @@
                         android:layout_marginTop="@dimen/_2sdp"
                         android:fontFamily="@font/font_heavy"
                         android:text="@string/setting"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primary_color"
                         android:textSize="@dimen/_15sdp"
                         app:layout_constraintBottom_toBottomOf="@+id/settingImg"
                         app:layout_constraintStart_toEndOf="@+id/settingImg"
@@ -168,7 +158,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.571"
-                        app:tint="@color/black" />
+                        app:tint="@color/primary_color" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -177,7 +167,7 @@
                         android:layout_marginTop="@dimen/_2sdp"
                         android:fontFamily="@font/font_heavy"
                         android:text="Log Out"
-                        android:textColor="@color/black"
+                        android:textColor="@color/primary_color"
                         android:textSize="@dimen/_15sdp"
                         app:layout_constraintBottom_toBottomOf="@+id/logOutImg"
                         app:layout_constraintStart_toEndOf="@+id/logOutImg"

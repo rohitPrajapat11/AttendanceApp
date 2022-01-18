@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.Utils;
+package com.bdappmaniac.bdapp.utils;
 import android.app.Activity;
 import android.view.View;
 import android.view.WindowManager;
