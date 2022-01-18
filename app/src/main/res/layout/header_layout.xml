@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/_15sdp"
+        android:elevation="@dimen/_1sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/menuBtn"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/main_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.555" />
+        <TextView
+            android:id="@+id/calendarDateTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:text="17-01-2022"
+            android:gravity="center_vertical"
+            android:visibility="gone"
+            android:textSize="@dimen/_12sdp"
+            android:fontFamily="@font/font_heavy"
+            android:textColor="@color/_172B4D"
+            android:drawableTint="@color/_172B4D"
+            android:drawableStart="@drawable/icn_calendar"
+            app:layout_constraintBottom_toBottomOf="@+id/menuBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/menuBtn"
+            app:tint="@color/secondary_color" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

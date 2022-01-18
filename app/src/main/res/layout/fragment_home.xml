@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".Fragment.HomeFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/calendarRecycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_15sdp"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/row_calendar_date" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/timeStatusLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/white_10r_bg"
+            android:elevation="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/calendarRecycler">
+
+            <TextView
+                android:id="@+id/checkInOutLb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/arial_rounded_mt_bold"
+                android:text="Check In/Out Time"
+                android:textColor="@color/primary_color"
+                android:textSize="@dimen/_13sdp"
+                app:layout_constraintStart_toStartOf="@+id/checkInLayout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/calendarDateTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:drawableStart="@drawable/icn_edit_calendar"
+                android:drawableTint="@color/_172B4D"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center_vertical"
+                android:text="17-01-2022"
+                android:drawablePadding="@dimen/_5sdp"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/checkInOutLb"
+                app:layout_constraintEnd_toEndOf="@+id/checkInLayout"
+                app:layout_constraintTop_toTopOf="@+id/checkInOutLb"
+                app:tint="@color/secondary_color" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/checkInLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/edit_text_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkInOutLb">
+
+                <TextView
+                    android:id="@+id/checkInLb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_heavy"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Check In Time"
+                    android:textColor="@color/light_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/checkInLayout"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/checkInTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_horizontal"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="00:00"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/checkInLb"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/checkOutLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/edit_text_bg"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkInLayout">
+
+                <TextView
+                    android:id="@+id/checkOutLb"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_heavy"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Check Out Time"
+                    android:textColor="@color/light_black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/checkOutTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_horizontal"
+                    android:text="00:00"
+                    android:textColor="@color/light_black"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/checkOutLb"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/cancelBtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_margin="@dimen/_14sdp"
+                android:background="@drawable/red_10r_bg"
+                android:elevation="@dimen/_3sdp"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@id/saveBtn"
+                app:layout_constraintStart_toStartOf="@+id/checkOutLayout"
+                app:layout_constraintTop_toBottomOf="@+id/checkOutLayout" />
+
+            <TextView
+                android:id="@+id/saveBtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_margin="@dimen/_14sdp"
+                android:background="@drawable/green_10r_bg"
+                android:elevation="@dimen/_3sdp"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/checkOutLayout"
+                app:layout_constraintStart_toEndOf="@+id/cancelBtn"
+                app:layout_constraintTop_toBottomOf="@+id/checkOutLayout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
