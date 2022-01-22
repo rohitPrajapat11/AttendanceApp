@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.fragment;
+package com.bdappmaniac.bdapp.admin.fragment;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -34,9 +34,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.databinding.FragmentProfileBinding;
+import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.utils.StringHelper;
-import com.bdappmaniac.bdapp.databinding.FragmentProfileBinding;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.nabinbhandari.android.permissions.PermissionHandler;
@@ -57,13 +58,13 @@ public class ProfileFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
 
-        binding.nameTxt.addTextChangedListener(new ProfileFragment.TextChange(binding.nameTxt));
-        binding.emailTxt.addTextChangedListener(new ProfileFragment.TextChange(binding.emailTxt));
-        binding.phoneTxt.addTextChangedListener(new ProfileFragment.TextChange(binding.phoneTxt));
-        binding.emPhoneTxt.addTextChangedListener(new ProfileFragment.TextChange(binding.emPhoneTxt));
-        binding.dobTxt.addTextChangedListener(new ProfileFragment.TextChange(binding.dobTxt));
-        binding.addressTxt.addTextChangedListener(new ProfileFragment.TextChange(binding.addressTxt));
-        binding.pinCodeTxt.addTextChangedListener(new ProfileFragment.TextChange(binding.pinCodeTxt));
+        binding.nameTxt.addTextChangedListener(new TextChange(binding.nameTxt));
+        binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
+        binding.phoneTxt.addTextChangedListener(new TextChange(binding.phoneTxt));
+        binding.emPhoneTxt.addTextChangedListener(new TextChange(binding.emPhoneTxt));
+        binding.dobTxt.addTextChangedListener(new TextChange(binding.dobTxt));
+        binding.addressTxt.addTextChangedListener(new TextChange(binding.addressTxt));
+        binding.pinCodeTxt.addTextChangedListener(new TextChange(binding.pinCodeTxt));
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -187,7 +188,7 @@ public class ProfileFragment extends BaseFragment {
     private void requestCameraPermission(int requestCode) {
         String[] permissions = {Manifest.permission.CAMERA};
         String rationale = "Please provide camera permission so that you can ...";
-        com.nabinbhandari.android.permissions.Permissions.Options options = new Permissions.Options()
+        Permissions.Options options = new Permissions.Options()
                 .setRationaleDialogTitle("Permissions")
                 .setSettingsDialogTitle("Camera Permission");
         Permissions.check(getActivity(), permissions, rationale, options, new PermissionHandler() {
@@ -376,7 +377,6 @@ public class ProfileFragment extends BaseFragment {
             }
         }
     }
-
     void textProfile() {
         Bitmap bitmap = TextToBitmap.textToBitmap(binding.nameTxt.getText().toString(), mContext, 10, R.color.black);
         Drawable d = new BitmapDrawable(getResources(), bitmap);

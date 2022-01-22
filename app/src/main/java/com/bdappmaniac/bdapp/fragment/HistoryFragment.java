@@ -12,8 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.bdappmaniac.bdapp.CalendarCallBack;
-import com.bdappmaniac.bdapp.Constant;
+import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
+import com.bdappmaniac.bdapp.utils.Constant;
+import com.bdappmaniac.bdapp.adapter.HistoryAdapter;
 import com.bdappmaniac.bdapp.adapter.MonthCalendarAdapter;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentHistoryBinding;
@@ -60,13 +61,39 @@ public class HistoryFragment extends BaseFragment implements CalendarCallBack {
         binding.okCalendarBtn.setOnClickListener(v -> {
             binding.calendarLayout.setVisibility(View.GONE);
         });
+        binding.calendarNextBtn.setOnClickListener(v -> {
+            Toast.makeText(mContext, "On Working", Toast.LENGTH_SHORT).show();
+//            String currentString = binding.calTitle.getText().toString();
+//            String[] separated = currentString.split(" ");
+//            String year = separated[1];
+//            if (year.equals("2022")) {
+//                binding.calendarNextBtn.setVisibility(View.GONE);
+//            } else {
+//                int y = Integer.parseInt(year) + 1;
+//                binding.calTitle.setText(String.valueOf(separated[0] + " " + y));
+//            }
+        });
+        binding.calendarPreBtn.setOnClickListener(v -> {
+            Toast.makeText(mContext, "On Working", Toast.LENGTH_SHORT).show();
+//            String currentString = binding.calTitle.getText().toString();
+//            String[] separated = currentString.split(" ");
+//            String year = separated[1];
+//            int y = Integer.parseInt(year) - 1;
+//            v.setVisibility(View.VISIBLE);
+//            binding.calTitle.setText(String.valueOf(separated[0] + " " + y));
+//            if (year.equals("2022")) {
+//                binding.calendarNextBtn.setVisibility(View.GONE);
+//            } else {
+//                binding.calendarNextBtn.setVisibility(View.VISIBLE);
+//
+//            }
+        });
         return binding.getRoot();
     }
 
     public void selectedMonth(String date) {
         selectedMonth = date;
         binding.calTitle.setText(date + " " + "2022");
-
     }
 
     @Override

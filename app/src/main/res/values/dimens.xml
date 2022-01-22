@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dialog_width">320dp</dimen>
+    <dimen name="dialog_height">450dp</dimen>
+    <dimen name="dialog_padding">10dp</dimen>
+
+    <dimen name="margin_x_small">5dp</dimen>
+    <dimen name="margin_small">10dp</dimen>
+    <dimen name="margin_medium">15dp</dimen>
+    <dimen name="margin_large">20dp</dimen>
+    <dimen name="margin_x_large">25dp</dimen>
+    <dimen name="margin_xx_large">30dp</dimen>
+    <dimen name="margin_xxx_large">40dp</dimen>
+    <dimen name="margin_xxxx_large">60dp</dimen>
+    <dimen name="margin_xxxxx_large">90dp</dimen>
+    <dimen name="button_size">36dp</dimen>
+    <dimen name="button_size2">38dp</dimen>
+    <dimen name="progress_size">47dp</dimen>
+    <dimen name="button_width">118dp</dimen>
+
+    <dimen name="button_text_size">12sp</dimen>
+
+
+
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+
+
+
+
+    <dimen name="headerTextSize">25sp</dimen>
+    <dimen name="headerMoreTextSize">18sp</dimen>
+    <dimen name="card_margin">5dp</dimen>
+    <dimen name="frutorial_title">15sp</dimen>
+    <dimen name="card_maincourse_elevation">2dp</dimen>
+    <dimen name="card_image_elevation">4dp</dimen>
+    <dimen name="card_itemcourse_elevation">2dp</dimen>
+    <dimen name="card_item_tutorial_elevation">5dp</dimen>
+
+
+    <!--    Dashboard-->
+    <dimen name="normalPadding">20dp</dimen>
+    <dimen name="staggedmarginbottom">21dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="horizontal_dashboard">32dp</dimen>
+    <dimen name="img_card_height">120dp</dimen>
+    <dimen name="drawable_left">5dp</dimen>
+    <dimen name="card_course_dashboard_elevation">.2dp</dimen>
+
+    <dimen name="vertical_search">10dp</dimen>
+    <dimen name="card_radius">14dp</dimen>
+    <dimen name="horizontal_card">8dp</dimen>
+
+    <dimen name="top_text_card">14dp</dimen>
+    <dimen name="top_text_subtitle_card">4dp</dimen>
+    <dimen name="d_number_courses">11sp</dimen>
+
+    <dimen name="viewpager_next_item_visible">26dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin">42dp</dimen>
+    <dimen name="viewpager_next_item_visible_testing">29dp</dimen>
+
+    <dimen name="viewpager_current_item_horizontal_margin_testing">60dp</dimen>
+    <dimen name="image_small_width" >40dp</dimen>
+</resources>

@@ -14,10 +14,10 @@ import android.widget.TimePicker;
 
 import androidx.databinding.DataBindingUtil;
 
-import com.bdappmaniac.bdapp.adapter.CalendarAdapter;
-import com.bdappmaniac.bdapp.model.CalendarDateModel;
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.adapter.CalendarAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentHomeBinding;
+import com.bdappmaniac.bdapp.model.CalendarDateModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -100,8 +100,8 @@ public class HomeFragment extends BaseFragment {
         });
         adapter = new CalendarAdapter(mContext, todayDate, this);
         binding.calendarRecycler.setAdapter(adapter);
-        binding.cancelBtn.addTextChangedListener(new HomeFragment.TextChange(binding.cancelBtn));
-        binding.saveBtn.addTextChangedListener(new HomeFragment.TextChange(binding.saveBtn));
+        binding.cancelBtn.addTextChangedListener(new TextChange(binding.cancelBtn));
+        binding.saveBtn.addTextChangedListener(new TextChange(binding.saveBtn));
         setUpCalendar();
         return binding.getRoot();
     }

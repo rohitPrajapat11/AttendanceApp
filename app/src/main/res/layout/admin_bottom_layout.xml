@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dashboardBottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@drawable/auth_white_bg"
+        android:elevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <ImageView
+            android:id="@+id/homeBtn"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:src="@drawable/icn_home_select"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/employeeBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/homeIndicator"
+            android:layout_width="5dp"
+            android:layout_height="4dp"
+            android:background="@drawable/round_selector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/homeBtn"
+            app:layout_constraintStart_toStartOf="@+id/homeBtn"
+            app:layout_constraintTop_toBottomOf="@+id/homeBtn" />
+
+        <ImageView
+            android:id="@+id/employeeBtn"
+            android:layout_width="@dimen/_22sdp"
+            android:layout_height="@dimen/_22sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:foregroundGravity="center"
+            android:src="@drawable/icn_employees"
+            app:layout_constraintBottom_toBottomOf="@+id/homeBtn"
+            app:layout_constraintEnd_toStartOf="@id/loanBtn"
+            app:layout_constraintStart_toEndOf="@+id/homeBtn"
+            app:layout_constraintTop_toTopOf="@+id/homeBtn"
+            app:layout_constraintVertical_bias="0.55" />
+
+        <View
+            android:id="@+id/taskIndicator"
+            android:layout_width="5dp"
+            android:layout_height="4dp"
+            android:background="@drawable/round_selector"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/employeeBtn"
+            app:layout_constraintStart_toStartOf="@+id/employeeBtn"
+            app:layout_constraintTop_toBottomOf="@+id/employeeBtn" />
+
+        <ImageView
+            android:id="@+id/loanBtn"
+            android:layout_width="@dimen/_21sdp"
+            android:layout_height="@dimen/_21sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:src="@drawable/icn_loan"
+            app:layout_constraintBottom_toBottomOf="@+id/employeeBtn"
+            app:layout_constraintEnd_toStartOf="@+id/profileBtn"
+            app:layout_constraintStart_toEndOf="@id/employeeBtn"
+            app:layout_constraintTop_toTopOf="@+id/employeeBtn"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/historyIndicator"
+            android:layout_width="5dp"
+            android:layout_height="4dp"
+            android:background="@drawable/round_selector"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/loanBtn"
+            app:layout_constraintStart_toStartOf="@+id/loanBtn"
+            app:layout_constraintTop_toBottomOf="@+id/homeBtn" />
+
+        <ImageView
+            android:id="@+id/profileBtn"
+            android:layout_width="@dimen/_21sdp"
+            android:layout_height="@dimen/_21sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:visibility="gone"
+            android:src="@drawable/icn_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/loanBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/loanBtn"
+            app:layout_constraintTop_toTopOf="@+id/loanBtn" />
+
+        <View
+            android:id="@+id/profileIndicator"
+            android:layout_width="5dp"
+            android:layout_height="4dp"
+            android:background="@drawable/round_selector"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/profileBtn"
+            app:layout_constraintStart_toStartOf="@+id/profileBtn"
+            app:layout_constraintTop_toBottomOf="@+id/homeBtn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

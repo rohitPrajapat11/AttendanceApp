@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:paddingBottom="@dimen/_10sdp"
+            android:layout_height="match_parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/perInfoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/white_10r_white_bg"
+                android:elevation="@dimen/_3sdp"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintBottom_toTopOf="@id/empInfoLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/pInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/arial_rounded_mt_bold"
+                    android:text="Personal Information"
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/dobTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_25sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="@string/select_dob"
+                    android:importantForAutofill="no"
+                    android:inputType="textNoSuggestions"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:text="14/01/2022"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableStartCompat="@drawable/icn_dob"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/pInfo"
+                    app:layout_constraintTop_toBottomOf="@+id/pInfo"
+                    tools:ignore="TextFields,TextViewEdits" />
+
+                <TextView
+                    android:id="@+id/designationTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_25sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:drawableTint="@color/_172B4D"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="@string/select_dob"
+                    android:importantForAutofill="no"
+                    android:inputType="textNoSuggestions"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:text="Android Developer"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableStartCompat="@drawable/icn_star"
+                    app:drawableTint="#23073B"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/dobTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/dobTxt"
+                    tools:ignore="TextFields,TextViewEdits" />
+
+                <TextView
+                    android:id="@+id/activeBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:importantForAutofill="no"
+                    android:inputType="textNoSuggestions"
+                    android:paddingLeft="@dimen/_12sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:text="Active"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableStartCompat="@drawable/icn_status"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/switch1"
+                    app:layout_constraintStart_toStartOf="@+id/pInfo"
+                    app:layout_constraintTop_toBottomOf="@+id/designationTxt"
+                    tools:ignore="TextFields,TextViewEdits" />
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:thumbTint="@color/primary_color"
+                    android:trackTint="@color/_A8A8A8"
+                    android:checked="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/activeBtn"
+                    app:layout_constraintEnd_toEndOf="@+id/designationTxt"
+                    app:layout_constraintTop_toTopOf="@+id/activeBtn" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/empInfoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/white_10r_white_bg"
+                android:elevation="@dimen/_3sdp"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintBottom_toTopOf="@id/serviceLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/perInfoLayout">
+
+                <TextView
+                    android:id="@+id/cInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/arial_rounded_mt_bold"
+                    android:text="Contact Information"
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/emailTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_25sdp"
+                    android:drawableStart="@drawable/icn_email"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="@string/enter_your_email"
+                    android:importantForAutofill="no"
+                    android:inputType="textNoSuggestions"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:text="bansi.bdappmaniac@gmail.com"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/cInfo"
+                    app:layout_constraintTop_toBottomOf="@+id/cInfo"
+                    tools:ignore="TextFields"
+                    tools:targetApi="m" />
+
+                <TextView
+                    android:id="@+id/phoneTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_25sdp"
+
+                    android:drawableStart="@drawable/icn_phone"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="@string/enter_your_mobile_number"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:text="9876543211"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/cInfo"
+                    app:layout_constraintTop_toBottomOf="@+id/emailTxt"
+                    tools:ignore="TextFields"
+                    tools:targetApi="m" />
+
+                <TextView
+                    android:id="@+id/emPhoneTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_25sdp"
+
+                    android:drawableStart="@drawable/icn_phone"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="@string/enter_emergency_mobile_number"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:text="12345678999"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/phoneTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/phoneTxt"
+                    tools:ignore="TextFields"
+                    tools:targetApi="m" />
+
+                <TextView
+                    android:id="@+id/addressTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:drawableStart="@drawable/icn_location"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="@string/enter_your_address"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:text="Bansi Dairy, Milk Man Colony, 342004"
+                    android:textAllCaps="false"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/emPhoneTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/emPhoneTxt"
+                    tools:ignore="TextFields" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/serviceLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/white_10r_white_bg"
+                android:elevation="@dimen/_3sdp"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/empInfoLayout">
+
+                <TextView
+                    android:id="@+id/sInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/arial_rounded_mt_bold"
+                    android:text="Service &amp; Info"
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/attendanceLoanBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:drawableStart="@drawable/icn_calendar_l"
+                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:text="Attendance Report"
+                    android:textAllCaps="false"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/sInfo"
+                    app:layout_constraintTop_toBottomOf="@+id/sInfo" />
+
+                <TextView
+                    android:id="@+id/provideLoanBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableStart="@drawable/icn_loan_dark"
+                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:text="Provide Loan"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/attendanceLoanBtn"
+                    app:layout_constraintHorizontal_bias="0.492"
+                    app:layout_constraintStart_toStartOf="@+id/attendanceLoanBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/attendanceLoanBtn" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

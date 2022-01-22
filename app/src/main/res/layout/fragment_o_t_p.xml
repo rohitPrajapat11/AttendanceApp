@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topLayout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:background="@drawable/white_round_bg"
+                android:elevation="@dimen/_5sdp"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/icn_back_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/textLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/auth_white_bg"
+            android:elevation="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topLayout"
+            tools:ignore="MissingClass">
+
+            <TextView
+                android:id="@+id/otpTypeTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:gravity="center"
+                android:text="Verification Code"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/verification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:text="Please type the verification code send to +xxxxxxxxxx"
+                android:textColor="@color/_C1C7D0"
+                android:textSize="@dimen/_18sdp"
+                app:layout_constraintTop_toBottomOf="@+id/otpTypeTxt"
+                tools:layout_editor_absoluteX="10dp" />
+
+            <com.chaos.view.PinView
+                android:id="@+id/pin_view"
+                style="@style/PinWidget.PinView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="110dp"
+                android:textColor="@color/black"
+                android:cursorVisible="true"
+                android:inputType="number"
+                android:itemBackground="@drawable/edit_text_bg"
+                app:cursorColor="@color/black"
+                app:hideLineWhenFilled="true"
+                app:itemCount="4"
+                app:itemHeight="50dp"
+                app:itemRadius="5dp"
+                app:itemWidth="50dp"
+                app:itemSpacing="@dimen/_4sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/verification"
+                />
+
+            <Button
+                android:id="@+id/verify"
+                android:layout_width="200dp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/green_10r_bg"
+                android:elevation="@dimen/_3sdp"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center"
+                android:paddingStart="@dimen/_20sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:text="Verify"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pin_view"
+                app:layout_constraintVertical_bias="0.823" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@drawable/green_round_bg"
+            android:elevation="@dimen/_5sdp"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/user"
+            app:layout_constraintBottom_toBottomOf="@+id/topLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topLayout" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

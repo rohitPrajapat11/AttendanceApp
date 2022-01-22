@@ -14,7 +14,7 @@ import com.klinker.android.link_builder.LinkBuilder;
 
 
 public class BaseFragment extends Fragment {
-    Context mContext;
+   public Context mContext;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);

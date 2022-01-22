@@ -17,8 +17,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.databinding.FragmentNewPasswordBinding;
+import com.bdappmaniac.bdapp.utils.StringHelper;
 
 public class NewPasswordFragment extends BaseFragment {
     FragmentNewPasswordBinding binding;
@@ -32,8 +32,8 @@ public class NewPasswordFragment extends BaseFragment {
                 Navigation.findNavController(v).navigate(R.id.logInFragment);
             }
         });
-        binding.newPasswordTxt.addTextChangedListener(new NewPasswordFragment.TextChange(binding.newPasswordTxt));
-        binding.passwordTxt.addTextChangedListener(new NewPasswordFragment.TextChange(binding.passwordTxt));
+        binding.newPasswordTxt.addTextChangedListener(new TextChange(binding.newPasswordTxt));
+        binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
 
         binding.confirmBtn.setOnClickListener(view -> {
             if (checkValidation()) {
@@ -117,7 +117,7 @@ public class NewPasswordFragment extends BaseFragment {
             binding.confirmBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
             binding.confirmBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.confirmBtn.setTextColor(ContextCompat.getColor(mContext, R.color._172B4D));
+            binding.confirmBtn.setTextColor(ContextCompat.getColor(mContext, R.color.light_black));
         }
     }
 

@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.databinding.ActivitySplashBinding;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 public class SplashActivity extends AppCompatActivity {
     ActivitySplashBinding binding;

@@ -12,6 +12,18 @@
         android:padding="@dimen/_10sdp">
 
         <TextView
+            android:id="@+id/dayTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_heavy"
+            android:paddingStart="@dimen/_10sdp"
+            android:text="Mon"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/dateTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -20,7 +32,7 @@
             android:text="18-01-2022"
             android:textColor="@color/_002460"
             android:textSize="@dimen/_13sdp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dayTxt"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -119,7 +131,7 @@
             android:textSize="@dimen/_12sdp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/dateTxt"
+            app:layout_constraintStart_toStartOf="@+id/dayTxt"
             app:layout_constraintTop_toBottomOf="@+id/dateTxt" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

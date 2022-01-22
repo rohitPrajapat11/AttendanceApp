@@ -24,11 +24,12 @@ public class MonthCalendarAdapter extends RecyclerView.Adapter<RecyclerView.View
     ArrayList<String> month = new ArrayList<>();
     Calendar c = Calendar.getInstance();
     int currentMonth = c.get(Calendar.MONTH);
-HistoryFragment historyFragment;
+    HistoryFragment historyFragment;
+
     public MonthCalendarAdapter(Context context, ArrayList<String> month, HistoryFragment historyFragment) {
         this.context = context;
         this.month = month;
-        this.historyFragment=historyFragment;
+        this.historyFragment = historyFragment;
     }
 
     @Override

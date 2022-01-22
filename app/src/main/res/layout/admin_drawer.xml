@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userProfile"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/app_logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:fontFamily="@font/arial_rounded_mt_bold"
+            android:text="Bd App Developer"
+            android:textColor="@color/light_black"
+            android:textSize="@dimen/_19sdp"
+            app:layout_constraintStart_toStartOf="@+id/userProfile"
+            app:layout_constraintTop_toBottomOf="@+id/userProfile" />
+
+        <TextView
+            android:id="@+id/userJobTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/font_heavy"
+            android:text="@string/android_developer"
+            android:textColor="@color/_A8A8A8"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="@+id/userName"
+            app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userJobTxt">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/homeBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/navigation_item_selector"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/homeImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:src="@drawable/icn_home"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.571"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:text="@string/home"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/homeImg"
+                        app:layout_constraintStart_toEndOf="@+id/homeImg"
+                        app:layout_constraintTop_toTopOf="@+id/homeImg"
+                        app:layout_constraintVertical_bias="0.6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/loanBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/navigation_item_selector"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/homeBtn">
+
+                    <ImageView
+                        android:id="@+id/loanImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:src="@drawable/icn_setting"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.571"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:text="Loan"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/loanImg"
+                        app:layout_constraintStart_toEndOf="@+id/loanImg"
+                        app:layout_constraintTop_toTopOf="@+id/loanImg"
+                        app:layout_constraintVertical_bias="0.6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/registerBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/navigation_item_selector"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/loanBtn">
+
+                    <ImageView
+                        android:id="@+id/registerImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:src="@drawable/icn_registration"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.571"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:text="New Employee"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/registerImg"
+                        app:layout_constraintStart_toEndOf="@+id/registerImg"
+                        app:layout_constraintTop_toTopOf="@+id/registerImg"
+                        app:layout_constraintVertical_bias="0.6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/tmcBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/navigation_item_selector"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/registerBtn">
+
+                    <ImageView
+                        android:id="@+id/tmcImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:src="@drawable/icn_setting"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.571"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:text="Term And Conditions"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tmcImg"
+                        app:layout_constraintStart_toEndOf="@+id/tmcImg"
+                        app:layout_constraintTop_toTopOf="@+id/tmcImg"
+                        app:layout_constraintVertical_bias="0.6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/settingBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/navigation_bg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tmcBtn">
+
+                    <ImageView
+                        android:id="@+id/settingImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:src="@drawable/icn_setting"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.571"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:text="@string/setting"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/settingImg"
+                        app:layout_constraintStart_toEndOf="@+id/settingImg"
+                        app:layout_constraintTop_toTopOf="@+id/settingImg"
+                        app:layout_constraintVertical_bias="0.6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/logOutBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/navigation_bg"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settingBtn">
+
+                    <ImageView
+                        android:id="@+id/logOutImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:src="@drawable/icn_logout"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.571"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:text="Log Out"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/logOutImg"
+                        app:layout_constraintStart_toEndOf="@+id/logOutImg"
+                        app:layout_constraintTop_toTopOf="@+id/logOutImg"
+                        app:layout_constraintVertical_bias="0.6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

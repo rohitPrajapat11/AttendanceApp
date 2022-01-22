@@ -5,23 +5,29 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
-import com.bdappmaniac.bdapp.CalendarCallBack;
-import com.bdappmaniac.bdapp.Constant;
+import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
+import com.bdappmaniac.bdapp.utils.Constant;
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.fragment.HomeFragment;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.databinding.ActivityHomeBinding;
-import com.google.firebase.crashlytics.buildtools.api.net.Constants;
+
+import java.util.List;
+import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener, CalendarCallBack {
     ActivityHomeBinding binding;
@@ -40,33 +46,40 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         StatusBarUtils.statusBarColor(this, R.color.white);
         navController = Navigation.findNavController(this, R.id.nav_controller);
-
-     /*   adapter = new CalendarAdapter(this,todayDate);
+        /*   adapter = new CalendarAdapter(this,todayDate);
         binding.homeLayout.calendarRecycler.setAdapter(adapter);*/
         //  setUpCalendar();
         textProfile();
         binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.homeFragment);
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.homeFragment) {
+                    navController.navigate(R.id.homeFragment);
+                }
             }
         });
         binding.homeLayout.bottomLayout.taskBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.taskFragment);
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.taskFragment) {
+                    navController.navigate(R.id.taskFragment);
+                }
             }
         });
         binding.homeLayout.bottomLayout.historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.historyFragment);
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.historyFragment) {
+                    navController.navigate(R.id.historyFragment);
+                }
             }
         });
         binding.homeLayout.bottomLayout.profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.profileFragment);
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.profileFragment) {
+                    navController.navigate(R.id.profileFragment);
+                }
             }
         });
         binding.homeLayout.headerLayout.menuBtn.setOnClickListener(v -> {
@@ -77,6 +90,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
         binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.settingBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.logOutBtn.setOnClickListener(this::onClick);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -146,9 +160,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
-
                 break;
-
         }
     }
 
@@ -164,10 +176,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.homeBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.homeFragment) {
+                    navController.navigate(R.id.homeFragment);
+                }
                 binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.settingBtn:
-                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.logOutBtn:
+                startActivity(new Intent(this, AuthActivity.class));
+                finish();
                 break;
         }
     }
@@ -215,5 +234,24 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void openCalendar() {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Fragment navHostFragment = getSupportFragmentManager().findFragmentById(R.id.auth_nav);
+        if (navHostFragment != null) {
+            List<Fragment> fragmentList = navHostFragment.getChildFragmentManager().getFragments();
+            boolean isLoginFragment = false;
+            for (Fragment fragment1 : fragmentList) {
+                if (fragment1 instanceof HomeFragment) {
+                    isLoginFragment = true;
+                    break;
+                }
+            }
+            if (isLoginFragment) {
+                finish();
+            }
+        }
     }
 }

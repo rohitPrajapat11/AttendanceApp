@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/white_5r_bg"
+        android:elevation="@dimen/_3sdp"
+        android:padding="@dimen/_10sdp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:background="@drawable/green_round_bg"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/user"
+            app:layout_constraintEnd_toEndOf="@+id/employeeName"
+            app:layout_constraintStart_toStartOf="@+id/employeeName"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/employeeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/font_heavy"
+            android:gravity="start"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:text="Employee Name"
+            android:textAllCaps="false"
+            android:textColor="@color/light_black"
+            android:textCursorDrawable="@drawable/text_cursor"
+            android:textSize="@dimen/_15sdp"
+            app:drawableTint="@color/_A8A8A8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profile"
+            tools:ignore="RtlSymmetry,TextViewEdits" />
+
+        <TextView
+            android:id="@+id/designationTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/font_heavy"
+            android:gravity="start"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:paddingStart="@dimen/_5sdp"
+            android:text="Android Developer"
+            android:textAllCaps="false"
+            android:textColor="@color/grey"
+            android:textCursorDrawable="@drawable/text_cursor"
+            android:textSize="@dimen/_11sdp"
+            app:drawableTint="@color/_A8A8A8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/employeeName"
+            tools:ignore="RtlSymmetry,TextViewEdits" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

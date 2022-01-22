@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/auth_white_bg"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/sendLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/_172B4D"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center_vertical"
+                android:text="Login Credential"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_18sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/secondary_color" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/bd_app"
+                app:layout_constraintEnd_toEndOf="@+id/title"
+                app:layout_constraintStart_toStartOf="@+id/title"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <TextView
+                android:id="@+id/nameLb"
+                android:layout_width="0dp"
+                android:layout_height="15dp"
+                android:fontFamily="@font/arial_rounded_mt_bold"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:text="@string/name"
+                android:textColor="@color/_C1C7D0"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/nameTxt"
+                app:layout_constraintTop_toBottomOf="@+id/profile" />
+
+            <TextView
+                android:id="@+id/nameTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:enabled="false"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center_vertical"
+                android:hint="@string/select_dob"
+                android:importantForAutofill="no"
+                android:inputType="textNoSuggestions"
+
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:text="Android Dev"
+                android:textAllCaps="true"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/title"
+                app:layout_constraintTop_toBottomOf="@+id/nameLb"
+                tools:ignore="TextFields,TextViewEdits" />
+
+            <TextView
+                android:id="@+id/emailLb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/arial_rounded_mt_bold"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:text="Email"
+                android:textColor="@color/_C1C7D0"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/nameTxt"
+                app:layout_constraintTop_toBottomOf="@+id/nameTxt" />
+
+            <TextView
+                android:id="@+id/emailTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:enabled="false"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center_vertical"
+                android:hint="@string/select_dob"
+                android:importantForAutofill="no"
+                android:inputType="textNoSuggestions"
+
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:text="androiddeveloper@gmail.com"
+                android:textAllCaps="true"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/emailLb"
+                app:layout_constraintTop_toBottomOf="@+id/emailLb"
+                tools:ignore="TextFields,TextViewEdits" />
+
+            <TextView
+                android:id="@+id/mPinLb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/arial_rounded_mt_bold"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:text="MPIN"
+                android:textColor="@color/_C1C7D0"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/profile"
+                app:layout_constraintStart_toStartOf="@+id/emailTxt"
+                app:layout_constraintTop_toBottomOf="@+id/emailTxt" />
+
+            <TextView
+                android:id="@+id/mpinTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:enabled="false"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center_vertical"
+                android:hint="@string/select_dob"
+                android:importantForAutofill="no"
+                android:inputType="textNoSuggestions"
+
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:text="64654"
+                android:textAllCaps="true"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/emailLb"
+                app:layout_constraintTop_toBottomOf="@+id/mPinLb"
+                tools:ignore="TextFields,TextViewEdits" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/sendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/green_10r_bg"
+            android:drawableStart="@drawable/icn_send"
+            android:drawablePadding="@dimen/_10sdp"
+            android:drawableTint="@color/white"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:text="Send Information"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sendLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

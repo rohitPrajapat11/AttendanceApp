@@ -31,10 +31,10 @@ import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.databinding.FragmentSingUpBinding;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.utils.ValidationUtils;
-import com.bdappmaniac.bdapp.databinding.FragmentSingUpBinding;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.nabinbhandari.android.permissions.PermissionHandler;
@@ -56,15 +56,15 @@ public class SingUpFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sing_up, container, false);
         StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
-        binding.nameTxt.addTextChangedListener(new SingUpFragment.TextChange(binding.emailTxt));
-        binding.emailTxt.addTextChangedListener(new SingUpFragment.TextChange(binding.emailTxt));
-        binding.passwordTxt.addTextChangedListener(new SingUpFragment.TextChange(binding.passwordTxt));
-        binding.phoneTxt.addTextChangedListener(new SingUpFragment.TextChange(binding.emailTxt));
-        binding.emPhoneTxt.addTextChangedListener(new SingUpFragment.TextChange(binding.passwordTxt));
-        binding.confirmPasswordTxt.addTextChangedListener(new SingUpFragment.TextChange(binding.emailTxt));
-        binding.dobTxt.addTextChangedListener(new SingUpFragment.TextChange(binding.passwordTxt));
-        binding.addressTxt.addTextChangedListener(new SingUpFragment.TextChange(binding.emailTxt));
-        binding.pinCodeTxt.addTextChangedListener(new SingUpFragment.TextChange(binding.passwordTxt));
+        binding.nameTxt.addTextChangedListener(new TextChange(binding.emailTxt));
+        binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
+        binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
+        binding.phoneTxt.addTextChangedListener(new TextChange(binding.emailTxt));
+        binding.emPhoneTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
+        binding.confirmPasswordTxt.addTextChangedListener(new TextChange(binding.emailTxt));
+        binding.dobTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
+        binding.addressTxt.addTextChangedListener(new TextChange(binding.emailTxt));
+        binding.pinCodeTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
 
         binding.backToLogin.setOnClickListener(view -> {
             Navigation.findNavController(binding.getRoot()).navigate(R.id.logInFragment);
@@ -74,7 +74,7 @@ public class SingUpFragment extends BaseFragment {
         });
         binding.sighUpBtn.setOnClickListener(view -> {
             if (checkValidation()) {
-                Toast.makeText(mContext, "All Done", Toast.LENGTH_SHORT).show();
+              Navigation.findNavController(view).navigate(R.id.logInFragment);
             }
         });
         binding.cameraBtn.setOnClickListener(view -> selectImage());
@@ -176,7 +176,7 @@ public class SingUpFragment extends BaseFragment {
     private void requestCameraPermission(int requestCode) {
         String[] permissions = {Manifest.permission.CAMERA};
         String rationale = "Please provide camera permission so that you can ...";
-        com.nabinbhandari.android.permissions.Permissions.Options options = new Permissions.Options()
+        Permissions.Options options = new Permissions.Options()
                 .setRationaleDialogTitle("Permissions")
                 .setSettingsDialogTitle("Camera Permission");
         Permissions.check(getActivity(), permissions, rationale, options, new PermissionHandler() {
@@ -379,7 +379,7 @@ public class SingUpFragment extends BaseFragment {
             binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
             binding.sighUpBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color._172B4D));
+            binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color.light_black));
         }
         isFieldFillUp();
     }

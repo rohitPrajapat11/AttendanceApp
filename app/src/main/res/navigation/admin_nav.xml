@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/adminNav"
+    app:startDestination="@id/adminHomeFragment">
+
+    <fragment
+        android:id="@+id/employeeListFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeListFragment"
+        android:label="Employee List  Fragment"
+        tools:layout="@layout/employee_list_item" />
+    <fragment
+        android:id="@+id/loanFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminLoanFragment"
+        android:label="Loan Fragment"
+        tools:layout="@layout/fragment_admin_loan" />
+    <fragment
+        android:id="@+id/adminHomeFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminHomeFragment"
+        android:label="Home Fragment"
+        tools:layout="@layout/fragment_admin_home" />
+    <fragment
+        android:id="@+id/adminTermFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminTermAndCondition"
+        android:label="Admin Term Fragment"
+        tools:layout="@layout/fragment_admin_term_and_condition" />
+    <fragment
+        android:id="@+id/employeeDetailFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeDetailsFragment"
+        android:label="Fragment"
+        tools:layout="@layout/fragment_employee_details" />
+    <fragment
+        android:id="@+id/registerEmployeeFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.RegisterEmployeeFragment"
+        android:label="Register Fragment"
+        tools:layout="@layout/fragment_register_empolyee" />
+    <fragment
+        android:id="@+id/employeeAttendanceFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeAttendanceFragment"
+        android:label="Fragment"
+        tools:layout="@layout/fragment_employee_attendance" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.SettingFragment"
+        android:label="Fragment"
+        tools:layout="@layout/fragment_setting" />
+</navigation>

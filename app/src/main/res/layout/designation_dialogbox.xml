@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_10sdp"
+    android:background="@drawable/white_5r_bg"
+    android:elevation="5dp"
+    android:padding="@dimen/_10sdp">
+
+    <TextView
+        android:id="@+id/adTxt"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/font_heavy"
+        android:padding="@dimen/_5sdp"
+        android:text="Android Developer "
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/iosTxt"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:fontFamily="@font/font_heavy"
+        android:padding="@dimen/_5sdp"
+        android:text="Ios Developer"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/adTxt"
+        app:layout_constraintTop_toBottomOf="@+id/adTxt" />
+
+    <TextView
+        android:id="@+id/wdTxt"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:fontFamily="@font/font_heavy"
+        android:padding="@dimen/_5sdp"
+        android:text="Web Developer"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/iosTxt"
+        app:layout_constraintTop_toBottomOf="@+id/iosTxt" />
+
+    <TextView
+        android:id="@+id/pmTxt"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:fontFamily="@font/font_heavy"
+        android:padding="@dimen/_5sdp"
+        android:text="Project Manager"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/wdTxt"
+        app:layout_constraintTop_toBottomOf="@+id/wdTxt" />
+
+    <TextView
+        android:id="@+id/oTxt"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:fontFamily="@font/font_heavy"
+        android:padding="@dimen/_5sdp"
+        android:text="Others"
+        android:textColor="@color/light_black"
+        android:textSize="@dimen/_15ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/pmTxt"
+        app:layout_constraintTop_toBottomOf="@+id/pmTxt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

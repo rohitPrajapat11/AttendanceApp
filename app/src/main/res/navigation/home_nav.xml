@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.bdappmaniac.bdapp.fragment.ProfileFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.ProfileFragment"
         android:label="Profile Fragment"
         tools:layout="@layout/fragment_profile" />
 </navigation>

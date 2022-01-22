@@ -189,9 +189,9 @@ public class StringHelper {
      *
      * @param filename which to be converted to string
      * @return String value of File
-     * @throws java.io.IOException if error occurs
+     * @throws IOException if error occurs
      */
-    public static String loadFileAsString(String filename) throws java.io.IOException
+    public static String loadFileAsString(String filename) throws IOException
     {
         final int BUFLEN = 1024;
         BufferedInputStream is = new BufferedInputStream(new FileInputStream(filename), BUFLEN);
@@ -401,7 +401,7 @@ public class StringHelper {
     }
 
     public static String truncateLastCharacterFromString(String value, int charToTruncate) {
-        if (android.text.TextUtils.isEmpty(value))
+        if (TextUtils.isEmpty(value))
             return value;
         return value.substring(0, value.length() - charToTruncate);
     }
@@ -411,7 +411,7 @@ public class StringHelper {
     }
 
     public static String[] splitString(String value, String delimiter) {
-        if (!android.text.TextUtils.isEmpty(value)) {
+        if (!TextUtils.isEmpty(value)) {
             if (value.contains(delimiter)) {
                 return value.split(delimiter);
             }

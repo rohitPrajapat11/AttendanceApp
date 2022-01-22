@@ -1,5 +1,6 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -19,10 +20,13 @@ import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
+
+import com.bdappmaniac.bdapp.activity.AuthActivity;
+import com.bdappmaniac.bdapp.activity.HomeActivity;
+import com.bdappmaniac.bdapp.databinding.FragmentLogInBinding;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.utils.ValidationUtils;
-import com.bdappmaniac.bdapp.databinding.FragmentLogInBinding;
 
 public class LogInFragment extends BaseFragment {
     FragmentLogInBinding binding;
@@ -48,14 +52,14 @@ public class LogInFragment extends BaseFragment {
             binding.adminBtn.setTextColor(Color.parseColor("#FFFFFF"));
             view.setElevation(5);
             binding.employeeBtn.setElevation(1);
-            binding.employeeBtn.setTextColor(Color.parseColor("#172B4D"));
+            binding.employeeBtn.setTextColor(Color.parseColor("#343637"));
             binding.employeeBtn.setBackgroundResource(R.drawable.white_10r_white_bg);
             //  binding.loginTypeTxt.setText("Sign In as Admin");
         });
         binding.employeeBtn.setOnClickListener(view -> {
             view.setBackgroundResource(R.drawable.green_10r_bg);
             binding.employeeBtn.setTextColor(Color.parseColor("#FFFFFF"));
-            binding.adminBtn.setTextColor(Color.parseColor("#172B4D"));
+            binding.adminBtn.setTextColor(Color.parseColor("#343637"));
             view.setElevation(5);
             binding.adminBtn.setElevation(1);
             //  binding.loginTypeTxt.setText("Sign In as Employee");
@@ -63,7 +67,8 @@ public class LogInFragment extends BaseFragment {
         });
         binding.loginBtn.setOnClickListener(view -> {
             if (checkValidation()) {
-                Toast.makeText(mContext, "All Done", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(mContext, HomeActivity.class));
+                getActivity().finish();
             }
         });
         binding.createAccountBtn.setOnClickListener(view -> {
@@ -153,7 +158,7 @@ public class LogInFragment extends BaseFragment {
             binding.loginBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
             binding.loginBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.loginBtn.setTextColor(ContextCompat.getColor(mContext, R.color._172B4D));
+            binding.loginBtn.setTextColor(ContextCompat.getColor(mContext, R.color.light_black));
         }
     }
 

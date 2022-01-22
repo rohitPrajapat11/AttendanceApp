@@ -16,11 +16,10 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
-
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.databinding.FragmentForgotPasswordBinding;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.utils.ValidationUtils;
-import com.bdappmaniac.bdapp.databinding.FragmentForgotPasswordBinding;
 
 public class ForgotPasswordFragment extends BaseFragment {
     FragmentForgotPasswordBinding binding;
@@ -54,7 +53,7 @@ public class ForgotPasswordFragment extends BaseFragment {
                 }
             }
         });
-        binding.emailTxt.addTextChangedListener(new ForgotPasswordFragment.TextChange(binding.emailTxt));
+        binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
 
         return binding.getRoot();
     }
@@ -123,7 +122,7 @@ public class ForgotPasswordFragment extends BaseFragment {
             binding.sendBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
             binding.sendBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.sendBtn.setTextColor(ContextCompat.getColor(mContext, R.color._172B4D));
+            binding.sendBtn.setTextColor(ContextCompat.getColor(mContext, R.color.light_black));
         }
         isFieldFillUp();
     }

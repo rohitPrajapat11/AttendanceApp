@@ -1,5 +1,6 @@
-package com.bdappmaniac.bdapp.fragment;
+package com.bdappmaniac.bdapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;

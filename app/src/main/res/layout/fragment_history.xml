@@ -11,13 +11,24 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/calendarLayout"
             android:layout_width="match_parent"
-            android:visibility="gone"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:background="@drawable/bottom_10r_white_bg"
+            android:elevation="@dimen/_4sdp"
+            android:paddingTop="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:elevation="@dimen/_4sdp"
             app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/calendarPreBtn"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:src="@drawable/icn_previous"
+                app:layout_constraintBottom_toBottomOf="@+id/calTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/calTitle" />
 
             <TextView
                 android:id="@+id/calTitle"
@@ -32,11 +43,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/calendarNextBtn"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:src="@drawable/icn_next"
+                app:layout_constraintBottom_toBottomOf="@+id/calTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/calTitle" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/calendarRecycler"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_15sdp"
@@ -66,9 +89,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:fontFamily="@font/arial_rounded_mt_bold"
                 android:text="Cancel"
-                android:layout_marginBottom="@dimen/_10sdp"
                 android:textColor="@color/secondary_color"
                 android:textSize="@dimen/_13sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
