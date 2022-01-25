@@ -30,6 +30,7 @@
         <entry key="app/src/main/res/drawable/round_green_bg.xml" value="0.11052631578947368" />
         <entry key="app/src/main/res/drawable/round_selector.xml" value="0.12203947368421053" />
         <entry key="app/src/main/res/drawable/round_white_bg.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/drawable/text_cursor.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/text_cusor.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/drawable/white_10r_bg.xml" value="0.12203947368421053" />
         <entry key="app/src/main/res/drawable/white_10r_white_bg.xml" value="0.19322916666666667" />
@@ -50,13 +51,13 @@
         <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.18" />
         <entry key="app/src/main/res/layout/admin_emp_info.xml" value="0.2" />
         <entry key="app/src/main/res/layout/admin_home_layout.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/bottom_dialog_register_success.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/bottom_dialog_register_success.xml" value="0.22" />
         <entry key="app/src/main/res/layout/bottom_layout.xml" value="0.15230263157894736" />
         <entry key="app/src/main/res/layout/bottom_round_bg.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/bottomlayout.xml" value="0.15230263157894736" />
         <entry key="app/src/main/res/layout/calendar_month_item.xml" value="0.18" />
         <entry key="app/src/main/res/layout/date_picker_timeline.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/designation_dialogbox.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/designation_dialogbox.xml" value="0.2" />
         <entry key="app/src/main/res/layout/employee_list_item.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_admin_home.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/fragment_admin_tearm_and_condtion.xml" value="0.16" />

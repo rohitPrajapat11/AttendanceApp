@@ -19,6 +19,7 @@ import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.BottomDialogRegisterSuccessBinding;
+import com.bdappmaniac.bdapp.databinding.DesignationDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentRegisterEmpolyeeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -50,6 +51,10 @@ public class RegisterEmployeeFragment extends BaseFragment {
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();
         });
+        binding.designationTxt.setOnClickListener(v -> {
+            designationDialog();
+        });
+
         return binding.getRoot();
     }
 
@@ -78,15 +83,37 @@ public class RegisterEmployeeFragment extends BaseFragment {
         startActivity(Intent.createChooser(shareIntent, "Share Details using"));
     }
 
-    private void delignationDialog() {
+    private void designationDialog() {
+
+        DesignationDialogboxBinding designationBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.designation_dialogbox, null, false);
         Dialog dialog = new Dialog(mContext);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(designationBinding.getRoot());
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(true);
-        dialog.setContentView(R.layout.designation_dialogbox);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        designationBinding.adTxt.setOnClickListener(v -> {
+            binding.designationTxt.setText("Android Developer");
+            dialog.dismiss();
+        });
+        designationBinding.iosTxt.setOnClickListener(v -> {
+            binding.designationTxt.setText("IOS Developer");
+            dialog.dismiss();
+        });
+        designationBinding.wdTxt.setOnClickListener(v -> {
+            binding.designationTxt.setText("Web Developer");
+            dialog.dismiss();
+        });
+        designationBinding.pmTxt.setOnClickListener(v -> {
+            binding.designationTxt.setText("Project Manager");
+            dialog.dismiss();
+        });
+        designationBinding.oTxt.setOnClickListener(v -> {
+            binding.designationTxt.setText("Other");
+            dialog.dismiss();
+        });
         dialog.show();
     }
 }
