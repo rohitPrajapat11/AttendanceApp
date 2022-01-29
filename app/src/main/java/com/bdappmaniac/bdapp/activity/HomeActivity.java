@@ -85,7 +85,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         binding.homeLayout.headerLayout.menuBtn.setOnClickListener(v -> {
             drawerOpenCLose();
         });
-        binding.homeLayout.headerLayout.calendarBtn.setOnClickListener(v -> {
+        binding.homeLayout.headerLayout.addBtn.setOnClickListener(v -> {
             Constant.calendarCallBack.openCalendar();
         });
         binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
@@ -115,7 +115,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         switch (type) {
             case "Home":
                 binding.homeLayout.headerLayout.title.setText("Home");
-                binding.homeLayout.headerLayout.calendarBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home_select);
                 binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);
                 binding.homeLayout.bottomLayout.historyBtn.setImageResource(R.drawable.icn_history);
@@ -126,7 +126,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case "Task":
                 binding.homeLayout.headerLayout.title.setText("Task");
-                binding.homeLayout.headerLayout.calendarBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
                 binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task_select);
                 binding.homeLayout.bottomLayout.historyBtn.setImageResource(R.drawable.icn_history);
@@ -138,7 +138,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case "History":
-                binding.homeLayout.headerLayout.calendarBtn.setVisibility(View.VISIBLE);
+                binding.homeLayout.headerLayout.addBtn.setVisibility(View.VISIBLE);
                 binding.homeLayout.headerLayout.title.setText("Working History");
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
                 binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);

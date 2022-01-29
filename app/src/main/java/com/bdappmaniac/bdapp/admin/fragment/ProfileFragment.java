@@ -180,7 +180,6 @@ public class ProfileFragment extends BaseFragment {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
     private boolean checkPermission() {
         return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
     }

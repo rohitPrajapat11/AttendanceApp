@@ -2,13 +2,11 @@ package com.bdappmaniac.bdapp.admin.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -18,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.EmployeeListItemBinding;
-import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.model.EmployeeListModel;
 
 import java.util.ArrayList;
@@ -26,11 +23,13 @@ import java.util.ArrayList;
 public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     ArrayList<EmployeeListModel> list = new ArrayList<>();
+    String from;
 
-    public EmployeeListAdapter(Context context, ArrayList<EmployeeListModel> list) {
+
+    public EmployeeListAdapter(Context context, ArrayList<EmployeeListModel> list, String from) {
         this.context = context;
         this.list = list;
-
+        this.from = from;
     }
 
     @Override
@@ -62,11 +61,21 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         vHolder.binding.designationTxt.setText(list.get(position).getDesignation());
         vHolder.binding.profile.setImageResource(list.get(position).getImage());
         vHolder.itemView.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putInt("image", list.get(position).getImage());
-            bundle.putString("name", list.get(position).getName());
-            bundle.putString("designation", list.get(position).getDesignation());
-            Navigation.findNavController(v).navigate(R.id.employeeDetailFragment,bundle);
+            if (from.equals("LoanFragment")) {
+                Toast.makeText(context, "L", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putInt("image", list.get(position).getImage());
+                bundle.putString("name", list.get(position).getName());
+                Navigation.findNavController(v).navigate(R.id.provideLoanFragment, bundle);
+            } else if (from.equals("EmployeeList")) {
+                Toast.makeText(context, "E", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putInt("image", list.get(position).getImage());
+                bundle.putString("name", list.get(position).getName());
+                bundle.putString("designation", list.get(position).getDesignation());
+                Navigation.findNavController(v).navigate(R.id.employeeDetailFragment, bundle);
+            }
+
         });
 
     }

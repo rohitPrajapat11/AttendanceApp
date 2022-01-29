@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_10r_white_bg"
+            android:padding="@dimen/_15sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:id="@+id/graphLayout"
+            android:elevation="@dimen/_3sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+                            <me.bastanfar.semicirclearcprogressbar.SemiCircleArcProgressBar
+                                android:id="@+id/semiCircleArcProgressBar"
+                                android:layout_width="@dimen/_130sdp"
+                                android:layout_height="@dimen/_65sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:percent="0"
+                                app:progressBarColor="@color/primary_color"
+                                app:progressBarWidth="16"
+                                app:progressPlaceHolderColor="@color/trans_black"
+                                app:progressPlaceHolderWidth="14" />
+
+            <TextView
+                android:id="@+id/totalPercentage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="45%"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_17sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/semiCircleArcProgressBar"
+                app:layout_constraintEnd_toEndOf="@+id/semiCircleArcProgressBar"
+                app:layout_constraintStart_toStartOf="@+id/semiCircleArcProgressBar" />
+
+
+            <TextView
+                android:id="@+id/totalLb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="start"
+                android:text="Loan Amount"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/semiCircleArcProgressBar" />
+
+            <TextView
+                android:id="@+id/totalTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="start"
+                android:text="50,000"
+                android:paddingStart="@dimen/_20sdp"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/totalLb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/totalLb"
+                app:layout_constraintTop_toTopOf="@+id/totalLb" />
+
+
+            <TextView
+                android:id="@+id/pendingLb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="start"
+                android:text="Due Amount"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintStart_toStartOf="@+id/totalLb"
+                app:layout_constraintTop_toBottomOf="@+id/totalTxt" />
+
+
+            <TextView
+                android:id="@+id/pendingAmountTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="start"
+                android:text="5,000"
+                android:paddingStart="@dimen/_20sdp"
+                android:textColor="@color/secondary_color"
+                android:textSize="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/pendingLb"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/totalLb"
+                app:layout_constraintTop_toTopOf="@+id/pendingLb" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:drawableTint="@color/_172B4D"
+            android:fontFamily="@font/font_heavy"
+            android:gravity="center_vertical"
+            android:text="All Loans"
+            android:textColor="@color/_172B4D"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/graphLayout"
+            app:tint="@color/secondary_color" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/historyRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:listitem="@layout/loan_details_item" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
