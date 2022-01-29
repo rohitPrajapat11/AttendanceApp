@@ -19,8 +19,7 @@ public class AdminTermAndCondition extends BaseFragment {
     FragmentAdminTermAndConditionBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_term_and_condition, container, false);
         binding.cancelBtn.setOnClickListener(v -> {

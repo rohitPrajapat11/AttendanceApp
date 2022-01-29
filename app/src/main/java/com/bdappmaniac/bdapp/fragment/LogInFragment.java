@@ -46,7 +46,7 @@ public class LogInFragment extends BaseFragment {
 
         StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
-        binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
+        binding.mpinTxt.addTextChangedListener(new TextChange(binding.mpinTxt));
 //        binding.adminBtn.setOnClickListener(view -> {
 //            view.setBackgroundResource(R.drawable.green_10r_bg);
 //            binding.adminBtn.setTextColor(Color.parseColor("#FFFFFF"));
@@ -72,19 +72,19 @@ public class LogInFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 String id = binding.emailTxt.getText().toString();
-                String password = binding.passwordTxt.getText().toString();
+                String mpin = binding.mpinTxt.getText().toString();
 
                 if(checkValidation()){
-                    if (id.equals("admin.bdapp@gmail.com") && password.equals("1234")) {
+                    if (id.equals("a@gmail.com") && mpin.equals("123456")) {
                         startActivity(new Intent(mContext, HomeActivity.class));
                         getActivity().finish();
-                    } else if (id.equals("employee.bdapp@gmail.com") && password.equals("1234")) {
+                    } else if (id.equals("e@gmail.com") && mpin.equals("123456")) {
                         Navigation.findNavController(v).navigate(R.id.createMPINFragment);
                     }
                 }
             }
         });
-        binding.forgetPasswordBtn.setOnClickListener(view -> {
+        binding.forgetmpindBtn.setOnClickListener(view -> {
         });
         return binding.getRoot();
     }
@@ -96,23 +96,19 @@ public class LogInFragment extends BaseFragment {
         if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
             return false;
         }
-        if (StringHelper.isEmpty(binding.passwordTxt.getText().toString())) {
+        if (StringHelper.isEmpty(binding.mpinTxt.getText().toString())) {
             return false;
         }
         return true;
     }
 
     public boolean checkValidation() {
-        if (TextUtils.isEmpty(binding.emailTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Email Name!");
-            return false;
-        }
         if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
             showSnackBar(binding.getRoot(), "Please Enter Valid Email!");
             return false;
         }
-        if (TextUtils.isEmpty(binding.passwordTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Password!");
+        if (TextUtils.isEmpty(binding.mpinTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), "Please Enter MPIN!");
             return false;
         }
         return true;
@@ -152,10 +148,10 @@ public class LogInFragment extends BaseFragment {
         } else {
             setTextViewDrawableColor(binding.emailTxt, R.color._172B4D);
         }
-        if (StringHelper.isEmpty(binding.passwordTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.passwordTxt, R.color._A8A8A8);
+        if (StringHelper.isEmpty(binding.mpinTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.mpinTxt, R.color._A8A8A8);
         } else {
-            setTextViewDrawableColor(binding.passwordTxt, R.color._172B4D);
+            setTextViewDrawableColor(binding.mpinTxt, R.color._172B4D);
         }
         setValidations();
     }

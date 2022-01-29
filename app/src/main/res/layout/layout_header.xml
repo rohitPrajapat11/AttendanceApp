@@ -57,12 +57,12 @@
             app:tint="@color/secondary_color" />
 
         <ImageView
-            android:id="@+id/calendarBtn"
+            android:id="@+id/addBtn"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
             android:scaleType="fitXY"
-            android:src="@drawable/icn_edit_calendar"
+            android:src="@drawable/ic_baseline_add_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
