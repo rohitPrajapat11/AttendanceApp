@@ -75,6 +75,5 @@ dependencies {
     //otp_pin
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
 
-
     implementation 'com.github.applikeysolutions:cosmocalendar:1.0.4'
 }

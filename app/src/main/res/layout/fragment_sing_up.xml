@@ -37,7 +37,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/textLayout"
                 android:layout_width="match_parent"
@@ -70,7 +69,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_10sdp"
-
                     android:gravity="center"
                     android:text="@string/create_an_account_to_continue"
                     android:textColor="@color/_C1C7D0"
@@ -99,7 +97,6 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView"
                         tools:layout_editor_absoluteX="0dp">
-
 
                         <TextView
                             android:id="@+id/nameLb"
@@ -146,7 +143,6 @@
                             android:layout_marginTop="@dimen/_15sdp"
                             android:fontFamily="@font/arial_rounded_mt_bold"
                             android:text="@string/email"
-
                             android:textColor="@color/_C1C7D0"
                             android:textSize="@dimen/_14sdp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -240,7 +236,6 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/phoneTxt" />
 
-
                         <EditText
                             android:id="@+id/emPhoneTxt"
                             android:layout_width="0dp"
@@ -267,7 +262,6 @@
                             tools:ignore="TextFields"
                             tools:targetApi="m" />
 
-
                         <TextView
                             android:id="@+id/dobLb"
                             android:layout_width="wrap_content"
@@ -279,7 +273,7 @@
                             android:textColor="@color/_C1C7D0"
                             android:textSize="@dimen/_14sdp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/emPhoneTxt" />
+                            app:layout_constraintTop_toBottomOf="@+id/designationTxt" />
 
                         <TextView
                             android:id="@+id/dobTxt"
@@ -307,94 +301,43 @@
                             tools:ignore="TextFields" />
 
                         <TextView
-                            android:id="@+id/passwordLb"
+                            android:id="@+id/designationLb"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_20sdp"
                             android:layout_marginTop="@dimen/_15sdp"
                             android:fontFamily="@font/arial_rounded_mt_bold"
-                            android:text="@string/password"
-
+                            android:text="Designation"
                             android:textColor="@color/_C1C7D0"
                             android:textSize="@dimen/_14sdp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/dobTxt" />
-
-                        <EditText
-                            android:id="@+id/passwordTxt"
-                            android:layout_width="0dp"
-                            android:layout_height="@dimen/_40sdp"
-                            android:layout_marginTop="@dimen/_15sdp"
-                            android:layout_marginEnd="@dimen/_25sdp"
-                            android:background="@drawable/edit_text_bg"
-                            android:drawableStart="@drawable/icn_lock"
-                            android:drawablePadding="@dimen/_10sdp"
-                            android:drawableTint="#A8A8A8"
-
-                            android:fontFamily="@font/font_heavy"
-                            android:hint="@string/enter_password"
-                            android:importantForAutofill="no"
-                            android:inputType="textNoSuggestions"
-                            android:paddingLeft="@dimen/_10sdp"
-                            android:paddingRight="@dimen/_10sdp"
-                            android:textAllCaps="true"
-                            android:textColor="@color/_172B4D"
-                            android:textSize="@dimen/_11ssp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@+id/phoneLb"
-                            app:layout_constraintTop_toBottomOf="@+id/passwordLb"
-                            tools:ignore="TextFields" />
+                            app:layout_constraintTop_toBottomOf="@+id/emPhoneTxt" />
 
                         <TextView
-                            android:id="@+id/confirmPasswordLb"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_20sdp"
-                            android:layout_marginTop="@dimen/_15sdp"
-                            android:fontFamily="@font/arial_rounded_mt_bold"
-                            android:text="@string/confirm_password"
-                            android:textColor="@color/_C1C7D0"
-                            android:textSize="@dimen/_14sdp"
-
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/passwordTxt" />
-
-                        <EditText
-                            android:id="@+id/confirmPasswordTxt"
+                            android:id="@+id/designationTxt"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/_40sdp"
-                            android:layout_marginTop="16dp"
+                            android:layout_marginTop="@dimen/_15sdp"
                             android:layout_marginEnd="@dimen/_25sdp"
                             android:background="@drawable/edit_text_bg"
-                            android:drawableStart="@drawable/icn_lock"
+                            android:drawableStart="@drawable/ic_baseline_design_services_24"
                             android:drawablePadding="@dimen/_10sdp"
-                            android:drawableTint="#A8A8A8"
+                            android:drawableTint="@color/_A8A8A8"
                             android:fontFamily="@font/font_heavy"
-                            android:hint="@string/enter_confirm_password"
+                            android:gravity="center_vertical"
+                            android:hint="Select Designation"
                             android:importantForAutofill="no"
-                            android:inputType="textPassword"
                             android:paddingLeft="@dimen/_10sdp"
-                            android:paddingEnd="@dimen/_30sdp"
                             android:paddingRight="@dimen/_10sdp"
                             android:textAllCaps="true"
                             android:textColor="@color/_172B4D"
                             android:textSize="@dimen/_11ssp"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@+id/phoneLb"
-                            app:layout_constraintTop_toBottomOf="@+id/confirmPasswordLb"
-                            tools:ignore="TextFields" />
-
-                        <ImageView
-                            android:id="@+id/confirmPsValidation"
-                            android:layout_width="@dimen/_16sdp"
-                            android:layout_height="@dimen/_16sdp"
-                            android:layout_marginEnd="@dimen/_10sdp"
-                            android:src="@drawable/icn_email_validation"
-                            app:layout_constraintBottom_toBottomOf="@+id/confirmPasswordTxt"
-                            app:layout_constraintEnd_toEndOf="@+id/confirmPasswordTxt"
-                            app:layout_constraintTop_toTopOf="@+id/confirmPasswordTxt"
-                            app:tint="@color/_A8A8A8" />
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="@+id/designationLb"
+                            app:layout_constraintTop_toBottomOf="@+id/designationLb"
+                            tools:ignore="TextFields"
+                            tools:targetApi="m" />
 
                         <TextView
                             android:id="@+id/addressLb"
@@ -404,11 +347,10 @@
                             android:layout_marginTop="@dimen/_15sdp"
                             android:fontFamily="@font/arial_rounded_mt_bold"
                             android:text="@string/address"
-
                             android:textColor="@color/_C1C7D0"
                             android:textSize="@dimen/_14sdp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/confirmPasswordTxt" />
+                            app:layout_constraintTop_toBottomOf="@+id/dobTxt" />
 
                         <EditText
                             android:id="@+id/addressTxt"
@@ -422,7 +364,6 @@
                             android:drawableTint="#A8A8A8"
                             android:fontFamily="@font/font_heavy"
                             android:hint="@string/enter_your_address"
-
                             android:importantForAutofill="no"
                             android:inputType="textNoSuggestions"
                             android:paddingLeft="@dimen/_10sdp"
@@ -443,7 +384,6 @@
                             android:layout_marginTop="@dimen/_15sdp"
                             android:fontFamily="@font/arial_rounded_mt_bold"
                             android:text="@string/pincode"
-
                             android:textColor="@color/_C1C7D0"
                             android:textSize="@dimen/_14sdp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -509,8 +449,6 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </ScrollView>
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -520,7 +458,6 @@
                 android:background="@drawable/green_round_bg"
                 android:elevation="@dimen/_5sdp"
                 android:padding="@dimen/_14sdp"
-
                 android:src="@drawable/user"
                 app:layout_constraintBottom_toBottomOf="@+id/topLayout"
                 app:layout_constraintEnd_toEndOf="parent"

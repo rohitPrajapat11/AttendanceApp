@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,7 +18,8 @@
 
             <include
                 android:id="@+id/homeLayout"
-                layout="@layout/admin_home_layout" />
+                layout="@layout/admin_home_layout">
+            </include>
 
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/drawerNav"
@@ -27,11 +27,12 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:background="@drawable/navigation_bg">
+
                 <include
                     android:id="@+id/navigationDrawer"
-                    layout="@layout/admin_drawer" />
+                    layout="@layout/admin_drawer">
+                </include>
             </com.google.android.material.navigation.NavigationView>
         </androidx.drawerlayout.widget.DrawerLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

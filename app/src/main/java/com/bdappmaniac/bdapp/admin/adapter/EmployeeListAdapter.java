@@ -84,6 +84,5 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             binding = itemView;
         }
     }
-
 }
 

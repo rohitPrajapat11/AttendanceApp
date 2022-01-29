@@ -80,7 +80,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-
             app:layout_constraintTop_toBottomOf="@+id/header2"
             app:layout_constraintVertical_bias="0.0">
 
@@ -88,7 +87,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="@dimen/_10sdp">
-
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/perInfoLayout"
@@ -264,7 +262,6 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginEnd="@dimen/_25sdp"
-
                         android:drawableStart="@drawable/icn_phone"
                         android:drawablePadding="@dimen/_10sdp"
                         android:enabled="false"
@@ -292,7 +289,6 @@
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginEnd="@dimen/_25sdp"
-
                         android:drawableStart="@drawable/icn_phone"
                         android:drawablePadding="@dimen/_10sdp"
                         android:enabled="false"
@@ -410,7 +406,6 @@
                         app:layout_constraintTop_toBottomOf="@+id/attendanceLoanBtn" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

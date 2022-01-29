@@ -3,6 +3,7 @@ package com.bdappmaniac.bdapp.admin.fragment;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -109,7 +112,72 @@ public class ProfileFragment extends BaseFragment {
                 onEditChange(false);
             }
         });
+        binding.designationTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(mContext);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(false);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setContentView(R.layout.designation_dialogbox);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setGravity(Gravity.CENTER);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                TextView adTxt = dialog.findViewById(R.id.adTxt);
+                TextView iosTxt = dialog.findViewById(R.id.iosTxt);
+                TextView wdTxt = dialog.findViewById(R.id.wdTxt);
+                TextView pmTxt = dialog.findViewById(R.id.pmTxt);
+                TextView oTxt = dialog.findViewById(R.id.oTxt);
 
+                String getAd = adTxt.getText().toString();
+                String getIos = iosTxt.getText().toString();
+                String getWd = wdTxt.getText().toString();
+                String getPm = pmTxt.getText().toString();
+                String getO = oTxt.getText().toString();
+
+                adTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String s = getAd;
+                        binding.designationTxt.setText(s);
+                        dialog.dismiss();
+                    }
+                });
+                iosTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String s = getIos;
+                        binding.designationTxt.setText(s);
+                        dialog.dismiss();
+                    }
+                });
+                wdTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String s = getWd;
+                        binding.designationTxt.setText(s);
+                        dialog.dismiss();
+                    }
+                });
+                pmTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String s = getPm;
+                        binding.designationTxt.setText(s);
+                        dialog.dismiss();
+                    }
+                });
+                oTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String s = getO;
+                        binding.designationTxt.setText(s);
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
         binding.cameraBtn.setOnClickListener(view -> selectImage());
         return binding.getRoot();
     }
@@ -212,7 +280,6 @@ public class ProfileFragment extends BaseFragment {
         return cursor.getString(column_index);
     }
 
-
     private boolean isAllFieldFillUp() {
         if (StringHelper.isEmpty(binding.nameTxt.getText().toString())) {
             return false;
@@ -224,6 +291,9 @@ public class ProfileFragment extends BaseFragment {
             return false;
         }
         if (StringHelper.isEmpty(binding.phoneTxt.getText().toString())) {
+            return false;
+        }
+        if (StringHelper.isEmpty(binding.designationTxt.getText().toString())) {
             return false;
         }
         if (StringHelper.isEmpty(binding.dobTxt.getText().toString())) {
@@ -261,6 +331,10 @@ public class ProfileFragment extends BaseFragment {
         }
         if (binding.emPhoneTxt.getText().length() != 10) {
             showSnackBar(binding.getRoot(), "Please Enter 10 Digit Number");
+            return false;
+        }
+        if (binding.designationTxt.getText().length() != 10) {
+            showSnackBar(binding.getRoot(), "Please Enter Your Designation");
             return false;
         }
         if (TextUtils.isEmpty(binding.dobTxt.getText().toString())) {
@@ -321,6 +395,11 @@ public class ProfileFragment extends BaseFragment {
         } else {
             setTextViewDrawableColor(binding.emPhoneTxt, R.color._172B4D);
         }
+        if (StringHelper.isEmpty(binding.designationTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.designationTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.designationTxt, R.color._172B4D);
+        }
         if (StringHelper.isEmpty(binding.dobTxt.getText().toString())) {
             setTextViewDrawableColor(binding.dobTxt, R.color._A8A8A8);
         } else {
@@ -368,6 +447,7 @@ public class ProfileFragment extends BaseFragment {
         binding.dobTxt.setEnabled(check);
         binding.addressTxt.setEnabled(check);
         binding.pinCodeTxt.setEnabled(check);
+        binding.designationTxt.setEnabled(check);
     }
 
     private void setTextViewDrawableColor(TextView textView, int color) {
@@ -377,6 +457,7 @@ public class ProfileFragment extends BaseFragment {
             }
         }
     }
+
     void textProfile() {
         Bitmap bitmap = TextToBitmap.textToBitmap(binding.nameTxt.getText().toString(), mContext, 10, R.color.black);
         Drawable d = new BitmapDrawable(getResources(), bitmap);

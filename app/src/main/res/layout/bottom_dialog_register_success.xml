@@ -47,10 +47,10 @@
                 android:id="@+id/nameLb"
                 android:layout_width="0dp"
                 android:layout_height="15dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/arial_rounded_mt_bold"
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingRight="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/name"
                 android:textColor="@color/_C1C7D0"
                 android:textSize="@dimen/_12sdp"
@@ -69,7 +69,6 @@
                 android:hint="@string/select_dob"
                 android:importantForAutofill="no"
                 android:inputType="textNoSuggestions"
-
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingRight="@dimen/_10sdp"
                 android:text="Android Dev"
@@ -107,7 +106,6 @@
                 android:hint="@string/select_dob"
                 android:importantForAutofill="no"
                 android:inputType="textNoSuggestions"
-
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingRight="@dimen/_10sdp"
                 android:text="androiddeveloper@gmail.com"
@@ -155,6 +153,7 @@
                 app:layout_constraintStart_toStartOf="@+id/mobilelLb"
                 app:layout_constraintTop_toBottomOf="@+id/mobilelLb"
                 tools:ignore="TextFields,TextViewEdits" />
+
             <TextView
                 android:id="@+id/mPinLb"
                 android:layout_width="0dp"
@@ -182,7 +181,6 @@
                 android:hint="@string/select_dob"
                 android:importantForAutofill="no"
                 android:inputType="textNoSuggestions"
-
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingRight="@dimen/_10sdp"
                 android:text="64654"
@@ -204,8 +202,8 @@
             android:background="@drawable/green_10r_bg"
             android:drawableStart="@drawable/icn_send"
             android:drawablePadding="@dimen/_10sdp"
-            android:fontFamily="@font/font_heavy"
             android:drawableTint="@color/white"
+            android:fontFamily="@font/font_heavy"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/_10sdp"
             android:paddingEnd="@dimen/_10sdp"
@@ -216,8 +214,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sendLayout" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>

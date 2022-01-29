@@ -1,42 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/_15sdp"
+        android:background="@color/white"
         android:elevation="@dimen/_1sdp"
+        android:paddingTop="@dimen/_15sdp"
         android:paddingBottom="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        android:background="@color/white"
         app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:id="@+id/menuBtn"
             android:layout_width="@dimen/_23sdp"
             android:layout_height="@dimen/_21sdp"
             android:layout_marginStart="@dimen/_20sdp"
             android:scaleType="fitXY"
-
             android:src="@drawable/main_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.555" />
+
         <ImageView
             android:id="@+id/backBtn"
             android:layout_width="@dimen/_23sdp"
             android:layout_height="@dimen/_21sdp"
             android:layout_marginStart="@dimen/_20sdp"
             android:scaleType="fitXY"
-            android:visibility="gone"
             android:src="@drawable/icn_back_arrow"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.555" />
+
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -57,8 +60,8 @@
             android:id="@+id/calendarBtn"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
-            android:scaleType="fitXY"
             android:layout_marginEnd="@dimen/_20sdp"
+            android:scaleType="fitXY"
             android:src="@drawable/icn_edit_calendar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

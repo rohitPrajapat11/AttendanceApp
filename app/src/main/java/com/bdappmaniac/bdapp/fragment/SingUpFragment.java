@@ -3,12 +3,14 @@ package com.bdappmaniac.bdapp.fragment;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -31,6 +34,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.activity.HomeActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentSingUpBinding;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
@@ -58,13 +62,8 @@ public class SingUpFragment extends BaseFragment {
         StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
         binding.nameTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
-        binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
         binding.phoneTxt.addTextChangedListener(new TextChange(binding.emailTxt));
-        binding.emPhoneTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
-        binding.confirmPasswordTxt.addTextChangedListener(new TextChange(binding.emailTxt));
-        binding.dobTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
         binding.addressTxt.addTextChangedListener(new TextChange(binding.emailTxt));
-        binding.pinCodeTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
 
         binding.backToLogin.setOnClickListener(view -> {
             Navigation.findNavController(binding.getRoot()).navigate(R.id.logInFragment);
@@ -74,7 +73,8 @@ public class SingUpFragment extends BaseFragment {
         });
         binding.sighUpBtn.setOnClickListener(view -> {
             if (checkValidation()) {
-              Navigation.findNavController(view).navigate(R.id.logInFragment);
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
             }
         });
         binding.cameraBtn.setOnClickListener(view -> selectImage());
@@ -98,7 +98,72 @@ public class SingUpFragment extends BaseFragment {
             datePickerDialog.getWindow().setGravity(Gravity.CENTER);
             datePickerDialog.show();
         });
+        binding.designationTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(mContext);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(false);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setContentView(R.layout.designation_dialogbox);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setGravity(Gravity.CENTER);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                TextView adTxt = dialog.findViewById(R.id.adTxt);
+                TextView iosTxt = dialog.findViewById(R.id.iosTxt);
+                TextView wdTxt = dialog.findViewById(R.id.wdTxt);
+                TextView pmTxt = dialog.findViewById(R.id.pmTxt);
+                TextView oTxt = dialog.findViewById(R.id.oTxt);
 
+                String getAd = adTxt.getText().toString();
+                String getIos = iosTxt.getText().toString();
+                String getWd = wdTxt.getText().toString();
+                String getPm = pmTxt.getText().toString();
+                String getO = oTxt.getText().toString();
+
+                adTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String s = getAd;
+                        binding.designationTxt.setText(s);
+                        dialog.dismiss();
+                    }
+                });
+                iosTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String s = getIos;
+                        binding.designationTxt.setText(s);
+                        dialog.dismiss();
+                    }
+                });
+                wdTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String s = getWd;
+                        binding.designationTxt.setText(s);
+                        dialog.dismiss();
+                    }
+                });
+                pmTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String s = getPm;
+                        binding.designationTxt.setText(s);
+                        dialog.dismiss();
+                    }
+                });
+                oTxt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String s = getO;
+                        binding.designationTxt.setText(s);
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
         return binding.getRoot();
     }
 
@@ -216,13 +281,10 @@ public class SingUpFragment extends BaseFragment {
         if (StringHelper.isEmpty(binding.phoneTxt.getText().toString())) {
             return false;
         }
-        if (StringHelper.isEmpty(binding.passwordTxt.getText().toString())) {
+        if (StringHelper.isEmpty(binding.designationTxt.getText().toString())) {
             return false;
         }
         if (StringHelper.isEmpty(binding.dobTxt.getText().toString())) {
-            return false;
-        }
-        if (StringHelper.isEmpty(binding.confirmPasswordTxt.getText().toString())) {
             return false;
         }
         if (StringHelper.isEmpty(binding.addressTxt.getText().toString())) {
@@ -263,20 +325,12 @@ public class SingUpFragment extends BaseFragment {
             showSnackBar(binding.getRoot(), "Please Enter 10 Digit Number");
             return false;
         }
+        if (TextUtils.isEmpty(binding.designationTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), "Please Enter Your Designation");
+            return false;
+        }
         if (TextUtils.isEmpty(binding.dobTxt.getText().toString())) {
             showSnackBar(binding.getRoot(), "Please Enter Date Of Birth!");
-            return false;
-        }
-        if (TextUtils.isEmpty(binding.passwordTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Password!");
-            return false;
-        }
-        if (TextUtils.isEmpty(binding.confirmPasswordTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Password To Confirm!");
-            return false;
-        }
-        if (!binding.passwordTxt.getText().toString().equals(binding.passwordTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Password Mismatch!");
             return false;
         }
         if (TextUtils.isEmpty(binding.addressTxt.getText().toString())) {
@@ -309,13 +363,6 @@ public class SingUpFragment extends BaseFragment {
             } else {
                 binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
             }
-            if (!TextUtils.isEmpty(binding.passwordTxt.getText().toString())) {
-                if (binding.passwordTxt.getText().toString().equals(binding.confirmPasswordTxt.getText().toString())) {
-                    binding.confirmPsValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
-                } else {
-                    binding.confirmPsValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
-                }
-            }
             setValidations();
         }
 
@@ -346,20 +393,15 @@ public class SingUpFragment extends BaseFragment {
         } else {
             setTextViewDrawableColor(binding.emPhoneTxt, R.color._172B4D);
         }
+        if (StringHelper.isEmpty(binding.designationTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.designationTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.designationTxt, R.color._172B4D);
+        }
         if (StringHelper.isEmpty(binding.dobTxt.getText().toString())) {
             setTextViewDrawableColor(binding.dobTxt, R.color._A8A8A8);
         } else {
             setTextViewDrawableColor(binding.dobTxt, R.color._172B4D);
-        }
-        if (StringHelper.isEmpty(binding.passwordTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.passwordTxt, R.color._A8A8A8);
-        } else {
-            setTextViewDrawableColor(binding.passwordTxt, R.color._172B4D);
-        }
-        if (StringHelper.isEmpty(binding.confirmPasswordTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.confirmPasswordTxt, R.color._A8A8A8);
-        } else {
-            setTextViewDrawableColor(binding.confirmPasswordTxt, R.color._172B4D);
         }
         if (StringHelper.isEmpty(binding.addressTxt.getText().toString())) {
             setTextViewDrawableColor(binding.addressTxt, R.color._A8A8A8);

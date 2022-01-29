@@ -34,12 +34,12 @@ public class LogInFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_log_in, container, false);
-        binding.createAccountBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.singUpFragment);
-            }
-        });
+//        binding.createAccountBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Navigation.findNavController(v).navigate(R.id.singUpFragment);
+//            }
+//        });
         binding.backBtn.setOnClickListener(view -> {
             requireActivity().finish();
         });
@@ -47,35 +47,44 @@ public class LogInFragment extends BaseFragment {
         StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
-        binding.adminBtn.setOnClickListener(view -> {
-            view.setBackgroundResource(R.drawable.green_10r_bg);
-            binding.adminBtn.setTextColor(Color.parseColor("#FFFFFF"));
-            view.setElevation(5);
-            binding.employeeBtn.setElevation(1);
-            binding.employeeBtn.setTextColor(Color.parseColor("#343637"));
-            binding.employeeBtn.setBackgroundResource(R.drawable.white_10r_white_bg);
-            //  binding.loginTypeTxt.setText("Sign In as Admin");
-        });
-        binding.employeeBtn.setOnClickListener(view -> {
-            view.setBackgroundResource(R.drawable.green_10r_bg);
-            binding.employeeBtn.setTextColor(Color.parseColor("#FFFFFF"));
-            binding.adminBtn.setTextColor(Color.parseColor("#343637"));
-            view.setElevation(5);
-            binding.adminBtn.setElevation(1);
-            //  binding.loginTypeTxt.setText("Sign In as Employee");
-            binding.adminBtn.setBackgroundResource(R.drawable.white_10r_white_bg);
-        });
-        binding.loginBtn.setOnClickListener(view -> {
-            if (checkValidation()) {
-                startActivity(new Intent(mContext, HomeActivity.class));
-                getActivity().finish();
+//        binding.adminBtn.setOnClickListener(view -> {
+//            view.setBackgroundResource(R.drawable.green_10r_bg);
+//            binding.adminBtn.setTextColor(Color.parseColor("#FFFFFF"));
+//            view.setElevation(5);
+//            binding.employeeBtn.setElevation(1);
+//            binding.employeeBtn.setTextColor(Color.parseColor("#343637"));
+//            binding.employeeBtn.setBackgroundResource(R.drawable.white_10r_white_bg);
+//            //  binding.loginTypeTxt.setText("Sign In as Admin");
+//        });
+//        binding.employeeBtn.setOnClickListener(view -> {
+//            view.setBackgroundResource(R.drawable.green_10r_bg);
+//            binding.employeeBtn.setTextColor(Color.parseColor("#FFFFFF"));
+//            binding.adminBtn.setTextColor(Color.parseColor("#343637"));
+//            view.setElevation(5);
+//            binding.adminBtn.setElevation(1);
+//            //  binding.loginTypeTxt.setText("Sign In as Employee");
+//            binding.adminBtn.setBackgroundResource(R.drawable.white_10r_white_bg);
+//        });
+//        binding.createAccountBtn.setOnClickListener(view -> {
+//            Navigation.findNavController(view).navigate(R.id.singUpFragment);
+//        });
+        binding.loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String id = binding.emailTxt.getText().toString();
+                String password = binding.passwordTxt.getText().toString();
+
+                if(checkValidation()){
+                    if (id.equals("admin.bdapp@gmail.com") && password.equals("1234")) {
+                        startActivity(new Intent(mContext, HomeActivity.class));
+                        getActivity().finish();
+                    } else if (id.equals("employee.bdapp@gmail.com") && password.equals("1234")) {
+                        Navigation.findNavController(v).navigate(R.id.createMPINFragment);
+                    }
+                }
             }
         });
-        binding.createAccountBtn.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigate(R.id.singUpFragment);
-        });
         binding.forgetPasswordBtn.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigate(R.id.forgotPasswordFragment);
         });
         return binding.getRoot();
     }
@@ -106,7 +115,6 @@ public class LogInFragment extends BaseFragment {
             showSnackBar(binding.getRoot(), "Please Enter Password!");
             return false;
         }
-
         return true;
     }
 

@@ -42,14 +42,12 @@ public class HistoryFragment extends BaseFragment implements CalendarCallBack {
     @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_history, container, false);
         Constant.calendarCallBack = this;
         String[] shortMonths = new DateFormatSymbols().getShortMonths();
         calendarList2.addAll(Arrays.asList(shortMonths));
-        String[] category = new String[]{"History Task 1", "History Task 2", "History Task 3",
-                "History Task 4", "History Task 5", "History Task 5"};
+        String[] category = new String[]{"History Task 1", "History Task 2", "History Task 3", "History Task 4", "History Task 5", "History Task 5"};
         List<String> taskList = new ArrayList<>(Arrays.asList(category));
         HistoryAdapter notificationAdapter = new HistoryAdapter(getContext(), taskList);
         binding.historyRecycler.setAdapter(notificationAdapter);
@@ -98,7 +96,6 @@ public class HistoryFragment extends BaseFragment implements CalendarCallBack {
 
     @Override
     public void openCalendar() {
-
         binding.calendarLayout.setVisibility(View.VISIBLE);
     }
 }

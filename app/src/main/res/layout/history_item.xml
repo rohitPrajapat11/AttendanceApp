@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/historyItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_5sdp"
@@ -24,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/dateTxt"
+            android:id="@+id/dateText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_heavy"
@@ -35,13 +36,12 @@
             app:layout_constraintStart_toEndOf="@+id/dayTxt"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/attendLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            app:layout_constraintTop_toBottomOf="@+id/dateTxt"
+            app:layout_constraintTop_toBottomOf="@+id/dateText"
             tools:layout_editor_absoluteX="13dp">
 
             <TextView
@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/checkInTime"
+                android:id="@+id/checkInTimes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
@@ -85,7 +85,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/checkIn" />
 
             <TextView
-                android:id="@+id/checkOutTime"
+                android:id="@+id/checkOutTimes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
@@ -101,7 +101,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <TextView
             android:id="@+id/absentTxt"
             android:layout_width="0dp"
@@ -114,9 +113,9 @@
             android:textColor="@color/secondary_color"
             android:textSize="@dimen/_12sdp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/dateTxt"
+            app:layout_constraintBottom_toBottomOf="@+id/dateText"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/dateTxt" />
+            app:layout_constraintTop_toTopOf="@+id/dateText" />
 
         <TextView
             android:id="@+id/reasonTxt"
@@ -132,6 +131,6 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/dayTxt"
-            app:layout_constraintTop_toBottomOf="@+id/dateTxt" />
+            app:layout_constraintTop_toBottomOf="@+id/dateText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

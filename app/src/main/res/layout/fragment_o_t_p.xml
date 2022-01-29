@@ -78,22 +78,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="110dp"
-                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_110sdp"
                 android:cursorVisible="true"
                 android:inputType="number"
                 android:itemBackground="@drawable/edit_text_bg"
+                android:textColor="@color/black"
                 app:cursorColor="@color/black"
                 app:hideLineWhenFilled="true"
                 app:itemCount="4"
                 app:itemHeight="50dp"
                 app:itemRadius="5dp"
-                app:itemWidth="50dp"
                 app:itemSpacing="@dimen/_4sdp"
+                app:itemWidth="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/verification"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/verification" />
 
             <Button
                 android:id="@+id/verify"
@@ -132,6 +131,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>

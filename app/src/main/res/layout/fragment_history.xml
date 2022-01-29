@@ -12,10 +12,10 @@
             android:id="@+id/calendarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:background="@drawable/bottom_10r_white_bg"
             android:elevation="@dimen/_4sdp"
             android:paddingTop="@dimen/_10sdp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -75,7 +75,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_30sdp"
-
                 android:fontFamily="@font/arial_rounded_mt_bold"
                 android:text="@string/ok"
                 android:textColor="@color/secondary_color"
@@ -98,7 +97,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/okCalendarBtn"
                 app:layout_constraintTop_toTopOf="@+id/okCalendarBtn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/historyRecycler"

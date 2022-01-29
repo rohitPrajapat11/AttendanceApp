@@ -20,7 +20,8 @@
 
             <include
                 android:id="@+id/homeLayout"
-                layout="@layout/home_layout" />
+                layout="@layout/home_layout">
+            </include>
 
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/drawerNav"
@@ -31,9 +32,9 @@
 
                 <include
                     android:id="@+id/navigationDrawer"
-                    layout="@layout/navigation_drawer" />
+                    layout="@layout/navigation_drawer">
+                </include>
             </com.google.android.material.navigation.NavigationView>
         </androidx.drawerlayout.widget.DrawerLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

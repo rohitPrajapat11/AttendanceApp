@@ -31,18 +31,15 @@ public class HomeFragment extends BaseFragment {
     Calendar cal = Calendar.getInstance(Locale.ENGLISH);
     ArrayList<Date> dates = new ArrayList<Date>();
     String selectedDateByCalendar = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-    ;
     ArrayList<CalendarDateModel> calendarList2 = new ArrayList<>();
     int todayDate = Integer.parseInt(new SimpleDateFormat("dd", Locale.getDefault()).format(new Date()));
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         binding.checkInTime.setOnClickListener(view -> {
                     showTime(binding.checkInTime);
-                }
-        );
+        });
         binding.calendarDateTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

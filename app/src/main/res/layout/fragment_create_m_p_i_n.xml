@@ -40,6 +40,7 @@
             android:layout_height="0dp"
             android:background="@drawable/auth_white_bg"
             android:elevation="@dimen/_5sdp"
+            android:padding="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +51,7 @@
                 android:id="@+id/otpTypeTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_35sdp"
                 android:gravity="center"
                 android:text="Create Your MPIN"
                 android:textColor="@color/_172B4D"
@@ -59,68 +60,284 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/loginDesLb"
+            <ScrollView
+                android:id="@+id/scrollableLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                android:gravity="center"
-                android:text="Make Your MPIN for security"
-                android:textColor="@color/_C1C7D0"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintTop_toBottomOf="@+id/otpTypeTxt" />
-
-            <com.mukesh.OtpView
-                android:id="@+id/pinView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:cursorVisible="false"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:fontFamily="@font/arial_rounded_mt_bold"
-                android:gravity="center_horizontal"
-                android:inputType="number"
-                android:password="true"
-                android:textColor="@color/_192d4d"
-                android:textSize="@dimen/_12ssp"
-                app:OtpCursorColor="@color/white"
-                app:OtpCursorWidth="2dp"
-                app:OtpHideLineWhenFilled="false"
-                app:OtpItemCount="4"
-                app:OtpItemHeight="@dimen/_36sdp"
-                app:OtpItemRadius="9dp"
-                app:OtpItemSpacing="@dimen/_10sdp"
-                app:OtpItemWidth="@dimen/_36sdp"
-                app:OtpLineColor="@color/_A8A8A8"
-                app:OtpLineWidth="1.5dp"
-                app:OtpState_filled="true"
-                app:OtpViewType="rectangle"
-                app:layout_constraintBottom_toTopOf="@+id/count"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/loginDesLb" />
-
-            <Button
-                android:id="@+id/count"
-                android:layout_width="200dp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_marginBottom="@dimen/_60sdp"
-                android:background="@drawable/light_green_15r_bg"
-                android:elevation="@dimen/_3sdp"
-                android:fontFamily="@font/font_heavy"
-                android:gravity="center"
-                android:paddingStart="@dimen/_20sdp"
-                android:paddingTop="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_20sdp"
-                android:paddingBottom="@dimen/_10sdp"
-                android:text="Continue"
-                android:textColor="@color/light_black"
-                android:textSize="@dimen/_12sdp"
+                android:layout_height="0dp"
+                android:fillViewport="true"
+                android:scrollbars="none"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/otpTypeTxt"
+                app:layout_constraintVertical_bias="0.0">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/loginDesLb"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:text="Make Your MPIN for security"
+                        android:textColor="@color/_C1C7D0"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="13dp" />
+
+                    <com.mukesh.OtpView
+                        android:id="@+id/pinView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/white"
+                        android:cursorVisible="true"
+                        android:focusableInTouchMode="true"
+                        android:focusedByDefault="false"
+                        android:fontFamily="@font/arial_rounded_mt_bold"
+                        android:gravity="center_horizontal"
+                        android:inputType="number"
+                        android:itemBackground="@drawable/otp_bg"
+                        android:password="true"
+                        android:textColor="@color/_192d4d"
+                        android:textSize="@dimen/_12ssp"
+                        app:OtpCursorColor="@color/white"
+                        app:OtpCursorWidth="2dp"
+                        app:OtpHideLineWhenFilled="false"
+                        app:OtpItemCount="6"
+                        app:OtpItemHeight="@dimen/_36sdp"
+                        app:OtpItemRadius="9dp"
+                        app:OtpItemSpacing="@dimen/_10sdp"
+                        app:OtpItemWidth="@dimen/_36sdp"
+                        app:OtpLineColor="@color/primary_color"
+                        app:OtpLineWidth="1.5dp"
+                        app:OtpState_filled="true"
+                        app:OtpViewType="rectangle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/loginDesLb" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/content"
+                        android:layout_width="@dimen/_240sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/transparent"
+                        android:padding="@dimen/_6sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.493"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/pinView">
+
+                        <TextView
+                            android:id="@+id/key1"
+                            android:layout_width="@dimen/_55sdp"
+                            android:layout_height="@dimen/_55sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/green_round_bg"
+                            android:fontFamily="@font/arial_rounded_mt_bold"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp"
+                            app:layout_constraintEnd_toStartOf="@id/key2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/key2"
+                            android:layout_width="@dimen/_55sdp"
+                            android:layout_height="@dimen/_55sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/green_round_bg"
+                            android:fontFamily="@font/arial_rounded_mt_bold"
+                            android:gravity="center"
+                            android:text="2"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp"
+                            app:layout_constraintEnd_toStartOf="@id/key3"
+                            app:layout_constraintStart_toEndOf="@id/key1"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/key3"
+                            android:layout_width="@dimen/_55sdp"
+                            android:layout_height="@dimen/_55sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/green_round_bg"
+                            android:fontFamily="@font/arial_rounded_mt_bold"
+                            android:gravity="center"
+                            android:text="3"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/key2"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/key4"
+                            android:layout_width="@dimen/_55sdp"
+                            android:layout_height="@dimen/_55sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/green_round_bg"
+                            android:fontFamily="@font/arial_rounded_mt_bold"
+                            android:gravity="center"
+                            android:text="4"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp"
+                            app:layout_constraintEnd_toStartOf="@id/key5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/key1" />
+
+                        <TextView
+                            android:id="@+id/key5"
+                            android:layout_width="@dimen/_55sdp"
+                            android:layout_height="@dimen/_55sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/green_round_bg"
+                            android:fontFamily="@font/arial_rounded_mt_bold"
+                            android:gravity="center"
+                            android:text="5"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp"
+                            app:layout_constraintEnd_toStartOf="@id/key6"
+                            app:layout_constraintStart_toEndOf="@id/key4"
+                            app:layout_constraintTop_toBottomOf="@id/key1" />
+
+                        <TextView
+                            android:id="@+id/key6"
+                            android:layout_width="@dimen/_55sdp"
+                            android:layout_height="@dimen/_55sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/green_round_bg"
+                            android:fontFamily="@font/arial_rounded_mt_bold"
+                            android:gravity="center"
+                            android:text="6"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/key5"
+                            app:layout_constraintTop_toBottomOf="@id/key1" />
+
+                        <TextView
+                            android:id="@+id/key7"
+                            android:layout_width="@dimen/_55sdp"
+                            android:layout_height="@dimen/_55sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/green_round_bg"
+                            android:fontFamily="@font/arial_rounded_mt_bold"
+                            android:gravity="center"
+                            android:text="7"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp"
+                            app:layout_constraintEnd_toStartOf="@id/key8"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/key4" />
+
+                        <TextView
+                            android:id="@+id/key8"
+                            android:layout_width="@dimen/_55sdp"
+                            android:layout_height="@dimen/_55sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/green_round_bg"
+                            android:fontFamily="@font/arial_rounded_mt_bold"
+                            android:gravity="center"
+                            android:text="8"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp"
+                            app:layout_constraintEnd_toStartOf="@id/key9"
+                            app:layout_constraintStart_toEndOf="@id/key7"
+                            app:layout_constraintTop_toBottomOf="@id/key4" />
+
+                        <TextView
+                            android:id="@+id/key9"
+                            android:layout_width="@dimen/_55sdp"
+                            android:layout_height="@dimen/_55sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/green_round_bg"
+                            android:fontFamily="@font/arial_rounded_mt_bold"
+                            android:gravity="center"
+                            android:text="9"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/key8"
+                            app:layout_constraintTop_toBottomOf="@id/key4" />
+
+                        <TextView
+                            android:id="@+id/key0"
+                            android:layout_width="@dimen/_55sdp"
+                            android:layout_height="@dimen/_55sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/green_round_bg"
+                            android:fontFamily="@font/arial_rounded_mt_bold"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/key8" />
+
+                        <ImageView
+                            android:id="@+id/removeTXT"
+                            android:layout_width="@dimen/_45sdp"
+                            android:layout_height="@dimen/_45sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/white_arrow_bg"
+                            android:padding="@dimen/_15sdp"
+                            android:src="@drawable/icn_white_arrow"
+                            app:layout_constraintBottom_toBottomOf="@id/key0"
+                            app:layout_constraintEnd_toEndOf="@id/key9"
+                            app:layout_constraintStart_toStartOf="@id/key9"
+                            app:layout_constraintTop_toTopOf="@id/key0" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <Button
+                        android:id="@+id/count"
+                        android:layout_width="200dp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@drawable/light_green_15r_bg"
+                        android:elevation="@dimen/_3sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:text="Continue"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.497"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/content" />
+
+                    <Button
+                        android:id="@+id/submitBtn"
+                        android:layout_width="200dp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:background="@drawable/light_green_15r_bg"
+                        android:elevation="@dimen/_3sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_20sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:text="Submit"
+                        android:textColor="@color/light_black"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.497"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/content" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -136,6 +353,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>

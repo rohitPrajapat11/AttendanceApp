@@ -13,7 +13,6 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:elevation="@dimen/_1sdp"
-
             android:paddingTop="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -51,7 +50,6 @@
                 android:id="@+id/mainLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@color/_F4F5F7"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -123,7 +121,7 @@
                         android:layout_height="@dimen/_15sdp"
                         android:src="@drawable/icn_calendar_l"
                         app:layout_constraintBottom_toBottomOf="@+id/toDate"
-                        app:layout_constraintStart_toStartOf="parent"></ImageView>
+                        app:layout_constraintStart_toStartOf="parent"/>
 
                     <TextView
                         android:id="@+id/ToTxt"
@@ -154,11 +152,8 @@
                         app:layout_constraintTop_toBottomOf="@+id/ToTxt" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
