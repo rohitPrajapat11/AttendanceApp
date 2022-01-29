@@ -25,7 +25,6 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     ArrayList<EmployeeListModel> list = new ArrayList<>();
     String from;
 
-
     public EmployeeListAdapter(Context context, ArrayList<EmployeeListModel> list, String from) {
         this.context = context;
         this.list = list;
@@ -46,7 +45,6 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         EmployeeListItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.employee_list_item, group, false);
         return new EmployeeListAdapter.EmployeeListHolder(binding);
     }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -75,11 +73,8 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 bundle.putString("designation", list.get(position).getDesignation());
                 Navigation.findNavController(v).navigate(R.id.employeeDetailFragment, bundle);
             }
-
         });
-
     }
-
     @Override
     public int getItemCount() {
         return list.size();
@@ -87,7 +82,6 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public class EmployeeListHolder extends RecyclerView.ViewHolder {
         EmployeeListItemBinding binding;
-
         public EmployeeListHolder(EmployeeListItemBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;

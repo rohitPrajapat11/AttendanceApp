@@ -7,38 +7,38 @@
 
     <fragment
         android:id="@+id/logInFragment"
-        android:name="com.bdappmaniac.bdapp.fragment.LogInFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.LogInFragment"
         android:label="fragment_log_in"
         tools:layout="@layout/fragment_log_in" />
     <fragment
         android:id="@+id/singUpFragment"
-        android:name="com.bdappmaniac.bdapp.fragment.SingUpFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.SingUpFragment"
         android:label="fragment_sing_up"
         tools:layout="@layout/fragment_sing_up" />
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.bdappmaniac.bdapp.fragment.ForgotPasswordFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment"
         tools:layout="@layout/fragment_forgot_password" />
 
     <fragment
         android:id="@+id/newPasswordFragment"
-        android:name="com.bdappmaniac.bdapp.fragment.NewPasswordFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.NewPasswordFragment"
         android:label="NewPasswordFragment"
         tools:layout="@layout/fragment_new_password" />
     <fragment
         android:id="@+id/OTPFragment"
-        android:name="com.bdappmaniac.bdapp.fragment.OTPFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.OTPFragment"
         android:label="OTPFragment"
         tools:layout="@layout/fragment_o_t_p" />
     <fragment
         android:id="@+id/createMPINFragment"
-        android:name="com.bdappmaniac.bdapp.fragment.CreateMPINFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.CreateMPINFragment"
         android:label="CreateMPINFragment"
         tools:layout="@layout/fragment_create_m_p_i_n" />
     <fragment
         android:id="@+id/confirmMPINFragment"
-        android:name="com.bdappmaniac.bdapp.fragment.ConfirmMPINFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.ConfirmMPINFragment"
         android:label="ConfirmMPINFragment"
         tools:layout="@layout/fragment_confirm_m_p_i_n" />
 </navigation>

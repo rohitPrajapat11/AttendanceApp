@@ -20,33 +20,27 @@ import com.bdappmaniac.bdapp.databinding.SingleItemOfEmployeeBinding;
 import com.bdappmaniac.bdapp.model.EmployeeListModel;
 
 import java.util.ArrayList;
-
 public class SingleListEmployeeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     ArrayList<EmployeeListModel> list = new ArrayList<>();
     NavController navController;
-
     public SingleListEmployeeAdapter(Context context, ArrayList<EmployeeListModel> list) {
         this.context = context;
         this.list = list;
         navController = Navigation.findNavController((Activity) context, R.id.adminNav);
     }
-
     @Override
     public long getItemId(int position) {
         return position;
     }
-
     @Override
     public int getItemViewType(int position) {
         return position;
     }
-
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
         SingleItemOfEmployeeBinding binding = DataBindingUtil.inflate(inflater, R.layout.single_item_of_employee, group, false);
         return new SingleListEmployeeAdapter.SingleListEmployeeHolder(binding);
     }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -59,7 +53,6 @@ public class SingleListEmployeeAdapter extends RecyclerView.Adapter<RecyclerView
         SingleListEmployeeAdapter.SingleListEmployeeHolder vHolder = (SingleListEmployeeAdapter.SingleListEmployeeHolder) holder;
         vHolder.binding.employeeName.setText(list.get(position).getName());
         vHolder.binding.profile.setImageResource(list.get(position).getImage());
-
         vHolder.binding.employeeName.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putInt("image", list.get(position).getImage());

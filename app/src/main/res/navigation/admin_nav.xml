@@ -42,7 +42,7 @@
         tools:layout="@layout/fragment_employee_attendance" />
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.bdappmaniac.bdapp.fragment.SettingFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.SettingFragment"
         android:label="Fragment"
         tools:layout="@layout/fragment_setting" />
     <fragment

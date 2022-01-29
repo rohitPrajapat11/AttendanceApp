@@ -2,10 +2,6 @@
     <string name="app_name">Bd App</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
-    <string name="login">Login</string>
-    <string name="create_an_account">Create an Account</string>
-    <string name="already_have_an_account">Already have an account?  <u>Sign in</u></string>
-    <string name="admin">Admin</string>
     <string name="i_forgot_password"><u>I forgot password?</u></string>
     <string name="i_have_account_back_to_login">I have account? Back to login</string>
     <string name="name">Name</string>
@@ -17,7 +13,6 @@
     <string name="enter_your_address">Enter Your Address</string>
     <string name="sign_u_p">Sign Up</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="confirm">Confirm</string>
     <string name="enter_confirm_password">Enter Confirm Password</string>
     <string name="enter_new_password">Enter New Password</string>
@@ -30,9 +25,7 @@
     <string name="i_remembered_my_password_return_to_login">I remembered my password return to login</string>
     <string name="i_don_t_have_an_account_create"><u>I don\'t have an account? Create</u></string>
     <string name="sign_in">Sign In</string>
-    <string name="employee">Employee</string>
     <string name="enter_password">Enter Password</string>
-    <string name="sign_in_as_admin">Sign In as Admin</string>
     <string name="enter_your_mobile_number">Enter Mobile Number</string>
     <string name="emergency_mobile_number">Emergency Mobile Number</string>
     <string name="address">Address</string>

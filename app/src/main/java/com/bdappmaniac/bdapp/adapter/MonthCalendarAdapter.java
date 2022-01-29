@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.CalendarMonthItemBinding;
-import com.bdappmaniac.bdapp.fragment.HistoryFragment;
+import com.bdappmaniac.bdapp.employee.fragment.HistoryFragment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -93,11 +93,5 @@ public class MonthCalendarAdapter extends RecyclerView.Adapter<RecyclerView.View
             });
         }
     }
-
-    void dataSelect() {
-
-    }
-
-
 }
 

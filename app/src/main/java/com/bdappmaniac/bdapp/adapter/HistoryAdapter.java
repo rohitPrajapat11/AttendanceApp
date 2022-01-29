@@ -29,12 +29,11 @@ import com.bdappmaniac.bdapp.databinding.HistoryItemBinding;
 import java.util.Calendar;
 import java.util.List;
 
-
 public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     List<String> taskList;
     String getDate, getInTime, getOutTime;
-    private int mYear, mMonth, mDay, mHour, mMinute;
+    private int mYear, mMonth, mDay;
 
     public HistoryAdapter(Context context, List<String> taskList) {
         this.context = context;
@@ -58,7 +57,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ((HistoryAdapterHolder) holder).binding.historyItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CheckInAndOutDialog(vHolder);
+                //  CheckInAndOutDialog(vHolder);
             }
         });
         if (position == 3) {
@@ -71,11 +70,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             vHolder.binding.reasonTxt.setVisibility(View.VISIBLE);
             vHolder.binding.reasonTxt.setText("I went out of town");
 
-        } else {
-
         }
     }
-
     private void CheckInAndOutDialog(HistoryAdapterHolder vHolder) {
         CheckInAndOutDialogBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.check_in_and_out_dialog, null, false);
         Dialog dialog = new Dialog(context);
@@ -86,7 +82,10 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        binding.checkInTime.setOnClickListener(view -> {
+        binding.checkOutTime.setText(vHolder.binding.checkInTimes.getText());
+        binding.checkOutTime.setText(vHolder.binding.checkOutTimes.getText());
+        binding.checkInTime.setOnClickListener(view ->
+        {
             showTime(binding.checkInTime);
             getInTime = binding.checkInTime.getText().toString();
         });

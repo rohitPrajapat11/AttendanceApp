@@ -164,7 +164,7 @@
             android:layout_height="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/green_10r_bg"
-            android:elevation="@dimen/_3sdp"
+
             android:fontFamily="@font/font_heavy"
             android:gravity="center"
             android:text="@string/save"

@@ -15,9 +15,9 @@ import com.bdappmaniac.bdapp.databinding.ActivitySplashBinding;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 public class SplashActivity extends AppCompatActivity {
+
     ActivitySplashBinding binding;
     Animation top_animation, bottom_animation, fade;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

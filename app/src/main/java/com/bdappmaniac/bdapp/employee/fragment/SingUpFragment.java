@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.admin.fragment;
+package com.bdappmaniac.bdapp.employee.fragment;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -8,20 +8,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-import androidx.databinding.DataBindingUtil;
-import androidx.navigation.Navigation;
-
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -36,11 +28,18 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
+
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.databinding.FragmentProfileBinding;
+import com.bdappmaniac.bdapp.activity.HomeActivity;
+import com.bdappmaniac.bdapp.databinding.FragmentSingUpBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
-import com.bdappmaniac.bdapp.helper.TextToBitmap;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
+import com.bdappmaniac.bdapp.utils.ValidationUtils;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
 import com.nabinbhandari.android.permissions.PermissionHandler;
@@ -51,28 +50,35 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class ProfileFragment extends BaseFragment {
-    FragmentProfileBinding binding;
+public class SingUpFragment extends BaseFragment {
+    FragmentSingUpBinding binding;
     String imgPath;
     File file = null;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
-        binding.nameTxt.addTextChangedListener(new TextChange(binding.nameTxt));
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sing_up, container, false);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
+        binding.nameTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
-        binding.phoneTxt.addTextChangedListener(new TextChange(binding.phoneTxt));
-        binding.emPhoneTxt.addTextChangedListener(new TextChange(binding.emPhoneTxt));
-        binding.dobTxt.addTextChangedListener(new TextChange(binding.dobTxt));
-        binding.addressTxt.addTextChangedListener(new TextChange(binding.addressTxt));
-        binding.pinCodeTxt.addTextChangedListener(new TextChange(binding.pinCodeTxt));
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(binding.getRoot()).popBackStack();
+        binding.phoneTxt.addTextChangedListener(new TextChange(binding.emailTxt));
+        binding.addressTxt.addTextChangedListener(new TextChange(binding.emailTxt));
+
+        binding.backToLogin.setOnClickListener(view -> {
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.logInFragment);
+        });
+        binding.backBtn.setOnClickListener(view -> {
+            Navigation.findNavController(binding.getRoot()).popBackStack();
+        });
+        binding.sighUpBtn.setOnClickListener(view -> {
+            if (checkValidation()) {
+                Intent intent = new Intent(getActivity(), HomeActivity.class);
+                startActivity(intent);
             }
         });
+        binding.cameraBtn.setOnClickListener(view -> selectImage());
         binding.dobTxt.setOnClickListener(view -> {
             // Get Current Date
             final Calendar c = Calendar.getInstance();
@@ -92,24 +98,6 @@ public class ProfileFragment extends BaseFragment {
                     WindowManager.LayoutParams.WRAP_CONTENT);
             datePickerDialog.getWindow().setGravity(Gravity.CENTER);
             datePickerDialog.show();
-        });
-        binding.editBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onEditChange(true);
-            }
-        });
-        binding.saveBtn.setOnClickListener(view -> {
-            if (checkValidation()) {
-                onEditChange(false);
-            }
-        });
-        textProfile();
-        binding.cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onEditChange(false);
-            }
         });
         binding.designationTxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,7 +165,6 @@ public class ProfileFragment extends BaseFragment {
                 dialog.show();
             }
         });
-        binding.cameraBtn.setOnClickListener(view -> selectImage());
         return binding.getRoot();
     }
 
@@ -247,6 +234,7 @@ public class ProfileFragment extends BaseFragment {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     private boolean checkPermission() {
         return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
     }
@@ -285,6 +273,9 @@ public class ProfileFragment extends BaseFragment {
         if (StringHelper.isEmpty(binding.emailTxt.getText().toString())) {
             return false;
         }
+        if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+            return false;
+        }
         if (StringHelper.isEmpty(binding.emPhoneTxt.getText().toString())) {
             return false;
         }
@@ -315,6 +306,10 @@ public class ProfileFragment extends BaseFragment {
             showSnackBar(binding.getRoot(), "Please Enter Email Name!");
             return false;
         }
+        if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), "Please Enter Valid Email!");
+            return false;
+        }
         if (TextUtils.isEmpty(binding.phoneTxt.getText().toString())) {
             showSnackBar(binding.getRoot(), "Please Enter Phone Number!");
             return false;
@@ -331,7 +326,7 @@ public class ProfileFragment extends BaseFragment {
             showSnackBar(binding.getRoot(), "Please Enter 10 Digit Number");
             return false;
         }
-        if (binding.designationTxt.getText().length() != 10) {
+        if (TextUtils.isEmpty(binding.designationTxt.getText().toString())) {
             showSnackBar(binding.getRoot(), "Please Enter Your Designation");
             return false;
         }
@@ -364,11 +359,17 @@ public class ProfileFragment extends BaseFragment {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
+            } else {
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
+            }
             setValidations();
         }
 
         @Override
         public void afterTextChanged(Editable s) {
+
         }
     }
 
@@ -417,35 +418,13 @@ public class ProfileFragment extends BaseFragment {
 
     private void setValidations() {
         if (isAllFieldFillUp()) {
-            binding.saveBtn.setBackgroundResource(R.drawable.green_10r_bg);
-            binding.saveBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+            binding.sighUpBtn.setBackgroundResource(R.drawable.green_10r_bg);
+            binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
-            binding.saveBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.saveBtn.setTextColor(ContextCompat.getColor(mContext, R.color._172B4D));
+            binding.sighUpBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
+            binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color.light_black));
         }
         isFieldFillUp();
-    }
-
-    void onEditChange(boolean check) {
-        if (check) {
-            binding.editBtn.setVisibility(View.GONE);
-            binding.saveBtn.setVisibility(View.VISIBLE);
-            binding.cancelBtn.setVisibility(View.VISIBLE);
-            binding.cameraBtn.setVisibility(View.VISIBLE);
-        } else {
-            binding.saveBtn.setVisibility(View.GONE);
-            binding.cancelBtn.setVisibility(View.GONE);
-            binding.cameraBtn.setVisibility(View.GONE);
-            binding.editBtn.setVisibility(View.VISIBLE);
-        }
-        binding.nameTxt.setEnabled(check);
-        binding.emailTxt.setEnabled(check);
-        binding.phoneTxt.setEnabled(check);
-        binding.emPhoneTxt.setEnabled(check);
-        binding.dobTxt.setEnabled(check);
-        binding.addressTxt.setEnabled(check);
-        binding.pinCodeTxt.setEnabled(check);
-        binding.designationTxt.setEnabled(check);
     }
 
     private void setTextViewDrawableColor(TextView textView, int color) {
@@ -454,11 +433,5 @@ public class ProfileFragment extends BaseFragment {
                 drawable.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(textView.getContext(), color), PorterDuff.Mode.SRC_IN));
             }
         }
-    }
-
-    void textProfile() {
-        Bitmap bitmap = TextToBitmap.textToBitmap(binding.nameTxt.getText().toString(), mContext, 10, R.color.black);
-        Drawable d = new BitmapDrawable(getResources(), bitmap);
-        binding.profile.setImageDrawable(d);
     }
 }

@@ -136,7 +136,6 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
-
     void navHandel(String type) {
         switch (type) {
             case "Home":
@@ -153,7 +152,6 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
                 break;
-
             case "Employee":
                 binding.homeLayout.headerLayout.title.setText("Employees");
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
@@ -167,7 +165,6 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
-
                 break;
             case "Loan":
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.VISIBLE);
@@ -211,7 +208,6 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
-
     void drawerOpenCLose() {
         if (binding.mainDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
@@ -219,7 +215,6 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
             binding.mainDrawerLayout.openDrawer(GravityCompat.START);
         }
     }
-
     @Override
     public void onClick(View v) {
         drawerOpenCLose();
@@ -254,10 +249,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                 break;
 
         }
-
-
     }
-
     void headerHideShow(boolean check) {
         if (check) {
             binding.homeLayout.headerLayout.headerLayout.setVisibility(View.VISIBLE);
@@ -266,7 +258,6 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         }
 
     }
-
     void bottomHideShow(boolean check) {
         if (check) {
             binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.VISIBLE);
@@ -275,19 +266,15 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         }
 
     }
-
     void textProfile() {
         Bitmap bitmap = TextToBitmap.textToBitmap(binding.navigationDrawer.userName.getText().toString(), this, 10, R.color.black);
         Drawable d = new BitmapDrawable(getResources(), bitmap);
         binding.navigationDrawer.userProfile.setImageDrawable(d);
     }
-
-
     @Override
     public void openCalendar() {
 
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -306,7 +293,6 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
             }
         }
     }
-
     private void noHeader() {
         binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
         binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employees);

@@ -1,5 +1,13 @@
 package com.bdappmaniac.bdapp.activity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,21 +18,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
-
+import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.databinding.ActivityHomeBinding;
+import com.bdappmaniac.bdapp.employee.fragment.HomeFragment;
+import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
 import com.bdappmaniac.bdapp.utils.Constant;
-import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.fragment.HomeFragment;
-import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
-import com.bdappmaniac.bdapp.databinding.ActivityHomeBinding;
 
 import java.util.List;
 import java.util.Objects;
@@ -33,22 +33,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     ActivityHomeBinding binding;
     NavController navController;
 
-    /*  CalendarAdapter adapter;
-      SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
-      Calendar cal = Calendar.getInstance(Locale.ENGLISH);
-      Calendar currentDate = Calendar.getInstance(Locale.ENGLISH);
-      ArrayList<Date> dates = new ArrayList<Date>();
-      ArrayList<CalendarDateModel> calendarList2 = new ArrayList<>();
-      int todayDate = Integer.parseInt(new SimpleDateFormat("dd", Locale.getDefault()).format(new Date()));*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         StatusBarUtils.statusBarColor(this, R.color.white);
         navController = Navigation.findNavController(this, R.id.nav_controller);
-        /*   adapter = new CalendarAdapter(this,todayDate);
-        binding.homeLayout.calendarRecycler.setAdapter(adapter);*/
-        //  setUpCalendar();
         textProfile();
         binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,10 +125,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
-
                 break;
             case "History":
-                binding.homeLayout.headerLayout.addBtn.setVisibility(View.VISIBLE);
+                binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.title.setText("Working History");
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
                 binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);
@@ -148,7 +137,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
-
                 break;
             case "Profile":
                 binding.homeLayout.headerLayout.title.setText("");
@@ -229,7 +217,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Drawable d = new BitmapDrawable(getResources(), bitmap);
         binding.navigationDrawer.userProfile.setImageDrawable(d);
     }
-
 
     @Override
     public void openCalendar() {
