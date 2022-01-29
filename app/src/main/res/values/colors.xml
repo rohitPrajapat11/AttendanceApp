@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="trans_black">#22000000</color>
     <color name="_172B4D">#172B4D</color>
     <color name="_C1C7D0">#C1C7D0</color>
     <color name="_F4F5F7">#F4F5F7</color>
@@ -18,7 +19,7 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="_F0F1F3">#F0F1F3</color>
     <color name="_FF99D131">#FFF0F1F3</color>
-    <color name="green">#FF99D131</color>
+    <color name="green">#4CAF50</color>
     <color name="_EAEFFF">#EAEFFF</color>
     <color name="light_black">#343637</color>
     <color name="primary_color">#48c884</color>
@@ -39,6 +40,7 @@
     <color name="colorPrimary">#FCFCFC</color>
     <color name="colorPrimaryDark">#2A2E43</color>
     <color name="colorAccent">#FF402D</color>
+    <color name="colorAccent2">#90FF402D</color>
     <color name="bottomNavigationTextColor">#B2B2B2</color>
     <color name="bottomNavigationTintColor">#B2B2B2</color>
     <color name="bottomNavigationSelectedColor">#FC4926</color>

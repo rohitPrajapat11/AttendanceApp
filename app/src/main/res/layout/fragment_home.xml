@@ -121,7 +121,7 @@
                     android:fontFamily="@font/font_heavy"
                     android:paddingStart="@dimen/_15sdp"
                     android:text="Check In Time"
-                    android:textColor="@color/light_black"
+                    android:textColor="@color/_172B4D"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/checkInLayout"
                     app:layout_constraintTop_toTopOf="parent"
@@ -164,7 +164,7 @@
                     android:fontFamily="@font/font_heavy"
                     android:paddingStart="@dimen/_15sdp"
                     android:text="Check Out Time"
-                    android:textColor="@color/light_black"
+                    android:textColor="@color/_172B4D"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

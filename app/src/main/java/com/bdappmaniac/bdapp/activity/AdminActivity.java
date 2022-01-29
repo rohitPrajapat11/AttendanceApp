@@ -74,8 +74,11 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         binding.homeLayout.headerLayout.menuBtn.setOnClickListener(v -> {
             drawerOpenCLose();
         });
-        binding.homeLayout.headerLayout.calendarBtn.setOnClickListener(v -> {
-            Constant.calendarCallBack.openCalendar();
+        binding.homeLayout.headerLayout.addBtn.setOnClickListener(v -> {
+            Constant.calendarCallBack.openEmployeeList();
+        });
+        binding.homeLayout.headerLayout.backBtn.setOnClickListener(v -> {
+            onBackPressed();
         });
         binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.settingBtn.setOnClickListener(this::onClick);
@@ -121,6 +124,14 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                     navHandel("Setting");
                     headerHideShow(false);
                     bottomHideShow(false);
+                } else if (destination.getId() == R.id.employeeListForLoanFragment) {
+                    navHandel("EmployeeLoanList");
+                    headerHideShow(true);
+                    bottomHideShow(false);
+                } else if (destination.getId() == R.id.provideLoanFragment) {
+                    navHandel("LoanDetails");
+                    headerHideShow(true);
+                    bottomHideShow(false);
                 }
             }
         });
@@ -130,7 +141,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         switch (type) {
             case "Home":
                 binding.homeLayout.headerLayout.title.setText("Home");
-                binding.homeLayout.headerLayout.calendarBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home_select);
@@ -145,7 +156,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
 
             case "Employee":
                 binding.homeLayout.headerLayout.title.setText("Employees");
-                binding.homeLayout.headerLayout.calendarBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
@@ -159,7 +170,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
             case "Loan":
-                binding.homeLayout.headerLayout.calendarBtn.setVisibility(View.VISIBLE);
+                binding.homeLayout.headerLayout.addBtn.setVisibility(View.VISIBLE);
                 binding.homeLayout.headerLayout.title.setText("Loan");
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.VISIBLE);
@@ -182,6 +193,16 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
+            case "EmployeeLoanList":
+                binding.homeLayout.headerLayout.title.setText("Select Employee");
+                binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.backBtn.setVisibility(View.VISIBLE);
+                binding.homeLayout.headerLayout.menuBtn.setVisibility(View.GONE);
+            case "LoanDetails":
+                binding.homeLayout.headerLayout.title.setText("Loan Details");
+                binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.backBtn.setVisibility(View.VISIBLE);
+                binding.homeLayout.headerLayout.menuBtn.setVisibility(View.GONE);
                 break;
             case "TermCondition":
             case "EmployeeDetail":
@@ -204,8 +225,8 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
         drawerOpenCLose();
         switch (v.getId()) {
             case R.id.homeBtn:
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.homeFragment) {
-                    navController.navigate(R.id.homeFragment);
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.adminHomeFragment) {
+                    navController.navigate(R.id.adminHomeFragment);
                 }
                 break;
             case R.id.settingBtn:
@@ -236,6 +257,7 @@ public class AdminActivity extends AppCompatActivity implements View.OnClickList
 
 
     }
+
     void headerHideShow(boolean check) {
         if (check) {
             binding.homeLayout.headerLayout.headerLayout.setVisibility(View.VISIBLE);
