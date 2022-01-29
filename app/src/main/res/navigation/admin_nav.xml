@@ -45,4 +45,14 @@
         android:name="com.bdappmaniac.bdapp.fragment.SettingFragment"
         android:label="Fragment"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/provideLoanFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.LoanProvideFragment"
+        android:label="Fragment"
+        tools:layout="@layout/fragment_loan_provide" />
+    <fragment
+        android:id="@+id/employeeListForLoanFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeListForLoan"
+        android:label="Fragment"
+        tools:layout="@layout/fragment_employee_list_for_loan" />
 </navigation>

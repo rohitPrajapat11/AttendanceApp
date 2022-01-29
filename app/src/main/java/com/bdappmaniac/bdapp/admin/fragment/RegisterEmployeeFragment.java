@@ -84,7 +84,6 @@ public class RegisterEmployeeFragment extends BaseFragment {
     }
 
     private void designationDialog() {
-
         DesignationDialogboxBinding designationBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.designation_dialogbox, null, false);
         Dialog dialog = new Dialog(mContext);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

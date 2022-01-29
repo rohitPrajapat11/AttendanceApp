@@ -57,5 +57,6 @@
     <string name="create_account">Create an Account</string>
     <string name="Renter">Re-Enter MPIN</string>
     <string name="submit">Submit</string>
+    <string name="inr">\u20B9</string>
 
 </resources>
