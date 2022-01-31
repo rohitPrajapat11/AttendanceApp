@@ -141,20 +141,20 @@
                         app:tint="@color/_A8A8A8" />
 
                     <TextView
-                        android:id="@+id/passwordlLb"
+                        android:id="@+id/mpinLb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
                         android:fontFamily="@font/arial_rounded_mt_bold"
-                        android:text="@string/password"
+                        android:text="MPIN"
                         android:textColor="@color/_C1C7D0"
                         android:textSize="@dimen/_14sdp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/emailTxt" />
 
                     <EditText
-                        android:id="@+id/passwordTxt"
+                        android:id="@+id/mpinTxt"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="@dimen/_15sdp"
@@ -164,9 +164,10 @@
                         android:drawablePadding="@dimen/_10sdp"
                         android:drawableTint="#A8A8A8"
                         android:fontFamily="@font/font_heavy"
-                        android:hint="@string/enter_password"
+                        android:hint="Enter Your MPIN"
                         android:importantForAutofill="no"
-                        android:inputType="textNoSuggestions"
+                        android:inputType="number"
+                        android:maxLength="6"
                         android:paddingLeft="@dimen/_10sdp"
                         android:paddingRight="@dimen/_10sdp"
                         android:textAllCaps="true"
@@ -175,7 +176,7 @@
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/emailLb"
-                        app:layout_constraintTop_toBottomOf="@+id/passwordlLb"
+                        app:layout_constraintTop_toBottomOf="@+id/mpinLb"
                         tools:ignore="TextFields" />
 
                     <Button
@@ -183,28 +184,28 @@
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_35sdp"
-                        android:layout_marginTop="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_85sdp"
                         android:background="@drawable/light_green_15r_bg"
                         android:fontFamily="@font/font_heavy"
                         android:text="@string/sign_in"
                         android:textAllCaps="true"
                         android:textColor="@color/_172B4D"
                         android:textSize="@dimen/_12sdp"
-                        app:layout_constraintEnd_toEndOf="@+id/passwordTxt"
+                        app:layout_constraintEnd_toEndOf="@+id/mpinTxt"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/passwordTxt"
-                        app:layout_constraintTop_toBottomOf="@+id/passwordTxt" />
+                        app:layout_constraintStart_toStartOf="@+id/mpinTxt"
+                        app:layout_constraintTop_toBottomOf="@+id/mpinTxt" />
 
                     <TextView
-                        android:id="@+id/forgetPasswordBtn"
+                        android:id="@+id/forgetmpindBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:fontFamily="@font/font_heavy"
                         android:gravity="center"
-                        android:layout_marginTop="@dimen/_20sdp"
-                        android:text="@string/i_forgot_password"
+                        android:text="i forgot MPIN"
                         android:textColor="@color/_172B4D"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintEnd_toEndOf="@+id/loginBtn"

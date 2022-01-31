@@ -16,8 +16,7 @@ public class SettingFragment extends BaseFragment {
     FragmentSettingBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();

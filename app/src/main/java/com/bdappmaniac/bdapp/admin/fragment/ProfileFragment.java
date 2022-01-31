@@ -331,7 +331,7 @@ public class ProfileFragment extends BaseFragment {
             showSnackBar(binding.getRoot(), "Please Enter 10 Digit Number");
             return false;
         }
-        if (binding.designationTxt.getText().length() != 10) {
+        if (TextUtils.isEmpty(binding.designationTxt.getText().toString())) {
             showSnackBar(binding.getRoot(), "Please Enter Your Designation");
             return false;
         }

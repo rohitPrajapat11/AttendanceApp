@@ -27,7 +27,8 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/employeeTermFragment"
-        android:name="com.bdappmaniac.bdapp.ter"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminTermAndCondition"
         android:label="Profile Fragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_admin_term_and_condition" />
+
 </navigation>
