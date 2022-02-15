@@ -1,6 +1,17 @@
-package com.bdappmaniac.bdapp.employee.fragment;
+package com.bdappmaniac.bdapp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -9,17 +20,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.navigation.Navigation;
-
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.databinding.FragmentCreateMPINBinding;
-import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.activity.HomeActivity;
+import com.bdappmaniac.bdapp.databinding.FragmentOneTimeMPINBinding;
 
-public class CreateMPINFragment extends BaseFragment implements View.OnClickListener {
-    FragmentCreateMPINBinding binding;
+public class OneTimeMPINFragment extends BaseFragment implements View.OnClickListener {
+    FragmentOneTimeMPINBinding binding;
     String mobile = "";
 
     @Override
@@ -36,14 +42,15 @@ public class CreateMPINFragment extends BaseFragment implements View.OnClickList
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_m_p_i_n, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_one_time_m_p_i_n, container, false);
         binding.forwardTXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle createPin = new Bundle();
-                createPin.putString("Key", binding.pinView.getText().toString());
-                if (checkValidation()) {
-                    Navigation.findNavController(binding.getRoot()).navigate(R.id.confirmMPINFragment, createPin);
+                if (checkValidation()){
+                    startActivity(new Intent(mContext, HomeActivity.class));
+                    getActivity().finish();
+                }else{
+
                 }
             }
         });
@@ -54,14 +61,13 @@ public class CreateMPINFragment extends BaseFragment implements View.OnClickList
             }
         });
         if (getArguments() != null) {
+            // From SignIn Otp Fragment For Forgot M-Pin
             mobile = getArguments().getString("mobile");
         }
-
         binding.pinView.setText("");
         binding.key0.setOnClickListener(this);
         binding.key1.setOnClickListener(this);
         binding.key2.setOnClickListener(this);
-        binding.key1.setOnClickListener(this);
         binding.key3.setOnClickListener(this);
         binding.key4.setOnClickListener(this);
         binding.key5.setOnClickListener(this);
@@ -69,7 +75,7 @@ public class CreateMPINFragment extends BaseFragment implements View.OnClickList
         binding.key7.setOnClickListener(this);
         binding.key8.setOnClickListener(this);
         binding.key9.setOnClickListener(this);
-        binding.removeTXT.setOnClickListener((View.OnClickListener) this);
+        binding.removeTXT.setOnClickListener(this);
         binding.pinView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -81,10 +87,46 @@ public class CreateMPINFragment extends BaseFragment implements View.OnClickList
 
             @Override
             public void afterTextChanged(Editable s) {
+            }
+        });
+        BiometricManager manager = BiometricManager.from(mContext);
+        switch (manager.canAuthenticate()) {
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                Toast.makeText(getContext(), "This device doesn't have a Biometric scanner", Toast.LENGTH_SHORT).show();
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                Toast.makeText(getContext(), "This device doesn't have fingerprint saved."+"Please check your security settings", Toast.LENGTH_SHORT).show();
+                break;
+        }
 
+        BiometricPrompt prompt = new BiometricPrompt(this, ContextCompat.getMainExecutor(mContext), new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                Toast.makeText(getContext(),"Correct", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
             }
         });
 
+        BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle("Biometric")
+                .setNegativeButtonText("cancel")
+                .build();
+        binding.fingerPrintScanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prompt.authenticate(info);
+            }
+        });
         return binding.getRoot();
     }
 
@@ -163,11 +205,4 @@ public class CreateMPINFragment extends BaseFragment implements View.OnClickList
         }
         return true;
     }
-//    private  void  showKeyboard(OtpView editText){
-//        InputMethodManager manager = (InputMethodManager) getActivity().getSystemService(
-//                Context.INPUT_METHOD_SERVICE
-//        );
-//        manager.showSoftInput(editText.getRootView(), InputMethodManager.SHOW_IMPLICIT);
-//        editText.requestFocus();
-//    }
 }

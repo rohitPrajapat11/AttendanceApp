@@ -32,7 +32,7 @@ import java.util.List;
 public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     List<String> taskList;
-    String getDate, getInTime, getOutTime;
+    String getDate, getInTime, getOutTime, getAbTxt;
     private int mYear, mMonth, mDay;
 
     public HistoryAdapter(Context context, List<String> taskList) {
@@ -57,7 +57,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ((HistoryAdapterHolder) holder).binding.historyItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //  CheckInAndOutDialog(vHolder);
+                CheckInAndOutDialog(vHolder);
             }
         });
         if (position == 3) {
@@ -69,9 +69,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             vHolder.binding.absentTxt.setVisibility(View.VISIBLE);
             vHolder.binding.reasonTxt.setVisibility(View.VISIBLE);
             vHolder.binding.reasonTxt.setText("I went out of town");
-
         }
     }
+
     private void CheckInAndOutDialog(HistoryAdapterHolder vHolder) {
         CheckInAndOutDialogBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.check_in_and_out_dialog, null, false);
         Dialog dialog = new Dialog(context);
@@ -82,24 +82,26 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        binding.checkOutTime.setText(vHolder.binding.checkInTimes.getText());
+        binding.checkInTime.setText(vHolder.binding.checkInTimes.getText());
         binding.checkOutTime.setText(vHolder.binding.checkOutTimes.getText());
+        binding.dateTxt.setText(vHolder.binding.dateText.getText());
+        binding.absentReasonTxt.setText(vHolder.binding.reasonTxt.getText());
         binding.checkInTime.setOnClickListener(view ->
         {
             showTime(binding.checkInTime);
             getInTime = binding.checkInTime.getText().toString();
         });
-        dialog.show();
         binding.checkOutTime.setOnClickListener(view -> {
             showTime(binding.checkOutTime);
             getOutTime = binding.checkOutTime.getText().toString();
         });
-        dialog.show();
         binding.dateTxt.setOnClickListener(view -> {
             showDate(binding.dateTxt);
             getDate = binding.dateTxt.getText().toString();
         });
-        dialog.show();
+        binding.absentReasonTxt.setOnClickListener(view -> {
+            getAbTxt = binding.absentReasonTxt.getText().toString();
+        });
         binding.cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,14 +134,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
             }
         });
-        binding.saveAllBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vHolder.binding.dateText.setText(String.valueOf(getDate));
-                vHolder.binding.checkInTimes.setText(String.valueOf(getInTime));
-                vHolder.binding.checkOutTimes.setText(String.valueOf(getOutTime));
-            }
-        });
+        dialog.show();
     }
 
     public void showTime(TextView textView) {

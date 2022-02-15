@@ -3,26 +3,48 @@ package com.bdappmaniac.bdapp.admin.fragment;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 
+import com.bdappmaniac.bdapp.Api.response.EmpRegisterResponse;
+import com.bdappmaniac.bdapp.Api.response.LoginResponse;
+import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.databinding.BottomDialogRegisterSuccessBinding;
 import com.bdappmaniac.bdapp.databinding.DesignationDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentRegisterEmpolyeeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.utils.StringHelper;
+import com.bdappmaniac.bdapp.utils.ValidationUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 
 public class RegisterEmployeeFragment extends BaseFragment {
@@ -42,11 +64,19 @@ public class RegisterEmployeeFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register_empolyee, container, false);
         binding.sighUpBtn.setOnClickListener(v -> {
-            showBottomSheetDialog();
+            if(checkValidation()) {
+                Map<String, RequestBody> map = new HashMap<>();
+                map.put("employee_name", toRequestBody(binding.nameTxt.getText().toString()));
+                map.put("emp_mobile_no", toRequestBody(binding.phoneTxt.getText().toString()));
+                map.put("email", toRequestBody(binding.emailTxt.getText().toString()));
+                map.put("password", toRequestBody(binding.passwordTxt.getText().toString()));
+                map.put("password_confirmation", toRequestBody(binding.confirmPasswordTxt.getText().toString()));
+                map.put("designation", toRequestBody(binding.designationTxt.getText().toString()));
+                registerEmployee(map);
+            }
         });
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();
@@ -54,8 +84,34 @@ public class RegisterEmployeeFragment extends BaseFragment {
         binding.designationTxt.setOnClickListener(v -> {
             designationDialog();
         });
-
         return binding.getRoot();
+    }
+
+    public void registerEmployee(  Map<String, RequestBody> map) {
+
+        MainService.EmployeeRegistration(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity)mContext).showToast(mContext.getString(R.string.something_went_wrong));
+            } else {
+                if((apiResponse.getData() != null)) {
+                    EmpRegisterResponse empRegisterResponse =  new Gson().fromJson(apiResponse.getData(), EmpRegisterResponse.class);
+                    showToast(empRegisterResponse.getEmail());
+                } else {
+                    ((BaseActivity)mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                }
+            }
+        });
+    }
+
+    public RequestBody toRequestBody(String val) {
+        RequestBody requestBody = null;
+        if (getActivity() != null) {
+            requestBody = toRequestBodyPart(val);
+        }
+        return requestBody;
+    }
+    public RequestBody toRequestBodyPart(String value) {
+        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
     }
 
     private void showBottomSheetDialog() {
@@ -64,7 +120,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
         bottomSheetDialog.setContentView(dBinding.getRoot());
         ((View) dBinding.getRoot().getParent()).setBackgroundColor(requireActivity().getResources().getColor(R.color.transparent));
         dBinding.sendBtn.setOnClickListener(v -> {
-            sharePrint();
+        //    sharePrint();
         });
         bottomSheetDialog.show();
     }
@@ -114,5 +170,139 @@ public class RegisterEmployeeFragment extends BaseFragment {
             dialog.dismiss();
         });
         dialog.show();
+    }
+
+    public class TextChange implements TextWatcher {
+        View view;
+
+        private TextChange(View v) {
+            view = v;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
+            } else {
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
+            }
+            isFieldFillUp();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
+    }
+
+    private boolean isAllFieldFillUp() {
+        if (StringHelper.isEmpty(binding.nameTxt.getText().toString())) {
+            return false;
+        }
+        if (StringHelper.isEmpty(binding.emailTxt.getText().toString())) {
+            return false;
+        }
+        if (StringHelper.isEmpty(binding.phoneTxt.getText().toString())) {
+            return false;
+        }
+        if (StringHelper.isEmpty(binding.designationTxt.getText().toString())) {
+            return false;
+        }
+        if (StringHelper.isEmpty(binding.passwordTxt.getText().toString())) {
+            return false;
+        }
+        if (StringHelper.isEmpty(binding.confirmPasswordTxt.getText().toString())) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkValidation() {
+        if (TextUtils.isEmpty(binding.nameTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), "Please Enter Name!");
+            return false;
+        }
+        if (TextUtils.isEmpty(binding.emailTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), "Please Enter Email Name!");
+            return false;
+        }
+        if (TextUtils.isEmpty(binding.phoneTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), "Please Enter Phone Number!");
+            return false;
+        }
+        if (binding.phoneTxt.getText().length() != 10) {
+            showSnackBar(binding.getRoot(), "Please Enter 10 Digit Number");
+            return false;
+        }
+        if (TextUtils.isEmpty(binding.designationTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), "Please Enter Your Designation");
+            return false;
+        }
+        if (TextUtils.isEmpty(binding.passwordTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), "Please Enter Your Password");
+            return false;
+        }
+        if (TextUtils.isEmpty(binding.confirmPasswordTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), "Please Enter Your ConfirmPassword");
+            return false;
+        }
+        return true;
+    }
+
+    private void isFieldFillUp() {
+        if (StringHelper.isEmpty(binding.nameTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.nameTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.nameTxt, R.color._172B4D);
+        }
+        if (StringHelper.isEmpty(binding.emailTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.emailTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.emailTxt, R.color._172B4D);
+        }
+        if (StringHelper.isEmpty(binding.phoneTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.phoneTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.phoneTxt, R.color._172B4D);
+        }
+        if (StringHelper.isEmpty(binding.designationTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.designationTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.designationTxt, R.color._172B4D);
+        }
+        if (StringHelper.isEmpty(binding.passwordTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.passwordTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.passwordTxt, R.color._172B4D);
+        }
+        if (StringHelper.isEmpty(binding.confirmPasswordTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.confirmPasswordTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.confirmPasswordTxt, R.color._172B4D);
+        }
+        setValidations();
+    }
+
+    private void setValidations() {
+        if (isAllFieldFillUp()) {
+            binding.sighUpBtn.setBackgroundResource(R.drawable.green_10r_bg);
+            binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+        } else {
+            binding.sighUpBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
+            binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color._172B4D));
+        }
+        isFieldFillUp();
+    }
+
+    private void setTextViewDrawableColor(TextView textView, int color) {
+        for (Drawable drawable : textView.getCompoundDrawables()) {
+            if (drawable != null) {
+                drawable.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(textView.getContext(), color), PorterDuff.Mode.SRC_IN));
+            }
+        }
     }
 }

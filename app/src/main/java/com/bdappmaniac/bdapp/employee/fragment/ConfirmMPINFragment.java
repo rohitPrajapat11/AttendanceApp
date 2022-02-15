@@ -3,7 +3,11 @@ package com.bdappmaniac.bdapp.employee.fragment;
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
@@ -16,10 +20,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.databinding.FragmentConfirmMPINBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentCreateMPINBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 
-public class ConfirmMPINFragment extends BaseFragment {
+public class ConfirmMPINFragment extends BaseFragment implements View.OnClickListener {
     FragmentCreateMPINBinding binding;
     String confirmPin;
     String newPin;
@@ -41,23 +46,22 @@ public class ConfirmMPINFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_m_p_i_n, container, false);
         binding.otpTypeTxt.setText(R.string.Renter);
-        binding.count.setText(R.string.submit);
         if (getArguments() != null) {
             newPin = getArguments().getString("Key", "");
         }
-        binding.count.setOnClickListener(new View.OnClickListener() {
+        binding.forwardTXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkValidation()) {
-                    confirmPin = binding.pinView.getText().toString() ;
+                    confirmPin = binding.pinView.getText().toString();
                     if (confirmPin.equals(newPin)) {
-                        Toast.makeText(getContext(), "All Done", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Correct PIN", Toast.LENGTH_SHORT).show();
+//                        Navigation.findNavController(v).navigate(R.id.singUpFragment);
                     } else {
                         Toast.makeText(getContext(), "Incorrect Pin", Toast.LENGTH_SHORT).show();
                     }
-                }else{
+                } else {
                 }
-                Navigation.findNavController(v).navigate(R.id.singUpFragment);
             }
         });
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
@@ -66,42 +70,36 @@ public class ConfirmMPINFragment extends BaseFragment {
                 Navigation.findNavController(binding.getRoot()).popBackStack();
             }
         });
-            if (getArguments() != null) {
-                // From SignIn Otp Fragment For Forgot M-Pin
-                mobile = getArguments().getString("mobile");
+        if (getArguments() != null) {
+            // From SignIn Otp Fragment For Forgot M-Pin
+            mobile = getArguments().getString("mobile");
+        }
+        binding.pinView.setText("");
+        binding.key0.setOnClickListener(this);
+        binding.key1.setOnClickListener(this);
+        binding.key2.setOnClickListener(this);
+        binding.key3.setOnClickListener(this);
+        binding.key4.setOnClickListener(this);
+        binding.key5.setOnClickListener(this);
+        binding.key6.setOnClickListener(this);
+        binding.key7.setOnClickListener(this);
+        binding.key8.setOnClickListener(this);
+        binding.key9.setOnClickListener(this);
+        binding.removeTXT.setOnClickListener(this);
+        binding.pinView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
-            binding.pinView.setText("");
-            binding.key0.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getContext(), "0", Toast.LENGTH_SHORT).show();
-                }
-            });
-            binding.key1.setOnClickListener((View.OnClickListener) this);
-            binding.key2.setOnClickListener((View.OnClickListener) this);
-            binding.key3.setOnClickListener((View.OnClickListener) this);
-            binding.key4.setOnClickListener((View.OnClickListener) this);
-            binding.key5.setOnClickListener((View.OnClickListener) this);
-            binding.key6.setOnClickListener((View.OnClickListener) this);
-            binding.key7.setOnClickListener((View.OnClickListener) this);
-            binding.key8.setOnClickListener((View.OnClickListener) this);
-            binding.key9.setOnClickListener((View.OnClickListener) this);
-            binding.removeTXT.setOnClickListener((View.OnClickListener) this);
-            binding.pinView.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
 
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-                }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
 
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                }
-            });
         return binding.getRoot();
     }
 
@@ -123,7 +121,6 @@ public class ConfirmMPINFragment extends BaseFragment {
                 binding.pinView.getText().insert(binding.pinView.getSelectionStart(), "4");
                 break;
             case R.id.key5:
-                Toast.makeText(getContext(), "ok", Toast.LENGTH_SHORT).show();
                 binding.pinView.getText().insert(binding.pinView.getSelectionStart(), "5");
                 break;
             case R.id.key6:
@@ -155,27 +152,27 @@ public class ConfirmMPINFragment extends BaseFragment {
     }
 
     public boolean checkValidation() {
-        if(binding.pinView.length() == 0){
+        if (binding.pinView.length() == 0) {
             showSnackBar(binding.getRoot(), "Please Enter PIN!");
             return false;
         }
-        if(binding.pinView.length() == 1){
+        if (binding.pinView.length() == 1) {
             showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
             return false;
         }
-        if(binding.pinView.length() == 2){
+        if (binding.pinView.length() == 2) {
             showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
             return false;
         }
-        if(binding.pinView.length() == 3){
+        if (binding.pinView.length() == 3) {
             showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
             return false;
         }
-        if(binding.pinView.length() == 4){
+        if (binding.pinView.length() == 4) {
             showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
             return false;
         }
-        if(binding.pinView.length() == 5){
+        if (binding.pinView.length() == 5) {
             showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
             return false;
         }

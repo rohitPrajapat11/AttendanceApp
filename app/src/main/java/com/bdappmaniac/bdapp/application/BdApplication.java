@@ -49,7 +49,7 @@ public class BdApplication extends MultiDexApplication {
         if (new CheckInternetConnection(this).isConnected())
             return true;
         else {
-            ((BaseActivity) context).showSnackBar(view,"Please enable Data or Wifi connection");
+            ((BaseActivity) context).showSnackBar(view,"Please enable LoginResponse or Wifi connection");
         }
         return false;
     }

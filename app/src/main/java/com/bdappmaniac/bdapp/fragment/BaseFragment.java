@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,6 +23,9 @@ public class BaseFragment extends Fragment {
     }
     public void showSnackBar(View view, String msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show();
+    }
+    public void showToast(String msg) {
+        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }
     public void openLinkWithColor(String str, TextView text , String color) {
         Link link = new Link(str)

@@ -30,5 +30,10 @@
         android:name="com.bdappmaniac.bdapp.admin.fragment.AdminTermAndCondition"
         android:label="Profile Fragment"
         tools:layout="@layout/fragment_admin_term_and_condition" />
+    <fragment
+        android:id="@+id/homeSettingFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.HomeSettingFragment"
+        android:label="HomeSettingFragment"
+        tools:layout="@layout/fragment_home_setting"/>
 
 </navigation>

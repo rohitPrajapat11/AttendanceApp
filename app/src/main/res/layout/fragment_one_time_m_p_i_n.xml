@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_35sdp"
                 android:gravity="center"
-                android:text="Enter MPIN"
+                android:text="RE - Enter MPIN"
                 android:textColor="@color/_172B4D"
                 android:textSize="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="parent"

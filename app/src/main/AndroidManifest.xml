@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
 
     <application
         android:allowBackup="true"
@@ -18,11 +19,6 @@
         <activity
             android:name=".activity.AdminActivity"
             android:exported="true">
-
-        </activity>
-        <activity
-            android:name=".activity.HomeActivity"
-            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,12 +26,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activity.HomeActivity"
+            android:exported="true">
+        </activity>
+        <activity
             android:name=".activity.AuthActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true">
-
         </activity>
 
         <meta-data

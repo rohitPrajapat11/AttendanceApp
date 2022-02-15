@@ -111,7 +111,7 @@
                         app:OtpItemCount="6"
                         app:OtpItemHeight="@dimen/_36sdp"
                         app:OtpItemRadius="9dp"
-                        app:OtpItemSpacing="@dimen/_10sdp"
+                        app:OtpItemSpacing="@dimen/_5sdp"
                         app:OtpItemWidth="@dimen/_36sdp"
                         app:OtpLineColor="@color/primary_color"
                         app:OtpLineWidth="1.5dp"
@@ -269,6 +269,19 @@
                             app:layout_constraintStart_toEndOf="@id/key8"
                             app:layout_constraintTop_toBottomOf="@id/key4" />
 
+                        <ImageView
+                            android:id="@+id/removeTXT"
+                            android:layout_width="@dimen/_45sdp"
+                            android:layout_height="@dimen/_45sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:background="@drawable/white_arrow_bg"
+                            android:padding="@dimen/_15sdp"
+                            android:src="@drawable/icn_white_arrow"
+                            app:layout_constraintBottom_toBottomOf="@+id/key0"
+                            app:layout_constraintEnd_toEndOf="@+id/key7"
+                            app:layout_constraintStart_toStartOf="@+id/key7"
+                            app:layout_constraintTop_toTopOf="@+id/key0" />
+
                         <TextView
                             android:id="@+id/key0"
                             android:layout_width="@dimen/_55sdp"
@@ -285,57 +298,18 @@
                             app:layout_constraintTop_toBottomOf="@id/key8" />
 
                         <ImageView
-                            android:id="@+id/removeTXT"
+                            android:id="@+id/forwardTXT"
                             android:layout_width="@dimen/_45sdp"
                             android:layout_height="@dimen/_45sdp"
                             android:layout_margin="@dimen/_10sdp"
                             android:background="@drawable/white_arrow_bg"
                             android:padding="@dimen/_15sdp"
-                            android:src="@drawable/icn_white_arrow"
+                            android:src="@drawable/icn_forward_white_arrow"
                             app:layout_constraintBottom_toBottomOf="@id/key0"
                             app:layout_constraintEnd_toEndOf="@id/key9"
                             app:layout_constraintStart_toStartOf="@id/key9"
                             app:layout_constraintTop_toTopOf="@id/key0" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <Button
-                        android:id="@+id/count"
-                        android:layout_width="200dp"
-                        android:layout_height="@dimen/_35sdp"
-                        android:background="@drawable/light_green_15r_bg"
-                        android:elevation="@dimen/_3sdp"
-                        android:fontFamily="@font/font_heavy"
-                        android:gravity="center"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:paddingEnd="@dimen/_20sdp"
-                        android:text="Continue"
-                        android:textColor="@color/light_black"
-                        android:textSize="@dimen/_12sdp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.497"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/content" />
-
-                    <Button
-                        android:id="@+id/submitBtn"
-                        android:layout_width="200dp"
-                        android:layout_height="@dimen/_35sdp"
-                        android:background="@drawable/light_green_15r_bg"
-                        android:elevation="@dimen/_3sdp"
-                        android:fontFamily="@font/font_heavy"
-                        android:gravity="center"
-                        android:paddingStart="@dimen/_20sdp"
-                        android:paddingEnd="@dimen/_20sdp"
-                        android:text="Submit"
-                        android:textColor="@color/light_black"
-                        android:textSize="@dimen/_12sdp"
-                        android:visibility="gone"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.497"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/content" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
