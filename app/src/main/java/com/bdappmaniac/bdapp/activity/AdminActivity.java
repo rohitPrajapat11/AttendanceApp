@@ -28,7 +28,7 @@ import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import java.util.List;
 import java.util.Objects;
 
-public class AdminActivity extends AppCompatActivity implements View.OnClickListener, CalendarCallBack {
+public class AdminActivity extends BaseActivity implements View.OnClickListener, CalendarCallBack {
     ActivityAdminBinding binding;
     NavController navController;
 

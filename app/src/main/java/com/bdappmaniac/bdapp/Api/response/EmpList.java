@@ -2,7 +2,7 @@ package com.bdappmaniac.bdapp.Api.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class LoginResponse {
+public class EmpList {
 
 	@SerializedName("pincode")
 	private Object pincode;
@@ -12,9 +12,6 @@ public class LoginResponse {
 
 	@SerializedName("profile")
 	private String profile;
-
-	@SerializedName("token")
-	private String accessToken;
 
 	@SerializedName("employee_name")
 	private String employeeName;
@@ -68,14 +65,6 @@ public class LoginResponse {
 
 	public String getProfile(){
 		return profile;
-	}
-
-	public void setAccessToken(String accessToken){
-		this.accessToken = accessToken;
-	}
-
-	public String getAccessToken(){
-		return accessToken;
 	}
 
 	public void setEmployeeName(String employeeName){

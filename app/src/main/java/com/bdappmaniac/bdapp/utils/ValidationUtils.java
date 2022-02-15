@@ -25,9 +25,7 @@ public class ValidationUtils {
     }
 
     public static boolean isValidID(CharSequence target) {
-
         return Patterns.PHONE.matcher(target).matches();
-
     }
 
 }

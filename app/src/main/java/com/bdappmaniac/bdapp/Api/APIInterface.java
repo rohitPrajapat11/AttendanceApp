@@ -21,10 +21,10 @@ public interface APIInterface {
     Call<ApiResponse> EmployeeRegistration(@PartMap Map<String, RequestBody> map);
 
     @Multipart
-    @POST("api/employee/90")
+    @POST("api/employee/1")
     Call<ApiResponse> EmployId(@PartMap Map<String, RequestBody> map);
 
     @Multipart
     @POST("api/allemployees")
-    Call<ApiResponse> EmployList(@PartMap Map<String, RequestBody> map);
+    Call<ApiResponse> EmployeeList();
 }

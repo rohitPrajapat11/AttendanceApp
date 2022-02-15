@@ -27,7 +27,6 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.Api.response.EmpRegisterResponse;
-import com.bdappmaniac.bdapp.Api.response.LoginResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
@@ -35,6 +34,7 @@ import com.bdappmaniac.bdapp.databinding.BottomDialogRegisterSuccessBinding;
 import com.bdappmaniac.bdapp.databinding.DesignationDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentRegisterEmpolyeeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.utils.ValidationUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -66,8 +66,11 @@ public class RegisterEmployeeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register_empolyee, container, false);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
+        binding.emailTxt.addTextChangedListener(new RegisterEmployeeFragment.TextChange(binding.emailTxt));
+        binding.passwordTxt.addTextChangedListener(new RegisterEmployeeFragment.TextChange(binding.passwordTxt));
         binding.sighUpBtn.setOnClickListener(v -> {
-            if(checkValidation()) {
+            if (checkValidation()) {
                 Map<String, RequestBody> map = new HashMap<>();
                 map.put("employee_name", toRequestBody(binding.nameTxt.getText().toString()));
                 map.put("emp_mobile_no", toRequestBody(binding.phoneTxt.getText().toString()));
@@ -87,17 +90,16 @@ public class RegisterEmployeeFragment extends BaseFragment {
         return binding.getRoot();
     }
 
-    public void registerEmployee(  Map<String, RequestBody> map) {
-
-        MainService.EmployeeRegistration(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
+    public void registerEmployee(Map<String, RequestBody> map) {
+        MainService.employeeRegistration(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
-                ((BaseActivity)mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
             } else {
-                if((apiResponse.getData() != null)) {
-                    EmpRegisterResponse empRegisterResponse =  new Gson().fromJson(apiResponse.getData(), EmpRegisterResponse.class);
+                if ((apiResponse.getData() != null)) {
+                    EmpRegisterResponse empRegisterResponse = new Gson().fromJson(apiResponse.getData(), EmpRegisterResponse.class);
                     showToast(empRegisterResponse.getEmail());
                 } else {
-                    ((BaseActivity)mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
                 }
             }
         });
@@ -110,6 +112,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
         }
         return requestBody;
     }
+
     public RequestBody toRequestBodyPart(String value) {
         return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
     }
@@ -120,7 +123,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
         bottomSheetDialog.setContentView(dBinding.getRoot());
         ((View) dBinding.getRoot().getParent()).setBackgroundColor(requireActivity().getResources().getColor(R.color.transparent));
         dBinding.sendBtn.setOnClickListener(v -> {
-        //    sharePrint();
+            //    sharePrint();
         });
         bottomSheetDialog.show();
     }
@@ -170,33 +173,6 @@ public class RegisterEmployeeFragment extends BaseFragment {
             dialog.dismiss();
         });
         dialog.show();
-    }
-
-    public class TextChange implements TextWatcher {
-        View view;
-
-        private TextChange(View v) {
-            view = v;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-            if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
-                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
-            } else {
-                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
-            }
-            isFieldFillUp();
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-        }
     }
 
     private boolean isAllFieldFillUp() {
@@ -295,7 +271,6 @@ public class RegisterEmployeeFragment extends BaseFragment {
             binding.sighUpBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
             binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color._172B4D));
         }
-        isFieldFillUp();
     }
 
     private void setTextViewDrawableColor(TextView textView, int color) {
@@ -303,6 +278,33 @@ public class RegisterEmployeeFragment extends BaseFragment {
             if (drawable != null) {
                 drawable.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(textView.getContext(), color), PorterDuff.Mode.SRC_IN));
             }
+        }
+    }
+
+    public class TextChange implements TextWatcher {
+        View view;
+
+        private TextChange(View v) {
+            view = v;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
+            } else {
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
+            }
+            isFieldFillUp();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
         }
     }
 }
