@@ -2,7 +2,7 @@ package com.bdappmaniac.bdapp.Api.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class EmpList {
+public class EmployeeList {
 
 	@SerializedName("pincode")
 	private Object pincode;

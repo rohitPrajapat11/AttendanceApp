@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
+import com.bdappmaniac.bdapp.Api.response.EmployeeList;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.admin.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeDetailsBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
-import com.bdappmaniac.bdapp.model.EmployeeListModel;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
     String empName, designation;
     int profile;
     EmployeeListAdapter EmAdapter;
-    ArrayList<EmployeeListModel> list = new ArrayList<>();
+    ArrayList<EmployeeList> list = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

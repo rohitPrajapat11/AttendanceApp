@@ -6,9 +6,11 @@ import java.util.Map;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
+import retrofit2.http.Path;
 
 public interface APIInterface {
 
@@ -21,10 +23,9 @@ public interface APIInterface {
     Call<ApiResponse> EmployeeRegistration(@PartMap Map<String, RequestBody> map);
 
     @Multipart
-    @POST("api/employee/1")
-    Call<ApiResponse> EmployId(@PartMap Map<String, RequestBody> map);
+    @POST("api/employee/{id}")
+    Call<ApiResponse> EmployId(@Path("id") int id);
 
-    @Multipart
     @POST("api/allemployees")
-    Call<ApiResponse> EmployeeList();
+    Call<ApiResponse> employeeList(@Header("Authorization") String token);
 }

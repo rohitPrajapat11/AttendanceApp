@@ -1,10 +1,6 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
-import static android.content.Context.MODE_PRIVATE;
-
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -28,6 +24,7 @@ import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.AdminActivity;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.activity.HomeActivity;
+import com.bdappmaniac.bdapp.application.BdApplication;
 import com.bdappmaniac.bdapp.databinding.FragmentLogInBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
@@ -43,7 +40,6 @@ import okhttp3.RequestBody;
 
 public class LogInFragment extends BaseFragment {
     FragmentLogInBinding binding;
-    String Token;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,8 +78,6 @@ public class LogInFragment extends BaseFragment {
                 String password = binding.passwordTxt.getText().toString();
                 if (checkValidation()) {
                     loginApi(email, password);
-                    startActivity(new Intent(mContext, AdminActivity.class));
-                    getActivity().finish();
 //                    if (id.equals("a@gmail.com") && password.equals("123456")) {
 //                        startActivity(new Intent(mContext, HomeActivity.class));
 //                        getActivity().finish();
@@ -113,10 +107,13 @@ public class LogInFragment extends BaseFragment {
             } else {
                 if ((apiResponse.getData() != null)) {
                     LoginResponse loginResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
-                    showToast(loginResponse.getAccessToken());
-                    SharedPreferences.Editor editor = getActivity().getSharedPreferences("My_Preference", MODE_PRIVATE).edit();
-                    editor.putString("Token", loginResponse.getAccessToken());
-                    editor.commit();
+                  //  BdApplication.getPreferenceManger().putUserDetails(loginResponse);
+                        if (loginResponse.getType().equals("employee")) {
+                            startActivity(new Intent(mContext, HomeActivity.class));
+                        } else if (loginResponse.getType().equals("admin")){
+                            startActivity(new Intent(mContext, AdminActivity.class));
+                        }
+                        getActivity().finish();
                 } else {
                     ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
                 }

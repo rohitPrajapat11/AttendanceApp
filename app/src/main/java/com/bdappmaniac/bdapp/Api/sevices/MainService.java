@@ -69,9 +69,9 @@ public class MainService extends BaseFragment {
         return data;
     }
 
-    public static LiveData<ApiResponse> employeeList(Context context, Map<String, RequestBody> map) {
+    public static LiveData<ApiResponse> employeeList(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        Call<ApiResponse> call = apiService.EmployeeList();
+        Call<ApiResponse> call = apiService.employeeList(token);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {

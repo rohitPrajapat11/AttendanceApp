@@ -15,16 +15,16 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bdappmaniac.bdapp.Api.response.EmployeeList;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.SingleItemOfEmployeeBinding;
-import com.bdappmaniac.bdapp.model.EmployeeListModel;
 
 import java.util.ArrayList;
 public class SingleListEmployeeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    ArrayList<EmployeeListModel> list = new ArrayList<>();
+    ArrayList<EmployeeList> list = new ArrayList<>();
     NavController navController;
-    public SingleListEmployeeAdapter(Context context, ArrayList<EmployeeListModel> list) {
+    public SingleListEmployeeAdapter(Context context, ArrayList<EmployeeList> list) {
         this.context = context;
         this.list = list;
         navController = Navigation.findNavController((Activity) context, R.id.adminNav);
@@ -51,12 +51,12 @@ public class SingleListEmployeeAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         SingleListEmployeeAdapter.SingleListEmployeeHolder vHolder = (SingleListEmployeeAdapter.SingleListEmployeeHolder) holder;
-        vHolder.binding.employeeName.setText(list.get(position).getName());
-        vHolder.binding.profile.setImageResource(list.get(position).getImage());
+//        vHolder.binding.employeeName.setText(list.get(position).getEmployeeName());
+//        vHolder.binding.profile.setImageResource(list.get(position).getProfile());
         vHolder.binding.employeeName.setOnClickListener(v -> {
-            Bundle bundle = new Bundle();
-            bundle.putInt("image", list.get(position).getImage());
-            bundle.putString("name", list.get(position).getName());
+//            Bundle bundle = new Bundle();
+//            bundle.putInt("image", list.get(position).getProfile());
+//            bundle.putString("name", list.get(position).getEmployeeName());
             navController.navigate(R.id.loanFragment);
         });
     }

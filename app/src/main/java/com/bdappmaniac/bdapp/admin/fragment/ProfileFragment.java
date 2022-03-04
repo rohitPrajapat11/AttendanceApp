@@ -36,6 +36,7 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bdappmaniac.bdapp.Api.response.LoginResponse;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentProfileBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
@@ -67,6 +68,7 @@ public class ProfileFragment extends BaseFragment {
         binding.dobTxt.addTextChangedListener(new TextChange(binding.dobTxt));
         binding.addressTxt.addTextChangedListener(new TextChange(binding.addressTxt));
         binding.pinCodeTxt.addTextChangedListener(new TextChange(binding.pinCodeTxt));
+
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -460,5 +462,21 @@ public class ProfileFragment extends BaseFragment {
         Bitmap bitmap = TextToBitmap.textToBitmap(binding.nameTxt.getText().toString(), mContext, 10, R.color.black);
         Drawable d = new BitmapDrawable(getResources(), bitmap);
         binding.profile.setImageDrawable(d);
+    }
+
+   public void setProfileData()
+    {
+//        LoginResponse loginResponse;
+//        loginResponse = bdApp.getPreferenceManger().getUserDetails();
+//       binding.nameTxt.setText(loginResponse.getEmployeeName());
+//       binding.emailTxt.setText(loginResponse.getEmail());
+//       binding.phoneTxt.setText(String.valueOf(loginResponse.getEmpMobileNo()));
+//       binding.emPhoneTxt.setText(String.valueOf(loginResponse.getEmgMoNo()));
+//       binding.designationTxt.setText(loginResponse.getDesignation());
+//       binding.dobTxt.setText(String.valueOf(loginResponse.getDob()));
+//       binding.addressTxt.setText(loginResponse.getEmployeeAddress());
+//       binding.pinCodeTxt.setText(String.valueOf(loginResponse.getPincode()));
+
+
     }
 }

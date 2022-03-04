@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/custom_preview.xml" value="0.26979166666666665" />
         <entry key="../../../../layout/custom_preview.xml" value="0.215625" />
         <entry key="app/src/main/res/drawable-v24/background_shape.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable-v24/button_pill_hw.xml" value="0.12960526315789472" />
@@ -40,7 +41,7 @@
         <entry key="app/src/main/res/drawable/white_round_bg.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/drawable/yellow_10r_bg.xml" value="0.12203947368421053" />
         <entry key="app/src/main/res/layout-v23/activity_auth.xml" value="0.17708333333333334" />
-        <entry key="app/src/main/res/layout/activity_admin.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_admin.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.12" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_home_acitivity.xml" value="0.16302083333333334" />
@@ -77,12 +78,12 @@
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/fragment_log_in.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_log_in.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_new_employee_list.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_new_password.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_o_t_p.xml" value="0.23229166666666667" />
         <entry key="app/src/main/res/layout/fragment_one_time_m_p_i_n.xml" value="0.21822916666666667" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_register_empolyee.xml" value="0.19" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_sing_up.xml" value="0.18" />
@@ -109,5 +110,8 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressKotlinCodeStyleNotification">
+    <option name="disableForAll" value="true" />
   </component>
 </project>
