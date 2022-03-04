@@ -20,6 +20,9 @@ import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.admin.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeListBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.model.EmployeeListModel;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -30,7 +33,9 @@ import java.util.List;
 public class EmployeeListFragment extends BaseFragment {
     FragmentEmployeeListBinding binding;
     EmployeeListAdapter EmAdapter;
-    ArrayList<EmployeeListResponse> employeeLists = new ArrayList<>();
+    //    ArrayList<EmployeeListResponse> list = new ArrayList<>();
+    ArrayList<EmployeeListModel> list = new ArrayList<>();
+    String getToken = SharedPref.getUserDetails().getAccessToken();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,19 +44,18 @@ public class EmployeeListFragment extends BaseFragment {
         String Token = sharedPreferences.getString("Token", "ok");
         showToast(Token);
         employeeListApi();
-//        BdApplication.getPreferenceManger().getLoginDetails();
-//        list.add(new EmployeeList("Joe", "Android Developer", R.drawable.sample_android));
-//        list.add(new EmployeeList("Smith", "IOS Developer", R.drawable.sample_ios));
-//        list.add(new EmployeeList("Josh Dev", "Web Developer", R.drawable.sample_web));
-//        list.add(new EmployeeList("Michel Zor", "Android Developer", R.drawable.sample_android));
-//        list.add(new EmployeeList("Alex War", "Android Developer", R.drawable.sample_android));
-//        list.add(new EmployeeList("Lyon Pine", "IOS Developer", R.drawable.sample_ios));
-//        list.add(new EmployeeList("Roy Meel", "IOS Developer", R.drawable.sample_ios));
-//        list.add(new EmployeeList("Carey C ", "Web Developer", R.drawable.sample_web));
-//        list.add(new EmployeeList("Mil Dev", "Web Developer", R.drawable.sample_web));
-//        list.add(new EmployeeList("Veexo Zor", "Project Manager", R.drawable.sample_prohject));
-//        list.add(new EmployeeList("Alex War", "IOS Developer", R.drawable.sample_ios));
-        EmAdapter = new EmployeeListAdapter(mContext, employeeLists, "EmployeeList");
+        list.add(new EmployeeListModel("Joe", "Android Developer", R.drawable.sample_android));
+        list.add(new EmployeeListModel("Smith", "IOS Developer", R.drawable.sample_ios));
+        list.add(new EmployeeListModel("Josh Dev", "Web Developer", R.drawable.sample_web));
+        list.add(new EmployeeListModel("Michel Zor", "Android Developer", R.drawable.sample_android));
+        list.add(new EmployeeListModel("Alex War", "Android Developer", R.drawable.sample_android));
+        list.add(new EmployeeListModel("Lyon Pine", "IOS Developer", R.drawable.sample_ios));
+        list.add(new EmployeeListModel("Roy Meel", "IOS Developer", R.drawable.sample_ios));
+        list.add(new EmployeeListModel("Carey C ", "Web Developer", R.drawable.sample_web));
+        list.add(new EmployeeListModel("Mil Dev", "Web Developer", R.drawable.sample_web));
+        list.add(new EmployeeListModel("Veexo Zor", "Project Manager", R.drawable.sample_prohject));
+        list.add(new EmployeeListModel("Alex War", "IOS Developer", R.drawable.sample_ios));
+        EmAdapter = new EmployeeListAdapter(mContext, list, "EmployeeList");
         binding.employeeRecycler.setHasFixedSize(false);
         binding.employeeRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.employeeRecycler.setAdapter(EmAdapter);
@@ -59,7 +63,8 @@ public class EmployeeListFragment extends BaseFragment {
     }
 
     private void employeeListApi() {
-        MainService.employeeList(mContext, "Bearer 69|u9ooDRbOpcVZTYnGzQ1KsYrN0BQMN5jTJgUXIlPP").observe((LifecycleOwner) mContext, apiResponse -> {
+        AppLoader.showLoaderDialog(mContext);
+        MainService.employeeList(mContext, "Bearer" + getToken).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
             } else {
@@ -67,12 +72,13 @@ public class EmployeeListFragment extends BaseFragment {
                     Type collectionType = new TypeToken<List<EmployeeListResponse>>() {
                     }.getType();
                     List<EmployeeListResponse> list = new Gson().fromJson(apiResponse.getData(), collectionType);
-                    employeeLists.addAll(list);
+                  //  employeeLists.addAll(list);
                     EmAdapter.notifyDataSetChanged();
                 } else {
                     ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
                 }
             }
         });
+        AppLoader.hideLoaderDialog();
     }
 }

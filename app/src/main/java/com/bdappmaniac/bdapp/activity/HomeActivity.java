@@ -1,5 +1,6 @@
 package com.bdappmaniac.bdapp.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -10,26 +11,35 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
+import com.bdappmaniac.bdapp.Api.response.LoginResponse;
+import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.ActivityHomeBinding;
 import com.bdappmaniac.bdapp.employee.fragment.HomeFragment;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
 import com.bdappmaniac.bdapp.utils.Constant;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
+import com.google.gson.Gson;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener, CalendarCallBack {
+import okhttp3.RequestBody;
+
+public class HomeActivity extends BaseActivity implements View.OnClickListener, CalendarCallBack {
+    public Context mContext;
     ActivityHomeBinding binding;
     NavController navController;
 
@@ -39,6 +49,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         StatusBarUtils.statusBarColor(this, R.color.white);
         navController = Navigation.findNavController(this, R.id.nav_controller);
+        SharedPref.init(this);
+        Toast.makeText(this, SharedPref.getUserDetails().getAccessToken(), Toast.LENGTH_SHORT).show();
         textProfile();
         binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,6 +185,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.logOutBtn:
+                SharedPref.init(mContext);
+                SharedPref.putUserDetails(null);
                 startActivity(new Intent(this, AuthActivity.class));
                 finish();
                 break;

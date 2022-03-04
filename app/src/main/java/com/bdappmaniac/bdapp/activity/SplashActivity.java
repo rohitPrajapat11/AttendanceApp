@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.ActivitySplashBinding;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 public class SplashActivity extends AppCompatActivity {
@@ -28,7 +29,19 @@ public class SplashActivity extends AppCompatActivity {
         bottom_animation = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
         fade = AnimationUtils.loadAnimation(this, R.anim.fade);
         binding.logo.setAnimation(bottom_animation);
-       binding.appName.setAnimation(top_animation);
+        binding.appName.setAnimation(top_animation);
+        SharedPref.init(this);
+//        SharedPref.init(this);
+//        if (SharedPref.getUserDetails() == null) {
+//            Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
+//            startActivity(intent);
+//        } else if (SharedPref.getUserDetails().getType().equals("employee")) {
+//            startActivity(new Intent(this, HomeActivity.class));
+//            finish();
+//        } else if (SharedPref.getUserDetails().getType().equals("admin")) {
+//            startActivity(new Intent(this, AdminActivity.class));
+//            finish();
+//        }
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -38,9 +51,19 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
-                startActivity(intent);
-                finish();
+                if (SharedPref.getUserDetails() == null) {
+                    Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else if (SharedPref.getUserDetails().getType().equals("employee")) {
+                    Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (SharedPref.getUserDetails().getType().equals("admin")) {
+                    Intent intent = new Intent(SplashActivity.this, AdminActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }, 2500);
     }

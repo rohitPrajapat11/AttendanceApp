@@ -17,16 +17,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bdappmaniac.bdapp.Api.response.EmployeeListResponse;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.EmployeeListItemBinding;
+import com.bdappmaniac.bdapp.model.EmployeeListModel;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
 public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    ArrayList<EmployeeListResponse> list = new ArrayList<>();
+    ArrayList<EmployeeListModel> list = new ArrayList<>();
     String from;
 
-    public EmployeeListAdapter(Context context, ArrayList<EmployeeListResponse> list, String from) {
+    public EmployeeListAdapter(Context context, ArrayList<EmployeeListModel> list, String from) {
         this.context = context;
         this.list = list;
         this.from = from;

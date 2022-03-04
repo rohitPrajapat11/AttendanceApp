@@ -16,15 +16,14 @@ public interface APIInterface {
 
     @Multipart
     @POST("api/login")
-    Call<ApiResponse> UserLogIn(@PartMap Map<String, RequestBody> map);
+    Call<ApiResponse> userLogIn(@PartMap Map<String, RequestBody> map);
 
     @Multipart
     @POST("api/employeeRegistration")
-    Call<ApiResponse> EmployeeRegistration(@PartMap Map<String, RequestBody> map);
+    Call<ApiResponse> employeeRegistration(@PartMap Map<String, RequestBody> map);
 
-    @Multipart
     @POST("api/employee/{id}")
-    Call<ApiResponse> EmployId(@Path("id") int id);
+    Call<ApiResponse> GetEmployeeById(@Header("Authorization") String token, @Path("id") int id);
 
     @POST("api/allemployees")
     Call<ApiResponse> employeeList(@Header("Authorization") String token);

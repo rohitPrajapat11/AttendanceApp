@@ -34,6 +34,7 @@ import com.bdappmaniac.bdapp.databinding.BottomDialogRegisterSuccessBinding;
 import com.bdappmaniac.bdapp.databinding.DesignationDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentRegisterEmpolyeeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.utils.ValidationUtils;
@@ -91,6 +92,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
     }
 
     public void registerEmployee(Map<String, RequestBody> map) {
+        AppLoader.showLoaderDialog(mContext);
         MainService.employeeRegistration(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
@@ -103,6 +105,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
                 }
             }
         });
+        AppLoader.hideLoaderDialog();
     }
 
     public RequestBody toRequestBody(String val) {

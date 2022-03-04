@@ -24,9 +24,10 @@ import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.AdminActivity;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.activity.HomeActivity;
-import com.bdappmaniac.bdapp.application.BdApplication;
 import com.bdappmaniac.bdapp.databinding.FragmentLogInBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.utils.ValidationUtils;
@@ -98,6 +99,7 @@ public class LogInFragment extends BaseFragment {
     }
 
     private void loginApi(String email, String password) {
+        AppLoader.showLoaderDialog(mContext);
         Map<String, RequestBody> map = new HashMap<>();
         map.put("email", toRequestBody(email));
         map.put("password", toRequestBody(password));
@@ -107,7 +109,8 @@ public class LogInFragment extends BaseFragment {
             } else {
                 if ((apiResponse.getData() != null)) {
                     LoginResponse loginResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
-                  //  BdApplication.getPreferenceManger().putUserDetails(loginResponse);
+                    SharedPref.init(mContext);
+                    SharedPref.putUserDetails(loginResponse);
                         if (loginResponse.getType().equals("employee")) {
                             startActivity(new Intent(mContext, HomeActivity.class));
                         } else if (loginResponse.getType().equals("admin")){
@@ -119,6 +122,7 @@ public class LogInFragment extends BaseFragment {
                 }
             }
         });
+        AppLoader.hideLoaderDialog();
     }
 
     public RequestBody toRequestBody(String val) {

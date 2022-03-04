@@ -10,7 +10,7 @@ import com.bdappmaniac.bdapp.employee.fragment.LogInFragment;
 
 import java.util.List;
 
-public class AuthActivity extends AppCompatActivity {
+public class AuthActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

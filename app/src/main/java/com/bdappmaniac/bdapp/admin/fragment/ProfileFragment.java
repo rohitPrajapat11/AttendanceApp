@@ -16,12 +16,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-import androidx.databinding.DataBindingUtil;
-import androidx.navigation.Navigation;
-
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -36,7 +30,12 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bdappmaniac.bdapp.Api.response.LoginResponse;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
+
+import com.bdappmaniac.bdapp.Api.response.EmployeeByIdResponse;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentProfileBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
@@ -53,14 +52,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class ProfileFragment extends BaseFragment {
+    private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
     FragmentProfileBinding binding;
     String imgPath;
     File file = null;
     private int mYear, mMonth, mDay, mHour, mMinute;
-    private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
+//        setProfileData();
         binding.nameTxt.addTextChangedListener(new TextChange(binding.nameTxt));
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.phoneTxt.addTextChangedListener(new TextChange(binding.phoneTxt));
@@ -249,6 +249,7 @@ public class ProfileFragment extends BaseFragment {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     private boolean checkPermission() {
         return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
     }
@@ -352,28 +353,6 @@ public class ProfileFragment extends BaseFragment {
         return true;
     }
 
-    public class TextChange implements TextWatcher {
-        View view;
-
-        private TextChange(View v) {
-            view = v;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-            setValidations();
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-        }
-    }
-
     private void isFieldFillUp() {
         if (StringHelper.isEmpty(binding.nameTxt.getText().toString())) {
             setTextViewDrawableColor(binding.nameTxt, R.color._A8A8A8);
@@ -464,19 +443,38 @@ public class ProfileFragment extends BaseFragment {
         binding.profile.setImageDrawable(d);
     }
 
-   public void setProfileData()
-    {
-//        LoginResponse loginResponse;
-//        loginResponse = bdApp.getPreferenceManger().getUserDetails();
-//       binding.nameTxt.setText(loginResponse.getEmployeeName());
-//       binding.emailTxt.setText(loginResponse.getEmail());
-//       binding.phoneTxt.setText(String.valueOf(loginResponse.getEmpMobileNo()));
-//       binding.emPhoneTxt.setText(String.valueOf(loginResponse.getEmgMoNo()));
-//       binding.designationTxt.setText(loginResponse.getDesignation());
-//       binding.dobTxt.setText(String.valueOf(loginResponse.getDob()));
-//       binding.addressTxt.setText(loginResponse.getEmployeeAddress());
-//       binding.pinCodeTxt.setText(String.valueOf(loginResponse.getPincode()));
+    public class TextChange implements TextWatcher {
+        View view;
 
+        private TextChange(View v) {
+            view = v;
+        }
 
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            setValidations();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
     }
+
+//    public void setProfileData() {
+//        EmployeeByIdResponse employeeByIdResponse;
+//        employeeByIdResponse = BdApplication.getPreferenceManger().getUserDetailsById();
+//        binding.nameTxt.setText(employeeByIdResponse.getEmployeeName());
+//        binding.emailTxt.setText(employeeByIdResponse.getEmail());
+//        binding.phoneTxt.setText(String.valueOf(employeeByIdResponse.getEmpMobileNo()));
+//        binding.emPhoneTxt.setText(String.valueOf(employeeByIdResponse.getEmgMoNo()));
+//        binding.designationTxt.setText(employeeByIdResponse.getDesignation());
+//        binding.dobTxt.setText(String.valueOf(employeeByIdResponse.getDob()));
+//        binding.addressTxt.setText(employeeByIdResponse.getEmployeeAddress());
+//        binding.pinCodeTxt.setText(String.valueOf(employeeByIdResponse.getPincode()));
+//    }
 }
