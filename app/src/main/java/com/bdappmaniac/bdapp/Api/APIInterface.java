@@ -6,6 +6,8 @@ import java.util.Map;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -23,8 +25,22 @@ public interface APIInterface {
     Call<ApiResponse> employeeRegistration(@PartMap Map<String, RequestBody> map);
 
     @POST("api/employee/{id}")
-    Call<ApiResponse> GetEmployeeById(@Header("Authorization") String token, @Path("id") int id);
+    Call<ApiResponse> getEmployeeById(@Header("Authorization") String token, @Path("id") int id);
 
     @POST("api/allemployees")
     Call<ApiResponse> employeeList(@Header("Authorization") String token);
+
+    @FormUrlEncoded
+    @POST("api/updateProfileByAdmin/{id}")
+    Call<ApiResponse> updateProfileByAdmin(@Header("Authorization") String token, @Path("id") int id, @Field("status") String status);
+
+    @POST("api/logout")
+    Call<ApiResponse> userLogout(@Header("Authorization") String token);
+
+    @POST("api/updateProfile")
+    Call<ApiResponse> updateProfileByEmployee(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+
+    @Multipart
+    @POST("api/sendMail")
+    Call<ApiResponse> sendMail(@PartMap Map<String, RequestBody> map);
 }

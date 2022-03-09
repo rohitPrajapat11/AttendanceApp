@@ -19,6 +19,7 @@ public class SplashActivity extends AppCompatActivity {
 
     ActivitySplashBinding binding;
     Animation top_animation, bottom_animation, fade;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,17 +32,7 @@ public class SplashActivity extends AppCompatActivity {
         binding.logo.setAnimation(bottom_animation);
         binding.appName.setAnimation(top_animation);
         SharedPref.init(this);
-//        SharedPref.init(this);
-//        if (SharedPref.getUserDetails() == null) {
-//            Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
-//            startActivity(intent);
-//        } else if (SharedPref.getUserDetails().getType().equals("employee")) {
-//            startActivity(new Intent(this, HomeActivity.class));
-//            finish();
-//        } else if (SharedPref.getUserDetails().getType().equals("admin")) {
-//            startActivity(new Intent(this, AdminActivity.class));
-//            finish();
-//        }
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -55,7 +46,7 @@ public class SplashActivity extends AppCompatActivity {
                     Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
                     startActivity(intent);
                     finish();
-                }else if (SharedPref.getUserDetails().getType().equals("employee")) {
+                } else if (SharedPref.getUserDetails().getType().equals("employee")) {
                     Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();

@@ -19,27 +19,23 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
-import com.bdappmaniac.bdapp.Api.response.LoginResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.ActivityHomeBinding;
 import com.bdappmaniac.bdapp.employee.fragment.HomeFragment;
+import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
+import com.bdappmaniac.bdapp.model.CalendarDateModel;
 import com.bdappmaniac.bdapp.utils.Constant;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
-import com.google.gson.Gson;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
-import okhttp3.RequestBody;
-
 public class HomeActivity extends BaseActivity implements View.OnClickListener, CalendarCallBack {
-    public Context mContext;
     ActivityHomeBinding binding;
     NavController navController;
 
@@ -50,7 +46,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         StatusBarUtils.statusBarColor(this, R.color.white);
         navController = Navigation.findNavController(this, R.id.nav_controller);
         SharedPref.init(this);
-        Toast.makeText(this, SharedPref.getUserDetails().getAccessToken(), Toast.LENGTH_SHORT).show();
+        callNotification();
+//        Toast.makeText(this, SharedPref.getUserDetails().getAccessToken(), Toast.LENGTH_SHORT).show();
         textProfile();
         binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +86,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         });
         binding.homeLayout.headerLayout.addBtn.setOnClickListener(v -> {
             Constant.calendarCallBack.openCalendar();
+        });
+        binding.homeLayout.headerLayout.extIcon.setOnClickListener(v -> {
+            exitDialog();
         });
         binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.settingBtn.setOnClickListener(this::onClick);
@@ -174,6 +174,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onClick(View v) {
+        drawerOpenCLose();
         switch (v.getId()) {
             case R.id.homeBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.homeFragment) {
@@ -181,14 +182,24 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 }
                 binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
+            case R.id.loanBtn:
+                showToast("In Progress");
+                break;
+            case R.id.tmcBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeTermFragment) {
+                    navController.navigate(R.id.employeeTermFragment);
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
             case R.id.settingBtn:
-                Toast.makeText(this, "Setting", Toast.LENGTH_SHORT).show();
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.homeSettingFragment) {
+                    navController.navigate(R.id.homeSettingFragment);
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.logOutBtn:
-                SharedPref.init(mContext);
-                SharedPref.putUserDetails(null);
-                startActivity(new Intent(this, AuthActivity.class));
-                finish();
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                logoutDialog();
                 break;
         }
     }
@@ -199,33 +210,31 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         } else {
             binding.homeLayout.headerLayout.headerLayout.setVisibility(View.GONE);
         }
-
     }
 
-    /*
-        private void setUpCalendar() {
-            ArrayList<CalendarDateModel> calendarList = new ArrayList<>();
-            Calendar monthCalendar = (Calendar) cal.clone();
-            int maxDaysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-            dates.clear();
-            monthCalendar.set(Calendar.DAY_OF_MONTH, 1);
-            while (dates.size() < maxDaysInMonth) {
-                if(monthCalendar.getTime().getDate() == todayDate)
-                {
-                    dates.add(monthCalendar.getTime());
-                    calendarList.add(new CalendarDateModel(monthCalendar.getTime()));
-                    monthCalendar.add(Calendar.DAY_OF_MONTH, 1);
-                    break;
-                }
-                dates.add(monthCalendar.getTime());
-                calendarList.add(new CalendarDateModel(monthCalendar.getTime()));
-                monthCalendar.add(Calendar.DAY_OF_MONTH, 1);
-            }
-            calendarList2.clear();
-            calendarList2.addAll(calendarList);
-            adapter.setData(calendarList);
-            binding.homeLayout.calendarRecycler.scrollToPosition(adapter.getItemCount()-1);
-        }*/
+//    private void setUpCalendar() {
+//        ArrayList<CalendarDateModel> calendarList = new ArrayList<>();
+//        Calendar monthCalendar = (Calendar) cal.clone();
+//        int maxDaysInMonth = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+//        dates.clear();
+//        monthCalendar.set(Calendar.DAY_OF_MONTH, 1);
+//        while (dates.size() < maxDaysInMonth) {
+//            if (monthCalendar.getTime().getDate() == todayDate) {
+//                dates.add(monthCalendar.getTime());
+//                calendarList.add(new CalendarDateModel(monthCalendar.getTime()));
+//                monthCalendar.add(Calendar.DAY_OF_MONTH, 1);
+//                break;
+//            }
+//            dates.add(monthCalendar.getTime());
+//            calendarList.add(new CalendarDateModel(monthCalendar.getTime()));
+//            monthCalendar.add(Calendar.DAY_OF_MONTH, 1);
+//        }
+//        calendarList2.clear();
+//        calendarList2.addAll(calendarList);
+//        adapter.setData(calendarList);
+//        binding.homeLayout.calendarRecycler.scrollToPosition(adapter.getItemCount() - 1);
+//    }
+
     void textProfile() {
         Bitmap bitmap = TextToBitmap.textToBitmap(binding.navigationDrawer.userName.getText().toString(), this, 10, R.color.black);
         Drawable d = new BitmapDrawable(getResources(), bitmap);

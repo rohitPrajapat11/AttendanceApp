@@ -15,12 +15,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
+
+import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentForgotPasswordBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.utils.ValidationUtils;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class ForgotPasswordFragment extends BaseFragment {
     FragmentForgotPasswordBinding binding;
@@ -50,7 +61,9 @@ public class ForgotPasswordFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 if (checkValidation()) {
-                    Navigation.findNavController(v).navigate(R.id.newPasswordFragment);
+//                    Navigation.findNavController(v).navigate(R.id.newPasswordFragment);
+                    String email = binding.emailTxt.getText().toString();
+                    sendMailApi(email);
                 }
             }
         });
@@ -134,5 +147,37 @@ public class ForgotPasswordFragment extends BaseFragment {
                 drawable.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(textView.getContext(), color), PorterDuff.Mode.SRC_IN));
             }
         }
+    }
+
+    private void sendMailApi(String email) {
+        AppLoader.showLoaderDialog(mContext);
+        Map<String, RequestBody> map = new HashMap<>();
+        map.put("email", toRequestBody(email));
+        MainService.sendMail(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
+            if (apiResponse == null) {
+//                ((BaseActivity) mContext).showToast(mContext.getString(R.string.your_email_have_not_been_registered));
+                showSnackBar(binding.getRoot(),"Invalid Email");
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.newPasswordFragment);
+                } else {
+                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                }
+            }
+        });
+        AppLoader.hideLoaderDialog();
+    }
+
+    public RequestBody toRequestBody(String val) {
+        RequestBody requestBody = null;
+        if (getActivity() != null) {
+            requestBody = toRequestBodyPart(val);
+        }
+        return requestBody;
+    }
+
+    public RequestBody toRequestBodyPart(String value) {
+        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
     }
 }

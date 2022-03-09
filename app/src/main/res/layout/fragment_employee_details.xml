@@ -200,7 +200,8 @@
                         android:trackTint="@color/_A8A8A8"
                         app:layout_constraintBottom_toBottomOf="@+id/activeBtn"
                         app:layout_constraintEnd_toEndOf="@+id/designationTxt"
-                        app:layout_constraintTop_toTopOf="@+id/activeBtn" />
+                        app:layout_constraintTop_toTopOf="@+id/activeBtn"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout

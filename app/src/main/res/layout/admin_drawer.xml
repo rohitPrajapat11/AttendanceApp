@@ -186,7 +186,7 @@
                         android:layout_width="@dimen/_22sdp"
                         android:layout_height="@dimen/_22sdp"
                         android:layout_marginStart="@dimen/_20sdp"
-                        android:src="@drawable/icn_setting"
+                        android:src="@drawable/icn_star"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -213,7 +213,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/navigation_bg"
+                    android:background="@drawable/navigation_item_selector"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -247,15 +247,51 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/profileBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/navigation_item_selector"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/settingBtn">
+
+                    <ImageView
+                        android:id="@+id/profileImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:src="@drawable/icn_profile"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:text="Profile"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/profileImg"
+                        app:layout_constraintStart_toEndOf="@+id/profileImg"
+                        app:layout_constraintTop_toTopOf="@+id/profileImg"
+                        app:layout_constraintVertical_bias="0.6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/logOutBtn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/navigation_bg"
+                    android:background="@drawable/navigation_item_selector"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/settingBtn">
+                    app:layout_constraintTop_toBottomOf="@+id/profileBtn">
 
                     <ImageView
                         android:id="@+id/logOutImg"

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
@@ -18,7 +19,11 @@ import com.bdappmaniac.bdapp.admin.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeDetailsBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StringHelper;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -28,28 +33,21 @@ import okhttp3.RequestBody;
 
 public class EmployeeDetailsFragment extends BaseFragment {
     FragmentEmployeeDetailsBinding binding;
-    String empName, designation;
-    int profile, ID;
+    int ID;
     EmployeeListAdapter EmAdapter;
     ArrayList<EmployeeList> list = new ArrayList<>();
+    String getToken = SharedPref.getUserDetails().getAccessToken();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_details, container, false);
         if (getArguments() != null) {
-            profile = getArguments().getInt("image");
-            empName = getArguments().getString("name");
-            designation = getArguments().getString("designation");
-            ID = getArguments().getInt("employeeid");
+            ID = getArguments().getInt("id");
         }
-        ID = 15;
         employeeDetails(ID);
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();
         });
-        binding.profile.setImageResource(profile);
-        binding.employeeName.setText(empName);
 //        binding.empStatus.setOnClickListener(v -> {
 //            AcviteDeactiveDialogBinding activeBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.acvite_deactive_dialog, null, false);
 //            Dialog dialog = new Dialog(mContext);
@@ -84,13 +82,16 @@ public class EmployeeDetailsFragment extends BaseFragment {
         binding.attendanceLoanBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigate(R.id.employeeAttendanceFragment);
         });
+        binding.provideLoanBtn.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.employeeListForLoanFragment);
+        });
 
         return binding.getRoot();
     }
 
     public void employeeDetails(int id) {
         AppLoader.showLoaderDialog(mContext);
-        MainService.getEmployeeById("Bearer 76|j734FAPUvCKnGajnPFUwOkZW9GdKfhoxf6gZS0t8", id).observe((LifecycleOwner) this, apiResponse -> {
+        MainService.getEmployeeById(mContext, "Bearer " + getToken, id).observe((LifecycleOwner) this, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
             } else {
@@ -118,26 +119,67 @@ public class EmployeeDetailsFragment extends BaseFragment {
     }
 
     public void setUserData(EmployeeByIdResponse employeeByIdResponse) {
-
         binding.designationTxt.setText(employeeByIdResponse.getDesignation());
         binding.emailTxt.setText(employeeByIdResponse.getEmail());
         binding.phoneTxt.setText(String.valueOf(employeeByIdResponse.getEmpMobileNo()));
         binding.emPhoneTxt.setText(String.valueOf(employeeByIdResponse.getEmgMoNo()));
         binding.addressTxt.setText(employeeByIdResponse.getEmployeeAddress());
-        if (employeeByIdResponse.getStatus().equals("active")) {
-            binding.switch1.setChecked(true);
-            binding.activeBtn.setText("Active");
-        }
-        else if (employeeByIdResponse.getStatus()!="inactive") {
-            binding.switch1.setChecked(false);
-            binding.activeBtn.setText("Inactive");
-        }
+        binding.employeeName.setText(employeeByIdResponse.getEmployeeName());
 
-        if (employeeByIdResponse.getDob()==null){
-            binding.dobTxt.setText("Null");
+        Glide.with(mContext)
+                .load(employeeByIdResponse.getProfile())
+                .error(R.drawable.user)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(binding.profile);
+
+        switch (employeeByIdResponse.getStatus()) {
+            case "active":
+                binding.switch1.setChecked(true);
+                binding.activeBtn.setText("Active");
+                break;
+            case "inactive":
+                binding.switch1.setChecked(false);
+                binding.activeBtn.setText("Inactive");
+                break;
         }
-        else {
+        if (employeeByIdResponse.getDob() == null) {
+            binding.dobTxt.setText("-");
+        } else {
             binding.dobTxt.setText(String.valueOf(employeeByIdResponse.getDob()));
         }
+        binding.switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    binding.switch1.setChecked(true);
+                    binding.activeBtn.setText("Active");
+                    updateEmployeeStatus("active");
+                } else {
+                    binding.switch1.setChecked(false);
+                    binding.activeBtn.setText("Inactive");
+                    updateEmployeeStatus("inactive");
+                }
+            }
+        });
+
+    }
+
+    private void updateEmployeeStatus(String status) {
+        MainService.updateProfileByAdmin(mContext, "Bearer " + getToken, ID, status).observe((LifecycleOwner) this, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    if(status.equals("active")) {
+                        showSnackBar(binding.getRoot(), "You are Active");
+                    }else if(status.equals("inactive")) {
+                        showSnackBar(binding.getRoot(), "You are Inactive");
+                    }
+                } else {
+                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                }
+            }
+        });
     }
 }

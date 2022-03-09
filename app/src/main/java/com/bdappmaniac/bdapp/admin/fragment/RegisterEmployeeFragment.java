@@ -99,7 +99,6 @@ public class RegisterEmployeeFragment extends BaseFragment {
             } else {
                 if ((apiResponse.getData() != null)) {
                     EmpRegisterResponse empRegisterResponse = new Gson().fromJson(apiResponse.getData(), EmpRegisterResponse.class);
-                    showToast(empRegisterResponse.getEmail());
                 } else {
                     ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
                 }

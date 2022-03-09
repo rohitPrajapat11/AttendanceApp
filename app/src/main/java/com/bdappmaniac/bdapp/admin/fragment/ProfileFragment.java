@@ -33,16 +33,23 @@ import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.Api.response.EmployeeByIdResponse;
+import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentProfileBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 import com.nabinbhandari.android.permissions.PermissionHandler;
 import com.nabinbhandari.android.permissions.Permissions;
 
@@ -50,12 +57,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class ProfileFragment extends BaseFragment {
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
     FragmentProfileBinding binding;
     String imgPath;
     File file = null;
+    String getToken = SharedPref.getUserDetails().getAccessToken();
     private int mYear, mMonth, mDay, mHour, mMinute;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -104,6 +117,7 @@ public class ProfileFragment extends BaseFragment {
         binding.saveBtn.setOnClickListener(view -> {
             if (checkValidation()) {
                 onEditChange(false);
+                //updateOnSaveClick();
             }
         });
         textProfile();
@@ -183,6 +197,66 @@ public class ProfileFragment extends BaseFragment {
         return binding.getRoot();
     }
 
+//    public void updateOnSaveClick() {
+//        Map<String, RequestBody> map = new HashMap<>();
+//        map.put("pincode", toRequestBody(binding.pinCodeTxt.getText().toString()));
+//        map.put("employee_name", toRequestBody(binding.nameTxt.getText().toString()));
+//        map.put("emp_mobile_no", toRequestBody(binding.phoneTxt.getText().toString()));
+//        map.put("email", toRequestBody(binding.emailTxt.getText().toString()));
+//        map.put("emg_mo_no", toRequestBody(binding.emPhoneTxt.getText().toString()));
+//        map.put("employee_address", toRequestBody(binding.addressTxt.getText().toString()));
+//        map.put("designation", toRequestBody(binding.designationTxt.getText().toString()));
+//        map.put("dob", toRequestBody(binding.designationTxt.getText().toString()));
+//        updateProfileByEmployee(map);
+//                map.put("profile", toRequestBody(binding.profile.getText().toString()));
+//    }
+//
+    private void updateProfileByEmployee(Map<String, RequestBody> map) {
+        AppLoader.showLoaderDialog(mContext);
+        MainService.updateProfileByEmployee(mContext, "Bearer " + getToken, map).observe((LifecycleOwner) mContext, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    EmployeeByIdResponse employeeByIdResponse = new Gson().fromJson(apiResponse.getData(), EmployeeByIdResponse.class);
+                    setEmployeeData(employeeByIdResponse);
+                } else {
+                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                }
+            }
+        });
+        AppLoader.hideLoaderDialog();
+    }
+
+    private void setEmployeeData(EmployeeByIdResponse employeeByIdResponse) {
+        binding.designationTxt.setText(employeeByIdResponse.getDesignation());
+        binding.emailTxt.setText(employeeByIdResponse.getEmail());
+        binding.phoneTxt.setText(String.valueOf(employeeByIdResponse.getEmpMobileNo()));
+        binding.emPhoneTxt.setText(String.valueOf(employeeByIdResponse.getEmgMoNo()));
+        binding.addressTxt.setText(employeeByIdResponse.getEmployeeAddress());
+        binding.nameTxt.setText(employeeByIdResponse.getEmployeeName());
+        binding.dobTxt.setText(String.valueOf(employeeByIdResponse.getDob()));
+        binding.pinCodeTxt.setText(String.valueOf(employeeByIdResponse.getPincode()));
+
+        Glide.with(mContext)
+                .load(employeeByIdResponse.getProfile())
+                .error(R.drawable.user)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(binding.profile);
+    }
+
+    public RequestBody toRequestBody(String val) {
+        RequestBody requestBody = null;
+        if (getActivity() != null) {
+            requestBody = toRequestBodyPart(val);
+        }
+        return requestBody;
+    }
+
+    public RequestBody toRequestBodyPart(String value) {
+        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
+    }
     private void selectImage() {
         final CharSequence[] options = {"Take Photo", "Choose From Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

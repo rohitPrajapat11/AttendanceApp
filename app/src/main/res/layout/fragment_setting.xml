@@ -64,7 +64,7 @@
                 android:layout_height="match_parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/homeBtn"
+                    android:id="@+id/accountBtn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:background="@drawable/navigation_item_selector"
@@ -104,7 +104,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/loanBtn"
+                    android:id="@+id/notificationBtn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_marginTop="@dimen/_5sdp"
@@ -112,7 +112,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/homeBtn">
+                    app:layout_constraintTop_toBottomOf="@+id/accountBtn">
 
                     <ImageView
                         android:id="@+id/loanImg"
@@ -146,7 +146,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/tmcBtn"
+                    android:id="@+id/privacyBtn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_marginTop="@dimen/_5sdp"
@@ -154,7 +154,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/loanBtn">
+                    app:layout_constraintTop_toBottomOf="@+id/notificationBtn">
 
                     <ImageView
                         android:id="@+id/tmcImg"
@@ -187,15 +187,15 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/settingBtn"
+                    android:id="@+id/helpBtn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/navigation_bg"
+                    android:background="@drawable/navigation_item_selector"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tmcBtn">
+                    app:layout_constraintTop_toBottomOf="@+id/privacyBtn">
 
                     <ImageView
                         android:id="@+id/settingImg"

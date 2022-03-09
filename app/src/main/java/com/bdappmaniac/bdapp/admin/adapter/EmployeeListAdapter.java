@@ -14,22 +14,23 @@ import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bdappmaniac.bdapp.Api.response.EmployeeListResponse;
+import com.bdappmaniac.bdapp.Api.response.EmployeeList;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.EmployeeListItemBinding;
-import com.bdappmaniac.bdapp.model.EmployeeListModel;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    ArrayList<EmployeeListModel> list = new ArrayList<>();
+    ArrayList<EmployeeList> list = new ArrayList<>();
     String from;
 
-    public EmployeeListAdapter(Context context, ArrayList<EmployeeListModel> list, String from) {
+    public EmployeeListAdapter(Context context, List<EmployeeList> list, String from) {
         this.context = context;
-        this.list = list;
+        this.list = (ArrayList<EmployeeList>) list;
         this.from = from;
     }
 
@@ -58,12 +59,14 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         EmployeeListAdapter.EmployeeListHolder vHolder = (EmployeeListAdapter.EmployeeListHolder) holder;
-//        vHolder.binding.employeeName.setText(list.get(0).getData().get(position).getEmployeeName());
-//        vHolder.binding.designationTxt.setText(list.get(0).getData().get(position).getEmail());
-//        vHolder.binding.profile.setImageResource(list.get(0).getData().get(position).getProfile());
+        vHolder.binding.employeeName.setText(list.get(position).getEmployeeName());
+        vHolder.binding.designationTxt.setText(list.get(position).getDesignation());
 
         Glide.with(context)
-                .load("https://www.tutorialspoint.com/images/tp-logo-diamond.png")
+                .load(list.get(position).getProfile())
+                .error(R.drawable.user)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(vHolder.binding.profile);
 
         vHolder.itemView.setOnClickListener(v -> {
@@ -71,16 +74,19 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 Toast.makeText(context, "L", Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
 //                bundle.putInt("image", list.get(position).getProfile());
-//                bundle.putString("name", list.get(0).getData().get(position).getEmployeeName());
+//                bundle.putString("name", list.get(position).getEmployeeName());
+//                bundle.putString("designation", list.get(position).getDesignation());
                 Navigation.findNavController(v).navigate(R.id.provideLoanFragment, bundle);
             } else if (from.equals("EmployeeList")) {
                 Toast.makeText(context, "E", Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
 //                bundle.putInt("image", list.get(position).getProfile());
-//                bundle.putString("name", list.get(0).getData().get(position).getEmployeeName());
-//                bundle.putString("designation", list.get(1).getData().get(position).getDesignation());
+//                bundle.putString("name", list.get(position).getEmployeeName());
+//                bundle.putString("designation", list.get(position).getDesignation());
+                bundle.putInt("id", list.get(position).getId());
                 Navigation.findNavController(v).navigate(R.id.employeeDetailFragment, bundle);
             }
+
         });
     }
 

@@ -1,6 +1,5 @@
 package com.bdappmaniac.bdapp.activity;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -9,7 +8,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -85,6 +83,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding.navigationDrawer.tmcBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.logOutBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.registerBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.loanBtn.setOnClickListener(this::onClick);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -136,6 +135,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
             }
         });
     }
+
     void navHandel(String type) {
         switch (type) {
             case "Home":
@@ -151,6 +151,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Employee":
                 binding.homeLayout.headerLayout.title.setText("Employees");
@@ -165,6 +166,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Loan":
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.VISIBLE);
@@ -179,6 +181,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Profile":
                 binding.homeLayout.headerLayout.title.setText("");
@@ -195,11 +198,13 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.VISIBLE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
             case "LoanDetails":
                 binding.homeLayout.headerLayout.title.setText("Loan Details");
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.VISIBLE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "TermCondition":
             case "EmployeeDetail":
@@ -208,6 +213,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 break;
         }
     }
+
     void drawerOpenCLose() {
         if (binding.mainDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
@@ -215,6 +221,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
             binding.mainDrawerLayout.openDrawer(GravityCompat.START);
         }
     }
+
     @Override
     public void onClick(View v) {
         drawerOpenCLose();
@@ -235,8 +242,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 }
                 break;
             case R.id.logOutBtn:
-                startActivity(new Intent(this, AuthActivity.class));
-                finish();
+                logoutDialog();
                 break;
             case R.id.loanBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.loanFragment) {
@@ -247,9 +253,9 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     navController.navigate(R.id.registerEmployeeFragment);
                 }
                 break;
-
         }
     }
+
     void headerHideShow(boolean check) {
         if (check) {
             binding.homeLayout.headerLayout.headerLayout.setVisibility(View.VISIBLE);
@@ -258,6 +264,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         }
 
     }
+
     void bottomHideShow(boolean check) {
         if (check) {
             binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.VISIBLE);
@@ -266,15 +273,18 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         }
 
     }
+
     void textProfile() {
         Bitmap bitmap = TextToBitmap.textToBitmap(binding.navigationDrawer.userName.getText().toString(), this, 10, R.color.black);
         Drawable d = new BitmapDrawable(getResources(), bitmap);
         binding.navigationDrawer.userProfile.setImageDrawable(d);
     }
+
     @Override
     public void openCalendar() {
 
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -293,6 +303,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
             }
         }
     }
+
     private void noHeader() {
         binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
         binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employees);
@@ -303,4 +314,6 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
         binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
     }
+
+
 }
