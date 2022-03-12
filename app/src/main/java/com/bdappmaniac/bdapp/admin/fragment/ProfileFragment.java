@@ -37,6 +37,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.Api.response.EmployeeByIdResponse;
+import com.bdappmaniac.bdapp.Api.response.LoginResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
@@ -68,12 +69,15 @@ public class ProfileFragment extends BaseFragment {
     FragmentProfileBinding binding;
     String imgPath;
     File file = null;
-    String getToken = SharedPref.getUserDetails().getAccessToken();
+    String getToken;
     private int mYear, mMonth, mDay, mHour, mMinute;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
-//        setProfileData();
+        SharedPref.init(mContext);
+        setUserData(SharedPref.getUserDetails());
+        getToken  = SharedPref.getUserDetails().getAccessToken();
+
         binding.nameTxt.addTextChangedListener(new TextChange(binding.nameTxt));
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.phoneTxt.addTextChangedListener(new TextChange(binding.phoneTxt));
@@ -116,8 +120,17 @@ public class ProfileFragment extends BaseFragment {
         });
         binding.saveBtn.setOnClickListener(view -> {
             if (checkValidation()) {
+                Map<String, RequestBody> map = new HashMap<>();
+                map.put("employee_name", toRequestBody(binding.nameTxt.getText().toString()));
+                map.put("email", toRequestBody(binding.emailTxt.getText().toString()));
+                map.put("emp_mobile_no", toRequestBody(binding.phoneTxt.getText().toString()));
+                map.put("emg_mo_no", toRequestBody(binding.emPhoneTxt.getText().toString()));
+                map.put("designation", toRequestBody(binding.designationTxt.getText().toString()));
+                map.put("dob", toRequestBody(binding.dobTxt.getText().toString()));
+                map.put("employee_address", toRequestBody(binding.addressTxt.getText().toString()));
+                map.put("pincode", toRequestBody(binding.pinCodeTxt.getText().toString()));
+                updateEmployeeProfile(map);
                 onEditChange(false);
-                //updateOnSaveClick();
             }
         });
         textProfile();
@@ -196,67 +209,14 @@ public class ProfileFragment extends BaseFragment {
         binding.cameraBtn.setOnClickListener(view -> selectImage());
         return binding.getRoot();
     }
-
-//    public void updateOnSaveClick() {
-//        Map<String, RequestBody> map = new HashMap<>();
-//        map.put("pincode", toRequestBody(binding.pinCodeTxt.getText().toString()));
-//        map.put("employee_name", toRequestBody(binding.nameTxt.getText().toString()));
-//        map.put("emp_mobile_no", toRequestBody(binding.phoneTxt.getText().toString()));
-//        map.put("email", toRequestBody(binding.emailTxt.getText().toString()));
-//        map.put("emg_mo_no", toRequestBody(binding.emPhoneTxt.getText().toString()));
-//        map.put("employee_address", toRequestBody(binding.addressTxt.getText().toString()));
-//        map.put("designation", toRequestBody(binding.designationTxt.getText().toString()));
-//        map.put("dob", toRequestBody(binding.designationTxt.getText().toString()));
-//        updateProfileByEmployee(map);
-//                map.put("profile", toRequestBody(binding.profile.getText().toString()));
-//    }
+//        Glide.with(mContext)
+//                .load(employeeByIdResponse.getProfile())
+//                .error(R.drawable.user)
+//                .skipMemoryCache(true)
+//                .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                .into(binding.profile);
 //
-    private void updateProfileByEmployee(Map<String, RequestBody> map) {
-        AppLoader.showLoaderDialog(mContext);
-        MainService.updateProfileByEmployee(mContext, "Bearer " + getToken, map).observe((LifecycleOwner) mContext, apiResponse -> {
-            if (apiResponse == null) {
-                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
-            } else {
-                if ((apiResponse.getData() != null)) {
-                    EmployeeByIdResponse employeeByIdResponse = new Gson().fromJson(apiResponse.getData(), EmployeeByIdResponse.class);
-                    setEmployeeData(employeeByIdResponse);
-                } else {
-                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
-                }
-            }
-        });
-        AppLoader.hideLoaderDialog();
-    }
 
-    private void setEmployeeData(EmployeeByIdResponse employeeByIdResponse) {
-        binding.designationTxt.setText(employeeByIdResponse.getDesignation());
-        binding.emailTxt.setText(employeeByIdResponse.getEmail());
-        binding.phoneTxt.setText(String.valueOf(employeeByIdResponse.getEmpMobileNo()));
-        binding.emPhoneTxt.setText(String.valueOf(employeeByIdResponse.getEmgMoNo()));
-        binding.addressTxt.setText(employeeByIdResponse.getEmployeeAddress());
-        binding.nameTxt.setText(employeeByIdResponse.getEmployeeName());
-        binding.dobTxt.setText(String.valueOf(employeeByIdResponse.getDob()));
-        binding.pinCodeTxt.setText(String.valueOf(employeeByIdResponse.getPincode()));
-
-        Glide.with(mContext)
-                .load(employeeByIdResponse.getProfile())
-                .error(R.drawable.user)
-                .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(binding.profile);
-    }
-
-    public RequestBody toRequestBody(String val) {
-        RequestBody requestBody = null;
-        if (getActivity() != null) {
-            requestBody = toRequestBodyPart(val);
-        }
-        return requestBody;
-    }
-
-    public RequestBody toRequestBodyPart(String value) {
-        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
-    }
     private void selectImage() {
         final CharSequence[] options = {"Take Photo", "Choose From Gallery", "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -539,16 +499,68 @@ public class ProfileFragment extends BaseFragment {
         }
     }
 
-//    public void setProfileData() {
-//        EmployeeByIdResponse employeeByIdResponse;
-//        employeeByIdResponse = BdApplication.getPreferenceManger().getUserDetailsById();
-//        binding.nameTxt.setText(employeeByIdResponse.getEmployeeName());
-//        binding.emailTxt.setText(employeeByIdResponse.getEmail());
-//        binding.phoneTxt.setText(String.valueOf(employeeByIdResponse.getEmpMobileNo()));
-//        binding.emPhoneTxt.setText(String.valueOf(employeeByIdResponse.getEmgMoNo()));
-//        binding.designationTxt.setText(employeeByIdResponse.getDesignation());
-//        binding.dobTxt.setText(String.valueOf(employeeByIdResponse.getDob()));
-//        binding.addressTxt.setText(employeeByIdResponse.getEmployeeAddress());
-//        binding.pinCodeTxt.setText(String.valueOf(employeeByIdResponse.getPincode()));
-//    }
+    public void setUserData(LoginResponse loginResponse) {
+        binding.nameTxt.setText(loginResponse.getEmployeeName());
+        binding.emailTxt.setText(loginResponse.getEmail());
+        binding.phoneTxt.setText(String.valueOf(loginResponse.getEmpMobileNo()));
+        binding.emPhoneTxt.setText(String.valueOf(loginResponse.getEmgMoNo()));
+        binding.designationTxt.setText(loginResponse.getDesignation());
+        binding.dobTxt.setText(String.valueOf(loginResponse.getDob()));
+        binding.addressTxt.setText(loginResponse.getEmployeeAddress());
+        binding.pinCodeTxt.setText(String.valueOf(loginResponse.getPincode()));
+        if (loginResponse.getDob() == null) {
+            binding.dobTxt.setText("");
+        } else {
+            binding.dobTxt.setText(String.valueOf(loginResponse.getDob()));
+        }
+    }
+
+    public void setResponseData(LoginResponse updateResponse) {
+
+        binding.nameTxt.setText(updateResponse.getEmployeeName());
+        binding.emailTxt.setText(updateResponse.getEmail());
+        binding.phoneTxt.setText(String.valueOf(updateResponse.getEmpMobileNo()));
+        binding.emPhoneTxt.setText(String.valueOf(updateResponse.getEmgMoNo()));
+        binding.designationTxt.setText(updateResponse.getDesignation());
+        binding.dobTxt.setText(String.valueOf(updateResponse.getDob()));
+        binding.addressTxt.setText(updateResponse.getEmployeeAddress());
+        binding.pinCodeTxt.setText(String.valueOf(updateResponse.getPincode()));
+        if (updateResponse.getDob() == null) {
+            binding.dobTxt.setText("");
+        } else {
+            binding.dobTxt.setText(String.valueOf(updateResponse.getDob()));
+        }
+    }
+
+    public void updateEmployeeProfile(Map<String, RequestBody> map) {
+        AppLoader.showLoaderDialog(mContext);
+        MainService.updateEmployeeProfile(mContext, getToken(), map).observe((LifecycleOwner) mContext, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    LoginResponse updateResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
+                    updateResponse.setAccessToken(getToken);
+                    SharedPref.putUserDetails(updateResponse);
+                    setResponseData(updateResponse);
+                } else {
+                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                }
+            }
+        });
+        AppLoader.hideLoaderDialog();
+    }
+
+    public RequestBody toRequestBody(String val) {
+        RequestBody requestBody = null;
+        if (getActivity() != null) {
+            requestBody = toRequestBodyPart(val);
+        }
+        return requestBody;
+    }
+
+    public RequestBody toRequestBodyPart(String value) {
+        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
+    }
+
 }

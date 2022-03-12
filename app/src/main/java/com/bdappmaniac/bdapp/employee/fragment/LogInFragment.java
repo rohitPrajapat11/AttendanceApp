@@ -111,12 +111,12 @@ public class LogInFragment extends BaseFragment {
                     LoginResponse loginResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
                     SharedPref.init(mContext);
                     SharedPref.putUserDetails(loginResponse);
-                        if (loginResponse.getType().equals("employee")) {
-                            startActivity(new Intent(mContext, HomeActivity.class));
-                        } else if (loginResponse.getType().equals("admin")){
-                            startActivity(new Intent(mContext, AdminActivity.class));
-                        }
-                        getActivity().finish();
+                    if (loginResponse.getType().equals("employee")) {
+                        startActivity(new Intent(mContext, HomeActivity.class));
+                    } else if (loginResponse.getType().equals("admin")) {
+                        startActivity(new Intent(mContext, AdminActivity.class));
+                    }
+                    getActivity().finish();
                 } else {
                     ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
                 }

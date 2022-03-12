@@ -71,14 +71,14 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         vHolder.itemView.setOnClickListener(v -> {
             if (from.equals("LoanFragment")) {
-                Toast.makeText(context, "L", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "L", Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
 //                bundle.putInt("image", list.get(position).getProfile());
 //                bundle.putString("name", list.get(position).getEmployeeName());
 //                bundle.putString("designation", list.get(position).getDesignation());
                 Navigation.findNavController(v).navigate(R.id.provideLoanFragment, bundle);
             } else if (from.equals("EmployeeList")) {
-                Toast.makeText(context, "E", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "E", Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();
 //                bundle.putInt("image", list.get(position).getProfile());
 //                bundle.putString("name", list.get(position).getEmployeeName());

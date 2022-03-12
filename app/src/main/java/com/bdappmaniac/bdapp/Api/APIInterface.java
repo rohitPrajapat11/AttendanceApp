@@ -37,10 +37,17 @@ public interface APIInterface {
     @POST("api/logout")
     Call<ApiResponse> userLogout(@Header("Authorization") String token);
 
+    @Multipart
     @POST("api/updateProfile")
-    Call<ApiResponse> updateProfileByEmployee(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+    Call<ApiResponse> updateEmployeeProfile(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
 
     @Multipart
     @POST("api/sendMail")
     Call<ApiResponse> sendMail(@PartMap Map<String, RequestBody> map);
+
+    @POST("api/checkIn")
+    Call<ApiResponse> checkInTime(@Header("Authorization") String token);
+
+    @POST("api/checkOut")
+    Call<ApiResponse> checkOutTime(@Header("Authorization") String token);
 }

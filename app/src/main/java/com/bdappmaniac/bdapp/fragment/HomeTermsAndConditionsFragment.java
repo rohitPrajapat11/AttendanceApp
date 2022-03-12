@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,9 @@ public class HomeTermsAndConditionsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_terms_and_conditions, container, false);
-
+        binding.backBtn.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigateUp();
+        });
         return binding.getRoot();
     }
 }

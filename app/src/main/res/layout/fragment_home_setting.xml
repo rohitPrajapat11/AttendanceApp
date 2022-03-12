@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -128,6 +129,7 @@
                         app:tint="@color/_172B4D" />
 
                     <TextView
+                        android:id="@+id/textView2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
@@ -137,12 +139,24 @@
                         android:text="Notification"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
-                        app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
                         app:layout_constraintBottom_toBottomOf="@+id/notificationImg"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/notificationImg"
                         app:layout_constraintTop_toTopOf="@+id/notificationImg"
                         app:layout_constraintVertical_bias="0.6" />
+
+                    <Switch
+                        android:id="@+id/notifyBar"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:checked="false"
+                        android:minHeight="@dimen/_48sdp"
+                        android:thumbTint="@color/primary_color"
+                        android:trackTint="@color/_A8A8A8"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                        app:layout_constraintEnd_toEndOf="@+id/textView2"
+                        app:layout_constraintTop_toTopOf="@+id/textView2"
+                        tools:ignore="UseSwitchCompatOrMaterialXml" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout

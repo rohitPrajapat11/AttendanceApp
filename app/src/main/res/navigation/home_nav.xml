@@ -26,14 +26,14 @@
         android:label="Profile Fragment"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/employeeTermFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminTermAndCondition"
-        android:label="Profile Fragment"
-        tools:layout="@layout/fragment_admin_term_and_condition" />
-    <fragment
         android:id="@+id/homeSettingFragment"
         android:name="com.bdappmaniac.bdapp.fragment.HomeSettingFragment"
         android:label="HomeSettingFragment"
         tools:layout="@layout/fragment_home_setting"/>
+    <fragment
+        android:id="@+id/homeTermsAndConditionsFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.HomeTermsAndConditionsFragment"
+        android:label="HomeTermsAndConditionsFragment"
+        tools:layout="@layout/fragment_home_terms_and_conditions" />
 
 </navigation>

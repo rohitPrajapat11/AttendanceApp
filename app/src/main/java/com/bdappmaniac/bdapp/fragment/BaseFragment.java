@@ -1,18 +1,21 @@
 package com.bdappmaniac.bdapp.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.bdappmaniac.bdapp.service.ForegroundService;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.google.android.material.snackbar.Snackbar;
 import com.klinker.android.link_builder.Link;
 import com.klinker.android.link_builder.LinkBuilder;
-
 
 public class BaseFragment extends Fragment {
    public Context mContext;
@@ -36,6 +39,11 @@ public class BaseFragment extends Fragment {
                 .build();
     }
 
-
+    public String getToken()
+    {
+        SharedPref.init(mContext);
+        String getToken = "Bearer "+SharedPref.getUserDetails().getAccessToken();
+        return getToken;
+    }
 
 }

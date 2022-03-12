@@ -54,7 +54,7 @@
         <entry key="app/src/main/res/layout/activity_splash_ktt.xml" value="0.10296052631578947" />
         <entry key="app/src/main/res/layout/acvite_deactive_dialog.xml" value="0.22" />
         <entry key="app/src/main/res/layout/admin_bottom_layout.xml" value="0.14" />
-        <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.25" />
         <entry key="app/src/main/res/layout/admin_emp_info.xml" value="0.2" />
         <entry key="app/src/main/res/layout/admin_home_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/bottom_dialog_register_success.xml" value="0.22" />
@@ -69,8 +69,9 @@
         <entry key="app/src/main/res/layout/exit_dialogbox.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_admin_home.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/fragment_admin_loan.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_admin_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_admin_tearm_and_condtion.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/fragment_admin_term_and_condition.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/fragment_admin_term_and_condition.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_confirm_m_p_i_n.xml" value="0.17" />
         <entry key="app/src/main/res/layout/fragment_create_m_p_i_n.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_date_dialog.xml" value="0.17708333333333334" />
@@ -84,7 +85,7 @@
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_home_setting.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_home_terms_and_conditions.xml" value="0.15729166666666666" />
+        <entry key="app/src/main/res/layout/fragment_home_terms_and_conditions.xml" value="0.12484446287847366" />
         <entry key="app/src/main/res/layout/fragment_loan_provide.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/fragment_log_in.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_new_employee_list.xml" value="0.16" />
@@ -93,7 +94,7 @@
         <entry key="app/src/main/res/layout/fragment_one_time_m_p_i_n.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_register_empolyee.xml" value="0.19" />
-        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_sing_up.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_task.xml" value="0.22" />
         <entry key="app/src/main/res/layout/header_layout.xml" value="0.25" />

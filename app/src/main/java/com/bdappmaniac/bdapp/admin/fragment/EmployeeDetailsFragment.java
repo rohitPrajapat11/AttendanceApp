@@ -40,14 +40,15 @@ public class EmployeeDetailsFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_details, container, false);
-        if (getArguments() != null) {
-            ID = getArguments().getInt("id");
-        }
-        employeeDetails(ID);
-        binding.backBtn.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigateUp();
-        });
+        if(binding==null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_details, container, false);
+            if (getArguments() != null) {
+                ID = getArguments().getInt("id");
+            }
+            employeeDetails(ID);
+            binding.backBtn.setOnClickListener(v -> {
+                Navigation.findNavController(v).navigateUp();
+            });
 //        binding.empStatus.setOnClickListener(v -> {
 //            AcviteDeactiveDialogBinding activeBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.acvite_deactive_dialog, null, false);
 //            Dialog dialog = new Dialog(mContext);
@@ -79,19 +80,19 @@ public class EmployeeDetailsFragment extends BaseFragment {
 //            });
 //            dialog.show();
 //        });
-        binding.attendanceLoanBtn.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.employeeAttendanceFragment);
-        });
-        binding.provideLoanBtn.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigate(R.id.employeeListForLoanFragment);
-        });
-
+            binding.attendanceLoanBtn.setOnClickListener(v -> {
+                Navigation.findNavController(v).navigate(R.id.employeeAttendanceFragment);
+            });
+            binding.provideLoanBtn.setOnClickListener(v -> {
+                Navigation.findNavController(v).navigate(R.id.provideLoanFragment);
+            });
+        }
         return binding.getRoot();
     }
 
     public void employeeDetails(int id) {
         AppLoader.showLoaderDialog(mContext);
-        MainService.getEmployeeById(mContext, "Bearer " + getToken, id).observe((LifecycleOwner) this, apiResponse -> {
+        MainService.getEmployeeById(mContext, getToken(), id).observe((LifecycleOwner) this, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
             } else {
@@ -166,7 +167,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
     }
 
     private void updateEmployeeStatus(String status) {
-        MainService.updateProfileByAdmin(mContext, "Bearer " + getToken, ID, status).observe((LifecycleOwner) this, apiResponse -> {
+        MainService.updateProfileByAdmin(mContext, getToken(), ID, status).observe((LifecycleOwner) this, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
             } else {

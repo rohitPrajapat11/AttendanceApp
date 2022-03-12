@@ -1,37 +1,38 @@
 package com.bdappmaniac.bdapp.activity;
 
-import android.content.Context;
-import android.content.Intent;
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
-import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.ActivityHomeBinding;
+import com.bdappmaniac.bdapp.databinding.ExitDialogboxBinding;
 import com.bdappmaniac.bdapp.employee.fragment.HomeFragment;
-import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
-import com.bdappmaniac.bdapp.model.CalendarDateModel;
 import com.bdappmaniac.bdapp.utils.Constant;
+import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,9 +47,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         StatusBarUtils.statusBarColor(this, R.color.white);
         navController = Navigation.findNavController(this, R.id.nav_controller);
         SharedPref.init(this);
-        callNotification();
 //        Toast.makeText(this, SharedPref.getUserDetails().getAccessToken(), Toast.LENGTH_SHORT).show();
         textProfile();
+        boolean workIsEnable = SharedPref.read("userWork", false);
+        binding.homeLayout.headerLayout.extIcon.setChecked(workIsEnable);
+
         binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,27 +90,61 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         binding.homeLayout.headerLayout.addBtn.setOnClickListener(v -> {
             Constant.calendarCallBack.openCalendar();
         });
-        binding.homeLayout.headerLayout.extIcon.setOnClickListener(v -> {
-            exitDialog();
+        binding.homeLayout.headerLayout.extIcon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    SharedPref.write("userWork", true);
+                    String getCurrentTime = DateUtils.getCurrentTime();
+                    SharedPref.putString("current_time", getCurrentTime);
+                    binding.homeLayout.headerLayout.extIcon.setChecked(true);
+                    showSnackBar(binding.getRoot(), "Your Working Time Has Started");
+                    Constant.checkTimeCallBack.CheckInTimeCallBack();
+                    startService();
+                } else {
+                    SharedPref.write("userWork", false);
+                    binding.homeLayout.headerLayout.extIcon.setChecked(false);
+                    exitDialog();
+                }
+            }
         });
+
         binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.settingBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.logOutBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.tmcBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.loanBtn.setOnClickListener(this::onClick);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
                 if (destination.getId() == R.id.homeFragment) {
                     navHandel("Home");
                     headerHideShow(true);
+                    bottomHideShow(true);
                 } else if (destination.getId() == R.id.taskFragment) {
                     navHandel("Task");
                     headerHideShow(true);
+                    bottomHideShow(true);
                 } else if (destination.getId() == R.id.historyFragment) {
                     navHandel("History");
                     headerHideShow(true);
+                    bottomHideShow(true);
                 } else if (destination.getId() == R.id.profileFragment) {
                     navHandel("Profile");
                     headerHideShow(false);
+                    bottomHideShow(true);
+                } else if (destination.getId() == R.id.loanFragment) {
+                    navHandel("Loan");
+                    headerHideShow(true);
+                    bottomHideShow(true);
+                } else if (destination.getId() == R.id.homeTermsAndConditionsFragment) {
+                    navHandel("TermAndConditions");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                } else if (destination.getId() == R.id.homeSettingFragment) {
+                    navHandel("Settings");
+                    headerHideShow(false);
+                    bottomHideShow(false);
                 }
             }
         });
@@ -125,6 +162,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.extIcon.setVisibility(View.VISIBLE);
                 break;
             case "Task":
                 binding.homeLayout.headerLayout.title.setText("Task");
@@ -137,6 +175,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "History":
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
@@ -149,6 +188,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Profile":
                 binding.homeLayout.headerLayout.title.setText("");
@@ -186,8 +226,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 showToast("In Progress");
                 break;
             case R.id.tmcBtn:
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeTermFragment) {
-                    navController.navigate(R.id.employeeTermFragment);
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.homeTermsAndConditionsFragment) {
+                    navController.navigate(R.id.homeTermsAndConditionsFragment);
                 }
                 binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
@@ -210,6 +250,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         } else {
             binding.homeLayout.headerLayout.headerLayout.setVisibility(View.GONE);
         }
+    }
+
+    void bottomHideShow(boolean check) {
+        if (check) {
+            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.VISIBLE);
+        } else {
+            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.GONE);
+        }
+
     }
 
 //    private void setUpCalendar() {
@@ -264,4 +313,62 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             }
         }
     }
+
+    void exitDialog() {
+        ExitDialogboxBinding exitDialogboxBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.exit_dialogbox, null, false);
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(exitDialogboxBinding.getRoot());
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setGravity(Gravity.CENTER);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.show();
+        exitDialogboxBinding.okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                Constant.checkTimeCallBack.checkOutCallBack();
+            }
+        });
+        exitDialogboxBinding.cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.homeLayout.headerLayout.extIcon.setChecked(true);
+                dialog.dismiss();
+            }
+        });
+    }
+
+//    private void startClock(){
+//        Thread t = new Thread() {
+//
+//            @Override
+//            public void run() {
+//                try {
+//                    while (!isInterrupted()) {
+//                        Thread.sleep(1000);
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                Calendar c = Calendar.getInstance();
+//
+//                                int hours = c.get(Calendar.HOUR_OF_DAY);
+//                                int minutes = c.get(Calendar.MINUTE);
+//                                int seconds = c.get(Calendar.SECOND);
+//
+//                                String curTime = String.format("%02d  %02d  %02d", hours, minutes, seconds);
+////                                clock.setText(curTime); //change clock to your textview
+//                                Toast.makeText(HomeActivity.this, "Time - " + curTime, Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//                    }
+//                } catch (InterruptedException e) {
+//                }
+//            }
+//        };
+//
+//        t.start();
+//    }
 }

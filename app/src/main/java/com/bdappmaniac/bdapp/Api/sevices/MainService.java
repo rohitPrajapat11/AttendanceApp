@@ -6,12 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.airbnb.lottie.parser.moshi.JsonReader;
 import com.bdappmaniac.bdapp.Api.APIInterface;
 import com.bdappmaniac.bdapp.Api.response.ApiResponse;
 import com.bdappmaniac.bdapp.Api.response.RetrofitClient;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 
 import java.util.Map;
 
@@ -158,9 +160,9 @@ public class MainService extends BaseFragment {
         return data;
     }
 
-    public static LiveData<ApiResponse> updateProfileByEmployee(Context context, String token, Map<String, RequestBody> map) {
+    public static LiveData<ApiResponse> updateEmployeeProfile(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        Call<ApiResponse> call = apiService.updateProfileByEmployee(token, map);
+        Call<ApiResponse> call = apiService.updateEmployeeProfile(token, map);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -198,6 +200,50 @@ public class MainService extends BaseFragment {
                 ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
                 //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
 
+            }
+        });
+        return data;
+    }
+
+    public static LiveData<ApiResponse> checkInTime(Context context, String token) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        Call<ApiResponse> call = apiService.checkInTime(token);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
+
+    public static LiveData<ApiResponse> checkOutTime(Context context, String token) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        Call<ApiResponse> call = apiService.checkOutTime(token);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
             }
         });
         return data;

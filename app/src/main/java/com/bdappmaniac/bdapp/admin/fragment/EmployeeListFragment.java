@@ -37,33 +37,20 @@ public class EmployeeListFragment extends BaseFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_list, container, false);
-//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("My_Preference", MODE_PRIVATE);
-//        String Token = sharedPreferences.getString("Token", "ok");
-//        showToast(Token);
-//        employeeListApi();
-//        list.add(new EmployeeListResponse("Joe", "Android Developer", R.drawable.sample_android));
-//        list.add(new EmployeeListResponse("Smith", "IOS Developer", R.drawable.sample_ios));
-//        list.add(new EmployeeListResponse("Josh Dev", "Web Developer", R.drawable.sample_web));
-//        list.add(new EmployeeListResponse("Michel Zor", "Android Developer", R.drawable.sample_android));
-//        list.add(new EmployeeListResponse("Alex War", "Android Developer", R.drawable.sample_android));
-//        list.add(new EmployeeListResponse("Lyon Pine", "IOS Developer", R.drawable.sample_ios));
-//        list.add(new EmployeeListResponse("Roy Meel", "IOS Developer", R.drawable.sample_ios));
-//        list.add(new EmployeeListResponse("Carey C ", "Web Developer", R.drawable.sample_web));
-//        list.add(new EmployeeListResponse("Mil Dev", "Web Developer", R.drawable.sample_web));
-//        list.add(new EmployeeListResponse("Veexo Zor", "Project Manager", R.drawable.sample_prohject));
-//        list.add(new EmployeeListResponse("Alex War", "IOS Developer", R.drawable.sample_ios));
-//        employeeListApi();
-        EmAdapter = new EmployeeListAdapter(mContext, employeeList, "EmployeeList");
-        binding.employeeRecycler.setHasFixedSize(false);
-        binding.employeeRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        binding.employeeRecycler.setAdapter(EmAdapter);
+     if(binding == null) {
+         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_list, container, false);
+         employeeListApi();
+         EmAdapter = new EmployeeListAdapter(mContext, employeeList, "EmployeeList");
+         binding.employeeRecycler.setHasFixedSize(false);
+         binding.employeeRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
+         binding.employeeRecycler.setAdapter(EmAdapter);
+     }
         return binding.getRoot();
     }
 
     private void employeeListApi() {
         AppLoader.showLoaderDialog(mContext);
-        MainService.employeeList(mContext, "Bearer " + getToken).observe((LifecycleOwner) mContext, apiResponse -> {
+        MainService.employeeList(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
             } else {

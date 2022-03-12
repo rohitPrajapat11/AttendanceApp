@@ -8,6 +8,9 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -16,6 +19,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BdApp">
+
+        <service
+            android:name=".service.ForegroundService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
         <activity
             android:name=".activity.AdminActivity"
             android:exported="true">
@@ -51,5 +61,5 @@
                 android:resource="@xml/file_path" />
         </provider>
     </application>
-
 </manifest>
+

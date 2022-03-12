@@ -83,6 +83,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding.navigationDrawer.tmcBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.logOutBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.registerBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.profileBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.loanBtn.setOnClickListener(this::onClick);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
@@ -99,10 +100,10 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     navHandel("Loan");
                     headerHideShow(true);
                     bottomHideShow(true);
-                } else if (destination.getId() == R.id.profileFragment) {
+                } else if (destination.getId() == R.id.adminProfile) {
                     navHandel("Profile");
                     headerHideShow(false);
-                    bottomHideShow(true);
+                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.adminTermFragment) {
                     navHandel("TermCondition");
                     headerHideShow(false);
@@ -241,17 +242,23 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     navController.navigate(R.id.adminTermFragment);
                 }
                 break;
-            case R.id.logOutBtn:
-                logoutDialog();
-                break;
-            case R.id.loanBtn:
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.loanFragment) {
-                    navController.navigate(R.id.loanFragment);
-                }
             case R.id.registerBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.registerEmployeeFragment) {
                     navController.navigate(R.id.registerEmployeeFragment);
                 }
+                break;
+            case R.id.profileBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.adminProfile) {
+                    navController.navigate(R.id.adminProfile);
+                }
+                break;
+            case R.id.loanBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.loanFragment){
+                    navController.navigate(R.id.loanFragment);
+                }
+                break;
+            case R.id.logOutBtn:
+                logoutDialog();
                 break;
         }
     }
@@ -271,7 +278,6 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         } else {
             binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.GONE);
         }
-
     }
 
     void textProfile() {

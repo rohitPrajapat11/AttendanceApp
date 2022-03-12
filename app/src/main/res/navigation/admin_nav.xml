@@ -55,4 +55,9 @@
         android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeListForLoan"
         android:label="Fragment"
         tools:layout="@layout/fragment_employee_list_for_loan" />
+    <fragment
+        android:id="@+id/adminProfile"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminProfile"
+        android:label="AdminProfile"
+        tools:layout="@layout/fragment_admin_profile"/>
 </navigation>
