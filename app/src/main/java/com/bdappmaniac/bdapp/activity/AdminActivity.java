@@ -320,6 +320,4 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
         binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
     }
-
-
 }

@@ -49,9 +49,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         SharedPref.init(this);
 //        Toast.makeText(this, SharedPref.getUserDetails().getAccessToken(), Toast.LENGTH_SHORT).show();
         textProfile();
-        boolean workIsEnable = SharedPref.read("userWork", false);
+        boolean workIsEnable = SharedPref.read(USER_WORK, false);
         binding.homeLayout.headerLayout.extIcon.setChecked(workIsEnable);
-
         binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,15 +93,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
-                    SharedPref.write("userWork", true);
+                    SharedPref.write(USER_WORK, true);
                     String getCurrentTime = DateUtils.getCurrentTime();
-                    SharedPref.putString("current_time", getCurrentTime);
+                    SharedPref.putString(CURRENT_TIME, getCurrentTime);
                     binding.homeLayout.headerLayout.extIcon.setChecked(true);
-                    showSnackBar(binding.getRoot(), "Your Working Time Has Started");
+                    showSnackBar(binding.getRoot(), getString(R.string.working_time_has_started));
                     Constant.checkTimeCallBack.CheckInTimeCallBack();
                     startService();
                 } else {
-                    SharedPref.write("userWork", false);
+                    SharedPref.write(USER_WORK, false);
                     binding.homeLayout.headerLayout.extIcon.setChecked(false);
                     exitDialog();
                 }
@@ -223,7 +222,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.loanBtn:
-                showToast("In Progress");
+                showToast(getString(R.string.in_progress));
                 break;
             case R.id.tmcBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.homeTermsAndConditionsFragment) {

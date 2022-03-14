@@ -36,7 +36,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 
-import com.bdappmaniac.bdapp.Api.response.EmployeeByIdResponse;
 import com.bdappmaniac.bdapp.Api.response.LoginResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
@@ -48,7 +47,6 @@ import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.nabinbhandari.android.permissions.PermissionHandler;
@@ -76,7 +74,6 @@ public class ProfileFragment extends BaseFragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
         SharedPref.init(mContext);
         setUserData(SharedPref.getUserDetails());
-        getToken  = SharedPref.getUserDetails().getAccessToken();
 
         binding.nameTxt.addTextChangedListener(new TextChange(binding.nameTxt));
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
@@ -218,22 +215,22 @@ public class ProfileFragment extends BaseFragment {
 //
 
     private void selectImage() {
-        final CharSequence[] options = {"Take Photo", "Choose From Gallery", "Cancel"};
+        final CharSequence[] options = {mContext.getString(R.string.take_photo), mContext.getString(R.string.chose_from_gallery), mContext.getString(R.string.cancel)};
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Choose Option");
+        builder.setTitle(mContext.getString(R.string.choose_option));
         builder.setItems(options, (dialog, item) -> {
-            if (options[item].equals("Take Photo")) {
+            if (options[item].equals(mContext.getString(R.string.take_photo))) {
                 if (checkPermission()) {
                     openCamera(1);
                 } else {
                     requestCameraPermission(1);
                 }
                 dialog.dismiss();
-            } else if (options[item].equals("Choose From Gallery")) {
+            } else if (options[item].equals(mContext.getString(R.string.chose_from_gallery))) {
                 dialog.dismiss();
                 Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(pickPhoto, PICK_IMAGE_GALLERY);
-            } else if (options[item].equals("Cancel")) {
+            } else if (options[item].equals(mContext.getString(R.string.cancel))) {
                 dialog.dismiss();
             }
         });
@@ -290,10 +287,10 @@ public class ProfileFragment extends BaseFragment {
 
     private void requestCameraPermission(int requestCode) {
         String[] permissions = {Manifest.permission.CAMERA};
-        String rationale = "Please provide camera permission so that you can ...";
+        String rationale = mContext.getString(R.string.provide_permission);
         Permissions.Options options = new Permissions.Options()
-                .setRationaleDialogTitle("Permissions")
-                .setSettingsDialogTitle("Camera Permission");
+                .setRationaleDialogTitle(mContext.getString(R.string.permissions))
+                .setSettingsDialogTitle(mContext.getString(R.string.camera_permission));
         Permissions.check(getActivity(), permissions, rationale, options, new PermissionHandler() {
             @Override
             public void onGranted() {
@@ -302,7 +299,7 @@ public class ProfileFragment extends BaseFragment {
 
             @Override
             public void onDenied(Context context, ArrayList<String> deniedPermissions) {
-                Snackbar.make(binding.getRoot(), "Permission Denied", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(binding.getRoot(), mContext.getString(R.string.permission_denied), Snackbar.LENGTH_SHORT).show();
             }
         });
     }
@@ -345,43 +342,43 @@ public class ProfileFragment extends BaseFragment {
 
     public boolean checkValidation() {
         if (TextUtils.isEmpty(binding.nameTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Name!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_name));
             return false;
         }
         if (TextUtils.isEmpty(binding.emailTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Email Name!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_email));
             return false;
         }
         if (TextUtils.isEmpty(binding.phoneTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Phone Number!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.phone_number));
             return false;
         }
         if (binding.phoneTxt.getText().length() != 10) {
-            showSnackBar(binding.getRoot(), "Please Enter 10 Digit Number");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_10_digit_number));
             return false;
         }
         if (TextUtils.isEmpty(binding.emPhoneTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Emergency Number!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.emergency_number));
             return false;
         }
         if (binding.emPhoneTxt.getText().length() != 10) {
-            showSnackBar(binding.getRoot(), "Please Enter 10 Digit Number");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_10_digit_number));
             return false;
         }
         if (TextUtils.isEmpty(binding.designationTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Your Designation");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_designation));
             return false;
         }
         if (TextUtils.isEmpty(binding.dobTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Date Of Birth!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_dob));
             return false;
         }
         if (TextUtils.isEmpty(binding.addressTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Address!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_address));
             return false;
         }
         if (TextUtils.isEmpty(binding.pinCodeTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter PinCode!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.pincode));
             return false;
         }
         return true;
@@ -477,28 +474,6 @@ public class ProfileFragment extends BaseFragment {
         binding.profile.setImageDrawable(d);
     }
 
-    public class TextChange implements TextWatcher {
-        View view;
-
-        private TextChange(View v) {
-            view = v;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-            setValidations();
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-        }
-    }
-
     public void setUserData(LoginResponse loginResponse) {
         binding.nameTxt.setText(loginResponse.getEmployeeName());
         binding.emailTxt.setText(loginResponse.getEmail());
@@ -516,7 +491,6 @@ public class ProfileFragment extends BaseFragment {
     }
 
     public void setResponseData(LoginResponse updateResponse) {
-
         binding.nameTxt.setText(updateResponse.getEmployeeName());
         binding.emailTxt.setText(updateResponse.getEmail());
         binding.phoneTxt.setText(String.valueOf(updateResponse.getEmpMobileNo()));
@@ -561,6 +535,28 @@ public class ProfileFragment extends BaseFragment {
 
     public RequestBody toRequestBodyPart(String value) {
         return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
+    }
+
+    public class TextChange implements TextWatcher {
+        View view;
+
+        private TextChange(View v) {
+            view = v;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            setValidations();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+        }
     }
 
 }

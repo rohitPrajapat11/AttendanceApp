@@ -51,12 +51,7 @@ public class SingleListEmployeeAdapter extends RecyclerView.Adapter<RecyclerView
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         SingleListEmployeeAdapter.SingleListEmployeeHolder vHolder = (SingleListEmployeeAdapter.SingleListEmployeeHolder) holder;
-//        vHolder.binding.employeeName.setText(list.get(position).getEmployeeName());
-//        vHolder.binding.profile.setImageResource(list.get(position).getProfile());
         vHolder.binding.employeeName.setOnClickListener(v -> {
-//            Bundle bundle = new Bundle();
-//            bundle.putInt("image", list.get(position).getProfile());
-//            bundle.putString("name", list.get(position).getEmployeeName());
             navController.navigate(R.id.loanFragment);
         });
     }

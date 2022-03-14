@@ -1,17 +1,14 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
 import static com.bdappmaniac.bdapp.activity.BaseActivity.CURRENT_TIME;
+import static com.bdappmaniac.bdapp.activity.BaseActivity.USER_WORK;
 
-import android.annotation.SuppressLint;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.TimePicker;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
@@ -42,15 +39,18 @@ public class HomeFragment extends BaseFragment implements CheckTimeCallBack {
     String selectedDateByCalendar = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
     ArrayList<CalendarDateModel> calendarList2 = new ArrayList<>();
     int todayDate = Integer.parseInt(new SimpleDateFormat("dd", Locale.getDefault()).format(new Date()));
-    String getToken = SharedPref.getUserDetails().getAccessToken();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
+        if (SharedPref.read(USER_WORK, true)) {
+            binding.timeStatusLayout.setVisibility(View.VISIBLE);
+            binding.checkInTime.setText(SharedPref.getStringValue(CURRENT_TIME));
+        }
         Constant.checkTimeCallBack = this;
-        binding.checkInTime.setOnClickListener(view -> {
-            showTime(binding.checkInTime);
-        });
+//        binding.checkInTime.setOnClickListener(view -> {
+//            showTime(binding.checkInTime);
+//        });
 //        binding.calendarDateTxt.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -114,19 +114,19 @@ public class HomeFragment extends BaseFragment implements CheckTimeCallBack {
         return binding.getRoot();
     }
 
-    public void showTime(TextView textView) {
-
-        final Calendar myCalendar = Calendar.getInstance();
-        TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-            @SuppressLint("SetTextI18n")
-            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                String am_pm = "";
-                myCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                myCalendar.set(Calendar.MINUTE, minute);
-                if (myCalendar.get(Calendar.AM_PM) == Calendar.AM)
-                    am_pm = "AM";
-                else if (myCalendar.get(Calendar.AM_PM) == Calendar.PM)
-                    am_pm = "PM";
+    //    public void showTime(TextView textView) {
+//
+//        final Calendar myCalendar = Calendar.getInstance();
+//        TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+//            @SuppressLint("SetTextI18n")
+//            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//                String am_pm = "";
+//                myCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+//                myCalendar.set(Calendar.MINUTE, minute);
+//                if (myCalendar.get(Calendar.AM_PM) == Calendar.AM)
+//                    am_pm = "AM";
+//                else if (myCalendar.get(Calendar.AM_PM) == Calendar.PM)
+//                    am_pm = "PM";
 //                if (myCalendar.getTimeInMillis() >= myCalendar.getTimeInMillis()) {
 //                    //it's after current
 //                    int hour = hourOfDay % 12;
@@ -135,36 +135,26 @@ public class HomeFragment extends BaseFragment implements CheckTimeCallBack {
 //                    //it's before current'
 //                    Toast.makeText(getContext(), "Invalid Time", Toast.LENGTH_LONG).show();
 //                }
-                String strHrsToShow = (myCalendar.get(Calendar.HOUR) == 0) ? "12" : myCalendar.get(Calendar.HOUR) + "";
-                int minutes = myCalendar.get(Calendar.MINUTE);
-                String sMin = "";
-                if (Integer.parseInt(strHrsToShow) < 10) {
-                    strHrsToShow = "0" + strHrsToShow;
-                }
-                if (minutes < 10) {
-                    sMin = "0" + minutes;
-                } else {
-                    sMin = String.valueOf(minutes);
-                }
-                //UIHelper.showLongToastInCenter(context, strHrsToShow + ":" + myCalendar.get(Calendar.MINUTE) + " " + am_pm);
-                textView.setText(strHrsToShow + ":" + sMin + " " + am_pm);
-                //  editButton();
-            }
-        };
-        new TimePickerDialog(textView.getContext(), R.style.DatePicker, mTimeSetListener, myCalendar.get(Calendar.HOUR), myCalendar.get(Calendar.MINUTE), false).show();
-    }
-
-    @Override
-    public void CheckInTimeCallBack() {
-        checkInTimeApi();
-    }
-
-    @Override
-    public void checkOutCallBack() {
-        checkOutTimeApi();
-    }
-
-//    private void editButton() {
+//                String strHrsToShow = (myCalendar.get(Calendar.HOUR) == 0) ? "12" : myCalendar.get(Calendar.HOUR) + "";
+//                int minutes = myCalendar.get(Calendar.MINUTE);
+//                String sMin = "";
+//                if (Integer.parseInt(strHrsToShow) < 10) {
+//                    strHrsToShow = "0" + strHrsToShow;
+//                }
+//                if (minutes < 10) {
+//                    sMin = "0" + minutes;
+//                } else {
+//                    sMin = String.valueOf(minutes);
+//                }
+//                UIHelper.showLongToastInCenter(context, strHrsToShow + ":" + myCalendar.get(Calendar.MINUTE) + " " + am_pm);
+//                textView.setText(strHrsToShow + ":" + sMin + " " + am_pm);
+//                  editButton();
+//            }
+//        };
+//        new TimePickerDialog(textView.getContext(), R.style.DatePicker, mTimeSetListener, myCalendar.get(Calendar.HOUR), myCalendar.get(Calendar.MINUTE), false).show();
+//    }
+//
+//        private void editButton() {
 //        binding.saveBtn.setVisibility(View.VISIBLE);
 //        binding.cancelBtn.setVisibility(View.VISIBLE);
 //    }
@@ -191,9 +181,18 @@ public class HomeFragment extends BaseFragment implements CheckTimeCallBack {
 //        adapter.setData(calendarList);
 //        binding.calendarRecycler.scrollToPosition(adapter.getItemCount() - 1);
 //    }
-
     public void getSelectedCalItem(String date) {
         selectedDateByCalendar = date;
+    }
+
+    @Override
+    public void CheckInTimeCallBack() {
+        checkInTimeApi();
+    }
+
+    @Override
+    public void checkOutCallBack() {
+        checkOutTimeApi();
     }
 
     private void checkInTimeApi() {
@@ -220,8 +219,11 @@ public class HomeFragment extends BaseFragment implements CheckTimeCallBack {
                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    showSnackBar(binding.getRoot(), "Your Working Time Has Stopped");
-                    ((BaseActivity)mContext).stopService();
+                    if (SharedPref.read(USER_WORK, false)) {
+                        binding.timeStatusLayout.setVisibility(View.GONE);
+                    }
+                    showSnackBar(binding.getRoot(), mContext.getString(R.string.working_time_has_stopped));
+                    ((BaseActivity) mContext).stopService();
                 } else {
                     ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
                 }

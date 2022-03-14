@@ -22,19 +22,19 @@ public class SettingFragment extends BaseFragment {
             Navigation.findNavController(v).navigateUp();
         });
         binding.accountBtn.setOnClickListener(v -> {
-            showToast("In Progress");
+            showToast(mContext.getString(R.string.in_progress));
         });
         binding.notificationBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showToast("In Progress");
+                showToast(mContext.getString(R.string.in_progress));
             }
         });
         binding.privacyBtn.setOnClickListener(v -> {
-            showToast("In Progress");
+            showToast(mContext.getString(R.string.in_progress));
         });
         binding.helpBtn.setOnClickListener(v -> {
-            showToast("In Progress");
+            showToast(mContext.getString(R.string.in_progress));
         });
         return binding.getRoot();
     }

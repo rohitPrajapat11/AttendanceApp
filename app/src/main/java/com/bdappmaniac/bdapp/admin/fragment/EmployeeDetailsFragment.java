@@ -19,11 +19,9 @@ import com.bdappmaniac.bdapp.admin.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeDetailsBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -36,11 +34,10 @@ public class EmployeeDetailsFragment extends BaseFragment {
     int ID;
     EmployeeListAdapter EmAdapter;
     ArrayList<EmployeeList> list = new ArrayList<>();
-    String getToken = SharedPref.getUserDetails().getAccessToken();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if(binding==null) {
+        if (binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_details, container, false);
             if (getArguments() != null) {
                 ID = getArguments().getInt("id");
@@ -172,10 +169,10 @@ public class EmployeeDetailsFragment extends BaseFragment {
                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    if(status.equals("active")) {
-                        showSnackBar(binding.getRoot(), "You are Active");
-                    }else if(status.equals("inactive")) {
-                        showSnackBar(binding.getRoot(), "You are Inactive");
+                    if (status.equals("active")) {
+                        showSnackBar(binding.getRoot(), mContext.getString(R.string.you_are_active));
+                    } else if (status.equals("inactive")) {
+                        showSnackBar(binding.getRoot(), mContext.getString(R.string.you_are_inactive));
                     }
                 } else {
                     ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));

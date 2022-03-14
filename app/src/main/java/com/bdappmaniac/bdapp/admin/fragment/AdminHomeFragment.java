@@ -18,9 +18,7 @@ public class AdminHomeFragment extends Fragment {
     FragmentAdminHomeBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false);
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -37,7 +35,6 @@ public class AdminHomeFragment extends Fragment {
 
     public void setProgress() {
         binding.semiCircleArcProgressBar.setPercentWithAnimation(45);
-
     }
 
 }

@@ -1,5 +1,8 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
+import static com.bdappmaniac.bdapp.activity.BaseActivity.MOBILE;
+import static com.bdappmaniac.bdapp.activity.BaseActivity.PIN_KEY;
+
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -41,7 +44,7 @@ public class CreateMPINFragment extends BaseFragment implements View.OnClickList
             @Override
             public void onClick(View v) {
                 Bundle createPin = new Bundle();
-                createPin.putString("Key", binding.pinView.getText().toString());
+                createPin.putString(PIN_KEY, binding.pinView.getText().toString());
                 if (checkValidation()) {
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.confirmMPINFragment, createPin);
                 }
@@ -54,7 +57,7 @@ public class CreateMPINFragment extends BaseFragment implements View.OnClickList
             }
         });
         if (getArguments() != null) {
-            mobile = getArguments().getString("mobile");
+            mobile = getArguments().getString(MOBILE);
         }
 
         binding.pinView.setText("");
@@ -138,27 +141,27 @@ public class CreateMPINFragment extends BaseFragment implements View.OnClickList
 
     public boolean checkValidation() {
         if (binding.pinView.length() == 0) {
-            showSnackBar(binding.getRoot(), "Please Enter PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_pin));
             return false;
         }
         if (binding.pinView.length() == 1) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 2) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 3) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 4) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 5) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         return true;

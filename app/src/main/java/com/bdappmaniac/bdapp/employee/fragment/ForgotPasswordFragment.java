@@ -68,7 +68,6 @@ public class ForgotPasswordFragment extends BaseFragment {
             }
         });
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
-
         return binding.getRoot();
     }
 
@@ -84,11 +83,11 @@ public class ForgotPasswordFragment extends BaseFragment {
 
     public boolean checkValidation() {
         if (TextUtils.isEmpty(binding.emailTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Email!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_email));
             return false;
         }
         if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Valid Email!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_valid_email));
             return false;
         }
         return true;
@@ -156,7 +155,7 @@ public class ForgotPasswordFragment extends BaseFragment {
         MainService.sendMail(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
 //                ((BaseActivity) mContext).showToast(mContext.getString(R.string.your_email_have_not_been_registered));
-                showSnackBar(binding.getRoot(),"Invalid Email");
+                showSnackBar(binding.getRoot(),mContext.getString(R.string.invalid_email));
             } else {
                 if ((apiResponse.getData() != null)) {
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,23 +30,24 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.555" />
+                app:layout_constraintVertical_bias="0.555"
+                android:contentDescription="@string/backBtn"/>
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTint="@color/_172B4D"
                 android:fontFamily="@font/font_heavy"
                 android:gravity="center_vertical"
-                android:text="Term &amp; Conditions"
+                android:text="@string/term_amp_conditions"
                 android:textColor="@color/_172B4D"
                 android:textSize="@dimen/_18sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/secondary_color" />
+                app:tint="@color/secondary_color"
+                app:drawableTint="@color/_172B4D" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -70,7 +71,6 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_bg"
                     android:drawablePadding="@dimen/_10sdp"
-                    android:drawableTint="@color/_A8A8A8"
                     android:enabled="false"
                     android:focusable="true"
                     android:fontFamily="@font/font_heavy"
@@ -85,7 +85,9 @@
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:drawableTint="@color/_A8A8A8"
+                    tools:ignore="TextViewEdits" />
 
                 <EditText
                     android:id="@+id/conditionsTxt"

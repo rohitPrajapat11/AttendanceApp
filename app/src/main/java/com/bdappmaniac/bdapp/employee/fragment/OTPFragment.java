@@ -2,17 +2,6 @@ package com.bdappmaniac.bdapp.employee.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.biometric.BiometricManager;
-import androidx.biometric.BiometricPrompt;
-import androidx.core.content.ContextCompat;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -21,12 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.biometric.BiometricManager;
+import androidx.biometric.BiometricPrompt;
+import androidx.core.content.ContextCompat;
+import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
+
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.HomeActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentOTPBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
-
-import java.util.ConcurrentModificationException;
 
 public class OTPFragment extends BaseFragment implements View.OnClickListener {
     FragmentOTPBinding binding;
@@ -50,10 +46,10 @@ public class OTPFragment extends BaseFragment implements View.OnClickListener {
         binding.forwardTXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkValidation()){
+                if (checkValidation()) {
                     startActivity(new Intent(mContext, HomeActivity.class));
                     getActivity().finish();
-                }else{
+                } else {
 
                 }
             }
@@ -96,10 +92,10 @@ public class OTPFragment extends BaseFragment implements View.OnClickListener {
         BiometricManager manager = BiometricManager.from(mContext);
         switch (manager.canAuthenticate()) {
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                Toast.makeText(getContext(), "This device doesn't have a Biometric scanner", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), mContext.getString(R.string.dont_have_biometric_scanner), Toast.LENGTH_SHORT).show();
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                Toast.makeText(getContext(), "This device doesn't have fingerprint saved."+"Please check your security settings", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), mContext.getString(R.string.dont_have_fingerprint_saved) + mContext.getString(R.string.check_your_security_settings), Toast.LENGTH_SHORT).show();
                 break;
         }
 
@@ -112,7 +108,7 @@ public class OTPFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                Toast.makeText(getContext(),"Correct PIN", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), mContext.getString(R.string.correct_pin), Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(mContext, HomeActivity.class));
             }
 
@@ -123,8 +119,8 @@ public class OTPFragment extends BaseFragment implements View.OnClickListener {
         });
 
         BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Biometric")
-                .setNegativeButtonText("cancel")
+                .setTitle(mContext.getString(R.string.biometric))
+                .setNegativeButtonText(mContext.getString(R.string.cancel))
                 .build();
         binding.fingerPrintScanner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,27 +181,27 @@ public class OTPFragment extends BaseFragment implements View.OnClickListener {
 
     public boolean checkValidation() {
         if (binding.pinView.length() == 0) {
-            showSnackBar(binding.getRoot(), "Please Enter PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_pin));
             return false;
         }
         if (binding.pinView.length() == 1) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 2) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 3) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 4) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 5) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         return true;

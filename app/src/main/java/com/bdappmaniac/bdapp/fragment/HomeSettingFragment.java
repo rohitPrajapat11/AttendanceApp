@@ -1,5 +1,7 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import static com.bdappmaniac.bdapp.activity.BaseActivity.NOTIFICATION;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,37 +23,37 @@ public class HomeSettingFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_setting, container, false);
 
-        boolean notificationIsEnable = SharedPref.read("notification", false);
+        boolean notificationIsEnable = SharedPref.read(NOTIFICATION, false);
         binding.notifyBar.setChecked(notificationIsEnable);
 
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();
         });
         binding.accountBtn.setOnClickListener(v -> {
-            showToast("In Progress");
+            showToast(mContext.getString(R.string.in_progress));
         });
         binding.notifyBar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                  if (b) {
-                    SharedPref.write("notification", true);
+                    SharedPref.write(NOTIFICATION, true);
                     binding.notifyBar.setChecked(true);
-                    showSnackBar(binding.getRoot(), "Your Notification Is Turned On");
+                    showSnackBar(binding.getRoot(), mContext.getString(R.string.notification_turned_on));
                     ((BaseActivity) mContext).startService();
                 } else {
-                    SharedPref.write("notification", false);
+                    SharedPref.write(NOTIFICATION, false);
                     binding.notifyBar.setChecked(false);
-                    showSnackBar(binding.getRoot(), "Your Notification Is Turned Off");
+                    showSnackBar(binding.getRoot(), mContext.getString(R.string.notification_turned_off));
                     ((BaseActivity) mContext).stopService();
                 }
             }
         });
 
         binding.privacyBtn.setOnClickListener(v -> {
-            showToast("In Progress");
+            showToast(mContext.getString(R.string.in_progress));
         });
         binding.helpBtn.setOnClickListener(v -> {
-            showToast("In Progress");
+            showToast(mContext.getString(R.string.in_progress));
         });
         return binding.getRoot();
     }

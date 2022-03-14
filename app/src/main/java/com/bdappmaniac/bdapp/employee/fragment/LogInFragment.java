@@ -36,7 +36,6 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 public class LogInFragment extends BaseFragment {
@@ -51,27 +50,6 @@ public class LogInFragment extends BaseFragment {
         StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
-//        binding.adminBtn.setOnClickListener(view -> {
-//            view.setBackgroundResource(R.drawable.green_10r_bg);
-//            binding.adminBtn.setTextColor(Color.parseColor("#FFFFFF"));
-//            view.setElevation(5);
-//            binding.employeeBtn.setElevation(1);
-//            binding.employeeBtn.setTextColor(Color.parseColor("#343637"));
-//            binding.employeeBtn.setBackgroundResource(R.drawable.white_10r_white_bg);
-//            //  binding.loginTypeTxt.setText("Sign In as Admin");
-//        });
-//        binding.employeeBtn.setOnClickListener(view -> {
-//            view.setBackgroundResource(R.drawable.green_10r_bg);
-//            binding.employeeBtn.setTextColor(Color.parseColor("#FFFFFF"));
-//            binding.adminBtn.setTextColor(Color.parseColor("#343637"));
-//            view.setElevation(5);
-//            binding.adminBtn.setElevation(1);
-//            //  binding.loginTypeTxt.setText("Sign In as Employee");
-//            binding.adminBtn.setBackgroundResource(R.drawable.white_10r_white_bg);
-//        });
-//        binding.createAccountBtn.setOnClickListener(view -> {
-//            Navigation.findNavController(view).navigate(R.id.singUpFragment);
-//        });
         binding.signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,13 +57,6 @@ public class LogInFragment extends BaseFragment {
                 String password = binding.passwordTxt.getText().toString();
                 if (checkValidation()) {
                     loginApi(email, password);
-//                    if (id.equals("a@gmail.com") && password.equals("123456")) {
-//                        startActivity(new Intent(mContext, HomeActivity.class));
-//                        getActivity().finish();
-//                        Navigation.findNavController(v).navigate(R.id.OTPFragment);
-//                    } else if (id.equals("e@gmail.com") && password.equals("123456")) {
-//                        Navigation.findNavController(v).navigate(R.id.createMPINFragment);
-//                    }
                 }
             }
         });
@@ -125,18 +96,6 @@ public class LogInFragment extends BaseFragment {
         AppLoader.hideLoaderDialog();
     }
 
-    public RequestBody toRequestBody(String val) {
-        RequestBody requestBody = null;
-        if (getActivity() != null) {
-            requestBody = toRequestBodyPart(val);
-        }
-        return requestBody;
-    }
-
-    public RequestBody toRequestBodyPart(String value) {
-        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
-    }
-
     private boolean isAllFieldFillUp() {
         if (StringHelper.isEmpty(binding.emailTxt.getText().toString())) {
             return false;
@@ -152,11 +111,11 @@ public class LogInFragment extends BaseFragment {
 
     public boolean checkValidation() {
         if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Valid Email!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_valid_email));
             return false;
         }
         if (TextUtils.isEmpty(binding.passwordTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Password!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_password));
             return false;
         }
         return true;
@@ -203,7 +162,6 @@ public class LogInFragment extends BaseFragment {
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
         }
 
         @Override
@@ -218,7 +176,6 @@ public class LogInFragment extends BaseFragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-
         }
     }
 }

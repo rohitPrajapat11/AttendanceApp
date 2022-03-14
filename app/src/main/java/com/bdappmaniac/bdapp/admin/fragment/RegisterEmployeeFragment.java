@@ -142,7 +142,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
         shareIntent.setType("*/*");
         shareIntent.putExtra(Intent.EXTRA_STREAM, imgBitmapUri);
         shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
-        startActivity(Intent.createChooser(shareIntent, "Share Details using"));
+        startActivity(Intent.createChooser(shareIntent, mContext.getString(R.string.share_details)));
     }
 
     private void designationDialog() {
@@ -156,23 +156,23 @@ public class RegisterEmployeeFragment extends BaseFragment {
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         designationBinding.adTxt.setOnClickListener(v -> {
-            binding.designationTxt.setText("Android Developer");
+            binding.designationTxt.setText(mContext.getString(R.string.adroid_developre));
             dialog.dismiss();
         });
         designationBinding.iosTxt.setOnClickListener(v -> {
-            binding.designationTxt.setText("IOS Developer");
+            binding.designationTxt.setText(mContext.getString(R.string.ios_developer));
             dialog.dismiss();
         });
         designationBinding.wdTxt.setOnClickListener(v -> {
-            binding.designationTxt.setText("Web Developer");
+            binding.designationTxt.setText(mContext.getString(R.string.web_developer));
             dialog.dismiss();
         });
         designationBinding.pmTxt.setOnClickListener(v -> {
-            binding.designationTxt.setText("Project Manager");
+            binding.designationTxt.setText(mContext.getString(R.string.project_manager));
             dialog.dismiss();
         });
         designationBinding.oTxt.setOnClickListener(v -> {
-            binding.designationTxt.setText("Other");
+            binding.designationTxt.setText(mContext.getString(R.string.other));
             dialog.dismiss();
         });
         dialog.show();
@@ -202,31 +202,31 @@ public class RegisterEmployeeFragment extends BaseFragment {
 
     public boolean checkValidation() {
         if (TextUtils.isEmpty(binding.nameTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Name!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_name));
             return false;
         }
         if (TextUtils.isEmpty(binding.emailTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Email Name!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_email));
             return false;
         }
         if (TextUtils.isEmpty(binding.phoneTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Phone Number!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_your_mobile_number));
             return false;
         }
         if (binding.phoneTxt.getText().length() != 10) {
-            showSnackBar(binding.getRoot(), "Please Enter 10 Digit Number");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_10_digit_number));
             return false;
         }
         if (TextUtils.isEmpty(binding.designationTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Your Designation");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_designation));
             return false;
         }
         if (TextUtils.isEmpty(binding.passwordTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Your Password");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_password));
             return false;
         }
         if (TextUtils.isEmpty(binding.confirmPasswordTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Your ConfirmPassword");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.confirm_password));
             return false;
         }
         return true;

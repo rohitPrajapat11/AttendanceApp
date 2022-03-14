@@ -54,7 +54,6 @@ public class HistoryFragment extends BaseFragment implements CalendarCallBack {
             binding.calendarLayout.setVisibility(View.GONE);
         });
         binding.calendarNextBtn.setOnClickListener(v -> {
-            Toast.makeText(mContext, "On Working", Toast.LENGTH_SHORT).show();
 //            String currentString = binding.calTitle.getText().toString();
 //            String[] separated = currentString.split(" ");
 //            String year = separated[1];
@@ -66,7 +65,6 @@ public class HistoryFragment extends BaseFragment implements CalendarCallBack {
 //            }
         });
         binding.calendarPreBtn.setOnClickListener(v -> {
-            Toast.makeText(mContext, "On Working", Toast.LENGTH_SHORT).show();
 //            String currentString = binding.calTitle.getText().toString();
 //            String[] separated = currentString.split(" ");
 //            String year = separated[1];

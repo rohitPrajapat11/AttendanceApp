@@ -33,7 +33,6 @@ public class EmployeeListFragment extends BaseFragment {
     EmployeeListAdapter EmAdapter;
     List<EmployeeListResponse> list = new ArrayList<>();
     List<EmployeeList> employeeList = new ArrayList<>();
-    String getToken = SharedPref.getUserDetails().getAccessToken();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

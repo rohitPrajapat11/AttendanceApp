@@ -25,6 +25,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class BaseActivity extends AppCompatActivity {
     public static final String CURRENT_TIME = "current_time";
+    public static final String USER_WORK = "userWork";
+    public static final String NOTIFICATION = "notification";
+    public static final String MOBILE = "mobile";
+    public static final String PIN_KEY = "key";
 
     public void showSnackBar(View view, String msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show();
@@ -35,8 +39,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     void userLogout() {
-        SharedPref.init(this);
-        String getToken = SharedPref.getUserDetails().getAccessToken();
         AppLoader.showLoaderDialog(this);
         MainService.userLogout(this, getToken()).observe((LifecycleOwner) this, apiResponse -> {
             if (apiResponse == null) {
@@ -70,7 +72,7 @@ public class BaseActivity extends AppCompatActivity {
                 userLogout();
                 startActivity(new Intent(getBaseContext(), AuthActivity.class));
                 finish();
-                showToast("LogOut");
+                showToast(getString(R.string.logout));
                 dialog.dismiss();
             }
         });
@@ -84,8 +86,8 @@ public class BaseActivity extends AppCompatActivity {
 
     public void startService() {
         Intent serviceIntent = new Intent(this, ForegroundService.class);
-        if (SharedPref.read("notification", true) && SharedPref.read("userWork", true)) {
-            serviceIntent.putExtra("inputExtra", "Time Started At " + SharedPref.getStringValue(CURRENT_TIME));
+        if (SharedPref.read(NOTIFICATION, true) && SharedPref.read(USER_WORK, true)) {
+            serviceIntent.putExtra("inputExtra", getString(R.string.time_started_at) + SharedPref.getStringValue(CURRENT_TIME));
             ContextCompat.startForegroundService(this, serviceIntent);
         }
     }

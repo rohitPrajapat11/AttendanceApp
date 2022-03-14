@@ -16,7 +16,6 @@ import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 public class SplashActivity extends AppCompatActivity {
-
     ActivitySplashBinding binding;
     Animation top_animation, bottom_animation, fade;
 

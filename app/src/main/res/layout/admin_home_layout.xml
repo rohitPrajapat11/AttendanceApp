@@ -21,7 +21,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/headerLayout"
-            app:navGraph="@navigation/admin_nav" />
+            app:navGraph="@navigation/admin_nav"
+            tools:ignore="FragmentTagUsage" />
 
         <include
             android:id="@+id/bottomLayout"

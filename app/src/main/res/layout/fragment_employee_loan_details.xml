@@ -7,40 +7,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/graphLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/white_10r_white_bg"
-            android:padding="@dimen/_15sdp"
             android:layout_margin="@dimen/_10sdp"
-            android:id="@+id/graphLayout"
+            android:background="@drawable/white_10r_white_bg"
             android:elevation="@dimen/_3sdp"
+            android:padding="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-                            <me.bastanfar.semicirclearcprogressbar.SemiCircleArcProgressBar
-                                android:id="@+id/semiCircleArcProgressBar"
-                                android:layout_width="@dimen/_130sdp"
-                                android:layout_height="@dimen/_65sdp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:percent="0"
-                                app:progressBarColor="@color/primary_color"
-                                app:progressBarWidth="16"
-                                app:progressPlaceHolderColor="@color/trans_black"
-                                app:progressPlaceHolderWidth="14" />
+            <me.bastanfar.semicirclearcprogressbar.SemiCircleArcProgressBar
+                android:id="@+id/semiCircleArcProgressBar"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_65sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:percent="0"
+                app:progressBarColor="@color/primary_color"
+                app:progressBarWidth="16"
+                app:progressPlaceHolderColor="@color/trans_black"
+                app:progressPlaceHolderWidth="14" />
 
             <TextView
                 android:id="@+id/totalPercentage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
                 android:fontFamily="@font/font_heavy"
                 android:gravity="center"
-                android:layout_marginBottom="@dimen/_10sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:text="45%"
                 android:textColor="@color/green"
@@ -68,8 +65,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
                 android:gravity="start"
-                android:text="50,000"
                 android:paddingStart="@dimen/_20sdp"
+                android:text="50,000"
                 android:textColor="@color/green"
                 android:textSize="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/totalLb"
@@ -97,8 +94,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
                 android:gravity="start"
-                android:text="5,000"
                 android:paddingStart="@dimen/_20sdp"
+                android:text="5,000"
                 android:textColor="@color/secondary_color"
                 android:textSize="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/pendingLb"

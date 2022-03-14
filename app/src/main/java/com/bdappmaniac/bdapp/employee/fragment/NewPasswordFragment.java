@@ -35,10 +35,9 @@ public class NewPasswordFragment extends BaseFragment {
         });
         binding.newPasswordTxt.addTextChangedListener(new TextChange(binding.newPasswordTxt));
         binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
-
         binding.confirmBtn.setOnClickListener(view -> {
             if (checkValidation()) {
-                showSnackBar(view, "Password Reset");
+                showSnackBar(view, mContext.getString(R.string.password_reset));
             }
         });
         return binding.getRoot();
@@ -56,44 +55,18 @@ public class NewPasswordFragment extends BaseFragment {
 
     public boolean checkValidation() {
         if (TextUtils.isEmpty(binding.newPasswordTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Password!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_password));
             return false;
         }
         if (TextUtils.isEmpty(binding.passwordTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Confirm Password!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_confirm_password));
             return false;
         }
         if (!binding.newPasswordTxt.getText().toString().equals(binding.passwordTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Password Mismatch!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.password_mismatch));
             return false;
         }
         return true;
-    }
-
-    public class TextChange implements TextWatcher {
-        View view;
-
-        private TextChange(View v) {
-            view = v;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-            if (binding.passwordTxt.getText().toString().equals(binding.newPasswordTxt.getText().toString())) {
-                binding.passwordValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
-            } else {
-                binding.passwordValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
-            }
-            isFieldFillUp();
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-        }
     }
 
     private void isFieldFillUp() {
@@ -125,6 +98,32 @@ public class NewPasswordFragment extends BaseFragment {
             if (drawable != null) {
                 drawable.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(textView.getContext(), color), PorterDuff.Mode.SRC_IN));
             }
+        }
+    }
+
+    public class TextChange implements TextWatcher {
+        View view;
+
+        private TextChange(View v) {
+            view = v;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            if (binding.passwordTxt.getText().toString().equals(binding.newPasswordTxt.getText().toString())) {
+                binding.passwordValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
+            } else {
+                binding.passwordValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
+            }
+            isFieldFillUp();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
         }
     }
 }

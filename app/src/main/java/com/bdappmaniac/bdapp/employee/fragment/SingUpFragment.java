@@ -51,11 +51,11 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class SingUpFragment extends BaseFragment {
+    private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
     FragmentSingUpBinding binding;
     String imgPath;
     File file = null;
     private int mYear, mMonth, mDay, mHour, mMinute;
-    private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,7 +65,6 @@ public class SingUpFragment extends BaseFragment {
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.phoneTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.addressTxt.addTextChangedListener(new TextChange(binding.emailTxt));
-
         binding.backToLogin.setOnClickListener(view -> {
             Navigation.findNavController(binding.getRoot()).navigate(R.id.logInFragment);
         });
@@ -80,7 +79,6 @@ public class SingUpFragment extends BaseFragment {
         });
         binding.cameraBtn.setOnClickListener(view -> selectImage());
         binding.dobTxt.setOnClickListener(view -> {
-            // Get Current Date
             final Calendar c = Calendar.getInstance();
             mYear = c.get(Calendar.YEAR);
             mMonth = c.get(Calendar.MONTH);
@@ -121,7 +119,6 @@ public class SingUpFragment extends BaseFragment {
                 String getWd = wdTxt.getText().toString();
                 String getPm = pmTxt.getText().toString();
                 String getO = oTxt.getText().toString();
-
                 adTxt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -169,22 +166,22 @@ public class SingUpFragment extends BaseFragment {
     }
 
     private void selectImage() {
-        final CharSequence[] options = {"Take Photo", "Choose From Gallery", "Cancel"};
+        final CharSequence[] options = {mContext.getString(R.string.take_photo), mContext.getString(R.string.chose_from_gallery), mContext.getString(R.string.cancel)};
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Choose Option");
+        builder.setTitle(mContext.getString(R.string.choose_option));
         builder.setItems(options, (dialog, item) -> {
-            if (options[item].equals("Take Photo")) {
+            if (options[item].equals(mContext.getString(R.string.take_photo))) {
                 if (checkPermission()) {
                     openCamera(1);
                 } else {
                     requestCameraPermission(1);
                 }
                 dialog.dismiss();
-            } else if (options[item].equals("Choose From Gallery")) {
+            } else if (options[item].equals(mContext.getString(R.string.chose_from_gallery))) {
                 dialog.dismiss();
                 Intent pickPhoto = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(pickPhoto, PICK_IMAGE_GALLERY);
-            } else if (options[item].equals("Cancel")) {
+            } else if (options[item].equals(mContext.getString(R.string.cancel))) {
                 dialog.dismiss();
             }
         });
@@ -241,10 +238,10 @@ public class SingUpFragment extends BaseFragment {
 
     private void requestCameraPermission(int requestCode) {
         String[] permissions = {Manifest.permission.CAMERA};
-        String rationale = "Please provide camera permission so that you can ...";
+        String rationale = getString(R.string.provide_permission);
         Permissions.Options options = new Permissions.Options()
-                .setRationaleDialogTitle("Permissions")
-                .setSettingsDialogTitle("Camera Permission");
+                .setRationaleDialogTitle(mContext.getString(R.string.permissions))
+                .setSettingsDialogTitle(mContext.getString(R.string.camera_permission));
         Permissions.check(getActivity(), permissions, rationale, options, new PermissionHandler() {
             @Override
             public void onGranted() {
@@ -253,7 +250,7 @@ public class SingUpFragment extends BaseFragment {
 
             @Override
             public void onDenied(Context context, ArrayList<String> deniedPermissions) {
-                Snackbar.make(binding.getRoot(), "Permission Denied", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(binding.getRoot(), mContext.getString(R.string.permission_denied), Snackbar.LENGTH_SHORT).show();
             }
         });
     }
@@ -299,78 +296,50 @@ public class SingUpFragment extends BaseFragment {
 
     public boolean checkValidation() {
         if (TextUtils.isEmpty(binding.nameTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Name!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_name));
             return false;
         }
         if (TextUtils.isEmpty(binding.emailTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Email Name!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_email));
             return false;
         }
         if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Valid Email!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_valid_email));
             return false;
         }
         if (TextUtils.isEmpty(binding.phoneTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Phone Number!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.phone_number));
             return false;
         }
         if (binding.phoneTxt.getText().length() != 10) {
-            showSnackBar(binding.getRoot(), "Please Enter 10 Digit Number");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_10_digit_number));
             return false;
         }
         if (TextUtils.isEmpty(binding.emPhoneTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Emergency Number!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.emergency_number));
             return false;
         }
         if (binding.emPhoneTxt.getText().length() != 10) {
-            showSnackBar(binding.getRoot(), "Please Enter 10 Digit Number");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_10_digit_number));
             return false;
         }
         if (TextUtils.isEmpty(binding.designationTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Your Designation");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_designation));
             return false;
         }
         if (TextUtils.isEmpty(binding.dobTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Date Of Birth!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_dob));
             return false;
         }
         if (TextUtils.isEmpty(binding.addressTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter Address!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_address));
             return false;
         }
         if (TextUtils.isEmpty(binding.pinCodeTxt.getText().toString())) {
-            showSnackBar(binding.getRoot(), "Please Enter PinCode!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_pincode));
             return false;
         }
         return true;
-    }
-
-    public class TextChange implements TextWatcher {
-        View view;
-
-        private TextChange(View v) {
-            view = v;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-            if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
-                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
-            } else {
-                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
-            }
-            setValidations();
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
     }
 
     private void isFieldFillUp() {
@@ -432,6 +401,34 @@ public class SingUpFragment extends BaseFragment {
             if (drawable != null) {
                 drawable.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(textView.getContext(), color), PorterDuff.Mode.SRC_IN));
             }
+        }
+    }
+
+    public class TextChange implements TextWatcher {
+        View view;
+
+        private TextChange(View v) {
+            view = v;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
+            } else {
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
+            }
+            setValidations();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
         }
     }
 }

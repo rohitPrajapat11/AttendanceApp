@@ -1,5 +1,8 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
+import static com.bdappmaniac.bdapp.activity.BaseActivity.MOBILE;
+import static com.bdappmaniac.bdapp.activity.BaseActivity.PIN_KEY;
+
 import android.os.Bundle;
 
 import androidx.activity.OnBackPressedCallback;
@@ -47,7 +50,7 @@ public class ConfirmMPINFragment extends BaseFragment implements View.OnClickLis
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_m_p_i_n, container, false);
         binding.otpTypeTxt.setText(R.string.Renter);
         if (getArguments() != null) {
-            newPin = getArguments().getString("Key", "");
+            newPin = getArguments().getString(PIN_KEY, "");
         }
         binding.forwardTXT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,10 +58,10 @@ public class ConfirmMPINFragment extends BaseFragment implements View.OnClickLis
                 if (checkValidation()) {
                     confirmPin = binding.pinView.getText().toString();
                     if (confirmPin.equals(newPin)) {
-                        Toast.makeText(getContext(), "Correct PIN", Toast.LENGTH_SHORT).show();
+                        showToast(mContext.getString(R.string.correct_pin));
 //                        Navigation.findNavController(v).navigate(R.id.singUpFragment);
                     } else {
-                        Toast.makeText(getContext(), "Incorrect Pin", Toast.LENGTH_SHORT).show();
+                        showToast(mContext.getString(R.string.incorrect_pin));
                     }
                 } else {
                 }
@@ -72,7 +75,7 @@ public class ConfirmMPINFragment extends BaseFragment implements View.OnClickLis
         });
         if (getArguments() != null) {
             // From SignIn Otp Fragment For Forgot M-Pin
-            mobile = getArguments().getString("mobile");
+            mobile = getArguments().getString(MOBILE);
         }
         binding.pinView.setText("");
         binding.key0.setOnClickListener(this);
@@ -153,27 +156,27 @@ public class ConfirmMPINFragment extends BaseFragment implements View.OnClickLis
 
     public boolean checkValidation() {
         if (binding.pinView.length() == 0) {
-            showSnackBar(binding.getRoot(), "Please Enter PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_pin));
             return false;
         }
         if (binding.pinView.length() == 1) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 2) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 3) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 4) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 5) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         return true;

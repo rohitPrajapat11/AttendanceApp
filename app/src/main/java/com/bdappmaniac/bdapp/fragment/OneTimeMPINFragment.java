@@ -1,5 +1,7 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import static com.bdappmaniac.bdapp.activity.BaseActivity.MOBILE;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -62,7 +64,7 @@ public class OneTimeMPINFragment extends BaseFragment implements View.OnClickLis
         });
         if (getArguments() != null) {
             // From SignIn Otp Fragment For Forgot M-Pin
-            mobile = getArguments().getString("mobile");
+            mobile = getArguments().getString(MOBILE);
         }
         binding.pinView.setText("");
         binding.key0.setOnClickListener(this);
@@ -92,10 +94,10 @@ public class OneTimeMPINFragment extends BaseFragment implements View.OnClickLis
         BiometricManager manager = BiometricManager.from(mContext);
         switch (manager.canAuthenticate()) {
             case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
-                Toast.makeText(getContext(), "This device doesn't have a Biometric scanner", Toast.LENGTH_SHORT).show();
+                showSnackBar(binding.getRoot(), mContext.getString(R.string.dont_have_biometric_scanner));
                 break;
             case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
-                Toast.makeText(getContext(), "This device doesn't have fingerprint saved."+"Please check your security settings", Toast.LENGTH_SHORT).show();
+                showSnackBar(binding.getRoot(),mContext.getString(R.string.dont_have_fingerprint_saved + R.string.check_your_security_settings));
                 break;
         }
 
@@ -108,7 +110,7 @@ public class OneTimeMPINFragment extends BaseFragment implements View.OnClickLis
             @Override
             public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
                 super.onAuthenticationSucceeded(result);
-                Toast.makeText(getContext(),"Correct", Toast.LENGTH_SHORT).show();
+                showSnackBar(binding.getRoot(), mContext.getString(R.string.correct));
             }
 
             @Override
@@ -118,8 +120,8 @@ public class OneTimeMPINFragment extends BaseFragment implements View.OnClickLis
         });
 
         BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
-                .setTitle("Biometric")
-                .setNegativeButtonText("cancel")
+                .setTitle(mContext.getString(R.string.biometric))
+                .setNegativeButtonText(mContext.getString(R.string.cancel))
                 .build();
         binding.fingerPrintScanner.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,27 +182,27 @@ public class OneTimeMPINFragment extends BaseFragment implements View.OnClickLis
 
     public boolean checkValidation() {
         if (binding.pinView.length() == 0) {
-            showSnackBar(binding.getRoot(), "Please Enter PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_pin));
             return false;
         }
         if (binding.pinView.length() == 1) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 2) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 3) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 4) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         if (binding.pinView.length() == 5) {
-            showSnackBar(binding.getRoot(), "Please Enter The 6 Numbered PIN!");
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_6_number_pin));
             return false;
         }
         return true;

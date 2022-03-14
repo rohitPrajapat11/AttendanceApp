@@ -27,12 +27,9 @@ public class EmployeeAttendanceFragment extends BaseFragment {
     private int TYear, TMonth, TDay;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_attendance, container, false);
-        String[] taskList = new String[]{"History Task 1", "History Task 2", "History Task 3",
-                "History Task 4", "History Task 5", "History Task 5"};
+        String[] taskList = new String[]{"History Task 1", "History Task 2", "History Task 3", "History Task 4", "History Task 5", "History Task 5"};
         HistoryAdapter adapter = new HistoryAdapter(getContext(), Arrays.asList(taskList));
         binding.attRecycler.setAdapter(adapter);
         binding.backBtn.setOnClickListener(new View.OnClickListener() {

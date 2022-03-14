@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.bdappmaniac.bdapp.Api.response.EmployeeList;
-import com.bdappmaniac.bdapp.Api.response.EmployeeListResponse;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.admin.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeListForLoanBinding;
@@ -37,7 +35,7 @@ public class EmployeeListForLoan extends BaseFragment {
         list.add(new EmployeeListModel("Mil Dev", "Web Developer", R.drawable.sample_web));
         list.add(new EmployeeListModel("Veexo Zor", "Project Manager", R.drawable.sample_prohject));
         list.add(new EmployeeListModel("Alex War", "IOS Developer", R.drawable.sample_ios));
-   //     EmAdapter = new EmployeeListAdapter(mContext, list, "LoanFragment");
+        //     EmAdapter = new EmployeeListAdapter(mContext, list, "LoanFragment");
         binding.employeeRecycler.setHasFixedSize(false);
         binding.employeeRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.employeeRecycler.setAdapter(EmAdapter);

@@ -22,12 +22,13 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:fontFamily="@font/font_heavy"
             android:paddingStart="@dimen/_10sdp"
-            android:text="19-01-2022"
+            android:text="@string/_19_01_2022"
             android:textColor="@color/_002460"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintBottom_toBottomOf="@+id/checkInOutLb"
             app:layout_constraintStart_toEndOf="@+id/checkInOutLb"
-            app:layout_constraintTop_toTopOf="@+id/checkInOutLb" />
+            app:layout_constraintTop_toTopOf="@+id/checkInOutLb"
+            tools:ignore="RtlSymmetry" />
 
         <TextView
             android:id="@+id/checkInOutLb"
@@ -35,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:fontFamily="@font/arial_rounded_mt_bold"
-            android:text="Check In/Out Time"
+            android:text="@string/check_in_out_time"
             android:textColor="@color/primary_color"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,15 +47,15 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_5sdp"
-            android:drawableStart="@drawable/icn_edit_calendar"
             android:drawablePadding="@dimen/_5sdp"
-            android:drawableTint="@color/_172B4D"
             android:fontFamily="@font/font_heavy"
             android:gravity="center_vertical"
-            android:text="17-01-2022"
+            android:text="@string/_17_01_2022"
             android:textColor="@color/_172B4D"
             android:textSize="@dimen/_12sdp"
             android:visibility="gone"
+            app:drawableStartCompat="@drawable/icn_edit_calendar"
+            app:drawableTint="@color/_172B4D"
             app:layout_constraintBottom_toBottomOf="@+id/checkInOutLb"
             app:layout_constraintEnd_toEndOf="@+id/checkInLayout"
             app:layout_constraintTop_toTopOf="@+id/checkInOutLb"
@@ -79,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
                 android:paddingStart="@dimen/_15sdp"
-                android:text="Check In Time"
+                android:text="@string/check_in_time"
                 android:textColor="@color/light_black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/checkInLayout"
@@ -93,13 +94,14 @@
                 android:fontFamily="@font/font_heavy"
                 android:gravity="center_horizontal"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="00:00"
+                android:text="@string/_00_00"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/checkInLb"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -122,11 +124,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
                 android:paddingStart="@dimen/_15sdp"
-                android:text="Check Out Time"
+                android:text="@string/check_out_time"
                 android:textColor="@color/light_black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/checkOutTime"
@@ -134,13 +137,15 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
                 android:gravity="center_horizontal"
-                android:text="00:00"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="@string/_00_00"
                 android:textColor="@color/light_black"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/checkOutLb"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <CheckBox
@@ -156,7 +161,8 @@
             android:textColor="@color/secondary_color"
             app:layout_constraintEnd_toStartOf="@+id/saveAllBtn"
             app:layout_constraintStart_toStartOf="@+id/checkOutLayout"
-            app:layout_constraintTop_toBottomOf="@+id/checkOutLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/checkOutLayout"
+            tools:ignore="RtlSymmetry" />
 
         <TextView
             android:id="@+id/saveAllBtn"
@@ -182,7 +188,7 @@
             android:background="@drawable/edit_text_bg"
             android:fontFamily="@font/font_heavy"
             android:gravity="start"
-            android:hint="Reason of Absent"
+            android:hint="@string/reason_of_absent"
             android:inputType="textMultiLine"
             android:padding="@dimen/_10sdp"
             android:paddingStart="@dimen/_10sdp"
@@ -193,7 +199,8 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/absentCheck"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/absentCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/absentCheck"
+            tools:ignore="Autofill,RtlSymmetry" />
 
         <TextView
             android:id="@+id/cancelBtn"

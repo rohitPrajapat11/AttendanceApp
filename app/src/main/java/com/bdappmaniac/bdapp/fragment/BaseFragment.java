@@ -3,6 +3,9 @@ package com.bdappmaniac.bdapp.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,9 +16,13 @@ import androidx.fragment.app.Fragment;
 
 import com.bdappmaniac.bdapp.service.ForegroundService;
 import com.bdappmaniac.bdapp.utils.SharedPref;
+import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.google.android.material.snackbar.Snackbar;
 import com.klinker.android.link_builder.Link;
 import com.klinker.android.link_builder.LinkBuilder;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class BaseFragment extends Fragment {
    public Context mContext;
@@ -46,4 +53,15 @@ public class BaseFragment extends Fragment {
         return getToken;
     }
 
+    public RequestBody toRequestBody(String val) {
+        RequestBody requestBody = null;
+        if (getActivity() != null) {
+            requestBody = toRequestBodyPart(val);
+        }
+        return requestBody;
+    }
+
+    public RequestBody toRequestBodyPart(String value) {
+        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
+    }
 }

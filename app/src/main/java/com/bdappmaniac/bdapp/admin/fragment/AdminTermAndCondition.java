@@ -30,7 +30,7 @@ public class AdminTermAndCondition extends BaseFragment {
         });
         binding.saveBtn.setOnClickListener(v -> {
             if (StringHelper.isEmpty(binding.conditionsTxt.getText().toString())) {
-                showSnackBar(v, "Please Write Term and Condition");
+                showSnackBar(v, mContext.getString(R.string.write_term_and_conditions));
             } else {
                 editCondition(false);
             }
