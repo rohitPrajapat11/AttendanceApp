@@ -60,4 +60,9 @@
         android:name="com.bdappmaniac.bdapp.admin.fragment.AdminProfile"
         android:label="AdminProfile"
         tools:layout="@layout/fragment_admin_profile"/>
+    <fragment
+        android:id="@+id/adminHolidayFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminHolidayFragment"
+        android:label="AdminHolidayFragment"
+        tools:layout="@layout/fragment_admin_holiday"/>
 </navigation>

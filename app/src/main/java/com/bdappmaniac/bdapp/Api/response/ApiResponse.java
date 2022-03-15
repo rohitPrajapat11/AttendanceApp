@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ApiResponse{
 
-	@SerializedName("success")
+	@SerializedName("Success")
 	private boolean success;
 
 	@SerializedName("data")

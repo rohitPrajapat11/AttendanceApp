@@ -85,6 +85,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding.navigationDrawer.registerBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.profileBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.loanBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.addHolidayBtn.setOnClickListener(this::onClick);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -131,6 +132,10 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 } else if (destination.getId() == R.id.provideLoanFragment) {
                     navHandel("LoanDetails");
                     headerHideShow(true);
+                    bottomHideShow(false);
+                } else if (destination.getId() == R.id.adminHolidayFragment) {
+                    navHandel("Holidays");
+                    headerHideShow(false);
                     bottomHideShow(false);
                 }
             }
@@ -253,12 +258,17 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 }
                 break;
             case R.id.loanBtn:
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.loanFragment){
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.loanFragment) {
                     navController.navigate(R.id.loanFragment);
                 }
                 break;
             case R.id.logOutBtn:
                 logoutDialog();
+                break;
+            case R.id.addHolidayBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.adminHolidayFragment) {
+                    navController.navigate(R.id.adminHolidayFragment);
+                }
                 break;
         }
     }

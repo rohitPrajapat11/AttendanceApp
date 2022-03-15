@@ -45,15 +45,15 @@ public class HistoryFragment extends BaseFragment implements CalendarCallBack {
         HistoryAdapter notificationAdapter = new HistoryAdapter(getContext(), taskList);
         binding.historyRecycler.setAdapter(notificationAdapter);
         adapter = new MonthCalendarAdapter(mContext, (ArrayList<String>) calendarList2, this);
-        binding.calendarRecycler.setAdapter(adapter);
-        binding.cancelCalendarBtn.setOnClickListener(v ->
-        {
-            binding.calendarLayout.setVisibility(View.GONE);
-        });
-        binding.okCalendarBtn.setOnClickListener(v -> {
-            binding.calendarLayout.setVisibility(View.GONE);
-        });
-        binding.calendarNextBtn.setOnClickListener(v -> {
+//        binding.calendarRecycler.setAdapter(adapter);
+//        binding.cancelCalendarBtn.setOnClickListener(v ->
+//        {
+//            binding.calendarLayout.setVisibility(View.GONE);
+//        });
+//        binding.okCalendarBtn.setOnClickListener(v -> {
+//            binding.calendarLayout.setVisibility(View.GONE);
+//        });
+//        binding.calendarNextBtn.setOnClickListener(v -> {
 //            String currentString = binding.calTitle.getText().toString();
 //            String[] separated = currentString.split(" ");
 //            String year = separated[1];
@@ -63,8 +63,8 @@ public class HistoryFragment extends BaseFragment implements CalendarCallBack {
 //                int y = Integer.parseInt(year) + 1;
 //                binding.calTitle.setText(String.valueOf(separated[0] + " " + y));
 //            }
-        });
-        binding.calendarPreBtn.setOnClickListener(v -> {
+//        });
+//        binding.calendarPreBtn.setOnClickListener(v -> {
 //            String currentString = binding.calTitle.getText().toString();
 //            String[] separated = currentString.split(" ");
 //            String year = separated[1];
@@ -77,17 +77,17 @@ public class HistoryFragment extends BaseFragment implements CalendarCallBack {
 //                binding.calendarNextBtn.setVisibility(View.VISIBLE);
 //
 //            }
-        });
+//        });
         return binding.getRoot();
     }
 
     public void selectedMonth(String date) {
         selectedMonth = date;
-        binding.calTitle.setText(date + " " + "2022");
+//        binding.calTitle.setText(date + " " + "2022");
     }
 
     @Override
     public void openCalendar() {
-        binding.calendarLayout.setVisibility(View.VISIBLE);
+//        binding.calendarLayout.setVisibility(View.VISIBLE);
     }
 }

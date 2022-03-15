@@ -35,5 +35,10 @@
         android:name="com.bdappmaniac.bdapp.fragment.HomeTermsAndConditionsFragment"
         android:label="HomeTermsAndConditionsFragment"
         tools:layout="@layout/fragment_home_terms_and_conditions" />
+    <fragment
+        android:id="@+id/employeeHolidayFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.EmployeeHolidayFragment"
+        android:label="EmployeeHolidayFragment"
+        tools:layout="@layout/fragment_employee_holiday"/>
 
 </navigation>

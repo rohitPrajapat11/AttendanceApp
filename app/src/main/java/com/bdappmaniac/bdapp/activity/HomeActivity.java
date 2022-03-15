@@ -113,6 +113,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         binding.navigationDrawer.logOutBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.tmcBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.loanBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.holidayBtn.setOnClickListener(this::onClick);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -141,6 +142,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     headerHideShow(false);
                     bottomHideShow(false);
                 } else if (destination.getId() == R.id.homeSettingFragment) {
+                    navHandel("Settings");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                }else if (destination.getId() == R.id.employeeHolidayFragment) {
                     navHandel("Settings");
                     headerHideShow(false);
                     bottomHideShow(false);
@@ -240,6 +245,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 logoutDialog();
                 break;
+            case R.id.holidayBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeHolidayFragment) {
+                    navController.navigate(R.id.employeeHolidayFragment);
+                    binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                }
         }
     }
 
@@ -291,7 +301,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void openCalendar() {
-
     }
 
     @Override
