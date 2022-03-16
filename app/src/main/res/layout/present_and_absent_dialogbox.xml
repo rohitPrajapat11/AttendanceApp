@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/topView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_18sdp"
+            android:background="@drawable/white_10r_bg"
+            android:elevation="@dimen/_1sdp"
+            android:padding="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arial_rounded_mt_normal"
+                android:text="Mark Your Attendance"
+                android:textColor="@color/_A8A8A8"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/absentBtn"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/gray_round_present"
+                android:fontFamily="@font/font_heavy"
+                android:padding="@dimen/_5sdp"
+                android:text="A"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toStartOf="@id/presentBtn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/message" />
+
+            <Button
+                android:id="@+id/presentBtn"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/gray_round_present"
+                android:fontFamily="@font/font_heavy"
+                android:padding="@dimen/_5sdp"
+                android:text="P"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/absentBtn"
+                app:layout_constraintTop_toBottomOf="@+id/message" />
+
+            <EditText
+                android:id="@+id/absentReasonTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/edit_text_bg"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="start"
+                android:hint="Reason of Absent"
+                android:inputType="textMultiLine"
+                android:padding="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/_172B4D"
+                android:textColorHint="@color/_A8A8A8"
+                android:textCursorDrawable="@drawable/text_cursor"
+                android:textSize="@dimen/_11sdp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/absentBtn" />
+
+            <TextView
+                android:id="@+id/saveBtn"
+                android:layout_width="150dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_margin="@dimen/_14sdp"
+                android:background="@drawable/green_10r_bg"
+                android:elevation="@dimen/_3sdp"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center"
+                android:text="@string/save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/absentReasonTxt"
+                app:layout_constraintStart_toStartOf="@+id/absentReasonTxt"
+                app:layout_constraintTop_toBottomOf="@+id/absentReasonTxt" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -94,10 +94,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     SharedPref.write(USER_WORK, true);
+                    presentAndAbsentDialog();
                     String getCurrentTime = DateUtils.getCurrentTime();
                     SharedPref.putString(CURRENT_TIME, getCurrentTime);
                     binding.homeLayout.headerLayout.extIcon.setChecked(true);
-                    showSnackBar(binding.getRoot(), getString(R.string.working_time_has_started));
                     Constant.checkTimeCallBack.CheckInTimeCallBack();
                     startService();
                 } else {

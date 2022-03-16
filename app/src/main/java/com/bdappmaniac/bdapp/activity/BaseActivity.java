@@ -18,6 +18,7 @@ import androidx.lifecycle.LifecycleOwner;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.LogoutDialogboxBinding;
+import com.bdappmaniac.bdapp.databinding.PresentAndAbsentDialogboxBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.service.ForegroundService;
 import com.bdappmaniac.bdapp.utils.SharedPref;
@@ -80,6 +81,46 @@ public class BaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
+            }
+        });
+    }
+
+    void presentAndAbsentDialog() {
+        PresentAndAbsentDialogboxBinding presentAndAbsentDialogboxBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.present_and_absent_dialogbox, null, false);
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(presentAndAbsentDialogboxBinding.getRoot());
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setGravity(Gravity.CENTER);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.show();
+        presentAndAbsentDialogboxBinding.presentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presentAndAbsentDialogboxBinding.presentBtn.setBackground(getDrawable(R.drawable.green_bg_att));
+                presentAndAbsentDialogboxBinding.absentBtn.setBackground(getDrawable(R.drawable.gray_round_present));
+                presentAndAbsentDialogboxBinding.saveBtn.setVisibility(View.VISIBLE);
+                presentAndAbsentDialogboxBinding.absentReasonTxt.setVisibility(View.GONE);
+            }
+        });
+        presentAndAbsentDialogboxBinding.saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                if (presentAndAbsentDialogboxBinding.absentReasonTxt.getText().toString().isEmpty()) {
+//                    showSnackBar(presentAndAbsentDialogboxBinding.getRoot(), "Enter reason for absent");
+//                }
+                dialog.dismiss();
+            }
+        });
+        presentAndAbsentDialogboxBinding.absentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presentAndAbsentDialogboxBinding.absentBtn.setBackground(getDrawable(R.drawable.red_round_bg));
+                presentAndAbsentDialogboxBinding.presentBtn.setBackground(getDrawable(R.drawable.gray_round_present));
+                presentAndAbsentDialogboxBinding.absentReasonTxt.setVisibility(View.VISIBLE);
+                presentAndAbsentDialogboxBinding.saveBtn.setVisibility(View.VISIBLE);
             }
         });
     }

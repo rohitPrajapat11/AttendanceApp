@@ -54,4 +54,8 @@ public interface APIInterface {
     @POST("api/Add-Holiday")
     Call<ApiResponse> addHolidays(@Header("Authorization") String token, @PartMap Map<String, RequestBody>map);
 
+    @Multipart
+    @POST("api/mark-absent")
+    Call<ApiResponse> markAttendanceByEmployee(@Header("Authorization") String token, @PartMap Map<String, RequestBody>map);
+
 }

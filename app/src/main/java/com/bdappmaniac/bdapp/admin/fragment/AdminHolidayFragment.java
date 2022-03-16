@@ -29,7 +29,7 @@ import okhttp3.RequestBody;
 
 public class AdminHolidayFragment extends BaseFragment {
     FragmentAdminHolidayBinding binding;
-    String dates, reason;
+    String dates;
     private int FYear, FMonth, FDay;
     private int TYear, TMonth, TDay;
 
@@ -62,8 +62,7 @@ public class AdminHolidayFragment extends BaseFragment {
 //                                        .append(" "));
                             }
                         }, TYear, TMonth, TDay);
-                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT,
-                        WindowManager.LayoutParams.WRAP_CONTENT);
+                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
                 datePickerDialog.getWindow().setGravity(Gravity.CENTER);
                 datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
                 datePickerDialog.show();
