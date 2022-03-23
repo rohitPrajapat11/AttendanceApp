@@ -1,11 +1,10 @@
 package com.bdappmaniac.bdapp.utils;
 
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
-import com.bdappmaniac.bdapp.interfaces.CheckTimeCallBack;
+import com.bdappmaniac.bdapp.interfaces.TimeLayoutCallBack;
 
 public class Constant {
     public static CalendarCallBack calendarCallBack;
 
-    public static CheckTimeCallBack checkTimeCallBack;
-
+    public static TimeLayoutCallBack timeLayoutCallBack;
 }

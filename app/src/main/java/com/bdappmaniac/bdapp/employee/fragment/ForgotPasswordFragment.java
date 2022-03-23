@@ -161,11 +161,11 @@ public class ForgotPasswordFragment extends BaseFragment {
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.newPasswordFragment);
                 } else {
-                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
             }
+            AppLoader.hideLoaderDialog();
         });
-        AppLoader.hideLoaderDialog();
     }
 
     public RequestBody toRequestBody(String val) {

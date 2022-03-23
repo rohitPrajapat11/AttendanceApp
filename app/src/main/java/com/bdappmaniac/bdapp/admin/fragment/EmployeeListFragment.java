@@ -51,7 +51,7 @@ public class EmployeeListFragment extends BaseFragment {
         AppLoader.showLoaderDialog(mContext);
         MainService.employeeList(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
-                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
                     Type collectionType = new TypeToken<List<EmployeeList>>() {}.getType();
@@ -59,10 +59,10 @@ public class EmployeeListFragment extends BaseFragment {
                     employeeList.addAll(list);
                     EmAdapter.notifyDataSetChanged();
                 } else {
-                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
             }
+            AppLoader.hideLoaderDialog();
         });
-        AppLoader.hideLoaderDialog();
     }
 }

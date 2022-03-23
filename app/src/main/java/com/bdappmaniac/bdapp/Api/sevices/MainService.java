@@ -293,4 +293,47 @@ public class MainService extends BaseFragment {
         return data;
     }
 
+    public static LiveData<ApiResponse> holidaysOfCurrentYear(Context context, String token) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        Call<ApiResponse> call = apiService.holidaysOfCurrentYear(token);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
+
+    public static LiveData<ApiResponse> workedHoursOnGivenDay(Context context, String token, Map<String , RequestBody>map) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        Call<ApiResponse> call = apiService.workedHoursOnGivenDay(token, map);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
 }

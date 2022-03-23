@@ -76,7 +76,7 @@ public class LogInFragment extends BaseFragment {
         map.put("password", toRequestBody(password));
         MainService.userLogIn(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
-                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
                     LoginResponse loginResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
@@ -89,11 +89,11 @@ public class LogInFragment extends BaseFragment {
                     }
                     getActivity().finish();
                 } else {
-                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
             }
+            AppLoader.hideLoaderDialog();
         });
-        AppLoader.hideLoaderDialog();
     }
 
     private boolean isAllFieldFillUp() {

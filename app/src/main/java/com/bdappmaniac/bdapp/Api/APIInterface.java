@@ -50,12 +50,19 @@ public interface APIInterface {
 
     @POST("api/checkOut")
     Call<ApiResponse> checkOutTime(@Header("Authorization") String token);
+
     @Multipart
     @POST("api/Add-Holiday")
-    Call<ApiResponse> addHolidays(@Header("Authorization") String token, @PartMap Map<String, RequestBody>map);
+    Call<ApiResponse> addHolidays(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+
+    @POST("api/All-holidays-of-current-year")
+    Call<ApiResponse> holidaysOfCurrentYear(@Header("Authorization") String token);
 
     @Multipart
     @POST("api/mark-absent")
-    Call<ApiResponse> markAttendanceByEmployee(@Header("Authorization") String token, @PartMap Map<String, RequestBody>map);
+    Call<ApiResponse> markAttendanceByEmployee(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
 
+    @Multipart
+    @POST("api/workedHoursOnDate")
+    Call<ApiResponse> workedHoursOnGivenDay(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
 }

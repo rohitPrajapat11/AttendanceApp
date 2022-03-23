@@ -91,17 +91,17 @@ public class EmployeeDetailsFragment extends BaseFragment {
         AppLoader.showLoaderDialog(mContext);
         MainService.getEmployeeById(mContext, getToken(), id).observe((LifecycleOwner) this, apiResponse -> {
             if (apiResponse == null) {
-                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
                     EmployeeByIdResponse employeeByIdResponse = new Gson().fromJson(apiResponse.getData(), EmployeeByIdResponse.class);
                     setUserData(employeeByIdResponse);
                 } else {
-                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
             }
+            AppLoader.hideLoaderDialog();
         });
-        AppLoader.hideLoaderDialog();
     }
 
     public RequestBody toRequestBody(String val) {
@@ -164,9 +164,10 @@ public class EmployeeDetailsFragment extends BaseFragment {
     }
 
     private void updateEmployeeStatus(String status) {
+        AppLoader.showLoaderDialog(mContext);
         MainService.updateProfileByAdmin(mContext, getToken(), ID, status).observe((LifecycleOwner) this, apiResponse -> {
             if (apiResponse == null) {
-                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
                     if (status.equals("active")) {
@@ -175,9 +176,10 @@ public class EmployeeDetailsFragment extends BaseFragment {
                         showSnackBar(binding.getRoot(), mContext.getString(R.string.you_are_inactive));
                     }
                 } else {
-                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
             }
+            AppLoader.hideLoaderDialog();
         });
     }
 }

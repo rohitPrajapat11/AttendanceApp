@@ -90,7 +90,7 @@
 
             <TextView
                 android:id="@+id/saveBtn"
-                android:layout_width="150dp"
+                android:layout_width="110dp"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_margin="@dimen/_14sdp"
                 android:background="@drawable/green_10r_bg"
@@ -102,8 +102,24 @@
                 android:textSize="@dimen/_12sdp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/absentReasonTxt"
-                app:layout_constraintStart_toStartOf="@+id/absentReasonTxt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cancelBtn" />
+
+            <TextView
+                android:id="@+id/cancelBtn"
+                android:layout_width="110dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_margin="@dimen/_14sdp"
+                android:background="@drawable/red_10r_bg"
+                android:elevation="@dimen/_3sdp"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/saveBtn"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/absentReasonTxt" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

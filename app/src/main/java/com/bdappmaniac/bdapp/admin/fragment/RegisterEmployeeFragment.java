@@ -96,16 +96,16 @@ public class RegisterEmployeeFragment extends BaseFragment {
         AppLoader.showLoaderDialog(mContext);
         MainService.employeeRegistration(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
-                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
                     EmpRegisterResponse empRegisterResponse = new Gson().fromJson(apiResponse.getData(), EmpRegisterResponse.class);
                 } else {
-                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
             }
+            AppLoader.hideLoaderDialog();
         });
-        AppLoader.hideLoaderDialog();
     }
 
     public RequestBody toRequestBody(String val) {

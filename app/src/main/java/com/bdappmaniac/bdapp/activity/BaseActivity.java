@@ -22,10 +22,15 @@ import com.bdappmaniac.bdapp.databinding.PresentAndAbsentDialogboxBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.service.ForegroundService;
 import com.bdappmaniac.bdapp.utils.SharedPref;
+import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.google.android.material.snackbar.Snackbar;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class BaseActivity extends AppCompatActivity {
     public static final String CURRENT_TIME = "current_time";
+    public static final String CURRENT_DATE = "current_date";
     public static final String USER_WORK = "userWork";
     public static final String NOTIFICATION = "notification";
     public static final String MOBILE = "mobile";
@@ -52,8 +57,8 @@ public class BaseActivity extends AppCompatActivity {
                     ((BaseActivity) this).showToast(this.getString(R.string.something_went_wrong));
                 }
             }
+            AppLoader.hideLoaderDialog();
         });
-        AppLoader.hideLoaderDialog();
     }
 
     void logoutDialog() {
@@ -85,45 +90,7 @@ public class BaseActivity extends AppCompatActivity {
         });
     }
 
-    void presentAndAbsentDialog() {
-        PresentAndAbsentDialogboxBinding presentAndAbsentDialogboxBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.present_and_absent_dialogbox, null, false);
-        Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(presentAndAbsentDialogboxBinding.getRoot());
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setGravity(Gravity.CENTER);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.show();
-        presentAndAbsentDialogboxBinding.presentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presentAndAbsentDialogboxBinding.presentBtn.setBackground(getDrawable(R.drawable.green_bg_att));
-                presentAndAbsentDialogboxBinding.absentBtn.setBackground(getDrawable(R.drawable.gray_round_present));
-                presentAndAbsentDialogboxBinding.saveBtn.setVisibility(View.VISIBLE);
-                presentAndAbsentDialogboxBinding.absentReasonTxt.setVisibility(View.GONE);
-            }
-        });
-        presentAndAbsentDialogboxBinding.saveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                if (presentAndAbsentDialogboxBinding.absentReasonTxt.getText().toString().isEmpty()) {
-//                    showSnackBar(presentAndAbsentDialogboxBinding.getRoot(), "Enter reason for absent");
-//                }
-                dialog.dismiss();
-            }
-        });
-        presentAndAbsentDialogboxBinding.absentBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presentAndAbsentDialogboxBinding.absentBtn.setBackground(getDrawable(R.drawable.red_round_bg));
-                presentAndAbsentDialogboxBinding.presentBtn.setBackground(getDrawable(R.drawable.gray_round_present));
-                presentAndAbsentDialogboxBinding.absentReasonTxt.setVisibility(View.VISIBLE);
-                presentAndAbsentDialogboxBinding.saveBtn.setVisibility(View.VISIBLE);
-            }
-        });
-    }
+
 
     public void startService() {
         Intent serviceIntent = new Intent(this, ForegroundService.class);
@@ -143,6 +110,15 @@ public class BaseActivity extends AppCompatActivity {
         SharedPref.init(this);
         String getToken = "Bearer "+SharedPref.getUserDetails().getAccessToken();
         return getToken;
+    }
+
+    public RequestBody toRequestBody(String val) {
+        RequestBody requestBody = null;
+        return toRequestBodyPart(val);
+    }
+
+    public RequestBody toRequestBodyPart(String value) {
+        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
     }
 
 //    void callNotification() {

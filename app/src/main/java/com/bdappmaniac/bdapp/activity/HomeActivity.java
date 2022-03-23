@@ -11,34 +11,45 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.CompoundButton;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
+import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.ActivityHomeBinding;
 import com.bdappmaniac.bdapp.databinding.ExitDialogboxBinding;
+import com.bdappmaniac.bdapp.databinding.PresentAndAbsentDialogboxBinding;
 import com.bdappmaniac.bdapp.employee.fragment.HomeFragment;
+import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
 import com.bdappmaniac.bdapp.utils.Constant;
 import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+
+import okhttp3.RequestBody;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener, CalendarCallBack {
     ActivityHomeBinding binding;
     NavController navController;
+    Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,25 +100,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         binding.homeLayout.headerLayout.addBtn.setOnClickListener(v -> {
             Constant.calendarCallBack.openCalendar();
         });
-        binding.homeLayout.headerLayout.extIcon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        binding.homeLayout.headerLayout.extIcon.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    SharedPref.write(USER_WORK, true);
-                    presentAndAbsentDialog();
-                    String getCurrentTime = DateUtils.getCurrentTime();
-                    SharedPref.putString(CURRENT_TIME, getCurrentTime);
-                    binding.homeLayout.headerLayout.extIcon.setChecked(true);
-                    Constant.checkTimeCallBack.CheckInTimeCallBack();
-                    startService();
+            public void onClick(View view) {
+                if (binding.homeLayout.headerLayout.extIcon.isChecked()) {
+                    String dates = DateUtils.getCurrentDate();
+                    workedHoursOnGivenDayApi(dates);
                 } else {
-                    SharedPref.write(USER_WORK, false);
-                    binding.homeLayout.headerLayout.extIcon.setChecked(false);
                     exitDialog();
                 }
             }
         });
-
         binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.settingBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.logOutBtn.setOnClickListener(this::onClick);
@@ -145,7 +148,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     navHandel("Settings");
                     headerHideShow(false);
                     bottomHideShow(false);
-                }else if (destination.getId() == R.id.employeeHolidayFragment) {
+                } else if (destination.getId() == R.id.employeeHolidayFragment) {
                     navHandel("Settings");
                     headerHideShow(false);
                     bottomHideShow(false);
@@ -267,7 +270,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         } else {
             binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.GONE);
         }
-
     }
 
 //    private void setUpCalendar() {
@@ -304,6 +306,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     @Override
+    public void openEmployeeList() {
+        CalendarCallBack.super.openEmployeeList();
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         Fragment navHostFragment = getSupportFragmentManager().findFragmentById(R.id.auth_nav);
@@ -322,6 +329,78 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         }
     }
 
+    private void markAttendanceByEmployeeApi(String reason) {
+        Map<String, RequestBody> map = new HashMap<>();
+        map.put("absent_reason", toRequestBody(reason));
+        MainService.markAttendanceByEmployee(this, getToken(), map).observe((LifecycleOwner) this, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    showSnackBar(binding.getRoot(), "Your Attendance Is Marked As Absent");
+                    binding.homeLayout.headerLayout.extIcon.setChecked(false);
+                } else {
+                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
+    }
+
+
+    private void workedHoursOnGivenDayApi(String date) {
+        Map<String, RequestBody> map = new HashMap<>();
+        map.put("date", toRequestBody(date));
+        MainService.workedHoursOnGivenDay(this, getToken(), map).observe((LifecycleOwner) this, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    JsonObject jsonObject = new Gson().fromJson(apiResponse.getData(), JsonObject.class);
+                    if (jsonObject.get("worked_hours").getAsString().equals("00:00:00")) {
+                        if (!jsonObject.get("absent").getAsBoolean()) {
+                            presentAndAbsentDialog();
+                        } else {
+                            checkInTimeApi();
+                        }
+                    } else {
+                        workingStart();
+                    }
+                } else {
+                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
+    }
+
+    private void checkInTimeApi() {
+        AppLoader.showLoaderDialog(this);
+        MainService.checkInTime(this, getToken()).observe((LifecycleOwner) this, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    workingStart();
+                } else {
+                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
+    }
+    public void workingStart() {
+        SharedPref.write(USER_WORK, true);
+        String getCurrentTime = DateUtils.getCurrentTime();
+        SharedPref.putString(CURRENT_TIME, getCurrentTime);
+        binding.homeLayout.headerLayout.extIcon.setChecked(true);
+        showSnackBar(binding.getRoot(), getString(R.string.working_time_has_started));
+        Constant.timeLayoutCallBack.TimeStatusLayoutCallBack();
+        Constant.timeLayoutCallBack.CheckInTimeCallBack();
+        startService();
+    }
+
+
     void exitDialog() {
         ExitDialogboxBinding exitDialogboxBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.exit_dialogbox, null, false);
         Dialog dialog = new Dialog(this);
@@ -337,13 +416,90 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                Constant.checkTimeCallBack.checkOutCallBack();
+                checkOutTimeApi();
             }
         });
         exitDialogboxBinding.cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 binding.homeLayout.headerLayout.extIcon.setChecked(true);
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void checkOutTimeApi() {
+        AppLoader.showLoaderDialog(this);
+        MainService.checkOutTime(this, getToken()).observe((LifecycleOwner) this, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    showSnackBar(binding.getRoot(), getString(R.string.working_time_has_stopped));
+                    SharedPref.write(USER_WORK, false);
+                    stopService();
+//                    binding.timeStatusLayout.setVisibility(View.GONE);
+                } else {
+                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
+    }
+
+    void presentAndAbsentDialog() {
+        button = null;
+        PresentAndAbsentDialogboxBinding presentAndAbsentDialogboxBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.present_and_absent_dialogbox, null, false);
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(presentAndAbsentDialogboxBinding.getRoot());
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setGravity(Gravity.CENTER);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.show();
+        presentAndAbsentDialogboxBinding.presentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                button = presentAndAbsentDialogboxBinding.presentBtn;
+                presentAndAbsentDialogboxBinding.presentBtn.setBackground(getDrawable(R.drawable.green_bg_att));
+                presentAndAbsentDialogboxBinding.absentBtn.setBackground(getDrawable(R.drawable.gray_round_present));
+                presentAndAbsentDialogboxBinding.absentReasonTxt.setVisibility(View.GONE);
+                presentAndAbsentDialogboxBinding.saveBtn.setVisibility(View.VISIBLE);
+            }
+        });
+        presentAndAbsentDialogboxBinding.absentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                button = presentAndAbsentDialogboxBinding.absentBtn;
+                presentAndAbsentDialogboxBinding.absentBtn.setBackground(getDrawable(R.drawable.red_round_bg));
+                presentAndAbsentDialogboxBinding.presentBtn.setBackground(getDrawable(R.drawable.gray_round_present));
+                presentAndAbsentDialogboxBinding.absentReasonTxt.setVisibility(View.VISIBLE);
+                presentAndAbsentDialogboxBinding.saveBtn.setVisibility(View.VISIBLE);
+            }
+        });
+        presentAndAbsentDialogboxBinding.saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (button == presentAndAbsentDialogboxBinding.presentBtn) {
+                    showSnackBar(binding.getRoot(), getString(R.string.working_time_has_started));
+                    checkInTimeApi();
+                    dialog.dismiss();
+                } else if (button == presentAndAbsentDialogboxBinding.absentBtn) {
+                    if (presentAndAbsentDialogboxBinding.absentReasonTxt.getText().toString().isEmpty()) {
+                        showSnackBar(binding.getRoot(), "Enter reason for absent");
+                    } else {
+                        markAttendanceByEmployeeApi(presentAndAbsentDialogboxBinding.absentReasonTxt.getText().toString());
+                        dialog.dismiss();
+                    }
+                }
+            }
+        });
+        presentAndAbsentDialogboxBinding.cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.homeLayout.headerLayout.extIcon.setChecked(false);
                 dialog.dismiss();
             }
         });

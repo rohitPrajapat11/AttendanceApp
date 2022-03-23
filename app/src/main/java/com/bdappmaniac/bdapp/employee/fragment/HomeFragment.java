@@ -11,16 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.LifecycleOwner;
 
-import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.adapter.CalendarAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentHomeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
-import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.interfaces.CheckTimeCallBack;
+import com.bdappmaniac.bdapp.interfaces.TimeLayoutCallBack;
 import com.bdappmaniac.bdapp.model.CalendarDateModel;
 import com.bdappmaniac.bdapp.utils.Constant;
 import com.bdappmaniac.bdapp.utils.SharedPref;
@@ -30,11 +26,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Map;
 
-import okhttp3.RequestBody;
-
-public class HomeFragment extends BaseFragment implements CheckTimeCallBack {
+public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
     public FragmentHomeBinding binding;
     CalendarAdapter adapter;
     Calendar cal = Calendar.getInstance(Locale.ENGLISH);
@@ -46,11 +39,14 @@ public class HomeFragment extends BaseFragment implements CheckTimeCallBack {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
+        Constant.timeLayoutCallBack = this;
         if (SharedPref.read(USER_WORK, true)) {
             binding.timeStatusLayout.setVisibility(View.VISIBLE);
             binding.checkInTime.setText(SharedPref.getStringValue(CURRENT_TIME));
         }
-        Constant.checkTimeCallBack = this;
+//        }else if(SharedPref.read(USER_WORK, false)) {
+//            binding.timeStatusLayout.setVisibility(View.GONE);
+//        }
 //        binding.checkInTime.setOnClickListener(view -> {
 //            showTime(binding.checkInTime);
 //        });
@@ -189,52 +185,14 @@ public class HomeFragment extends BaseFragment implements CheckTimeCallBack {
     }
 
     @Override
-    public void CheckInTimeCallBack() {
-        checkInTimeApi();
+    public void TimeStatusLayoutCallBack() {
+        binding.timeStatusLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void checkOutCallBack() {
-        checkOutTimeApi();
+    public void CheckInTimeCallBack() {
+        binding.checkInTime.setText(SharedPref.getStringValue(CURRENT_TIME));
     }
-
-    private void checkInTimeApi() {
-        AppLoader.showLoaderDialog(mContext);
-        MainService.checkInTime(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
-            if (apiResponse == null) {
-                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
-            } else {
-                if ((apiResponse.getData() != null)) {
-                    binding.timeStatusLayout.setVisibility(View.VISIBLE);
-                    binding.checkInTime.setText(SharedPref.getStringValue(CURRENT_TIME));
-                } else {
-                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
-                }
-            }
-        });
-        AppLoader.hideLoaderDialog();
-    }
-
-    private void checkOutTimeApi() {
-        AppLoader.showLoaderDialog(mContext);
-        MainService.checkOutTime(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
-            if (apiResponse == null) {
-                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
-            } else {
-                if ((apiResponse.getData() != null)) {
-                    if (SharedPref.read(USER_WORK, false)) {
-                        binding.timeStatusLayout.setVisibility(View.GONE);
-                    }
-                    showSnackBar(binding.getRoot(), mContext.getString(R.string.working_time_has_stopped));
-                    ((BaseActivity) mContext).stopService();
-                } else {
-                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
-                }
-            }
-        });
-        AppLoader.hideLoaderDialog();
-    }
-
 
     public class TextChange implements TextWatcher {
         View view;

@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.admin.fragment;
+package com.bdappmaniac.bdapp.employee.fragment;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -510,7 +510,7 @@ public class ProfileFragment extends BaseFragment {
         AppLoader.showLoaderDialog(mContext);
         MainService.updateEmployeeProfile(mContext, getToken(), map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
-                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
                     LoginResponse updateResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
@@ -518,11 +518,11 @@ public class ProfileFragment extends BaseFragment {
                     SharedPref.putUserDetails(updateResponse);
                     setResponseData(updateResponse);
                 } else {
-                    ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
             }
+            AppLoader.hideLoaderDialog();
         });
-        AppLoader.hideLoaderDialog();
     }
 
     public RequestBody toRequestBody(String val) {
