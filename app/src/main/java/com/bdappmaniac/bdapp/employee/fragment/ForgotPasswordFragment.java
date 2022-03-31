@@ -1,5 +1,9 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
+import static com.bdappmaniac.bdapp.activity.BaseActivity.EMAIL;
+import static com.bdappmaniac.bdapp.activity.BaseActivity.OTP_KEY;
+import static com.bdappmaniac.bdapp.activity.BaseActivity.PIN_KEY;
+
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -30,7 +34,6 @@ import com.bdappmaniac.bdapp.utils.ValidationUtils;
 import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 public class ForgotPasswordFragment extends BaseFragment {
@@ -62,8 +65,7 @@ public class ForgotPasswordFragment extends BaseFragment {
             public void onClick(View v) {
                 if (checkValidation()) {
 //                    Navigation.findNavController(v).navigate(R.id.newPasswordFragment);
-                    String email = binding.emailTxt.getText().toString();
-                    sendMailApi(email);
+                    sendMailApi(binding.emailTxt.getText().toString());
                 }
             }
         });
@@ -91,34 +93,6 @@ public class ForgotPasswordFragment extends BaseFragment {
             return false;
         }
         return true;
-    }
-
-    public class TextChange implements TextWatcher {
-        View view;
-
-        private TextChange(View v) {
-            view = v;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-            if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
-                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
-            } else {
-                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
-            }
-            setValidations();
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
     }
 
     private void isFieldFillUp() {
@@ -155,11 +129,13 @@ public class ForgotPasswordFragment extends BaseFragment {
         MainService.sendMail(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
 //                ((BaseActivity) mContext).showToast(mContext.getString(R.string.your_email_have_not_been_registered));
-                showSnackBar(binding.getRoot(),mContext.getString(R.string.invalid_email));
+                showSnackBar(binding.getRoot(), mContext.getString(R.string.invalid_email));
             } else {
                 if ((apiResponse.getData() != null)) {
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                    Navigation.findNavController(binding.getRoot()).navigate(R.id.newPasswordFragment);
+                    Bundle bundle = new Bundle();
+                    bundle.putString(EMAIL, binding.emailTxt.getText().toString());
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.newPasswordFragment, bundle);
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
@@ -168,15 +144,31 @@ public class ForgotPasswordFragment extends BaseFragment {
         });
     }
 
-    public RequestBody toRequestBody(String val) {
-        RequestBody requestBody = null;
-        if (getActivity() != null) {
-            requestBody = toRequestBodyPart(val);
-        }
-        return requestBody;
-    }
+    public class TextChange implements TextWatcher {
+        View view;
 
-    public RequestBody toRequestBodyPart(String value) {
-        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
+        private TextChange(View v) {
+            view = v;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
+            } else {
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
+            }
+            setValidations();
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
     }
 }

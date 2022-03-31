@@ -39,7 +39,9 @@ import androidx.navigation.Navigation;
 import com.bdappmaniac.bdapp.Api.response.LoginResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.activity.AdminActivity;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
+import com.bdappmaniac.bdapp.activity.HomeActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentProfileBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
@@ -59,7 +61,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import id.zelory.compressor.Compressor;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class ProfileFragment extends BaseFragment {
@@ -67,13 +71,13 @@ public class ProfileFragment extends BaseFragment {
     FragmentProfileBinding binding;
     String imgPath;
     File file = null;
-    String getToken;
+    MultipartBody.Part fileToUpload;
     private int mYear, mMonth, mDay, mHour, mMinute;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
         SharedPref.init(mContext);
-        setUserData(SharedPref.getUserDetails());
+        setResponseData(SharedPref.getUserDetails());
 
         binding.nameTxt.addTextChangedListener(new TextChange(binding.nameTxt));
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
@@ -100,8 +104,7 @@ public class ProfileFragment extends BaseFragment {
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
-                            binding.dobTxt.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-
+                            binding.dobTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT,
@@ -117,6 +120,12 @@ public class ProfileFragment extends BaseFragment {
         });
         binding.saveBtn.setOnClickListener(view -> {
             if (checkValidation()) {
+                if (imgPath != null) {
+                    File file = new File(imgPath);
+                    File img = Compressor.getDefault(mContext).compressToFile(file);
+                    RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), img);
+                    fileToUpload = MultipartBody.Part.createFormData("profile", file.getName(), requestBody);
+                }
                 Map<String, RequestBody> map = new HashMap<>();
                 map.put("employee_name", toRequestBody(binding.nameTxt.getText().toString()));
                 map.put("email", toRequestBody(binding.emailTxt.getText().toString()));
@@ -126,11 +135,11 @@ public class ProfileFragment extends BaseFragment {
                 map.put("dob", toRequestBody(binding.dobTxt.getText().toString()));
                 map.put("employee_address", toRequestBody(binding.addressTxt.getText().toString()));
                 map.put("pincode", toRequestBody(binding.pinCodeTxt.getText().toString()));
-                updateEmployeeProfile(map);
+                updateEmployeeProfileApi(map, fileToUpload);
                 onEditChange(false);
             }
         });
-        textProfile();
+
         binding.cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -206,13 +215,6 @@ public class ProfileFragment extends BaseFragment {
         binding.cameraBtn.setOnClickListener(view -> selectImage());
         return binding.getRoot();
     }
-//        Glide.with(mContext)
-//                .load(employeeByIdResponse.getProfile())
-//                .error(R.drawable.user)
-//                .skipMemoryCache(true)
-//                .diskCacheStrategy(DiskCacheStrategy.NONE)
-//                .into(binding.profile);
-//
 
     private void selectImage() {
         final CharSequence[] options = {mContext.getString(R.string.take_photo), mContext.getString(R.string.chose_from_gallery), mContext.getString(R.string.cancel)};
@@ -474,22 +476,6 @@ public class ProfileFragment extends BaseFragment {
         binding.profile.setImageDrawable(d);
     }
 
-    public void setUserData(LoginResponse loginResponse) {
-        binding.nameTxt.setText(loginResponse.getEmployeeName());
-        binding.emailTxt.setText(loginResponse.getEmail());
-        binding.phoneTxt.setText(String.valueOf(loginResponse.getEmpMobileNo()));
-        binding.emPhoneTxt.setText(String.valueOf(loginResponse.getEmgMoNo()));
-        binding.designationTxt.setText(loginResponse.getDesignation());
-        binding.dobTxt.setText(String.valueOf(loginResponse.getDob()));
-        binding.addressTxt.setText(loginResponse.getEmployeeAddress());
-        binding.pinCodeTxt.setText(String.valueOf(loginResponse.getPincode()));
-        if (loginResponse.getDob() == null) {
-            binding.dobTxt.setText("");
-        } else {
-            binding.dobTxt.setText(String.valueOf(loginResponse.getDob()));
-        }
-    }
-
     public void setResponseData(LoginResponse updateResponse) {
         binding.nameTxt.setText(updateResponse.getEmployeeName());
         binding.emailTxt.setText(updateResponse.getEmail());
@@ -499,6 +485,10 @@ public class ProfileFragment extends BaseFragment {
         binding.dobTxt.setText(String.valueOf(updateResponse.getDob()));
         binding.addressTxt.setText(updateResponse.getEmployeeAddress());
         binding.pinCodeTxt.setText(String.valueOf(updateResponse.getPincode()));
+        if (updateResponse.getProfile() != null) {
+            Glide.with(mContext).load(updateResponse.getProfile()).placeholder(R.drawable.user).into(binding.profile);
+        }
+
         if (updateResponse.getDob() == null) {
             binding.dobTxt.setText("");
         } else {
@@ -506,35 +496,24 @@ public class ProfileFragment extends BaseFragment {
         }
     }
 
-    public void updateEmployeeProfile(Map<String, RequestBody> map) {
+    public void updateEmployeeProfileApi(Map<String, RequestBody> map, MultipartBody.Part fileToUpload) {
         AppLoader.showLoaderDialog(mContext);
-        MainService.updateEmployeeProfile(mContext, getToken(), map).observe((LifecycleOwner) mContext, apiResponse -> {
+        MainService.updateEmployeeProfile(mContext, getToken(), map, fileToUpload).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
                     LoginResponse updateResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
-                    updateResponse.setAccessToken(getToken);
+                    updateResponse.setAccessToken(getToken());
                     SharedPref.putUserDetails(updateResponse);
                     setResponseData(updateResponse);
+                    ((HomeActivity) mContext).updateProfile();
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
             }
             AppLoader.hideLoaderDialog();
         });
-    }
-
-    public RequestBody toRequestBody(String val) {
-        RequestBody requestBody = null;
-        if (getActivity() != null) {
-            requestBody = toRequestBodyPart(val);
-        }
-        return requestBody;
-    }
-
-    public RequestBody toRequestBodyPart(String value) {
-        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
     }
 
     public class TextChange implements TextWatcher {
@@ -546,7 +525,6 @@ public class ProfileFragment extends BaseFragment {
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
         }
 
         @Override

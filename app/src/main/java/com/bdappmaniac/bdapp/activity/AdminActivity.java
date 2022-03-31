@@ -21,7 +21,9 @@ import com.bdappmaniac.bdapp.databinding.ActivityAdminBinding;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
 import com.bdappmaniac.bdapp.utils.Constant;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 import java.util.Objects;
@@ -36,7 +38,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding = DataBindingUtil.setContentView(this, R.layout.activity_admin);
         StatusBarUtils.statusBarColor(this, R.color.white);
         navController = Navigation.findNavController(this, R.id.nav_controller);
-        textProfile();
+        updateProfile();
         binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +80,8 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding.homeLayout.headerLayout.backBtn.setOnClickListener(v -> {
             onBackPressed();
         });
+        binding.navigationDrawer.userName.setText(SharedPref.getUserDetails().getEmployeeName());
+        binding.navigationDrawer.userJobTxt.setText(SharedPref.getUserDetails().getDesignation());
         binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.settingBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.tmcBtn.setOnClickListener(this::onClick);
@@ -329,5 +333,9 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
         binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
         binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
+    }
+
+    public void updateProfile() {
+        Glide.with(this).load(SharedPref.getUserDetails().getProfile()).placeholder(R.drawable.user).into(binding.navigationDrawer.userProfile);
     }
 }

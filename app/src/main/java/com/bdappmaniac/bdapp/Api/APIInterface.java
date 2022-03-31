@@ -4,6 +4,7 @@ import com.bdappmaniac.bdapp.Api.response.ApiResponse;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -11,6 +12,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 
@@ -39,7 +41,7 @@ public interface APIInterface {
 
     @Multipart
     @POST("api/updateProfile")
-    Call<ApiResponse> updateEmployeeProfile(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+    Call<ApiResponse> updateEmployeeProfile(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map, @Part MultipartBody.Part filePart);
 
     @Multipart
     @POST("api/sendMail")
@@ -65,4 +67,19 @@ public interface APIInterface {
     @Multipart
     @POST("api/workedHoursOnDate")
     Call<ApiResponse> workedHoursOnGivenDay(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+
+    @POST("api/remove-holiday/{id}")
+    Call<ApiResponse> removeHoliday(@Header("Authorization") String token, @Path("id") int id);
+
+    @Multipart
+    @POST("api/getInoutsOfLastGivenDays")
+    Call<ApiResponse> inAndOutsBetweenDates(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+
+    @Multipart
+    @POST("api/resetPassword")
+    Call<ApiResponse> resetPassword(@PartMap Map<String, RequestBody> map);
+
+    @Multipart
+    @POST("api/getInOutsBwDates/{emp_id}")
+    Call<ApiResponse> getInAndOutsBetweenDates(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map,  @Path("emp_id") int emp_id);
 }

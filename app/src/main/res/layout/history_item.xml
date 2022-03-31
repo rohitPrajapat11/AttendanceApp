@@ -4,133 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/historyItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
-        android:background="@drawable/white_5r_bg"
-        android:elevation="@dimen/_3sdp"
-        android:padding="@dimen/_10sdp">
-
-        <TextView
-            android:id="@+id/dayTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_heavy"
-            android:paddingStart="@dimen/_10sdp"
-            android:text="Mon"
-            android:textColor="@color/orange"
-            android:textSize="@dimen/_13sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/dateText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_heavy"
-            android:paddingStart="@dimen/_10sdp"
-            android:text="18-01-2022"
-            android:textColor="@color/_002460"
-            android:textSize="@dimen/_13sdp"
-            app:layout_constraintStart_toEndOf="@+id/dayTxt"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/attendLayout"
+            android:id="@+id/historyItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            app:layout_constraintTop_toBottomOf="@+id/dateText"
-            tools:layout_editor_absoluteX="13dp">
+            android:background="@drawable/white_5r_bg"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/checkIn"
-                android:layout_width="wrap_content"
+                android:id="@+id/dayTxt"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
+                android:hint="Mon"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="Check In Time"
-                android:textColor="@color/light_black"
-                android:textSize="@dimen/_11sdp"
+                android:maxLength="3"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/_13sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/checkInTimes"
+                android:id="@+id/dateText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
-                android:gravity="center"
-                android:paddingStart="@dimen/_25sdp"
-                android:text="09:20 AM"
-                android:textColor="@color/light_black"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/checkIn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/checkIn"
-                app:layout_constraintTop_toTopOf="@+id/checkIn" />
+                android:hint="18-01-2022"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/_002460"
+                android:textSize="@dimen/_13sdp"
+                app:layout_constraintStart_toEndOf="@+id/dayTxt"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/checkOut"
+
+            <ImageView
+                android:id="@+id/dropDownBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:fontFamily="@font/font_heavy"
-                android:paddingStart="@dimen/_10sdp"
-                android:text="Check Out Time"
-                android:textColor="@color/light_black"
-                android:textSize="@dimen/_11sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkIn" />
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/icn_down_arrows"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/historyItem"
+                app:layout_constraintEnd_toEndOf="@+id/historyItem"
+                app:layout_constraintTop_toTopOf="@+id/historyItem" />
 
-            <TextView
-                android:id="@+id/checkOutTimes"
-                android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/DropUpBtn"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_heavy"
-                android:gravity="center"
-                android:paddingStart="@dimen/_15sdp"
-                android:text="06:35 PM"
-                android:textColor="@color/light_black"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/checkOut"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/checkOut"
-                app:layout_constraintTop_toTopOf="@+id/checkOut" />
-
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:src="@drawable/icn_arrow_up"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/historyItem"
+                app:layout_constraintEnd_toEndOf="@+id/historyItem"
+                app:layout_constraintTop_toTopOf="@+id/historyItem" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/absentTxt"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:fontFamily="@font/font_heavy"
-            android:gravity="center"
-            android:text="Absent"
-            android:textAllCaps="true"
-            android:textColor="@color/secondary_color"
-            android:textSize="@dimen/_12sdp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/dateText"
+            android:visibility="visible"
+            android:background="@drawable/bottom_round_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/dateText" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/historyItem">
 
-        <TextView
-            android:id="@+id/reasonTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:fontFamily="@font/font_heavy"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/_12sdp"
-            android:text="Due To fever i did not come."
-            android:textColor="@color/secondary_color"
-            android:textSize="@dimen/_12sdp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/dayTxt"
-            app:layout_constraintTop_toBottomOf="@+id/dateText" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/historyListRecyclers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:spanCount="1"
+                tools:itemCount="2"
+                tools:listitem="@layout/history_list_item" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -184,33 +184,32 @@
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_35sdp"
-                        android:layout_marginTop="@dimen/_85sdp"
+                        android:layout_marginBottom="41dp"
                         android:background="@drawable/light_green_15r_bg"
                         android:fontFamily="@font/font_heavy"
                         android:text="@string/sign_in"
                         android:textAllCaps="true"
                         android:textColor="@color/_172B4D"
                         android:textSize="@dimen/_12sdp"
+                        app:layout_constraintBottom_toTopOf="@+id/forgetPasswordBtn"
                         app:layout_constraintEnd_toEndOf="@+id/passwordTxt"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/passwordTxt"
-                        app:layout_constraintTop_toBottomOf="@+id/passwordTxt" />
+                        app:layout_constraintStart_toStartOf="@+id/passwordTxt" />
 
                     <TextView
                         android:id="@+id/forgetPasswordBtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:fontFamily="@font/font_heavy"
                         android:gravity="center"
                         android:text="i forgot password"
                         android:textColor="@color/_172B4D"
                         android:textSize="@dimen/_12sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/signInBtn"
-                        app:layout_constraintStart_toStartOf="@+id/signInBtn"
-                        app:layout_constraintTop_toBottomOf="@+id/signInBtn" />
+                        app:layout_constraintStart_toStartOf="@+id/signInBtn" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 

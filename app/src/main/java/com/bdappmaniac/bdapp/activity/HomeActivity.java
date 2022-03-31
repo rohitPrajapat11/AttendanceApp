@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +37,7 @@ import com.bdappmaniac.bdapp.utils.Constant;
 import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -57,9 +59,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         StatusBarUtils.statusBarColor(this, R.color.white);
         navController = Navigation.findNavController(this, R.id.nav_controller);
+        updateProfile();
         SharedPref.init(this);
 //        Toast.makeText(this, SharedPref.getUserDetails().getAccessToken(), Toast.LENGTH_SHORT).show();
-        textProfile();
+        String dates = DateUtils.getCurrentDate();
+        absentCheck(dates);
         boolean workIsEnable = SharedPref.read(USER_WORK, false);
         binding.homeLayout.headerLayout.extIcon.setChecked(workIsEnable);
         binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +115,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 }
             }
         });
+        binding.navigationDrawer.userName.setText(SharedPref.getUserDetails().getEmployeeName());
+        binding.navigationDrawer.userJobTxt.setText(SharedPref.getUserDetails().getDesignation());
         binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.settingBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.logOutBtn.setOnClickListener(this::onClick);
@@ -358,13 +364,37 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 if ((apiResponse.getData() != null)) {
                     JsonObject jsonObject = new Gson().fromJson(apiResponse.getData(), JsonObject.class);
                     if (jsonObject.get("worked_hours").getAsString().equals("00:00:00")) {
-                        if (!jsonObject.get("absent").getAsBoolean()) {
-                            presentAndAbsentDialog();
+                        if (jsonObject.get("absent").getAsBoolean()) {
+                            binding.homeLayout.headerLayout.extIcon.setChecked(false);
+                            Toast.makeText(this, "Absent", Toast.LENGTH_SHORT).show();
                         } else {
-                            checkInTimeApi();
+                            presentAndAbsentDialog();
                         }
                     } else {
-                        workingStart();
+                        checkInTimeApi();
+                    }
+                } else {
+                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
+    }
+
+    private void absentCheck(String date) {
+        Map<String, RequestBody> map = new HashMap<>();
+        map.put("date", toRequestBody(date));
+        MainService.workedHoursOnGivenDay(this, getToken(), map).observe((LifecycleOwner) this, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    JsonObject jsonObject = new Gson().fromJson(apiResponse.getData(), JsonObject.class);
+                    if (jsonObject.get("worked_hours").getAsString().equals("00:00:00")) {
+                        if (jsonObject.get("absent").getAsBoolean()) {
+                            binding.homeLayout.headerLayout.absentBtn.setVisibility(View.VISIBLE);
+                            binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
+                        }
                     }
                 } else {
                     ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
@@ -389,6 +419,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             AppLoader.hideLoaderDialog();
         });
     }
+
     public void workingStart() {
         SharedPref.write(USER_WORK, true);
         String getCurrentTime = DateUtils.getCurrentTime();
@@ -503,6 +534,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 dialog.dismiss();
             }
         });
+    }
+
+    public void updateProfile() {
+        Glide.with(this).load(SharedPref.getUserDetails().getProfile()).placeholder(R.drawable.user).into(binding.navigationDrawer.userProfile);
     }
 
 //    private void startClock(){

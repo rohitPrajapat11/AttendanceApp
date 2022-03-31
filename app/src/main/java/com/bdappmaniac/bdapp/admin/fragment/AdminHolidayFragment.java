@@ -15,21 +15,19 @@ import android.widget.DatePicker;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bdappmaniac.bdapp.Api.response.EmployeeHoliday;
-import com.bdappmaniac.bdapp.Api.response.EmployeeHolidayList;
 import com.bdappmaniac.bdapp.Api.response.EmployeeHolidayResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
-import com.bdappmaniac.bdapp.adapter.EmployeeHolidayAdapter;
 import com.bdappmaniac.bdapp.adapter.EmployeeHolidayMonthAdapter;
 import com.bdappmaniac.bdapp.databinding.AdminAddholidayDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentAdminHolidayBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -43,6 +41,7 @@ import java.util.Map;
 import okhttp3.RequestBody;
 
 public class AdminHolidayFragment extends BaseFragment {
+    public String monthName;
     FragmentAdminHolidayBinding binding;
     String dates;
     EmployeeHolidayMonthAdapter monthAdapter;
@@ -80,13 +79,14 @@ public class AdminHolidayFragment extends BaseFragment {
         Map<String, RequestBody> map = new HashMap<>();
         map.put("name", toRequestBody(name));
         map.put("date", toRequestBody(date));
+        map.put("month", toRequestBody(monthName));
         MainService.addHolidays(mContext, getToken(), map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
                     showSnackBar(binding.getRoot(), "Holiday Added Successfully");
-                    Navigation.findNavController(binding.getRoot()).popBackStack();
+                    holidaysOfCurrentYearApi();
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
@@ -120,6 +120,7 @@ public class AdminHolidayFragment extends BaseFragment {
                                                   int monthOfYear, int dayOfMonth) {
                                 adminAddholidayDialogboxBinding.dateTxt.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                                 dates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                monthName = DateUtils.getMonthNames(monthOfYear);
 //                                binding.dateTxt.setText(new StringBuilder().append(TDay).append("-")
 //                                        .append((TMonth + 1)).append("-").append(year)
 //                                        .append(" "));
@@ -163,6 +164,7 @@ public class AdminHolidayFragment extends BaseFragment {
                 if ((apiResponse.getData() != null)) {
                     Type collectionType = new TypeToken<List<EmployeeHoliday>>() {}.getType();
                     List<EmployeeHoliday> monthList = new Gson().fromJson(apiResponse.getData(), collectionType);
+                    employeeList.clear();
                     employeeList.addAll(monthList);
                     monthAdapter.notifyDataSetChanged();
                 } else {

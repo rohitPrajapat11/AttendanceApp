@@ -6,17 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.airbnb.lottie.parser.moshi.JsonReader;
 import com.bdappmaniac.bdapp.Api.APIInterface;
 import com.bdappmaniac.bdapp.Api.response.ApiResponse;
-import com.bdappmaniac.bdapp.Api.response.RetrofitClient;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
-import com.bdappmaniac.bdapp.utils.SharedPref;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +22,9 @@ import retrofit2.Response;
 
 public class MainService extends BaseFragment {
 
-    private static final APIInterface apiService = RetrofitClient.getRetrofitInstance().create(APIInterface.class);
+    //    private static final APIInterface apiService = RetrofitClient.getRetrofitInstance().create(APIInterface.class);
+    private static final APIInterface apiService = BaseService.getAPIClient("").create(APIInterface.class);
+
 
     @NonNull
     public static LiveData<ApiResponse> userLogIn(Context context, Map<String, RequestBody> map) {
@@ -160,9 +160,9 @@ public class MainService extends BaseFragment {
         return data;
     }
 
-    public static LiveData<ApiResponse> updateEmployeeProfile(Context context, String token, Map<String, RequestBody> map) {
+    public static LiveData<ApiResponse> updateEmployeeProfile(Context context, String token, Map<String, RequestBody> map, MultipartBody.Part fileToUpload) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        Call<ApiResponse> call = apiService.updateEmployeeProfile(token, map);
+        Call<ApiResponse> call = apiService.updateEmployeeProfile(token, map, fileToUpload);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -249,7 +249,7 @@ public class MainService extends BaseFragment {
         return data;
     }
 
-    public static LiveData<ApiResponse> addHolidays(Context context, String token, Map<String , RequestBody>map) {
+    public static LiveData<ApiResponse> addHolidays(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
         Call<ApiResponse> call = apiService.addHolidays(token, map);
         call.enqueue(new Callback<ApiResponse>() {
@@ -271,7 +271,7 @@ public class MainService extends BaseFragment {
         return data;
     }
 
-    public static LiveData<ApiResponse> markAttendanceByEmployee(Context context, String token, Map<String , RequestBody>map) {
+    public static LiveData<ApiResponse> markAttendanceByEmployee(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
         Call<ApiResponse> call = apiService.markAttendanceByEmployee(token, map);
         call.enqueue(new Callback<ApiResponse>() {
@@ -315,9 +315,98 @@ public class MainService extends BaseFragment {
         return data;
     }
 
-    public static LiveData<ApiResponse> workedHoursOnGivenDay(Context context, String token, Map<String , RequestBody>map) {
+    public static LiveData<ApiResponse> workedHoursOnGivenDay(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
         Call<ApiResponse> call = apiService.workedHoursOnGivenDay(token, map);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
+
+    public static LiveData<ApiResponse> removeHoliday(Context context, String token, int id) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        Call<ApiResponse> call = apiService.removeHoliday(token, id);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
+
+    public static LiveData<ApiResponse> inAndOutsBetweenDates(Context context, String token, Map<String, RequestBody> map) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        Call<ApiResponse> call = apiService.inAndOutsBetweenDates(token, map);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
+
+    public static LiveData<ApiResponse> resetPassword(Context context, Map<String, RequestBody> map) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        Call<ApiResponse> call = apiService.resetPassword(map);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+
+            }
+        });
+        return data;
+    }
+
+    public static LiveData<ApiResponse> getInAndOutsBetweenDates(Context context, String token, Map<String, RequestBody> map, int emp_id) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        Call<ApiResponse> call = apiService.getInAndOutsBetweenDates(token, map, emp_id);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {

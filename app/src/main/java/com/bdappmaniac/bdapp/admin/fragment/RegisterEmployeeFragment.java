@@ -45,7 +45,6 @@ import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.Map;
 
-import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 
@@ -100,24 +99,14 @@ public class RegisterEmployeeFragment extends BaseFragment {
             } else {
                 if ((apiResponse.getData() != null)) {
                     EmpRegisterResponse empRegisterResponse = new Gson().fromJson(apiResponse.getData(), EmpRegisterResponse.class);
+                    showSnackBar(binding.getRoot(), "New Employee has been Created");
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.employeeListFragment);
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
             }
             AppLoader.hideLoaderDialog();
         });
-    }
-
-    public RequestBody toRequestBody(String val) {
-        RequestBody requestBody = null;
-        if (getActivity() != null) {
-            requestBody = toRequestBodyPart(val);
-        }
-        return requestBody;
-    }
-
-    public RequestBody toRequestBodyPart(String value) {
-        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
     }
 
     private void showBottomSheetDialog() {

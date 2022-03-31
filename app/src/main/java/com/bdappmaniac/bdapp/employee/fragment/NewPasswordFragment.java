@@ -1,5 +1,7 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
+import static com.bdappmaniac.bdapp.activity.BaseActivity.EMAIL;
+
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -14,19 +16,32 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 
+import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentNewPasswordBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.StringHelper;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.RequestBody;
 
 public class NewPasswordFragment extends BaseFragment {
     FragmentNewPasswordBinding binding;
+    String email;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_new_password, container, false);
+        if (getArguments() != null) {
+            email = this.getArguments().getString(EMAIL, "");
+        }
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +52,10 @@ public class NewPasswordFragment extends BaseFragment {
         binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
         binding.confirmBtn.setOnClickListener(view -> {
             if (checkValidation()) {
-                showSnackBar(view, mContext.getString(R.string.password_reset));
+                String password = binding.newPasswordTxt.getText().toString();
+                String password_confirmation = binding.passwordTxt.getText().toString();
+                String token = binding.tokenTxt.getText().toString();
+                resetPasswordApi(password, password_confirmation, token);
             }
         });
         return binding.getRoot();
@@ -48,6 +66,9 @@ public class NewPasswordFragment extends BaseFragment {
             return false;
         }
         if (StringHelper.isEmpty(binding.passwordTxt.getText().toString())) {
+            return false;
+        }
+        if (StringHelper.isEmpty(binding.tokenTxt.getText().toString())) {
             return false;
         }
         return true;
@@ -66,6 +87,10 @@ public class NewPasswordFragment extends BaseFragment {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.password_mismatch));
             return false;
         }
+        if (TextUtils.isEmpty(binding.tokenTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_correct_otp));
+            return false;
+        }
         return true;
     }
 
@@ -79,6 +104,11 @@ public class NewPasswordFragment extends BaseFragment {
             setTextViewDrawableColor(binding.passwordTxt, R.color._A8A8A8);
         } else {
             setTextViewDrawableColor(binding.passwordTxt, R.color._172B4D);
+        }
+        if (StringHelper.isEmpty(binding.tokenTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.tokenTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.tokenTxt, R.color._172B4D);
         }
         setValidations();
     }
@@ -99,6 +129,32 @@ public class NewPasswordFragment extends BaseFragment {
                 drawable.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(textView.getContext(), color), PorterDuff.Mode.SRC_IN));
             }
         }
+    }
+
+    private void resetPasswordApi(String password, String password_confirmation, String token) {
+        AppLoader.showLoaderDialog(mContext);
+        Map<String, RequestBody> map = new HashMap<>();
+        map.put("email", toRequestBody(email));
+        map.put("password", toRequestBody(password));
+        map.put("password_confirmation", toRequestBody(password_confirmation));
+        map.put("token", toRequestBody(token));
+        MainService.resetPassword(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+//                    if(binding.newPasswordTxt.getText().toString() != binding.passwordTxt.getText().toString()) {
+//                        showSnackBar(binding.getRoot(), "Passwords Mismatch");
+//                    }
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.password_reset));
+                    Navigation.findNavController(binding.getRoot()).navigate(R.id.logInFragment);
+
+                } else {
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
     }
 
     public class TextChange implements TextWatcher {

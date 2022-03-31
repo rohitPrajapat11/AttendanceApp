@@ -35,7 +35,8 @@ public class BaseActivity extends AppCompatActivity {
     public static final String NOTIFICATION = "notification";
     public static final String MOBILE = "mobile";
     public static final String PIN_KEY = "key";
-
+    public static final String OTP_KEY = "Otp";
+    public static final String EMAIL = "Email";
     public void showSnackBar(View view, String msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show();
     }

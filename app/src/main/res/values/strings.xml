@@ -79,6 +79,7 @@
     <string name="invalid_email">Invalid Email</string>
     <string name="password_reset">Password Reset</string>
     <string name="please_enter_confirm_password">Please Enter Confirm Password!</string>
+    <string name="please_enter_correct_otp">Please Enter Correct Otp</string>
     <string name="password_mismatch">Password Mismatch!</string>
     <string name="correct_pin">Correct PIN</string>
     <string name="biometric">Biometric</string>
@@ -95,8 +96,8 @@
     <string name="notification_turned_on">Your Notification Is Turned On</string>
     <string name="notification_turned_off">Your Notification Is Turned Off</string>
     <string name="write_term_and_conditions">Please Write Term and Condition</string>
-    <string name="you_are_active">You are Active</string>
-    <string name="you_are_inactive">You are Inactive</string>
+    <string name="you_are_active">Employee Has Been Set Active</string>
+    <string name="you_are_inactive">Employee Has Been Set Inactive</string>
     <string name="share_details">Share Details using</string>
     <string name="correct">Correct</string>
     <string name="working_status">Working Status</string>

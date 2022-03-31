@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bdappmaniac.bdapp.Api.response.EmployeeList;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.EmployeeListItemBinding;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
@@ -61,13 +62,7 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         EmployeeListAdapter.EmployeeListHolder vHolder = (EmployeeListAdapter.EmployeeListHolder) holder;
         vHolder.binding.employeeName.setText(list.get(position).getEmployeeName());
         vHolder.binding.designationTxt.setText(list.get(position).getDesignation());
-
-        Glide.with(context)
-                .load(list.get(position).getProfile())
-                .error(R.drawable.user)
-                .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(vHolder.binding.profile);
+        Glide.with(context).load(list.get(position).getProfile()).placeholder(R.drawable.user).into(vHolder.binding.profile);
 
         vHolder.itemView.setOnClickListener(v -> {
             if (from.equals("LoanFragment")) {

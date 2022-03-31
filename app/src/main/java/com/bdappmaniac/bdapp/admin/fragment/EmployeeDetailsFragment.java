@@ -78,7 +78,9 @@ public class EmployeeDetailsFragment extends BaseFragment {
 //            dialog.show();
 //        });
             binding.attendanceLoanBtn.setOnClickListener(v -> {
-                Navigation.findNavController(v).navigate(R.id.employeeAttendanceFragment);
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", ID);
+                Navigation.findNavController(v).navigate(R.id.employeeAttendanceFragment,bundle);
             });
             binding.provideLoanBtn.setOnClickListener(v -> {
                 Navigation.findNavController(v).navigate(R.id.provideLoanFragment);
@@ -102,18 +104,6 @@ public class EmployeeDetailsFragment extends BaseFragment {
             }
             AppLoader.hideLoaderDialog();
         });
-    }
-
-    public RequestBody toRequestBody(String val) {
-        RequestBody requestBody = null;
-        if (getActivity() != null) {
-            requestBody = toRequestBodyPart(val);
-        }
-        return requestBody;
-    }
-
-    public RequestBody toRequestBodyPart(String value) {
-        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
     }
 
     public void setUserData(EmployeeByIdResponse employeeByIdResponse) {
