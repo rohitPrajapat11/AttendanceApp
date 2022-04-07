@@ -12,7 +12,7 @@ import androidx.navigation.Navigation;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
-import com.bdappmaniac.bdapp.databinding.FragmentAdminTermAndConditionBinding;
+import com.bdappmaniac.bdapp.databinding.FragmentEmployeeTermsAndConditionBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.StringHelper;
@@ -25,18 +25,24 @@ import java.util.Map;
 
 import okhttp3.RequestBody;
 
-public class AdminTermAndCondition extends BaseFragment {
-    FragmentAdminTermAndConditionBinding binding;
+public class EmployeeTermsAndConditionFragment extends BaseFragment {
+    FragmentEmployeeTermsAndConditionBinding binding;
+    int IDE;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_term_and_condition, container, false);
-        String content = binding.conditionsLb.getText().toString();
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_terms_and_condition, container, false);
+        if (getArguments() != null) {
+            IDE = getArguments().getInt("id");
+        }
         try {
-            allTermsAndConditionsApi();
+            specificEmployeeTermsAndConditionsApi(IDE);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+        binding.backBtn.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigateUp();
+        });
         binding.cancelBtn.setOnClickListener(v -> {
             editCondition(false);
         });
@@ -54,11 +60,8 @@ public class AdminTermAndCondition extends BaseFragment {
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-                addTermsAndConditionsApi(setCondition);
+                addEmployeeTermAndConditionsApi(setCondition, String.valueOf(IDE));
             }
-        });
-        binding.backBtn.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigateUp();
         });
         return binding.getRoot();
     }
@@ -79,16 +82,16 @@ public class AdminTermAndCondition extends BaseFragment {
         }
     }
 
-    private void allTermsAndConditionsApi() throws UnsupportedEncodingException {
+    public void specificEmployeeTermsAndConditionsApi(int empo_id) throws UnsupportedEncodingException{
         AppLoader.showLoaderDialog(mContext);
-        MainService.allTermsAndConditions(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
+        MainService.specificEmployeeTermsAndConditions(mContext, getToken(), empo_id).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((!apiResponse.getData().isJsonNull())) {
                     String getCondition = null;
                     try {
-                        getCondition = URLDecoder.decode(apiResponse.getData().getAsJsonArray().get(0).getAsJsonObject().get("content1").toString().replace("\"", ""), "UTF-8");
+                        getCondition = URLDecoder.decode(apiResponse.getData().getAsJsonObject().get("rules").toString().replace("\"", ""), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
@@ -102,11 +105,12 @@ public class AdminTermAndCondition extends BaseFragment {
         });
     }
 
-    private void addTermsAndConditionsApi(String content) {
+    public void addEmployeeTermAndConditionsApi(String rules, String  emp_id) {
         AppLoader.showLoaderDialog(mContext);
         Map<String, RequestBody> map = new HashMap<>();
-        map.put("content1", toRequestBody(content));
-        MainService.addTermsAndConditions(mContext, getToken(), map).observe((LifecycleOwner) mContext, apiResponse -> {
+        map.put("rules", toRequestBody(rules));
+        map.put("emp_id", toRequestBody(emp_id));
+        MainService.addEmployeeTermAndConditions(mContext, getToken(), map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {

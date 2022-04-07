@@ -1,5 +1,7 @@
 package com.bdappmaniac.bdapp.admin.fragment;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,6 +86,14 @@ public class EmployeeDetailsFragment extends BaseFragment {
             });
             binding.provideLoanBtn.setOnClickListener(v -> {
                 Navigation.findNavController(v).navigate(R.id.provideLoanFragment);
+            });
+            binding.tmcBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", ID);
+                    Navigation.findNavController(v).navigate(R.id.employeeTermsAndConditionFragment, bundle);
+                }
             });
         }
         return binding.getRoot();

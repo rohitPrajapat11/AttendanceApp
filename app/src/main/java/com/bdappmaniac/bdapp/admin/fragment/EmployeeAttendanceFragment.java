@@ -19,7 +19,7 @@ import com.bdappmaniac.bdapp.Api.response.InoutsItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
-import com.bdappmaniac.bdapp.adapter.HistoryAdapter;
+import com.bdappmaniac.bdapp.adapter.EmployeeAttendanceAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeAttendanceBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
@@ -44,7 +44,7 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
     FragmentEmployeeAttendanceBinding binding;
     Calendar from = Calendar.getInstance();
     String selectedMonth = "Jan";
-    HistoryAdapter adapter;
+    EmployeeAttendanceAdapter adapter;
     List<InoutsItem> historyList = new ArrayList<>();
     List<EmployeeHistoryDataItem> List = new ArrayList<>();
     String fromDates;
@@ -61,7 +61,7 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
             if (getArguments() != null) {
                 IDE = getArguments().getInt("id");
             }
-            adapter = new HistoryAdapter(mContext, List);
+            adapter = new EmployeeAttendanceAdapter(mContext, List);
             binding.historyRecycler.setHasFixedSize(false);
             binding.historyRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.historyRecycler.setAdapter(adapter);
@@ -99,6 +99,7 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
                                 public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                     toDates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                                     binding.ToDate.setText(DateUtils.getFormattedTime(toDates, DateUtils.appDateFormat, DateUtils.appDateFormatTo));
+                                    binding.ToDate.setFocusable(false);
                                 }
                             }, TYear, TMonth, TDay);
                     datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
@@ -169,4 +170,5 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
             AppLoader.hideLoaderDialog();
         });
     }
+
 }

@@ -39,12 +39,12 @@
                 android:drawableTint="@color/_172B4D"
                 android:fontFamily="@font/font_heavy"
                 android:gravity="center_vertical"
-                android:text="Term &amp; Conditions"
+                android:text="Employee Term and Conditions"
                 android:textColor="@color/_172B4D"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_16sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/backBtn"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/secondary_color" />
 

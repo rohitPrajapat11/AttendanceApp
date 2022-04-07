@@ -146,72 +146,72 @@ public class ProfileFragment extends BaseFragment {
                 onEditChange(false);
             }
         });
-        binding.designationTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog dialog = new Dialog(mContext);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(true);
-                dialog.setContentView(R.layout.designation_dialogbox);
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setGravity(Gravity.CENTER);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                TextView adTxt = dialog.findViewById(R.id.adTxt);
-                TextView iosTxt = dialog.findViewById(R.id.iosTxt);
-                TextView wdTxt = dialog.findViewById(R.id.wdTxt);
-                TextView pmTxt = dialog.findViewById(R.id.pmTxt);
-                TextView oTxt = dialog.findViewById(R.id.oTxt);
-
-                String getAd = adTxt.getText().toString();
-                String getIos = iosTxt.getText().toString();
-                String getWd = wdTxt.getText().toString();
-                String getPm = pmTxt.getText().toString();
-                String getO = oTxt.getText().toString();
-
-                adTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getAd;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-                iosTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getIos;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-                wdTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getWd;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-                pmTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getPm;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-                oTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getO;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-            }
-        });
+//        binding.designationTxt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Dialog dialog = new Dialog(mContext);
+//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                dialog.setCancelable(false);
+//                dialog.setCanceledOnTouchOutside(true);
+//                dialog.setContentView(R.layout.designation_dialogbox);
+//                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//                dialog.getWindow().setGravity(Gravity.CENTER);
+//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+//                TextView adTxt = dialog.findViewById(R.id.adTxt);
+//                TextView iosTxt = dialog.findViewById(R.id.iosTxt);
+//                TextView wdTxt = dialog.findViewById(R.id.wdTxt);
+//                TextView pmTxt = dialog.findViewById(R.id.pmTxt);
+//                TextView oTxt = dialog.findViewById(R.id.oTxt);
+//
+//                String getAd = adTxt.getText().toString();
+//                String getIos = iosTxt.getText().toString();
+//                String getWd = wdTxt.getText().toString();
+//                String getPm = pmTxt.getText().toString();
+//                String getO = oTxt.getText().toString();
+//
+//                adTxt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String s = getAd;
+//                        binding.designationTxt.setText(s);
+//                        dialog.dismiss();
+//                    }
+//                });
+//                iosTxt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String s = getIos;
+//                        binding.designationTxt.setText(s);
+//                        dialog.dismiss();
+//                    }
+//                });
+//                wdTxt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String s = getWd;
+//                        binding.designationTxt.setText(s);
+//                        dialog.dismiss();
+//                    }
+//                });
+//                pmTxt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String s = getPm;
+//                        binding.designationTxt.setText(s);
+//                        dialog.dismiss();
+//                    }
+//                });
+//                oTxt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String s = getO;
+//                        binding.designationTxt.setText(s);
+//                        dialog.dismiss();
+//                    }
+//                });
+//                dialog.show();
+//            }
+//        });
         binding.cameraBtn.setOnClickListener(view -> selectImage());
         return binding.getRoot();
     }

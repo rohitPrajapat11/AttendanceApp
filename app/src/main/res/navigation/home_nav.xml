@@ -40,5 +40,10 @@
         android:name="com.bdappmaniac.bdapp.employee.fragment.EmployeeHolidayFragment"
         android:label="EmployeeHolidayFragment"
         tools:layout="@layout/fragment_employee_holiday"/>
+    <fragment
+        android:id="@+id/employeeAttendanceRulesFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.EmployeeAttendanceRulesFragment"
+        android:label="EmployeeAttendanceRulesFragment"
+        tools:layout="@layout/fragment_employee_attendance_rules"/>
 
 </navigation>

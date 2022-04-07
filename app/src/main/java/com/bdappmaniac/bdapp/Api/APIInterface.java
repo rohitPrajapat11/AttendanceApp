@@ -82,4 +82,25 @@ public interface APIInterface {
     @Multipart
     @POST("api/getInOutsBwDates/{emp_id}")
     Call<ApiResponse> getInAndOutsBetweenDates(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map,  @Path("emp_id") int emp_id);
+
+    @Multipart
+    @POST("api/add-condition")
+    Call<ApiResponse> addTermsAndConditions(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+
+    @POST("api/all-terms-and-conditions")
+    Call<ApiResponse> allTermsAndConditions(@Header("Authorization") String token);
+
+    @Multipart
+    @POST("api/add-daily-rules")
+    Call<ApiResponse> addDailyRules(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+
+    @POST("api/daily-rules")
+    Call<ApiResponse> allDailyRules(@Header("Authorization") String token);
+
+    @Multipart
+    @POST("api/add-employee-term-and-conditions")
+    Call<ApiResponse> addEmployeeTermAndConditions(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+
+    @POST("api/employee/terms-and-conditions/{empo_id}")
+    Call<ApiResponse> specificEmployeeTermsAndConditions(@Header("Authorization") String token, @Path("empo_id") int empo_id);
 }

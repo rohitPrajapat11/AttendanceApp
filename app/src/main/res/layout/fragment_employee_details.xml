@@ -194,8 +194,7 @@
                         android:layout_height="wrap_content"
                         android:checked="true"
                         android:minHeight="48dp"
-                        android:thumbTint="@color/primary_color"
-                        android:trackTint="@color/_A8A8A8"
+                        android:theme="@style/SCBSwitch"
                         app:layout_constraintBottom_toBottomOf="@+id/activeBtn"
                         app:layout_constraintEnd_toEndOf="@+id/designationTxt"
                         app:layout_constraintTop_toTopOf="@+id/activeBtn"
@@ -400,6 +399,25 @@
                         app:layout_constraintStart_toStartOf="@+id/attendanceLoanBtn"
                         app:layout_constraintTop_toBottomOf="@+id/attendanceLoanBtn" />
 
+                    <TextView
+                        android:id="@+id/tmcBtn"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:drawableStart="@drawable/icn_dob"
+                        android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:gravity="center_vertical"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:text="Terms and Conditions"
+                        android:textAllCaps="false"
+                        android:textColor="@color/_172B4D"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/provideLoanBtn"
+                        app:layout_constraintStart_toStartOf="@+id/provideLoanBtn"
+                        app:layout_constraintTop_toBottomOf="@+id/provideLoanBtn" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

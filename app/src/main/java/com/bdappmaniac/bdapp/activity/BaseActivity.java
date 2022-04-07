@@ -79,7 +79,6 @@ public class BaseActivity extends AppCompatActivity {
                 userLogout();
                 startActivity(new Intent(getBaseContext(), AuthActivity.class));
                 finish();
-                showToast(getString(R.string.logout));
                 dialog.dismiss();
             }
         });

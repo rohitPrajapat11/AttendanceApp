@@ -90,6 +90,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding.navigationDrawer.profileBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.loanBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.addHolidayBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.rulesBtn.setOnClickListener(this::onClick);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -138,6 +139,10 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     headerHideShow(true);
                     bottomHideShow(false);
                 } else if (destination.getId() == R.id.adminHolidayFragment) {
+                    navHandel("Holidays");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                }else if (destination.getId() == R.id.attendanceRulesFragment) {
                     navHandel("Holidays");
                     headerHideShow(false);
                     bottomHideShow(false);
@@ -272,6 +277,11 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
             case R.id.addHolidayBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.adminHolidayFragment) {
                     navController.navigate(R.id.adminHolidayFragment);
+                }
+                break;
+            case R.id.rulesBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.attendanceRulesFragment) {
+                    navController.navigate(R.id.attendanceRulesFragment);
                 }
                 break;
         }

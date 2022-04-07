@@ -65,4 +65,14 @@
         android:name="com.bdappmaniac.bdapp.admin.fragment.AdminHolidayFragment"
         android:label="AdminHolidayFragment"
         tools:layout="@layout/fragment_admin_holiday"/>
+    <fragment
+        android:id="@+id/attendanceRulesFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.AttendanceRulesFragment"
+        android:label="AttendanceRulesFragment"
+        tools:layout="@layout/fragment_attendance_rules"/>
+    <fragment
+        android:id="@+id/employeeTermsAndConditionFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeTermsAndConditionFragment"
+        android:label="EmployeeTermsAndConditionFragment"
+        tools:layout="@layout/fragment_employee_terms_and_condition"/>
 </navigation>

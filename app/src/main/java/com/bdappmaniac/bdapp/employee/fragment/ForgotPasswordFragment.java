@@ -54,12 +54,6 @@ public class ForgotPasswordFragment extends BaseFragment {
                 Navigation.findNavController(v).navigate(R.id.logInFragment);
             }
         });
-        binding.createAccountBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.singUpFragment);
-            }
-        });
         binding.sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

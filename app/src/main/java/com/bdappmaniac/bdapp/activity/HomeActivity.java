@@ -123,6 +123,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         binding.navigationDrawer.tmcBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.loanBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.holidayBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.rulesBtn.setOnClickListener(this::onClick);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -156,6 +157,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     bottomHideShow(false);
                 } else if (destination.getId() == R.id.employeeHolidayFragment) {
                     navHandel("Settings");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                } else if (destination.getId() == R.id.employeeAttendanceRulesFragment) {
+                    navHandel("Attendance Rules");
                     headerHideShow(false);
                     bottomHideShow(false);
                 }
@@ -259,6 +264,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     navController.navigate(R.id.employeeHolidayFragment);
                     binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 }
+                break;
+            case R.id.rulesBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeAttendanceRulesFragment) {
+                    navController.navigate(R.id.employeeAttendanceRulesFragment);
+                }
         }
     }
 
@@ -345,6 +355,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 if ((apiResponse.getData() != null)) {
                     showSnackBar(binding.getRoot(), "Your Attendance Is Marked As Absent");
                     binding.homeLayout.headerLayout.extIcon.setChecked(false);
+                    binding.homeLayout.headerLayout.absentBtn.setVisibility(View.VISIBLE);
+                    binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 } else {
                     ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
                 }

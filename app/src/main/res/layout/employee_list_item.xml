@@ -29,7 +29,7 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/font_heavy"
-            android:gravity="start"
+            android:gravity="center"
             android:importantForAutofill="no"
             android:inputType="textMultiLine"
             android:paddingStart="@dimen/_5sdp"
