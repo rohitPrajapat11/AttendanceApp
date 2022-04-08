@@ -39,13 +39,13 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
                 android:gravity="center_vertical"
-                android:text="Employee Terms and Conditions"
+                android:text="Employment Terms"
                 android:textColor="@color/_172B4D"
                 android:textSize="@dimen/_15sdp"
                 app:drawableTint="@color/_172B4D"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/backBtn"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/secondary_color" />
 

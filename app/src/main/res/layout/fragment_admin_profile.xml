@@ -203,11 +203,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_15sdp"
-                        android:visibility="gone"
                         android:fontFamily="@font/arial_rounded_mt_bold"
                         android:text="Designation"
                         android:textColor="@color/_C1C7D0"
                         android:textSize="@dimen/_14sdp"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/phoneTxt" />
 
@@ -216,7 +216,6 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginTop="20dp"
-                        android:visibility="gone"
                         android:layout_marginEnd="@dimen/_25sdp"
                         android:background="@drawable/edit_text_bg"
                         android:drawableStart="@drawable/ic_baseline_design_services_24"
@@ -234,6 +233,7 @@
                         android:textAllCaps="true"
                         android:textColor="@color/_172B4D"
                         android:textSize="@dimen/_11ssp"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/designationLb"
@@ -242,17 +242,55 @@
                         tools:targetApi="m" />
 
                     <TextView
+                        android:id="@+id/otherNumbLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:fontFamily="@font/arial_rounded_mt_bold"
+                        android:text="Alternative Number"
+                        android:textColor="@color/_C1C7D0"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/phoneTxt" />
+
+                    <TextView
+                        android:id="@+id/otherNumTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/edit_text_bg"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:enabled="false"
+                        android:fontFamily="@font/font_heavy"
+                        android:gravity="center_vertical"
+                        android:hint="Enter Alternative Number"
+                        android:importantForAutofill="no"
+                        android:inputType="textNoSuggestions"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/_172B4D"
+                        android:textSize="@dimen/_11ssp"
+                        app:drawableStartCompat="@drawable/icn_phone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/otherNumbLb"
+                        app:layout_constraintTop_toBottomOf="@+id/otherNumbLb" />
+
+
+                    <TextView
                         android:id="@+id/dobLb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
                         android:fontFamily="@font/arial_rounded_mt_bold"
                         android:text="@string/date_of_birth"
                         android:textColor="@color/_C1C7D0"
                         android:textSize="@dimen/_14sdp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/designationTxt" />
+                        app:layout_constraintTop_toBottomOf="@+id/otherNumTxt" />
 
                     <TextView
                         android:id="@+id/dobTxt"
@@ -280,6 +318,117 @@
                         tools:ignore="TextFields,TextViewEdits" />
 
                     <TextView
+                        android:id="@+id/gstinLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:fontFamily="@font/arial_rounded_mt_bold"
+                        android:text="GSTIN"
+                        android:textColor="@color/_C1C7D0"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/dobTxt" />
+
+                    <TextView
+                        android:id="@+id/gstinTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/edit_text_bg"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:enabled="false"
+                        android:fontFamily="@font/font_heavy"
+                        android:gravity="center_vertical"
+                        android:hint="Enter GSTIN"
+                        android:importantForAutofill="no"
+                        android:inputType="textNoSuggestions"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/_172B4D"
+                        android:textSize="@dimen/_11ssp"
+                        app:drawableStartCompat="@drawable/icn_gstin"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/dobTxt"
+                        app:layout_constraintTop_toBottomOf="@+id/gstinLb" />
+
+                    <TextView
+                        android:id="@+id/gstidLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:fontFamily="@font/arial_rounded_mt_bold"
+                        android:text="GSTID"
+                        android:textColor="@color/_C1C7D0"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/gstinTxt" />
+
+                    <TextView
+                        android:id="@+id/gstidTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/edit_text_bg"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:enabled="false"
+                        android:fontFamily="@font/font_heavy"
+                        android:gravity="center_vertical"
+                        android:hint="Enter GSTID"
+                        android:importantForAutofill="no"
+                        android:inputType="textNoSuggestions"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/_172B4D"
+                        android:textSize="@dimen/_11ssp"
+                        app:drawableStartCompat="@drawable/icn_gstid"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/gstidLb"
+                        app:layout_constraintTop_toBottomOf="@+id/gstidLb" />
+
+                    <TextView
+                        android:id="@+id/incDateLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:fontFamily="@font/arial_rounded_mt_bold"
+                        android:text="Incorporation Date"
+                        android:textColor="@color/_C1C7D0"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/gstidTxt" />
+
+                    <TextView
+                        android:id="@+id/incDateTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:background="@drawable/edit_text_bg"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:enabled="false"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:gravity="center_vertical"
+                        android:hint="Enter Incorporation Date"
+                        android:importantForAutofill="no"
+                        android:inputType="textNoSuggestions"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/_172B4D"
+                        android:textSize="@dimen/_11ssp"
+                        app:drawableStartCompat="@drawable/icn_dob"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/incDateLb"
+                        app:layout_constraintTop_toBottomOf="@+id/incDateLb" />
+
+                    <TextView
                         android:id="@+id/addressLb"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -290,7 +439,7 @@
                         android:textColor="@color/_C1C7D0"
                         android:textSize="@dimen/_14sdp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/dobTxt" />
+                        app:layout_constraintTop_toBottomOf="@+id/incDateTxt" />
 
                     <EditText
                         android:id="@+id/addressTxt"
@@ -305,14 +454,14 @@
                         android:fontFamily="@font/font_heavy"
                         android:hint="@string/enter_your_address"
                         android:importantForAutofill="no"
-                        android:inputType="textNoSuggestions"
+                        android:inputType="textMultiLine"
                         android:paddingLeft="@dimen/_10sdp"
                         android:paddingRight="@dimen/_10sdp"
                         android:textAllCaps="true"
                         android:textColor="@color/_172B4D"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/phoneLb"
+                        app:layout_constraintStart_toStartOf="@+id/addressLb"
                         app:layout_constraintTop_toBottomOf="@+id/addressLb"
                         tools:ignore="TextFields" />
 

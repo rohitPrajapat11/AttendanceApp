@@ -160,10 +160,6 @@ public class RegisterEmployeeFragment extends BaseFragment {
             binding.designationTxt.setText(mContext.getString(R.string.project_manager));
             dialog.dismiss();
         });
-        designationBinding.oTxt.setOnClickListener(v -> {
-            binding.designationTxt.setText(mContext.getString(R.string.other));
-            dialog.dismiss();
-        });
         dialog.show();
     }
 
