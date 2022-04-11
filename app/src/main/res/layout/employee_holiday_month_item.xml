@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -10,79 +11,91 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:background="@drawable/white_5r_bg"
-            android:padding="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@drawable/holiday_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/months"
-                android:layout_width="0dp"
+                android:id="@+id/srNo"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
-                android:paddingStart="@dimen/_10sdp"
-                android:text="Months"
+                android:gravity="center"
+                android:inputType="text"
+                android:padding="@dimen/_2sdp"
+                android:text="Sr.No."
                 android:textColor="@color/_172B4D"
-                android:textSize="@dimen/_16sdp"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/dropDownBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:src="@drawable/icn_down_arrows"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/months"
-                app:layout_constraintEnd_toEndOf="@+id/months"
-                app:layout_constraintTop_toTopOf="@+id/months" />
+            <View
+                android:id="@+id/view1"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/holidays"
+                app:layout_constraintStart_toEndOf="@id/srNo"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/DropUpBtn"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:src="@drawable/icn_arrow_up"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/months"
-                app:layout_constraintEnd_toEndOf="@+id/months"
-                app:layout_constraintTop_toTopOf="@+id/months" />
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center"
+                android:inputType="text"
+                android:padding="@dimen/_2sdp"
+                android:text="Date"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/srNo"
+                app:layout_constraintEnd_toStartOf="@id/holidays"
+                app:layout_constraintStart_toEndOf="@+id/srNo"
+                app:layout_constraintTop_toTopOf="@+id/srNo" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/holidays"
+                app:layout_constraintStart_toEndOf="@id/date"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/holidays"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center"
+                android:inputType="textMultiLine"
+                android:padding="@dimen/_2sdp"
+                android:text="Holiday"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/date"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/holidayTxt"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_30sdp"
-            android:gravity="center"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:text="No Holidays Found"
-            android:textColor="@color/_A8A8A8"
-            android:textSize="@dimen/_13sdp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:background="@drawable/bottom_round_bg"
-            android:visibility="visible"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/holidayTxt">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/employeeHolidayRecyclers"

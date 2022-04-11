@@ -557,4 +557,26 @@ public class MainService extends BaseFragment {
         });
         return data;
     }
+
+    public static LiveData<ApiResponse> updateHoliday(Context context, String token, int id) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        Call<ApiResponse> call = apiService.updateHoliday(token, id);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
 }

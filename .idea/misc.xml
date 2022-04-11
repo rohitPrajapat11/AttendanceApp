@@ -25,6 +25,7 @@
         <entry key="app/src/main/res/drawable/green_logout_bg.xml" value="0.1235" />
         <entry key="app/src/main/res/drawable/green_round_bg.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/drawable/green_round_present.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/holiday_bg.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/icn_term.xml" value="0.12960526315789472" />
@@ -42,6 +43,7 @@
         <entry key="app/src/main/res/drawable/round_selector.xml" value="0.12203947368421053" />
         <entry key="app/src/main/res/drawable/round_white_bg.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/drawable/switch_btn.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/table_bg.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/text_cursor.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/text_cusor.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/drawable/white_10r_bg.xml" value="0.12203947368421053" />
@@ -64,7 +66,7 @@
         <entry key="app/src/main/res/layout/admin_addholiday_dialogbox.xml" value="0.22" />
         <entry key="app/src/main/res/layout/admin_bottom_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/admin_designation_dialogbox.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.2" />
         <entry key="app/src/main/res/layout/admin_emp_info.xml" value="0.2" />
         <entry key="app/src/main/res/layout/admin_history_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/admin_history_list_item.xml" value="0.33" />
@@ -77,11 +79,11 @@
         <entry key="app/src/main/res/layout/check_in_and_out_dialog.xml" value="0.33" />
         <entry key="app/src/main/res/layout/date_picker_timeline.xml" value="0.22" />
         <entry key="app/src/main/res/layout/designation_dialogbox.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/employee_holiday_item.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/employee_holiday_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/employee_holiday_month_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/employee_list_item.xml" value="0.17" />
         <entry key="app/src/main/res/layout/exit_dialogbox.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_admin_holiday.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/fragment_admin_holiday.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_admin_home.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/fragment_admin_loan.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_admin_profile.xml" value="0.18" />

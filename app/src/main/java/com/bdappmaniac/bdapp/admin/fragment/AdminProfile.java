@@ -20,7 +20,6 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +45,7 @@ import com.bdappmaniac.bdapp.databinding.FragmentAdminProfileBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
+import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bumptech.glide.Glide;
@@ -69,7 +69,7 @@ import okhttp3.RequestBody;
 public class AdminProfile extends BaseFragment {
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
     FragmentAdminProfileBinding binding;
-    String imgPath;
+    String imgPath, dob;
     File file = null;
     MultipartBody.Part fileToUpload;
     private int mYear, mMonth, mDay, mHour, mMinute;
@@ -85,6 +85,10 @@ public class AdminProfile extends BaseFragment {
         binding.phoneTxt.addTextChangedListener(new TextChange(binding.phoneTxt));
         binding.dobTxt.addTextChangedListener(new TextChange(binding.dobTxt));
         binding.addressTxt.addTextChangedListener(new TextChange(binding.addressTxt));
+        binding.incDateTxt.addTextChangedListener(new TextChange(binding.incDateTxt));
+        binding.gstinTxt.addTextChangedListener(new TextChange(binding.gstinTxt));
+        binding.gstidTxt.addTextChangedListener(new TextChange(binding.gstidTxt));
+        binding.otherNumTxt.addTextChangedListener(new TextChange(binding.otherNumTxt));
 
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,11 +108,11 @@ public class AdminProfile extends BaseFragment {
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
                             binding.dobTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
-                            Log.e("dobTxt", year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
+                            dob = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
                         }
                     }, mYear, mMonth, mDay);
-            datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT,
-                    WindowManager.LayoutParams.WRAP_CONTENT);
+            datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
             datePickerDialog.getWindow().setGravity(Gravity.CENTER);
             datePickerDialog.show();
         });
@@ -131,8 +135,12 @@ public class AdminProfile extends BaseFragment {
                 map.put("email", toRequestBody(binding.emailTxt.getText().toString()));
                 map.put("emp_mobile_no", toRequestBody(binding.phoneTxt.getText().toString()));
                 map.put("designation", toRequestBody(binding.designationTxt.getText().toString()));
-                map.put("dob", toRequestBody(binding.dobTxt.getText().toString()));
+                map.put("dob", toRequestBody(dob));
                 map.put("employee_address", toRequestBody(binding.addressTxt.getText().toString()));
+                map.put("GSTID", toRequestBody(binding.gstidTxt.getText().toString()));
+                map.put("GSTIN", toRequestBody(binding.gstinTxt.getText().toString()));
+                map.put("incorDate", toRequestBody(binding.incDateTxt.getText().toString()));
+                map.put("otherNumber", toRequestBody(binding.otherNumTxt.getText().toString()));
                 updateEmployeeProfileApi(map, fileToUpload);
                 onEditChange(false);
             }
@@ -176,6 +184,28 @@ public class AdminProfile extends BaseFragment {
                     }
                 });
                 dialog.show();
+            }
+        });
+        binding.incDateTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                binding.incDateTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
+//                                binding.incDateTxt.setText(DateUtils.getFormattedTime(binding.incDateTxt.getText().toString(), DateUtils.appDateFormats, DateUtils.appDateFormatTos));
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+                datePickerDialog.getWindow().setGravity(Gravity.CENTER);
+                datePickerDialog.show();
             }
         });
         binding.cameraBtn.setOnClickListener(view -> selectImage());
@@ -296,7 +326,16 @@ public class AdminProfile extends BaseFragment {
         if (StringHelper.isEmpty(binding.dobTxt.getText().toString())) {
             return false;
         }
-        if (StringHelper.isEmpty(binding.addressTxt.getText().toString())) {
+        if (StringHelper.isEmpty(binding.gstidTxt.getText().toString())) {
+            return false;
+        }
+        if (StringHelper.isEmpty(binding.gstinTxt.getText().toString())) {
+            return false;
+        }
+        if (StringHelper.isEmpty(binding.incDateTxt.getText().toString())) {
+            return false;
+        }
+        if (StringHelper.isEmpty(binding.otherNumTxt.getText().toString())) {
             return false;
         }
         return true;
@@ -328,6 +367,22 @@ public class AdminProfile extends BaseFragment {
             return false;
         }
         if (TextUtils.isEmpty(binding.addressTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_address));
+            return false;
+        }
+        if (TextUtils.isEmpty(binding.gstinTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_address));
+            return false;
+        }
+        if (TextUtils.isEmpty(binding.gstidTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_address));
+            return false;
+        }
+        if (TextUtils.isEmpty(binding.incDateTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_address));
+            return false;
+        }
+        if (TextUtils.isEmpty(binding.otherNumTxt.getText().toString())) {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_address));
             return false;
         }
@@ -365,6 +420,26 @@ public class AdminProfile extends BaseFragment {
         } else {
             setTextViewDrawableColor(binding.addressTxt, R.color._172B4D);
         }
+        if (StringHelper.isEmpty(binding.gstidTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.gstidTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.gstidTxt, R.color._172B4D);
+        }
+        if (StringHelper.isEmpty(binding.gstinTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.gstinTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.gstinTxt, R.color._172B4D);
+        }
+        if (StringHelper.isEmpty(binding.incDateTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.incDateTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.incDateTxt, R.color._172B4D);
+        }
+        if (StringHelper.isEmpty(binding.otherNumTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.otherNumTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.otherNumTxt, R.color._172B4D);
+        }
     }
 
     private void setValidations() {
@@ -396,6 +471,10 @@ public class AdminProfile extends BaseFragment {
         binding.dobTxt.setEnabled(check);
         binding.addressTxt.setEnabled(check);
         binding.designationTxt.setEnabled(check);
+        binding.otherNumTxt.setEnabled(check);
+        binding.gstinTxt.setEnabled(check);
+        binding.gstidTxt.setEnabled(check);
+        binding.incDateTxt.setEnabled(check);
     }
 
     private void setTextViewDrawableColor(TextView textView, int color) {
@@ -417,15 +496,18 @@ public class AdminProfile extends BaseFragment {
         binding.emailTxt.setText(updateResponse.getEmail());
         binding.phoneTxt.setText(String.valueOf(updateResponse.getEmpMobileNo()));
         binding.designationTxt.setText(updateResponse.getDesignation());
-        binding.dobTxt.setText(String.valueOf(updateResponse.getDob()));
         binding.addressTxt.setText(updateResponse.getEmployeeAddress());
+        binding.incDateTxt.setText(DateUtils.getFormattedTime(String.valueOf(updateResponse.getIncorDate()), DateUtils.appDateFormat, DateUtils.appDateFormatTo));
+        binding.gstidTxt.setText(updateResponse.getGSTID());
+        binding.gstinTxt.setText(updateResponse.getGSTIN());
+        binding.otherNumTxt.setText(String.valueOf(updateResponse.getOtherNumber()));
         if (updateResponse.getProfile() != null) {
             Glide.with(mContext).load(updateResponse.getProfile()).placeholder(R.drawable.user).into(binding.profile);
         }
         if (updateResponse.getDob() == null) {
             binding.dobTxt.setText("");
         } else {
-            binding.dobTxt.setText(String.valueOf(updateResponse.getDob()));
+            binding.dobTxt.setText(DateUtils.getFormattedTime(String.valueOf(updateResponse.getDob()), DateUtils.appDateFormat, DateUtils.appDateFormatTo));
         }
     }
 

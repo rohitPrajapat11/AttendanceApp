@@ -185,7 +185,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 break;
             case "Loan":
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.VISIBLE);
-                binding.homeLayout.headerLayout.title.setText("Loan");
+                binding.homeLayout.headerLayout.title.setText("Advance Payment");
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);

@@ -34,8 +34,10 @@ public class DateUtils {
     public static final String CHAT_DISPLAY_DATE_FORMAT = "hh:mm a";
     public static final String SERVER_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     public static final String appDateFormat = "yyyy-MM-dd";
+    public static final String appDateFormats = "yyyy/MM/dd";
     public static final String appDateFormat2 = "dd-MMM-yy";
     public static final String appDateFormatTo = "dd-MM-yyyy";
+    public static final String appDateFormatTos = "dd/MM/yyyy";
     public static final String appDateTimeFormat = "yyyy-MM-dd HH:mm:ss.SSSSSS";
     public static final String dateFormat1 = "MMM dd,yyyy | hh:mm a";
     public static final String dateFormat3 = "MMM dd,yyyy";

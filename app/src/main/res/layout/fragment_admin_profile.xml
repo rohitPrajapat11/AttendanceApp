@@ -254,7 +254,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/phoneTxt" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/otherNumTxt"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_40sdp"
@@ -263,6 +263,7 @@
                         android:background="@drawable/edit_text_bg"
                         android:drawablePadding="@dimen/_10sdp"
                         android:enabled="false"
+                        android:maxLength="10"
                         android:fontFamily="@font/font_heavy"
                         android:gravity="center_vertical"
                         android:hint="Enter Alternative Number"
@@ -330,7 +331,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/dobTxt" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/gstinTxt"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_40sdp"
@@ -367,7 +368,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/gstinTxt" />
 
-                    <TextView
+                    <EditText
                         android:id="@+id/gstidTxt"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_40sdp"

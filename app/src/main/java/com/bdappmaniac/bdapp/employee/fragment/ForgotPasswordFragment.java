@@ -1,8 +1,6 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
 import static com.bdappmaniac.bdapp.activity.BaseActivity.EMAIL;
-import static com.bdappmaniac.bdapp.activity.BaseActivity.OTP_KEY;
-import static com.bdappmaniac.bdapp.activity.BaseActivity.PIN_KEY;
 
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -125,13 +123,13 @@ public class ForgotPasswordFragment extends BaseFragment {
 //                ((BaseActivity) mContext).showToast(mContext.getString(R.string.your_email_have_not_been_registered));
                 showSnackBar(binding.getRoot(), mContext.getString(R.string.invalid_email));
             } else {
-                if ((apiResponse.getData() != null)) {
+                if ((apiResponse.isSuccess())) {
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     Bundle bundle = new Bundle();
                     bundle.putString(EMAIL, binding.emailTxt.getText().toString());
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.newPasswordFragment, bundle);
-                } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                }else {
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();

@@ -3,12 +3,10 @@ package com.bdappmaniac.bdapp.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdappmaniac.bdapp.Api.response.EmployeeHoliday;
@@ -41,37 +39,6 @@ public class EmployeeHolidayMonthAdapter extends RecyclerView.Adapter<RecyclerVi
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         EmployeeHolidayMonthAdapter.EmployeeHolidayMonthHolder vHolder = (EmployeeHolidayMonthAdapter.EmployeeHolidayMonthHolder) holder;
-        vHolder.binding.months.setText(monthList.get(position).getMonth());
-        vHolder.binding.dropDownBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vHolder.binding.constraintLayout2.setVisibility(View.VISIBLE);
-                vHolder.binding.dropDownBtn.setVisibility(View.GONE);
-                vHolder.binding.constraintLayout.setBackgroundResource(R.drawable.bottom_cut_white_bg);
-                vHolder.binding.DropUpBtn.setVisibility(View.VISIBLE);
-                if(monthList.get(position).getHolidays() != null && monthList.get(position).getHolidays().size() > 0) {
-                    EmployeeHolidayAdapter holidayAdapter = new EmployeeHolidayAdapter(context, monthList.get(position).getHolidays());
-                    vHolder.binding.employeeHolidayRecyclers.setLayoutManager(new LinearLayoutManager(context));
-                    vHolder.binding.employeeHolidayRecyclers.setAdapter(holidayAdapter);
-                }else{
-                    vHolder.binding.holidayTxt.setBackgroundResource(R.drawable.white_5r_bg);
-                    vHolder.binding.holidayTxt.setVisibility(View.VISIBLE);
-                    vHolder.binding.constraintLayout2.setVisibility(View.GONE);
-                    vHolder.binding.dropDownBtn.setVisibility(View.GONE);
-                    vHolder.binding.DropUpBtn.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        vHolder.binding.DropUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                vHolder.binding.constraintLayout2.setVisibility(View.GONE);
-                vHolder.binding.dropDownBtn.setVisibility(View.VISIBLE);
-                vHolder.binding.constraintLayout.setBackgroundResource(R.drawable.white_5r_bg);
-                vHolder.binding.DropUpBtn.setVisibility(View.GONE);
-                vHolder.binding.holidayTxt.setVisibility(View.GONE);
-            }
-        });
     }
 
     @Override

@@ -103,4 +103,7 @@ public interface APIInterface {
 
     @POST("api/employee/terms-and-conditions/{empo_id}")
     Call<ApiResponse> specificEmployeeTermsAndConditions(@Header("Authorization") String token, @Path("empo_id") int empo_id);
+
+    @POST("api/Update-Holiday/{id}")
+    Call<ApiResponse> updateHoliday(@Header("Authorization") String token, @Path("id") int id);
 }

@@ -46,6 +46,50 @@ public class LoginResponse {
 	@SerializedName("status")
 	private String status;
 
+	@SerializedName("GSTID")
+	private String GSTID;
+
+	@SerializedName("GSTIN")
+	private String GSTIN;
+
+	@SerializedName("incorDate")
+	private String incorDate;
+
+	@SerializedName("otherNumber")
+	private String otherNumber;
+
+	public String getGSTID() {
+		return GSTID;
+	}
+
+	public void setGSTID(String GSTID) {
+		this.GSTID = GSTID;
+	}
+
+	public String getGSTIN() {
+		return GSTIN;
+	}
+
+	public void setGSTIN(String GSTIN) {
+		this.GSTIN = GSTIN;
+	}
+
+	public String getIncorDate() {
+		return incorDate;
+	}
+
+	public void setIncorDate(String incorDate) {
+		this.incorDate = incorDate;
+	}
+
+	public String getOtherNumber() {
+		return otherNumber;
+	}
+
+	public void setOtherNumber(String otherNumber) {
+		this.otherNumber = otherNumber;
+	}
+
 	public void setPincode(Object pincode){
 		this.pincode = pincode;
 	}

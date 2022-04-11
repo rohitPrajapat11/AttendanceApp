@@ -22,6 +22,7 @@ import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.databinding.EmployeeHolidayItemBinding;
 import com.bdappmaniac.bdapp.databinding.HolidayBottomSheetDialogBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 
 import java.util.ArrayList;
@@ -50,16 +51,16 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         EmployeeHolidayAdapter.EmployeeHolidayHolder vHolder = (EmployeeHolidayAdapter.EmployeeHolidayHolder) holder;
-        vHolder.binding.theDate.setText(list.get(position).getDate());
-        vHolder.binding.theReason.setText(list.get(position).getName());
+        vHolder.binding.date.setText(DateUtils.getFormattedTime(list.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatTo));
+        vHolder.binding.holidays.setText(list.get(position).getName());
         SharedPref.init(context);
-        if(SharedPref.getUserDetails().getType().equals("employee"))
-        {
-            vHolder.binding.moreBtn.setVisibility(View.GONE);
+        if (SharedPref.getUserDetails().getType().equals("employee")) {
+            vHolder.binding.item.setFocusable(false);
+            vHolder.binding.item.setEnabled(false);
         }
-        vHolder.binding.moreBtn.setOnClickListener(new View.OnClickListener() {
+        vHolder.binding.item.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onLongClick(View view) {
                 HolidayBottomSheetDialogBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.holiday_bottom_sheet_dialog, null, false);
                 Dialog dialog = new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -77,12 +78,19 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                         dialog.dismiss();
                     }
                 });
+                binding.editBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateHolidayApi(list.get(position).getId());
+                    }
+                });
                 binding.cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
                     }
                 });
+                return false;
             }
         });
     }
@@ -117,5 +125,21 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 AppLoader.hideLoaderDialog();
             });
         }
+    }
+
+    public void updateHolidayApi(int id) {
+        AppLoader.showLoaderDialog(context);
+        MainService.updateHoliday(context, ((BaseActivity) context).getToken(), id).observe((LifecycleOwner) context, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+
+                } else {
+                    ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
     }
 }

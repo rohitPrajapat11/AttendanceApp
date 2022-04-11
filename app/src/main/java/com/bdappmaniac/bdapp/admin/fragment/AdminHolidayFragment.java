@@ -17,12 +17,12 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.bdappmaniac.bdapp.Api.response.EmployeeHoliday;
 import com.bdappmaniac.bdapp.Api.response.EmployeeHolidayResponse;
+import com.bdappmaniac.bdapp.Api.response.HolidaysItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
-import com.bdappmaniac.bdapp.adapter.EmployeeHolidayMonthAdapter;
+import com.bdappmaniac.bdapp.adapter.EmployeeHolidayAdapter;
 import com.bdappmaniac.bdapp.databinding.AdminAddholidayDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentAdminHolidayBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
@@ -44,8 +44,8 @@ public class AdminHolidayFragment extends BaseFragment {
     public String monthName;
     FragmentAdminHolidayBinding binding;
     String dates;
-    EmployeeHolidayMonthAdapter monthAdapter;
-    List<EmployeeHoliday> employeeList = new ArrayList<>();
+    EmployeeHolidayAdapter monthAdapter;
+    List<HolidaysItem> list = new ArrayList<>();
     List<EmployeeHolidayResponse> monthList = new ArrayList<>();
     private int TYear, TMonth, TDay;
 
@@ -53,10 +53,11 @@ public class AdminHolidayFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_holiday, container, false);
-            monthAdapter = new EmployeeHolidayMonthAdapter(mContext, employeeList);
-            binding.employeeHolidayRecycler.setHasFixedSize(false);
-            binding.employeeHolidayRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-            binding.employeeHolidayRecycler.setAdapter(monthAdapter);
+            monthAdapter = new EmployeeHolidayAdapter(mContext, list);
+            binding.employeeHolidayRecyclers.setHasFixedSize(false);
+            binding.employeeHolidayRecyclers.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.employeeHolidayRecyclers.setAdapter(monthAdapter);
+
             holidaysOfCurrentYearApi();
         }
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
@@ -162,10 +163,10 @@ public class AdminHolidayFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<EmployeeHoliday>>() {}.getType();
-                    List<EmployeeHoliday> monthList = new Gson().fromJson(apiResponse.getData(), collectionType);
-                    employeeList.clear();
-                    employeeList.addAll(monthList);
+                    Type collectionType = new TypeToken<List<HolidaysItem>>() {}.getType();
+                    List<HolidaysItem> monthList = new Gson().fromJson(apiResponse.getData(), collectionType);
+                    list.clear();
+                    list.addAll(monthList);
                     monthAdapter.notifyDataSetChanged();
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
