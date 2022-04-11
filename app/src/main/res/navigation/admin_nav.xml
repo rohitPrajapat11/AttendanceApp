@@ -75,4 +75,17 @@
         android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeTermsAndConditionFragment"
         android:label="EmployeeTermsAndConditionFragment"
         tools:layout="@layout/fragment_employee_terms_and_condition"/>
+
+
+    <fragment
+        android:id="@+id/toDoListFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminTodoList"
+        android:label="ToDolLIstFragment"
+        tools:layout="@layout/fragment_admin_todo_list"/>
+
+    <fragment
+        android:id="@+id/lockUnlockFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminLockUnlock"
+        android:label="LockUnlock"
+        tools:layout="@layout/fragment_admin_lock_unlock"/>
 </navigation>
