@@ -112,13 +112,11 @@ public class SingUpFragment extends BaseFragment {
                 TextView iosTxt = dialog.findViewById(R.id.iosTxt);
                 TextView wdTxt = dialog.findViewById(R.id.wdTxt);
                 TextView pmTxt = dialog.findViewById(R.id.pmTxt);
-                TextView oTxt = dialog.findViewById(R.id.oTxt);
 
                 String getAd = adTxt.getText().toString();
                 String getIos = iosTxt.getText().toString();
                 String getWd = wdTxt.getText().toString();
                 String getPm = pmTxt.getText().toString();
-                String getO = oTxt.getText().toString();
                 adTxt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -147,14 +145,6 @@ public class SingUpFragment extends BaseFragment {
                     @Override
                     public void onClick(View v) {
                         String s = getPm;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-                oTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getO;
                         binding.designationTxt.setText(s);
                         dialog.dismiss();
                     }

@@ -238,7 +238,7 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:fontFamily="@font/font_heavy"
-                        android:text="Term And Conditions"
+                        android:text="Employment Terms"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
                         app:layout_constraintBottom_toBottomOf="@+id/tmcImg"
