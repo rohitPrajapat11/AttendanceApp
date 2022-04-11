@@ -143,14 +143,21 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     headerHideShow(false);
                     bottomHideShow(false);
                 }else if (destination.getId() == R.id.attendanceRulesFragment) {
-                    navHandel("Holidays");
+                    navHandel("attendanceRulesFragment");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                }else if (destination.getId()==R.id.lockUnlockFragment){
+                    navHandel("Lock/Unlock");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                }else if (destination.getId()==R.id.toDoListFragment){
+                    navHandel("ToDoList");
                     headerHideShow(false);
                     bottomHideShow(false);
                 }
             }
         });
     }
-
     void navHandel(String type) {
         switch (type) {
             case "Home":
@@ -215,15 +222,26 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
             case "LoanDetails":
-                binding.homeLayout.headerLayout.title.setText("Loan Details");
+                binding.homeLayout.headerLayout.title.setText("Employee List");
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.VISIBLE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
+            case "Lock/unlock":
+                binding.homeLayout.headerLayout.title.setText("Lock / Unlock");
+                binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.backBtn.setVisibility(View.VISIBLE);
+                binding.homeLayout.headerLayout.menuBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
+                break;
+            case "ToDoList":
+                binding.homeLayout.headerLayout.title.setText("ToDoList");
+                break;
             case "TermCondition":
             case "EmployeeDetail":
             case "RegisterEmployee":
+
                 noHeader();
                 break;
         }

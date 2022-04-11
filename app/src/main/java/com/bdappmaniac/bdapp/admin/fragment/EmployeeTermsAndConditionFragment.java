@@ -104,7 +104,6 @@ public class EmployeeTermsAndConditionFragment extends BaseFragment {
             AppLoader.hideLoaderDialog();
         });
     }
-
     public void addEmployeeTermAndConditionsApi(String rules, String  emp_id) {
         AppLoader.showLoaderDialog(mContext);
         Map<String, RequestBody> map = new HashMap<>();
