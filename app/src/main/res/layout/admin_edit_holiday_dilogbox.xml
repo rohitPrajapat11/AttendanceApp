@@ -83,7 +83,7 @@
             tools:targetApi="m" />
 
         <TextView
-            android:id="@+id/submitBtn"
+            android:id="@+id/updateBtn"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_35sdp"
             android:layout_marginTop="@dimen/_20sdp"
@@ -91,7 +91,7 @@
             android:elevation="@dimen/_3sdp"
             android:fontFamily="@font/font_heavy"
             android:gravity="center"
-            android:text="Submit"
+            android:text="Update"
             android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="@+id/reasonTxt"
@@ -109,9 +109,9 @@
             android:text="Cancel"
             android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/submitBtn"
-            app:layout_constraintEnd_toStartOf="@+id/submitBtn"
+            app:layout_constraintBottom_toBottomOf="@+id/updateBtn"
+            app:layout_constraintEnd_toStartOf="@+id/updateBtn"
             app:layout_constraintStart_toStartOf="@+id/reasonTxt"
-            app:layout_constraintTop_toTopOf="@+id/submitBtn" />
+            app:layout_constraintTop_toTopOf="@+id/updateBtn" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

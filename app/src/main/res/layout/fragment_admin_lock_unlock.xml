@@ -41,7 +41,7 @@
             android:gravity="center_vertical"
             android:text="Lock/Unlock"
             android:textColor="@color/_172B4D"
-            android:textSize="@dimen/_15sdp"
+            android:textSize="@dimen/_18sdp"
             app:drawableTint="@color/_172B4D"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

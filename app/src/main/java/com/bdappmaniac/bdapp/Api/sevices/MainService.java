@@ -558,9 +558,9 @@ public class MainService extends BaseFragment {
         return data;
     }
 
-    public static LiveData<ApiResponse> updateHoliday(Context context, String token, int id) {
+    public static LiveData<ApiResponse> updateHoliday(Context context, String token, int id, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        Call<ApiResponse> call = apiService.updateHoliday(token, id);
+        Call<ApiResponse> call = apiService.updateHoliday(token, id, map);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {

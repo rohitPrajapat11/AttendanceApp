@@ -13,6 +13,12 @@ public class HolidaysItem{
 	@SerializedName("id")
 	private int id;
 
+	public HolidaysItem(String date, String name, int id) {
+		this.date = date;
+		this.name = name;
+		this.id = id;
+	}
+
 	public void setDate(String date){
 		this.date = date;
 	}
