@@ -58,6 +58,17 @@ public class LoginResponse {
 	@SerializedName("otherNumber")
 	private String otherNumber;
 
+	@SerializedName("joining_date")
+	private String joiningdate;
+
+	public String getJoiningdate() {
+		return joiningdate;
+	}
+
+	public void setJoiningdate(String joiningdate) {
+		this.joiningdate = joiningdate;
+	}
+
 	public String getGSTID() {
 		return GSTID;
 	}

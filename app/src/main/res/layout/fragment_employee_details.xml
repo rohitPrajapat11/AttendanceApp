@@ -139,14 +139,36 @@
                         tools:ignore="TextFields,TextViewEdits" />
 
                     <TextView
+                        android:id="@+id/joiningDateTxt"
+                        android:layout_width="0dp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:drawableTint="@color/_172B4D"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:enabled="false"
+                        android:fontFamily="@font/font_heavy"
+                        android:gravity="center_vertical"
+                        android:hint="Joining Date"
+                        android:importantForAutofill="no"
+                        android:inputType="textNoSuggestions"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/_172B4D"
+                        android:textSize="@dimen/_11ssp"
+                        app:drawableStartCompat="@drawable/icn_joining_daate"
+                        app:layout_constraintEnd_toEndOf="@+id/dobTxt"
+                        app:layout_constraintStart_toStartOf="@+id/dobTxt"
+                        app:layout_constraintTop_toBottomOf="@+id/dobTxt" />
+
+                    <TextView
                         android:id="@+id/designationTxt"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_40sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_marginEnd="@dimen/_25sdp"
                         android:drawablePadding="@dimen/_10sdp"
                         android:drawableTint="@color/_172B4D"
                         android:enabled="false"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:fontFamily="@font/font_heavy"
                         android:gravity="center_vertical"
                         android:hint="@string/select_dob"
@@ -159,9 +181,9 @@
                         android:textSize="@dimen/_11ssp"
                         app:drawableStartCompat="@drawable/icn_star"
                         app:drawableTint="#23073B"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/dobTxt"
-                        app:layout_constraintTop_toBottomOf="@+id/dobTxt"
+                        app:layout_constraintEnd_toEndOf="@+id/joiningDateTxt"
+                        app:layout_constraintStart_toStartOf="@+id/joiningDateTxt"
+                        app:layout_constraintTop_toBottomOf="@+id/joiningDateTxt"
                         tools:ignore="TextFields,TextViewEdits" />
 
                     <TextView
@@ -390,7 +412,7 @@
                         android:gravity="center_vertical"
                         android:paddingStart="@dimen/_10sdp"
                         android:paddingEnd="@dimen/_15sdp"
-                        android:text="Provide Loan"
+                        android:text="Provide Advance Payment"
                         android:textAllCaps="false"
                         android:textColor="@color/_172B4D"
                         android:textSize="@dimen/_12sdp"

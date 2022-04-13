@@ -196,8 +196,7 @@ public class AdminProfile extends BaseFragment {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                                 binding.incDateTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
 //                                binding.incDateTxt.setText(DateUtils.getFormattedTime(binding.incDateTxt.getText().toString(), DateUtils.appDateFormats, DateUtils.appDateFormatTos));
                             }

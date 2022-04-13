@@ -20,30 +20,6 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/srNo"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_heavy"
-                android:gravity="center"
-                android:inputType="text"
-                android:padding="@dimen/_2sdp"
-                android:text="Sr.No."
-                android:textColor="@color/_172B4D"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view1"
-                android:layout_width="1dp"
-                android:layout_height="0dp"
-                android:background="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/holidays"
-                app:layout_constraintStart_toEndOf="@id/srNo"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -54,10 +30,10 @@
                 android:text="Date"
                 android:textColor="@color/_172B4D"
                 android:textSize="@dimen/_12sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/srNo"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/holidays"
-                app:layout_constraintStart_toEndOf="@+id/srNo"
-                app:layout_constraintTop_toTopOf="@+id/srNo" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <View
                 android:id="@+id/view2"

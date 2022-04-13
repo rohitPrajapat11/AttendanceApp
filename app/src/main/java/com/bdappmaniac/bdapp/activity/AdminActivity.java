@@ -91,6 +91,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding.navigationDrawer.loanBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.addHolidayBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.rulesBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.desinationBtn.setOnClickListener(this::onClick);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -152,6 +153,10 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     bottomHideShow(false);
                 }else if (destination.getId()==R.id.toDoListFragment){
                     navHandel("ToDoList");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                }else if (destination.getId()==R.id.designationFragment){
+                    navHandel("Designation");
                     headerHideShow(false);
                     bottomHideShow(false);
                 }
@@ -238,6 +243,9 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
             case "ToDoList":
                 binding.homeLayout.headerLayout.title.setText("ToDoList");
                 break;
+            case "Designation":
+                binding.homeLayout.headerLayout.title.setText("Designation");
+                break;
             case "TermCondition":
             case "EmployeeDetail":
             case "RegisterEmployee":
@@ -300,6 +308,11 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
             case R.id.rulesBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.attendanceRulesFragment) {
                     navController.navigate(R.id.attendanceRulesFragment);
+                }
+                break;
+            case R.id.desinationBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.designationFragment) {
+                    navController.navigate(R.id.designationFragment);
                 }
                 break;
         }

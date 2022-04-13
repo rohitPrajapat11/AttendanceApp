@@ -88,4 +88,9 @@
         android:name="com.bdappmaniac.bdapp.admin.fragment.AdminLockUnlock"
         android:label="LockUnlock"
         tools:layout="@layout/fragment_admin_lock_unlock"/>
+    <fragment
+        android:id="@+id/designationFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.DesignationFragment"
+        android:label="DesignationFragment"
+        tools:layout="@layout/fragment_designation"/>
 </navigation>

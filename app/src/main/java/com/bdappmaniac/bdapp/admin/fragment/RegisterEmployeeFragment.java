@@ -144,22 +144,10 @@ public class RegisterEmployeeFragment extends BaseFragment {
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        designationBinding.adTxt.setOnClickListener(v -> {
-            binding.designationTxt.setText(mContext.getString(R.string.adroid_developre));
-            dialog.dismiss();
-        });
-        designationBinding.iosTxt.setOnClickListener(v -> {
-            binding.designationTxt.setText(mContext.getString(R.string.ios_developer));
-            dialog.dismiss();
-        });
-        designationBinding.wdTxt.setOnClickListener(v -> {
-            binding.designationTxt.setText(mContext.getString(R.string.web_developer));
-            dialog.dismiss();
-        });
-        designationBinding.pmTxt.setOnClickListener(v -> {
-            binding.designationTxt.setText(mContext.getString(R.string.project_manager));
-            dialog.dismiss();
-        });
+//        designationBinding.adTxt.setOnClickListener(v -> {
+//            binding.designationTxt.setText(mContext.getString(R.string.adroid_developre));
+//            dialog.dismiss();
+//        });
         dialog.show();
     }
 

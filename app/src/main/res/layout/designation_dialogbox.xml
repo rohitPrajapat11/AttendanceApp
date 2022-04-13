@@ -5,76 +5,24 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_170sdp"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
         android:background="@drawable/white_5r_bg"
         android:elevation="5dp"
         android:padding="@dimen/_15sdp">
 
-        <TextView
-            android:id="@+id/adTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_heavy"
-            android:padding="@dimen/_5sdp"
-            android:text="@string/android_developer"
-            android:textColor="@color/_172B4D"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/iosTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:fontFamily="@font/font_heavy"
-            android:padding="@dimen/_5sdp"
-            android:text="@string/ios_developer"
-            android:textColor="@color/_172B4D"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/adTxt"
-            app:layout_constraintTop_toBottomOf="@+id/adTxt" />
-
-        <TextView
-            android:id="@+id/wdTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:fontFamily="@font/font_heavy"
-            android:padding="@dimen/_5sdp"
-            android:text="@string/web_developer"
-            android:textColor="@color/_172B4D"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/iosTxt"
-            app:layout_constraintTop_toBottomOf="@+id/iosTxt" />
-
-        <TextView
-            android:id="@+id/pmTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:fontFamily="@font/font_heavy"
-            android:padding="@dimen/_5sdp"
-            android:text="Project Coordinator"
-            android:textColor="@color/_172B4D"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/wdTxt"
-            app:layout_constraintTop_toBottomOf="@+id/wdTxt" />
-
-        <ImageView
-            android:id="@+id/addBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:src="@drawable/ic_baseline_add_24"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pmTxt" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:spanCount="1"
+            tools:itemCount="5"
+            tools:listitem="@layout/designation_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

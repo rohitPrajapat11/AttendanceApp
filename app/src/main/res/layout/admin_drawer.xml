@@ -178,15 +178,55 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/addHolidayBtn"
+                    android:id="@+id/desinationBtn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
-                    android:visibility="gone"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/navigation_item_selector"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/registerBtn">
+
+                    <ImageView
+                        android:id="@+id/designationImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:contentDescription="@string/loanImg"
+                        android:src="@drawable/ic_baseline_design_services_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.571"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:text="Designation"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/designationImg"
+                        app:layout_constraintStart_toEndOf="@+id/designationImg"
+                        app:layout_constraintTop_toTopOf="@+id/designationImg"
+                        app:layout_constraintVertical_bias="0.6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/addHolidayBtn"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/navigation_item_selector"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/desinationBtn">
 
                     <ImageView
                         android:id="@+id/addHolidayImg"

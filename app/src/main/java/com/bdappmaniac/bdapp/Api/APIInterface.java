@@ -81,7 +81,7 @@ public interface APIInterface {
 
     @Multipart
     @POST("api/getInOutsBwDates/{emp_id}")
-    Call<ApiResponse> getInAndOutsBetweenDates(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map,  @Path("emp_id") int emp_id);
+    Call<ApiResponse> getInAndOutsBetweenDates(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map, @Path("emp_id") int emp_id);
 
     @Multipart
     @POST("api/add-condition")
@@ -107,4 +107,14 @@ public interface APIInterface {
     @Multipart
     @POST("api/Update-Holiday/{id}")
     Call<ApiResponse> updateHoliday(@Header("Authorization") String token, @Path("id") int id, @PartMap Map<String, RequestBody> map);
+
+    @Multipart
+    @POST("api/Add-designation")
+    Call<ApiResponse> addDesignation(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+
+    @POST("api/All-designation")
+    Call<ApiResponse> allDesignation(@Header("Authorization") String token);
+
+    @POST("api/remove-designation/{id}")
+    Call<ApiResponse> removeDesignation(@Header("Authorization") String token, @Path("id") int id);
 }

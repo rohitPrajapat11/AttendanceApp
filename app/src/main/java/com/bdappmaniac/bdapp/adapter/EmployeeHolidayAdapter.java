@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.DatePicker;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -63,7 +64,7 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         EmployeeHolidayAdapter.EmployeeHolidayHolder vHolder = (EmployeeHolidayAdapter.EmployeeHolidayHolder) holder;
-        vHolder.binding.date.setText(DateUtils.getFormattedTime(list.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatTo));
+        vHolder.binding.date.setText(DateUtils.getFormattedTime(list.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatM));
         vHolder.binding.holidays.setText(list.get(position).getName());
         SharedPref.init(context);
         if (SharedPref.getUserDetails().getType().equals("employee")) {
@@ -133,6 +134,7 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 } else {
                     if ((apiResponse.getData() != null)) {
                         ((BaseActivity) context).showSnackBar(binding.getRoot(), "Holiday Updated Successfully");
+                        String str = DateUtils.getFormattedTime(date, DateUtils.appDateFormat, DateUtils.appDateFormatM);
                         list.set(getAdapterPosition(), new HolidaysItem(date, name, id));
                         notifyDataSetChanged();
                     } else {
@@ -164,7 +166,21 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     TMonth = c.get(Calendar.MONTH);
                     TDay = c.get(Calendar.DAY_OF_MONTH);
                     DatePickerDialog datePickerDialog = new DatePickerDialog(context, R.style.DatePicker,
-                            (view1, year, monthOfYear, dayOfMonth) -> binding.dateTxt.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year), TYear, TMonth, TDay);
+                            new DatePickerDialog.OnDateSetListener() {
+                                @Override
+                                public void onDateSet(DatePicker view, int year,
+                                                      int monthOfYear, int dayOfMonth) {
+                                    String s = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                                    binding.dateTxt.setText(DateUtils.getFormattedTime(s, DateUtils.appDateFormatTo, DateUtils.appDateFormatM));
+                                }
+                            }, TYear, TMonth, TDay);
+
+//                    DatePickerDialog datePickerDialog = new DatePickerDialog(context, R.style.DatePicker,
+//                            (view1, year, monthOfYear, dayOfMonth) ->
+//                            {
+//                                String s = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+//                                binding.dateTxt.setText(DateUtils.getFormattedTime(s, DateUtils.appDateFormat, DateUtils.appDateFormatM));
+//                            }, TYear, TMonth, TDay);
                     datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
                     datePickerDialog.getWindow().setGravity(Gravity.CENTER);
                     datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
@@ -173,7 +189,8 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             });
             binding.updateBtn.setOnClickListener(view -> {
                 String name1 = binding.reasonTxt.getText().toString();
-                String date1 = DateUtils.getFormattedTime(binding.dateTxt.getText().toString(), DateUtils.appDateFormatTo, DateUtils.appDateFormat);
+                String date1 = DateUtils.getFormattedTime(binding.dateTxt.getText().toString(), DateUtils.appDateFormatM, DateUtils.appDateFormat);
+
                 updateHolidayApi(list.get(getAdapterPosition()).getId(), name1, date1);
                 dialog.dismiss();
             });

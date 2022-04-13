@@ -108,47 +108,47 @@ public class SingUpFragment extends BaseFragment {
                 dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 dialog.getWindow().setGravity(Gravity.CENTER);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                TextView adTxt = dialog.findViewById(R.id.adTxt);
-                TextView iosTxt = dialog.findViewById(R.id.iosTxt);
-                TextView wdTxt = dialog.findViewById(R.id.wdTxt);
-                TextView pmTxt = dialog.findViewById(R.id.pmTxt);
-
-                String getAd = adTxt.getText().toString();
-                String getIos = iosTxt.getText().toString();
-                String getWd = wdTxt.getText().toString();
-                String getPm = pmTxt.getText().toString();
-                adTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getAd;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-                iosTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getIos;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-                wdTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getWd;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-                pmTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getPm;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
+//                TextView adTxt = dialog.findViewById(R.id.adTxt);
+//                TextView iosTxt = dialog.findViewById(R.id.iosTxt);
+//                TextView wdTxt = dialog.findViewById(R.id.wdTxt);
+//                TextView pmTxt = dialog.findViewById(R.id.pmTxt);
+//
+//                String getAd = adTxt.getText().toString();
+//                String getIos = iosTxt.getText().toString();
+//                String getWd = wdTxt.getText().toString();
+//                String getPm = pmTxt.getText().toString();
+//                adTxt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String s = getAd;
+//                        binding.designationTxt.setText(s);
+//                        dialog.dismiss();
+//                    }
+//                });
+//                iosTxt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String s = getIos;
+//                        binding.designationTxt.setText(s);
+//                        dialog.dismiss();
+//                    }
+//                });
+//                wdTxt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String s = getWd;
+//                        binding.designationTxt.setText(s);
+//                        dialog.dismiss();
+//                    }
+//                });
+//                pmTxt.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        String s = getPm;
+//                        binding.designationTxt.setText(s);
+//                        dialog.dismiss();
+//                    }
+//                });
                 dialog.show();
             }
         });

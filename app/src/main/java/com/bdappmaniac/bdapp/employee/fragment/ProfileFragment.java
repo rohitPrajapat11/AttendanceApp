@@ -3,7 +3,6 @@ package com.bdappmaniac.bdapp.employee.fragment;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,7 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,7 +22,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -39,7 +36,6 @@ import androidx.navigation.Navigation;
 import com.bdappmaniac.bdapp.Api.response.LoginResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.activity.AdminActivity;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.activity.HomeActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentProfileBinding;
@@ -161,13 +157,12 @@ public class ProfileFragment extends BaseFragment {
 //                TextView iosTxt = dialog.findViewById(R.id.iosTxt);
 //                TextView wdTxt = dialog.findViewById(R.id.wdTxt);
 //                TextView pmTxt = dialog.findViewById(R.id.pmTxt);
-//                TextView oTxt = dialog.findViewById(R.id.oTxt);
+//                ImageView addTxt = dialog.findViewById(R.id.addBtn);
 //
 //                String getAd = adTxt.getText().toString();
 //                String getIos = iosTxt.getText().toString();
 //                String getWd = wdTxt.getText().toString();
 //                String getPm = pmTxt.getText().toString();
-//                String getO = oTxt.getText().toString();
 //
 //                adTxt.setOnClickListener(new View.OnClickListener() {
 //                    @Override
@@ -201,12 +196,10 @@ public class ProfileFragment extends BaseFragment {
 //                        dialog.dismiss();
 //                    }
 //                });
-//                oTxt.setOnClickListener(new View.OnClickListener() {
+//                addTxt.setOnClickListener(new View.OnClickListener() {
 //                    @Override
-//                    public void onClick(View v) {
-//                        String s = getO;
-//                        binding.designationTxt.setText(s);
-//                        dialog.dismiss();
+//                    public void onClick(View view) {
+//
 //                    }
 //                });
 //                dialog.show();
