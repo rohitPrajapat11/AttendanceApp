@@ -1,7 +1,5 @@
 package com.bdappmaniac.bdapp.admin.fragment;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,15 +19,11 @@ import com.bdappmaniac.bdapp.admin.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeDetailsBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
 
 public class EmployeeDetailsFragment extends BaseFragment {
     FragmentEmployeeDetailsBinding binding;
@@ -123,6 +117,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
         binding.emPhoneTxt.setText(String.valueOf(employeeByIdResponse.getEmgMoNo()));
         binding.addressTxt.setText(employeeByIdResponse.getEmployeeAddress());
         binding.employeeName.setText(employeeByIdResponse.getEmployeeName());
+        binding.joiningDateTxt.setText(String.valueOf(employeeByIdResponse.getJoiningdate()));
 
         Glide.with(mContext)
                 .load(employeeByIdResponse.getProfile())
