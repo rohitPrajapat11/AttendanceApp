@@ -52,6 +52,7 @@
         <entry key="app/src/main/res/drawable/white_5r_bg.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/white_arrow_bg.xml" value="0.2484375" />
         <entry key="app/src/main/res/drawable/white_round_bg.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/drawable/white_round_bgs.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/yellow_10r_bg.xml" value="0.12203947368421053" />
         <entry key="app/src/main/res/layout-v23/activity_auth.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout-v23/fragment_admin_term_and_condition.xml" value="0.15729166666666666" />
@@ -102,6 +103,7 @@
         <entry key="app/src/main/res/layout/fragment_create_m_p_i_n.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_date_dialog.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/fragment_designation.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_employee_attandence_list.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/fragment_employee_attendance.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_employee_attendance_rules.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/fragment_employee_detail.xml" value="0.1194078947368421" />
@@ -142,6 +144,8 @@
         <entry key="app/src/main/res/layout/navigation_drawer.xml" value="0.2" />
         <entry key="app/src/main/res/layout/network_dialog.xml" value="0.22" />
         <entry key="app/src/main/res/layout/present_and_absent_dialogbox.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/register_designation_dialogbox.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/register_designation_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/row_calendar_date.xml" value="0.25" />
         <entry key="app/src/main/res/layout/single_item_of_employee.xml" value="0.18" />
         <entry key="app/src/main/res/layout/task_item.xml" value="0.33" />

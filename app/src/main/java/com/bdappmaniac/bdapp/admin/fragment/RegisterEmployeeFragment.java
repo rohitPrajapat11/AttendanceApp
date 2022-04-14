@@ -1,5 +1,6 @@
 package com.bdappmaniac.bdapp.admin.fragment;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,6 +19,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.DatePicker;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
@@ -26,31 +29,43 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bdappmaniac.bdapp.Api.response.DesignationItem;
 import com.bdappmaniac.bdapp.Api.response.EmpRegisterResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
+import com.bdappmaniac.bdapp.admin.adapter.RegistrationDesignationAdapter;
 import com.bdappmaniac.bdapp.databinding.BottomDialogRegisterSuccessBinding;
-import com.bdappmaniac.bdapp.databinding.DesignationDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentRegisterEmpolyeeBinding;
+import com.bdappmaniac.bdapp.databinding.RegisterDesignationDialogboxBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.utils.ValidationUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.RequestBody;
 
-
 public class RegisterEmployeeFragment extends BaseFragment {
+    public Dialog dialog;
     FragmentRegisterEmpolyeeBinding binding;
     BottomDialogRegisterSuccessBinding dBinding;
+    RegistrationDesignationAdapter adapter;
+    String joiningDate;
+    List<DesignationItem> list = new ArrayList<>();
+    private int mYear, mMonth, mDay, mHour, mMinute;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,6 +94,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
                 map.put("password", toRequestBody(binding.passwordTxt.getText().toString()));
                 map.put("password_confirmation", toRequestBody(binding.confirmPasswordTxt.getText().toString()));
                 map.put("designation", toRequestBody(binding.designationTxt.getText().toString()));
+                map.put("joining_date", toRequestBody(joiningDate));
                 registerEmployee(map);
             }
         });
@@ -87,6 +103,28 @@ public class RegisterEmployeeFragment extends BaseFragment {
         });
         binding.designationTxt.setOnClickListener(v -> {
             designationDialog();
+        });
+        binding.joiningTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                binding.joiningTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
+                                joiningDate = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+                datePickerDialog.getWindow().setGravity(Gravity.CENTER);
+                datePickerDialog.show();
+            }
         });
         return binding.getRoot();
     }
@@ -135,8 +173,8 @@ public class RegisterEmployeeFragment extends BaseFragment {
     }
 
     private void designationDialog() {
-        DesignationDialogboxBinding designationBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.designation_dialogbox, null, false);
-        Dialog dialog = new Dialog(mContext);
+        RegisterDesignationDialogboxBinding designationBinding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.register_designation_dialogbox, null, false);
+        dialog = new Dialog(mContext);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(designationBinding.getRoot());
         dialog.setCancelable(false);
@@ -148,6 +186,11 @@ public class RegisterEmployeeFragment extends BaseFragment {
 //            binding.designationTxt.setText(mContext.getString(R.string.adroid_developre));
 //            dialog.dismiss();
 //        });
+        designationBinding.recycleView.setHasFixedSize(false);
+        designationBinding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new RegistrationDesignationAdapter(mContext, list, this);
+        designationBinding.recycleView.setAdapter(adapter);
+        allDesignationApi();
         dialog.show();
     }
 
@@ -255,6 +298,31 @@ public class RegisterEmployeeFragment extends BaseFragment {
                 drawable.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(textView.getContext(), color), PorterDuff.Mode.SRC_IN));
             }
         }
+    }
+
+    private void allDesignationApi() {
+        AppLoader.showLoaderDialog(mContext);
+        MainService.allDesignation(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    Type collectionType = new TypeToken<List<DesignationItem>>() {
+                    }.getType();
+                    List<DesignationItem> List = new Gson().fromJson(apiResponse.getData(), collectionType);
+                    list.clear();
+                    list.addAll(List);
+                    adapter.notifyDataSetChanged();
+                } else {
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
+    }
+
+    public void setDes(String des) {
+        binding.designationTxt.setText(des);
     }
 
     public class TextChange implements TextWatcher {

@@ -4,146 +4,157 @@ import com.google.gson.annotations.SerializedName;
 
 public class EmployeeByIdResponse {
 
-	@SerializedName("pincode")
-	private Object pincode;
+    @SerializedName("pincode")
+    private Object pincode;
 
-	@SerializedName("employee_address")
-	private String employeeAddress;
+    @SerializedName("employee_address")
+    private String employeeAddress;
 
-	@SerializedName("profile")
-	private String profile;
+    @SerializedName("profile")
+    private String profile;
 
-	@SerializedName("employee_name")
-	private String employeeName;
+    @SerializedName("employee_name")
+    private String employeeName;
 
-	@SerializedName("emg_mo_no")
-	private int emgMoNo;
+    @SerializedName("emg_mo_no")
+    private int emgMoNo;
 
-	@SerializedName("type")
-	private String type;
+    @SerializedName("type")
+    private String type;
 
-	@SerializedName("dob")
-	private Object dob;
+    @SerializedName("dob")
+    private Object dob;
 
-	@SerializedName("resetTokens")
-	private String resetTokens;
+    @SerializedName("resetTokens")
+    private String resetTokens;
 
-	@SerializedName("id")
-	private int id;
+    @SerializedName("id")
+    private int id;
 
-	@SerializedName("designation")
-	private String designation;
+    @SerializedName("designation")
+    private String designation;
 
-	@SerializedName("emp_mobile_no")
-	private int empMobileNo;
+    @SerializedName("emp_mobile_no")
+    private int empMobileNo;
 
-	@SerializedName("email")
-	private String email;
+    @SerializedName("email")
+    private String email;
 
-	@SerializedName("status")
-	private String status;
+    @SerializedName("status")
+    private String status;
 
-	public void setPincode(Object pincode){
-		this.pincode = pincode;
-	}
+    @SerializedName("joining_date")
+    private String joiningdate;
 
-	public Object getPincode(){
-		return pincode;
-	}
+    public String getJoiningdate() {
+        return joiningdate;
+    }
 
-	public void setEmployeeAddress(String employeeAddress){
-		this.employeeAddress = employeeAddress;
-	}
+    public void setJoiningdate(String joiningdate) {
+        this.joiningdate = joiningdate;
+    }
 
-	public String getEmployeeAddress(){
-		return employeeAddress;
-	}
+    public Object getPincode() {
+        return pincode;
+    }
 
-	public void setProfile(String profile){
-		this.profile = profile;
-	}
+    public void setPincode(Object pincode) {
+        this.pincode = pincode;
+    }
 
-	public String getProfile(){
-		return profile;
-	}
+    public String getEmployeeAddress() {
+        return employeeAddress;
+    }
 
-	public void setEmployeeName(String employeeName){
-		this.employeeName = employeeName;
-	}
+    public void setEmployeeAddress(String employeeAddress) {
+        this.employeeAddress = employeeAddress;
+    }
 
-	public String getEmployeeName(){
-		return employeeName;
-	}
+    public String getProfile() {
+        return profile;
+    }
 
-	public void setEmgMoNo(int emgMoNo){
-		this.emgMoNo = emgMoNo;
-	}
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
 
-	public int getEmgMoNo(){
-		return emgMoNo;
-	}
+    public String getEmployeeName() {
+        return employeeName;
+    }
 
-	public void setType(String type){
-		this.type = type;
-	}
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
 
-	public String getType(){
-		return type;
-	}
+    public int getEmgMoNo() {
+        return emgMoNo;
+    }
 
-	public void setDob(Object dob){
-		this.dob = dob;
-	}
+    public void setEmgMoNo(int emgMoNo) {
+        this.emgMoNo = emgMoNo;
+    }
 
-	public Object getDob(){
-		return dob;
-	}
+    public String getType() {
+        return type;
+    }
 
-	public void setResetTokens(String resetTokens){
-		this.resetTokens = resetTokens;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public String getResetTokens(){
-		return resetTokens;
-	}
+    public Object getDob() {
+        return dob;
+    }
 
-	public void setId(int id){
-		this.id = id;
-	}
+    public void setDob(Object dob) {
+        this.dob = dob;
+    }
 
-	public int getId(){
-		return id;
-	}
+    public String getResetTokens() {
+        return resetTokens;
+    }
 
-	public void setDesignation(String designation){
-		this.designation = designation;
-	}
+    public void setResetTokens(String resetTokens) {
+        this.resetTokens = resetTokens;
+    }
 
-	public String getDesignation(){
-		return designation;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setEmpMobileNo(int empMobileNo){
-		this.empMobileNo = empMobileNo;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public int getEmpMobileNo(){
-		return empMobileNo;
-	}
+    public String getDesignation() {
+        return designation;
+    }
 
-	public void setEmail(String email){
-		this.email = email;
-	}
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
 
-	public String getEmail(){
-		return email;
-	}
+    public int getEmpMobileNo() {
+        return empMobileNo;
+    }
 
-	public void setStatus(String status){
-		this.status = status;
-	}
+    public void setEmpMobileNo(int empMobileNo) {
+        this.empMobileNo = empMobileNo;
+    }
 
-	public String getStatus(){
-		return status;
-	}
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

@@ -13,14 +13,14 @@
             android:id="@+id/logo"
             android:layout_width="@dimen/_125sdp"
             android:layout_height="@dimen/_125sdp"
-            android:background="@color/_F0F1F3"
+            android:background="@drawable/white_round_bgs"
             android:contentDescription="@string/app_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.332"
-            app:srcCompat="@drawable/app_logo" />
+            app:srcCompat="@drawable/app_logo_b" />
 
         <TextView
             android:id="@+id/appName"
@@ -29,7 +29,7 @@
             android:layout_marginTop="@dimen/_40sdp"
             android:fontFamily="@font/arial_rounded_mt_normal"
             android:gravity="center"
-            android:text="@string/bd_app_maniac"
+            android:text="Bansshi Software"
             android:textColor="@color/green"
             android:textSize="@dimen/_25sdp"
             android:textStyle="bold"
