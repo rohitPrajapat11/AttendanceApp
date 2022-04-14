@@ -78,7 +78,7 @@ public class LogInFragment extends BaseFragment {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
-                if ((apiResponse.getData() != null)) {
+                if ((!apiResponse.getData().isJsonNull())) {
                     LoginResponse loginResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
                     SharedPref.init(mContext);
                     if (loginResponse.getStatus().equals("active")) {
@@ -91,8 +91,8 @@ public class LogInFragment extends BaseFragment {
                             startActivity(new Intent(mContext, AdminActivity.class));
                             getActivity().finish();
                         }
-                    } else if (loginResponse.getStatus().equals("inactive")) {
-                        showSnackBar(binding.getRoot(), "You are not authorized");
+                    } else if (!apiResponse.isSuccess() && apiResponse.getData().isJsonNull()) {
+                        showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     }
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());

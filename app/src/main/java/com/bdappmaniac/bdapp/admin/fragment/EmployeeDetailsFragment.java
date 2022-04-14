@@ -19,6 +19,7 @@ import com.bdappmaniac.bdapp.admin.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeDetailsBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
@@ -76,7 +77,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
             binding.attendanceLoanBtn.setOnClickListener(v -> {
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", ID);
-                Navigation.findNavController(v).navigate(R.id.employeeAttendanceFragment,bundle);
+                Navigation.findNavController(v).navigate(R.id.employeeAttendanceFragment, bundle);
             });
             binding.provideLoanBtn.setOnClickListener(v -> {
                 Navigation.findNavController(v).navigate(R.id.provideLoanFragment);
@@ -117,8 +118,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
         binding.emPhoneTxt.setText(String.valueOf(employeeByIdResponse.getEmgMoNo()));
         binding.addressTxt.setText(employeeByIdResponse.getEmployeeAddress());
         binding.employeeName.setText(employeeByIdResponse.getEmployeeName());
-        binding.joiningDateTxt.setText(String.valueOf(employeeByIdResponse.getJoiningdate()));
-
+        binding.joiningDateTxt.setText(DateUtils.getFormattedTime(String.valueOf(employeeByIdResponse.getJoiningdate()), DateUtils.appDateFormat, DateUtils.appDateFormatTo));
         Glide.with(mContext)
                 .load(employeeByIdResponse.getProfile())
                 .error(R.drawable.user)

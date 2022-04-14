@@ -101,6 +101,7 @@
         <entry key="app/src/main/res/layout/fragment_create_m_p_i_n.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_date_dialog.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/fragment_designation.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_employee_attandence_list.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/fragment_employee_attendance.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_employee_attendance_rules.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/fragment_employee_detail.xml" value="0.1194078947368421" />

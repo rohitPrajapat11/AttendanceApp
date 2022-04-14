@@ -49,7 +49,7 @@ public class AdminHomeAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     Navigation.findNavController(view).navigate(R.id.loanFragment);
                 }
                 if (position == 1) {
-                    Navigation.findNavController(view).navigate(R.id.employeeListForLoanFragment);
+                    Navigation.findNavController(view).navigate(R.id.employeeAttandenceListFragment);
                 }
                 if (position == 2) {
                     Navigation.findNavController(view).navigate(R.id.adminHolidayFragment);
