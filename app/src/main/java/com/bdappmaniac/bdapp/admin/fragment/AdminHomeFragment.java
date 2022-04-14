@@ -42,11 +42,12 @@ public class AdminHomeFragment extends Fragment {
 //        binding.semiCircleArcProgressBar.setPercentWithAnimation(45);
 //    }*/
         ArrayList<AdminHomeModel> itemList = new ArrayList<>();
-        itemList.add(new AdminHomeModel(R.drawable.icn_loan, "Adavance Payment"));
-        itemList.add(new AdminHomeModel(R.drawable.icn_holiday, "Employee List"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_advance_payment, "Adavance Payment"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_attendence, "Employee Attendance"));
         itemList.add(new AdminHomeModel(R.drawable.icn_holidays, "Holiday"));
-        itemList.add(new AdminHomeModel(R.drawable.icn_lock, "Lock / Unlock"));
-        itemList.add(new AdminHomeModel(R.drawable.icn_rules, "To Do List"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_locks, "Lock / Unlock"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_to_do_list, "To Do List"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_employee_list, "Employee List"));
 
         adapter = new AdminHomeAdaapter(itemList, getContext());
         binding.recyclerMenu.setLayoutManager(new GridLayoutManager(getContext(), 2));

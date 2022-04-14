@@ -7,7 +7,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
@@ -41,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
                 android:gravity="center_vertical"
-                android:text="Employee Attendance"
+                android:text="Employee List"
                 android:textColor="@color/_172B4D"
                 android:textSize="@dimen/_18sdp"
                 app:drawableTint="@color/_172B4D"

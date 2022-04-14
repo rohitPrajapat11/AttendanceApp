@@ -1,5 +1,6 @@
 package com.bdappmaniac.bdapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ public class AdminHomeAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ViewHolder vHolder = (ViewHolder) holder;
         vHolder.binding.imageitem.setImageResource(itemList.get(position).getImageitem());
         vHolder.binding.title.setText(itemList.get(position).getTitle());
@@ -59,6 +60,9 @@ public class AdminHomeAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 }
                 if (position == 4) {
                     Navigation.findNavController(view).navigate(R.id.toDoListFragment);
+                }
+                if (position == 5) {
+                    Navigation.findNavController(view).navigate(R.id.employeeDesListFragment);
                 }
             }
         });

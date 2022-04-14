@@ -98,4 +98,10 @@
         android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeAttandenceListFragment"
         android:label="EmployeeAttandenceListFragment"
         tools:layout="@layout/fragment_employee_attandence_list"/>
+
+    <fragment
+        android:id="@+id/employeeDesListFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeDesListFragment"
+        android:label="EmployeeDesListFragment"
+        tools:layout="@layout/fragment_employee_des_list"/>
 </navigation>

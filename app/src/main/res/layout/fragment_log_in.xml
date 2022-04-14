@@ -189,7 +189,7 @@
                         android:fontFamily="@font/font_heavy"
                         android:text="@string/sign_in"
                         android:textAllCaps="true"
-                        android:textColor="@color/_172B4D"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintBottom_toTopOf="@+id/forgetPasswordBtn"
                         app:layout_constraintEnd_toEndOf="@+id/passwordTxt"
