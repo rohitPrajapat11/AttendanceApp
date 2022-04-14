@@ -21,7 +21,8 @@ import com.bdappmaniac.bdapp.utils.StringHelper;
 
 import java.util.ArrayList;
 
-public class AdminTodoList extends BaseFragment {
+public class
+AdminTodoList extends BaseFragment {
 FragmentAdminTodoListBinding binding;
     ArrayList<String> tasksList = new ArrayList<>();
     private ToDoListAdapter Adapter;
@@ -34,8 +35,6 @@ FragmentAdminTodoListBinding binding;
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();
         });
-
-
         binding.addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

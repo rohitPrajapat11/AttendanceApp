@@ -9,7 +9,7 @@
         android:background="@drawable/table_bg">
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/holidays"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:fontFamily="@font/font_heavy"
@@ -17,8 +17,8 @@
             android:padding="@dimen/_2sdp"
             android:textColor="@color/_172B4D"
             android:textSize="@dimen/_13sdp"
-            app:layout_constraintBottom_toBottomOf="@id/holidays"
-            app:layout_constraintEnd_toStartOf="@id/holidays"
+            app:layout_constraintBottom_toBottomOf="@id/date"
+            app:layout_constraintEnd_toStartOf="@id/date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,11 +28,11 @@
             android:layout_height="0dp"
             android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/holidays"
-            app:layout_constraintStart_toEndOf="@id/date"
+            app:layout_constraintStart_toEndOf="@id/holidays"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/holidays"
+            android:id="@+id/date"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:fontFamily="@font/font_heavy"
@@ -42,6 +42,6 @@
             android:textColor="@color/_172B4D"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/date" />
+            app:layout_constraintStart_toEndOf="@+id/holidays" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
