@@ -86,14 +86,16 @@
         <entry key="app/src/main/res/layout/design_recycler_menu.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/designation_dialogbox.xml" value="0.22" />
         <entry key="app/src/main/res/layout/designation_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/employee_day_attendance_list.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/employee_day_attendence_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/employee_holiday_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/employee_holiday_month_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/employee_list_item.xml" value="0.17" />
         <entry key="app/src/main/res/layout/exit_dialogbox.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_admin_holiday.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_admin_holiday.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_admin_home.xml" value="0.12" />
         <entry key="app/src/main/res/layout/fragment_admin_loan.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/fragment_admin_lock_unlock.xml" value="0.11796875" />
+        <entry key="app/src/main/res/layout/fragment_admin_lock_unlock.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_admin_profile.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_admin_tearm_and_condtion.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_admin_term_and_condition.xml" value="0.18" />
@@ -107,7 +109,7 @@
         <entry key="app/src/main/res/layout/fragment_employee_attandence_list.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/fragment_employee_attendance.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_employee_attendance_rules.xml" value="0.11796875" />
-        <entry key="app/src/main/res/layout/fragment_employee_des_list.xml" value="0.11796875" />
+        <entry key="app/src/main/res/layout/fragment_employee_des_list.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_employee_detail.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/fragment_employee_details.xml" value="0.15" />
         <entry key="app/src/main/res/layout/fragment_employee_holiday.xml" value="0.12" />

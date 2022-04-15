@@ -645,4 +645,26 @@ public class MainService extends BaseFragment {
         });
         return data;
     }
+
+    public static LiveData<ApiResponse> allEmpAttendance(Context context, String token) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        Call<ApiResponse> call = apiService.allEmpAttendance(token);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
 }

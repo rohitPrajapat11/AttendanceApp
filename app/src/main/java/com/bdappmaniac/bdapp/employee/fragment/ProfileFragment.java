@@ -82,6 +82,7 @@ public class ProfileFragment extends BaseFragment {
         binding.dobTxt.addTextChangedListener(new TextChange(binding.dobTxt));
         binding.addressTxt.addTextChangedListener(new TextChange(binding.addressTxt));
         binding.pinCodeTxt.addTextChangedListener(new TextChange(binding.pinCodeTxt));
+        binding.joiningTxt.addTextChangedListener(new TextChange(binding.joiningTxt));
 
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +109,26 @@ public class ProfileFragment extends BaseFragment {
             datePickerDialog.getWindow().setGravity(Gravity.CENTER);
             datePickerDialog.show();
         });
+        binding.joiningTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                binding.joiningTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                datePickerDialog.getWindow().setGravity(Gravity.CENTER);
+                datePickerDialog.show();
+            }
+        });
         binding.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,6 +152,7 @@ public class ProfileFragment extends BaseFragment {
                 map.put("dob", toRequestBody(binding.dobTxt.getText().toString()));
                 map.put("employee_address", toRequestBody(binding.addressTxt.getText().toString()));
                 map.put("pincode", toRequestBody(binding.pinCodeTxt.getText().toString()));
+                map.put("joining_date", toRequestBody(binding.joiningTxt.getText().toString()));
                 updateEmployeeProfileApi(map, fileToUpload);
                 onEditChange(false);
             }
@@ -332,6 +354,9 @@ public class ProfileFragment extends BaseFragment {
         if (StringHelper.isEmpty(binding.pinCodeTxt.getText().toString())) {
             return false;
         }
+        if (StringHelper.isEmpty(binding.joiningTxt.getText().toString())) {
+            return false;
+        }
         return true;
     }
 
@@ -373,6 +398,10 @@ public class ProfileFragment extends BaseFragment {
             return false;
         }
         if (TextUtils.isEmpty(binding.pinCodeTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.pincode));
+            return false;
+        }
+        if (TextUtils.isEmpty(binding.joiningTxt.getText().toString())) {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.pincode));
             return false;
         }
@@ -420,6 +449,11 @@ public class ProfileFragment extends BaseFragment {
         } else {
             setTextViewDrawableColor(binding.pinCodeTxt, R.color._172B4D);
         }
+        if (StringHelper.isEmpty(binding.joiningTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.joiningTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.joiningTxt, R.color._172B4D);
+        }
     }
 
     private void setValidations() {
@@ -453,6 +487,7 @@ public class ProfileFragment extends BaseFragment {
         binding.addressTxt.setEnabled(check);
         binding.pinCodeTxt.setEnabled(check);
         binding.designationTxt.setEnabled(check);
+        binding.joiningTxt.setEnabled(check);
     }
 
     private void setTextViewDrawableColor(TextView textView, int color) {
@@ -478,6 +513,7 @@ public class ProfileFragment extends BaseFragment {
         binding.dobTxt.setText(String.valueOf(updateResponse.getDob()));
         binding.addressTxt.setText(updateResponse.getEmployeeAddress());
         binding.pinCodeTxt.setText(String.valueOf(updateResponse.getPincode()));
+        binding.joiningTxt.setText(String.valueOf(updateResponse.getJoiningdate()));
         if (updateResponse.getProfile() != null) {
             Glide.with(mContext).load(updateResponse.getProfile()).placeholder(R.drawable.user).into(binding.profile);
         }

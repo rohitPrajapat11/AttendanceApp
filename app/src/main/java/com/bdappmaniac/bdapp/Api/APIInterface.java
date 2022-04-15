@@ -117,4 +117,7 @@ public interface APIInterface {
 
     @POST("api/remove-designation/{id}")
     Call<ApiResponse> removeDesignation(@Header("Authorization") String token, @Path("id") int id);
+
+    @POST("api/all-emp-attend-of-today")
+    Call<ApiResponse> allEmpAttendance(@Header("Authorization") String token);
 }

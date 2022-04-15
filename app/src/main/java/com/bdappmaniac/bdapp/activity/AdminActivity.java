@@ -160,6 +160,10 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     headerHideShow(false);
                     bottomHideShow(false);
                 }else if (destination.getId()==R.id.employeeAttandenceListFragment){
+                    navHandel("EmployeeAttandenceList");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                }else if (destination.getId()==R.id.employeeDesListFragment){
                     navHandel("Employee List");
                     headerHideShow(false);
                     bottomHideShow(false);

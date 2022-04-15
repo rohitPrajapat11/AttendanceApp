@@ -1,70 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".admin.fragment.AdminLockUnlock">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="@dimen/_1sdp"
-        android:paddingTop="@dimen/_15sdp"
-        android:paddingBottom="@dimen/_15sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".admin.fragment.AdminLockUnlock">
 
-        <ImageView
-            android:id="@+id/backBtn"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_18sdp"
-            android:contentDescription="@string/backBtn"
-            android:scaleType="fitXY"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:src="@drawable/icn_back_arrow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.555"
-            tools:layout_editor_absoluteX="3dp"
-            tools:layout_editor_absoluteY="17dp" />
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/font_heavy"
-            android:gravity="center_vertical"
-            android:text="Lock/Unlock"
-            android:textColor="@color/_172B4D"
-            android:textSize="@dimen/_18sdp"
-            app:drawableTint="@color/_172B4D"
+            android:background="@color/white"
+            android:elevation="@dimen/_1sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:contentDescription="@string/backBtn"
+                android:scaleType="fitXY"
+                android:src="@drawable/icn_back_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.555"
+                tools:layout_editor_absoluteX="3dp"
+                tools:layout_editor_absoluteY="17dp" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_heavy"
+                android:gravity="center_vertical"
+                android:text="Lock/Unlock"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_18sdp"
+                app:drawableTint="@color/_172B4D"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.454"
+                app:layout_constraintStart_toEndOf="@+id/backBtn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.512"
+                app:tint="@color/secondary_color" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerlockUnlock"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.454"
-            app:layout_constraintStart_toEndOf="@+id/backBtn"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.512"
-            app:tint="@color/secondary_color" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+            tools:listitem="@layout/desigin_lock_unlock_items" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerlockUnlock"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-      android:layout_marginTop="@dimen/_6sdp"
-        android:layout_marginBottom="@dimen/_6sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
-        tools:listitem="@layout/desigin_lock_unlock_items"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -16,7 +16,6 @@ import com.bdappmaniac.bdapp.model.AdminHomeModel;
 
 import java.util.ArrayList;
 
-
 public class AdminHomeFragment extends Fragment {
     FragmentAdminHomeBinding binding;
     ArrayList<AdminHomeModel> itemList = new ArrayList<>();
