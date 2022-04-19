@@ -97,5 +97,5 @@
         android:id="@+id/employeeAttandenceListFragment"
         android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeAttandenceListFragment"
         android:label="EmployeeAttandenceListFragment"
-        tools:layout="@layout/fragment_employee_attandence_list"/>
+        tools:layout="@layout/fragment_employee_attandence_list" />
 </navigation>

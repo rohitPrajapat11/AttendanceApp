@@ -43,6 +43,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
             binding.backBtn.setOnClickListener(v -> {
                 Navigation.findNavController(v).navigateUp();
             });
+
 //        binding.empStatus.setOnClickListener(v -> {
 //            AcviteDeactiveDialogBinding activeBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.acvite_deactive_dialog, null, false);
 //            Dialog dialog = new Dialog(mContext);

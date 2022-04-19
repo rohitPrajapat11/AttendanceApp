@@ -29,7 +29,7 @@
             android:layout_marginTop="@dimen/_40sdp"
             android:fontFamily="@font/arial_rounded_mt_normal"
             android:gravity="center"
-            android:text="Bansshi Software"
+            android:text="Banshi Software"
             android:textColor="@color/green"
             android:textSize="@dimen/_25sdp"
             android:textStyle="bold"

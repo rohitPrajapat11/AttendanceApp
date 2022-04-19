@@ -34,7 +34,6 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         this.list = (ArrayList<EmployeeList>) list;
         this.from = from;
     }
-
     @Override
     public long getItemId(int position) {
         return position;
@@ -75,7 +74,6 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 bundle.putInt("id", list.get(position).getId());
                 Navigation.findNavController(v).navigate(R.id.employeeDetailFragment, bundle);
             }
-
         });
     }
 

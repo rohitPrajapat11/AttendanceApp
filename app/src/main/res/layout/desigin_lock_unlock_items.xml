@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_2sdp"
+        android:background="@drawable/white_5r_bg"
+        android:elevation="@dimen/_2sdp">
+
+        <TextView
+            android:id="@+id/empName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_9sdp"
+            android:layout_marginStart="24dp"
+            android:text="Rohit prajapat"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.606" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_14sdp"
+            android:padding="@dimen/_2sdp"
+            android:text="7:00 PM"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/switchbtn"
+            app:layout_constraintEnd_toStartOf="@+id/switchbtn"
+            app:layout_constraintTop_toTopOf="@+id/switchbtn" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchbtn"
+            android:layout_width="55dp"
+            android:layout_height="32dp"
+            android:layout_margin="@dimen/_10sdp"
+            android:thumb="@drawable/custom_thumb"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:thumbTextPadding="@dimen/_3sdp"
+            app:track="@drawable/custom_track" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
