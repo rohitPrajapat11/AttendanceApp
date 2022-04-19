@@ -6,43 +6,39 @@
         android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/table_bg">
+        android:elevation="1dp"
+        android:layout_margin="@dimen/_1sdp"
+        android:background="@drawable/white_5r_bg">
 
         <TextView
             android:id="@+id/holidays"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/_40sdp"
             android:fontFamily="@font/font_heavy"
-            android:gravity="top|center_horizontal"
+            android:gravity="center_vertical"
             android:padding="@dimen/_2sdp"
+            android:paddingStart="@dimen/_10sdp"
             android:textColor="@color/_172B4D"
             android:textSize="@dimen/_13sdp"
-            app:layout_constraintBottom_toBottomOf="@id/date"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/date"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:background="@color/black"
-            app:layout_constraintBottom_toBottomOf="@id/holidays"
-            app:layout_constraintStart_toEndOf="@id/holidays"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/date"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/_40sdp"
             android:fontFamily="@font/font_heavy"
-            android:gravity="left"
-            android:paddingStart="@dimen/_5sdp"
-            android:padding="@dimen/_2sdp"
+            android:gravity="center_vertical"
             android:inputType="textMultiLine"
+            android:padding="@dimen/_2sdp"
+            android:paddingStart="@dimen/_10sdp"
             android:textColor="@color/_172B4D"
             android:textSize="@dimen/_13sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/holidays" />
+            app:layout_constraintStart_toEndOf="@+id/holidays"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

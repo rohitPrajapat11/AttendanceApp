@@ -27,7 +27,11 @@
             android:enabled="true"
             android:exported="true">
         </service>
-
+        <activity
+            android:name=".activity.BaseActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name=".activity.AdminActivity"
             android:exported="true"
@@ -66,6 +70,15 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_path" />
         </provider>
+        <receiver
+            android:name=".helper.ConnectivityReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action
+                    android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                    tools:ignore="BatteryLife" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
 

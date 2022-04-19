@@ -64,9 +64,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/white_5r_bg"
-            android:elevation="@dimen/_5sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/headerLayout">
@@ -85,12 +82,11 @@
 
                 <TextView
                     android:id="@+id/holidays"
-
-
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_35sdp"
                     android:fontFamily="@font/font_heavy"
                     android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
                     android:inputType="text"
                     android:padding="@dimen/_2sdp"
                     android:text="Holidays"
@@ -102,21 +98,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:background="@color/black"
-                    app:layout_constraintBottom_toBottomOf="@id/holidays"
-                    app:layout_constraintStart_toEndOf="@id/holidays"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <TextView
                     android:id="@+id/date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_heavy"
                     android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
                     android:inputType="textMultiLine"
                     android:padding="@dimen/_2sdp"
                     android:text="Date"
@@ -149,17 +137,18 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:spanCount="1"
-                    tools:itemCount="10"
+                    tools:itemCount="7"
                     tools:listitem="@layout/employee_holiday_item" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout6"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/table_bg"
+                android:elevation="1dp"
+                android:background="@drawable/white_5r_bg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -169,9 +158,10 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:fontFamily="@font/font_heavy"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:inputType="textMultiLine"
                     android:padding="@dimen/_2sdp"
+                    android:paddingStart="@dimen/_10sdp"
                     android:text="Saturday Holiday"
                     android:textColor="@color/_172B4D"
                     android:textSize="@dimen/_13sdp"
@@ -180,22 +170,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:id="@+id/views"
-                    android:layout_width="1dp"
-                    android:layout_height="60dp"
-                    android:background="@color/black"
-                    app:layout_constraintStart_toStartOf="@+id/dates"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <TextView
                     android:id="@+id/dates"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:fontFamily="@font/font_heavy"
-                    android:gravity="center"
                     android:inputType="textMultiLine"
                     android:padding="@dimen/_2sdp"
+                    android:paddingStart="@dimen/_10sdp"
                     android:text="Every 1st and 3rd of the Month"
                     android:textColor="@color/_172B4D"
                     android:textSize="@dimen/_13sdp"
