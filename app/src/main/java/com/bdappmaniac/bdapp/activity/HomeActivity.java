@@ -26,13 +26,16 @@ import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.application.BdApp;
 import com.bdappmaniac.bdapp.databinding.ActivityHomeBinding;
 import com.bdappmaniac.bdapp.databinding.ExitDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.PresentAndAbsentDialogboxBinding;
 import com.bdappmaniac.bdapp.employee.fragment.HomeFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.helper.ConnectivityReceiver;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
+import com.bdappmaniac.bdapp.interfaces.OnChangeConnectivityListener;
 import com.bdappmaniac.bdapp.utils.Constant;
 import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
@@ -58,6 +61,19 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         StatusBarUtils.statusBarColor(this, R.color.white);
+        ConnectivityReceiver.setConnectivityListener(new OnChangeConnectivityListener() {
+            @Override
+            public void onChanged(boolean status) {
+                if (!BdApp.getInstance().isInternet(HomeActivity.this)) {
+                    noInternetDialog();
+                } else {
+                    if (noInternetdialog != null) {
+                        noInternetdialog.dismiss();
+                        AppLoader.hideLoaderDialog();
+                    }
+                }
+            }
+        });
         navController = Navigation.findNavController(this, R.id.nav_controller);
         updateProfile();
         SharedPref.init(this);

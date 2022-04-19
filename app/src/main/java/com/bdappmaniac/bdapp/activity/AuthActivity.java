@@ -1,12 +1,15 @@
 package com.bdappmaniac.bdapp.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
 
+import androidx.fragment.app.Fragment;
+
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.application.BdApp;
 import com.bdappmaniac.bdapp.employee.fragment.LogInFragment;
+import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.helper.ConnectivityReceiver;
+import com.bdappmaniac.bdapp.interfaces.OnChangeConnectivityListener;
 
 import java.util.List;
 
@@ -15,6 +18,19 @@ public class AuthActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
+        ConnectivityReceiver.setConnectivityListener(new OnChangeConnectivityListener() {
+            @Override
+            public void onChanged(boolean status) {
+                if (!BdApp.getInstance().isInternet(AuthActivity.this)) {
+                    noInternetDialog();
+                } else {
+                    if (noInternetdialog != null) {
+                        noInternetdialog.dismiss();
+                        AppLoader.hideLoaderDialog();
+                    }
+                }
+            }
+        });
     }
     @Override
     public void onBackPressed() {

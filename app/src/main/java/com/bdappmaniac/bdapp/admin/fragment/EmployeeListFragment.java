@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -20,7 +19,6 @@ import com.bdappmaniac.bdapp.admin.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeListBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -38,7 +36,7 @@ public class EmployeeListFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
      if(binding == null) {
          binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_list, container, false);
-         employeeListApi();
+//         employeeListApi();
          EmAdapter = new EmployeeListAdapter(mContext, employeeList, "EmployeeList");
          binding.employeeRecycler.setHasFixedSize(false);
          binding.employeeRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -64,5 +62,11 @@ public class EmployeeListFragment extends BaseFragment {
             }
             AppLoader.hideLoaderDialog();
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        employeeListApi();
     }
 }

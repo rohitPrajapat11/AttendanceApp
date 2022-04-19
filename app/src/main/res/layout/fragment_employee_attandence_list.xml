@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
                 android:gravity="center_vertical"
-                android:text="Employee List"
+                android:text="Employee Attendance"
                 android:textColor="@color/_172B4D"
                 android:textSize="@dimen/_18sdp"
                 app:drawableTint="@color/_172B4D"

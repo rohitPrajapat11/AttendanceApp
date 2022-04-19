@@ -7,7 +7,7 @@ import android.net.NetworkInfo;
 public class CheckInternetConnection {
     private final Context context;
     public CheckInternetConnection(Context context) {
-        this.context = context.getApplicationContext();
+        this.context = context;
     }
     public boolean isConnected() {
         ConnectivityManager cm =

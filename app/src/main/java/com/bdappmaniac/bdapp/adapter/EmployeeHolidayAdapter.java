@@ -30,7 +30,6 @@ import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -41,7 +40,7 @@ import okhttp3.RequestBody;
 
 public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    List<HolidaysItem> list = new ArrayList<>();
+    List<HolidaysItem> list;
     int position;
     private int TYear, TMonth, TDay;
 
@@ -109,6 +108,11 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             requestBody = toRequestBodyPart(val);
         }
         return requestBody;
+    }
+
+    public  void setList(List<HolidaysItem> list) {
+        this.list = list;
+        notifyDataSetChanged();
     }
 
     public RequestBody toRequestBodyPart(String value) {
@@ -190,7 +194,6 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             binding.updateBtn.setOnClickListener(view -> {
                 String name1 = binding.reasonTxt.getText().toString();
                 String date1 = DateUtils.getFormattedTime(binding.dateTxt.getText().toString(), DateUtils.appDateFormatM, DateUtils.appDateFormat);
-
                 updateHolidayApi(list.get(getAdapterPosition()).getId(), name1, date1);
                 dialog.dismiss();
             });

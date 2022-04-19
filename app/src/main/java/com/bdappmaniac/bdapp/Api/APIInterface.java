@@ -35,7 +35,7 @@ public interface APIInterface {
     @FormUrlEncoded
     @POST("api/updateProfileByAdmin/{id}")
     Call<ApiResponse> updateProfileByAdmin(@Header("Authorization") String token, @Path("id") int id, @Field("status") String status);
-//
+
     @POST("api/logout")
     Call<ApiResponse> userLogout(@Header("Authorization") String token);
 
@@ -118,5 +118,6 @@ public interface APIInterface {
     @POST("api/remove-designation/{id}")
     Call<ApiResponse> removeDesignation(@Header("Authorization") String token, @Path("id") int id);
 
-
+    @POST("api/all-emp-attend-of-today")
+    Call<ApiResponse> allEmpAttendance(@Header("Authorization") String token);
 }

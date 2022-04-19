@@ -18,7 +18,7 @@
     <color name="_FF99D131">#FFF0F1F3</color>
     <color name="green">#4CAF50</color>
     <color name="light_black">#343637</color>
-    <color name="primary_color">#48c884</color>
+    <color name="primary_color">#161B3D</color>
     <color name="light_primary_color">#71DDA4</color>
     <color name="_192d4d">#192d4d</color>
     <color name="secondary_color">#f04653</color>
@@ -28,16 +28,9 @@
     <color name="_002460">#002460</color>
     <color name="_00A078">#00A078</color>
     <color name="_EA5C44">#EA5C44</color>
-
-
     <!--colors for light mode-->
-
-
     <!--    color items-->
-
     <!--    colors play game-->
-
     <color name="orange">#FE940D</color>
-
     <color name="_FBFBFB">#FBFBFB</color>
 </resources>

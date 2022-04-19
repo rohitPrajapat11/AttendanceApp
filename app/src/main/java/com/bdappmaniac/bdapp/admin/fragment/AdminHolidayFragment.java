@@ -163,16 +163,18 @@ public class AdminHolidayFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<HolidaysItem>>() {}.getType();
+                    Type collectionType = new TypeToken<List<HolidaysItem>>() {
+                    }.getType();
                     List<HolidaysItem> monthList = new Gson().fromJson(apiResponse.getData(), collectionType);
                     list.clear();
                     list.addAll(monthList);
-                    monthAdapter.notifyDataSetChanged();
+                    monthAdapter.setList(list);
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }
             }
             AppLoader.hideLoaderDialog();
         });
+
     }
 }

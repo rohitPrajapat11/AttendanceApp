@@ -69,9 +69,10 @@ import okhttp3.RequestBody;
 public class AdminProfile extends BaseFragment {
     private final int PICK_IMAGE_CAMERA = 1, PICK_IMAGE_GALLERY = 2;
     FragmentAdminProfileBinding binding;
-    String imgPath, dob;
+    String imgPath;
     File file = null;
     MultipartBody.Part fileToUpload;
+    String updateDobDate, updateInCorpDate;
     private int mYear, mMonth, mDay, mHour, mMinute;
 
     @Override
@@ -79,7 +80,6 @@ public class AdminProfile extends BaseFragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_profile, container, false);
         SharedPref.init(mContext);
         setResponseData(SharedPref.getUserDetails());
-
         binding.nameTxt.addTextChangedListener(new TextChange(binding.nameTxt));
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.phoneTxt.addTextChangedListener(new TextChange(binding.phoneTxt));
@@ -107,8 +107,10 @@ public class AdminProfile extends BaseFragment {
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
-                            binding.dobTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
-                            dob = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
+                            String d = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                            updateDobDate = d;
+                            binding.dobTxt.setText(DateUtils.getFormattedTime(d, DateUtils.appDateFormat, DateUtils.appDateFormatTos));
+
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
@@ -135,11 +137,11 @@ public class AdminProfile extends BaseFragment {
                 map.put("email", toRequestBody(binding.emailTxt.getText().toString()));
                 map.put("emp_mobile_no", toRequestBody(binding.phoneTxt.getText().toString()));
                 map.put("designation", toRequestBody(binding.designationTxt.getText().toString()));
-                map.put("dob", toRequestBody(dob));
+                map.put("dob", toRequestBody(updateDobDate));
                 map.put("employee_address", toRequestBody(binding.addressTxt.getText().toString()));
                 map.put("GSTID", toRequestBody(binding.gstidTxt.getText().toString()));
                 map.put("GSTIN", toRequestBody(binding.gstinTxt.getText().toString()));
-                map.put("incorDate", toRequestBody(binding.incDateTxt.getText().toString()));
+                map.put("incorDate", toRequestBody(updateInCorpDate));
                 map.put("otherNumber", toRequestBody(binding.otherNumTxt.getText().toString()));
                 updateEmployeeProfileApi(map, fileToUpload);
                 onEditChange(false);
@@ -197,8 +199,9 @@ public class AdminProfile extends BaseFragment {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                binding.incDateTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
-//                                binding.incDateTxt.setText(DateUtils.getFormattedTime(binding.incDateTxt.getText().toString(), DateUtils.appDateFormats, DateUtils.appDateFormatTos));
+                                String d = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                                updateInCorpDate = d;
+                                binding.incDateTxt.setText(DateUtils.getFormattedTime(d, DateUtils.appDateFormat, DateUtils.appDateFormatTos));
                             }
                         }, mYear, mMonth, mDay);
                 datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
@@ -491,6 +494,8 @@ public class AdminProfile extends BaseFragment {
     }
 
     public void setResponseData(LoginResponse updateResponse) {
+        updateInCorpDate = updateResponse.getIncorDate();
+        updateDobDate = updateResponse.getDob().toString();
         binding.nameTxt.setText(updateResponse.getEmployeeName());
         binding.emailTxt.setText(updateResponse.getEmail());
         binding.phoneTxt.setText(String.valueOf(updateResponse.getEmpMobileNo()));
@@ -520,7 +525,7 @@ public class AdminProfile extends BaseFragment {
                     LoginResponse updateResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
                     updateResponse.setAccessToken(getToken());
                     SharedPref.putUserDetails(updateResponse);
-                    setResponseData(updateResponse);
+                    //setResponseData(updateResponse);
                     ((AdminActivity) mContext).updateProfile();
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));

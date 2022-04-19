@@ -17,9 +17,13 @@ import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.admin.fragment.AdminHomeFragment;
+import com.bdappmaniac.bdapp.application.BdApp;
 import com.bdappmaniac.bdapp.databinding.ActivityAdminBinding;
+import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.helper.ConnectivityReceiver;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
+import com.bdappmaniac.bdapp.interfaces.OnChangeConnectivityListener;
 import com.bdappmaniac.bdapp.utils.Constant;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
@@ -37,6 +41,20 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_admin);
         StatusBarUtils.statusBarColor(this, R.color.white);
+        ConnectivityReceiver.setConnectivityListener(new OnChangeConnectivityListener() {
+            @Override
+            public void onChanged(boolean status) {
+                if (!BdApp.getInstance().isInternet(AdminActivity.this)) {
+                    noInternetDialog();
+                } else {
+                    if (noInternetdialog != null) {
+                        noInternetdialog.dismiss();
+                        showToast("error");
+                        AppLoader.hideLoaderDialog();
+                    }
+                }
+            }
+        });
         navController = Navigation.findNavController(this, R.id.nav_controller);
         updateProfile();
         binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
@@ -160,6 +178,10 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     headerHideShow(false);
                     bottomHideShow(false);
                 }else if (destination.getId()==R.id.employeeAttandenceListFragment){
+                    navHandel("EmployeeAttandenceList");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                }else if (destination.getId()==R.id.employeeDesListFragment){
                     navHandel("Employee List");
                     headerHideShow(false);
                     bottomHideShow(false);
