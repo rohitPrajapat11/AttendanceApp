@@ -146,11 +146,11 @@ public class NewPasswordFragment extends BaseFragment {
 //                    if(binding.newPasswordTxt.getText().toString() != binding.passwordTxt.getText().toString()) {
 //                        showSnackBar(binding.getRoot(), "Passwords Mismatch");
 //                    }
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.password_reset));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.logInFragment);
 
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();

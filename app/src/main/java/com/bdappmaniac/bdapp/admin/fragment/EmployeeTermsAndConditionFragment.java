@@ -82,7 +82,7 @@ public class EmployeeTermsAndConditionFragment extends BaseFragment {
         }
     }
 
-    public void specificEmployeeTermsAndConditionsApi(int empo_id) throws UnsupportedEncodingException{
+    public void specificEmployeeTermsAndConditionsApi(int empo_id) throws UnsupportedEncodingException {
         AppLoader.showLoaderDialog(mContext);
         MainService.specificEmployeeTermsAndConditions(mContext, getToken(), empo_id).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
@@ -98,13 +98,14 @@ public class EmployeeTermsAndConditionFragment extends BaseFragment {
                     binding.conditionsLb.setText(getCondition);
                     binding.conditionsTxt.setText(getCondition);
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
         });
     }
-    public void addEmployeeTermAndConditionsApi(String rules, String  emp_id) {
+
+    public void addEmployeeTermAndConditionsApi(String rules, String emp_id) {
         AppLoader.showLoaderDialog(mContext);
         Map<String, RequestBody> map = new HashMap<>();
         map.put("rules", toRequestBody(rules));
@@ -116,7 +117,7 @@ public class EmployeeTermsAndConditionFragment extends BaseFragment {
                 if ((apiResponse.getData() != null)) {
                     binding.conditionsLb.setText(binding.conditionsTxt.getText().toString());
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();

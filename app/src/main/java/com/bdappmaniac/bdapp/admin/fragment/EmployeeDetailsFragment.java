@@ -104,8 +104,9 @@ public class EmployeeDetailsFragment extends BaseFragment {
                 if ((apiResponse.getData() != null)) {
                     EmployeeByIdResponse employeeByIdResponse = new Gson().fromJson(apiResponse.getData(), EmployeeByIdResponse.class);
                     setUserData(employeeByIdResponse);
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -167,12 +168,12 @@ public class EmployeeDetailsFragment extends BaseFragment {
             } else {
                 if ((apiResponse.getData() != null)) {
                     if (status.equals("active")) {
-                        showSnackBar(binding.getRoot(), mContext.getString(R.string.you_are_active));
+                        showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     } else if (status.equals("inactive")) {
-                        showSnackBar(binding.getRoot(), mContext.getString(R.string.you_are_inactive));
+                        showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     }
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();

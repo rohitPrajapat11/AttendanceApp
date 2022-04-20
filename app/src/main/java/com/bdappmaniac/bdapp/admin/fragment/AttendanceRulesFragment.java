@@ -31,11 +31,6 @@ public class AttendanceRulesFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_attendance_rules, container, false);
-        try {
-            allDailyRulesApi();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
         binding.cancelBtn.setOnClickListener(v -> {
             editCondition(false);
         });
@@ -94,7 +89,7 @@ public class AttendanceRulesFragment extends BaseFragment {
                     binding.rulesLb.setText(getCondition);
                     binding.rulesTxt.setText(getCondition);
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -112,10 +107,20 @@ public class AttendanceRulesFragment extends BaseFragment {
                 if ((apiResponse.getData() != null)) {
                     binding.rulesLb.setText(binding.rulesTxt.getText().toString());
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            allDailyRulesApi();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -527,8 +527,9 @@ public class AdminProfile extends BaseFragment {
                     SharedPref.putUserDetails(updateResponse);
                     //setResponseData(updateResponse);
                     ((AdminActivity) mContext).updateProfile();
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();

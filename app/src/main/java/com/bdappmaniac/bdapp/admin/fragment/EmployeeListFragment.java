@@ -34,14 +34,13 @@ public class EmployeeListFragment extends BaseFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-     if(binding == null) {
-         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_list, container, false);
-//         employeeListApi();
-         EmAdapter = new EmployeeListAdapter(mContext, employeeList, "EmployeeList");
-         binding.employeeRecycler.setHasFixedSize(false);
-         binding.employeeRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
-         binding.employeeRecycler.setAdapter(EmAdapter);
-     }
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_list, container, false);
+            EmAdapter = new EmployeeListAdapter(mContext, employeeList, "EmployeeList");
+            binding.employeeRecycler.setHasFixedSize(false);
+            binding.employeeRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
+            binding.employeeRecycler.setAdapter(EmAdapter);
+        }
         return binding.getRoot();
     }
 
@@ -52,12 +51,15 @@ public class EmployeeListFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<EmployeeList>>() {}.getType();
+                    Type collectionType = new TypeToken<List<EmployeeList>>() {
+                    }.getType();
                     List<EmployeeList> list = new Gson().fromJson(apiResponse.getData(), collectionType);
+                    employeeList.clear();
                     employeeList.addAll(list);
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     EmAdapter.notifyDataSetChanged();
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -67,6 +69,11 @@ public class EmployeeListFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        employeeListApi();
+        if (employeeList != null) {
+            if (employeeList.size() == 0) {
+                employeeListApi();
+            }
+        }
+
     }
 }

@@ -64,6 +64,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/headerLayout">
@@ -86,9 +87,9 @@
                     android:layout_height="@dimen/_35sdp"
                     android:fontFamily="@font/font_heavy"
                     android:gravity="center"
-                    android:paddingStart="@dimen/_10sdp"
                     android:inputType="text"
                     android:padding="@dimen/_2sdp"
+                    android:paddingStart="@dimen/_10sdp"
                     android:text="Holidays"
                     android:textColor="@color/_172B4D"
                     android:textSize="@dimen/_15sdp"
@@ -104,9 +105,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/font_heavy"
                     android:gravity="center"
-                    android:paddingStart="@dimen/_10sdp"
                     android:inputType="textMultiLine"
                     android:padding="@dimen/_2sdp"
+                    android:paddingStart="@dimen/_10sdp"
                     android:text="Date"
                     android:textColor="@color/_172B4D"
                     android:textSize="@dimen/_15sdp"
@@ -117,77 +118,22 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/employeeHolidayRecyclers"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/employeeHolidayRecyclers"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:spanCount="1"
-                    tools:itemCount="7"
-                    tools:listitem="@layout/employee_holiday_item" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout6"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:elevation="1dp"
-                android:background="@drawable/white_5r_bg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
-
-                <TextView
-                    android:id="@+id/holidayes"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="center_vertical"
-                    android:inputType="textMultiLine"
-                    android:padding="@dimen/_2sdp"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:text="Saturday Holiday"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_13sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/dates"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/dates"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:fontFamily="@font/font_heavy"
-                    android:inputType="textMultiLine"
-                    android:padding="@dimen/_2sdp"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:text="Every 1st and 3rd of the Month"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_13sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/holidayes"
-                    app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                app:spanCount="1"
+                tools:itemCount="7"
+                tools:listitem="@layout/employee_holiday_item" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

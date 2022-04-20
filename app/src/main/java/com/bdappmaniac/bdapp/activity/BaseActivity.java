@@ -66,7 +66,7 @@ public class BaseActivity extends AppCompatActivity {
                     SharedPref.init(this);
                     SharedPref.putUserDetails(null);
                 } else {
-                    ((BaseActivity) this).showToast(this.getString(R.string.something_went_wrong));
+                    ((BaseActivity) this).showToast(apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -156,12 +156,6 @@ public class BaseActivity extends AppCompatActivity {
             });
             noInternetdialog.show();
         }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
     }
 
 //    void callNotification() {

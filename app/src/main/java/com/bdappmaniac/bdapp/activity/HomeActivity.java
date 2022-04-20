@@ -61,6 +61,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         StatusBarUtils.statusBarColor(this, R.color.white);
+        updateProfile();
         ConnectivityReceiver.setConnectivityListener(new OnChangeConnectivityListener() {
             @Override
             public void onChanged(boolean status) {
@@ -75,7 +76,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             }
         });
         navController = Navigation.findNavController(this, R.id.nav_controller);
-        updateProfile();
         SharedPref.init(this);
 //        Toast.makeText(this, SharedPref.getUserDetails().getAccessToken(), Toast.LENGTH_SHORT).show();
         String dates = DateUtils.getCurrentDate();
@@ -328,7 +328,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 //    }
 
     void textProfile() {
-        Bitmap bitmap = TextToBitmap.textToBitmap(binding.navigationDrawer.userName.getText().toString(), this, 10, R.color.black);
+        Bitmap bitmap = TextToBitmap.textToBitmap(SharedPref.getUserDetails().getEmployeeName(), this, 10, R.color.black);
         Drawable d = new BitmapDrawable(getResources(), bitmap);
         binding.navigationDrawer.userProfile.setImageDrawable(d);
     }
@@ -369,12 +369,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    showSnackBar(binding.getRoot(), "Your Attendance Is Marked As Absent");
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     binding.homeLayout.headerLayout.extIcon.setChecked(false);
                     binding.homeLayout.headerLayout.absentBtn.setVisibility(View.VISIBLE);
                     binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 } else {
-                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+                    ((BaseActivity) this).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -402,7 +402,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                         checkInTimeApi();
                     }
                 } else {
-                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+                    ((BaseActivity) this).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -425,7 +425,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                         }
                     }
                 } else {
-                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+                    ((BaseActivity) this).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -440,8 +440,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             } else {
                 if ((apiResponse.getData() != null)) {
                     workingStart();
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 } else {
-                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+                    ((BaseActivity) this).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -494,12 +495,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    showSnackBar(binding.getRoot(), getString(R.string.working_time_has_stopped));
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     SharedPref.write(USER_WORK, false);
                     stopService();
 //                    binding.timeStatusLayout.setVisibility(View.GONE);
                 } else {
-                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+                    ((BaseActivity) this).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -565,7 +566,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     public void updateProfile() {
-        Glide.with(this).load(SharedPref.getUserDetails().getProfile()).placeholder(R.drawable.user).into(binding.navigationDrawer.userProfile);
+        if (SharedPref.getUserDetails().getProfile().isEmpty()) {
+            textProfile();
+        } else {
+            Glide.with(this).load(SharedPref.getUserDetails().getProfile()).placeholder(R.drawable.user).error(R.drawable.user).into(binding.navigationDrawer.userProfile);
+        }
     }
 
 //    private void startClock(){

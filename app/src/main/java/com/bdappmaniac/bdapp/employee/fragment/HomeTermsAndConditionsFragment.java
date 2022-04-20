@@ -1,17 +1,16 @@
-package com.bdappmaniac.bdapp.fragment;
+package com.bdappmaniac.bdapp.employee.fragment;
 
 import android.os.Bundle;
-
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
+
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentHomeTermsAndConditionsBinding;
+import com.bdappmaniac.bdapp.fragment.BaseFragment;
 
 public class HomeTermsAndConditionsFragment extends BaseFragment {
     FragmentHomeTermsAndConditionsBinding binding;

@@ -42,6 +42,7 @@ import com.bdappmaniac.bdapp.databinding.FragmentProfileBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
+import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bumptech.glide.Glide;
@@ -67,6 +68,7 @@ public class ProfileFragment extends BaseFragment {
     FragmentProfileBinding binding;
     String imgPath;
     File file = null;
+    String updateDobDate;
     MultipartBody.Part fileToUpload;
     private int mYear, mMonth, mDay, mHour, mMinute;
 
@@ -101,33 +103,16 @@ public class ProfileFragment extends BaseFragment {
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
-                            binding.dobTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
+                            String d = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                            updateDobDate = d;
+                            binding.dobTxt.setText(DateUtils.getFormattedTime(d, DateUtils.appDateFormat, DateUtils.appDateFormatTos));
+
                         }
                     }, mYear, mMonth, mDay);
-            datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT,
-                    WindowManager.LayoutParams.WRAP_CONTENT);
+            datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
             datePickerDialog.getWindow().setGravity(Gravity.CENTER);
             datePickerDialog.show();
-        });
-        binding.joiningTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                mYear = c.get(Calendar.YEAR);
-                mMonth = c.get(Calendar.MONTH);
-                mDay = c.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                binding.joiningTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
-                            }
-                        }, mYear, mMonth, mDay);
-                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-                datePickerDialog.getWindow().setGravity(Gravity.CENTER);
-                datePickerDialog.show();
-            }
         });
         binding.editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +134,7 @@ public class ProfileFragment extends BaseFragment {
                 map.put("emp_mobile_no", toRequestBody(binding.phoneTxt.getText().toString()));
                 map.put("emg_mo_no", toRequestBody(binding.emPhoneTxt.getText().toString()));
                 map.put("designation", toRequestBody(binding.designationTxt.getText().toString()));
-                map.put("dob", toRequestBody(binding.dobTxt.getText().toString()));
+                map.put("dob", toRequestBody(updateDobDate));
                 map.put("employee_address", toRequestBody(binding.addressTxt.getText().toString()));
                 map.put("pincode", toRequestBody(binding.pinCodeTxt.getText().toString()));
                 map.put("joining_date", toRequestBody(binding.joiningTxt.getText().toString()));
@@ -517,12 +502,9 @@ public class ProfileFragment extends BaseFragment {
         if (updateResponse.getProfile() != null) {
             Glide.with(mContext).load(updateResponse.getProfile()).placeholder(R.drawable.user).into(binding.profile);
         }
+        updateDobDate = String.valueOf(updateResponse.getDob());
+        binding.dobTxt.setText(DateUtils.getFormattedTime(String.valueOf(updateResponse.getDob()), DateUtils.appDateFormat, DateUtils.appDateFormatTo));
 
-        if (updateResponse.getDob() == null) {
-            binding.dobTxt.setText("");
-        } else {
-            binding.dobTxt.setText(String.valueOf(updateResponse.getDob()));
-        }
     }
 
     public void updateEmployeeProfileApi(Map<String, RequestBody> map, MultipartBody.Part fileToUpload) {
@@ -537,8 +519,9 @@ public class ProfileFragment extends BaseFragment {
                     SharedPref.putUserDetails(updateResponse);
                     setResponseData(updateResponse);
                     ((HomeActivity) mContext).updateProfile();
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();

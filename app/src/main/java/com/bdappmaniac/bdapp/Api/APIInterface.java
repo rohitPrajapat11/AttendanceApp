@@ -120,4 +120,8 @@ public interface APIInterface {
 
     @POST("api/all-emp-attend-of-today")
     Call<ApiResponse> allEmpAttendance(@Header("Authorization") String token);
+
+    @Multipart
+    @POST("api/update-designation/{id}")
+    Call<ApiResponse> updateDesignation(@Header("Authorization") String token, @Path("id") int id, @PartMap Map<String, RequestBody> map);
 }

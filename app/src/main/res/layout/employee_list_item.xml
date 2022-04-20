@@ -35,7 +35,7 @@
             android:paddingStart="@dimen/_5sdp"
             android:text="@string/employee_name"
             android:textAllCaps="false"
-            android:textColor="@color/light_black"
+            android:textColor="@color/black"
             android:textCursorDrawable="@drawable/text_cursor"
             android:textSize="@dimen/_15sdp"
             app:drawableTint="@color/_A8A8A8"

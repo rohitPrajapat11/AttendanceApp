@@ -32,11 +32,6 @@ public class AdminTermAndCondition extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_term_and_condition, container, false);
         String content = binding.conditionsLb.getText().toString();
-        try {
-            allTermsAndConditionsApi();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
         binding.cancelBtn.setOnClickListener(v -> {
             editCondition(false);
         });
@@ -95,7 +90,7 @@ public class AdminTermAndCondition extends BaseFragment {
                     binding.conditionsLb.setText(getCondition);
                     binding.conditionsTxt.setText(getCondition);
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -113,10 +108,20 @@ public class AdminTermAndCondition extends BaseFragment {
                 if ((apiResponse.getData() != null)) {
                     binding.conditionsLb.setText(binding.conditionsTxt.getText().toString());
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        try {
+            allTermsAndConditionsApi();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 }

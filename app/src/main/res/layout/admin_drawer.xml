@@ -17,7 +17,8 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_20sdp"
             android:scaleType="centerCrop"
-            android:src="@drawable/app_logo"
+            android:src="@drawable/user"
+            android:background="@drawable/green_round_bg"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,7 +29,7 @@
             android:layout_marginTop="@dimen/_7sdp"
             android:fontFamily="@font/arial_rounded_mt_bold"
             android:text="@string/bd_app_developer"
-            android:textColor="@color/light_black"
+            android:textColor="@color/black"
             android:textSize="@dimen/_19sdp"
             app:layout_constraintStart_toStartOf="@+id/userProfile"
             app:layout_constraintTop_toBottomOf="@+id/userProfile" />

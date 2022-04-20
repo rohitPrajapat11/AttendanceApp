@@ -262,6 +262,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="@dimen/_25sdp"
                         android:enabled="false"
+                        android:focusable="false"
                         android:background="@drawable/edit_text_bg"
                         android:drawableStart="@drawable/icn_joining_daate"
                         android:drawablePadding="@dimen/_10sdp"

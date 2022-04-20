@@ -20,11 +20,18 @@ import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.databinding.DesignationItemBinding;
+import com.bdappmaniac.bdapp.databinding.EditDesignationDialogBinding;
 import com.bdappmaniac.bdapp.databinding.HolidayBottomSheetDialogBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.StringHelper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public class DesignationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
@@ -60,10 +67,11 @@ public class DesignationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         DesignationAdapter.DesignationHolder vHolder = (DesignationAdapter.DesignationHolder) holder;
         vHolder.binding.deseTxt.setText(list.get(position).getName());
-        vHolder.binding.index.setText(String.valueOf(position+1));
+        vHolder.binding.index.setText(String.valueOf(position + 1));
         vHolder.binding.item.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
+                String name = vHolder.binding.deseTxt.getText().toString();
                 HolidayBottomSheetDialogBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.holiday_bottom_sheet_dialog, null, false);
                 Dialog dialog = new Dialog(context);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -78,11 +86,29 @@ public class DesignationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     vHolder.removeDesignationApi(list.get(position).getId());
                     dialog.dismiss();
                 });
-                binding.editBtn.setVisibility(View.GONE);
+                binding.editBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        vHolder.updateDesignationDialogBox(name);
+                        dialog.dismiss();
+                    }
+                });
                 binding.cancel.setOnClickListener(view1 -> dialog.dismiss());
                 return false;
             }
         });
+    }
+
+    public RequestBody toRequestBody(String val) {
+        RequestBody requestBody = null;
+        if (context != null) {
+            requestBody = toRequestBodyPart(val);
+        }
+        return requestBody;
+    }
+
+    public RequestBody toRequestBodyPart(String value) {
+        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
     }
 
     @Override
@@ -97,6 +123,50 @@ public class DesignationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             super(itemView.getRoot());
             binding = itemView;
         }
+
+        public void updateDesignationApi(int id, String name) {
+            AppLoader.showLoaderDialog(context);
+            Map<String, RequestBody> map = new HashMap<>();
+            map.put("name", toRequestBody(name));
+            MainService.updateDesignation(context, ((BaseActivity) context).getToken(), id, map).observe((LifecycleOwner) context, apiResponse -> {
+                if (apiResponse == null) {
+                    ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                } else {
+                    if ((apiResponse.getData() != null)) {
+                        ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
+                        list.set(getAdapterPosition(), new DesignationItem(name, id));
+                        notifyDataSetChanged();
+                    } else {
+                        ((BaseActivity) context).showToast(apiResponse.getMessage());
+                    }
+                }
+                AppLoader.hideLoaderDialog();
+            });
+        }
+
+        public void updateDesignationDialogBox(String name) {
+            EditDesignationDialogBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.edit_designation_dialog, null, false);
+            Dialog dialog = new Dialog(context);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(binding.getRoot());
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setGravity(Gravity.CENTER);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            binding.desigTxt.setText(name);
+            dialog.show();
+            binding.updateBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String name1 = binding.desigTxt.getText().toString();
+                    updateDesignationApi(list.get(getAdapterPosition()).getId(), name1);
+                    dialog.dismiss();
+                }
+            });
+            binding.cancelBtn.setOnClickListener(view -> dialog.dismiss());
+        }
+
         public void removeDesignationApi(int id) {
             AppLoader.showLoaderDialog(context);
             MainService.removeDesignation(context, ((BaseActivity) context).getToken(), id).observe((LifecycleOwner) context, apiResponse -> {
@@ -104,11 +174,11 @@ public class DesignationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
                 } else {
                     if ((apiResponse.getData() != null)) {
-                        ((BaseActivity) context).showSnackBar(binding.getRoot(), "Designation Removed Successfully");
+                        ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                         list.remove(getAdapterPosition());
                         notifyDataSetChanged();
                     } else {
-                        ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                        ((BaseActivity) context).showToast(apiResponse.getMessage());
                     }
                 }
                 AppLoader.hideLoaderDialog();

@@ -46,7 +46,7 @@ public class DesignationFragment extends BaseFragment {
         binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new DesignationAdapter(mContext, list);
         binding.recycleView.setAdapter(adapter);
-        allDesignationApi();
+
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,9 +77,9 @@ public class DesignationFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 String name = abinding.desigTxt.getText().toString();
-                if(abinding.desigTxt.getText().toString().isEmpty()) {
-                   showSnackBar(binding.getRoot(), "The field is empty");
-                }else {
+                if (abinding.desigTxt.getText().toString().isEmpty()) {
+                    showSnackBar(binding.getRoot(), "The field is empty");
+                } else {
                     addDesignationApi(name);
                     dialog.dismiss();
                 }
@@ -102,10 +102,10 @@ public class DesignationFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    showSnackBar(binding.getRoot(), "Designation Added Successfully");
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     allDesignationApi();
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -119,16 +119,24 @@ public class DesignationFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<DesignationItem>>() {}.getType();
+                    Type collectionType = new TypeToken<List<DesignationItem>>() {
+                    }.getType();
                     List<DesignationItem> List = new Gson().fromJson(apiResponse.getData(), collectionType);
                     list.clear();
                     list.addAll(List);
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     adapter.notifyDataSetChanged();
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        allDesignationApi();
     }
 }
