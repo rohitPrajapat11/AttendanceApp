@@ -28,7 +28,7 @@ import java.util.List;
 public class EmployeeDesListFragment extends BaseFragment {
     FragmentEmployeeDesListBinding binding;
     ArrayList<EmployeeDesItem> employeeList = new ArrayList<>();
-    private EmployeeDesListAdapter adapter;
+    EmployeeDesListAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class EmployeeDesListFragment extends BaseFragment {
         adapter = new EmployeeDesListAdapter(employeeList, getContext());
         binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recycleView.setAdapter(adapter);
-        allEmpAttendanceApi();
+
         return binding.getRoot();
     }
 
@@ -50,16 +50,24 @@ public class EmployeeDesListFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<EmployeeDesItem>>() {}.getType();
+                    Type collectionType = new TypeToken<List<EmployeeDesItem>>() {
+                    }.getType();
                     List<EmployeeDesItem> List = new Gson().fromJson(apiResponse.getData(), collectionType);
                     employeeList.clear();
                     employeeList.addAll(List);
                     adapter.notifyDataSetChanged();
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        allEmpAttendanceApi();
     }
 }

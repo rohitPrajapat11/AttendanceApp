@@ -147,9 +147,10 @@ public class HistoryFragment extends BaseFragment implements CalendarCallBack {
                     List<EmployeeHistoryDataItem> workingTimeList = new Gson().fromJson(apiResponse.getData(), collectionType);
                     List.clear();
                     List.addAll(workingTimeList);
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     adapter.notifyDataSetChanged();
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();

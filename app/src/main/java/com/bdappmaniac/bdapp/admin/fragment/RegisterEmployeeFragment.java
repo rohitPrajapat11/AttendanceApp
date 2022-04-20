@@ -137,10 +137,10 @@ public class RegisterEmployeeFragment extends BaseFragment {
             } else {
                 if ((apiResponse.getData() != null)) {
                     EmpRegisterResponse empRegisterResponse = new Gson().fromJson(apiResponse.getData(), EmpRegisterResponse.class);
-                    showSnackBar(binding.getRoot(), "New Employee has been Created");
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.employeeListFragment);
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -288,7 +288,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
             binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
             binding.sighUpBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color._172B4D));
+            binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         }
     }
 
@@ -312,9 +312,10 @@ public class RegisterEmployeeFragment extends BaseFragment {
                     List<DesignationItem> List = new Gson().fromJson(apiResponse.getData(), collectionType);
                     list.clear();
                     list.addAll(List);
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     adapter.notifyDataSetChanged();
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();

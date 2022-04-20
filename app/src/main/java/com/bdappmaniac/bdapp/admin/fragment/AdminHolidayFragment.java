@@ -57,8 +57,6 @@ public class AdminHolidayFragment extends BaseFragment {
             binding.employeeHolidayRecyclers.setHasFixedSize(false);
             binding.employeeHolidayRecyclers.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.employeeHolidayRecyclers.setAdapter(monthAdapter);
-
-            holidaysOfCurrentYearApi();
         }
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,10 +84,10 @@ public class AdminHolidayFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    showSnackBar(binding.getRoot(), "Holiday Added Successfully");
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     holidaysOfCurrentYearApi();
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -167,14 +165,22 @@ public class AdminHolidayFragment extends BaseFragment {
                     }.getType();
                     List<HolidaysItem> monthList = new Gson().fromJson(apiResponse.getData(), collectionType);
                     list.clear();
+                    list.add(new HolidaysItem("Saturday Holiday", "Every 1st and 3rd of the Month", -1));
                     list.addAll(monthList);
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     monthAdapter.setList(list);
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
         });
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        holidaysOfCurrentYearApi();
     }
 }

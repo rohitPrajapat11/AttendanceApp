@@ -63,7 +63,11 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         EmployeeHolidayAdapter.EmployeeHolidayHolder vHolder = (EmployeeHolidayAdapter.EmployeeHolidayHolder) holder;
-        vHolder.binding.date.setText(DateUtils.getFormattedTime(list.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatM));
+        if (list.get(position).getDate().equals("Saturday Holiday")) {
+            vHolder.binding.date.setText(list.get(position).getDate());
+        } else {
+            vHolder.binding.date.setText(DateUtils.getFormattedTime(list.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatM));
+        }
         vHolder.binding.holidays.setText(list.get(position).getName());
         SharedPref.init(context);
         if (SharedPref.getUserDetails().getType().equals("employee")) {
@@ -71,29 +75,32 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             vHolder.binding.item.setEnabled(false);
         }
         vHolder.binding.item.setOnLongClickListener(view -> {
-            String date = vHolder.binding.date.getText().toString();
-            String name = vHolder.binding.holidays.getText().toString();
-            HolidayBottomSheetDialogBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.holiday_bottom_sheet_dialog, null, false);
-            Dialog dialog = new Dialog(context);
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setContentView(binding.getRoot());
-            dialog.setCancelable(false);
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            dialog.getWindow().setGravity(Gravity.BOTTOM);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-            dialog.show();
-            binding.deleteBtn.setOnClickListener(view13 -> {
-                vHolder.removeHolidayApi(list.get(position).getId());
-                dialog.dismiss();
-            });
-            binding.editBtn.setOnClickListener(view12 -> {
-                vHolder.updateHolidayDialogBox(date, name);
-                dialog.dismiss();
-            });
-            binding.cancel.setOnClickListener(view1 -> dialog.dismiss());
+            if (!list.get(position).getDate().equals("Saturday Holiday")) {
+                String date = vHolder.binding.date.getText().toString();
+                String name = vHolder.binding.holidays.getText().toString();
+                HolidayBottomSheetDialogBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.holiday_bottom_sheet_dialog, null, false);
+                Dialog dialog = new Dialog(context);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(binding.getRoot());
+                dialog.setCancelable(false);
+                dialog.setCanceledOnTouchOutside(false);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.show();
+                binding.deleteBtn.setOnClickListener(view13 -> {
+                    vHolder.removeHolidayApi(list.get(position).getId());
+                    dialog.dismiss();
+                });
+                binding.editBtn.setOnClickListener(view12 -> {
+                    vHolder.updateHolidayDialogBox(date, name);
+                    dialog.dismiss();
+                });
+                binding.cancel.setOnClickListener(view1 -> dialog.dismiss());
+            }
             return false;
         });
+
     }
 
 
@@ -110,7 +117,7 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return requestBody;
     }
 
-    public  void setList(List<HolidaysItem> list) {
+    public void setList(List<HolidaysItem> list) {
         this.list = list;
         notifyDataSetChanged();
     }
@@ -137,12 +144,12 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
                 } else {
                     if ((apiResponse.getData() != null)) {
-                        ((BaseActivity) context).showSnackBar(binding.getRoot(), "Holiday Updated Successfully");
+                        ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                         String str = DateUtils.getFormattedTime(date, DateUtils.appDateFormat, DateUtils.appDateFormatM);
                         list.set(getAdapterPosition(), new HolidaysItem(date, name, id));
                         notifyDataSetChanged();
                     } else {
-                        ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                        ((BaseActivity) context).showToast(apiResponse.getMessage());
                     }
                 }
                 AppLoader.hideLoaderDialog();
@@ -207,11 +214,11 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
                 } else {
                     if ((apiResponse.getData() != null)) {
-                        ((BaseActivity) context).showSnackBar(binding.getRoot(), "Holiday Removed Successfully");
+                        ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                         list.remove(getAdapterPosition());
                         notifyDataSetChanged();
                     } else {
-                        ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                        ((BaseActivity) context).showToast(apiResponse.getMessage());
                     }
                 }
                 AppLoader.hideLoaderDialog();

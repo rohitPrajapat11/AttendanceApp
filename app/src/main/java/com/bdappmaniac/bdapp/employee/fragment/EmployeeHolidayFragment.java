@@ -40,8 +40,6 @@ public class EmployeeHolidayFragment extends BaseFragment {
             binding.employeeHolidayRecyclers.setHasFixedSize(false);
             binding.employeeHolidayRecyclers.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.employeeHolidayRecyclers.setAdapter(monthAdapter);
-
-            holidaysOfCurrentYearApi();
         }
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,16 +58,24 @@ public class EmployeeHolidayFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<HolidaysItem>>() {}.getType();
+                    Type collectionType = new TypeToken<List<HolidaysItem>>() {
+                    }.getType();
                     List<HolidaysItem> monthList = new Gson().fromJson(apiResponse.getData(), collectionType);
                     list.clear();
                     list.addAll(monthList);
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     monthAdapter.notifyDataSetChanged();
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        holidaysOfCurrentYearApi();
     }
 }

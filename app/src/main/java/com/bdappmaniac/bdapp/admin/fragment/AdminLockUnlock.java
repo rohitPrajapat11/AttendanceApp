@@ -55,7 +55,6 @@ public class AdminLockUnlock extends BaseFragment {
         adapter = new LockUnlockAdapter(employeeList, getContext());
         binding.recyclerlockUnlock.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerlockUnlock.setAdapter(adapter);
-        allInactiveEmployeeApi();
         return binding.getRoot();
     }
 
@@ -79,6 +78,12 @@ public class AdminLockUnlock extends BaseFragment {
             }
             AppLoader.hideLoaderDialog();
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        allInactiveEmployeeApi();
     }
 
 }

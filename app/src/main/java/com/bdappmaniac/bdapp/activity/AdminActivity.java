@@ -161,27 +161,27 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     navHandel("Holidays");
                     headerHideShow(false);
                     bottomHideShow(false);
-                }else if (destination.getId() == R.id.attendanceRulesFragment) {
+                } else if (destination.getId() == R.id.attendanceRulesFragment) {
                     navHandel("attendanceRulesFragment");
                     headerHideShow(false);
                     bottomHideShow(false);
-                }else if (destination.getId()==R.id.lockUnlockFragment){
+                } else if (destination.getId() == R.id.lockUnlockFragment) {
                     navHandel("Lock/Unlock");
                     headerHideShow(false);
                     bottomHideShow(false);
-                }else if (destination.getId()==R.id.toDoListFragment){
+                } else if (destination.getId() == R.id.toDoListFragment) {
                     navHandel("ToDoList");
                     headerHideShow(false);
                     bottomHideShow(false);
-                }else if (destination.getId()==R.id.designationFragment){
+                } else if (destination.getId() == R.id.designationFragment) {
                     navHandel("Designation");
                     headerHideShow(false);
                     bottomHideShow(false);
-                }else if (destination.getId()==R.id.employeeAttandenceListFragment){
+                } else if (destination.getId() == R.id.employeeAttandenceListFragment) {
                     navHandel("EmployeeAttandenceList");
                     headerHideShow(false);
                     bottomHideShow(false);
-                }else if (destination.getId()==R.id.employeeDesListFragment){
+                } else if (destination.getId() == R.id.employeeDesListFragment) {
                     navHandel("Employee List");
                     headerHideShow(false);
                     bottomHideShow(false);
@@ -189,6 +189,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
             }
         });
     }
+
     void navHandel(String type) {
         switch (type) {
             case "Home":
@@ -403,6 +404,10 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
     }
 
     public void updateProfile() {
-        Glide.with(this).load(SharedPref.getUserDetails().getProfile()).placeholder(R.drawable.user).into(binding.navigationDrawer.userProfile);
+        if (SharedPref.getUserDetails().getProfile().isEmpty()) {
+            textProfile();
+        } else {
+            Glide.with(this).load(SharedPref.getUserDetails().getProfile()).placeholder(R.drawable.user).into(binding.navigationDrawer.userProfile);
+        }
     }
 }

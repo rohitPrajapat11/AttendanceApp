@@ -17,7 +17,7 @@
     <color name="_F0F1F3">#F0F1F3</color>
     <color name="_FF99D131">#FFF0F1F3</color>
     <color name="green">#4CAF50</color>
-    <color name="light_black">#343637</color>
+    <color name="light_black">#FFFFFFFF</color>
     <color name="primary_color">#161B3D</color>
     <color name="light_primary_color">#71DDA4</color>
     <color name="_192d4d">#192d4d</color>
@@ -32,5 +32,6 @@
     <!--    color items-->
     <!--    colors play game-->
     <color name="orange">#FE940D</color>
+    <color name="yellow">#A9FD2B56</color>
     <color name="_FBFBFB">#FBFBFB</color>
 </resources>

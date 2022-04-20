@@ -51,6 +51,9 @@ public class EmployeeDesListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         if(employeeList.get(position).getAttendance().equals("W")){
             vHolder.binding.status.setTextColor(context.getColor(R.color.primary_color));
         }
+        if(employeeList.get(position).getAttendance().equals("HF")){
+            vHolder.binding.status.setTextColor(context.getColor(R.color.yellow));
+        }
         vHolder.binding.status.setText(employeeList.get(position).getAttendance());
     }
 
