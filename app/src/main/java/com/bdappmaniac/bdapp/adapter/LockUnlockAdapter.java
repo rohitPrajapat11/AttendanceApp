@@ -2,6 +2,7 @@ package com.bdappmaniac.bdapp.adapter;
 
 import static android.os.Build.ID;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
@@ -20,6 +21,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdappmaniac.bdapp.Api.response.EmployeeList;
+import com.bdappmaniac.bdapp.Api.response.lockUnlockItems;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
@@ -37,13 +39,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kotlin.concurrent.LocksKt;
 import okhttp3.RequestBody;
 
 public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<EmployeeList> employeeList = new ArrayList<>();
+    ArrayList<lockUnlockItems> employeeList = new ArrayList<>();
     Context context;
 
-    public LockUnlockAdapter(ArrayList<EmployeeList> employeeList, Context context) {
+    public LockUnlockAdapter(ArrayList<lockUnlockItems> employeeList, Context context) {
         this.employeeList = employeeList;
         this.context = context;
     }
@@ -61,31 +64,24 @@ public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ViewHolder gholder = (ViewHolder) holder;
         gholder.binding.empName.setText(employeeList.get(position).getEmployeeName());
         gholder.binding.switchbtn.setChecked(true);
 
         if (employeeList.get(position).getStatus().equals("active")) {
             gholder.binding.switchbtn.setChecked(true);
-//            gholder.binding.time.setTextColor(context.getColor(R.color.light_primary_color));
-//
         } else if (employeeList.get(position).getStatus().equals("inactive")) {
             gholder.binding.switchbtn.setChecked(false);
-//            gholder.binding.time.setTextColor(context.getColor(R.color.secondary_color));
-
         }
 
         gholder.binding.switchbtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                 if (isChecked) {
                     gholder.updateEmployeeStatusApi("active", employeeList.get(position).getId());
-//                    gholder.binding.time.setTextColor(context.getColor(R.color.light_primary_color));
                 } else {
                     gholder.updateEmployeeStatusApi("inactive", employeeList.get(position).getId());
-//                    gholder.binding.time.setTextColor(context.getColor(R.color.secondary_color));
                 }
             }
         });
@@ -113,12 +109,12 @@ public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 } else {
                     if ((apiResponse.getData() != null)) {
                         if (status.equals("active")) {
-                            ((BaseActivity) context).showSnackBar(binding.getRoot(), context.getString(R.string.you_are_active));
+                            ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                         } else if (status.equals("inactive")) {
-                            ((BaseActivity) context).showSnackBar(binding.getRoot(), context.getString(R.string.you_are_inactive));
+                            ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                         }
                     } else {
-                        ((BaseActivity) context).showSnackBar(binding.getRoot(), context.getString(R.string.something_went_wrong));
+                        ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     }
                 }
                 AppLoader.hideLoaderDialog();
@@ -126,6 +122,4 @@ public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
 
     }
-
-
 }

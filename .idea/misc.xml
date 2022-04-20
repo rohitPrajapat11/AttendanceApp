@@ -106,7 +106,7 @@
         <entry key="app/src/main/res/layout/fragment_designation.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_employee_attandence_list.xml" value="0.34270833333333334" />
         <entry key="app/src/main/res/layout/fragment_employee_attendance.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_employee_attendance_rules.xml" value="0.11796875" />
+        <entry key="app/src/main/res/layout/fragment_employee_attendance_rules.xml" value="0.12" />
         <entry key="app/src/main/res/layout/fragment_employee_detail.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/fragment_employee_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_employee_holiday.xml" value="0.12" />
@@ -118,7 +118,7 @@
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_home_setting.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_home_terms_and_conditions.xml" value="0.12484446287847366" />
+        <entry key="app/src/main/res/layout/fragment_home_terms_and_conditions.xml" value="0.2260391618000687" />
         <entry key="app/src/main/res/layout/fragment_loan_provide.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/fragment_log_in.xml" value="0.12" />
         <entry key="app/src/main/res/layout/fragment_new_employee_list.xml" value="0.16" />

@@ -25,12 +25,10 @@ public class
 AdminTodoList extends BaseFragment {
 FragmentAdminTodoListBinding binding;
     ArrayList<String> tasksList = new ArrayList<>();
-    private ToDoListAdapter Adapter;
+    ToDoListAdapter Adapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_admin_todo_list,container,false);
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();

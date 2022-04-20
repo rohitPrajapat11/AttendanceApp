@@ -156,9 +156,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
                 }
             }
         });
-
     }
-
     private void updateEmployeeStatus(String status) {
         AppLoader.showLoaderDialog(mContext);
         MainService.updateProfileByAdmin(mContext, getToken(), ID, status).observe((LifecycleOwner) this, apiResponse -> {

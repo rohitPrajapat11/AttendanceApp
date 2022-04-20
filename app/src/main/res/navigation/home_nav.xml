@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_home_setting"/>
     <fragment
         android:id="@+id/homeTermsAndConditionsFragment"
-        android:name="com.bdappmaniac.bdapp.fragment.HomeTermsAndConditionsFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.HomeTermsAndConditionsFragment"
         android:label="HomeTermsAndConditionsFragment"
         tools:layout="@layout/fragment_home_terms_and_conditions" />
     <fragment

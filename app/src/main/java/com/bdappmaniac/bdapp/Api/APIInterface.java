@@ -120,4 +120,11 @@ public interface APIInterface {
 
     @POST("api/all-emp-attend-of-today")
     Call<ApiResponse> allEmpAttendance(@Header("Authorization") String token);
+
+    @POST("api/all-inactive-employee")
+    Call<ApiResponse> allInactiveEmployee(@Header("Authorization") String token);
+
+    @POST("api/employee-status-by-id")
+    Call<ApiResponse> employeeStatusbyId(@Header("Authentication")String token);
+
 }

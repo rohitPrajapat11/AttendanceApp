@@ -37,7 +37,6 @@ public class AdminHomeAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return getViewHolder(LayoutInflater.from(context), parent);
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ViewHolder vHolder = (ViewHolder) holder;

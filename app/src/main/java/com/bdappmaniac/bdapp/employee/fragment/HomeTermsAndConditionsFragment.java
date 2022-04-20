@@ -11,48 +11,56 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bdappmaniac.bdapp.Api.response.lockUnlockItems;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
-import com.bdappmaniac.bdapp.databinding.FragmentAttendanceRulesBinding;
-import com.bdappmaniac.bdapp.databinding.FragmentEmployeeAttendanceBinding;
-import com.bdappmaniac.bdapp.databinding.FragmentEmployeeAttendanceRulesBinding;
+import com.bdappmaniac.bdapp.databinding.FragmentHomeTermsAndConditionsBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.SharedPref;
+import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.net.URLDecoder;
+import java.util.List;
 
-public class EmployeeAttendanceRulesFragment extends BaseFragment {
-    FragmentEmployeeAttendanceRulesBinding binding;
+public class HomeTermsAndConditionsFragment extends BaseFragment {
+    FragmentHomeTermsAndConditionsBinding binding;
+    int IDE;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_attendance_rules, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_terms_and_conditions, container, false);
+        SharedPref.init(mContext);
         try {
-            allDailyRulesApi();
+            specificEmployeeTermsAndConditionsApi(SharedPref.getUserDetails().getId());
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();
         });
+
         return binding.getRoot();
     }
-    private void allDailyRulesApi() throws UnsupportedEncodingException {
+
+    public void specificEmployeeTermsAndConditionsApi(int empo_id) throws UnsupportedEncodingException {
         AppLoader.showLoaderDialog(mContext);
-        MainService.allDailyRules(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
+        MainService.specificEmployeeTermsAndConditions(mContext, getToken(), empo_id).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((!apiResponse.getData().isJsonNull())) {
                     String getCondition = null;
                     try {
-                        getCondition = URLDecoder.decode(apiResponse.getData().getAsJsonArray().get(0).getAsJsonObject().get("content").toString().replace("\"", ""), "UTf-8");
+                        getCondition = URLDecoder.decode(apiResponse.getData().getAsJsonObject().get("rules").toString().replace("\"", ""), "UTF-8");
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
-                    binding.rulesLb.setText(getCondition);
+                    binding.conditionsLb.setText(getCondition);
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
                 }

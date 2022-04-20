@@ -24,6 +24,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
+import com.bdappmaniac.bdapp.Api.response.EmployeeStatusbyIDResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.application.BdApp;
@@ -44,6 +45,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +55,7 @@ import okhttp3.RequestBody;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener, CalendarCallBack {
     ActivityHomeBinding binding;
+    ArrayList<EmployeeStatusbyIDResponse> empsList = new ArrayList<>();
     NavController navController;
     Button button;
 
@@ -381,7 +384,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         });
     }
 
-
     private void workedHoursOnGivenDayApi(String date) {
         Map<String, RequestBody> map = new HashMap<>();
         map.put("date", toRequestBody(date));
@@ -598,4 +600,33 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 //
 //        t.start();
 //    }
+
+
+//    private void employeeStatusbyIdApi(){
+//        AppLoader.showLoaderDialog(this);
+//        MainService.employeeStatusbyId(this,getToken()).observe((LifecycleOwner) this,apiResponse -> {
+//            if (apiResponse == null){
+//                ((BaseActivity)this).showSnackBar(binding.getRoot(), this .getString(R.string.something_went_wrong));
+//                }else{
+//                if ((apiResponse.getData() != null)){
+//                    showSnackBar(binding.getRoot(),getString(R.string.something_went_wrong));
+//
+//                    if (empsList.get(position).getStatus().equals("active")){
+//
+//                        showToast("decfndecv");
+//                    }else if (empsList.get(position).getStatus().equals("active")){
+//                        showToast("123455");
+//
+//                    }
+//
+//                }else{
+//                    ((BaseActivity)this).showSnackBar(binding.getRoot(),this.getString(R.string.something_went_wrong));
+//                }
+//            }
+//            AppLoader.hideLoaderDialog();
+//        });
+//    }
+
+
+
 }

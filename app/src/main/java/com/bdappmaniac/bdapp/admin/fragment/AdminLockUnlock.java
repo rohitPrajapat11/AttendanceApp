@@ -14,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 
+import com.bdappmaniac.bdapp.Api.response.EmployeeDesItem;
 import com.bdappmaniac.bdapp.Api.response.EmployeeList;
 import com.bdappmaniac.bdapp.Api.response.LoginResponse;
+import com.bdappmaniac.bdapp.Api.response.lockUnlockItems;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
@@ -40,36 +42,36 @@ import okhttp3.RequestBody;
 
 public class AdminLockUnlock extends BaseFragment {
     FragmentAdminLockUnlockBinding binding;
-    ArrayList<EmployeeList> employeeList = new ArrayList<>();
-    private LockUnlockAdapter adapter;
-    int ID;
+    ArrayList<lockUnlockItems> employeeList = new ArrayList<>();
+    LockUnlockAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_lock_unlock, container, false);
-        Bundle bundle = new Bundle();
-        bundle.putInt("id", ID);
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();
         });
+
         adapter = new LockUnlockAdapter(employeeList, getContext());
         binding.recyclerlockUnlock.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerlockUnlock.setAdapter(adapter);
-        employeeListApi();
-
+        allInactiveEmployeeApi();
         return binding.getRoot();
     }
 
-    private void employeeListApi() {
+
+    private void allInactiveEmployeeApi() {
         AppLoader.showLoaderDialog(mContext);
-        MainService.employeeList(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
+        MainService.allInactiveEmployee(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<EmployeeList>>() {}.getType();
-                    List<EmployeeList> list = new Gson().fromJson(apiResponse.getData(), collectionType);
-                    employeeList.addAll(list);
+                    Type collectionType = new TypeToken<List<lockUnlockItems>>() {
+                    }.getType();
+                    List<lockUnlockItems> List = new Gson().fromJson(apiResponse.getData(), collectionType);
+                    employeeList.clear();
+                    employeeList.addAll(List);
                     adapter.notifyDataSetChanged();
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
