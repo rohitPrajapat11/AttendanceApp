@@ -24,7 +24,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
-import com.bdappmaniac.bdapp.Api.response.EmployeeStatusbyIDResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.application.BdApp;
@@ -55,7 +54,7 @@ import okhttp3.RequestBody;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener, CalendarCallBack {
     ActivityHomeBinding binding;
-    ArrayList<EmployeeStatusbyIDResponse> empsList = new ArrayList<>();
+//    ArrayList<EmpStatusbyIdResponse> empsList = new ArrayList<>();
     NavController navController;
     Button button;
 
@@ -607,31 +606,26 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 //    }
 
 
-//    private void employeeStatusbyIdApi(){
+//    private void employeeStatusbyIdApi() {
 //        AppLoader.showLoaderDialog(this);
-//        MainService.employeeStatusbyId(this,getToken()).observe((LifecycleOwner) this,apiResponse -> {
-//            if (apiResponse == null){
-//                ((BaseActivity)this).showSnackBar(binding.getRoot(), this .getString(R.string.something_went_wrong));
-//                }else{
-//                if ((apiResponse.getData() != null)){
-//                    showSnackBar(binding.getRoot(),getString(R.string.something_went_wrong));
-//
-//                    if (empsList.get(position).getStatus().equals("active")){
-//
+//        MainService.employeeStatusbyId(this, id ,getToken()).observe((LifecycleOwner) this, apiResponse -> {
+//            if (apiResponse == null) {
+//                ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+//            } else {
+//                if ((apiResponse.getData() != null)) {
+//                    showSnackBar(binding.getRoot(), getString(R.string.something_went_wrong));
+//                    if (empsList.getStatus().equals("active")) {
 //                        showToast("decfndecv");
-//                    }else if (empsList.get(position).getStatus().equals("active")){
+//                    } else if (empsList.get().getStatus().equals("inactive")) {
 //                        showToast("123455");
-//
 //                    }
-//
-//                }else{
-//                    ((BaseActivity)this).showSnackBar(binding.getRoot(),this.getString(R.string.something_went_wrong));
+//                } else {
+//                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
 //                }
 //            }
 //            AppLoader.hideLoaderDialog();
 //        });
 //    }
-
 
 
 }

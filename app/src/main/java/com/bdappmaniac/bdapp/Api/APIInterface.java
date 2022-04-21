@@ -125,7 +125,7 @@ public interface APIInterface {
     Call<ApiResponse> allInactiveEmployee(@Header("Authorization") String token);
 
     @POST("api/employee-status-by-id")
-    Call<ApiResponse> employeeStatusbyId(@Header("Authentication")String token);
+    Call<ApiResponse> employeeStatusbyId(@Header("Authentication")String token,@Path("id")int id);
 
     @Multipart
     @POST("api/update-designation/{id}")

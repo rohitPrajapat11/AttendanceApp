@@ -803,12 +803,12 @@ public class MainService {
         return data;
     }
 
-    public static LiveData<ApiResponse> employeeStatusbyId(Context context, String token) {
+    public static LiveData<ApiResponse> employeeStatusbyId(Context context, String token,int id) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
         if(!BdApp.getInstance().isInternetConnected(context)){
             return data;
         }
-        Call<ApiResponse> call = apiService.employeeStatusbyId(token);
+        Call<ApiResponse> call = apiService.employeeStatusbyId(token,id);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
