@@ -342,7 +342,7 @@
                     android:fontFamily="@font/font_heavy"
                     android:hint="ReEnter Password"
                     android:importantForAutofill="no"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:paddingLeft="@dimen/_10sdp"
                     android:paddingEnd="@dimen/_30sdp"
                     android:paddingRight="@dimen/_10sdp"

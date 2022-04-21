@@ -1,43 +1,29 @@
 package com.bdappmaniac.bdapp.admin.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-
-import com.bdappmaniac.bdapp.Api.response.EmployeeDesItem;
-import com.bdappmaniac.bdapp.Api.response.EmployeeList;
-import com.bdappmaniac.bdapp.Api.response.LoginResponse;
 import com.bdappmaniac.bdapp.Api.response.lockUnlockItems;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.adapter.LockUnlockAdapter;
-import com.bdappmaniac.bdapp.admin.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentAdminLockUnlockBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.model.LockUnlockModel;
-import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import okhttp3.RequestBody;
 
 
 public class AdminLockUnlock extends BaseFragment {
@@ -69,11 +55,12 @@ public class AdminLockUnlock extends BaseFragment {
                     Type collectionType = new TypeToken<List<lockUnlockItems>>() {
                     }.getType();
                     List<lockUnlockItems> List = new Gson().fromJson(apiResponse.getData(), collectionType);
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     employeeList.clear();
                     employeeList.addAll(List);
                     adapter.notifyDataSetChanged();
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -85,5 +72,4 @@ public class AdminLockUnlock extends BaseFragment {
         super.onResume();
         allInactiveEmployeeApi();
     }
-
 }

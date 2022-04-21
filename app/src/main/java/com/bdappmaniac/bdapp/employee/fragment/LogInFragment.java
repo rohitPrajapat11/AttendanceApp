@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -44,10 +47,16 @@ public class LogInFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_log_in, container, false);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
         binding.backBtn.setOnClickListener(view -> {
             requireActivity().finish();
         });
-        StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
+        binding.passwordShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showHidePass(view);
+            }
+        });
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
         binding.signInBtn.setOnClickListener(new View.OnClickListener() {
@@ -84,10 +93,12 @@ public class LogInFragment extends BaseFragment {
                     if (loginResponse.getStatus().equals("active")) {
                         if (loginResponse.getType().equals("employee")) {
                             SharedPref.putUserDetails(loginResponse);
+                            showSnackBar(binding.getRoot(), apiResponse.getMessage());
                             startActivity(new Intent(mContext, HomeActivity.class));
                             getActivity().finish();
                         } else if (loginResponse.getType().equals("admin")) {
                             SharedPref.putUserDetails(loginResponse);
+                            showSnackBar(binding.getRoot(), apiResponse.getMessage());
                             startActivity(new Intent(mContext, AdminActivity.class));
                             getActivity().finish();
                         }
@@ -157,6 +168,21 @@ public class LogInFragment extends BaseFragment {
                 drawable.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(textView.getContext(), color), PorterDuff.Mode.SRC_IN));
             }
         }
+    }
+
+    public void showHidePass(View view) {
+        if (binding.passwordTxt.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+            ((ImageView) (view)).setImageResource(R.drawable.icn_show_password);
+            ((ImageView) (view)).setColorFilter(ContextCompat.getColor(requireContext(), R.color._192d4d));
+            binding.passwordTxt.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            binding.passwordTxt.setSelection(binding.passwordTxt.getText().length());
+        } else {
+            ((ImageView) (view)).setImageResource(R.drawable.icn_hide_password);
+            ((ImageView) (view)).setColorFilter(ContextCompat.getColor(requireContext(), R.color._A8A8A8));
+            binding.passwordTxt.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            binding.passwordTxt.setSelection(binding.passwordTxt.getText().length());
+        }
+
     }
 
     public class TextChange implements TextWatcher {

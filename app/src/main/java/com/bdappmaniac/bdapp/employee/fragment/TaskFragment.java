@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class TaskFragment extends BaseFragment {
     FragmentTaskBinding binding;
     ArrayList<String> taskList = new ArrayList<>();
-    private TaskAdapter Adapter;
+    TaskAdapter Adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

@@ -118,7 +118,6 @@ public class EmployeeDetailsFragment extends BaseFragment {
         binding.emailTxt.setText(employeeByIdResponse.getEmail());
         binding.phoneTxt.setText(String.valueOf(employeeByIdResponse.getEmpMobileNo()));
         binding.emPhoneTxt.setText(String.valueOf(employeeByIdResponse.getEmgMoNo()));
-        binding.addressTxt.setText(employeeByIdResponse.getEmployeeAddress());
         binding.employeeName.setText(employeeByIdResponse.getEmployeeName());
         binding.joiningDateTxt.setText(DateUtils.getFormattedTime(String.valueOf(employeeByIdResponse.getJoiningdate()), DateUtils.appDateFormat, DateUtils.appDateFormatTo));
         Glide.with(mContext)
@@ -142,6 +141,16 @@ public class EmployeeDetailsFragment extends BaseFragment {
             binding.dobTxt.setText("-");
         } else {
             binding.dobTxt.setText(String.valueOf(employeeByIdResponse.getDob()));
+        }
+        if (employeeByIdResponse.getEmployeeAddress().equals("")) {
+            binding.addressTxt.setText("-");
+        } else {
+            binding.addressTxt.setText(employeeByIdResponse.getEmployeeAddress());
+        }
+        if (employeeByIdResponse.getEmgMoNo() == 0) {
+            binding.emPhoneTxt.setText("-");
+        } else {
+            binding.emPhoneTxt.setText(employeeByIdResponse.getEmployeeAddress());
         }
         binding.switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

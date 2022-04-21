@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.TaskItemBinding;
-import com.bdappmaniac.bdapp.databinding.TaskItemBinding;
 
 import java.util.ArrayList;
 
@@ -25,7 +24,7 @@ public class ToDoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
         TaskItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.task_item, group, false);
-        return new TaskAdapter.TaskViewHolder(binding);
+        return new ToDoListAdapter.TaskViewHolder(binding);
     }
     @NonNull
     @Override
@@ -36,9 +35,9 @@ public class ToDoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        TaskAdapter.TaskViewHolder bHolder = (TaskAdapter.TaskViewHolder) holder;
-        bHolder.binding.taskTxt.setText(TasksList.get(position));
-        bHolder.binding.numberTxt.setText(String.valueOf(position + 1) + ".");
+        ToDoListAdapter.TaskViewHolder vHolder = (ToDoListAdapter.TaskViewHolder) holder;
+        vHolder.binding.taskTxt.setText(TasksList.get(position));
+        vHolder.binding.numberTxt.setText(String.valueOf(position + 1) + ".");
     }
 
     @Override
