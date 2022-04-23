@@ -185,7 +185,12 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     navHandel("Employee List");
                     headerHideShow(false);
                     bottomHideShow(false);
+                }else if (destination.getId() == R.id.employeeExpensesFragment) {
+                    navHandel("Employee Expenses");
+                    headerHideShow(false);
+                    bottomHideShow(false);
                 }
+
             }
         });
     }
@@ -273,9 +278,11 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
             case "Designation":
                 binding.homeLayout.headerLayout.title.setText("Designation");
                 break;
+            case "EmployeeExpenses":
             case "TermCondition":
             case "EmployeeDetail":
             case "RegisterEmployee":
+
 
                 noHeader();
                 break;

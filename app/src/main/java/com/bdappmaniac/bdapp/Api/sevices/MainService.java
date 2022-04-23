@@ -27,7 +27,7 @@ public class MainService {
     @NonNull
     public static LiveData<ApiResponse> userLogIn(Context context, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.userLogIn(map);
@@ -53,7 +53,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> employeeRegistration(Context context, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.employeeRegistration(map);
@@ -78,7 +78,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> employeeList(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.employeeList(token);
@@ -103,7 +103,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> getEmployeeById(Context context, String token, int id) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.getEmployeeById(token, id);
@@ -128,7 +128,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> updateProfileByAdmin(Context context, String token, int id, String status) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.updateProfileByAdmin(token, id, status);
@@ -153,7 +153,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> userLogout(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.userLogout(token);
@@ -178,7 +178,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> updateEmployeeProfile(Context context, String token, Map<String, RequestBody> map, MultipartBody.Part fileToUpload) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.updateEmployeeProfile(token, map, fileToUpload);
@@ -203,7 +203,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> sendMail(Context context, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.sendMail(map);
@@ -229,7 +229,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> checkInTime(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.checkInTime(token);
@@ -254,7 +254,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> checkOutTime(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.checkOutTime(token);
@@ -279,7 +279,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> addHolidays(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.addHolidays(token, map);
@@ -304,7 +304,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> markAttendanceByEmployee(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.markAttendanceByEmployee(token, map);
@@ -329,7 +329,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> holidaysOfCurrentYear(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.holidaysOfCurrentYear(token);
@@ -354,7 +354,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> workedHoursOnGivenDay(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.workedHoursOnGivenDay(token, map);
@@ -379,7 +379,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> removeHoliday(Context context, String token, int id) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.removeHoliday(token, id);
@@ -404,7 +404,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> inAndOutsBetweenDates(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.inAndOutsBetweenDates(token, map);
@@ -429,7 +429,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> resetPassword(Context context, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.resetPassword(map);
@@ -455,7 +455,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> getInAndOutsBetweenDates(Context context, String token, Map<String, RequestBody> map, int emp_id) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.getInAndOutsBetweenDates(token, map, emp_id);
@@ -480,7 +480,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> addTermsAndConditions(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.addTermsAndConditions(token, map);
@@ -505,7 +505,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> allTermsAndConditions(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.allTermsAndConditions(token);
@@ -530,7 +530,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> addDailyRules(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.addDailyRules(token, map);
@@ -555,7 +555,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> allDailyRules(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.allDailyRules(token);
@@ -580,7 +580,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> addEmployeeTermAndConditions(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.addEmployeeTermAndConditions(token, map);
@@ -605,7 +605,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> specificEmployeeTermsAndConditions(Context context, String token, int empo_id) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.specificEmployeeTermsAndConditions(token, empo_id);
@@ -630,7 +630,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> updateHoliday(Context context, String token, int id, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.updateHoliday(token, id, map);
@@ -655,7 +655,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> addDesignation(Context context, String token, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.addDesignation(token, map);
@@ -680,7 +680,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> allDesignation(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.allDesignation(token);
@@ -705,7 +705,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> removeDesignation(Context context, String token, int id) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.removeDesignation(token, id);
@@ -730,7 +730,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> allEmpAttendance(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.allEmpAttendance(token);
@@ -755,7 +755,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> updateDesignation(Context context, String token, int id, Map<String, RequestBody> map) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.updateDesignation(token, id, map);
@@ -780,7 +780,7 @@ public class MainService {
 
     public static LiveData<ApiResponse> allInactiveEmployee(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.allInactiveEmployee(token);
@@ -803,12 +803,13 @@ public class MainService {
         return data;
     }
 
-    public static LiveData<ApiResponse> employeeStatusbyId(Context context, String token,int id) {
+    @NonNull
+    public static LiveData<ApiResponse> employeeStatusById(Context context, String token, int id) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
-        Call<ApiResponse> call = apiService.employeeStatusbyId(token,id);
+        Call<ApiResponse> call = apiService.employeeStatusById(token, id);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {

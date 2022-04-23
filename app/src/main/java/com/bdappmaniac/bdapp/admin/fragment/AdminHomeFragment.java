@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class AdminHomeFragment extends Fragment {
     FragmentAdminHomeBinding binding;
     ArrayList<AdminHomeModel> itemList = new ArrayList<>();
-    private AdminHomeAdaapter adapter;
+    AdminHomeAdaapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,10 +44,11 @@ public class AdminHomeFragment extends Fragment {
         ArrayList<AdminHomeModel> itemList = new ArrayList<>();
         itemList.add(new AdminHomeModel(R.drawable.icn_advance_payment, "Adavance Payment"));
         itemList.add(new AdminHomeModel(R.drawable.icn_attendence, "Employee Attendance"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_employee_list, "Employee List"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_expence, "Employee Expense"));
         itemList.add(new AdminHomeModel(R.drawable.icn_holidays, "Holiday"));
         itemList.add(new AdminHomeModel(R.drawable.icn_locks, "Lock / Unlock"));
         itemList.add(new AdminHomeModel(R.drawable.icn_to_do_list, "To Do List"));
-        itemList.add(new AdminHomeModel(R.drawable.icn_employee_list, "Employee List"));
 
         adapter = new AdminHomeAdaapter(itemList, getContext());
         binding.recyclerMenu.setLayoutManager(new GridLayoutManager(getContext(), 2));

@@ -24,10 +24,13 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
+import com.bdappmaniac.bdapp.Api.response.DataResponceStatus;
+import com.bdappmaniac.bdapp.Api.response.EmpStatusbyIdResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.application.BdApp;
 import com.bdappmaniac.bdapp.databinding.ActivityHomeBinding;
+import com.bdappmaniac.bdapp.databinding.CustomInactiveDialogBinding;
 import com.bdappmaniac.bdapp.databinding.ExitDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.PresentAndAbsentDialogboxBinding;
 import com.bdappmaniac.bdapp.employee.fragment.HomeFragment;
@@ -54,9 +57,9 @@ import okhttp3.RequestBody;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener, CalendarCallBack {
     ActivityHomeBinding binding;
-//    ArrayList<EmpStatusbyIdResponse> empsList = new ArrayList<>();
     NavController navController;
     Button button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +82,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         });
         navController = Navigation.findNavController(this, R.id.nav_controller);
         SharedPref.init(this);
+        employeeStatusByIdApi(SharedPref.getUserDetails().getId());
 //        Toast.makeText(this, SharedPref.getUserDetails().getAccessToken(), Toast.LENGTH_SHORT).show();
         String dates = DateUtils.getCurrentDate();
         absentCheck(dates);
@@ -574,7 +578,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         }
     }
 
-//    private void startClock(){
+    //    private void startClock(){
 //        Thread t = new Thread() {
 //
 //            @Override
@@ -604,28 +608,64 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 //
 //        t.start();
 //    }
-
-
-//    private void employeeStatusbyIdApi() {
-//        AppLoader.showLoaderDialog(this);
-//        MainService.employeeStatusbyId(this, id ,getToken()).observe((LifecycleOwner) this, apiResponse -> {
+//    public void removeDesignationApi(int id) {
+//        AppLoader.showLoaderDialog(context);
+//        MainService.removeDesignation(context, ((BaseActivity) context).getToken(), id).observe((LifecycleOwner) context, apiResponse -> {
 //            if (apiResponse == null) {
-//                ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+//                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
 //            } else {
 //                if ((apiResponse.getData() != null)) {
-//                    showSnackBar(binding.getRoot(), getString(R.string.something_went_wrong));
-//                    if (empsList.getStatus().equals("active")) {
-//                        showToast("decfndecv");
-//                    } else if (empsList.get().getStatus().equals("inactive")) {
-//                        showToast("123455");
-//                    }
+//                    ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
+//                    list.remove(getAdapterPosition());
+//                    notifyDataSetChanged();
 //                } else {
-//                    ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+//                    ((BaseActivity) context).showToast(apiResponse.getMessage());
 //                }
 //            }
 //            AppLoader.hideLoaderDialog();
 //        });
 //    }
 
+
+    public void employeeStatusByIdApi(int id) {
+        AppLoader.showLoaderDialog(this);
+        MainService.employeeStatusById(this, getToken(), id).observe((LifecycleOwner) this, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    if (SharedPref.getUserDetails().getStatus().equals("inactive")) {
+                        ActiveInactiveDialog();
+                    } else if (SharedPref.getUserDetails().getStatus().equals("active")) {
+                        showToast("Active");
+                    }
+                } else {
+                    ((BaseActivity) this).showSnackBar(binding.getRoot(), apiResponse.getMessage());
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
+    }
+
+    void ActiveInactiveDialog() {
+        CustomInactiveDialogBinding customInactiveDialogBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.custom_inactive_dialog, null, false);
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(customInactiveDialogBinding.getRoot());
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setGravity(Gravity.CENTER);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.show();
+
+        customInactiveDialogBinding.exitbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+    }
 
 }

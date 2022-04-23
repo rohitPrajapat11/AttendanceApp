@@ -37,6 +37,7 @@ public class AdminHomeAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return getViewHolder(LayoutInflater.from(context), parent);
     }
+
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ViewHolder vHolder = (ViewHolder) holder;
@@ -52,16 +53,19 @@ public class AdminHomeAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     Navigation.findNavController(view).navigate(R.id.employeeAttandenceListFragment);
                 }
                 if (position == 2) {
-                    Navigation.findNavController(view).navigate(R.id.adminHolidayFragment);
+                    Navigation.findNavController(view).navigate(R.id.employeeDesListFragment);
                 }
                 if (position == 3) {
-                    Navigation.findNavController(view).navigate(R.id.lockUnlockFragment);
+                    Navigation.findNavController(view).navigate(R.id.employeeExpensesFragment);
                 }
                 if (position == 4) {
-                    Navigation.findNavController(view).navigate(R.id.toDoListFragment);
+                    Navigation.findNavController(view).navigate(R.id.adminHolidayFragment);
                 }
                 if (position == 5) {
-                    Navigation.findNavController(view).navigate(R.id.employeeDesListFragment);
+                    Navigation.findNavController(view).navigate(R.id.lockUnlockFragment);
+                }
+                if (position == 6) {
+                    Navigation.findNavController(view).navigate(R.id.toDoListFragment);
                 }
             }
         });

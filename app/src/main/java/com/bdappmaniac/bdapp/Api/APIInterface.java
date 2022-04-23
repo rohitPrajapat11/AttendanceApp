@@ -124,10 +124,12 @@ public interface APIInterface {
     @POST("api/all-inactive-employee")
     Call<ApiResponse> allInactiveEmployee(@Header("Authorization") String token);
 
-    @POST("api/employee-status-by-id")
-    Call<ApiResponse> employeeStatusbyId(@Header("Authentication")String token,@Path("id")int id);
+    @POST("api/employee-status-by-id/{id}")
+    Call<ApiResponse> employeeStatusById(@Header("Authorization") String token, @Path("id") int id);
 
     @Multipart
     @POST("api/update-designation/{id}")
     Call<ApiResponse> updateDesignation(@Header("Authorization") String token, @Path("id") int id, @PartMap Map<String, RequestBody> map);
+
+
 }

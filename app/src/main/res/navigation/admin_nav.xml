@@ -104,4 +104,10 @@
         android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeDesListFragment"
         android:label="EmployeeDesListFragment"
         tools:layout="@layout/fragment_employee_des_list"/>
+
+    <fragment
+        android:id="@+id/employeeExpensesFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeExpensesFragment"
+        android:label="EmployeeExpensesFragment"
+        tools:layout="@layout/fragment_employee_expenses"/>
 </navigation>
