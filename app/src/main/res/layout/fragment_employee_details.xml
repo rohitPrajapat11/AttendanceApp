@@ -40,7 +40,7 @@
                 android:layout_height="@dimen/_80sdp"
                 android:background="@drawable/green_round_bg"
                 android:padding="@dimen/_5sdp"
-                android:src="@drawable/sample_android"
+                android:src="@drawable/user"
                 app:layout_constraintEnd_toEndOf="@+id/employeeName"
                 app:layout_constraintHorizontal_bias="0.415"
                 app:layout_constraintStart_toStartOf="@+id/employeeName"

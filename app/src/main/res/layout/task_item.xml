@@ -38,7 +38,7 @@
             android:paddingStart="@dimen/_5sdp"
             android:text="@string/sample_task"
             android:textAllCaps="false"
-            android:textColor="@color/light_black"
+            android:textColor="@color/black"
             android:textCursorDrawable="@drawable/text_cursor"
             android:textSize="@dimen/_11ssp"
             app:drawableTint="@color/_A8A8A8"

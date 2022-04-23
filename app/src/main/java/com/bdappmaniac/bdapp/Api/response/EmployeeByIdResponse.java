@@ -17,7 +17,7 @@ public class EmployeeByIdResponse {
     private String employeeName;
 
     @SerializedName("emg_mo_no")
-    private int emgMoNo;
+    private long emgMoNo;
 
     @SerializedName("type")
     private String type;
@@ -35,7 +35,7 @@ public class EmployeeByIdResponse {
     private String designation;
 
     @SerializedName("emp_mobile_no")
-    private int empMobileNo;
+    private long empMobileNo;
 
     @SerializedName("email")
     private String email;
@@ -86,11 +86,11 @@ public class EmployeeByIdResponse {
         this.employeeName = employeeName;
     }
 
-    public int getEmgMoNo() {
+    public long getEmgMoNo() {
         return emgMoNo;
     }
 
-    public void setEmgMoNo(int emgMoNo) {
+    public void setEmgMoNo(long emgMoNo) {
         this.emgMoNo = emgMoNo;
     }
 
@@ -134,11 +134,11 @@ public class EmployeeByIdResponse {
         this.designation = designation;
     }
 
-    public int getEmpMobileNo() {
+    public long getEmpMobileNo() {
         return empMobileNo;
     }
 
-    public void setEmpMobileNo(int empMobileNo) {
+    public void setEmpMobileNo(long empMobileNo) {
         this.empMobileNo = empMobileNo;
     }
 

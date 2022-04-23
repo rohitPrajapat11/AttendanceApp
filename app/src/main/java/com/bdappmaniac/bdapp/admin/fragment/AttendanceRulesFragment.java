@@ -27,7 +27,6 @@ import okhttp3.RequestBody;
 
 public class AttendanceRulesFragment extends BaseFragment {
     FragmentAttendanceRulesBinding binding;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_attendance_rules, container, false);
