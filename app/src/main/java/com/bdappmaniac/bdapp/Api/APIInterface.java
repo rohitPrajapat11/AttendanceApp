@@ -130,4 +130,7 @@ public interface APIInterface {
     @Multipart
     @POST("api/update-designation/{id}")
     Call<ApiResponse> updateDesignation(@Header("Authorization") String token, @Path("id") int id, @PartMap Map<String, RequestBody> map);
+
+    @POST("api/all-task-with-employee-name")
+    Call<ApiResponse> allTaskWithEmployeeName(@Header("Authorization") String token);
 }

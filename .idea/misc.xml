@@ -28,6 +28,7 @@
         <entry key="app/src/main/res/drawable/green_round_present.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/holiday_bg.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.12960526315789472" />
+        <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_right_24.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/icn_term.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/light_btn_bg.xml" value="0.12960526315789472" />
@@ -100,7 +101,7 @@
         <entry key="app/src/main/res/layout/fragment_admin_profile.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_admin_tearm_and_condtion.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_admin_term_and_condition.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_admin_todo_list.xml" value="0.11796875" />
+        <entry key="app/src/main/res/layout/fragment_admin_todo_list.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_attendance_rules.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_confirm_m_p_i_n.xml" value="0.17" />
         <entry key="app/src/main/res/layout/fragment_create_m_p_i_n.xml" value="0.18" />
@@ -157,6 +158,7 @@
         <entry key="app/src/main/res/layout/single_item_of_employee.xml" value="0.18" />
         <entry key="app/src/main/res/layout/task_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/timeline_item_layout.xml" value="0.1194078947368421" />
+        <entry key="app/src/main/res/layout/to_do_list_item.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/work_history_dialogbox.xml" value="0.11796875" />
         <entry key="app/src/main/res/menu/delete_menu.xml" value="0.2" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />

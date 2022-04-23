@@ -60,7 +60,7 @@ public class AdminLockUnlock extends BaseFragment {
                     employeeList.addAll(List);
                     adapter.notifyDataSetChanged();
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
