@@ -2,19 +2,41 @@ package com.bdappmaniac.bdapp.Api.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AllTaskItem {
+import java.io.Serializable;
+import java.util.List;
 
-	@SerializedName("employee")
-	private String employee;
+public class AllTaskItem implements Serializable {
 
-	@SerializedName("tasks")
-	private Object tasks;
+    @SerializedName("employee")
+    private String employee;
 
-	public String getEmployee(){
-		return employee;
-	}
+    @SerializedName("tasks")
+    private List<TasksItem> tasks;
 
-	public Object getTasks(){
-		return tasks;
-	}
+    @SerializedName("emp_id")
+    private int empId;
+
+    public void setEmployee(String employee) {
+        this.employee = employee;
+    }
+
+    public String getEmployee() {
+        return employee;
+    }
+
+    public void setTasks(List<TasksItem> tasks) {
+        this.tasks = tasks;
+    }
+
+    public List<TasksItem> getTasks() {
+        return tasks;
+    }
+
+    public void setEmpId(int empId) {
+        this.empId = empId;
+    }
+
+    public int getEmpId() {
+        return empId;
+    }
 }

@@ -7,8 +7,8 @@ public class lockUnlockItems {
 	@SerializedName("employee_name")
 	private String employeeName;
 
-	@SerializedName("time")
-	private String time;
+	@SerializedName("date")
+	private String date;
 
 	@SerializedName("status")
 	private String status;
@@ -32,12 +32,12 @@ public class lockUnlockItems {
 		return employeeName;
 	}
 
-	public void setTime(String time){
-		this.time = time;
+	public void setDate(String date){
+		this.date = date;
 	}
 
-	public String getTime(){
-		return time;
+	public String getDate(){
+		return date;
 	}
 
 	public void setStatus(String status){

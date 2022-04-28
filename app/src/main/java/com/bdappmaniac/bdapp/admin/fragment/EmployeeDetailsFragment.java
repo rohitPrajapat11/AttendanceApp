@@ -92,6 +92,44 @@ public class EmployeeDetailsFragment extends BaseFragment {
                 }
             });
         }
+
+        binding.dropDownBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.perInfoLayout.setBackgroundResource(R.drawable.bottom_cut_white_bg);
+                binding.pIdetails.setVisibility(View.VISIBLE);
+                binding.dropDownBtn.setVisibility(View.GONE);
+                binding.dropUpBtn.setVisibility(View.VISIBLE);
+
+            }
+        });
+        binding.dropUpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.perInfoLayout.setBackgroundResource(R.drawable.white_5r_bg);
+                binding.pIdetails.setVisibility(View.GONE);
+                binding.dropDownBtn.setVisibility(View.VISIBLE);
+                binding.dropUpBtn.setVisibility(View.GONE);
+            }
+        });
+        binding.dropDownBtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.empInfoLayout.setBackgroundResource(R.drawable.bottom_cut_white_bg);
+                binding.constraintLayout7.setVisibility(View.VISIBLE);
+                binding.dropDownBtn1.setVisibility(View.GONE);
+                binding.dropUpBtn1.setVisibility(View.VISIBLE);
+            }
+        });
+        binding.dropUpBtn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.empInfoLayout.setBackgroundResource(R.drawable.white_5r_bg);
+                binding.constraintLayout7.setVisibility(View.GONE);
+                binding.dropDownBtn1.setVisibility(View.VISIBLE);
+                binding.dropUpBtn1.setVisibility(View.GONE);
+            }
+        });
         return binding.getRoot();
     }
 
@@ -167,6 +205,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
             }
         });
     }
+
     private void updateEmployeeStatus(String status) {
         AppLoader.showLoaderDialog(mContext);
         MainService.updateProfileByAdmin(mContext, getToken(), ID, status).observe((LifecycleOwner) this, apiResponse -> {
@@ -180,7 +219,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
                         showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     }
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();

@@ -853,4 +853,29 @@ public class MainService {
         });
         return data;
     }
+
+    public static LiveData<ApiResponse> createTask(Context context, String token, Map<String, RequestBody> map) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        if (!BdApp.getInstance().isInternetConnected(context)) {
+            return data;
+        }
+        Call<ApiResponse> call = apiService.createTask(token, map);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
 }

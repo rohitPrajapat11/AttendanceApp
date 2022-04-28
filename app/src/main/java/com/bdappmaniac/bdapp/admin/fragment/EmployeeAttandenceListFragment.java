@@ -17,7 +17,6 @@ public class EmployeeAttandenceListFragment extends Fragment {
     FragmentEmployeeAttandenceListBinding binding;
     private ViewPagerAdapter viewPagerAdapter;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_attandence_list, container, false);
@@ -25,14 +24,10 @@ public class EmployeeAttandenceListFragment extends Fragment {
             Navigation.findNavController(view).navigateUp();
         });
 
-
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         viewPagerAdapter.add(new FragmentViewOne(), "Page 1");
         viewPagerAdapter.add(new FragmentViewTwo(), "Page 2");
-
         binding.viewpager.setAdapter(viewPagerAdapter);
-
-
         return binding.getRoot();
     }
 

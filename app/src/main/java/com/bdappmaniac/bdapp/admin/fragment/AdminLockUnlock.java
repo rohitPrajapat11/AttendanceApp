@@ -44,7 +44,6 @@ public class AdminLockUnlock extends BaseFragment {
         return binding.getRoot();
     }
 
-
     private void allInactiveEmployeeApi() {
         AppLoader.showLoaderDialog(mContext);
         MainService.allInactiveEmployee(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
@@ -55,7 +54,6 @@ public class AdminLockUnlock extends BaseFragment {
                     Type collectionType = new TypeToken<List<lockUnlockItems>>() {
                     }.getType();
                     List<lockUnlockItems> List = new Gson().fromJson(apiResponse.getData(), collectionType);
-                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     employeeList.clear();
                     employeeList.addAll(List);
                     adapter.notifyDataSetChanged();

@@ -19,6 +19,7 @@ import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.databinding.DesiginLockUnlockItemsBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.DateUtils;
 
 import java.util.ArrayList;
 
@@ -45,23 +46,27 @@ public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        ViewHolder gholder = (ViewHolder) holder;
-        gholder.binding.empName.setText(employeeList.get(position).getEmployeeName());
-        gholder.binding.time.setText(employeeList.get(position).getTime());
-        gholder.binding.switchbtn.setChecked(true);
+        LockUnlockAdapter.ViewHolder vHolder = (LockUnlockAdapter.ViewHolder) holder;
+        vHolder.binding.empName.setText(employeeList.get(position).getEmployeeName());
+        if (employeeList.get(position).getDate() == null){
+            vHolder.binding.time.setText("-");
+        }else {
+            vHolder.binding.time.setText(DateUtils.getFormattedTime(employeeList.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatM));
+        }
+        vHolder.binding.switchbtn.setChecked(true);
 
         if (employeeList.get(position).getStatus().equals("active")) {
-            gholder.binding.switchbtn.setChecked(true);
+            vHolder.binding.switchbtn.setChecked(true);
         } else if (employeeList.get(position).getStatus().equals("inactive")) {
-            gholder.binding.switchbtn.setChecked(false);
+            vHolder.binding.switchbtn.setChecked(false);
         }
-        gholder.binding.switchbtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        vHolder.binding.switchbtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    gholder.updateEmployeeStatusApi("active", employeeList.get(position).getId());
+                    vHolder.updateEmployeeStatusApi("active", employeeList.get(position).getId());
                 } else {
-                    gholder.updateEmployeeStatusApi("inactive", employeeList.get(position).getId());
+                    vHolder.updateEmployeeStatusApi("inactive", employeeList.get(position).getId());
                 }
             }
         });

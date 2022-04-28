@@ -1,12 +1,15 @@
 package com.bdappmaniac.bdapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdappmaniac.bdapp.Api.response.AllTaskItem;
@@ -36,13 +39,15 @@ public class ToDoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ToDoListAdapter.TaskViewHolder vHolder = (ToDoListAdapter.TaskViewHolder) holder;
         vHolder.binding.empName.setText(tasksList.get(position).getEmployee());
         vHolder.binding.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("EmployeeTaskList",(AllTaskItem) tasksList.get(position));
+                Navigation.findNavController(view).navigate(R.id.employeeToDoListFragment, bundle);
             }
         });
     }

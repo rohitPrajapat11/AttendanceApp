@@ -23,14 +23,18 @@ import java.util.ArrayList;
 public class AdminLoanFragment extends BaseFragment implements CalendarCallBack {
     FragmentAdminLoanBinding binding;
     ArrayList<AllLoanModel> loanStatus = new ArrayList<>();
-
     EmployeeListAdapter EmAdapter;
     AllLoanAdapter allLoanAdapter;
     Dialog addEmployeeDialog;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_loan, container, false);
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(binding.getRoot()).popBackStack();
+            }
+        });
         Constant.calendarCallBack = this;
         binding.totalTxt.setText(getResources().getString(R.string.inr) + " " + "50,000");
         //  binding.getAmountTxt.setText(getResources().getString(R.string.inr) + " " + "20,000");

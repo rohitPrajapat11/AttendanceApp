@@ -17,19 +17,19 @@ import com.bdappmaniac.bdapp.model.AdminHomeModel;
 
 import java.util.ArrayList;
 
-public class AdminHomeAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AdminHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     ArrayList<AdminHomeModel> itemList = new ArrayList<>();
     Context context;
 
-    public AdminHomeAdaapter(ArrayList<AdminHomeModel> itemList, Context context) {
+    public AdminHomeAdapter(ArrayList<AdminHomeModel> itemList, Context context) {
         this.context = context;
         this.itemList = itemList;
     }
 
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
         DesignRecyclerMenuBinding binding = DataBindingUtil.inflate(inflater, R.layout.design_recycler_menu, group, false);
-        return new AdminHomeAdaapter.ViewHolder(binding);
+        return new AdminHomeAdapter.ViewHolder(binding);
     }
 
     @NonNull
@@ -65,6 +65,9 @@ public class AdminHomeAdaapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     Navigation.findNavController(view).navigate(R.id.lockUnlockFragment);
                 }
                 if (position == 6) {
+                    Navigation.findNavController(view).navigate(R.id.overTimeFragment);
+                }
+                if (position == 7) {
                     Navigation.findNavController(view).navigate(R.id.toDoListFragment);
                 }
             }

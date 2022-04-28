@@ -1,13 +1,12 @@
 package com.bdappmaniac.bdapp.admin.fragment;
 
 import android.os.Bundle;
-
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeExpensesBinding;
@@ -20,6 +19,15 @@ public class EmployeeExpensesFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_expenses, container, false);
+        binding.backBtn.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigateUp();
+        });
+        binding.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.employeeExpenseDetailsFragment);
+            }
+        });
         return binding.getRoot();
     }
 }

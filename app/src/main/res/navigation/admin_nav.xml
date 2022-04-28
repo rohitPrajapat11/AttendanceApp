@@ -110,4 +110,20 @@
         android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeExpensesFragment"
         android:label="EmployeeExpensesFragment"
         tools:layout="@layout/fragment_employee_expenses"/>
+    <fragment
+        android:id="@+id/employeeToDoListFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeToDoListFragment"
+        android:label="EmployeeToDoListFragment"
+        tools:layout="@layout/fragment_employee_to_do_list"/>
+    <fragment
+        android:id="@+id/employeeExpenseDetailsFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeExpenseDetailsFragment"
+        android:label="EmployeeExpenseDetailsFragment"
+        tools:layout="@layout/fragment_employee_expense_details"/>
+    <fragment
+        android:id="@+id/overTimeFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.OverTimeFragment"
+        android:label="OverTimeFragment"
+        tools:layout="@layout/fragment_over_time"/>
+
 </navigation>

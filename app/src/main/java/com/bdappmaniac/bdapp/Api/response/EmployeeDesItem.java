@@ -13,6 +13,28 @@ public class EmployeeDesItem {
 	@SerializedName("attendance")
 	private String attendance;
 
+	@SerializedName("id")
+	private int id;
+
+	@SerializedName("profile")
+	private String profile;
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public void setEmployeeName(String employeeName){
 		this.employeeName = employeeName;
 	}

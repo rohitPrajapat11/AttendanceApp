@@ -57,38 +57,38 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         });
         navController = Navigation.findNavController(this, R.id.nav_controller);
         updateProfile();
-        binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.adminHomeFragment) {
-                    navController.navigate(R.id.adminHomeFragment);
-                }
-            }
-        });
-        binding.homeLayout.bottomLayout.employeeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeListFragment) {
-                    navController.navigate(R.id.employeeListFragment);
-                }
-            }
-        });
-        binding.homeLayout.bottomLayout.loanBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.loanFragment) {
-                    navController.navigate(R.id.loanFragment);
-                }
-            }
-        });
-        binding.homeLayout.bottomLayout.profileBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.profileFragment) {
-                    navController.navigate(R.id.profileFragment);
-                }
-            }
-        });
+//        binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.adminHomeFragment) {
+//                    navController.navigate(R.id.adminHomeFragment);
+//                }
+//            }
+//        });
+//        binding.homeLayout.bottomLayout.employeeBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeListFragment) {
+//                    navController.navigate(R.id.employeeListFragment);
+//                }
+//            }
+//        });
+//        binding.homeLayout.bottomLayout.loanBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.loanFragment) {
+//                    navController.navigate(R.id.loanFragment);
+//                }
+//            }
+//        });
+//        binding.homeLayout.bottomLayout.profileBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.profileFragment) {
+//                    navController.navigate(R.id.profileFragment);
+//                }
+//            }
+//        });
         binding.homeLayout.headerLayout.menuBtn.setOnClickListener(v -> {
             drawerOpenCLose();
         });
@@ -116,47 +116,47 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 if (destination.getId() == R.id.adminHomeFragment) {
                     navHandel("Home");
                     headerHideShow(true);
-                    bottomHideShow(true);
+//                    bottomHideShow(true);
                 } else if (destination.getId() == R.id.employeeListFragment) {
                     navHandel("Employee");
                     headerHideShow(true);
-                    bottomHideShow(true);
+//                    bottomHideShow(true);
                 } else if (destination.getId() == R.id.loanFragment) {
                     navHandel("Loan");
-                    headerHideShow(true);
-                    bottomHideShow(true);
+                    headerHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.adminProfile) {
                     navHandel("Profile");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.adminTermFragment) {
                     navHandel("TermCondition");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.employeeDetailFragment) {
                     navHandel("EmployeeDetail");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.employeeAttendanceFragment) {
                     navHandel("EmployeeAttendance");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.registerEmployeeFragment) {
                     navHandel("RegisterEmployee");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.settingFragment) {
                     navHandel("Setting");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.employeeListForLoanFragment) {
                     navHandel("EmployeeLoanList");
                     headerHideShow(true);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.provideLoanFragment) {
                     navHandel("LoanDetails");
                     headerHideShow(true);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.adminHolidayFragment) {
                     navHandel("Holidays");
                     headerHideShow(false);
@@ -164,33 +164,36 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 } else if (destination.getId() == R.id.attendanceRulesFragment) {
                     navHandel("attendanceRulesFragment");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.lockUnlockFragment) {
                     navHandel("Lock/Unlock");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.toDoListFragment) {
-                    navHandel("ToDoList");
+                    navHandel("Task List");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.designationFragment) {
                     navHandel("Designation");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.employeeAttandenceListFragment) {
                     navHandel("EmployeeAttandenceList");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 } else if (destination.getId() == R.id.employeeDesListFragment) {
                     navHandel("Employee List");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
                 }else if (destination.getId() == R.id.employeeExpensesFragment) {
                     navHandel("Employee Expenses");
                     headerHideShow(false);
-                    bottomHideShow(false);
+//                    bottomHideShow(false);
+                }else if (destination.getId() == R.id.overTimeFragment) {
+                    navHandel("OverTime Task List");
+                    headerHideShow(false);
+//                    bottomHideShow(false);
                 }
-
             }
         });
     }
@@ -202,14 +205,14 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.VISIBLE);
-                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home_select);
-                binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employees);
-                binding.homeLayout.bottomLayout.loanBtn.setImageResource(R.drawable.icn_loan);
-                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile);
-                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.VISIBLE);
-                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
-                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
-                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home_select);
+//                binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employees);
+//                binding.homeLayout.bottomLayout.loanBtn.setImageResource(R.drawable.icn_loan);
+//                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile);
+//                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.VISIBLE);
+//                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Employee":
@@ -217,14 +220,14 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.VISIBLE);
-                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
-                binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employee_select);
-                binding.homeLayout.bottomLayout.loanBtn.setImageResource(R.drawable.icn_loan);
-                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile);
-                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
-                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.VISIBLE);
-                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
-                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
+//                binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employee_select);
+//                binding.homeLayout.bottomLayout.loanBtn.setImageResource(R.drawable.icn_loan);
+//                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile);
+//                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.VISIBLE);
+//                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Loan":
@@ -232,26 +235,26 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 binding.homeLayout.headerLayout.title.setText("Advance Payment");
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.VISIBLE);
-                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
-                binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employees);
-                binding.homeLayout.bottomLayout.loanBtn.setImageResource(R.drawable.icn_loan_select);
-                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile);
-                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
-                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
-                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.VISIBLE);
-                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
+//                binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employees);
+//                binding.homeLayout.bottomLayout.loanBtn.setImageResource(R.drawable.icn_loan_select);
+//                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile);
+//                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.VISIBLE);
+//                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Profile":
                 binding.homeLayout.headerLayout.title.setText("");
-                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
-                binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employees);
-                binding.homeLayout.bottomLayout.loanBtn.setImageResource(R.drawable.icn_loan);
-                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile_select);
-                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
-                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
-                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
-                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
+//                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
+//                binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employees);
+//                binding.homeLayout.bottomLayout.loanBtn.setImageResource(R.drawable.icn_loan);
+//                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile_select);
+//                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
+//                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
             case "EmployeeLoanList":
                 binding.homeLayout.headerLayout.title.setText("Select Employee");
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
@@ -282,8 +285,6 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
             case "TermCondition":
             case "EmployeeDetail":
             case "RegisterEmployee":
-
-
                 noHeader();
                 break;
         }
@@ -362,11 +363,11 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
     }
 
     void bottomHideShow(boolean check) {
-        if (check) {
-            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.VISIBLE);
-        } else {
-            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.GONE);
-        }
+//        if (check) {
+//            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.VISIBLE);
+//        } else {
+//            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.GONE);
+//        }
     }
 
     void textProfile() {
@@ -400,14 +401,14 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private void noHeader() {
-        binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
-        binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employees);
-        binding.homeLayout.bottomLayout.loanBtn.setImageResource(R.drawable.icn_loan);
-        binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile_select);
-        binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
-        binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
-        binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
-        binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
+//        binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
+//        binding.homeLayout.bottomLayout.employeeBtn.setImageResource(R.drawable.icn_employees);
+//        binding.homeLayout.bottomLayout.loanBtn.setImageResource(R.drawable.icn_loan);
+//        binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile_select);
+//        binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
+//        binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
+//        binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
+//        binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
     }
 
     public void updateProfile() {

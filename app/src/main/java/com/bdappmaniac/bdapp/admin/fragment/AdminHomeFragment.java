@@ -10,9 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.adapter.AdminHomeAdaapter;
+import com.bdappmaniac.bdapp.adapter.AdminHomeAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentAdminHomeBinding;
-import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.model.AdminHomeModel;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import java.util.ArrayList;
 public class AdminHomeFragment extends Fragment {
     FragmentAdminHomeBinding binding;
     ArrayList<AdminHomeModel> itemList = new ArrayList<>();
-    AdminHomeAdaapter adapter;
+    AdminHomeAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,12 +44,13 @@ public class AdminHomeFragment extends Fragment {
         itemList.add(new AdminHomeModel(R.drawable.icn_advance_payment, "Adavance Payment"));
         itemList.add(new AdminHomeModel(R.drawable.icn_attendence, "Employee Attendance"));
         itemList.add(new AdminHomeModel(R.drawable.icn_employee_list, "Employee List"));
-        itemList.add(new AdminHomeModel(R.drawable.icn_expence, "Employee Expense"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_expense, "Employee Expense"));
         itemList.add(new AdminHomeModel(R.drawable.icn_holidays, "Holiday"));
         itemList.add(new AdminHomeModel(R.drawable.icn_locks, "Lock / Unlock"));
-        itemList.add(new AdminHomeModel(R.drawable.icn_to_do_list, "To Do List"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_to_do_list, "OverTime List"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_to_do_list, "Task List"));
 
-        adapter = new AdminHomeAdaapter(itemList, getContext());
+        adapter = new AdminHomeAdapter(itemList, getContext());
         binding.recyclerMenu.setLayoutManager(new GridLayoutManager(getContext(), 2));
         binding.recyclerMenu.setAdapter(adapter);
 

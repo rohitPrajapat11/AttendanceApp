@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:elevation="@dimen/_3sdp"
+        android:padding="@dimen/_5sdp">
+
+        <TextView
+            android:id="@+id/taskTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font_heavy"
+            android:gravity="start"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:paddingStart="@dimen/_5sdp"
+            android:text="@string/sample_task"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@drawable/text_cursor"
+            android:textSize="@dimen/_11ssp"
+            app:drawableTint="@color/_A8A8A8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/Completed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry,TextViewEdits" />
+
+        <TextView
+            android:id="@+id/Completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complete"
+            android:textColor="@color/green"
+            android:textSize="@dimen/_11sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/taskTxt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/taskTxt" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
