@@ -8,7 +8,7 @@
     <string name="mobile">Mobile Number</string>
     <string name="date_of_birth">Date of Birth</string>
     <string name="select_dob">Select Dob</string>
-    <string name="enter_emergency_mobile_number">Enter Emergency Mobile Number</string>
+    <string name="enter_emergency_mobile_number">Enter Emergency Number</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="enter_your_address">Enter Your Address</string>
     <string name="sign_u_p">Sign Up</string>
@@ -32,7 +32,6 @@
     <string name="pincode">PinCode</string>
     <string name="enter_your_pincode">Enter Your PinCode</string>
     <string name="enter_your_name">Enter Your Name</string>
-    <string name="hello_there_welcome_back">Hello There, Welcome Back</string>
     <string name="create_an_account_to_continue">Create an account to continue!</string>
     <string name="let_s_sign_you_in">Let’s Sign You In</string>
     <string name="at_least_8_characters_with_uppercase_and_lowercase_letters">At least 8 characters, with uppercase and lowercase letters</string>

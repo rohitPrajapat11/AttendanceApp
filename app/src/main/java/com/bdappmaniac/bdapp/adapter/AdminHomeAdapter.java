@@ -41,7 +41,7 @@ public class AdminHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ViewHolder vHolder = (ViewHolder) holder;
-        vHolder.binding.imageitem.setImageResource(itemList.get(position).getImageitem());
+        vHolder.binding.icon.setImageResource(itemList.get(position).getImageitem());
         vHolder.binding.title.setText(itemList.get(position).getTitle());
         vHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

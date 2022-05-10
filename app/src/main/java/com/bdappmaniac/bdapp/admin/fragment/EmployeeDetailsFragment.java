@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
@@ -15,11 +14,11 @@ import com.bdappmaniac.bdapp.Api.response.EmployeeList;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
+import com.bdappmaniac.bdapp.adapter.ViewPagerAdapter;
 import com.bdappmaniac.bdapp.admin.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeDetailsBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
@@ -31,6 +30,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
     int ID;
     EmployeeListAdapter EmAdapter;
     ArrayList<EmployeeList> list = new ArrayList<>();
+    private ViewPagerAdapter viewPagerAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,92 +44,17 @@ public class EmployeeDetailsFragment extends BaseFragment {
                 Navigation.findNavController(v).navigateUp();
             });
 
-//        binding.empStatus.setOnClickListener(v -> {
-//            AcviteDeactiveDialogBinding activeBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.acvite_deactive_dialog, null, false);
-//            Dialog dialog = new Dialog(mContext);
-//            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//            dialog.setContentView(activeBinding.getRoot());
-//            dialog.setCancelable(true);
-//            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-//            dialog.getWindow().setGravity(Gravity.BOTTOM);
-//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-//            if (binding.empStatus.getText().toString().equals("Activate")) {
-//                activeBinding.message.setText("Deactivate " + empName);
-//            } else {
-//                activeBinding.message.setText("Activate " + empName);
-//            }
-//            activeBinding.okBtn.setOnClickListener(v1 ->
-//            {
-//                if (binding.empStatus.getText().toString().equals("Activate")) {
-//                    binding.empStatus.setText("Deactivate");
-//                    binding.empStatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icn_deactive, 0, 0, 0);
-//                } else {
-//                    binding.empStatus.setText("Activate");
-//                    binding.empStatus.setCompoundDrawablesWithIntrinsicBounds(R.drawable.icn_live, 0, 0, 0);
-//                }
-//                dialog.dismiss();
-//            });
-//            activeBinding.cancelBtn.setOnClickListener(v1 ->
-//            {
-//                dialog.dismiss();
-//            });
-//            dialog.show();
-//        });
-            binding.attendanceLoanBtn.setOnClickListener(v -> {
-                Bundle bundle = new Bundle();
-                bundle.putInt("id", ID);
-                Navigation.findNavController(v).navigate(R.id.employeeAttendanceFragment, bundle);
-            });
-            binding.provideLoanBtn.setOnClickListener(v -> {
-                Navigation.findNavController(v).navigate(R.id.provideLoanFragment);
-            });
-            binding.tmcBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("id", ID);
-                    Navigation.findNavController(v).navigate(R.id.employeeTermsAndConditionFragment, bundle);
-                }
-            });
+            Bundle bundle = new Bundle();
+            bundle.putInt("id", ID);
+            viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+            viewPagerAdapter.add(new PersonalInfoFragment(ID), "Personal Info");
+            viewPagerAdapter.add(new ContactInfoFragment(ID), "Contact");
+            viewPagerAdapter.add(new ServiceInfoFragment(ID), "Services");
+            binding.viewpager.setAdapter(viewPagerAdapter);
+            binding.tabLayout.setViewPager(binding.viewpager);
+
+
         }
-
-        binding.dropDownBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.perInfoLayout.setBackgroundResource(R.drawable.bottom_cut_white_bg);
-                binding.pIdetails.setVisibility(View.VISIBLE);
-                binding.dropDownBtn.setVisibility(View.GONE);
-                binding.dropUpBtn.setVisibility(View.VISIBLE);
-
-            }
-        });
-        binding.dropUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.perInfoLayout.setBackgroundResource(R.drawable.white_5r_bg);
-                binding.pIdetails.setVisibility(View.GONE);
-                binding.dropDownBtn.setVisibility(View.VISIBLE);
-                binding.dropUpBtn.setVisibility(View.GONE);
-            }
-        });
-        binding.dropDownBtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.empInfoLayout.setBackgroundResource(R.drawable.bottom_cut_white_bg);
-                binding.constraintLayout7.setVisibility(View.VISIBLE);
-                binding.dropDownBtn1.setVisibility(View.GONE);
-                binding.dropUpBtn1.setVisibility(View.VISIBLE);
-            }
-        });
-        binding.dropUpBtn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.empInfoLayout.setBackgroundResource(R.drawable.white_5r_bg);
-                binding.constraintLayout7.setVisibility(View.GONE);
-                binding.dropDownBtn1.setVisibility(View.VISIBLE);
-                binding.dropUpBtn1.setVisibility(View.GONE);
-            }
-        });
         return binding.getRoot();
     }
 
@@ -142,7 +67,6 @@ public class EmployeeDetailsFragment extends BaseFragment {
                 if ((apiResponse.getData() != null)) {
                     EmployeeByIdResponse employeeByIdResponse = new Gson().fromJson(apiResponse.getData(), EmployeeByIdResponse.class);
                     setUserData(employeeByIdResponse);
-                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
@@ -152,77 +76,12 @@ public class EmployeeDetailsFragment extends BaseFragment {
     }
 
     public void setUserData(EmployeeByIdResponse employeeByIdResponse) {
-        binding.designationTxt.setText(employeeByIdResponse.getDesignation());
-        binding.emailTxt.setText(employeeByIdResponse.getEmail());
-        binding.phoneTxt.setText(String.valueOf(employeeByIdResponse.getEmpMobileNo()));
-        binding.emPhoneTxt.setText(String.valueOf(employeeByIdResponse.getEmgMoNo()));
         binding.employeeName.setText(employeeByIdResponse.getEmployeeName());
-        binding.joiningDateTxt.setText(DateUtils.getFormattedTime(String.valueOf(employeeByIdResponse.getJoiningdate()), DateUtils.appDateFormat, DateUtils.appDateFormatTo));
         Glide.with(mContext)
                 .load(employeeByIdResponse.getProfile())
                 .error(R.drawable.user)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(binding.profile);
-
-        switch (employeeByIdResponse.getStatus()) {
-            case "active":
-                binding.switch1.setChecked(true);
-                binding.activeBtn.setText("Active");
-                break;
-            case "inactive":
-                binding.switch1.setChecked(false);
-                binding.activeBtn.setText("Inactive");
-                break;
-        }
-        if (employeeByIdResponse.getDob() == null) {
-            binding.dobTxt.setText("-");
-        } else {
-            binding.dobTxt.setText(String.valueOf(employeeByIdResponse.getDob()));
-        }
-        if (employeeByIdResponse.getEmployeeAddress().equals("")) {
-            binding.addressTxt.setText("-");
-        } else {
-            binding.addressTxt.setText(employeeByIdResponse.getEmployeeAddress());
-        }
-        if (employeeByIdResponse.getEmgMoNo() == 0) {
-            binding.emPhoneTxt.setText("-");
-        } else {
-            binding.emPhoneTxt.setText(employeeByIdResponse.getEmployeeAddress());
-        }
-        binding.switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    binding.switch1.setChecked(true);
-                    binding.activeBtn.setText("Active");
-                    updateEmployeeStatus("active");
-                } else {
-                    binding.switch1.setChecked(false);
-                    binding.activeBtn.setText("Inactive");
-                    updateEmployeeStatus("inactive");
-                }
-            }
-        });
-    }
-
-    private void updateEmployeeStatus(String status) {
-        AppLoader.showLoaderDialog(mContext);
-        MainService.updateProfileByAdmin(mContext, getToken(), ID, status).observe((LifecycleOwner) this, apiResponse -> {
-            if (apiResponse == null) {
-                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
-            } else {
-                if ((apiResponse.getData() != null)) {
-                    if (status.equals("active")) {
-                        showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                    } else if (status.equals("inactive")) {
-                        showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                    }
-                } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                }
-            }
-            AppLoader.hideLoaderDialog();
-        });
     }
 }

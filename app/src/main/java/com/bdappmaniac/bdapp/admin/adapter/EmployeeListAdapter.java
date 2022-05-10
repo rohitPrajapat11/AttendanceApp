@@ -6,7 +6,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -17,9 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bdappmaniac.bdapp.Api.response.EmployeeList;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.EmployeeListItemBinding;
-import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,12 +55,11 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        EmployeeListAdapter.EmployeeListHolder vHolder = (EmployeeListAdapter.EmployeeListHolder) holder;
-        vHolder.binding.employeeName.setText(list.get(position).getEmployeeName());
-        vHolder.binding.designationTxt.setText(list.get(position).getDesignation());
-        Glide.with(context).load(list.get(position).getProfile()).placeholder(R.drawable.user).into(vHolder.binding.profile);
-
-        vHolder.itemView.setOnClickListener(v -> {
+        EmployeeListAdapter.EmployeeListHolder vHolders = (EmployeeListAdapter.EmployeeListHolder) holder;
+        vHolders.binding.employeeName.setText(list.get(position).getEmployeeName());
+        vHolders.binding.designationTxt.setText(list.get(position).getDesignation());
+        Glide.with(context).load(list.get(position).getProfile()).placeholder(R.drawable.user).into(vHolders.binding.profile);
+        vHolders.itemView.setOnClickListener(v -> {
             if (from.equals("LoanFragment")) {
 //                Toast.makeText(context, "L", Toast.LENGTH_SHORT).show();
                 Bundle bundle = new Bundle();

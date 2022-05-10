@@ -7,8 +7,7 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="@dimen/_1sdp"
+        android:background="@color/f1f3f5"
         android:paddingTop="@dimen/_15sdp"
         android:paddingBottom="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,11 +21,10 @@
             android:layout_height="@dimen/_21sdp"
             android:layout_marginStart="@dimen/_20sdp"
             android:scaleType="fitXY"
-            android:src="@drawable/main_menu"
+            android:src="@drawable/icn_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.555"
             app:tint="@color/primary_color" />
 
         <ImageView

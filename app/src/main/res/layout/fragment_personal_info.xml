@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".activity.MainActivity">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/dobTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="@string/select_dob"
+                    android:importantForAutofill="no"
+                    android:inputType="textNoSuggestions"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableStartCompat="@drawable/icn_bday"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextFields,TextViewEdits" />
+
+                <TextView
+                    android:id="@+id/joiningDateTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="Joining Date"
+                    android:importantForAutofill="no"
+                    android:inputType="textNoSuggestions"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableStartCompat="@drawable/icn_joining"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="@+id/dobTxt"
+                    app:layout_constraintStart_toStartOf="@+id/dobTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/dobTxt" />
+
+                <TextView
+                    android:id="@+id/designationTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="Select Designation"
+                    android:importantForAutofill="no"
+                    android:inputType="textNoSuggestions"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableStartCompat="@drawable/ic_baseline_design_services_24"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="@+id/joiningDateTxt"
+                    app:layout_constraintStart_toStartOf="@+id/joiningDateTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/joiningDateTxt"
+                    tools:ignore="TextFields,TextViewEdits" />
+
+                <TextView
+                    android:id="@+id/activeBtn"
+                    android:layout_width="120dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:importantForAutofill="no"
+                    android:inputType="textNoSuggestions"
+                    android:paddingLeft="@dimen/_12sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:text="Active"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableStartCompat="@drawable/icn_status"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintStart_toStartOf="@+id/designationTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/designationTxt"
+                    tools:ignore="TextFields,TextViewEdits" />
+
+                <Switch
+                    android:id="@+id/switch1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:minHeight="48dp"
+                    android:theme="@style/SCBSwitch"
+                    app:layout_constraintBottom_toBottomOf="@+id/activeBtn"
+                    app:layout_constraintStart_toEndOf="@+id/activeBtn"
+                    app:layout_constraintTop_toTopOf="@+id/activeBtn"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

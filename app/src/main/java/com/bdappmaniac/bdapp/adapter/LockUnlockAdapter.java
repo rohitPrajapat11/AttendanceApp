@@ -49,7 +49,7 @@ public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         LockUnlockAdapter.ViewHolder vHolder = (LockUnlockAdapter.ViewHolder) holder;
         vHolder.binding.empName.setText(employeeList.get(position).getEmployeeName());
         if (employeeList.get(position).getDate() == null){
-            vHolder.binding.time.setText("-");
+            vHolder.binding.time.setText("");
         }else {
             vHolder.binding.time.setText(DateUtils.getFormattedTime(employeeList.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatM));
         }

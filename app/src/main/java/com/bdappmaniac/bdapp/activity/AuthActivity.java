@@ -14,6 +14,7 @@ import com.bdappmaniac.bdapp.interfaces.OnChangeConnectivityListener;
 import java.util.List;
 
 public class AuthActivity extends BaseActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,4 +51,5 @@ public class AuthActivity extends BaseActivity {
             }
         }
     }
+
 }

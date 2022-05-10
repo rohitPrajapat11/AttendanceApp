@@ -458,13 +458,11 @@
                         android:inputType="textMultiLine"
                         android:paddingLeft="@dimen/_10sdp"
                         android:paddingRight="@dimen/_10sdp"
-                        android:textAllCaps="true"
                         android:textColor="@color/_172B4D"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/addressLb"
-                        app:layout_constraintTop_toBottomOf="@+id/addressLb"
-                        tools:ignore="TextFields" />
+                        app:layout_constraintTop_toBottomOf="@+id/addressLb" />
 
                     <TextView
                         android:id="@+id/saveBtn"

@@ -6,9 +6,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_2sdp"
-        android:background="@drawable/white_5r_bg"
-        android:elevation="@dimen/_2sdp">
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:background="@drawable/white_5r_bg">
 
         <TextView
             android:id="@+id/empName"
@@ -30,7 +31,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_14sdp"
-            android:hint="12/12/2222"
             android:padding="@dimen/_2sdp"
             android:gravity="center"
             android:textColor="@color/black"

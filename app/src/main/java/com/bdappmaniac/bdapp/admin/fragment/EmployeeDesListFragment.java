@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bdappmaniac.bdapp.Api.response.EmployeeDesItem;
@@ -29,17 +30,44 @@ public class EmployeeDesListFragment extends BaseFragment {
     FragmentEmployeeDesListBinding binding;
     ArrayList<EmployeeDesItem> employeeList = new ArrayList<>();
     EmployeeDesListAdapter adapter;
+    int selectedView = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_des_list, container, false);
-        binding.backBtn.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigateUp();
-        });
-        adapter = new EmployeeDesListAdapter(employeeList, getContext());
-        binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.recycleView.setAdapter(adapter);
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_des_list, container, false);
+            binding.backBtn.setOnClickListener(view -> {
+                Navigation.findNavController(view).navigateUp();
+            });
+            adapter = new EmployeeDesListAdapter(employeeList, getContext(), selectedView);
+            binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.recycleView.setAdapter(adapter);
+            binding.grid.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    binding.grid.setVisibility(View.GONE);
+                    binding.list.setVisibility(View.VISIBLE);
+                    if (selectedView == 0) {
+                        selectedView = 1;
+                        adapter = new EmployeeDesListAdapter(employeeList, getContext(), 1);
+                        binding.recycleView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                        binding.recycleView.setAdapter(adapter);
+                    }
+                }
+            });
 
+            binding.list.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    binding.grid.setVisibility(View.VISIBLE);
+                    binding.list.setVisibility(View.GONE);
+                    selectedView = 0;
+                    adapter = new EmployeeDesListAdapter(employeeList, getContext(), 0);
+                    binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+                    binding.recycleView.setAdapter(adapter);
+                }
+            });
+        }
         return binding.getRoot();
     }
 
@@ -56,7 +84,6 @@ public class EmployeeDesListFragment extends BaseFragment {
                     employeeList.clear();
                     employeeList.addAll(List);
                     adapter.notifyDataSetChanged();
-                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }

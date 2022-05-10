@@ -40,7 +40,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_admin);
-        StatusBarUtils.statusBarColor(this, R.color.white);
+        StatusBarUtils.statusBarColor(this, R.color.f1f3f5);
         ConnectivityReceiver.setConnectivityListener(new OnChangeConnectivityListener() {
             @Override
             public void onChanged(boolean status) {

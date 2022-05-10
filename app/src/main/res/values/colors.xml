@@ -22,7 +22,7 @@
     <color name="light_primary_color">#71DDA4</color>
     <color name="_192d4d">#192d4d</color>
     <color name="secondary_color">#f04653</color>
-    <color name="bRed">#D084010B</color>
+    <color name="bRed">#FF0000</color>
     <color name="grey">#929292</color>
     <color name="_ADADAD">#ADADAD</color>
     <color name="_002460">#002460</color>
@@ -34,4 +34,9 @@
     <color name="orange">#FE940D</color>
     <color name="yellow">#A9FD2B56</color>
     <color name="_FBFBFB">#FBFBFB</color>
+
+
+    <!-- New Color-->
+    <color name="f1f3f5">#f1f3f5</color>
+    <color name="_161B3D">#161B3D</color>
 </resources>

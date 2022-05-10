@@ -120,16 +120,16 @@ public class ForgotPasswordFragment extends BaseFragment {
         map.put("email", toRequestBody(email));
         MainService.sendMail(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
-//                ((BaseActivity) mContext).showToast(mContext.getString(R.string.your_email_have_not_been_registered));
-                showSnackBar(binding.getRoot(), mContext.getString(R.string.invalid_email));
+                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.isSuccess())) {
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     Bundle bundle = new Bundle();
                     bundle.putString(EMAIL, binding.emailTxt.getText().toString());
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.newPasswordFragment, bundle);
-                }else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
+                } else {
+                    binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.bRed));
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();

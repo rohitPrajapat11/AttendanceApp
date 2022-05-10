@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".activity.MainActivity">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout7"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/emailTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="@string/enter_your_email"
+                    android:importantForAutofill="no"
+                    android:inputType="textNoSuggestions"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextFields"
+                    tools:targetApi="m"
+                    app:drawableStartCompat="@drawable/icn_email" />
+
+                <TextView
+                    android:id="@+id/phoneTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/icn_phone"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="@string/enter_your_mobile_number"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/emailTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/emailTxt"
+                    tools:ignore="TextFields"
+                    tools:targetApi="m" />
+
+                <TextView
+                    android:id="@+id/emPhoneTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/icn_phone"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="@string/enter_emergency_mobile_number"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textAllCaps="true"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/phoneTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/phoneTxt"
+                    tools:ignore="TextFields"
+                    tools:targetApi="m" />
+
+                <TextView
+                    android:id="@+id/addressTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/icn_location"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:enabled="false"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:hint="@string/enter_your_address"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:paddingLeft="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11ssp"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="@+id/emPhoneTxt"
+                    app:layout_constraintStart_toStartOf="@+id/emPhoneTxt"
+                    app:layout_constraintTop_toBottomOf="@+id/emPhoneTxt"
+                    tools:ignore="TextFields" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

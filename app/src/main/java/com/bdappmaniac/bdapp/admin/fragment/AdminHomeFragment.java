@@ -41,10 +41,10 @@ public class AdminHomeFragment extends Fragment {
 //        binding.semiCircleArcProgressBar.setPercentWithAnimation(45);
 //    }*/
         ArrayList<AdminHomeModel> itemList = new ArrayList<>();
-        itemList.add(new AdminHomeModel(R.drawable.icn_advance_payment, "Adavance Payment"));
-        itemList.add(new AdminHomeModel(R.drawable.icn_attendence, "Employee Attendance"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_advance_payment, "Advance Payment"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_attendence, "Attendance"));
         itemList.add(new AdminHomeModel(R.drawable.icn_employee_list, "Employee List"));
-        itemList.add(new AdminHomeModel(R.drawable.icn_expense, "Employee Expense"));
+        itemList.add(new AdminHomeModel(R.drawable.icn_expense, "Expenses"));
         itemList.add(new AdminHomeModel(R.drawable.icn_holidays, "Holiday"));
         itemList.add(new AdminHomeModel(R.drawable.icn_locks, "Lock / Unlock"));
         itemList.add(new AdminHomeModel(R.drawable.icn_to_do_list, "OverTime List"));

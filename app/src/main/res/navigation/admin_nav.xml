@@ -125,5 +125,25 @@
         android:name="com.bdappmaniac.bdapp.admin.fragment.OverTimeFragment"
         android:label="OverTimeFragment"
         tools:layout="@layout/fragment_over_time"/>
+    <fragment
+        android:id="@+id/personalInfoFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.PersonalInfoFragment"
+        android:label="PersonalInfoFragment"
+        tools:layout="@layout/fragment_personal_info"/>
+    <fragment
+        android:id="@+id/contactInfoFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.ContactInfoFragment"
+        android:label="ContactInfoFragment"
+        tools:layout="@layout/fragment_contact_info"/>
+    <fragment
+        android:id="@+id/serviceInfoFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.ServiceInfoFragment"
+        android:label="ServiceInfoFragment"
+        tools:layout="@layout/fragment_service_info"/>
+    <fragment
+        android:id="@+id/salaryFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.SalaryFragment"
+        android:label="SalaryFragment"
+        tools:layout="@layout/fragment_salary"/>
 
 </navigation>

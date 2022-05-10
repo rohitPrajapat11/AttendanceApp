@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".activity.MainActivity">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/serviceLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/attendanceLoanBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:text="Attendance Report"
+                    android:textAllCaps="false"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11sdp"
+                    app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    app:drawableStartCompat="@drawable/icn_calendar_l"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/taskBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/icn_task"
+                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:text="Task Report"
+                    android:textAllCaps="false"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11sdp"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="@+id/salaryBtn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/salaryBtn" />
+
+                <TextView
+                    android:id="@+id/overtimeTaskBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/icn_joining_daate"
+                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:text="OverTime Report"
+                    android:textAllCaps="false"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11sdp"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="@+id/attendanceLoanBtn"
+                    app:layout_constraintStart_toStartOf="@+id/attendanceLoanBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/attendanceLoanBtn" />
+
+                <TextView
+                    android:id="@+id/provideLoanBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/icn_loan_dark"
+                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:text="Provide Advance Payment"
+                    android:textAllCaps="false"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11sdp"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="@+id/attendanceLoanBtn"
+                    app:layout_constraintHorizontal_bias="0.492"
+                    app:layout_constraintStart_toStartOf="@+id/attendanceLoanBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/overtimeTaskBtn" />
+
+                <TextView
+                    android:id="@+id/tmcBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/icn_tmc"
+                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:text="Employment Terms"
+                    android:textAllCaps="false"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11sdp"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="@+id/taskBtn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/taskBtn" />
+
+                <TextView
+                    android:id="@+id/salaryBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:drawableStart="@drawable/icn_tmc"
+                    android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    android:drawablePadding="@dimen/_10sdp"
+                    android:fontFamily="@font/font_heavy"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_15sdp"
+                    android:text="Salary Report"
+                    android:textAllCaps="false"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_11sdp"
+                    app:drawableTint="@color/primary_color"
+                    app:layout_constraintEnd_toEndOf="@+id/provideLoanBtn"
+                    app:layout_constraintStart_toStartOf="@+id/provideLoanBtn"
+                    app:layout_constraintTop_toBottomOf="@+id/provideLoanBtn" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -11,8 +11,8 @@
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="@dimen/_1sdp"
+            android:background="@color/f1f3f5"
+            android:elevation="1dp"
             android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,6 +50,30 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/secondary_color" />
 
+            <ImageView
+                android:id="@+id/grid"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:src="@drawable/icn_grid"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/title"
+                app:tint="@color/primary_color" />
+
+            <ImageView
+                android:id="@+id/list"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/icn_list"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/title"
+                android:layout_marginEnd="@dimen/_20sdp"
+                app:tint="@color/primary_color" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -60,7 +84,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:itemCount="5"
             app:layout_constraintTop_toBottomOf="@+id/headerLayout"
             tools:listitem="@layout/employee_day_attendance_list"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

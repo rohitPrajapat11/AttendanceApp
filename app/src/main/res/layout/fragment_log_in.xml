@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_10sdp"
                     android:gravity="center"
-                    android:text="@string/hello_there_welcome_back"
+                    android:text="Hello There, Welcome "
                     android:textColor="@color/_C1C7D0"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintTop_toBottomOf="@+id/loginTypeTxt" />
@@ -215,7 +215,7 @@
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:fontFamily="@font/font_heavy"
                         android:gravity="center"
-                        android:text="i forgot password"
+                        android:text="Forgot Password"
                         android:textColor="@color/_172B4D"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintBottom_toBottomOf="parent"
