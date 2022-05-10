@@ -181,10 +181,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     navHandel("Settings");
                     headerHideShow(false);
                     bottomHideShow(false);
+
                 } else if (destination.getId() == R.id.employeeAttendanceRulesFragment) {
                     navHandel("Attendance Rules");
                     headerHideShow(false);
                     bottomHideShow(false);
+
                 }
             }
         });

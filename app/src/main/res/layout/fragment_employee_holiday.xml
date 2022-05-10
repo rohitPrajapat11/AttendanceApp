@@ -12,12 +12,11 @@
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/primary_color"
             android:elevation="@dimen/_1sdp"
             android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -31,17 +30,18 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.555" />
+                app:layout_constraintVertical_bias="0.555"
+                app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTint="@color/_172B4D"
+                android:drawableTint="@color/green"
                 android:fontFamily="@font/font_heavy"
                 android:gravity="center_vertical"
                 android:text="Holidays"
-                android:textColor="@color/_172B4D"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_18sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -58,134 +58,94 @@
                 android:src="@drawable/ic_baseline_add_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/green" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:elevation="@dimen/_5sdp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/headerLayout">
+            app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+            app:layout_constraintVertical_bias="0.0">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/holiday_bg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:background="@color/primary_color"
+                android:layout_height="0dp">
 
-                <TextView
-                    android:id="@+id/holidays"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_35sdp"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="center"
-                    android:inputType="text"
-                    android:padding="@dimen/_2sdp"
-                    android:text="Holidays"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_15sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/date"
-                    app:layout_constraintStart_toEndOf="@+id/date"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/date"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="center"
-                    android:inputType="textMultiLine"
-                    android:padding="@dimen/_2sdp"
-                    android:text="Date"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_15sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/holidays"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/employeeHolidayRecyclers"
+                <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
+                    android:id="@+id/calenderview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:buttonLeft_drawableTintColor="@color/white"
+                    app:buttonRight_drawableTintColor="@color/white"
+                    app:expandIconColor="@color/teal_200"
+                    app:firstDayOfWeek="monday"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+
                     app:layout_constraintStart_toStartOf="parent"
-                    app:spanCount="1"
-                    tools:itemCount="10"
-                    tools:listitem="@layout/employee_holiday_item" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:primaryColor="@color/primary_color"
+                    app:selectedItem_background="@drawable/circle_solid"
+                    app:selectedItem_textColor="@color/primary_color"
+                    app:showWeek="true"
+                    app:textColor="@android:color/white"
+                    app:todayItem_background="@drawable/circle_stroke"
+                    app:todayItem_textColor="@android:color/white" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout6"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:elevation="1dp"
-                android:background="@drawable/white_5r_bg"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:elevation="5dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/calenderview"-->
+<!--                    tools:listitem="@layout/desigin_lock_unlock_items" />-->
 
-                <TextView
-                    android:id="@+id/holidayes"
-                    android:layout_width="0dp"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="center_vertical"
-                    android:inputType="textMultiLine"
-                    android:padding="@dimen/_2sdp"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:text="Saturday Holiday"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_13sdp"
+                    android:background="@drawable/auth_white_bg"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/dates"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/calenderview" >
 
-                <TextView
-                    android:id="@+id/dates"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:fontFamily="@font/font_heavy"
-                    android:inputType="textMultiLine"
-                    android:padding="@dimen/_2sdp"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:text="Every 1st and 3rd of the Month"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_13sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/holidayes"
-                    app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_11sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:text="Dates And Occasion "
+                        android:textColor="@color/primary_color"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerHolidays"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_margin="@dimen/_2sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:listitem="@layout/design_holiday_items"
+                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

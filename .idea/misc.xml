@@ -6,6 +6,8 @@
         <entry key="../../../../../layout/custom_preview.xml" value="0.26979166666666665" />
         <entry key="../../../../layout/custom_preview.xml" value="0.215625" />
         <entry key="../../../.gradle/caches/transforms-3/687d655f103a76accc86c9a898fbdc73/transformed/jetified-cosmocalendar-1.0.4/res/drawable/border_top_bottom.xml" value="0.1665" />
+        <entry key="../../../.gradle/caches/transforms-3/d0e949eecf29e62eea11ae51115ed769/transformed/jetified-Collapsible-Calendar-View-Android-v1.0.0/res/drawable/circle_white_solid_background.xml" value="0.244" />
+        <entry key="../../../.gradle/caches/transforms-3/d0e949eecf29e62eea11ae51115ed769/transformed/jetified-Collapsible-Calendar-View-Android-v1.0.0/res/drawable/circle_white_stroke_background.xml" value="0.244" />
         <entry key="app/src/main/res/drawable-v24/background_shape.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable-v24/button_pill_hw.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable-v24/circle_orange_bg.xml" value="0.11052631578947368" />
@@ -14,8 +16,11 @@
         <entry key="app/src/main/res/drawable-xxxhdpi/container_search.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable-xxxhdpi/ic_search_black_24dp.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/auth_white_bg.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/bg_holiday_items.xml" value="0.2905" />
         <entry key="app/src/main/res/drawable/bottom_10r_white_bg.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/bottom_cut_white_bg.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/circle_solid.xml" value="0.244" />
+        <entry key="app/src/main/res/drawable/circle_stroke.xml" value="0.2285" />
         <entry key="app/src/main/res/drawable/coustom_thumb.xml" value="0.256" />
         <entry key="app/src/main/res/drawable/custom_thumb.xml" value="0.229" />
         <entry key="app/src/main/res/drawable/custom_track.xml" value="0.256" />
@@ -85,6 +90,7 @@
         <entry key="app/src/main/res/layout/custom_inactive_dialog.xml" value="0.33" />
         <entry key="app/src/main/res/layout/date_picker_timeline.xml" value="0.22" />
         <entry key="app/src/main/res/layout/desigin_lock_unlock_items.xml" value="0.34270833333333334" />
+        <entry key="app/src/main/res/layout/design_holiday_items.xml" value="0.33" />
         <entry key="app/src/main/res/layout/design_recycler_menu.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/designation_dialogbox.xml" value="0.22" />
         <entry key="app/src/main/res/layout/designation_item.xml" value="0.25" />
@@ -113,10 +119,10 @@
         <entry key="app/src/main/res/layout/fragment_employee_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_employee_expences.xml" value="0.34270833333333334" />
         <entry key="app/src/main/res/layout/fragment_employee_expenses.xml" value="0.33240740740740743" />
-        <entry key="app/src/main/res/layout/fragment_employee_holiday.xml" value="0.12" />
+        <entry key="app/src/main/res/layout/fragment_employee_holiday.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_employee_list.xml" value="0.21" />
         <entry key="app/src/main/res/layout/fragment_employee_list_for_loan.xml" value="0.15729166666666666" />
-        <entry key="app/src/main/res/layout/fragment_employee_loan_details.xml" value="0.15729166666666666" />
+        <entry key="app/src/main/res/layout/fragment_employee_loan_details.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_employee_terms_and_condition.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.19" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.18" />
@@ -141,12 +147,14 @@
         <entry key="app/src/main/res/layout/history_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/history_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/history_list_items.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/holiday_bottom_drawer.xml" value="0.33958333333333335" />
         <entry key="app/src/main/res/layout/holiday_bottom_sheet_dialog.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/home_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/holiday_item_design.xml" value="0.33958333333333335" />
+        <entry key="app/src/main/res/layout/home_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_card.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/layout_header.xml" value="0.22" />
         <entry key="app/src/main/res/layout/loader_dialog.xml" value="0.16" />
-        <entry key="app/src/main/res/layout/loan_details_item.xml" value="0.10202702702702703" />
+        <entry key="app/src/main/res/layout/loan_details_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/logout_dialogbox.xml" value="0.25" />
         <entry key="app/src/main/res/layout/navigation_drawer.xml" value="0.2" />
         <entry key="app/src/main/res/layout/network_dialog.xml" value="0.22" />
