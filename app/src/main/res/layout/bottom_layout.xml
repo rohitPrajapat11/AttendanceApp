@@ -4,6 +4,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/dashboardBottom"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         android:background="@drawable/auth_white_bg"

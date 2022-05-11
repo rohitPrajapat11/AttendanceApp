@@ -92,13 +92,15 @@
         android:padding="@dimen/_1sdp"
         android:text="Independence Day"
         android:textColor="@color/primary_color"
-        android:textSize="@dimen/_16sdp"
+        android:textSize="@dimen/_13sdp"
         app:layout_constraintStart_toEndOf="@+id/Day_date"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:text="description of the holiday will be shown in here"
         android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="@+id/occasion"

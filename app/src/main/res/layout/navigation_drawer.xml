@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
+        android:background="@color/f1f3f5"
         android:orientation="vertical"
         android:padding="12dp">
 
@@ -68,7 +69,6 @@
                     android:background="@drawable/navigation_item_selector"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent">
 
                     <ImageView
@@ -207,20 +207,54 @@
                         app:layout_constraintBottom_toBottomOf="@+id/rulesImg"
                         app:layout_constraintStart_toEndOf="@+id/rulesImg"
                         app:layout_constraintTop_toTopOf="@+id/rulesImg"
-                        app:layout_constraintVertical_bias="0.6" />
+                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/taskBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/navigation_item_selector"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rulesBtn">
+
+                    <ImageView
+                        android:id="@+id/taskImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:contentDescription="@string/logOutImg"
+                        android:src="@drawable/icn_task"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:text="Tasks"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/taskImg"
+                        app:layout_constraintStart_toEndOf="@+id/taskImg"
+                        app:layout_constraintTop_toTopOf="@+id/taskImg" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/tmcBtn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-
                     android:background="@drawable/navigation_item_selector"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rulesBtn">
+                    app:layout_constraintTop_toBottomOf="@+id/taskBtn">
 
                     <ImageView
                         android:id="@+id/tmcImg"
@@ -259,7 +293,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tmcBtn">
+                    app:layout_constraintTop_toBottomOf="@+id/logOutBtn">
 
                     <ImageView
                         android:id="@+id/settingImg"
@@ -288,16 +322,90 @@
                         app:layout_constraintVertical_bias="0.6" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/profileBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/navigation_item_selector"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/historyeBtn" >
+
+                    <ImageView
+                        android:id="@+id/profileImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:src="@drawable/icn_profile"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:text="Profile"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/profileImg"
+                        app:layout_constraintStart_toEndOf="@+id/profileImg"
+                        app:layout_constraintTop_toTopOf="@+id/profileImg"
+                        app:layout_constraintVertical_bias="0.6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/historyeBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/navigation_item_selector"
+                    app:layout_constraintTop_toBottomOf="@+id/tmcBtn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="371dp">
+
+                    <ImageView
+                        android:id="@+id/historyImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:src="@drawable/icn_history"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/font_heavy"
+                        android:text="History"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/historyImg"
+                        app:layout_constraintStart_toEndOf="@+id/historyImg"
+                        app:layout_constraintTop_toTopOf="@+id/historyImg"
+                        app:layout_constraintVertical_bias="0.6" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/logOutBtn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/navigation_item_selector"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/settingBtn">
+                    app:layout_constraintTop_toBottomOf="@+id/profileBtn">
 
                     <ImageView
                         android:id="@+id/logOutImg"
@@ -324,6 +432,8 @@
                         app:layout_constraintTop_toTopOf="@+id/logOutImg"
                         app:layout_constraintVertical_bias="0.6" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

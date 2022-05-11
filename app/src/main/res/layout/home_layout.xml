@@ -19,13 +19,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@+id/bottomLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/headerLayout"
             app:navGraph="@navigation/home_nav" />
 
         <include
+
             android:id="@+id/bottomLayout"
             layout="@layout/bottom_layout" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,6 +31,7 @@
                 android:background="@drawable/navigation_bg">
 
                 <include
+
                     android:id="@+id/navigationDrawer"
                     layout="@layout/navigation_drawer">
                 </include>

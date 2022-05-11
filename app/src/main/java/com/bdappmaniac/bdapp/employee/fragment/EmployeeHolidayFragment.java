@@ -1,9 +1,12 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -65,13 +68,45 @@ public class EmployeeHolidayFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
 
-           Navigation.findNavController(view).popBackStack();
+                Navigation.findNavController(view).popBackStack();
             }
         });
-        binding.calenderview.expand(0);
+
         ArrayList<ModelHolidayItems> itemsArrayList = new ArrayList<>();
         itemsArrayList.add(new ModelHolidayItems("Holi", "Mon", "20"));
         itemsArrayList.add(new ModelHolidayItems("Dhanteras", "Tue", "21"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
+        itemsArrayList.add(new ModelHolidayItems("Independence Day", "Thu", "24"));
+        itemsArrayList.add(new ModelHolidayItems("Office Leave", "Fri", "25"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
+        itemsArrayList.add(new ModelHolidayItems(" Ram Navmi", "Thu", "31"));
+        itemsArrayList.add(new ModelHolidayItems("Maha Shivratri", "Fri", "1"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "4"));
+        itemsArrayList.add(new ModelHolidayItems("Wasant Pancmi", "Thu", "24"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
+        itemsArrayList.add(new ModelHolidayItems("Independence Day", "Thu", "24"));
+        itemsArrayList.add(new ModelHolidayItems("Office Leave", "Fri", "25"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
+        itemsArrayList.add(new ModelHolidayItems(" Ram Navmi", "Thu", "31"));
+        itemsArrayList.add(new ModelHolidayItems("Maha Shivratri", "Fri", "1"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "4"));
+        itemsArrayList.add(new ModelHolidayItems("Wasant Pancmi", "Thu", "24"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
+        itemsArrayList.add(new ModelHolidayItems("Independence Day", "Thu", "24"));
+        itemsArrayList.add(new ModelHolidayItems("Office Leave", "Fri", "25"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
+        itemsArrayList.add(new ModelHolidayItems(" Ram Navmi", "Thu", "31"));
+        itemsArrayList.add(new ModelHolidayItems("Maha Shivratri", "Fri", "1"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "4"));
+        itemsArrayList.add(new ModelHolidayItems("Wasant Pancmi", "Thu", "24"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
+        itemsArrayList.add(new ModelHolidayItems("Independence Day", "Thu", "24"));
+        itemsArrayList.add(new ModelHolidayItems("Office Leave", "Fri", "25"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
+        itemsArrayList.add(new ModelHolidayItems(" Ram Navmi", "Thu", "31"));
+        itemsArrayList.add(new ModelHolidayItems("Maha Shivratri", "Fri", "1"));
+        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "4"));
+        itemsArrayList.add(new ModelHolidayItems("Wasant Pancmi", "Thu", "24"));
         itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
         itemsArrayList.add(new ModelHolidayItems("Independence Day", "Thu", "24"));
         itemsArrayList.add(new ModelHolidayItems("Office Leave", "Fri", "25"));
@@ -88,18 +123,43 @@ public class EmployeeHolidayFragment extends BaseFragment {
         binding.recyclerHolidays.setLayoutManager(new LinearLayoutManager(mContext));
         binding.recyclerHolidays.setAdapter(holidayadapter);
 
+//        binding.recyclerHolidays.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//                if (dy > 0) {
+//                    binding.calenderview.expand(0);
+//
+//                } else if (dy < 0) {
+//                    binding.calenderview.collapse(0);
+//
+//                } else {
+//                    System.out.println("No Vertical Scrolled");
+//                }
+//
+//            }
+//
+//
+//
+//        });
+
         binding.recyclerHolidays.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                binding.calenderview.collapse(0);
-            }
 
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-            }
-        });
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    if (!recyclerView.canScrollVertically(1) && dy > 0)
+                    {
+                //       binding.calenderview.c
+                        Log .e("scroll","bottom");
+                        Toast.makeText(mContext, "scrolled d", Toast.LENGTH_SHORT).show();
+                    }else if (!recyclerView.canScrollVertically(-1) && dy < 0)
+                    {
+                      Toast.makeText(mContext, "scrolled u", Toast.LENGTH_SHORT).show();
+                        Log.e("scroll","top");
+                    }
+                }
+            });
 
 
         return binding.getRoot();

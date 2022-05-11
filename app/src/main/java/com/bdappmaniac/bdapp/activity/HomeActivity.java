@@ -62,7 +62,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
-        StatusBarUtils.statusBarColor(this, R.color.white);
+        StatusBarUtils.statusBarColor(this, R.color.f1f3f5);
         updateProfile();
         ConnectivityReceiver.setConnectivityListener(new OnChangeConnectivityListener() {
             @Override
@@ -143,6 +143,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         binding.navigationDrawer.loanBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.holidayBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.rulesBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.profileBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.historyeBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.taskBtn.setOnClickListener(this::onClick);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -289,6 +292,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             case R.id.rulesBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeAttendanceRulesFragment) {
                     navController.navigate(R.id.employeeAttendanceRulesFragment);
+                } break;
+            case R.id.profileBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.profileFragment) {
+                    navController.navigate(R.id.profileFragment);
+                } break;
+            case R.id.taskBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeExpensesFragment) {
+                    navController.navigate(R.id.employeeExpensesFragment);
+                } case R.id.historyBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.historyFragment) {
+                    navController.navigate(R.id.historyFragment);
                 }
         }
     }
@@ -302,11 +316,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     void bottomHideShow(boolean check) {
-        if (check) {
-            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.VISIBLE);
-        } else {
-            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.GONE);
-        }
+//        if (check) {
+//            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.VISIBLE);
+//        } else {
+//            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.GONE);
+//        }
     }
 
 //    private void setUpCalendar() {
