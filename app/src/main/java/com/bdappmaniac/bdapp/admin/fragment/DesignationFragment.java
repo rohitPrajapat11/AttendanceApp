@@ -124,7 +124,6 @@ public class DesignationFragment extends BaseFragment {
                     List<DesignationItem> List = new Gson().fromJson(apiResponse.getData(), collectionType);
                     list.clear();
                     list.addAll(List);
-                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     adapter.notifyDataSetChanged();
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
@@ -137,6 +136,8 @@ public class DesignationFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        allDesignationApi();
+        if(list.isEmpty()) {
+            allDesignationApi();
+        }
     }
 }

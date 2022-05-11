@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.employee.fragment;
+package com.bdappmaniac.bdapp.auth.fragment;
 
 import static com.bdappmaniac.bdapp.activity.BaseActivity.MOBILE;
 import static com.bdappmaniac.bdapp.activity.BaseActivity.PIN_KEY;

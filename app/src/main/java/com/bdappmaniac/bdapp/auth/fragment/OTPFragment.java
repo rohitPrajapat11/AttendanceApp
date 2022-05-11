@@ -1,9 +1,14 @@
-package com.bdappmaniac.bdapp.employee.fragment;
+package com.bdappmaniac.bdapp.auth.fragment;
 
-import static com.bdappmaniac.bdapp.activity.BaseActivity.MOBILE;
-import static com.bdappmaniac.bdapp.activity.BaseActivity.PIN_KEY;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -14,23 +19,13 @@ import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.databinding.FragmentConfirmMPINBinding;
-import com.bdappmaniac.bdapp.databinding.FragmentCreateMPINBinding;
+import com.bdappmaniac.bdapp.activity.HomeActivity;
+import com.bdappmaniac.bdapp.databinding.FragmentOTPBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 
-public class ConfirmMPINFragment extends BaseFragment implements View.OnClickListener {
-    FragmentCreateMPINBinding binding;
-    String confirmPin;
-    String newPin;
+public class OTPFragment extends BaseFragment implements View.OnClickListener {
+    FragmentOTPBinding binding;
     String mobile = "";
 
     @Override
@@ -47,23 +42,15 @@ public class ConfirmMPINFragment extends BaseFragment implements View.OnClickLis
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_m_p_i_n, container, false);
-        binding.otpTypeTxt.setText(R.string.Renter);
-        if (getArguments() != null) {
-            newPin = getArguments().getString(PIN_KEY, "");
-        }
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_o_t_p, container, false);
         binding.forwardTXT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkValidation()) {
-                    confirmPin = binding.pinView.getText().toString();
-                    if (confirmPin.equals(newPin)) {
-                        showToast(mContext.getString(R.string.correct_pin));
-//                        Navigation.findNavController(v).navigate(R.id.singUpFragment);
-                    } else {
-                        showToast(mContext.getString(R.string.incorrect_pin));
-                    }
+                    startActivity(new Intent(mContext, HomeActivity.class));
+                    getActivity().finish();
                 } else {
+
                 }
             }
         });
@@ -75,7 +62,7 @@ public class ConfirmMPINFragment extends BaseFragment implements View.OnClickLis
         });
         if (getArguments() != null) {
             // From SignIn Otp Fragment For Forgot M-Pin
-            mobile = getArguments().getString(MOBILE);
+            mobile = getArguments().getString("mobile");
         }
         binding.pinView.setText("");
         binding.key0.setOnClickListener(this);
@@ -102,7 +89,45 @@ public class ConfirmMPINFragment extends BaseFragment implements View.OnClickLis
             public void afterTextChanged(Editable s) {
             }
         });
+        BiometricManager manager = BiometricManager.from(mContext);
+        switch (manager.canAuthenticate()) {
+            case BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE:
+                Toast.makeText(getContext(), mContext.getString(R.string.dont_have_biometric_scanner), Toast.LENGTH_SHORT).show();
+                break;
+            case BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED:
+                Toast.makeText(getContext(), mContext.getString(R.string.dont_have_fingerprint_saved) + mContext.getString(R.string.check_your_security_settings), Toast.LENGTH_SHORT).show();
+                break;
+        }
 
+        BiometricPrompt prompt = new BiometricPrompt(this, ContextCompat.getMainExecutor(mContext), new BiometricPrompt.AuthenticationCallback() {
+            @Override
+            public void onAuthenticationError(int errorCode, @NonNull CharSequence errString) {
+                super.onAuthenticationError(errorCode, errString);
+            }
+
+            @Override
+            public void onAuthenticationSucceeded(@NonNull BiometricPrompt.AuthenticationResult result) {
+                super.onAuthenticationSucceeded(result);
+                Toast.makeText(getContext(), mContext.getString(R.string.correct_pin), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(mContext, HomeActivity.class));
+            }
+
+            @Override
+            public void onAuthenticationFailed() {
+                super.onAuthenticationFailed();
+            }
+        });
+
+        BiometricPrompt.PromptInfo info = new BiometricPrompt.PromptInfo.Builder()
+                .setTitle(mContext.getString(R.string.biometric))
+                .setNegativeButtonText(mContext.getString(R.string.cancel))
+                .build();
+        binding.fingerPrintScanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prompt.authenticate(info);
+            }
+        });
         return binding.getRoot();
     }
 

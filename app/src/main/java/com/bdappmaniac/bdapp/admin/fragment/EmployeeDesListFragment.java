@@ -95,6 +95,8 @@ public class EmployeeDesListFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        allEmpAttendanceApi();
+        if (employeeList.isEmpty()) {
+            allEmpAttendanceApi();
+        }
     }
 }

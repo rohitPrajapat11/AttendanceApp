@@ -15,11 +15,9 @@ import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentAttendanceRulesBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.utils.StringHelper;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,18 +35,18 @@ public class AttendanceRulesFragment extends BaseFragment {
             editCondition(true);
         });
         binding.saveBtn.setOnClickListener(v -> {
-            if (StringHelper.isEmpty(binding.rulesTxt.getText().toString())) {
-                showSnackBar(v, mContext.getString(R.string.write_term_and_conditions));
-            } else {
-                editCondition(false);
-                String setCondition = null;
-                try {
-                    setCondition = URLEncoder.encode(binding.rulesTxt.getText().toString(), "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                addDailyRulesApi(setCondition);
-            }
+//            if (StringHelper.isEmpty(binding.rulesTxt.getText().toString())) {
+//                showSnackBar(v, mContext.getString(R.string.write_term_and_conditions));
+//            } else {
+//                editCondition(false);
+//                String setCondition = null;
+//                try {
+//                    setCondition = URLEncoder.encode(binding.rulesTxt.getText().toString(), "UTF-8");
+//                } catch (UnsupportedEncodingException e) {
+//                    e.printStackTrace();
+//                }
+//                addDailyRulesApi(setCondition);
+//            }
         });
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();
@@ -60,15 +58,17 @@ public class AttendanceRulesFragment extends BaseFragment {
         if (check) {
             binding.editBtn.setVisibility(View.GONE);
             binding.cancelBtn.setVisibility(View.VISIBLE);
+            binding.editLayout.setVisibility(View.VISIBLE);
             binding.saveBtn.setVisibility(View.VISIBLE);
-            binding.rulesTxt.setVisibility(View.VISIBLE);
-            binding.rulesLb.setVisibility(View.GONE);
+//            binding.rulesTxt.setVisibility(View.VISIBLE);
+//            binding.rulesLb.setVisibility(View.GONE);
         } else {
             binding.editBtn.setVisibility(View.VISIBLE);
+            binding.editLayout.setVisibility(View.GONE);
             binding.cancelBtn.setVisibility(View.GONE);
             binding.saveBtn.setVisibility(View.GONE);
-            binding.rulesTxt.setVisibility(View.GONE);
-            binding.rulesLb.setVisibility(View.VISIBLE);
+//            binding.rulesTxt.setVisibility(View.GONE);
+//            binding.rulesLb.setVisibility(View.VISIBLE);
         }
     }
 
@@ -85,8 +85,8 @@ public class AttendanceRulesFragment extends BaseFragment {
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
-                    binding.rulesLb.setText(getCondition);
-                    binding.rulesTxt.setText(getCondition);
+//                    binding.rulesLb.setText(getCondition);
+//                    binding.rulesTxt.setText(getCondition);
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
@@ -104,7 +104,7 @@ public class AttendanceRulesFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    binding.rulesLb.setText(binding.rulesTxt.getText().toString());
+//                    binding.rulesLb.setText(binding.rulesTxt.getText().toString());
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
                 }

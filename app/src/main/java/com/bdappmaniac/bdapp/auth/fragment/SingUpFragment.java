@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.employee.fragment;
+package com.bdappmaniac.bdapp.auth.fragment;
 
 import android.Manifest;
 import android.app.AlertDialog;

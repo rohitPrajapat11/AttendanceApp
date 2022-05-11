@@ -19,6 +19,7 @@ import com.bdappmaniac.bdapp.admin.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeListBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -56,7 +57,6 @@ public class EmployeeListFragment extends BaseFragment {
                     List<EmployeeList> list = new Gson().fromJson(apiResponse.getData(), collectionType);
                     employeeList.clear();
                     employeeList.addAll(list);
-                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     EmAdapter.notifyDataSetChanged();
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
@@ -69,6 +69,7 @@ public class EmployeeListFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.f1f3f5);
         if (employeeList != null) {
             if (employeeList.size() == 0) {
                 employeeListApi();

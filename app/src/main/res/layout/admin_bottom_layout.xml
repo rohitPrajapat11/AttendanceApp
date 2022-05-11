@@ -5,114 +5,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/dashboardBottom"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:background="@drawable/auth_white_bg"
-        android:elevation="@dimen/_5sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@color/f1f3f5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
-            android:id="@+id/homeBtn"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:contentDescription="@string/homeBtn"
-            android:src="@drawable/icn_home_select"
+        <com.ismaeldivita.chipnavigation.ChipNavigationBar
+            android:id="@+id/bottom_nav_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:background="@drawable/auth_white_bg"
+            android:fadingEdge="horizontal"
+            app:cnb_menuResource="@menu/menu"
+            app:cnb_unselectedColor="@color/prime"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/employeeBtn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/primary_color" />
-
-        <View
-            android:id="@+id/homeIndicator"
-            android:layout_width="@dimen/_5sdp"
-            android:layout_height="@dimen/_4sdp"
-            android:background="@drawable/round_selector"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/homeBtn"
-            app:layout_constraintStart_toStartOf="@+id/homeBtn"
-            app:layout_constraintTop_toBottomOf="@+id/homeBtn" />
-
-        <ImageView
-            android:id="@+id/employeeBtn"
-            android:layout_width="@dimen/_22sdp"
-            android:layout_height="@dimen/_22sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:contentDescription="@string/employeeBtn"
-            android:foregroundGravity="center"
-            android:src="@drawable/icn_employees"
-            app:layout_constraintBottom_toBottomOf="@+id/homeBtn"
-            app:layout_constraintEnd_toStartOf="@id/loanBtn"
-            app:layout_constraintStart_toEndOf="@+id/homeBtn"
-            app:layout_constraintTop_toTopOf="@+id/homeBtn"
-            app:layout_constraintVertical_bias="0.55"
-            app:tint="@color/primary_color" />
-
-        <View
-            android:id="@+id/taskIndicator"
-            android:layout_width="@dimen/_5sdp"
-            android:layout_height="@dimen/_4sdp"
-            android:background="@drawable/round_selector"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/employeeBtn"
-            app:layout_constraintStart_toStartOf="@+id/employeeBtn"
-            app:layout_constraintTop_toBottomOf="@+id/employeeBtn" />
-
-        <ImageView
-            android:id="@+id/loanBtn"
-            android:layout_width="@dimen/_21sdp"
-            android:layout_height="@dimen/_21sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:contentDescription="@string/loanBtn"
-            android:src="@drawable/icn_loan"
-            app:layout_constraintBottom_toBottomOf="@+id/employeeBtn"
-            app:layout_constraintEnd_toStartOf="@+id/profileBtn"
-            app:layout_constraintStart_toEndOf="@id/employeeBtn"
-            app:layout_constraintTop_toTopOf="@+id/employeeBtn"
-            app:layout_constraintVertical_bias="0.0"
-            app:tint="@color/primary_color" />
-
-        <View
-            android:id="@+id/historyIndicator"
-            android:layout_width="@dimen/_5sdp"
-            android:layout_height="@dimen/_4sdp"
-            android:background="@drawable/round_selector"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/loanBtn"
-            app:layout_constraintStart_toStartOf="@+id/loanBtn"
-            app:layout_constraintTop_toBottomOf="@+id/homeBtn" />
-
-        <ImageView
-            android:id="@+id/profileBtn"
-            android:layout_width="@dimen/_21sdp"
-            android:layout_height="@dimen/_21sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:contentDescription="@string/profileBtn"
-            android:src="@drawable/icn_profile"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/loanBtn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/loanBtn"
-            app:layout_constraintTop_toTopOf="@+id/loanBtn" />
-
-        <View
-            android:id="@+id/profileIndicator"
-            android:layout_width="@dimen/_5sdp"
-            android:layout_height="@dimen/_4sdp"
-            android:background="@drawable/round_selector"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/profileBtn"
-            app:layout_constraintStart_toStartOf="@+id/profileBtn"
-            app:layout_constraintTop_toBottomOf="@+id/homeBtn" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

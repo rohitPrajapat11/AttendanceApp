@@ -5,80 +5,60 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
         android:background="@drawable/white_5r_bg"
-        android:elevation="@dimen/_3sdp"
-        android:padding="@dimen/_10sdp">
-
-        <TextView
-            android:id="@+id/empNameLb"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_heavy"
-            android:paddingStart="@dimen/_10sdp"
-            android:text="Name"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_11sdp"
-            app:layout_constraintEnd_toStartOf="@+id/empNameTxt"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:paddingTop="@dimen/_12sdp"
+        android:paddingBottom="@dimen/_12sdp">
 
         <TextView
             android:id="@+id/empNameTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/font_heavy"
+            android:fontFamily="@font/arial_rounded_mt_regular"
             android:gravity="center_vertical"
-
             android:paddingStart="@dimen/_20sdp"
-            android:text="Android Developer"
+            android:text="10/01/2020"
             android:textColor="@color/_172B4D"
             android:textSize="@dimen/_13sdp"
-            app:layout_constraintEnd_toStartOf="@+id/amountTxt"
-            app:layout_constraintStart_toEndOf="@+id/takenDateLB"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/takingDateTxt"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/takenDateLB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/font_heavy"
-            android:paddingStart="@dimen/_10sdp"
-            android:text="Loan Date"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_11sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/empNameLb" />
 
         <TextView
             android:id="@+id/takingDateTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/font_heavy"
+            android:fontFamily="@font/arial_rounded_mt_regular"
             android:gravity="center_vertical"
-            android:paddingStart="@dimen/_20sdp"
-            android:text="01/12/2021"
+            android:paddingStart="@dimen/_12sdp"
+            android:text="January"
             android:textColor="@color/_172B4D"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/takenDateLB"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/empNameTxt"
             app:layout_constraintEnd_toStartOf="@+id/amountTxt"
-            app:layout_constraintStart_toEndOf="@+id/takenDateLB"
-            app:layout_constraintTop_toTopOf="@+id/takenDateLB" />
+            app:layout_constraintStart_toEndOf="@+id/empNameTxt"
+            app:layout_constraintTop_toTopOf="@+id/empNameTxt" />
 
         <TextView
             android:id="@+id/amountTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/font_heavy"
+            android:fontFamily="@font/arial_rounded_mt_regular"
             android:gravity="center"
             android:paddingStart="@dimen/_10sdp"
             android:text="5,000"
             android:textColor="@color/primary_color"
-            android:textSize="@dimen/_15sdp"
+            android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/takingDateTxt"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

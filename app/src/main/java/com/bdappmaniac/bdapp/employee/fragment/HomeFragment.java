@@ -40,6 +40,7 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         Constant.timeLayoutCallBack = this;
+        SharedPref.init(mContext);
         if (SharedPref.read(USER_WORK, false)) {
             binding.timeStatusLayout.setVisibility(View.VISIBLE);
             binding.checkInTime.setText(SharedPref.getStringValue(CURRENT_TIME));

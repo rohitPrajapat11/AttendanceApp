@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bdappmaniac.bdapp.Api.response.AllTaskItem;
@@ -32,9 +31,6 @@ public class AdminTodoList extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_todo_list, container, false);
-        binding.backBtn.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigateUp();
-        });
         adapter = new ToDoListAdapter(tasksList, getContext());
         binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recycleView.setAdapter(adapter);
@@ -53,7 +49,6 @@ public class AdminTodoList extends BaseFragment {
                     Type collectionType = new TypeToken<List<AllTaskItem>>() {
                     }.getType();
                     List<AllTaskItem> List = new Gson().fromJson(apiResponse.getData(), collectionType);
-                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     tasksList.clear();
                     tasksList.addAll(List);
                     adapter.notifyDataSetChanged();

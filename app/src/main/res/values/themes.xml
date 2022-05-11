@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.BdApp" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
@@ -11,9 +11,13 @@
         <item name="colorOnSecondary">@color/black</item>
         <item name="android:overScrollMode">never</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+
+        <item name="colorOnSurface">@color/prime</item>
     </style>
+
     <style name="Theme.BdApp.Launcher">
-        <item name="android:windowBackground">@color/_F0F1F3</item> <!--Also available: @drawable:launcher_screen_with_background-->
+        <item name="android:windowBackground">@color/_F0F1F3
+        </item> <!--Also available: @drawable:launcher_screen_with_background-->
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
@@ -21,6 +25,7 @@
         <item name="android:overScrollMode">never</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
+
     <style name="DatePicker" parent="Theme.MaterialComponents.Light.Dialog">
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/light_primary_color</item>
@@ -29,14 +34,58 @@
 
     <style name="SCBSwitch" parent="Theme.AppCompat.Light">
         <!-- active thumb & track color (30% transparency) -->
-        <item name="colorControlActivated">@color/primary_color</item>
+        <item name="colorControlActivated">@color/prime</item>
 
         <!-- inactive thumb color -->
-        <item name="colorSwitchThumbNormal">#f1f1f1
+        <item name="colorSwitchThumbNormal">#A8A8A8
         </item>
 
         <!-- inactive track color (30% transparency) -->
         <item name="android:colorForeground">#A8A8A8
         </item>
     </style>
+
+    <style name="HintText" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@color/_A8A8A8</item>
+    </style>
+
+    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/prime</item>
+        <item name="boxStrokeColor">@color/prime</item>
+        <item name="boxStrokeWidth">2dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/_10sdp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/_10sdp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/_10sdp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/_10sdp</item>
+        <item name="hintTextAppearance">@style/HintText</item>
+        <item name="hintTextColor">@color/prime</item>
+    </style>
+
+    <style name="MyTextInputEditText" parent="ThemeOverlay.MaterialComponents.TextInputEditText">
+        <item name="android:textColor">@color/prime</item>
+        <item name="android:textCursorDrawable">@color/prime</item>
+    </style>
+
+    <style name="TextInputLayoutAppearance" parent="Widget.Design.TextInputLayout">
+        <!-- reference our hint & error styles -->
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/_A8A8A8</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlHighlight">@color/white</item>
+    </style>
+
+    <style name="myTextInputLabel" parent="TextAppearance.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="android:textColorHint">@color/_A8A8A8</item>
+        <item name="android:textSize">10sp</item>
+        <item name="colorAccent">@color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="colorControlHighlight">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>

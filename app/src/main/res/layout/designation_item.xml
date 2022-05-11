@@ -6,9 +6,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="@dimen/_1sdp"
-        android:layout_margin="@dimen/_5sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:layout_marginBottom="@dimen/_4sdp"
         android:background="@drawable/white_5r_bg">
 
         <TextView
@@ -16,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:text="1."
+            android:text="1"
             android:textColor="@color/_172B4D"
             android:gravity="center"
             android:textSize="@dimen/_13ssp"

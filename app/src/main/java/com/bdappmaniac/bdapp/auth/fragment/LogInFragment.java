@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.employee.fragment;
+package com.bdappmaniac.bdapp.auth.fragment;
 
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -24,30 +24,30 @@ import androidx.navigation.Navigation;
 import com.bdappmaniac.bdapp.Api.response.LoginResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.activity.AdminActivity;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.activity.HomeActivity;
+import com.bdappmaniac.bdapp.activity.TestActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentLogInBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.SharedPref;
-import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.utils.ValidationUtils;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import okhttp3.RequestBody;
 
 public class LogInFragment extends BaseFragment {
     FragmentLogInBinding binding;
+    String userType = "";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_log_in, container, false);
-        StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
         binding.backBtn.setOnClickListener(view -> {
             requireActivity().finish();
         });
@@ -65,7 +65,11 @@ public class LogInFragment extends BaseFragment {
                 String email = binding.emailTxt.getText().toString();
                 String password = binding.passwordTxt.getText().toString();
                 if (checkValidation()) {
-                    loginApi(email, password);
+                    if (Objects.equals(userType, "Admin")) {
+                        loginApi(email, password);
+                    } else if (Objects.equals(userType, "employee")) {
+                        loginApi(email, password);
+                    }
                 }
             }
         });
@@ -73,6 +77,26 @@ public class LogInFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.forgotPasswordFragment);
+            }
+        });
+        binding.btnAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userType = "admin";
+                binding.btnAdmin.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.prime));
+                binding.btnEmp.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.white));
+                binding.btnAdmin.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+                binding.btnEmp.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+            }
+        });
+        binding.btnEmp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userType = "employee";
+                binding.btnEmp.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.prime));
+                binding.btnAdmin.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.white));
+                binding.btnAdmin.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+                binding.btnEmp.setTextColor(ContextCompat.getColor(mContext, R.color.white));
             }
         });
         return binding.getRoot();
@@ -99,7 +123,7 @@ public class LogInFragment extends BaseFragment {
                         } else if (loginResponse.getType().equals("admin")) {
                             SharedPref.putUserDetails(loginResponse);
                             showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                            startActivity(new Intent(mContext, AdminActivity.class));
+                            startActivity(new Intent(mContext, TestActivity.class));
                             getActivity().finish();
                         }
                     } else if (!apiResponse.isSuccess() && apiResponse.getData().isJsonNull()) {
@@ -135,6 +159,10 @@ public class LogInFragment extends BaseFragment {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_password));
             return false;
         }
+        if (userType.isEmpty()) {
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.please_select_userType));
+            return false;
+        }
         return true;
     }
 
@@ -154,7 +182,7 @@ public class LogInFragment extends BaseFragment {
 
     private void setValidations() {
         if (isAllFieldFillUp()) {
-            binding.signInBtn.setBackgroundResource(R.drawable.green_10r_bg);
+            binding.signInBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
             binding.signInBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
             binding.signInBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
@@ -199,7 +227,7 @@ public class LogInFragment extends BaseFragment {
         @Override
         public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
             if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
-                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.prime));
             } else {
                 binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
             }

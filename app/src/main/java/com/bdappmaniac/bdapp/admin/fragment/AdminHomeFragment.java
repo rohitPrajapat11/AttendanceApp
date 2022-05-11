@@ -13,6 +13,7 @@ import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.adapter.AdminHomeAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentAdminHomeBinding;
 import com.bdappmaniac.bdapp.model.AdminHomeModel;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class AdminHomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false);
+        StatusBarUtils.statusBarColor(getActivity(), R.color.f1f3f5);
 /*        //   new Handler().postDelayed(new Runnable() {
         //          @Override
 //            public void run() {
@@ -55,5 +57,11 @@ public class AdminHomeFragment extends Fragment {
         binding.recyclerMenu.setAdapter(adapter);
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.f1f3f5);
     }
 }

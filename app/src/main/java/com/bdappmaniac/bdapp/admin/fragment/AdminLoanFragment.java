@@ -18,7 +18,10 @@ import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
 import com.bdappmaniac.bdapp.model.AllLoanModel;
 import com.bdappmaniac.bdapp.utils.Constant;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 public class AdminLoanFragment extends BaseFragment implements CalendarCallBack {
     FragmentAdminLoanBinding binding;
@@ -26,6 +29,8 @@ public class AdminLoanFragment extends BaseFragment implements CalendarCallBack 
     EmployeeListAdapter EmAdapter;
     AllLoanAdapter allLoanAdapter;
     Dialog addEmployeeDialog;
+    SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
+    Calendar cal = Calendar.getInstance(Locale.ENGLISH);
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_loan, container, false);
@@ -35,20 +40,39 @@ public class AdminLoanFragment extends BaseFragment implements CalendarCallBack 
                 Navigation.findNavController(binding.getRoot()).popBackStack();
             }
         });
+        binding.ivCalendarNext.setOnClickListener(v -> {
+            cal.add(Calendar.YEAR, 1);
+            setUpCalendar();
+        });
+
+        binding.ivCalendarPrevious.setOnClickListener(v -> {
+            cal.add(Calendar.YEAR, -1);
+            setUpCalendar();
+        });
         Constant.calendarCallBack = this;
         binding.totalTxt.setText(getResources().getString(R.string.inr) + " " + "50,000");
-        //  binding.getAmountTxt.setText(getResources().getString(R.string.inr) + " " + "20,000");
-        binding.pendingAmountTxt.setText(getResources().getString(R.string.inr) + " " + "30,000");
-        binding.returnAmountTxt.setText(getResources().getString(R.string.inr) + " " + "20,000");
-        loanStatus.add(new AllLoanModel("Joe", "12-01-2020", "10,000"));
-        loanStatus.add(new AllLoanModel("Alex War", "01-07-2019", "5,000"));
-        loanStatus.add(new AllLoanModel("Michel Zor", "11-06-2021", "15,000"));
-        loanStatus.add(new AllLoanModel("Lyon Pine", "10-10-2021", "5,000"));
-        loanStatus.add(new AllLoanModel("Smith", "18-07-2020", "8,000"));
-        loanStatus.add(new AllLoanModel("Mil Dev", "06-05-2021", "7,000"));
+//          binding.getAmountTxt.setText(getResources().getString(R.string.inr) + " " + "20,000");
+        binding.pendingAmountTxt.setText(getResources().getString(R.string.inr)+"30,000");
+        binding.returnAmountTxt.setText(getResources().getString(R.string.inr)+"20,000");
+        loanStatus.add(new AllLoanModel("Jan", "10-01-2021", "2,000"));
+        loanStatus.add(new AllLoanModel("Feb", "10-02-2021", "2,000"));
+        loanStatus.add(new AllLoanModel("Mar", "10-03-2021", "2,000"));
+        loanStatus.add(new AllLoanModel("Apr", "10-04-2021", "2,000"));
+        loanStatus.add(new AllLoanModel("May", "10-05-2021", "2,000"));
+        loanStatus.add(new AllLoanModel("Jun", "10-06-2021", "2,000"));
+        loanStatus.add(new AllLoanModel("Jul", "10-07-2021", "2,000"));
+        loanStatus.add(new AllLoanModel("Aug", "10-08-2021", "2,000"));
+        loanStatus.add(new AllLoanModel("Sep", "10-09-2021", "2,000"));
+        loanStatus.add(new AllLoanModel("Oct", "10-10-2021", "2,000"));
         allLoanAdapter = new AllLoanAdapter(getContext(), loanStatus);
         binding.historyRecycler.setAdapter(allLoanAdapter);
         return binding.getRoot();
+    }
+
+    private void setUpCalendar() {
+        String currentString = sdf.format(cal.getTime());
+        String[] separated = currentString.split(" ");
+        binding.yearTxt.setText(separated[1]);
     }
 
 //    public void addNewLoadDialog() {

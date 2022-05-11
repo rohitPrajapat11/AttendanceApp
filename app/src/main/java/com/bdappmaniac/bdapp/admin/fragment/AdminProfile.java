@@ -47,6 +47,7 @@ import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
@@ -557,5 +558,11 @@ public class AdminProfile extends BaseFragment {
         @Override
         public void afterTextChanged(Editable s) {
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.prime);
     }
 }

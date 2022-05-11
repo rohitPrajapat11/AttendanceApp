@@ -26,7 +26,8 @@
 
         <include
             android:id="@+id/bottomLayout"
-            android:visibility="gone"
-            layout="@layout/admin_bottom_layout" />
+            layout="@layout/admin_bottom_layout"
+            android:background="@android:color/transparent"
+            android:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

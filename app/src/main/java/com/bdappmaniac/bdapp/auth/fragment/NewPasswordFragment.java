@@ -1,4 +1,4 @@
-package com.bdappmaniac.bdapp.employee.fragment;
+package com.bdappmaniac.bdapp.auth.fragment;
 
 import static com.bdappmaniac.bdapp.activity.BaseActivity.EMAIL;
 
@@ -115,7 +115,7 @@ public class NewPasswordFragment extends BaseFragment {
 
     private void setValidations() {
         if (isAllFieldFillUp()) {
-            binding.confirmBtn.setBackgroundResource(R.drawable.green_10r_bg);
+            binding.confirmBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
             binding.confirmBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
             binding.confirmBtn.setBackgroundResource(R.drawable.light_green_15r_bg);

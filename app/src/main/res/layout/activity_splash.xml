@@ -6,21 +6,36 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/_FF99D131"
+        android:background="@color/prime"
         tools:context=".SplashActivity">
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/white_round_bgs"
             android:contentDescription="@string/app_logo"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.332"
-            app:srcCompat="@drawable/app_full_logo" />
+            app:srcCompat="@drawable/app_full_logo"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/getStarted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_bg_splash"
+            android:elevation="@dimen/_7sdp"
+            android:layout_marginBottom="@dimen/_80sdp"
+            android:fontFamily="@font/m_semibold"
+            android:padding="@dimen/_6sdp"
+            android:text="Get Started"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

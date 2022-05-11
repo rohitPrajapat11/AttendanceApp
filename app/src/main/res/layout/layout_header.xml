@@ -25,7 +25,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/primary_color" />
+            app:tint="@color/prime" />
 
         <ImageView
             android:id="@+id/backBtn"
@@ -35,26 +35,26 @@
             android:scaleType="fitXY"
             android:src="@drawable/icn_back_arrow"
             android:visibility="gone"
+            app:tint="@color/prime"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.555" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTint="@color/_172B4D"
+            android:drawableTint="@color/prime"
             android:fontFamily="@font/font_heavy"
             android:gravity="center_vertical"
             android:text="Home"
-            android:textColor="@color/_172B4D"
+            android:textColor="@color/prime"
             android:textSize="@dimen/_18sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/secondary_color" />
+            app:tint="@color/prime" />
 
         <ImageView
             android:id="@+id/addBtn"
@@ -68,7 +68,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.555"
-            app:tint="@color/light_black" />
+            app:tint="@color/prime" />
 
         <Switch
             android:id="@+id/extIcon"
@@ -77,7 +77,7 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:checked="false"
             android:minHeight="@dimen/_48sdp"
-            android:visibility="visible"
+            android:visibility="gone"
             android:thumbTint="@color/primary_color"
             android:trackTint="@color/_A8A8A8"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -101,5 +101,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/additionBtn"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:src="@drawable/icn_registration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/prime" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

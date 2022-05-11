@@ -5,19 +5,20 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/f1f3f5">
+        android:background="@color/white">
 
         <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/mainDrawerLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/f1f3f5"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <include
                 android:id="@+id/homeLayout"
+                android:background="@color/white"
                 layout="@layout/admin_home_layout">
 
             </include>

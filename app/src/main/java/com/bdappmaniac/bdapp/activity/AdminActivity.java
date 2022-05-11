@@ -185,11 +185,11 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     navHandel("Employee List");
                     headerHideShow(false);
 //                    bottomHideShow(false);
-                }else if (destination.getId() == R.id.employeeExpensesFragment) {
+                } else if (destination.getId() == R.id.employeeExpensesFragment) {
                     navHandel("Employee Expenses");
                     headerHideShow(false);
 //                    bottomHideShow(false);
-                }else if (destination.getId() == R.id.overTimeFragment) {
+                } else if (destination.getId() == R.id.overTimeFragment) {
                     navHandel("OverTime Task List");
                     headerHideShow(false);
 //                    bottomHideShow(false);

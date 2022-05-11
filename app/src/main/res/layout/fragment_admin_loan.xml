@@ -3,229 +3,297 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:background="@color/f1f3f5"
+            android:elevation="1dp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/headerLayout"
-                android:layout_width="match_parent"
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:contentDescription="@string/backBtn"
+                android:scaleType="fitXY"
+                android:src="@drawable/icn_back_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.555"
+                tools:layout_editor_absoluteX="3dp"
+                tools:layout_editor_absoluteY="17dp" />
+
+            <TextView
+                android:id="@+id/titles"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:elevation="@dimen/_5sdp"
-                android:paddingTop="@dimen/_15sdp"
-                android:paddingBottom="@dimen/_15sdp"
+                android:fontFamily="@font/arial_rounded_mt_regular"
+                android:gravity="center_vertical"
+                android:text="Advance Payment"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                app:drawableTint="@color/_172B4D"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/secondary_color" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/graphLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/f1f3f5"
+            android:elevation="@dimen/_1sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+
+            <ProgressBar
+                android:id="@+id/progress_circular_id"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="230dp"
+                android:layout_height="220dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/circular_shape"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="40"
+                android:progressDrawable="@drawable/circular_progress_bar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/backBtn"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_18sdp"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:contentDescription="@string/backBtn"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/icn_back_arrow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.555"
-                    tools:layout_editor_absoluteX="3dp"
-                    tools:layout_editor_absoluteY="17dp" />
+            </ProgressBar>
 
-                <TextView
-                    android:id="@+id/titles"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="center_vertical"
-                    android:text="Advance Payment"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_18sdp"
-                    app:drawableTint="@color/_172B4D"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/secondary_color" />
+            <TextView
+                android:id="@+id/totals"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arial_rounded_mt_regular"
+                android:text="40%"
+                android:textColor="@color/primary_color"
+                android:textSize="@dimen/_30sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/progress_circular_id"
+                app:layout_constraintEnd_toEndOf="@+id/progress_circular_id"
+                app:layout_constraintStart_toStartOf="@+id/progress_circular_id"
+                app:layout_constraintTop_toTopOf="@+id/progress_circular_id" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/totalLb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="@font/arial_rounded_mt_regular"
+                android:gravity="center"
+                android:text="@string/approved_amount"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/totalTxt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/progress_circular_id" />
+
+            <TextView
+                android:id="@+id/totalTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arial_rounded_mt_regular"
+                android:gravity="center"
+                android:text="@string/_50_000"
+                android:textColor="@color/_172B4D"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/totalLb"
+                app:layout_constraintStart_toStartOf="@+id/totalLb"
+                app:layout_constraintTop_toBottomOf="@+id/totalLb" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/graphLayout"
-                android:layout_width="match_parent"
+                android:id="@+id/upLayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:elevation="@dimen/_3sdp"
-                android:padding="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/calendarChangeLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/headerLayout">
+                app:layout_constraintTop_toBottomOf="@id/downLayout">
+
+                <ImageView
+                    android:id="@+id/pendingLb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:contentDescription="@string/pendingLb"
+                    android:src="@drawable/icn_up_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/pendingAmountTxt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/due" />
 
                 <TextView
-                    android:id="@+id/totalLb"
+                    android:id="@+id/due"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_heavy"
+                    android:fontFamily="@font/arial_rounded_mt_regular"
                     android:gravity="center"
-                    android:text="@string/approved_amount"
+                    android:text="@string/due"
                     android:textColor="@color/_172B4D"
                     android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/totalTxt"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="center"
-                    android:text="@string/_50_000"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_30sdp"
+                    android:id="@+id/pendingAmountTxt"
+                    android:layout_width="65dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:gravity="start"
+                    android:text="@string/_30_000"
+                    android:textColor="@color/secondary_color"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/totalLb" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/upLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    app:layout_constraintBottom_toBottomOf="@+id/downLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/downLayout"
-                    app:layout_constraintTop_toBottomOf="@+id/totalTxt">
-
-
-                    <ImageView
-                        android:id="@+id/pendingLb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:contentDescription="@string/pendingLb"
-                        android:src="@drawable/icn_up_arrow"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/pendingAmountTxt"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/due" />
-
-                    <TextView
-                        android:id="@+id/due"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_heavy"
-                        android:gravity="center"
-                        android:text="@string/due"
-                        android:textColor="@color/_172B4D"
-                        android:textSize="@dimen/_15sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/pendingAmountTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/font_heavy"
-                        android:gravity="start"
-                        android:text="@string/_30_000"
-                        android:textColor="@color/secondary_color"
-                        android:textSize="@dimen/_15sdp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/pendingLb"
-                        app:layout_constraintTop_toBottomOf="@+id/due"
-                        app:layout_constraintVertical_bias="0.0" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/downLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    app:layout_constraintEnd_toStartOf="@+id/upLayout"
-                    app:layout_constraintStart_toStartOf="@+id/totalTxt"
-                    app:layout_constraintTop_toBottomOf="@+id/totalTxt">
-
-                    <ImageView
-                        android:id="@+id/returnLb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:contentDescription="@string/returnLb"
-                        android:src="@drawable/icn_down_arrow"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/returnAmountTxt"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/rt" />
-
-                    <TextView
-                        android:id="@+id/rt"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_heavy"
-                        android:gravity="center"
-                        android:text="Return"
-                        android:textColor="@color/_172B4D"
-                        android:textSize="@dimen/_15sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/returnAmountTxt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/font_heavy"
-                        android:gravity="start"
-                        android:text="@string/_5_000"
-                        android:textColor="@color/green"
-                        android:textSize="@dimen/_15sdp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/returnLb"
-                        app:layout_constraintTop_toBottomOf="@+id/rt" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+                    app:layout_constraintStart_toEndOf="@+id/pendingLb"
+                    app:layout_constraintTop_toBottomOf="@+id/due"
+                    app:layout_constraintVertical_bias="0.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/title"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/downLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/font_heavy"
-                android:gravity="center_vertical"
-                android:text="@string/all_loans"
-                android:textColor="@color/_172B4D"
-                android:textSize="@dimen/_15sdp"
-                app:drawableTint="@color/_172B4D"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/graphLayout"
-                app:tint="@color/secondary_color" />
+                android:layout_marginEnd="@dimen/_20sdp"
+                app:layout_constraintBottom_toTopOf="@id/upLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/totalTxt">
+
+                <ImageView
+                    android:id="@+id/returnLb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:contentDescription="@string/returnLb"
+                    android:src="@drawable/icn_down_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/returnAmountTxt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rt" />
+
+                <TextView
+                    android:id="@+id/rt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:gravity="center"
+                    android:text="Return"
+                    android:textColor="@color/_172B4D"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/returnAmountTxt"
+                    android:layout_width="65dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:gravity="start"
+                    android:text="@string/_5_000"
+                    android:textColor="@color/green"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/returnLb"
+                    app:layout_constraintTop_toBottomOf="@+id/rt"
+                    app:layout_constraintVertical_bias="0.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/calendarChangeLayout"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="@+id/progress_circular_id"
+                app:layout_constraintStart_toStartOf="@+id/progress_circular_id"
+                app:layout_constraintTop_toBottomOf="@+id/progress_circular_id">
+
+                <ImageView
+                    android:id="@+id/iv_calendar_previous"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/icn_previous"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/iv_calendar_next"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/icn_next"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/yearTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:text="2022"
+                    android:textColor="@color/primary_color"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_calendar_next"
+                    app:layout_constraintStart_toEndOf="@+id/iv_calendar_previous"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/graphLayout">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/historyRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:paddingBottom="@dimen/_2sdp"
+                android:background="@color/f1f3f5"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/title"
+                app:layout_constraintTop_toBottomOf="@+id/graphLayout"
                 tools:listitem="@layout/loan_details_item" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
