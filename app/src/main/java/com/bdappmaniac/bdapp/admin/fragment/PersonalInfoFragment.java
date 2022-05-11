@@ -33,11 +33,13 @@ public class PersonalInfoFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_personal_info, container, false);
-        if (getArguments() != null) {
-            ID = getArguments().getInt("id");
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_personal_info, container, false);
+            if (getArguments() != null) {
+                ID = getArguments().getInt("id");
+            }
+            employeeDetails(ID);
         }
-        employeeDetails(ID);
 //        binding.empStatus.setOnClickListener(v -> {
 //            AcviteDeactiveDialogBinding activeBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.acvite_deactive_dialog, null, false);
 //            Dialog dialog = new Dialog(mContext);

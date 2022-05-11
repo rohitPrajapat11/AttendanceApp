@@ -42,7 +42,6 @@ import com.bdappmaniac.bdapp.databinding.FragmentRegisterEmpolyeeBinding;
 import com.bdappmaniac.bdapp.databinding.RegisterDesignationDialogboxBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bdappmaniac.bdapp.utils.ValidationUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -82,14 +81,13 @@ public class RegisterEmployeeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register_empolyee, container, false);
-        StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
         binding.emailTxt.addTextChangedListener(new RegisterEmployeeFragment.TextChange(binding.emailTxt));
         binding.passwordTxt.addTextChangedListener(new RegisterEmployeeFragment.TextChange(binding.passwordTxt));
         binding.sighUpBtn.setOnClickListener(v -> {
             if (checkValidation()) {
                 Map<String, RequestBody> map = new HashMap<>();
                 map.put("employee_name", toRequestBody(binding.nameTxt.getText().toString()));
-                map.put("emp_mobile_no", toRequestBody(binding.phoneTxt.getText().toString()));
+                map.put("emp_mobile_no", toRequestBody(binding.mobileTxt.getText().toString()));
                 map.put("email", toRequestBody(binding.emailTxt.getText().toString()));
                 map.put("password", toRequestBody(binding.passwordTxt.getText().toString()));
                 map.put("password_confirmation", toRequestBody(binding.confirmPasswordTxt.getText().toString()));
@@ -104,7 +102,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
         binding.designationTxt.setOnClickListener(v -> {
             designationDialog();
         });
-        binding.joiningTxt.setOnClickListener(new View.OnClickListener() {
+        binding.joiningDateTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Calendar c = Calendar.getInstance();
@@ -116,7 +114,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                binding.joiningTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
+                                binding.joiningDateTxt.setText(year + "/" + (monthOfYear + 1) + "/" + dayOfMonth);
                                 joiningDate = year + "/" + (monthOfYear + 1) + "/" + dayOfMonth;
                             }
                         }, mYear, mMonth, mDay);
@@ -201,7 +199,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
         if (StringHelper.isEmpty(binding.emailTxt.getText().toString())) {
             return false;
         }
-        if (StringHelper.isEmpty(binding.phoneTxt.getText().toString())) {
+        if (StringHelper.isEmpty(binding.mobileTxt.getText().toString())) {
             return false;
         }
         if (StringHelper.isEmpty(binding.designationTxt.getText().toString())) {
@@ -211,6 +209,9 @@ public class RegisterEmployeeFragment extends BaseFragment {
             return false;
         }
         if (StringHelper.isEmpty(binding.confirmPasswordTxt.getText().toString())) {
+            return false;
+        }
+        if (StringHelper.isEmpty(binding.joiningDateTxt.getText().toString())) {
             return false;
         }
         return true;
@@ -225,11 +226,11 @@ public class RegisterEmployeeFragment extends BaseFragment {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_email));
             return false;
         }
-        if (TextUtils.isEmpty(binding.phoneTxt.getText().toString())) {
+        if (TextUtils.isEmpty(binding.mobileTxt.getText().toString())) {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_your_mobile_number));
             return false;
         }
-        if (binding.phoneTxt.getText().length() != 10) {
+        if (binding.mobileTxt.getText().length() != 10) {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_10_digit_number));
             return false;
         }
@@ -245,39 +246,48 @@ public class RegisterEmployeeFragment extends BaseFragment {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.confirm_password));
             return false;
         }
+        if (TextUtils.isEmpty(binding.joiningDateTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.Please_Enter_Joining_Date));
+            return false;
+        }
         return true;
     }
 
     private void isFieldFillUp() {
         if (StringHelper.isEmpty(binding.nameTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.nameTxt, R.color._A8A8A8);
+            binding.nameIcn.setColorFilter(R.color._A8A8A8);
         } else {
-            setTextViewDrawableColor(binding.nameTxt, R.color._172B4D);
+            binding.nameIcn.setColorFilter(R.color._161B3D);
         }
         if (StringHelper.isEmpty(binding.emailTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.emailTxt, R.color._A8A8A8);
+            binding.emailIcn.setColorFilter(R.color._A8A8A8);
         } else {
-            setTextViewDrawableColor(binding.emailTxt, R.color._172B4D);
+            binding.emailIcn.setColorFilter(R.color._161B3D);
         }
-        if (StringHelper.isEmpty(binding.phoneTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.phoneTxt, R.color._A8A8A8);
+        if (StringHelper.isEmpty(binding.mobileTxt.getText().toString())) {
+            binding.mobileIcn.setColorFilter(R.color._A8A8A8);
         } else {
-            setTextViewDrawableColor(binding.phoneTxt, R.color._172B4D);
+            binding.mobileIcn.setColorFilter(R.color._161B3D);
         }
         if (StringHelper.isEmpty(binding.designationTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.designationTxt, R.color._A8A8A8);
+            binding.designationIcn.setColorFilter(R.color._A8A8A8);
         } else {
-            setTextViewDrawableColor(binding.designationTxt, R.color._172B4D);
+            binding.designationIcn.setColorFilter(R.color._161B3D);
         }
         if (StringHelper.isEmpty(binding.passwordTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.passwordTxt, R.color._A8A8A8);
+            binding.passwordIcn.setColorFilter(R.color._A8A8A8);
         } else {
-            setTextViewDrawableColor(binding.passwordTxt, R.color._172B4D);
+            binding.passwordIcn.setColorFilter(R.color._161B3D);
         }
         if (StringHelper.isEmpty(binding.confirmPasswordTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.confirmPasswordTxt, R.color._A8A8A8);
+            binding.confirmPasswordIcn.setColorFilter(R.color._A8A8A8);
         } else {
-            setTextViewDrawableColor(binding.confirmPasswordTxt, R.color._172B4D);
+            binding.confirmPasswordIcn.setColorFilter(R.color._161B3D);
+        }
+        if (StringHelper.isEmpty(binding.joiningDateTxt.getText().toString())) {
+            binding.joiningDateIcn.setColorFilter(R.color._A8A8A8);
+        } else {
+            binding.joiningDateIcn.setColorFilter(R.color._161B3D);
         }
         setValidations();
     }
@@ -352,4 +362,5 @@ public class RegisterEmployeeFragment extends BaseFragment {
         public void afterTextChanged(Editable s) {
         }
     }
+
 }

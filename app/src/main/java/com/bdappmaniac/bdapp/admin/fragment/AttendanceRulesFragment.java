@@ -60,11 +60,13 @@ public class AttendanceRulesFragment extends BaseFragment {
         if (check) {
             binding.editBtn.setVisibility(View.GONE);
             binding.cancelBtn.setVisibility(View.VISIBLE);
+            binding.editLayout.setVisibility(View.VISIBLE);
             binding.saveBtn.setVisibility(View.VISIBLE);
             binding.rulesTxt.setVisibility(View.VISIBLE);
             binding.rulesLb.setVisibility(View.GONE);
         } else {
             binding.editBtn.setVisibility(View.VISIBLE);
+            binding.editLayout.setVisibility(View.GONE);
             binding.cancelBtn.setVisibility(View.GONE);
             binding.saveBtn.setVisibility(View.GONE);
             binding.rulesTxt.setVisibility(View.GONE);

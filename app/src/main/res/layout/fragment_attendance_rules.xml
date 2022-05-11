@@ -11,7 +11,7 @@
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@color/f1f3f5"
             android:elevation="@dimen/_1sdp"
             android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
@@ -31,7 +31,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.555" />
+                app:layout_constraintVertical_bias="0.555"
+                app:tint="@color/primary_color" />
 
             <TextView
                 android:id="@+id/title"
@@ -49,13 +50,25 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/secondary_color" />
 
+            <ImageView
+                android:id="@+id/editBtn"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:gravity="center"
+                android:src="@drawable/ic_baseline_edit_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/primary_color" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
             android:id="@+id/scrollableLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="@dimen/_10sdp"
+            android:background="@color/white"
             app:layout_constraintBottom_toTopOf="@id/editLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,10 +82,10 @@
                     android:id="@+id/rulesLb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_bg"
-                    android:drawablePadding="@dimen/_10sdp"
                     android:enabled="false"
+                    android:layout_margin="@dimen/_2sdp"
                     android:focusable="true"
+                    android:background="@color/white"
                     android:fontFamily="@font/font_heavy"
                     android:gravity="center_vertical"
                     android:importantForAutofill="no"
@@ -82,18 +95,19 @@
                     android:textAllCaps="false"
                     android:textColor="@color/_172B4D"
                     android:textSize="@dimen/_12ssp"
+                    app:drawableTint="@color/_A8A8A8"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:drawableTint="@color/_A8A8A8"
                     tools:ignore="TextViewEdits" />
 
                 <EditText
                     android:id="@+id/rulesTxt"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:background="@drawable/edit_text_bg"
-                    android:drawablePadding="@dimen/_10sdp"
+                    android:background="@color/white"
+                    android:layout_margin="@dimen/_2sdp"
                     android:drawableTint="@color/_A8A8A8"
                     android:focusable="true"
                     android:fontFamily="@font/font_heavy"
@@ -116,28 +130,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/editLayout"
             android:layout_width="match_parent"
+            android:visibility="gone"
+            android:background="@color/white"
             android:layout_height="@dimen/_50sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/editBtn"
-                android:layout_width="@dimen/_150sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@drawable/green_10r_bg"
-                android:elevation="@dimen/_3sdp"
-                android:fontFamily="@font/font_heavy"
-                android:gravity="center"
-                android:text="Edit"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/saveBtn"
@@ -172,7 +170,6 @@
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/saveBtn"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

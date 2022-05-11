@@ -31,11 +31,13 @@ public class ContactInfoFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact_info, container, false);
-        if (getArguments() != null) {
-            ID = getArguments().getInt("id");
+        if (binding == null) {
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_contact_info, container, false);
+            if (getArguments() != null) {
+                ID = getArguments().getInt("id");
+            }
+            employeeDetails(ID);
         }
-        employeeDetails(ID);
         return binding.getRoot();
     }
 

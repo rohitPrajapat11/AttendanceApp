@@ -14,6 +14,7 @@
         <entry key="app/src/main/res/drawable-xxxhdpi/container_search.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable-xxxhdpi/ic_search_black_24dp.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/auth_white_bg.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/bg_holiday_items.xml" value="0.142" />
         <entry key="app/src/main/res/drawable/bottom_10r_white_bg.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/bottom_cut_white_bg.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/circular_progress_bar.xml" value="0.146" />
@@ -61,6 +62,7 @@
         <entry key="app/src/main/res/drawable/yellow_10r_bg.xml" value="0.12203947368421053" />
         <entry key="app/src/main/res/layout-v23/activity_auth.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout-v23/fragment_admin_term_and_condition.xml" value="0.15729166666666666" />
+        <entry key="app/src/main/res/layout-v26/fragment_register_empolyee.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_admin.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.12" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.18" />
@@ -74,7 +76,7 @@
         <entry key="app/src/main/res/layout/admin_addholiday_dialogbox.xml" value="0.15" />
         <entry key="app/src/main/res/layout/admin_bottom_layout.xml" value="0.22" />
         <entry key="app/src/main/res/layout/admin_designation_dialogbox.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.18" />
         <entry key="app/src/main/res/layout/admin_edit_holiday_dilogbox.xml" value="0.18" />
         <entry key="app/src/main/res/layout/admin_emp_info.xml" value="0.2" />
         <entry key="app/src/main/res/layout/admin_history_item.xml" value="0.22" />
@@ -146,7 +148,7 @@
         <entry key="app/src/main/res/layout/fragment_personal_info.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_present_and_absent.xml" value="0.10202702702702703" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/fragment_register_empolyee.xml" value="0.19" />
+        <entry key="app/src/main/res/layout/fragment_register_empolyee.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_salary.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_service_info.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.33" />
@@ -158,6 +160,7 @@
         <entry key="app/src/main/res/layout/history_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/history_list_items.xml" value="0.22" />
         <entry key="app/src/main/res/layout/holiday_bottom_sheet_dialog.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/holiday_item_design.xml" value="0.25" />
         <entry key="app/src/main/res/layout/home_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_card.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/layout_header.xml" value="0.25" />
