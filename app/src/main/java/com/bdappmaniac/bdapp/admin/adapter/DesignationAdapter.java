@@ -151,7 +151,7 @@ public class DesignationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             dialog.setContentView(binding.getRoot());
             dialog.setCancelable(false);
             dialog.setCanceledOnTouchOutside(false);
-            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             dialog.getWindow().setGravity(Gravity.CENTER);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             binding.desigTxt.setText(name);

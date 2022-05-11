@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.BdApp" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
@@ -12,8 +12,10 @@
         <item name="android:overScrollMode">never</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
+
     <style name="Theme.BdApp.Launcher">
-        <item name="android:windowBackground">@color/_F0F1F3</item> <!--Also available: @drawable:launcher_screen_with_background-->
+        <item name="android:windowBackground">@color/_F0F1F3
+        </item> <!--Also available: @drawable:launcher_screen_with_background-->
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
@@ -21,6 +23,7 @@
         <item name="android:overScrollMode">never</item>
         <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
+
     <style name="DatePicker" parent="Theme.MaterialComponents.Light.Dialog">
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/light_primary_color</item>
@@ -38,5 +41,22 @@
         <!-- inactive track color (30% transparency) -->
         <item name="android:colorForeground">#A8A8A8
         </item>
+    </style>
+
+    <style name="HintText" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/_A8A8A8</item>
+    </style>
+
+    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/_A8A8A8</item>
+        <item name="boxStrokeColor">@color/_A8A8A8</item>
+        <item name="hintTextAppearance">@style/HintText</item>
+        <item name="hintTextColor">@color/_A8A8A8</item>z
+    </style>
+
+    <style name="MyTextInputEditText" parent="ThemeOverlay.MaterialComponents.TextInputEditText">
+        <item name="android:textColor">@color/f1f3f5</item>
+        <item name="android:textCursorDrawable">@color/black</item>
     </style>
 </resources>

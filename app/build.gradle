@@ -100,14 +100,13 @@ dependencies {
     implementation 'com.github.isradeleon:Notify-Android:1.0.4'
     implementation 'id.zelory:compressor:1.0.4'
 
-    //shadow layout
+//shadow layout
     implementation 'com.loopeer.lib:shadow:0.0.4-beta3'
 
     // calender
     implementation 'com.github.applikeysolutions:cosmocalendar:1.0.4'
-    implementation 'com.github.shrikanth7698:Collapsible-Calendar-View-Android:v1.0.3'
+    implementation 'com.github.shrikanth7698:Collapsible-Calendar-View-Android:v1.0.0'
     //TabLayout
     implementation 'io.github.h07000223:flycoTabLayout:3.0.0'
-
 
 }
