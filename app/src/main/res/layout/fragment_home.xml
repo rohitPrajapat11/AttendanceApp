@@ -6,62 +6,644 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         tools:context=".employee.fragment.HomeFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/timeStatusLayout"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/white_10r_bg"
-            android:elevation="@dimen/_10sdp"
-            android:padding="@dimen/_5sdp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/checkInLayout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/checkInLb"
-                    android:layout_width="0dp"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout14"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_heavy"
-                    android:paddingStart="@dimen/_15sdp"
-                    android:text="CheckIn Time"
-                    android:textColor="@color/_172B4D"
+                    android:background="@drawable/bottom_10r_white_bg"
+                    android:elevation="@dimen/_3sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/userProfile"
+                        android:layout_width="@dimen/_38sdp"
+                        android:layout_height="@dimen/_38sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_6sdp"
+                        android:background="@drawable/green_round_bg"
+                        android:padding="@dimen/_2sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/babe"
+                        android:tint="@color/blue_primary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/welcometitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_11sdp"
+                        android:fontFamily="@font/m_light"
+                        android:text="Welcome,Back"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_1sdp"
+                        android:fontFamily="@font/m_semibold"
+                        android:text="mandy xyz"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp"
+                        app:layout_constraintStart_toStartOf="@+id/welcometitle"
+                        app:layout_constraintTop_toBottomOf="@+id/welcometitle" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/attendence"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_4sdp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bottom_10r_v2_white_bg"
+                    android:elevation="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout14">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        android:fontFamily="@font/m_light"
+                        android:text="E-attendence"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ProgressBar
+                        android:id="@+id/progressTime"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="@dimen/_130sdp"
+                        android:layout_height="@dimen/_120sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:background="@drawable/circular_shape_time_p"
+                        android:elevation="5dp"
+                        android:indeterminate="false"
+                        android:max="100"
+                        android:progressBackgroundTint="@color/blue_primary"
+                        android:progressDrawable="@drawable/circular_progress_bar_timke_p"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/m_medium"
+                        android:text="Complete"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/constraintLayout10"
+                        app:layout_constraintStart_toStartOf="@+id/constraintLayout10"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout10" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_3sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/progressTime"
+                        app:layout_constraintEnd_toEndOf="@+id/progressTime"
+                        app:layout_constraintStart_toStartOf="@+id/progressTime"
+                        app:layout_constraintTop_toTopOf="@+id/progressTime">
+
+                        <TextView
+                            android:id="@+id/progressTitlet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="60"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_15sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView00"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_1sdp"
+                            android:text="%"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/progressTitlet"
+                            app:layout_constraintTop_toTopOf="@+id/progressTitlet" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/progresstitle00"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:fontFamily="@font/m_light"
+                        android:padding="@dimen/_2sdp"
+                        android:text="Today's Progress"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/progressTime"
+                        app:layout_constraintStart_toStartOf="@+id/progressTime"
+                        app:layout_constraintTop_toBottomOf="@+id/progressTime" />
+
+                    <TextView
+                        android:id="@+id/remainTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_24sdp"
+                        android:fontFamily="@font/m_medium"
+                        android:padding="@dimen/_1sdp"
+                        android:text="08:30"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/progressTime"
+                        app:layout_constraintStart_toStartOf="@+id/progressTime"
+                        app:layout_constraintTop_toBottomOf="@+id/progressTime" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/m_medium"
+                        android:text="Remaining Time"
+                        android:textAllCaps="false"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_8sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/remainTime"
+                        app:layout_constraintStart_toStartOf="@+id/remainTime"
+                        app:layout_constraintTop_toBottomOf="@+id/remainTime" />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/m_light"
+                        android:text=" Saturday,March 13 "
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView9"
+                        app:layout_constraintStart_toStartOf="@+id/time"
+                        app:layout_constraintTop_toBottomOf="@+id/time" />
+
+                    <TextView
+
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_40sdp"
+                        android:layout_marginTop="42dp"
+                        android:fontFamily="@font/m_semibold"
+                        android:padding="@dimen/_2sdp"
+                        android:text="09:20"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_18sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginBottom="@dimen/_3sdp"
+                        android:fontFamily="@font/m_mediumitalic"
+                        android:text="AM"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/time"
+                        app:layout_constraintStart_toEndOf="@+id/time" />
+
+
+                    <com.sinaseyfi.advancedcardview.AdvancedCardView
+                        android:id="@+id/attBtn"
+                        android:layout_width="@dimen/_85sdp"
+                        android:layout_height="@dimen/_85sdp"
+                        android:layout_marginStart="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:elevation="@dimen/_11sdp"
+                        android:shadowColor="#f857a6"
+                        android:textAllCaps="false"
+                        android:textColor="@color/grey"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/date">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/constraintCheckInOut"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/imgcheckinbtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_btn_gragient_in"
+                                android:paddingHorizontal="@dimen/_22sdp"
+                                android:paddingBottom="@dimen/_22sdp"
+                                android:src="@drawable/tap_"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/checkintxt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="78dp"
+                                android:fontFamily="@font/m_medium"
+                                android:text="CHECK IN"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_9sdp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.sinaseyfi.advancedcardview.AdvancedCardView>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_58sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:padding="@dimen/_5sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/progressTime">
+
+                        <ImageView
+                            android:id="@+id/imgCheckIn"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_22sdp"
+                            android:layout_marginStart="@dimen/_50sdp"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:src="@drawable/check_in"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/checkInTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/m_semibold"
+                            android:gravity="center"
+                            android:padding="@dimen/_1sdp"
+                            android:text="09:20"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13sdp"
+                            app:layout_constraintEnd_toEndOf="@+id/imgCheckIn"
+                            app:layout_constraintStart_toStartOf="@+id/imgCheckIn"
+                            app:layout_constraintTop_toBottomOf="@+id/imgCheckIn" />
+
+
+                        <ImageView
+                            android:id="@+id/imgcheckOut"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_22sdp"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:src="@drawable/check_out"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/checkOutTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/m_semibold"
+                            android:gravity="center"
+                            android:padding="@dimen/_1sdp"
+                            android:text="--:--"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13sdp"
+                            app:layout_constraintEnd_toEndOf="@+id/imgcheckOut"
+                            app:layout_constraintStart_toStartOf="@+id/imgcheckOut"
+                            app:layout_constraintTop_toBottomOf="@+id/imgcheckOut" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/m_medium"
+                            android:text="Check Out"
+                            android:textAllCaps="false"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/_8sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/checkOutTime"
+                            app:layout_constraintStart_toStartOf="@+id/checkOutTime"
+                            app:layout_constraintTop_toBottomOf="@+id/checkOutTime" />
+
+                        <ImageView
+                            android:id="@+id/imgworkTime"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_22sdp"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:layout_marginEnd="@dimen/_50sdp"
+                            android:src="@drawable/ic_work_time"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/workTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/m_semibold"
+                            android:gravity="center"
+                            android:padding="@dimen/_1sdp"
+                            android:text="--:--"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13sdp"
+                            app:layout_constraintEnd_toEndOf="@+id/imgworkTime"
+                            app:layout_constraintStart_toStartOf="@+id/imgworkTime"
+                            app:layout_constraintTop_toBottomOf="@+id/imgworkTime" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/m_medium"
+                            android:text="Working hrs"
+                            android:textAllCaps="false"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/_8sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/workTime"
+                            app:layout_constraintStart_toStartOf="@+id/workTime"
+                            app:layout_constraintTop_toBottomOf="@+id/workTime" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/m_medium"
+                            android:text="Check In"
+                            android:textAllCaps="false"
+                            android:textColor="@color/grey"
+                            android:textSize="@dimen/_8sdp"
+                            app:layout_constraintEnd_toEndOf="@+id/checkInTime"
+                            app:layout_constraintStart_toStartOf="@+id/checkInTime"
+                            app:layout_constraintTop_toBottomOf="@+id/checkInTime" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/leaves"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_26sdp"
+                    android:background="@drawable/bg_nav_items"
+                    android:backgroundTint="@color/blue_secondry"
+                    android:elevation="@dimen/_12sdp"
+                    android:padding="@dimen/_2sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/checkInLayout"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="RtlSymmetry" />
+                    app:layout_constraintEnd_toStartOf="@id/Loans"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/attendence"
+                    app:layout_constraintVertical_bias="1.0">
 
-                <TextView
-                    android:id="@+id/checkInTime"
+                    <TextView
+                        android:id="@+id/titleLeaves"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/m_light"
+                        android:text="Leaves ..."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_8sdp"
+                        android:fontFamily="@font/m_semibold"
+                        android:padding="@dimen/_2sdp"
+                        android:text="05"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_18sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:layout_width="@dimen/_29sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:fontFamily="@font/m_bold"
+                        android:text="Total Leaves"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_7sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                        app:layout_constraintStart_toEndOf="@+id/textView4" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/Loans"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="center_horizontal"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:hint="00:00"
-                    android:textColor="@color/light_black"
-                    android:textSize="@dimen/_14sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/bg_nav_items"
+                    android:elevation="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/leaves"
+                    app:layout_constraintTop_toBottomOf="@+id/attendence">
+
+
+                    <TextView
+                        android:id="@+id/myLoans"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_9sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:fontFamily="@font/m_light"
+                        android:text=" My Loans"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/todo"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_marginVertical="@dimen/_6sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/bg_nav_items"
+                    android:elevation="@dimen/_12sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/checkInLb"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@+id/leaves"
+                    app:layout_constraintTop_toBottomOf="@+id/Loans">
+
+
+                    <TextView
+                        android:id="@+id/holidays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_9sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:fontFamily="@font/m_light"
+                        android:text=" Holidays"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <!--                todolist-->
+                <!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+                <!--                    android:id="@+id/todoList"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="@dimen/_200sdp"-->
+                <!--                    android:layout_margin="@dimen/_10sdp"-->
+                <!--                    android:elevation="@dimen/_12sdp"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/leaves">-->
+
+                <!--                    <TextView-->
+
+                <!--                        android:id="@+id/textView4"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginStart="4dp"-->
+                <!--                        android:layout_marginTop="16dp"-->
+                <!--                        android:fontFamily="@font/m_light"-->
+                <!--                        android:text="To do List"-->
+                <!--                        android:textColor="@color/black"-->
+                <!--                        android:textSize="@dimen/_14sdp"-->
+                <!--                        android:textStyle="bold"-->
+                <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                <!--                        app:layout_constraintTop_toTopOf="parent"-->
+                <!--                        app:layout_goneMarginTop="@dimen/_10sdp" />-->
+
+                <!--                    <androidx.recyclerview.widget.RecyclerView-->
+
+                <!--                        android:id="@+id/recyclerTodoAttendence"-->
+                <!--                        android:layout_width="match_parent"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:padding="@dimen/_1sdp"-->
+                <!--                        app:layout_constraintTop_toBottomOf="@+id/textView4"-->
+                <!--                        tools:itemCount="3"-->
+                <!--                        tools:listitem="@layout/att_to_do_list" />-->
+
+
+                <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:id="@+id/timeStatusLayout"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_margin="@dimen/_10sdp"-->
+    <!--            android:background="@drawable/white_10r_bg"-->
+    <!--            android:elevation="@dimen/_10sdp"-->
+    <!--            android:padding="@dimen/_5sdp"-->
+    <!--            android:visibility="gone"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--                android:id="@+id/checkInLayout"-->
+    <!--                android:layout_width="match_parent"-->
+    <!--                android:layout_height="@dimen/_40sdp"-->
+    <!--                android:layout_marginStart="@dimen/_10sdp"-->
+    <!--                android:layout_marginEnd="@dimen/_10sdp"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/checkInLb"-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:fontFamily="@font/font_heavy"-->
+    <!--                    android:paddingStart="@dimen/_15sdp"-->
+    <!--                    android:text="CheckIn Time"-->
+    <!--                    android:textColor="@color/_172B4D"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintStart_toStartOf="@+id/checkInLayout"-->
+    <!--                    app:layout_constraintTop_toTopOf="parent"-->
+    <!--                    tools:ignore="RtlSymmetry" />-->
+
+    <!--                <TextView-->
+    <!--                    android:id="@+id/checkInTime"-->
+    <!--                    android:layout_width="0dp"-->
+    <!--                    android:layout_height="wrap_content"-->
+    <!--                    android:fontFamily="@font/font_heavy"-->
+    <!--                    android:gravity="center_horizontal"-->
+    <!--                    android:paddingStart="@dimen/_10sdp"-->
+    <!--                    android:hint="00:00"-->
+    <!--                    android:textColor="@color/light_black"-->
+    <!--                    android:textSize="@dimen/_14sdp"-->
+    <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                    app:layout_constraintStart_toEndOf="@+id/checkInLb"-->
+    <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
 </layout>

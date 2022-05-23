@@ -46,41 +46,41 @@ public class ForgotPasswordFragment extends BaseFragment {
                 Navigation.findNavController(v).navigate(R.id.logInFragment);
             }
         });
-        binding.passwordTxtBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.logInFragment);
-            }
-        });
-        binding.sendBtn.setOnClickListener(new View.OnClickListener() {
+//        binding.passwordTxtBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Navigation.findNavController(v).navigate(R.id.logInFragment);
+//            }
+//        });
+        binding.sendMailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkValidation()) {
 //                    Navigation.findNavController(v).navigate(R.id.newPasswordFragment);
-                    sendMailApi(binding.emailTxt.getText().toString());
+                    sendMailApi(binding.emailEdt.getText().toString());
                 }
             }
         });
-        binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
+        binding.emailEdt.addTextChangedListener(new TextChange(binding.emailEdt));
         return binding.getRoot();
     }
 
     private boolean isAllFieldFillUp() {
-        if (StringHelper.isEmpty(binding.emailTxt.getText().toString())) {
+        if (StringHelper.isEmpty(binding.emailEdt.getText().toString())) {
             return false;
         }
-        if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+        if (!ValidationUtils.validateEmail(binding.emailEdt.getText().toString())) {
             return false;
         }
         return true;
     }
 
     public boolean checkValidation() {
-        if (TextUtils.isEmpty(binding.emailTxt.getText().toString())) {
+        if (TextUtils.isEmpty(binding.emailEdt.getText().toString())) {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_email));
             return false;
         }
-        if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+        if (!ValidationUtils.validateEmail(binding.emailEdt.getText().toString())) {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_valid_email));
             return false;
         }
@@ -88,20 +88,20 @@ public class ForgotPasswordFragment extends BaseFragment {
     }
 
     private void isFieldFillUp() {
-        if (StringHelper.isEmpty(binding.emailTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.emailTxt, R.color._A8A8A8);
+        if (StringHelper.isEmpty(binding.emailEdt.getText().toString())) {
+            setTextViewDrawableColor(binding.emailEdt, R.color._A8A8A8);
         } else {
-            setTextViewDrawableColor(binding.emailTxt, R.color._172B4D);
+            setTextViewDrawableColor(binding.emailEdt, R.color._172B4D);
         }
     }
 
     private void setValidations() {
         if (isAllFieldFillUp()) {
-            binding.sendBtn.setBackgroundResource(R.drawable.green_10r_bg);
-            binding.sendBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+            binding.sendMailBtn.setBackgroundResource(R.drawable.green_10r_bg);
+            binding.sendMailBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
-            binding.sendBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.sendBtn.setTextColor(ContextCompat.getColor(mContext, R.color.light_black));
+            binding.sendMailBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
+            binding.sendMailBtn.setTextColor(ContextCompat.getColor(mContext, R.color.light_black));
         }
         isFieldFillUp();
     }
@@ -125,7 +125,7 @@ public class ForgotPasswordFragment extends BaseFragment {
                 if ((apiResponse.isSuccess())) {
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     Bundle bundle = new Bundle();
-                    bundle.putString(EMAIL, binding.emailTxt.getText().toString());
+                    bundle.putString(EMAIL, binding.emailEdt.getText().toString());
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.newPasswordFragment, bundle);
                 } else {
                     binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.bRed));
@@ -150,7 +150,7 @@ public class ForgotPasswordFragment extends BaseFragment {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-            if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+            if (ValidationUtils.validateEmail(binding.emailEdt.getText().toString())) {
                 binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
             } else {
                 binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));

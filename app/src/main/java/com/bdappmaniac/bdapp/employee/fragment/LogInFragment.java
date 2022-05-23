@@ -47,7 +47,7 @@ public class LogInFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_log_in, container, false);
-        StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.blue_secondry);
         binding.backBtn.setOnClickListener(view -> {
             requireActivity().finish();
         });
@@ -57,22 +57,38 @@ public class LogInFragment extends BaseFragment {
                 showHidePass(view);
             }
         });
-        binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
-        binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
-        binding.signInBtn.setOnClickListener(new View.OnClickListener() {
+        binding.emailEdt.addTextChangedListener(new TextChange(binding.emailEdt));
+        binding.passwordEdt.addTextChangedListener(new TextChange(binding.passwordEdt));
+        binding.LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = binding.emailTxt.getText().toString();
-                String password = binding.passwordTxt.getText().toString();
+                String email = binding.emailEdt.getText().toString();
+                String password = binding.passwordEdt.getText().toString();
                 if (checkValidation()) {
                     loginApi(email, password);
                 }
             }
         });
-        binding.forgetPasswordBtn.setOnClickListener(new View.OnClickListener() {
+
+        binding.frogetpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.forgotPasswordFragment);
+            }
+        });
+
+        binding.btnAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.btnAdmin.setBackgroundResource(R.drawable.emp_btn_select);
+                binding.btnEmp.setBackgroundResource(R.drawable.emp_btn_unselect);
+            }
+        });
+        binding.btnEmp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.btnEmp.setBackgroundResource(R.drawable.emp_btn_select);
+                binding.btnAdmin.setBackgroundResource(R.drawable.emp_btn_unselect);
             }
         });
         return binding.getRoot();
@@ -114,24 +130,24 @@ public class LogInFragment extends BaseFragment {
     }
 
     private boolean isAllFieldFillUp() {
-        if (StringHelper.isEmpty(binding.emailTxt.getText().toString())) {
+        if (StringHelper.isEmpty(binding.emailEdt.getText().toString())) {
             return false;
         }
-        if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+        if (!ValidationUtils.validateEmail(binding.emailEdt.getText().toString())) {
             return false;
         }
-        if (StringHelper.isEmpty(binding.passwordTxt.getText().toString())) {
+        if (StringHelper.isEmpty(binding.passwordEdt.getText().toString())) {
             return false;
         }
         return true;
     }
 
     public boolean checkValidation() {
-        if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+        if (!ValidationUtils.validateEmail(binding.emailEdt.getText().toString())) {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_valid_email));
             return false;
         }
-        if (TextUtils.isEmpty(binding.passwordTxt.getText().toString())) {
+        if (TextUtils.isEmpty(binding.passwordEdt.getText().toString())) {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_password));
             return false;
         }
@@ -139,26 +155,26 @@ public class LogInFragment extends BaseFragment {
     }
 
     private void isFieldFillUp() {
-        if (StringHelper.isEmpty(binding.emailTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.emailTxt, R.color._A8A8A8);
+        if (StringHelper.isEmpty(binding.emailEdt.getText().toString())) {
+            setTextViewDrawableColor(binding.emailEdt, R.color._A8A8A8);
         } else {
-            setTextViewDrawableColor(binding.emailTxt, R.color._172B4D);
+            setTextViewDrawableColor(binding.emailEdt, R.color.green);
         }
-        if (StringHelper.isEmpty(binding.passwordTxt.getText().toString())) {
-            setTextViewDrawableColor(binding.passwordTxt, R.color._A8A8A8);
+        if (StringHelper.isEmpty(binding.passwordEdt.getText().toString())) {
+            setTextViewDrawableColor(binding.passwordEdt, R.color._A8A8A8);
         } else {
-            setTextViewDrawableColor(binding.passwordTxt, R.color._172B4D);
+            setTextViewDrawableColor(binding.passwordEdt, R.color.green);
         }
         setValidations();
     }
 
     private void setValidations() {
         if (isAllFieldFillUp()) {
-            binding.signInBtn.setBackgroundResource(R.drawable.green_10r_bg);
-            binding.signInBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+            binding.LoginBtn.setBackgroundResource(R.drawable.button_bg_gradient);
+            binding.LoginBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
-            binding.signInBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.signInBtn.setTextColor(ContextCompat.getColor(mContext, R.color.light_black));
+            binding.LoginBtn.setBackgroundResource(R.drawable.button_bg_gradient);
+            binding.LoginBtn.setTextColor(ContextCompat.getColor(mContext, R.color.light_black));
         }
     }
 
@@ -171,18 +187,16 @@ public class LogInFragment extends BaseFragment {
     }
 
     public void showHidePass(View view) {
-        if (binding.passwordTxt.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+        if (binding.passwordEdt.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
             ((ImageView) (view)).setImageResource(R.drawable.icn_show_password);
-            ((ImageView) (view)).setColorFilter(ContextCompat.getColor(requireContext(), R.color._192d4d));
-            binding.passwordTxt.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            binding.passwordTxt.setSelection(binding.passwordTxt.getText().length());
+            ((ImageView) (view)).setColorFilter(ContextCompat.getColor(requireContext(), R.color._172B4D));
+            binding.passwordEdt.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         } else {
             ((ImageView) (view)).setImageResource(R.drawable.icn_hide_password);
             ((ImageView) (view)).setColorFilter(ContextCompat.getColor(requireContext(), R.color._A8A8A8));
-            binding.passwordTxt.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            binding.passwordTxt.setSelection(binding.passwordTxt.getText().length());
+            binding.passwordEdt.setTransformationMethod(PasswordTransformationMethod.getInstance());
         }
-
+        binding.passwordEdt.setSelection(binding.passwordEdt.getText().length());
     }
 
     public class TextChange implements TextWatcher {
@@ -198,8 +212,8 @@ public class LogInFragment extends BaseFragment {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-            if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
-                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
+            if (ValidationUtils.validateEmail(binding.emailEdt.getText().toString())) {
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.orange));
             } else {
                 binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
             }

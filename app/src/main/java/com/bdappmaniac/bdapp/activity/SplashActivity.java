@@ -3,7 +3,10 @@ package com.bdappmaniac.bdapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.Animation.AnimationListener;
+import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -21,17 +24,34 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
-        StatusBarUtils.statusBarColor(this, R.color._FF99D131);
+        StatusBarUtils.statusBarColor(this, R.color.transparent);
         setTheme(R.style.Theme_BdApp_Launcher);
         SharedPref.init(this);
 
-        new Handler().postDelayed(new Runnable() {
+   top_animation  = AnimationUtils.loadAnimation(this,R.anim.fade_in);
+
+        top_animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
-            public void run() {
+            public void onAnimationStart(Animation animation) {
+                binding.getStarted.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
 
             }
-        }, 1800);
-        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        binding.getStarted.startAnimation(top_animation);
+
+
+
+                new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (SharedPref.getUserDetails() == null) {
