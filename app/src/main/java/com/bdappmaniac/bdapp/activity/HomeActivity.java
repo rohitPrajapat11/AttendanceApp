@@ -145,8 +145,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         binding.navigationDrawer.holidayBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.rulesBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.profileBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.historyeBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.taskBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.MyattendanceBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.historyBtn.setOnClickListener(this::onClick);
+
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -157,13 +159,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 } else if (destination.getId() == R.id.taskFragment) {
                     navHandel("Task");
                     headerHideShow(true);
-                    bottomHideShow(true);
-                } else if (destination.getId() == R.id.empHistoryFragment) {
-                    navHandel("History");
-                    headerHideShow(true);
-
-
-                    headerHideShow(false);
                     bottomHideShow(true);
                 } else if (destination.getId() == R.id.loanFragment) {
                     navHandel("Loan");
@@ -190,7 +185,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     navHandel("Loan");
                     headerHideShow(false);
                     bottomHideShow(false);
-
+                }else if (destination.getId() == R.id.EmpmyAttendence) {
+                    navHandel("My Attendance");
+                    headerHideShow(true);
+                    bottomHideShow(false);
+                }else if (destination.getId() == R.id.empHistoryFragment) {
+                    navHandel("My History");
+                    headerHideShow(true);
+                    bottomHideShow(false);
                 }
             }
         });
@@ -200,9 +202,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     void navHandel(String type) {
         switch (type) {
             case "Home":
-                binding.homeLayout.headerLayout.title.setText("welcome");
+                binding.homeLayout.headerLayout.title.setText("Dashboard");
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
-                binding.homeLayout.headerLayout.title.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.title.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home_select);
                 binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);
                 binding.homeLayout.bottomLayout.historyBtn.setImageResource(R.drawable.icn_history);
@@ -210,7 +212,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
-              binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Task":
                 binding.homeLayout.headerLayout.title.setText("Task");
@@ -249,6 +251,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
                 break;
+                case "My Attendance":
+                binding.homeLayout.headerLayout.title.setText("My Attendance");
+                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
+                binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);
+                binding.homeLayout.bottomLayout.historyBtn.setImageResource(R.drawable.icn_history);
+                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile_select);
+                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
+                break;
         }
     }
 
@@ -272,10 +285,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.loanBtn:
-               if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.empLoanfragment){
-                   navController.navigate(R.id.empLoanfragment);
-               }
-               binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.empLoanfragment) {
+                    navController.navigate(R.id.empLoanfragment);
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.tmcBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.homeTermsAndConditionsFragment) {
@@ -296,24 +309,40 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             case R.id.holidayBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeHolidayFragment) {
                     navController.navigate(R.id.employeeHolidayFragment);
-                    binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+
                 }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.rulesBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeAttendanceRulesFragment) {
                     navController.navigate(R.id.employeeAttendanceRulesFragment);
-                } break;
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
             case R.id.profileBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.profileFragment) {
                     navController.navigate(R.id.profileFragment);
-                } break;
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
             case R.id.taskBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.taskFragment) {
                     navController.navigate(R.id.taskFragment);
-                } case R.id.historyBtn:
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.MyattendanceBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.EmpmyAttendence) {
+                    navController.navigate(R.id.EmpmyAttendence);
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.historyBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.empHistoryFragment) {
                     navController.navigate(R.id.empHistoryFragment);
                 }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
         }
     }
 

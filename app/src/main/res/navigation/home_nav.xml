@@ -52,4 +52,9 @@
         android:label="EmployeeloanFragment"
         tools:layout="@layout/fragment_employee_loan_details"/>
 
+    <fragment
+        android:id="@+id/EmpmyAttendence"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.MyAttendance"
+        android:label="EmpMyAttendance"
+        tools:layout="@layout/fragment_my_attendance"/>
 </navigation>

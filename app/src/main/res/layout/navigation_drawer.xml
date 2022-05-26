@@ -195,14 +195,52 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/rulesBtn"
+                    android:id="@+id/MyattendanceBtn"
+                    android:layout_marginTop="@dimen/_7sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
-                    android:layout_marginTop="@dimen/_7sdp"
-                     android:background="@drawable/bg_nav_items"
+                    android:background="@drawable/bg_nav_items"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/holidayBtn">
+
+                    <ImageView
+                        android:id="@+id/MyattendanceImg"
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:contentDescription="@string/logOutImg"
+                        android:src="@drawable/icn_rules"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/blue_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/arial_rounded_mt_regular"
+                        android:text=" My Attendance"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/MyattendanceImg"
+                        app:layout_constraintStart_toEndOf="@+id/MyattendanceImg"
+                        app:layout_constraintTop_toTopOf="@+id/MyattendanceImg" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/rulesBtn"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@drawable/bg_nav_items"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/MyattendanceBtn">
 
                     <ImageView
                         android:id="@+id/rulesImg"
@@ -214,22 +252,21 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                       app:tint="@color/blue_primary" />
+                        app:tint="@color/blue_primary" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_2sdp"
-                       android:textStyle="bold"
                         android:fontFamily="@font/arial_rounded_mt_regular"
                         android:text="Attendance Rules"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/rulesImg"
                         app:layout_constraintStart_toEndOf="@+id/rulesImg"
-                        app:layout_constraintTop_toTopOf="@+id/rulesImg"
-                         />
+                        app:layout_constraintTop_toTopOf="@+id/rulesImg" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -361,7 +398,7 @@
                      android:background="@drawable/bg_nav_items"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/historyeBtn" >
+                    app:layout_constraintTop_toBottomOf="@+id/historyBtn" >
 
                     <ImageView
                         android:id="@+id/profileImg"
@@ -387,11 +424,11 @@
                         app:layout_constraintBottom_toBottomOf="@+id/profileImg"
                         app:layout_constraintStart_toEndOf="@+id/profileImg"
                         app:layout_constraintTop_toTopOf="@+id/profileImg"
-                        app:layout_constraintVertical_bias="0.6" />
+                       />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/historyeBtn"
+                    android:id="@+id/historyBtn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_marginTop="@dimen/_7sdp"
@@ -399,7 +436,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tmcBtn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="371dp">
+                    >
 
                     <ImageView
                         android:id="@+id/historyImg"
@@ -425,7 +462,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/historyImg"
                         app:layout_constraintStart_toEndOf="@+id/historyImg"
                         app:layout_constraintTop_toTopOf="@+id/historyImg"
-                        app:layout_constraintVertical_bias="0.6" />
+                       />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

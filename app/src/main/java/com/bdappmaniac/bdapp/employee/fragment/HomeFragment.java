@@ -1,9 +1,7 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
-import static com.bdappmaniac.bdapp.activity.BaseActivity.CURRENT_TIME;
 import static com.bdappmaniac.bdapp.activity.BaseActivity.USER_WORK;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,27 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.adapter.AdminHomeAdapter;
 import com.bdappmaniac.bdapp.adapter.CalendarAdapter;
 import com.bdappmaniac.bdapp.adapter.EmpHolidayAdapter;
-import com.bdappmaniac.bdapp.adapter.EmpHomeTodoListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentHomeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.ProgressBarAnimation;
 import com.bdappmaniac.bdapp.interfaces.TimeLayoutCallBack;
 import com.bdappmaniac.bdapp.model.CalendarDateModel;
 import com.bdappmaniac.bdapp.model.ModelHolidayItems;
-import com.bdappmaniac.bdapp.model.ModelHomeTodoList;
 import com.bdappmaniac.bdapp.utils.Constant;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
-import com.z4.segmento.SegmentedProgressBar;
-import com.z4.segmento.listeners.OnProgressChangedListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -47,8 +39,7 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
     EmpHolidayAdapter holidayadapter;
 
 
-    ArrayList<ModelHomeTodoList> dList = new ArrayList<>();
-    EmpHomeTodoListAdapter empHomeTodoListAdapter;
+
 
     CalendarAdapter adapter;
     Calendar cal = Calendar.getInstance(Locale.ENGLISH);
@@ -64,8 +55,8 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         StatusBarUtils.statusBarColor(getActivity(), R.color.primary_color);
 
-          ProgressBarAnimation mProgressAnimation = new ProgressBarAnimation(binding.progressTime, 2800);
-          mProgressAnimation.setProgress(85);
+          ProgressBarAnimation mProgressAnimation = new ProgressBarAnimation(binding.progressTime, 3500);
+          mProgressAnimation.setProgress(99);
 
 
         Constant.timeLayoutCallBack = this;
@@ -78,14 +69,33 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
             @Override
             public void onClick(View view) {
                 if (binding.checkintxt.getText().equals("CHECK IN")){
-                    binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_out);
+                    binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_in);
                     binding.checkintxt.setText("CHECK OUT");
                 }else if (binding.checkintxt.getText().equals("CHECK OUT")){
-                binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_in);
+                binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_out);
                 binding.checkintxt.setText("CHECK IN");
             }
             }
         });
+        binding.checkInOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.EmpmyAttendence);
+            }
+        }); binding.loans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.empLoanfragment);
+            }
+        }); binding.holidays.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.employeeHolidayFragment);
+            }
+        });
+
+
+
 //        }else if(SharedPref.read(USER_WORK, false)) {
 //            binding.timeStatusLayout.setVisibility(View.GONE);
 //        }
@@ -153,25 +163,7 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
 //        binding.saveBtn.addTextChangedListener(new TextChange(binding.saveBtn));
 //        setUpCalendar();
 
-        ArrayList<ModelHomeTodoList> dList = new ArrayList<>();
 
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-        dList.add(new ModelHomeTodoList("Project metting at 10:00  "," join meeting on zoom we will be discussing the on going project progress an testing.. "));
-
-        empHomeTodoListAdapter = new EmpHomeTodoListAdapter(dList, getContext());
-//        binding.recyclerTodohome.setLayoutManager(new LinearLayoutManager(mContext));
-//        binding.recyclerTodohome.setAdapter(empHomeTodoListAdapter);
 
 
 

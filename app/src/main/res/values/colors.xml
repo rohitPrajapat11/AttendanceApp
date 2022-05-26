@@ -6,7 +6,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="trans_black">#22000000</color>
+    <color name="trans_black">#BE000000</color>
     <color name="_172B4D">#172B4D</color>
     <color name="_C1C7D0">#C1C7D0</color>
     <color name="tc">#B0D7D7D7</color>
@@ -27,6 +27,7 @@
     <color name="grey">#BAB9B9</color>
     <color name="grey2">#E8FFFDFD</color>
     <color name="grey1">#7A818181</color>
+    <color name="grey4">#F2F3F3F3</color>
     <color name="_ADADAD">#ADADAD</color>
     <color name="_002460">#002460</color>
     <color name="_00A078">#00A078</color>

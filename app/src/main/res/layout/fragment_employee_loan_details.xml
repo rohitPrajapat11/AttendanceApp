@@ -12,7 +12,7 @@
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary_color"
+            android:background="@color/white"
             android:elevation="@dimen/_1sdp"
             android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
@@ -32,19 +32,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.555"
-                app:tint="@color/white" />
+                app:tint="@color/black" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/green"
-                android:fontFamily="@font/arial_rounded_mt_regular"
+                android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
                 android:text="Loans"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_19sdp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,28 +69,20 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
             android:background="@drawable/white_5r_bg"
-            android:backgroundTint="@color/grey"
-            android:elevation="@dimen/_3sdp"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_9sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/headerLayout">
 
-            <View
-                android:id="@+id/view"
-                android:layout_width="5dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:background="@color/green"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+
 
             <View
                 android:id="@+id/view4"
                 android:layout_width="5dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="@dimen/_21sdp"
-                android:background="@color/teal_200"
+                android:layout_marginStart="@dimen/_11sdp"
+                android:background="@color/blue_primary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -100,11 +91,11 @@
                 android:id="@+id/mainLoanTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_38sdp"
+                android:layout_marginStart="@dimen/_28sdp"
                 android:layout_marginTop="@dimen/_7sdp"
-                android:fontFamily="@font/font_book"
+                android:fontFamily="@font/m_light"
                 android:text="Studies Loan"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_17sdp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -121,19 +112,18 @@
                 android:elevation="5dp"
                 android:indeterminate="false"
                 android:max="100"
-
+                android:progress="50"
                 android:progressDrawable="@drawable/circular_progress_bar"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_book"
                 android:gravity="center"
                 android:text="Loan Graph"
-                android:textColor="@color/white"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/progressMain"
@@ -153,7 +143,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="87"
-                    android:textColor="@color/white"
+                    android:fontFamily="@font/m_light"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_17sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -165,7 +156,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_1sdp"
                     android:text="%"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_17sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/progressTitle"
                     app:layout_constraintStart_toEndOf="@+id/progressTitle"
@@ -178,7 +169,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_35sdp"
                 android:text="Paid"
-                android:textColor="@color/white"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_11sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/progressMain"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -191,13 +183,14 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
-                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_13sdp"
                 android:background="@drawable/circular_shape_time_p"
                 android:elevation="5dp"
                 android:indeterminate="false"
                 android:max="100"
-                android:progressDrawable="@drawable/circular_progress_bar_timke_p"
+                android:progress="60"
+                android:progressDrawable="@drawable/circular_progress_bar_timke_program"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mainLoanTitle" />
 
@@ -206,13 +199,13 @@
                 android:id="@+id/titleprg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_80sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/m_semibold"
                 android:text=" Loan Program"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/progressTimeProgram"
                 app:layout_constraintTop_toTopOf="@+id/progressTimeProgram" />
 
 
@@ -223,7 +216,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:text="Total :"
-                android:textColor="@color/white"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_8sdp"
                 app:layout_constraintStart_toStartOf="@+id/titleprg"
                 app:layout_constraintTop_toBottomOf="@+id/titleprg" />
@@ -236,14 +230,15 @@
                 app:layout_constraintBottom_toBottomOf="@+id/totelmonths"
                 app:layout_constraintEnd_toStartOf="@+id/totelmonths"
                 app:layout_constraintTop_toTopOf="@+id/totelmonths"
-                app:tint="@color/teal_700" />
+                app:tint="@color/grey" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_3sdp"
-                android:text="36 mt"
-                android:textColor="@color/teal_200"
+                android:text="36m"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/grey"
                 android:textSize="@dimen/_8sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/totelmonths"
                 app:layout_constraintStart_toEndOf="@+id/totelmonths"
@@ -255,8 +250,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" Remain :"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_8sdp"
+                android:fontFamily="@font/m_light"
                 app:layout_constraintStart_toStartOf="@+id/totelmonths"
                 app:layout_constraintTop_toBottomOf="@+id/totelmonths" />
 
@@ -268,15 +264,16 @@
                 app:layout_constraintBottom_toBottomOf="@+id/titleRemainingmonths"
                 app:layout_constraintEnd_toStartOf="@+id/titleRemainingmonths"
                 app:layout_constraintTop_toTopOf="@+id/titleRemainingmonths"
-                app:tint="@color/green" />
+                app:tint="@color/blue_primary" />
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_3sdp"
-                android:text="7 mt"
-                android:textColor="@color/teal_200"
+                android:text="7m"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/grey"
                 android:textSize="@dimen/_8sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/titleRemainingmonths"
                 app:layout_constraintStart_toEndOf="@+id/titleRemainingmonths"
@@ -297,8 +294,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="60"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/m_light"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -309,7 +307,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_1sdp"
                     android:text="%"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_10sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/progressTitlet"
@@ -324,9 +322,9 @@
                 android:layout_marginEnd="@dimen/_18sdp"
                 android:layout_marginBottom="4dp"
                 android:text="Loan Details :-"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
-                android:textStyle="bold"
+                android:fontFamily="@font/m_bold"
                 app:layout_constraintBottom_toTopOf="@+id/titleAmount"
                 app:layout_constraintEnd_toEndOf="@+id/titleAmount"
                 app:layout_constraintTop_toBottomOf="@+id/instalmentPm" />
@@ -340,16 +338,17 @@
                 app:layout_constraintBottom_toBottomOf="@+id/titleAmount"
                 app:layout_constraintEnd_toStartOf="@+id/titleAmount"
                 app:layout_constraintTop_toTopOf="@+id/titleAmount"
-                app:tint="@color/green" />
+                app:tint="@color/blue_primary" />
 
             <TextView
                 android:id="@+id/titleAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_55sdp"
+                android:layout_marginStart="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="Loan Amount"
-                android:textColor="@color/white"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progressMain" />
@@ -359,10 +358,12 @@
                 android:id="@+id/loanAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_138sdp"
+                android:layout_marginStart="@dimen/_128sdp"
                 android:text="1,00,000"
-                android:textColor="@color/white"
-                android:textStyle="bold|italic"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/_9sdp"
+                android:fontFamily="@font/m_light"
                 app:layout_constraintBottom_toBottomOf="@+id/titleAmount"
                 app:layout_constraintStart_toEndOf="@+id/titleAmount"
                 app:layout_constraintTop_toTopOf="@+id/titleAmount" />
@@ -373,7 +374,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_1sdp"
                 android:text="/-"
-                android:textColor="@color/green1"
+                android:textColor="@color/blue_primary"
                 app:layout_constraintBottom_toBottomOf="@+id/loanAmount"
                 app:layout_constraintStart_toEndOf="@+id/loanAmount"
                 app:layout_constraintTop_toTopOf="@+id/loanAmount" />
@@ -386,17 +387,18 @@
                 app:layout_constraintBottom_toBottomOf="@+id/titlePaid"
                 app:layout_constraintEnd_toStartOf="@+id/titlePaid"
                 app:layout_constraintTop_toTopOf="@+id/titlePaid"
-                app:tint="@color/green" />
+                app:tint="@color/blue_primary" />
 
 
             <TextView
                 android:id="@+id/titlePaid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_3sdp"
+
+                android:fontFamily="@font/m_light"
                 android:text="Paid Amount"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_9sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_8sdp"
                 app:layout_constraintStart_toStartOf="@+id/titleAmount"
                 app:layout_constraintTop_toBottomOf="@+id/titleAmount" />
 
@@ -406,9 +408,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_3sdp"
+                android:textSize="@dimen/_9sdp"
                 android:text="70,000"
-                android:textColor="@color/white"
-                android:textStyle="bold|italic"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/m_light"
+                
                 app:layout_constraintEnd_toStartOf="@+id/textView6"
                 app:layout_constraintStart_toStartOf="@+id/loanAmount"
                 app:layout_constraintTop_toBottomOf="@+id/loanAmount" />
@@ -419,7 +424,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_1sdp"
                 android:text="/-"
-                android:textColor="@color/green1"
+                android:textColor="@color/blue_primary"
                 app:layout_constraintBottom_toBottomOf="@+id/paidAmount"
                 app:layout_constraintStart_toEndOf="@+id/paidAmount"
                 app:layout_constraintTop_toTopOf="@+id/paidAmount" />
@@ -433,7 +438,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/titleRemaining"
                 app:layout_constraintEnd_toStartOf="@+id/titleRemaining"
                 app:layout_constraintTop_toTopOf="@+id/titleRemaining"
-                app:tint="@color/green" />
+                app:tint="@color/blue_primary" />
 
 
             <TextView
@@ -442,8 +447,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_12sdp"
                 android:text="Remaining Amount"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
+                android:fontFamily="@font/m_light"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/titlePaid"
                 app:layout_constraintTop_toBottomOf="@+id/titlePaid" />
@@ -455,8 +461,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_7sdp"
                 android:text="30,000"
-                android:textColor="@color/white"
-                android:textStyle="bold|italic"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold"
+                android:fontFamily="@font/m_light"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/paidAmount"
                 app:layout_constraintStart_toStartOf="@+id/paidAmount"
@@ -467,7 +475,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_1sdp"
                 android:text="/-"
-                android:textColor="@color/green1"
+                android:textColor="@color/blue_primary"
                 app:layout_constraintBottom_toBottomOf="@+id/amountRemaining"
                 app:layout_constraintStart_toEndOf="@+id/amountRemaining"
                 app:layout_constraintTop_toTopOf="@+id/amountRemaining" />
@@ -476,8 +484,9 @@
                 android:id="@+id/Status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
+                android:layout_margin="@dimen/_6sdp"
                 android:text="Active"
+                android:fontFamily="@font/m_light"
                 android:textColor="@color/green"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold"
@@ -501,7 +510,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Instalment"
-                android:textColor="@color/teal_200"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/grey"
                 android:textSize="@dimen/_9sdp"
                 android:textStyle="italic"
                 app:layout_constraintBottom_toTopOf="@+id/instalmentPm"
@@ -512,11 +522,12 @@
                 android:id="@+id/instalmentPm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_55sdp"
+                android:layout_marginStart="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_118sdp"
                 android:padding="@dimen/_2sdp"
                 android:text="1,476"
-                android:textColor="@color/white"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_22sdp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -530,8 +541,9 @@
                 android:layout_marginStart="@dimen/_1sdp"
                 android:layout_marginBottom="@dimen/_3sdp"
                 android:text="Pm"
-                android:textColor="@color/green1"
-                android:textSize="@dimen/_16sdp"
+                android:fontFamily="@font/m_semibold"
+                android:textColor="@color/blue_primary"
+                android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/instalmentPm"
                 app:layout_constraintStart_toEndOf="@+id/instalmentPm" />
 
@@ -544,7 +556,7 @@
             android:layout_height="@dimen/_180sdp"
             android:layout_margin="@dimen/_6sdp"
             android:background="@drawable/bottom_10r_v2_white_bg"
-            android:backgroundTint="@color/grey"
+            android:backgroundTint="@color/white"
             android:elevation="@dimen/_10sdp"
             android:shadowColor="@color/primary_color"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout11"

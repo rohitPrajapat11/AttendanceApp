@@ -157,7 +157,6 @@ public class ForgotPasswordFragment extends BaseFragment {
             }
             setValidations();
         }
-
         @Override
         public void afterTextChanged(Editable s) {
 

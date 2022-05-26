@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:drawableTint="@color/_172B4D"
             android:fontFamily="@font/m_light"
+            android:textStyle="bold"
             android:gravity="center_vertical"
             android:text="Home"
             android:textColor="@color/_172B4D"
