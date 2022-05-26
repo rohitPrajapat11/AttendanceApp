@@ -6,7 +6,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="trans_black">#22000000</color>
+    <color name="trans_black">#BE000000</color>
     <color name="_172B4D">#172B4D</color>
     <color name="_C1C7D0">#C1C7D0</color>
     <color name="tc">#B0D7D7D7</color>
@@ -19,13 +19,16 @@
     <color name="prime">#265872</color>
     <color name="green">#4FF456</color>
     <color name="green1">#4CAF50</color>
-    <color name="light_black">#FFFFFFFF</color>
+    <color name="light_black">#737373</color>
     <color name="primary_color">#161B3D</color>
     <color name="light_primary_color">#71DDA4</color>
     <color name="_192d4d">#192d4d</color>
     <color name="secondary_color">#f04653</color>
     <color name="bRed">#FF0000</color>
-    <color name="grey">#929292</color>
+    <color name="grey">#BAB9B9</color>
+    <color name="grey2">#E8FFFDFD</color>
+    <color name="grey1">#7A818181</color>
+    <color name="grey4">#F2F3F3F3</color>
     <color name="_ADADAD">#ADADAD</color>
     <color name="_002460">#002460</color>
     <color name="_00A078">#00A078</color>
@@ -41,4 +44,8 @@
     <color name="f1f3f5">#f1f3f5</color>
     <color name="_161B3D">#161B3D</color>
     <color name="blue">#147DD1</color>
+    <color name="_4cd137">#4cd137</color>
+    <color name="blue_primary">#406484</color>
+    <color name="blue_secondry">#EEEFFFFF</color>
+    <color name="rrrr">#DF363636</color>
 </resources>

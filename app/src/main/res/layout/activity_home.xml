@@ -16,12 +16,12 @@
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <include
                 android:id="@+id/homeLayout"
-                layout="@layout/home_layout">
-            </include>
+                layout="@layout/home_layout"/>
 
             <com.google.android.material.navigation.NavigationView
                 android:id="@+id/drawerNav"
@@ -31,10 +31,8 @@
                 android:background="@drawable/navigation_bg">
 
                 <include
-
                     android:id="@+id/navigationDrawer"
-                    layout="@layout/navigation_drawer">
-                </include>
+                    layout="@layout/navigation_drawer" />
             </com.google.android.material.navigation.NavigationView>
         </androidx.drawerlayout.widget.DrawerLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

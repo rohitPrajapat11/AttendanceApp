@@ -80,7 +80,6 @@ public class EmployeeDetailsFragment extends BaseFragment {
             AppLoader.hideLoaderDialog();
         });
     }
-
     public void setUserData(EmployeeByIdResponse employeeByIdResponse) {
         binding.nameTxt.setText(employeeByIdResponse.getEmployeeName());
         Glide.with(mContext)

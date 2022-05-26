@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary_color">
+        android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerLayout"
@@ -38,11 +38,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/green"
-                android:fontFamily="@font/font_heavy"
+                android:fontFamily="@font/arial_rounded_mt_regular"
+                android:textStyle="bold"
                 android:gravity="center_vertical"
                 android:text="Holidays"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_19sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,69 +63,93 @@
                 app:tint="@color/green" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/coordinatorLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary_color"
             app:layout_constraintEnd_toEndOf="parent"
-            android:animationCache="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/headerLayout">
 
-            <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
-                android:id="@+id/calenderview"
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/coordinatorLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:buttonLeft_drawableTintColor="@color/white"
-                app:buttonRight_drawableTintColor="@color/white"
-                app:expandIconColor="@color/teal_200"
-                app:firstDayOfWeek="monday"
+                android:background="@color/primary_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:primaryColor="@color/primary_color"
-                app:selectedItem_background="@drawable/circle_solid"
-                app:selectedItem_textColor="@color/primary_color"
-                app:showWeek="true"
-                app:textColor="@android:color/white"
-                app:todayItem_background="@drawable/circle_stroke"
-                app:todayItem_textColor="@android:color/white" />
+                app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/primary_color"
+                    app:elevation="6dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/auth_white_bg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/coordinatorLayout">
+                    <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
+                        android:id="@+id/calenderview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:buttonLeft_drawableTintColor="@color/white"
+                        app:buttonRight_drawableTintColor="@color/white"
+                        app:expandIconColor="@color/teal_200"
+                        app:firstDayOfWeek="monday"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        app:primaryColor="@color/primary_color"
+                        app:selectedItem_background="@drawable/circle_solid"
+                        app:selectedItem_textColor="@color/primary_color"
+                        app:showWeek="true"
+                        app:textColor="@android:color/white"
+                        app:todayItem_background="@drawable/circle_stroke"
+                        app:todayItem_textColor="@android:color/white" />
 
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_11sdp"
-                android:fontFamily="@font/font_heavy"
-                android:paddingStart="@dimen/_5sdp"
-                android:text="Dates And Occasion "
-                android:textColor="@color/primary_color"
-                android:textSize="@dimen/_15sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/auth_white_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/coordinatorLayout">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerHolidays"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_margin="@dimen/_2sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
-                tools:listitem="@layout/design_holiday_items" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_11sdp"
+                            android:fontFamily="@font/arial_rounded_mt_regular"
+                            android:textStyle="bold"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:text="Dates And Occasion "
+                            android:textColor="@color/primary_color"
+                            android:textSize="@dimen/_15sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerHolidays"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_margin="@dimen/_2sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView3"
+                            tools:listitem="@layout/design_holiday_items" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.appbar.AppBarLayout>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

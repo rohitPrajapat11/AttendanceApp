@@ -7,132 +7,597 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/_1sdp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/icn_back_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.555"
+                app:tint="@color/black" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/green"
+                android:fontFamily="@font/m_medium"
+                android:gravity="center_vertical"
+                android:text="Loans"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_19sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/secondary_color" />
+
+            <ImageView
+                android:id="@+id/addBtn"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_baseline_add_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/green" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/graphLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/white_10r_white_bg"
-            android:elevation="@dimen/_3sdp"
-            android:padding="@dimen/_15sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:background="@drawable/white_5r_bg"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_9sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <me.bastanfar.semicirclearcprogressbar.SemiCircleArcProgressBar
-                android:id="@+id/semiCircleArcProgressBar"
-                android:layout_width="@dimen/_130sdp"
-                android:layout_height="@dimen/_65sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:percent="0"
-                app:progressBarColor="@color/primary_color"
-                app:progressBarWidth="16"
-                app:progressPlaceHolderColor="@color/trans_black"
-                app:progressPlaceHolderWidth="14" />
-
-            <TextView
-                android:id="@+id/totalPercentage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:fontFamily="@font/font_heavy"
-                android:gravity="center"
-                android:paddingStart="@dimen/_10sdp"
-                android:text="45%"
-                android:textColor="@color/green"
-                android:textSize="@dimen/_17sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/semiCircleArcProgressBar"
-                app:layout_constraintEnd_toEndOf="@+id/semiCircleArcProgressBar"
-                app:layout_constraintStart_toStartOf="@+id/semiCircleArcProgressBar" />
+            app:layout_constraintTop_toBottomOf="@+id/headerLayout">
 
 
-            <TextView
-                android:id="@+id/totalLb"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/font_heavy"
-                android:gravity="start"
-                android:text="Loan Amount"
-                android:textColor="@color/_172B4D"
-                android:textSize="@dimen/_15sdp"
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="5dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/_11sdp"
+                android:background="@color/blue_primary"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/semiCircleArcProgressBar" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/totalTxt"
-                android:layout_width="0dp"
+                android:id="@+id/mainLoanTitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_heavy"
-                android:gravity="start"
-                android:paddingStart="@dimen/_20sdp"
-                android:text="50,000"
+                android:layout_marginStart="@dimen/_28sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:fontFamily="@font/m_light"
+                android:text="Studies Loan"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_17sdp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ProgressBar
+                android:id="@+id/progressMain"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="210dp"
+                android:layout_height="210dp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@drawable/circular_shape"
+                android:elevation="5dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="50"
+                android:progressDrawable="@drawable/circular_progress_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Loan Graph"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/progressMain"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/progressMain" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/textView7"
+                app:layout_constraintEnd_toEndOf="@+id/textView7"
+                app:layout_constraintStart_toStartOf="@+id/textView7">
+
+                <TextView
+                    android:id="@+id/progressTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="87"
+                    android:fontFamily="@font/m_light"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_17sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_1sdp"
+                    android:text="%"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_17sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/progressTitle"
+                    app:layout_constraintStart_toEndOf="@+id/progressTitle"
+                    app:layout_constraintTop_toTopOf="@+id/progressTitle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_35sdp"
+                android:text="Paid"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/progressMain"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/progressMain"
+                app:layout_constraintTop_toTopOf="@+id/progressMain" />
+
+
+            <ProgressBar
+                android:id="@+id/progressTimeProgram"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:background="@drawable/circular_shape_time_p"
+                android:elevation="5dp"
+                android:indeterminate="false"
+                android:max="100"
+                android:progress="60"
+                android:progressDrawable="@drawable/circular_progress_bar_timke_program"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mainLoanTitle" />
+
+
+            <TextView
+                android:id="@+id/titleprg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/m_semibold"
+                android:text=" Loan Program"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/progressTimeProgram"
+                app:layout_constraintTop_toTopOf="@+id/progressTimeProgram" />
+
+
+            <TextView
+                android:id="@+id/totelmonths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:text="Total :"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="@+id/titleprg"
+                app:layout_constraintTop_toBottomOf="@+id/titleprg" />
+
+            <ImageView
+                android:layout_width="@dimen/_4sdp"
+                android:layout_height="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:src="@drawable/circle_orange_bg"
+                app:layout_constraintBottom_toBottomOf="@+id/totelmonths"
+                app:layout_constraintEnd_toStartOf="@+id/totelmonths"
+                app:layout_constraintTop_toTopOf="@+id/totelmonths"
+                app:tint="@color/grey" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:text="36m"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/totelmonths"
+                app:layout_constraintStart_toEndOf="@+id/totelmonths"
+                app:layout_constraintTop_toTopOf="@+id/totelmonths" />
+
+
+            <TextView
+                android:id="@+id/titleRemainingmonths"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Remain :"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_8sdp"
+                android:fontFamily="@font/m_light"
+                app:layout_constraintStart_toStartOf="@+id/totelmonths"
+                app:layout_constraintTop_toBottomOf="@+id/totelmonths" />
+
+            <ImageView
+                android:layout_width="@dimen/_4sdp"
+                android:layout_height="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:src="@drawable/circle_orange_bg"
+                app:layout_constraintBottom_toBottomOf="@+id/titleRemainingmonths"
+                app:layout_constraintEnd_toStartOf="@+id/titleRemainingmonths"
+                app:layout_constraintTop_toTopOf="@+id/titleRemainingmonths"
+                app:tint="@color/blue_primary" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:text="7m"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/titleRemainingmonths"
+                app:layout_constraintStart_toEndOf="@+id/titleRemainingmonths"
+                app:layout_constraintTop_toTopOf="@+id/titleRemainingmonths" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/progressTimeProgram"
+                app:layout_constraintEnd_toEndOf="@+id/progressTimeProgram"
+                app:layout_constraintStart_toStartOf="@+id/progressTimeProgram"
+                app:layout_constraintTop_toTopOf="@+id/progressTimeProgram">
+
+                <TextView
+                    android:id="@+id/progressTitlet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="60"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/m_light"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView00"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_1sdp"
+                    android:text="%"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/progressTitlet"
+                    app:layout_constraintTop_toTopOf="@+id/progressTitlet" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_18sdp"
+                android:layout_marginBottom="4dp"
+                android:text="Loan Details :-"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:fontFamily="@font/m_bold"
+                app:layout_constraintBottom_toTopOf="@+id/titleAmount"
+                app:layout_constraintEnd_toEndOf="@+id/titleAmount"
+                app:layout_constraintTop_toBottomOf="@+id/instalmentPm" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="@dimen/_4sdp"
+                android:layout_height="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:src="@drawable/circle_orange_bg"
+                app:layout_constraintBottom_toBottomOf="@+id/titleAmount"
+                app:layout_constraintEnd_toStartOf="@+id/titleAmount"
+                app:layout_constraintTop_toTopOf="@+id/titleAmount"
+                app:tint="@color/blue_primary" />
+
+            <TextView
+                android:id="@+id/titleAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Loan Amount"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/progressMain" />
+
+
+            <TextView
+                android:id="@+id/loanAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_128sdp"
+                android:text="1,00,000"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="@dimen/_9sdp"
+                android:fontFamily="@font/m_light"
+                app:layout_constraintBottom_toBottomOf="@+id/titleAmount"
+                app:layout_constraintStart_toEndOf="@+id/titleAmount"
+                app:layout_constraintTop_toTopOf="@+id/titleAmount" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:text="/-"
+                android:textColor="@color/blue_primary"
+                app:layout_constraintBottom_toBottomOf="@+id/loanAmount"
+                app:layout_constraintStart_toEndOf="@+id/loanAmount"
+                app:layout_constraintTop_toTopOf="@+id/loanAmount" />
+
+            <ImageView
+                android:layout_width="@dimen/_4sdp"
+                android:layout_height="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:src="@drawable/circle_orange_bg"
+                app:layout_constraintBottom_toBottomOf="@+id/titlePaid"
+                app:layout_constraintEnd_toStartOf="@+id/titlePaid"
+                app:layout_constraintTop_toTopOf="@+id/titlePaid"
+                app:tint="@color/blue_primary" />
+
+
+            <TextView
+                android:id="@+id/titlePaid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/m_light"
+                android:text="Paid Amount"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_8sdp"
+                app:layout_constraintStart_toStartOf="@+id/titleAmount"
+                app:layout_constraintTop_toBottomOf="@+id/titleAmount" />
+
+
+            <TextView
+                android:id="@+id/paidAmount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:textSize="@dimen/_9sdp"
+                android:text="70,000"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:fontFamily="@font/m_light"
+                
+                app:layout_constraintEnd_toStartOf="@+id/textView6"
+                app:layout_constraintStart_toStartOf="@+id/loanAmount"
+                app:layout_constraintTop_toBottomOf="@+id/loanAmount" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:text="/-"
+                android:textColor="@color/blue_primary"
+                app:layout_constraintBottom_toBottomOf="@+id/paidAmount"
+                app:layout_constraintStart_toEndOf="@+id/paidAmount"
+                app:layout_constraintTop_toTopOf="@+id/paidAmount" />
+
+
+            <ImageView
+                android:layout_width="@dimen/_4sdp"
+                android:layout_height="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:src="@drawable/circle_orange_bg"
+                app:layout_constraintBottom_toBottomOf="@+id/titleRemaining"
+                app:layout_constraintEnd_toStartOf="@+id/titleRemaining"
+                app:layout_constraintTop_toTopOf="@+id/titleRemaining"
+                app:tint="@color/blue_primary" />
+
+
+            <TextView
+                android:id="@+id/titleRemaining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_12sdp"
+                android:text="Remaining Amount"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:fontFamily="@font/m_light"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/titlePaid"
+                app:layout_constraintTop_toBottomOf="@+id/titlePaid" />
+
+
+            <TextView
+                android:id="@+id/amountRemaining"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:text="30,000"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="bold"
+                android:fontFamily="@font/m_light"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/paidAmount"
+                app:layout_constraintStart_toStartOf="@+id/paidAmount"
+                app:layout_constraintTop_toBottomOf="@+id/paidAmount" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:text="/-"
+                android:textColor="@color/blue_primary"
+                app:layout_constraintBottom_toBottomOf="@+id/amountRemaining"
+                app:layout_constraintStart_toEndOf="@+id/amountRemaining"
+                app:layout_constraintTop_toTopOf="@+id/amountRemaining" />
+
+            <TextView
+                android:id="@+id/Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_6sdp"
+                android:text="Active"
+                android:fontFamily="@font/m_light"
                 android:textColor="@color/green"
-                android:textSize="@dimen/_15sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/totalLb"
+                android:textSize="@dimen/_11sdp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/totalLb"
-                app:layout_constraintTop_toTopOf="@+id/totalLb" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imgActiveIncactive"
+                android:layout_width="@dimen/_9sdp"
+                android:layout_height="@dimen/_9sdp"
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:src="@drawable/circle_orange_bg"
+                app:layout_constraintBottom_toBottomOf="@+id/Status"
+                app:layout_constraintEnd_toStartOf="@+id/Status"
+                app:layout_constraintTop_toTopOf="@+id/Status"
+                app:tint="@color/green" />
 
 
             <TextView
-                android:id="@+id/pendingLb"
-                android:layout_width="0dp"
+                android:id="@+id/titleInstalment"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_heavy"
-                android:gravity="start"
-                android:text="Due Amount"
-                android:textColor="@color/_172B4D"
-                android:textSize="@dimen/_15sdp"
-                app:layout_constraintStart_toStartOf="@+id/totalLb"
-                app:layout_constraintTop_toBottomOf="@+id/totalTxt" />
+                android:text="Instalment"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_9sdp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toTopOf="@+id/instalmentPm"
+                app:layout_constraintStart_toStartOf="@+id/instalmentPm"
+                app:layout_constraintTop_toTopOf="@+id/instalmentPm" />
+
+            <TextView
+                android:id="@+id/instalmentPm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_118sdp"
+                android:padding="@dimen/_2sdp"
+                android:text="1,476"
+                android:fontFamily="@font/m_light"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_22sdp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
-                android:id="@+id/pendingAmountTxt"
-                android:layout_width="0dp"
+                android:id="@+id/tt"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_heavy"
-                android:gravity="start"
-                android:paddingStart="@dimen/_20sdp"
-                android:text="5,000"
-                android:textColor="@color/secondary_color"
-                android:textSize="@dimen/_15sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/pendingLb"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/totalLb"
-                app:layout_constraintTop_toTopOf="@+id/pendingLb" />
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:text="Pm"
+                android:fontFamily="@font/m_semibold"
+                android:textColor="@color/blue_primary"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/instalmentPm"
+                app:layout_constraintStart_toEndOf="@+id/instalmentPm" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:drawableTint="@color/_172B4D"
-            android:fontFamily="@font/font_heavy"
-            android:gravity="center_vertical"
-            android:text="All Loans"
-            android:textColor="@color/_172B4D"
-            android:textSize="@dimen/_15sdp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/lggg"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_margin="@dimen/_6sdp"
+            android:background="@drawable/bottom_10r_v2_white_bg"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_10sdp"
+            android:shadowColor="@color/primary_color"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout11"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/graphLayout"
-            app:tint="@color/secondary_color" />
+            app:layout_constraintTop_toBottomOf="@+id/graphLayout" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/historyRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_5sdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            app:layout_constraintVertical_bias="1.0"
-            tools:layout_editor_absoluteX="1dp"
-            tools:listitem="@layout/loan_details_item" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout11"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_100sdp"
+            android:layout_margin="@dimen/_6sdp"
+            android:background="@drawable/white_5r_bg"
+            android:elevation="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lggg"
+            app:layout_constraintTop_toBottomOf="@+id/graphLayout" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/leee"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_margin="@dimen/_6sdp"
+            android:background="@drawable/white_5r_bg"
+            android:elevation="@dimen/_10sdp"
+            app:layout_constraintEnd_toStartOf="@+id/reee"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lggg" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/reee"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_margin="@dimen/_8sdp"
+            android:background="@drawable/white_5r_bg"
+            android:elevation="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/leee"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout11" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

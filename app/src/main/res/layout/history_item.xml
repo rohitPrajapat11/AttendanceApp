@@ -17,6 +17,7 @@
             android:background="@drawable/white_5r_bg"
             android:padding="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -26,8 +27,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_heavy"
                 android:hint="Mon"
-                android:paddingStart="@dimen/_10sdp"
                 android:maxLength="3"
+                android:paddingStart="@dimen/_10sdp"
                 android:textColor="@color/orange"
                 android:textSize="@dimen/_13sdp"
                 app:layout_constraintStart_toStartOf="parent"

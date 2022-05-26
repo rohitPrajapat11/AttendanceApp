@@ -1,5 +1,6 @@
 package com.bdappmaniac.bdapp.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -57,7 +58,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     NavController navController;
     Button button;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +84,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         String dates = DateUtils.getCurrentDate();
         absentCheck(dates);
         boolean workIsEnable = SharedPref.read(USER_WORK, false);
-        binding.homeLayout.headerLayout.extIcon.setChecked(workIsEnable);
+//        binding.homeLayout.headerLayout.extIcon.setChecked(workIsEnable);
         binding.homeLayout.bottomLayout.homeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,8 +104,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         binding.homeLayout.bottomLayout.historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.historyFragment) {
-                    navController.navigate(R.id.historyFragment);
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.empHistoryFragment) {
+                    navController.navigate(R.id.empHistoryFragment);
                 }
             }
         });
@@ -134,6 +134,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 }
             }
         });
+
         binding.navigationDrawer.userName.setText(SharedPref.getUserDetails().getEmployeeName());
         binding.navigationDrawer.userJobTxt.setText(SharedPref.getUserDetails().getDesignation());
         binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
@@ -144,8 +145,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         binding.navigationDrawer.holidayBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.rulesBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.profileBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.historyeBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.taskBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.MyattendanceBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.historyBtn.setOnClickListener(this::onClick);
+
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
@@ -156,14 +159,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 } else if (destination.getId() == R.id.taskFragment) {
                     navHandel("Task");
                     headerHideShow(true);
-                    bottomHideShow(true);
-                } else if (destination.getId() == R.id.historyFragment) {
-                    navHandel("History");
-                    headerHideShow(true);
-                    bottomHideShow(true);
-                } else if (destination.getId() == R.id.profileFragment) {
-                    navHandel("Profile");
-                    headerHideShow(false);
                     bottomHideShow(true);
                 } else if (destination.getId() == R.id.loanFragment) {
                     navHandel("Loan");
@@ -186,17 +181,30 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     navHandel("Attendance Rules");
                     headerHideShow(false);
                     bottomHideShow(false);
-
+                } else if (destination.getId() == R.id.empLoanfragment) {
+                    navHandel("Loan");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                }else if (destination.getId() == R.id.EmpmyAttendence) {
+                    navHandel("My Attendance");
+                    headerHideShow(true);
+                    bottomHideShow(false);
+                }else if (destination.getId() == R.id.empHistoryFragment) {
+                    navHandel("My History");
+                    headerHideShow(true);
+                    bottomHideShow(false);
                 }
             }
         });
     }
 
+    @SuppressLint("ResourceAsColor")
     void navHandel(String type) {
         switch (type) {
             case "Home":
-                binding.homeLayout.headerLayout.title.setText("Home");
+                binding.homeLayout.headerLayout.title.setText("Dashboard");
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.title.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home_select);
                 binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);
                 binding.homeLayout.bottomLayout.historyBtn.setImageResource(R.drawable.icn_history);
@@ -204,7 +212,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
-                binding.homeLayout.headerLayout.extIcon.setVisibility(View.VISIBLE);
+                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Task":
                 binding.homeLayout.headerLayout.title.setText("Task");
@@ -243,6 +251,17 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
                 break;
+                case "My Attendance":
+                binding.homeLayout.headerLayout.title.setText("My Attendance");
+                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
+                binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);
+                binding.homeLayout.bottomLayout.historyBtn.setImageResource(R.drawable.icn_history);
+                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile_select);
+                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
+                break;
         }
     }
 
@@ -253,6 +272,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             binding.mainDrawerLayout.openDrawer(GravityCompat.START);
         }
     }
+
 
     @Override
     public void onClick(View v) {
@@ -265,7 +285,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.loanBtn:
-                showToast(getString(R.string.in_progress));
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.empLoanfragment) {
+                    navController.navigate(R.id.empLoanfragment);
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.tmcBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.homeTermsAndConditionsFragment) {
@@ -286,24 +309,40 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             case R.id.holidayBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeHolidayFragment) {
                     navController.navigate(R.id.employeeHolidayFragment);
-                    binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+
                 }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.rulesBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeAttendanceRulesFragment) {
                     navController.navigate(R.id.employeeAttendanceRulesFragment);
-                } break;
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
             case R.id.profileBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.profileFragment) {
                     navController.navigate(R.id.profileFragment);
-                } break;
-            case R.id.taskBtn:
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeExpensesFragment) {
-                    navController.navigate(R.id.employeeExpensesFragment);
-                } case R.id.historyBtn:
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.historyFragment) {
-                    navController.navigate(R.id.historyFragment);
                 }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.taskBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.taskFragment) {
+                    navController.navigate(R.id.taskFragment);
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.MyattendanceBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.EmpmyAttendence) {
+                    navController.navigate(R.id.EmpmyAttendence);
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.historyBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.empHistoryFragment) {
+                    navController.navigate(R.id.empHistoryFragment);
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
         }
     }
 
@@ -389,9 +428,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             } else {
                 if ((apiResponse.getData() != null)) {
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                    binding.homeLayout.headerLayout.extIcon.setChecked(false);
+//                    binding.homeLayout.headerLayout.extIcon.setChecked(false);
                     binding.homeLayout.headerLayout.absentBtn.setVisibility(View.VISIBLE);
-                    binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
+//                    binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 } else {
                     ((BaseActivity) this).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
@@ -411,7 +450,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     JsonObject jsonObject = new Gson().fromJson(apiResponse.getData(), JsonObject.class);
                     if (jsonObject.get("worked_hours").getAsString().equals("00:00:00")) {
                         if (jsonObject.get("absent").getAsBoolean()) {
-                            binding.homeLayout.headerLayout.extIcon.setChecked(false);
+//                            binding.homeLayout.headerLayout.extIcon.setChecked(false);
                             Toast.makeText(this, "Absent", Toast.LENGTH_SHORT).show();
                         } else {
                             presentAndAbsentDialog();
@@ -439,7 +478,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     if (jsonObject.get("worked_hours").getAsString().equals("00:00:00")) {
                         if (jsonObject.get("absent").getAsBoolean()) {
                             binding.homeLayout.headerLayout.absentBtn.setVisibility(View.VISIBLE);
-                            binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
+//                            binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                         }
                     }
                 } else {
@@ -471,7 +510,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         SharedPref.write(USER_WORK, true);
         String getCurrentTime = DateUtils.getCurrentTime();
         SharedPref.putString(CURRENT_TIME, getCurrentTime);
-        binding.homeLayout.headerLayout.extIcon.setChecked(true);
+//        binding.homeLayout.headerLayout.extIcon.setChecked(true);
         showSnackBar(binding.getRoot(), getString(R.string.working_time_has_started));
         Constant.timeLayoutCallBack.TimeStatusLayoutCallBack();
         Constant.timeLayoutCallBack.CheckInTimeCallBack();
@@ -500,7 +539,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         exitDialogboxBinding.cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.homeLayout.headerLayout.extIcon.setChecked(true);
+//                binding.homeLayout.headerLayout.extIcon.setChecked(true);
                 dialog.dismiss();
             }
         });
@@ -577,7 +616,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         presentAndAbsentDialogboxBinding.cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.homeLayout.headerLayout.extIcon.setChecked(false);
+//                binding.homeLayout.headerLayout.extIcon.setChecked(false);
                 dialog.dismiss();
             }
         });

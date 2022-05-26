@@ -213,7 +213,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
 //                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
 //                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
 //                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
-                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
+//                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Employee":
                 binding.homeLayout.headerLayout.title.setText("Employees");
@@ -228,7 +228,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
 //                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.VISIBLE);
 //                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
 //                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
-                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
+//                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Loan":
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.VISIBLE);
@@ -243,7 +243,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
 //                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
 //                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.VISIBLE);
 //                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.GONE);
-                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
+//                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Profile":
                 binding.homeLayout.headerLayout.title.setText("");
@@ -260,20 +260,20 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.VISIBLE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.GONE);
-                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
+//                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
             case "LoanDetails":
                 binding.homeLayout.headerLayout.title.setText("Employee List");
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.VISIBLE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.GONE);
-                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
+//                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Lock/unlock":
                 binding.homeLayout.headerLayout.title.setText("Lock / Unlock");
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.backBtn.setVisibility(View.VISIBLE);
                 binding.homeLayout.headerLayout.menuBtn.setVisibility(View.GONE);
-                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
+//                binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "ToDoList":
                 binding.homeLayout.headerLayout.title.setText("ToDoList");

@@ -16,9 +16,9 @@
         android:label="Task Fragment"
         tools:layout="@layout/fragment_task" />
     <fragment
-        android:id="@+id/historyFragment"
+        android:id="@+id/empHistoryFragment"
         android:name="com.bdappmaniac.bdapp.employee.fragment.HistoryFragment"
-        android:label="History Fragment"
+        android:label="HistoryFragment"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/profileFragment"
@@ -46,4 +46,15 @@
         android:label="EmployeeAttendanceRulesFragment"
         tools:layout="@layout/fragment_employee_attendance_rules"/>
 
+    <fragment
+        android:id="@+id/empLoanfragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.EmployeeLoanDetails"
+        android:label="EmployeeloanFragment"
+        tools:layout="@layout/fragment_employee_loan_details"/>
+
+    <fragment
+        android:id="@+id/EmpmyAttendence"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.MyAttendance"
+        android:label="EmpMyAttendance"
+        tools:layout="@layout/fragment_my_attendance"/>
 </navigation>
