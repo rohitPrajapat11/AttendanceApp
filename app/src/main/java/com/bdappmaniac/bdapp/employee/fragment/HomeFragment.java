@@ -53,7 +53,7 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
-        StatusBarUtils.statusBarColor(getActivity(), R.color.primary_color);
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
 
           ProgressBarAnimation mProgressAnimation = new ProgressBarAnimation(binding.progressTime, 3500);
           mProgressAnimation.setProgress(99);
@@ -92,6 +92,17 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.employeeHolidayFragment);
+            }
+        }); binding.expence.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.EmpExpencesfragment);
+            }
+        });
+        binding.leaves.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.EmpLeavesFragment);
             }
         });
 

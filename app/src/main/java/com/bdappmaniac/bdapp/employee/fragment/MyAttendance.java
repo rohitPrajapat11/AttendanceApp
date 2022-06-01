@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.view.animation.AnimationUtils;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.adapter.MonthPickerAdapter;
 import com.bdappmaniac.bdapp.adapter.MyAttendanceHistoryAdapter;
+
 import com.bdappmaniac.bdapp.databinding.FragmentMyAttendanceBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.SmoothScrolllinearSmoothScroller;
@@ -34,9 +37,7 @@ public class MyAttendance extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_attendance, container, false);
-        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
-
-
+        StatusBarUtils.statusBarColor(getActivity(), R.color.f1f3f5);
 
 
         ArrayList<Modelmonthpicker> dlist = new ArrayList<>();
@@ -80,6 +81,28 @@ public class MyAttendance extends BaseFragment {
         binding.monthpicker.startAnimation(animation);
 
 
+        binding.leftBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.monthpicker.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.monthpicker.scrollToPosition(binding.monthpicker.getCurrentItem()-1);
+                    }
+                });
+            }
+        });
+        binding.rightBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.monthpicker.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.monthpicker.scrollToPosition(binding.monthpicker.getCurrentItem()+1);
+                    }
+                });
+            }
+        });
 
 
   return binding.getRoot();

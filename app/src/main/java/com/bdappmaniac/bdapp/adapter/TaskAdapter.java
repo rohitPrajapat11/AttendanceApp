@@ -9,21 +9,24 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.databinding.DesignTaskItemsBinding;
 import com.bdappmaniac.bdapp.databinding.TaskItemBinding;
+import com.bdappmaniac.bdapp.model.ModelTaskList;
 
 import java.util.ArrayList;
 
 public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    ArrayList<String> TaskList = new ArrayList<>();
+    ArrayList<ModelTaskList> taskList = new ArrayList<>();
 
-    public TaskAdapter(ArrayList<String> taskList, Context context) {
+
+    public TaskAdapter(Context context, ArrayList<ModelTaskList> taskList) {
         this.context = context;
-        this.TaskList = (ArrayList<String>) taskList;
+        this.taskList = taskList;
     }
 
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
-        TaskItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.task_item, group, false);
+        DesignTaskItemsBinding binding = DataBindingUtil.inflate(inflater, R.layout.design_task_items, group, false);
         return new TaskViewHolder(binding);
     }
 
@@ -35,20 +38,26 @@ public class TaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        TaskAdapter.TaskViewHolder vHolder = (TaskAdapter.TaskViewHolder) holder;
-        vHolder.binding.taskTxt.setText(TaskList.get(position));
-        vHolder.binding.numberTxt.setText(String.valueOf(position + 1) + ".");
+        TaskAdapter.TaskViewHolder vholder = (TaskAdapter.TaskViewHolder) holder;
+
+        vholder.binding.issueDate.setText(taskList.get(position).getIssueDate());
+        vholder.binding.taskHeading.setText(taskList.get(position).getTaskHeading());
+        vholder.binding.discription.setText(taskList.get(position).getDiscription());
+        vholder.binding.complitionDate.setText(taskList.get(position).getComplitionDate());
+        vholder.binding.taskType.setText(taskList.get(position).getTasktype());
+        vholder.binding.imgtasktype.setImageResource(taskList.get(position).getImgtasktype());
+
     }
 
     @Override
     public int getItemCount() {
-        return TaskList.size();
+        return taskList.size();
     }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
-        TaskItemBinding binding;
+        DesignTaskItemsBinding binding;
 
-        public TaskViewHolder(@NonNull TaskItemBinding itemView) {
+        public TaskViewHolder(@NonNull DesignTaskItemsBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
         }

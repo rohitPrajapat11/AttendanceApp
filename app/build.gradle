@@ -106,7 +106,7 @@ dependencies {
 
     // calender
     implementation 'com.github.applikeysolutions:cosmocalendar:1.0.4'
-    implementation 'com.github.shrikanth7698:Collapsible-Calendar-View-Android:v1.0.0'
+    implementation 'com.github.shrikanth7698:Collapsible-Calendar-View-Android:v1.0.3'
     //TabLayout
     implementation 'io.github.h07000223:flycoTabLayout:3.0.0'
     // Shadow

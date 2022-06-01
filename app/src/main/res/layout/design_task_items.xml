@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_2sdp"
+        android:background="@drawable/white_10r_white_bg"
+        android:elevation="@dimen/_8sdp">
+
+        <Button
+            android:id="@+id/completeBtn"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:background="@drawable/white_10r_bg"
+            android:backgroundTint="@color/blue_secondry"
+            android:fontFamily="@font/m_bold"
+            android:text="Complete"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/discription" />
+
+        <ImageView
+            android:id="@+id/imgtasktype"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/bug"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/taskType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/m_semibold"
+            android:text="Task"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgtasktype"
+            app:layout_constraintStart_toEndOf="@+id/imgtasktype" />
+
+        <TextView
+            android:id="@+id/taskHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_13sdp"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:fontFamily="@font/m_semibold"
+            android:paddingStart="@dimen/_2sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            android:text="Change Font and Colour combination"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/taskType" />
+
+        <TextView
+            android:id="@+id/issueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:fontFamily="@font/m_semibold"
+            android:text="02 March,2022"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/discription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:fontFamily="@font/m_semibold"
+            android:padding="@dimen/_4sdp"
+            android:text="All the discription related to the tirle will be here .All the discription related to the tirle will be here "
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/taskHeading"
+            app:layout_constraintTop_toBottomOf="@+id/taskHeading" />
+
+        <ImageView
+            android:id="@+id/duretion"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_margin="@dimen/_13sdp"
+            android:src="@drawable/clock_his"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:fontFamily="@font/m_semibold"
+            android:text="Complete till :"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/duretion"
+            app:layout_constraintStart_toEndOf="@+id/duretion"
+            app:layout_constraintTop_toTopOf="@+id/duretion" />
+
+        <TextView
+            android:id="@+id/complitionDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="@font/m_semibold"
+            android:padding="@dimen/_2sdp"
+            android:text="04 March 2022"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView11"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

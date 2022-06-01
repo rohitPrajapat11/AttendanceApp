@@ -148,6 +148,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         binding.navigationDrawer.taskBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.MyattendanceBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.historyBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.leaveBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.expenceBtn.setOnClickListener(this::onClick);
 
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
@@ -185,12 +187,21 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     navHandel("Loan");
                     headerHideShow(false);
                     bottomHideShow(false);
-                }else if (destination.getId() == R.id.EmpmyAttendence) {
+                } else if (destination.getId() == R.id.EmpmyAttendence) {
                     navHandel("My Attendance");
                     headerHideShow(true);
                     bottomHideShow(false);
-                }else if (destination.getId() == R.id.empHistoryFragment) {
+                } else if (destination.getId() == R.id.empHistoryFragment) {
                     navHandel("My History");
+                    headerHideShow(true);
+                    bottomHideShow(false);
+                } else if (destination.getId() == R.id.EmpLeavesFragment) {
+                    navHandel("Leaves");
+                    headerHideShow(true);
+                    bottomHideShow(false);
+                } else if (destination.getId() == R.id.EmpExpencesfragment) {
+                    Toast.makeText(HomeActivity.this, "yooooo", Toast.LENGTH_SHORT).show();
+                    navHandel("Expenses");
                     headerHideShow(true);
                     bottomHideShow(false);
                 }
@@ -251,7 +262,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
                 break;
-                case "My Attendance":
+            case "My Attendance":
                 binding.homeLayout.headerLayout.title.setText("My Attendance");
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
                 binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);
@@ -262,6 +273,20 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
                 break;
+                case "Expenses":
+                binding.homeLayout.headerLayout.title.setText("Expenses");
+                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
+                binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);
+                binding.homeLayout.bottomLayout.historyBtn.setImageResource(R.drawable.icn_history);
+                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile_select);
+                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
+                break;
+            case "Leave" :
+                binding.homeLayout.headerLayout.title.setText("Leaves");
+                binding.homeLayout.headerLayout.addBtn.setVisibility(View.VISIBLE);
         }
     }
 
@@ -337,9 +362,21 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 }
                 binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
+            case R.id.expenceBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.EmpExpencesfragment) {
+                    navController.navigate(R.id.EmpExpencesfragment);
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
             case R.id.historyBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.empHistoryFragment) {
                     navController.navigate(R.id.empHistoryFragment);
+                }
+                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+                break;
+            case R.id.leaveBtn:
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.EmpLeavesFragment) {
+                    navController.navigate(R.id.EmpLeavesFragment);
                 }
                 binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;

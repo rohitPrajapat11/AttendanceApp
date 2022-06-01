@@ -57,4 +57,17 @@
         android:name="com.bdappmaniac.bdapp.employee.fragment.MyAttendance"
         android:label="EmpMyAttendance"
         tools:layout="@layout/fragment_my_attendance"/>
+
+        <fragment
+            android:id="@+id/EmpExpencesfragment"
+            android:name="com.bdappmaniac.bdapp.employee.fragment.ExpensesEmployeeFragment"
+            android:label="EmpMyAttendance"
+            tools:layout="@layout/fragment_expenses_employee" />
+
+    <fragment
+        android:id="@+id/EmpLeavesFragment"
+        android:name="com.bdappmaniac.bdapp.admin.fragment.EmpLeavesFragment"
+        android:label="empLeavesFragment"
+        tools:layout="@layout/fragment_emp_leaves"/>
+
 </navigation>

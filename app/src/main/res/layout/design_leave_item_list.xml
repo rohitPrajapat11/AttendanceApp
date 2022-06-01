@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:background="@drawable/white_5r_bg"
+        android:backgroundTint="@color/white"
+        android:elevation="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_3sdp"
+        android:paddingTop="@dimen/_6sdp">
+
+        <TextView
+            android:id="@+id/leaveReason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/m_semibold"
+            android:padding="@dimen/_1sdp"
+            android:text="@string/urgent_piece_of_work"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/leaveType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:fontFamily="@font/m_semibold"
+            android:text="@string/casual_leave"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintStart_toStartOf="@+id/leaveReason"
+            app:layout_constraintTop_toBottomOf="@+id/leaveReason" />
+
+        <ImageView
+            android:id="@+id/imgcal"
+            android:layout_width="@dimen/_14sdp"
+            android:layout_height="@dimen/_14sdp"
+            android:layout_marginStart="@dimen/_120sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:contentDescription="@string/todo"
+            android:padding="@dimen/_1sdp"
+            android:src="@drawable/calendar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/leaveReason" />
+
+        <TextView
+            android:id="@+id/fromDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:fontFamily="@font/m_semibold"
+
+            android:text="@string/_20_03_22"
+            android:textColor="@color/trans_black"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imgcal"
+            app:layout_constraintStart_toEndOf="@+id/imgcal" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/m_semibold"
+            android:text="@string/from"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_7sdp"
+            app:layout_constraintBottom_toTopOf="@+id/fromDate"
+            app:layout_constraintStart_toStartOf="@+id/fromDate" />
+
+        <TextView
+            android:id="@+id/ew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_3sdp"
+            android:fontFamily="@font/m_semibold"
+            android:text="@string/we"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/fromDate"
+            app:layout_constraintStart_toEndOf="@+id/fromDate"
+            app:layout_constraintTop_toTopOf="@+id/fromDate" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/m_semibold"
+            android:text="@string/to"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_7sdp"
+            app:layout_constraintBottom_toTopOf="@+id/tillDate"
+            app:layout_constraintStart_toStartOf="@+id/tillDate" />
+
+
+        <TextView
+            android:id="@+id/tillDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:fontFamily="@font/m_semibold"
+            android:text="@string/_25_03_22"
+            android:textColor="@color/trans_black"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/ew"
+            app:layout_constraintStart_toEndOf="@+id/ew"
+            app:layout_constraintTop_toTopOf="@+id/ew" />
+
+        <ImageView
+            android:id="@+id/dropdown"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_marginEnd="@dimen/_9sdp"
+            android:contentDescription="@string/todo"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/drop_down"
+            app:layout_constraintBottom_toBottomOf="@+id/tillDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/discription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:fontFamily="@font/m_semibold"
+            android:padding="@dimen/_2sdp"
+            android:text="@string/i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/_9sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgcal" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

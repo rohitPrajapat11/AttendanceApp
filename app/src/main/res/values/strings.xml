@@ -177,5 +177,14 @@
     <string name="login_as">login_as</string>
     <string name="login">login</string>
     <string name="forgotten_your_password">Forgotten\nYour Password?</string>
+    <string name="urgent_piece_of_work">Urgent piece of work</string>
+    <string name="casual_leave">Casual Leave</string>
+    <string name="_20_03_22">20-03-22</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="_25_03_22">25-03-22</string>
+    <string name="i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden">i will be absent today due to some personal urgent work ,poped up all of a sudden</string>
+    <string name="todo">TODO</string>
+    <string name="we">-</string>
 
 </resources>

@@ -3,32 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-
-        <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
-            android:id="@+id/calenderview1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:buttonLeft_drawableTintColor="@color/white"
-            app:buttonRight_drawableTintColor="@color/white"
-            app:expandIconColor="@color/teal_200"
-            app:firstDayOfWeek="monday"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:primaryColor="@color/primary_color"
-            app:selectedItem_background="@drawable/circle_solid"
-            app:selectedItem_textColor="@color/primary_color"
-            app:showWeek="true"
-            app:textColor="@android:color/white"
-            app:todayItem_background="@drawable/circle_stroke"
-            app:todayItem_textColor="@android:color/white" />
-
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
     </layout>
