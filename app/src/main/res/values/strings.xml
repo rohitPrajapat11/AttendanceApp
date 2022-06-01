@@ -63,6 +63,10 @@
     <string name="enter_email">Please Enter Email Name!</string>
     <string name="valid_email">Please Enter Valid Email!</string>
     <string name="phone_number">Please Enter Phone Number!</string>
+    <string name="enter_loan_amount">Please Enter Advance Payment Amount</string>
+    <string name="enter_loan_installment">Please Enter Advance Payment Instalment Per Month</string>
+    <string name="enter_loan_date">Please Enter Advance Payment Date</string>
+    <string name="enter_loan_reason">Please Enter Advance Payment Reason</string>
     <string name="enter_10_digit_number">Please Enter 10 Digit Number</string>
     <string name="emergency_number">Please Enter Emergency Number!</string>
     <string name="enter_designation">Please Enter Your Designation</string>

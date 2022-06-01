@@ -5,6 +5,8 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -166,6 +168,21 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             dialog.getWindow().setGravity(Gravity.CENTER);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            binding.reasonTxt.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    binding.reasonTxt.setSelection(binding.reasonTxt.getText().length());
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
             binding.dateTxt.setText(date);
             binding.reasonTxt.setText(name);
             dialog.show();
@@ -225,5 +242,7 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             });
         }
     }
+
+
 }
 

@@ -57,11 +57,11 @@ public class EmployeeToDoListItemAdapter extends RecyclerView.Adapter<RecyclerVi
 //                .atZoneSameInstant(ZoneId.systemDefault())
 //                .format(formatter);
 //        vHolder.binding.dateText.setText(formattedDate);
-
         vHolder.binding.dropDownBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 vHolder.binding.constraintLayout2.setVisibility(View.VISIBLE);
+                vHolder.binding.historyItem.setBackground(context.getDrawable(R.drawable.auth_white_bg));
                 vHolder.binding.dropDownBtn.setVisibility(View.GONE);
                 vHolder.binding.DropUpBtn.setVisibility(View.VISIBLE);
             }
@@ -69,12 +69,12 @@ public class EmployeeToDoListItemAdapter extends RecyclerView.Adapter<RecyclerVi
         vHolder.binding.DropUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                vHolder.binding.historyItem.setBackground(context.getDrawable(R.drawable.edit_text_bg));
                 vHolder.binding.constraintLayout2.setVisibility(View.GONE);
                 vHolder.binding.dropDownBtn.setVisibility(View.VISIBLE);
                 vHolder.binding.DropUpBtn.setVisibility(View.GONE);
             }
         });
-
     }
 
     @Override

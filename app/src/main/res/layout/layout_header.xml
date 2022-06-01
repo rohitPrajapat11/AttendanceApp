@@ -7,11 +7,10 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/f1f3f5"
+        android:background="@color/white"
         android:paddingTop="@dimen/_15sdp"
         android:paddingBottom="@dimen/_15sdp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -44,7 +43,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/m_light"
+            android:fontFamily="@font/m_semibold"
             android:textStyle="bold"
             android:drawableTint="@color/prime"
             android:gravity="center_vertical"
@@ -111,6 +110,18 @@
             android:visibility="gone"
             android:layout_marginEnd="@dimen/_20sdp"
             android:src="@drawable/icn_registration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/prime" />
+
+        <ImageView
+            android:id="@+id/settingBtn"
+            android:layout_width="@dimen/_23sdp"
+            android:layout_height="@dimen/_21sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:src="@drawable/icn_setting"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

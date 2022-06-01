@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
@@ -37,10 +36,6 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
 
     ArrayList<ModelHolidayItems> itemsArrayList = new ArrayList<>();
     EmpHolidayAdapter holidayadapter;
-
-
-
-
     CalendarAdapter adapter;
     Calendar cal = Calendar.getInstance(Locale.ENGLISH);
 
@@ -70,7 +65,7 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
             @Override
             public void onClick(View view) {
                 if (binding.checkintxt.getText().equals("CHECK IN")){
-                    binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_in);
+                    binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_out);
                     binding.checkintxt.setText("CHECK OUT");
                 }else if (binding.checkintxt.getText().equals("CHECK OUT")){
                 binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_out);

@@ -16,7 +16,7 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.admin.fragment.AdminHomeFragment;
+import com.bdappmaniac.bdapp.fragment.AdminHomeFragment;
 import com.bdappmaniac.bdapp.application.BdApp;
 import com.bdappmaniac.bdapp.databinding.ActivityAdminBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
@@ -40,7 +40,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_admin);
-        StatusBarUtils.statusBarColor(this, R.color.f1f3f5);
+        StatusBarUtils.statusBarColor(this, R.color.white);
         ConnectivityReceiver.setConnectivityListener(new OnChangeConnectivityListener() {
             @Override
             public void onChanged(boolean status) {

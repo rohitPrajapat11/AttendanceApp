@@ -64,11 +64,10 @@ public class EmployeeAttendanceAdapter extends RecyclerView.Adapter<RecyclerView
             if (List.get(position).getInouts().get(x).getLogIn() == null && List.get(position).getInouts().get(x).getLogOut() == null) {
                 vHolder.binding.absentTxt.setVisibility(View.VISIBLE);
                 vHolder.binding.reasonTxt.setVisibility(View.VISIBLE);
-                vHolder.binding.moreBtn.setVisibility(View.GONE);
-                vHolder.binding.totalTxt.setVisibility(View.GONE);
-                vHolder.binding.breakTxt.setVisibility(View.GONE);
-                vHolder.binding.totalLb.setVisibility(View.GONE);
-                vHolder.binding.breakLb.setVisibility(View.GONE);
+                vHolder.binding.totalTxt.setVisibility(View.VISIBLE);
+                vHolder.binding.breakTxt.setVisibility(View.VISIBLE);
+                vHolder.binding.totalLb.setVisibility(View.VISIBLE);
+                vHolder.binding.breakLb.setVisibility(View.VISIBLE);
             }
             if (List.get(position).getInouts().get(x).getAbsentReason() != null) {
                 vHolder.binding.reasonTxt.setText(List.get(position).getInouts().get(x).getAbsentReason().toString());

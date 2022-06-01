@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.application.BdApp;
-import com.bdappmaniac.bdapp.auth.fragment.LogInFragment;
+import com.bdappmaniac.bdapp.fragment.LogInFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.ConnectivityReceiver;
 import com.bdappmaniac.bdapp.interfaces.OnChangeConnectivityListener;

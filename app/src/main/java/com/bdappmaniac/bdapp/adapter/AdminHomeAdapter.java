@@ -18,7 +18,6 @@ import com.bdappmaniac.bdapp.model.AdminHomeModel;
 import java.util.ArrayList;
 
 public class AdminHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
     ArrayList<AdminHomeModel> itemList = new ArrayList<>();
     Context context;
 
@@ -52,24 +51,24 @@ public class AdminHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 if (position == 1) {
                     Navigation.findNavController(view).navigate(R.id.employeeAttandenceListFragment);
                 }
+//                if (position == 2) {
+//                    Navigation.findNavController(view).navigate(R.id.employeeDesListFragment);
+//                }
                 if (position == 2) {
-                    Navigation.findNavController(view).navigate(R.id.employeeDesListFragment);
-                }
-                if (position == 3) {
                     Navigation.findNavController(view).navigate(R.id.employeeExpensesFragment);
                 }
-                if (position == 4) {
+                if (position == 3) {
                     Navigation.findNavController(view).navigate(R.id.adminHolidayFragment);
                 }
-                if (position == 5) {
+                if (position == 4) {
                     Navigation.findNavController(view).navigate(R.id.lockUnlockFragment);
                 }
-                if (position == 6) {
-                    Navigation.findNavController(view).navigate(R.id.overTimeFragment);
-                }
-                if (position == 7) {
-                    Navigation.findNavController(view).navigate(R.id.toDoListFragment);
-                }
+//                if (position == 6) {
+//                    Navigation.findNavController(view).navigate(R.id.overTimeFragment);
+//                }
+//                if (position == 7) {
+//                    Navigation.findNavController(view).navigate(R.id.toDoListFragment);
+//                }
             }
         });
     }
@@ -87,6 +86,4 @@ public class AdminHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             binding = itemView;
         }
     }
-
-
 }

@@ -16,7 +16,7 @@
             android:id="@+id/constraint"
         android:padding="@dimen/_7sdp"
             android:backgroundTint="#4573FB"
-            android:background="@drawable/bottom_round_bg"
+            android:background="@drawable/edit_text_bg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

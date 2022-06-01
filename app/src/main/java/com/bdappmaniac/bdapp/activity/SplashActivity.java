@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
-        StatusBarUtils.statusBarColor(this, R.color.prime);
+        StatusBarUtils.transparentStatusAndNavigation(this);
         setTheme(R.style.Theme_BdApp_Launcher);
         SharedPref.init(this);
         top_animation = AnimationUtils.loadAnimation(this, R.anim.top_animation);

@@ -4,69 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
-        android:background="@drawable/white_10r_white_bg"
-        android:padding="@dimen/_10sdp">
+        android:layout_height="wrap_content">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
-            android:background="@drawable/green_round_bg"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item"
+            android:layout_width="@dimen/_135sdp"
+            android:layout_height="@dimen/_145sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:elevation="@dimen/_5sdp"
+            android:background="@drawable/white_10r_white_bg"
             android:padding="@dimen/_5sdp"
-            android:src="@drawable/user"
-            app:layout_constraintEnd_toEndOf="@+id/employeeName"
-            app:layout_constraintStart_toStartOf="@+id/employeeName"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/employeeName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/arial_rounded_mt_regular"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:importantForAutofill="no"
-            android:inputType="textMultiLine"
-            android:paddingStart="@dimen/_5sdp"
-            android:text="@string/employee_name"
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textCursorDrawable="@drawable/text_cursor"
-            android:textSize="@dimen/_15sdp"
-            app:drawableTint="@color/_A8A8A8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile"
-            tools:ignore="RtlSymmetry,TextViewEdits" />
-
-        <TextView
-            android:id="@+id/designationTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:fontFamily="@font/arial_rounded_mt_regular"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_3sdp"
-            android:gravity="start"
-            android:importantForAutofill="no"
-            android:inputType="textMultiLine"
-            android:paddingStart="@dimen/_5sdp"
-            android:text="@string/android_developer"
-            android:textAllCaps="false"
-            android:textColor="@color/grey"
-            android:textCursorDrawable="@drawable/text_cursor"
-            android:textSize="@dimen/_11sdp"
-            app:drawableTint="@color/_A8A8A8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/employeeName"
-            tools:ignore="RtlSymmetry,TextViewEdits" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:background="@drawable/green_round_bg"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/user"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/employeeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/m_semibold"
+                android:gravity="center"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/employee_name"
+                android:textAllCaps="false"
+                android:textColor="@color/prime"
+                android:textSize="@dimen/_13sdp"
+                app:layout_constraintEnd_toEndOf="@+id/profile"
+                app:layout_constraintStart_toStartOf="@+id/profile"
+                app:layout_constraintTop_toBottomOf="@+id/profile"
+                tools:ignore="RtlSymmetry,TextViewEdits" />
+
+            <TextView
+                android:id="@+id/designationTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/m_semibold"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:paddingStart="@dimen/_5sdp"
+                android:text="@string/android_developer"
+                android:textAllCaps="false"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/employeeName"
+                tools:ignore="RtlSymmetry,TextViewEdits" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/homeSettingFragment"
-        android:name="com.bdappmaniac.bdapp.fragment.HomeSettingFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.AdminSettingFragment"
         android:label="HomeSettingFragment"
         tools:layout="@layout/fragment_home_setting"/>
     <fragment
