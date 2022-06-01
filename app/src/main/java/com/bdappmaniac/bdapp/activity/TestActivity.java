@@ -16,9 +16,9 @@ import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.admin.fragment.AdminHomeFragment;
 import com.bdappmaniac.bdapp.application.BdApp;
 import com.bdappmaniac.bdapp.databinding.ActivityTestBinding;
+import com.bdappmaniac.bdapp.fragment.AdminHomeFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.ConnectivityReceiver;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
@@ -59,6 +59,7 @@ public class TestActivity extends BaseActivity implements View.OnClickListener, 
         navController = Navigation.findNavController(this, R.id.nav_controller);
         SharedPref.init(this);
         updateProfile();
+        binding.bottomLayout.bottomNavBar.setItemSelected(R.id.homeBtns, true);
         binding.bottomLayout.bottomNavBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
@@ -99,6 +100,12 @@ public class TestActivity extends BaseActivity implements View.OnClickListener, 
                 navController.navigate(R.id.registerEmployeeFragment);
             }
         });
+        binding.headerLayout.settingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.settingFragment);
+            }
+        });
         binding.navigationDrawer.userName.setText(SharedPref.getUserDetails().getEmployeeName());
         binding.navigationDrawer.userJobTxt.setText(SharedPref.getUserDetails().getDesignation());
         binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
@@ -118,14 +125,17 @@ public class TestActivity extends BaseActivity implements View.OnClickListener, 
                     navHandel("Home");
                     headerHideShow(true);
                     bottomHideShow(true);
+                    binding.bottomLayout.bottomNavBar.setItemSelected(R.id.homeBtns, true);
                 } else if (destination.getId() == R.id.employeeListFragment) {
                     navHandel("Employees");
                     headerHideShow(true);
                     bottomHideShow(true);
+                    binding.bottomLayout.bottomNavBar.setItemSelected(R.id.employeeBtns, true);
                 } else if (destination.getId() == R.id.adminProfile) {
                     navHandel("Profile");
                     headerHideShow(false);
                     bottomHideShow(true);
+                    binding.bottomLayout.bottomNavBar.setItemSelected(R.id.profileBtns, true);
                 } else if (destination.getId() == R.id.adminTermFragment) {
                     navHandel("Employment Terms");
                     headerHideShow(false);
@@ -152,7 +162,7 @@ public class TestActivity extends BaseActivity implements View.OnClickListener, 
                     bottomHideShow(false);
                 } else if (destination.getId() == R.id.provideLoanFragment) {
                     navHandel("Loan Details");
-                    headerHideShow(true);
+                    headerHideShow(false);
                     bottomHideShow(false);
                 } else if (destination.getId() == R.id.adminHolidayFragment) {
                     navHandel("Holidays");
@@ -167,9 +177,10 @@ public class TestActivity extends BaseActivity implements View.OnClickListener, 
                     headerHideShow(false);
                     bottomHideShow(false);
                 } else if (destination.getId() == R.id.toDoListFragment) {
-                    navHandel("Task List");
+                    navHandel("Task");
                     headerHideShow(true);
                     bottomHideShow(true);
+                    binding.bottomLayout.bottomNavBar.setItemSelected(R.id.taskBtns, true);
                 } else if (destination.getId() == R.id.designationFragment) {
                     navHandel("Designation");
                     headerHideShow(false);
@@ -194,6 +205,10 @@ public class TestActivity extends BaseActivity implements View.OnClickListener, 
                     navHandel("Advance Payment");
                     headerHideShow(false);
                     bottomHideShow(false);
+                } else if (destination.getId() == R.id.employeeToDoListFragment) {
+                    navHandel("Employee To Do List");
+                    headerHideShow(false);
+                    bottomHideShow(false);
                 }
             }
         });
@@ -207,6 +222,8 @@ public class TestActivity extends BaseActivity implements View.OnClickListener, 
                 binding.headerLayout.backBtn.setVisibility(View.GONE);
                 binding.headerLayout.menuBtn.setVisibility(View.VISIBLE);
                 binding.headerLayout.extIcon.setVisibility(View.GONE);
+                binding.headerLayout.additionBtn.setVisibility(View.GONE);
+                binding.headerLayout.settingBtn.setVisibility(View.VISIBLE);
                 break;
             case "Employees":
                 binding.headerLayout.title.setText("Employees");
@@ -215,12 +232,16 @@ public class TestActivity extends BaseActivity implements View.OnClickListener, 
                 binding.headerLayout.menuBtn.setVisibility(View.VISIBLE);
                 binding.headerLayout.extIcon.setVisibility(View.GONE);
                 binding.headerLayout.additionBtn.setVisibility(View.VISIBLE);
+                binding.headerLayout.settingBtn.setVisibility(View.GONE);
                 break;
             case "Profile":
                 binding.headerLayout.title.setText("Profile");
+                binding.headerLayout.settingBtn.setVisibility(View.GONE);
                 break;
-            case "Task List":
-                binding.headerLayout.title.setText("Task List");
+            case "Task":
+                binding.headerLayout.title.setText("Task");
+                binding.headerLayout.additionBtn.setVisibility(View.GONE);
+                binding.headerLayout.settingBtn.setVisibility(View.GONE);
                 break;
         }
     }
@@ -319,7 +340,7 @@ public class TestActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Fragment navHostFragment = getSupportFragmentManager().findFragmentById(R.id.auth_nav);
+        Fragment navHostFragment = getSupportFragmentManager().findFragmentById(R.id.adminNav);
         if (navHostFragment != null) {
             List<Fragment> fragmentList = navHostFragment.getChildFragmentManager().getFragments();
             boolean isLoginFragment = false;

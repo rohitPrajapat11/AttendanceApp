@@ -7,12 +7,12 @@
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/f1f3f5">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout6"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="@dimen/_130sdp"
             android:background="@drawable/bottom_10r_white_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -20,12 +20,11 @@
 
             <ImageView
                 android:id="@+id/backBtn"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:scaleType="fitXY"
-                android:src="@drawable/icn_backs"
+                android:src="@drawable/icn_back_arrow"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/white" />
@@ -49,7 +48,6 @@
                 android:layout_width="@dimen/_22sdp"
                 android:layout_height="@dimen/_22sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:elevation="1dp"
                 android:src="@drawable/icn_info"
                 app:layout_constraintBottom_toBottomOf="@+id/heading"
                 app:layout_constraintEnd_toEndOf="parent"

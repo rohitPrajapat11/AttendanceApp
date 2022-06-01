@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/f1f3f5">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="@dimen/_1sdp"
+            android:elevation="1dp"
             android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -21,49 +20,48 @@
 
             <ImageView
                 android:id="@+id/backBtn"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_18sdp"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:contentDescription="@string/backBtn"
                 android:src="@drawable/icn_back_arrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/prime" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_heavy"
+                android:fontFamily="@font/m_semibold"
                 android:gravity="center_vertical"
                 android:text="Expenses"
-                android:textColor="@color/_172B4D"
+                android:textColor="@color/prime"
                 android:textSize="@dimen/_18sdp"
-                app:drawableTint="@color/_172B4D"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/secondary_color" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/filterBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/backBtn"
-                android:src="@drawable/icn_filter"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
+                android:src="@drawable/icn_filter"
                 app:layout_constraintBottom_toBottomOf="@+id/title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/title"
-                app:tint="@color/primary_color" />
+                app:tint="@color/prime" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/mainLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_black"
+            android:background="@drawable/bottom_cut_bg"
+            android:elevation="1dp"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -195,7 +193,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
-            android:background="@drawable/white_5r_bg"
+            android:background="@drawable/edit_text_bg"
             android:elevation="@dimen/_1sdp"
             android:padding="@dimen/_5sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -207,10 +205,10 @@
                 android:id="@+id/Title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/font_heavy"
+                android:fontFamily="@font/m_semibold"
                 android:paddingStart="@dimen/_5sdp"
                 android:text="Tea Leaf"
-                android:textColor="@color/black"
+                android:textColor="@color/prime"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -220,6 +218,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12/09/21"
+                android:fontFamily="@font/m_semibold"
+                android:textColor="@color/_A8A8A8"
                 app:layout_constraintEnd_toEndOf="@+id/Title"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Title" />
@@ -231,6 +231,8 @@
                 android:gravity="center"
                 android:text="100"
                 android:textSize="@dimen/_12sdp"
+                android:textColor="@color/prime"
+                android:fontFamily="@font/m_semibold"
                 app:layout_constraintBottom_toBottomOf="@+id/Title"
                 app:layout_constraintEnd_toStartOf="@+id/Approved"
                 app:layout_constraintStart_toEndOf="@+id/Title"
@@ -241,7 +243,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Approved"
-                android:textColor="@color/primary_color"
+                android:textColor="@color/prime"
+                android:fontFamily="@font/m_semibold"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintEnd_toStartOf="@+id/checkbox"
                 app:layout_constraintTop_toTopOf="parent" />

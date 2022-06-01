@@ -2,364 +2,396 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <ScrollView
-            android:id="@+id/scrollableLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/f1f3f5"
+            android:elevation="1dp"
+            android:paddingTop="@dimen/_15sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:src="@drawable/icn_back_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/prime" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/prime"
+                android:fontFamily="@font/m_semibold"
+                android:gravity="center"
+                android:text="Provide Advance Payment"
+                android:textColor="@color/prime"
+                android:textSize="@dimen/_18sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/backBtn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:fillViewport="true"
-            android:paddingTop="@dimen/_5sdp"
-            android:scrollbars="none"
+            android:background="@color/f1f3f5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/headerLayout">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/inputLayout"
+            <ScrollView
+                android:id="@+id/scrollableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:paddingBottom="@dimen/_10sdp"
+                android:fillViewport="true"
+                android:paddingTop="@dimen/_5sdp"
+                android:scrollbars="none"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
-                tools:layout_editor_absoluteX="0dp">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/inputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:paddingBottom="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                    <TextView
+                        android:id="@+id/nameLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:fontFamily="@font/m_semibold"
+                        android:text="Name"
+                        android:textColor="@color/_A8A8A8"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/nameTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:background="@drawable/edit_text_bg"
+                        android:drawableStart="@drawable/icn_user"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:drawableTint="@color/prime"
+                        android:fontFamily="@font/m_semibold"
+                        android:gravity="center_vertical"
+                        android:hint="Enter Name"
+                        android:importantForAutofill="no"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/prime"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/nameLb"
+                        app:layout_constraintTop_toBottomOf="@+id/nameLb"
+                        tools:ignore="TextFields"
+                        tools:targetApi="m" />
+
+                    <TextView
+                        android:id="@+id/emailLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/m_semibold"
+                        android:text="@string/email"
+                        android:textColor="@color/_A8A8A8"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/nameTxt" />
+
+                    <EditText
+                        android:id="@+id/emailTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:background="@drawable/edit_text_bg"
+                        android:drawableStart="@drawable/icn_email"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:drawableTint="@color/prime"
+                        android:fontFamily="@font/m_semibold"
+                        android:gravity="center_vertical"
+                        android:hint="Enter Email"
+                        android:importantForAutofill="no"
+                        android:inputType="textNoSuggestions"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/prime"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/emailLb"
+                        app:layout_constraintTop_toBottomOf="@+id/emailLb"
+                        tools:ignore="TextFields"
+                        tools:targetApi="m" />
+
+                    <ImageView
+                        android:id="@+id/emailValidation"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/icn_email_validation"
+                        app:layout_constraintBottom_toBottomOf="@+id/emailTxt"
+                        app:layout_constraintEnd_toEndOf="@+id/emailTxt"
+                        app:layout_constraintTop_toTopOf="@+id/emailTxt"
+                        app:tint="@color/_A8A8A8" />
+
+                    <TextView
+                        android:id="@+id/loanAmountLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/m_semibold"
+                        android:text="Loan Amount"
+                        android:textColor="@color/_A8A8A8"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/emailTxt" />
+
+                    <EditText
+                        android:id="@+id/loanAmountTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:background="@drawable/edit_text_bg"
+                        android:drawableStart="@drawable/icn_rupee"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:drawableTint="@color/prime"
+                        android:fontFamily="@font/m_semibold"
+                        android:hint="Loan Amount"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/prime"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/loanAmountLb"
+                        app:layout_constraintTop_toBottomOf="@+id/loanAmountLb"
+                        tools:ignore="TextFields"
+                        tools:targetApi="m" />
+
+                    <TextView
+                        android:id="@+id/loanInstalmentLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/m_semibold"
+                        android:text="Loan Instalment"
+                        android:textColor="@color/_A8A8A8"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/loanAmountTxt" />
+
+                    <EditText
+                        android:id="@+id/loanInstalmentTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:background="@drawable/edit_text_bg"
+                        android:drawableStart="@drawable/icn_installment"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:drawableTint="@color/prime"
+                        android:fontFamily="@font/m_semibold"
+                        android:hint="Loan Installment"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/prime"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/loanInstalmentLb"
+                        app:layout_constraintTop_toBottomOf="@+id/loanInstalmentLb"
+                        tools:ignore="TextFields"
+                        tools:targetApi="m" />
+
+                    <TextView
+                        android:id="@+id/loanIssueDateLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/m_semibold"
+                        android:text="Loan Issue Date"
+                        android:textColor="@color/_A8A8A8"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/loanInstalmentTxt" />
+
+                    <TextView
+                        android:id="@+id/loanIssueDate"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:background="@drawable/edit_text_bg"
+                        android:drawableStart="@drawable/icn_calendar_l"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:drawableTint="@color/prime"
+                        android:fontFamily="@font/m_semibold"
+                        android:gravity="center_vertical"
+                        android:hint="Date"
+                        android:importantForAutofill="no"
+                        android:maxLength="10"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/prime"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/loanInstalmentLb"
+                        app:layout_constraintTop_toBottomOf="@+id/loanIssueDateLb"
+                        tools:ignore="TextFields"
+                        tools:targetApi="m" />
 
 
-                <TextView
-                    android:id="@+id/nameLb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:fontFamily="@font/arial_rounded_mt_bold"
-                    android:text="Name"
-                    android:textColor="@color/_C1C7D0"
-                    android:textSize="@dimen/_14sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/nameTxt"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:layout_marginEnd="@dimen/_25sdp"
-                    android:background="@drawable/edit_text_bg"
-                    android:drawableStart="@drawable/icn_user"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:drawableTint="@color/_A8A8A8"
-                    android:enabled="false"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="center_vertical"
-                    android:hint="Enter Name"
-                    android:importantForAutofill="no"
-                    android:inputType="textNoSuggestions"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:textAllCaps="true"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_11ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/nameLb"
-                    app:layout_constraintTop_toBottomOf="@+id/nameLb"
-                    tools:ignore="TextFields"
-                    tools:targetApi="m" />
-
-                <TextView
-                    android:id="@+id/emailLb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:fontFamily="@font/arial_rounded_mt_bold"
-                    android:text="@string/email"
-
-                    android:textColor="@color/_C1C7D0"
-                    android:textSize="@dimen/_14sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nameTxt" />
-
-                <TextView
-                    android:id="@+id/emailTxt"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="@dimen/_25sdp"
-                    android:background="@drawable/edit_text_bg"
-                    android:drawableStart="@drawable/icn_email"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:drawableTint="@color/_A8A8A8"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="center_vertical"
-                    android:hint="Enter Email"
-                    android:importantForAutofill="no"
-                    android:inputType="textNoSuggestions"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:textAllCaps="true"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_11ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/emailLb"
-                    app:layout_constraintTop_toBottomOf="@+id/emailLb"
-                    tools:ignore="TextFields"
-                    tools:targetApi="m" />
-
-                <TextView
-                    android:id="@+id/loanAmountLb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:fontFamily="@font/arial_rounded_mt_bold"
-                    android:text="Loan Amount"
-                    android:textColor="@color/_C1C7D0"
-                    android:textSize="@dimen/_14sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/emailTxt" />
-
-                <EditText
-                    android:id="@+id/loanAmountTxt"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_25sdp"
-                    android:background="@drawable/edit_text_bg"
-                    android:drawableStart="@drawable/icn_rupee"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:drawableTint="@color/_A8A8A8"
-                    android:fontFamily="@font/font_heavy"
-                    android:hint="Loan Amount"
-                    android:importantForAutofill="no"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:textAllCaps="true"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_11ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/loanAmountLb"
-                    app:layout_constraintTop_toBottomOf="@+id/loanAmountLb"
-                    tools:ignore="TextFields"
-                    tools:targetApi="m" />
-
-                <TextView
-                    android:id="@+id/loanInstalmentLb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:fontFamily="@font/arial_rounded_mt_bold"
-                    android:text="Loan Instalment"
-                    android:textColor="@color/_C1C7D0"
-                    android:textSize="@dimen/_14sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/loanAmountTxt" />
-
-                <EditText
-                    android:id="@+id/loanInstalmentTxt"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="@dimen/_25sdp"
-                    android:background="@drawable/edit_text_bg"
-                    android:drawableStart="@drawable/icn_installment"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:drawableTint="@color/_A8A8A8"
-                    android:fontFamily="@font/font_heavy"
-                    android:hint="Loan Installment"
-                    android:importantForAutofill="no"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:textAllCaps="true"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_11ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/loanInstalmentLb"
-                    app:layout_constraintTop_toBottomOf="@+id/loanInstalmentLb"
-                    tools:ignore="TextFields"
-                    tools:targetApi="m" />
-
-                <TextView
-                    android:id="@+id/loanIssueDateLb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:fontFamily="@font/arial_rounded_mt_bold"
-                    android:text="Loan Issue Date"
-                    android:textColor="@color/_C1C7D0"
-                    android:textSize="@dimen/_14sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/loanInstalmentTxt" />
-
-                <EditText
-                    android:id="@+id/loanIssueDate"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_25sdp"
-                    android:background="@drawable/edit_text_bg"
-                    android:drawableStart="@drawable/icn_calendar_l"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:drawableTint="@color/_A8A8A8"
-                    android:fontFamily="@font/font_heavy"
-                    android:hint="Date"
-                    android:importantForAutofill="no"
-                    android:maxLength="10"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:textAllCaps="true"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_11ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/loanInstalmentLb"
-                    app:layout_constraintTop_toBottomOf="@+id/loanIssueDateLb"
-                    tools:ignore="TextFields"
-                    tools:targetApi="m" />
+                    <TextView
+                        android:id="@+id/loanReasonLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/m_semibold"
+                        android:text="Reason"
+                        android:textColor="@color/_A8A8A8"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/loanIssueDate" />
 
 
-                <TextView
-                    android:id="@+id/loanReasonLb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:fontFamily="@font/arial_rounded_mt_bold"
-                    android:text="Reason"
-                    android:textColor="@color/_C1C7D0"
-                    android:textSize="@dimen/_14sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/loanIssueDate" />
+                    <EditText
+                        android:id="@+id/loanReasonTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:background="@drawable/edit_text_bg"
+                        android:drawableStart="@drawable/icn_reason"
+                        android:drawablePadding="@dimen/_10sdp"
+                        android:drawableTint="@color/prime"
+                        android:fontFamily="@font/m_semibold"
+                        android:hint="Write reason for taking loan"
+                        android:importantForAutofill="no"
+                        android:inputType="textMultiLine"
+                        android:maxLength="10"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:paddingRight="@dimen/_10sdp"
+                        android:textAllCaps="true"
+                        android:textColor="@color/prime"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/loanReasonLb"
+                        app:layout_constraintTop_toBottomOf="@+id/loanReasonLb"
+                        tools:ignore="TextFields"
+                        tools:targetApi="m" />
+
+                    <TextView
+                        android:id="@+id/totalamountLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/m_semibold"
+                        android:text="Loan Amount"
+                        android:textColor="@color/prime"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="@+id/loanReasonTxt"
+                        app:layout_constraintTop_toBottomOf="@+id/loanReasonTxt" />
+
+                    <TextView
+                        android:id="@+id/totalamountTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/m_semibold"
+                        android:gravity="end"
+                        android:text="25,000"
+                        android:textColor="@color/prime"
+                        android:textSize="@dimen/_17sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/totalamountLb"
+                        app:layout_constraintEnd_toEndOf="@+id/loanReasonTxt"
+                        app:layout_constraintStart_toEndOf="@+id/totalamountLb"
+                        app:layout_constraintTop_toTopOf="@+id/totalamountLb" />
 
 
-                <EditText
-                    android:id="@+id/loanReasonTxt"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_12sdp"
-                    android:layout_marginEnd="@dimen/_25sdp"
-                    android:background="@drawable/edit_text_bg"
-                    android:drawableStart="@drawable/icn_reason"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:drawableTint="@color/_A8A8A8"
-                    android:fontFamily="@font/font_heavy"
-                    android:hint="Write reason for taking loan"
-                    android:importantForAutofill="no"
-                    android:inputType="textMultiLine"
-                    android:maxLength="10"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:paddingRight="@dimen/_10sdp"
-                    android:textAllCaps="true"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_11ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/loanReasonLb"
-                    app:layout_constraintTop_toBottomOf="@+id/loanReasonLb"
-                    tools:ignore="TextFields"
-                    tools:targetApi="m" />
-
-                <View
-                    android:id="@+id/fView"
-                    android:layout_width="0dp"
-                    android:layout_height="0.5dp"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:alpha=".5"
-                    android:background="@color/light_black"
-                    app:layout_constraintEnd_toEndOf="@+id/loanReasonTxt"
-                    app:layout_constraintStart_toStartOf="@+id/loanReasonTxt"
-                    app:layout_constraintTop_toBottomOf="@+id/loanReasonTxt" />
+                    <TextView
+                        android:id="@+id/perInstallmentLb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/m_semibold"
+                        android:text="Per Installment"
+                        android:textColor="@color/prime"
+                        android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="@+id/totalamountLb"
+                        app:layout_constraintTop_toBottomOf="@+id/totalamountLb" />
 
 
-                <TextView
-                    android:id="@+id/totalamountLb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:fontFamily="@font/font_heavy"
-                    android:text="Loan Amount"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_14sdp"
-                    app:layout_constraintStart_toStartOf="@+id/fView"
-                    app:layout_constraintTop_toBottomOf="@+id/fView" />
+                    <TextView
+                        android:id="@+id/perInstallmentTxt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/m_semibold"
+                        android:gravity="end"
+                        android:text="5,000"
+                        android:textColor="@color/prime"
+                        android:textSize="@dimen/_17sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/perInstallmentLb"
+                        app:layout_constraintEnd_toEndOf="@+id/totalamountTxt"
+                        app:layout_constraintStart_toEndOf="@+id/perInstallmentLb"
+                        app:layout_constraintTop_toTopOf="@+id/perInstallmentLb" />
 
-                <TextView
-                    android:id="@+id/totalamountTxt"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="end"
-                    android:text="25,000"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_17sdp"
-                    app:layout_constraintBottom_toBottomOf="@+id/totalamountLb"
-                    app:layout_constraintEnd_toEndOf="@+id/fView"
-                    app:layout_constraintStart_toEndOf="@+id/totalamountLb"
-                    app:layout_constraintTop_toTopOf="@+id/totalamountLb" />
-
-
-                <TextView
-                    android:id="@+id/perInstallmentLb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/font_heavy"
-                    android:text="Per Installment"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_14sdp"
-                    app:layout_constraintStart_toStartOf="@+id/fView"
-                    app:layout_constraintTop_toBottomOf="@+id/totalamountLb" />
+                    <Button
+                        android:id="@+id/submitBtn"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_36sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:background="@drawable/green_10r_bg"
+                        android:fontFamily="@font/m_bold"
+                        android:text="Provide Advance Payment"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/perInstallmentTxt"
+                        app:layout_constraintStart_toStartOf="@+id/perInstallmentLb"
+                        app:layout_constraintTop_toBottomOf="@+id/perInstallmentTxt" />
 
 
-                <TextView
-                    android:id="@+id/perInstallmentTxt"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="end"
-                    android:text="5,000"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_17sdp"
-                    app:layout_constraintBottom_toBottomOf="@+id/perInstallmentLb"
-                    app:layout_constraintEnd_toEndOf="@+id/fView"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/perInstallmentLb"
-                    app:layout_constraintTop_toTopOf="@+id/perInstallmentLb" />
-
-                <Button
-                    android:id="@+id/submitBtn"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_36sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:background="@drawable/green_10r_bg"
-                    android:text="Provide Loan"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sdp"
-                    app:layout_constraintEnd_toEndOf="@+id/perInstallmentTxt"
-                    app:layout_constraintStart_toStartOf="@+id/perInstallmentLb"
-                    app:layout_constraintTop_toBottomOf="@+id/perInstallmentTxt" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,77 +5,80 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="5dp"
-        android:padding="@dimen/_10sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:background="@drawable/white_5r_bg">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/reasonLb"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/arial_rounded_mt_bold"
-            android:text="Task"
-            android:textColor="@color/_C1C7D0"
-            android:textSize="@dimen/_14sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/reasonTxt"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_25sdp"
+            android:layout_margin="@dimen/_10sdp"
             android:background="@drawable/edit_text_bg"
-            android:drawablePadding="@dimen/_10sdp"
-            android:fontFamily="@font/font_heavy"
-            android:importantForAutofill="no"
-            android:inputType="textNoSuggestions"
-            android:paddingLeft="@dimen/_10sdp"
-            android:paddingRight="@dimen/_10sdp"
-            android:textAllCaps="true"
-            android:textColor="@color/_172B4D"
-            android:textSize="@dimen/_11ssp"
+            android:padding="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/reasonLb"
-            app:layout_constraintTop_toBottomOf="@+id/reasonLb"
-            tools:ignore="TextFields"
-            tools:targetApi="m" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/submitBtn"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:background="@drawable/green_10r_bg"
-            android:elevation="@dimen/_3sdp"
-            android:fontFamily="@font/font_heavy"
-            android:gravity="center"
-            android:text="Submit"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="@+id/reasonTxt"
-            app:layout_constraintStart_toEndOf="@id/cancelBtn"
-            app:layout_constraintTop_toBottomOf="@+id/reasonTxt" />
+            <TextView
+                android:id="@+id/reasonLb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/m_bold"
+                android:text="Task"
+                android:textColor="@color/_A8A8A8"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/cancelBtn"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:background="@drawable/red_10r_bg"
-            android:elevation="@dimen/_3sdp"
-            android:fontFamily="@font/font_heavy"
-            android:gravity="center"
-            android:text="Cancel"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/submitBtn"
-            app:layout_constraintEnd_toStartOf="@+id/submitBtn"
-            app:layout_constraintStart_toStartOf="@+id/reasonTxt"
-            app:layout_constraintTop_toTopOf="@+id/submitBtn" />
+            <EditText
+                android:id="@+id/reasonTxt"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:background="@drawable/white_5r_bg"
+                android:fontFamily="@font/m_semibold"
+                android:importantForAutofill="no"
+                android:inputType="textNoSuggestions"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingRight="@dimen/_10sdp"
+                android:textColor="@color/prime"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/reasonLb"
+                app:layout_constraintTop_toBottomOf="@+id/reasonLb"
+                tools:ignore="TextFields"
+                tools:targetApi="m" />
+
+            <TextView
+                android:id="@+id/submitBtn"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/green_10r_bg"
+                android:fontFamily="@font/m_bold"
+                android:gravity="center"
+                android:text="Submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="@+id/reasonTxt"
+                app:layout_constraintStart_toEndOf="@id/cancelBtn"
+                app:layout_constraintTop_toBottomOf="@+id/reasonTxt" />
+
+            <TextView
+                android:id="@+id/cancelBtn"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/red_10r_bg"
+                android:fontFamily="@font/m_bold"
+                android:gravity="center"
+                android:text="Cancel"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/submitBtn"
+                app:layout_constraintEnd_toStartOf="@+id/submitBtn"
+                app:layout_constraintStart_toStartOf="@+id/reasonTxt"
+                app:layout_constraintTop_toTopOf="@+id/submitBtn" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

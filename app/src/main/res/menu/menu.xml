@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/employeeBtns"
-        android:icon="@drawable/icn_list"
+        android:icon="@drawable/icn_grid"
         android:title="List"
         app:cnb_backgroundColor="@color/prime"
         app:cnb_iconColor="@color/white"

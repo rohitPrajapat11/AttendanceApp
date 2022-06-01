@@ -6,7 +6,7 @@
         android:id="@+id/dashboardBottom"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
-        android:background="@color/f1f3f5"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -17,7 +17,6 @@
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
-            android:background="@drawable/auth_white_bg"
             android:fadingEdge="horizontal"
             app:cnb_menuResource="@menu/menu"
             app:cnb_unselectedColor="@color/prime"

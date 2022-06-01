@@ -7,10 +7,10 @@
         android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
-        android:layout_marginStart="@dimen/_4sdp"
-        android:layout_marginEnd="@dimen/_4sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
         android:layout_marginBottom="@dimen/_4sdp"
-        android:background="@drawable/white_5r_bg">
+        android:background="@drawable/edit_text_bg">
 
         <TextView
             android:id="@+id/index"
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:text="1"
-            android:textColor="@color/_172B4D"
+            android:textColor="@color/prime"
             android:gravity="center"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintBottom_toBottomOf="@+id/deseTxt"
@@ -32,7 +32,7 @@
             android:elevation="@dimen/_2sdp"
             android:padding="@dimen/_7sdp"
             android:text="Android Developer"
-            android:textColor="@color/_172B4D"
+            android:textColor="@color/prime"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

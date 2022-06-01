@@ -105,6 +105,5 @@ public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 AppLoader.hideLoaderDialog();
             });
         }
-
     }
 }

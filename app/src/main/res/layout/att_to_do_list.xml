@@ -7,7 +7,7 @@
     android:elevation="@dimen/_2sdp"
     android:layout_margin="@dimen/_3sdp"
     android:padding="@dimen/_2sdp"
-    android:background="@drawable/recycler_bg_todo"
+    android:background="@drawable/white_5r_bg"
     android:layout_height="wrap_content">
 
     <ImageView

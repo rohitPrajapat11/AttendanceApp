@@ -7,143 +7,138 @@
 
     <fragment
         android:id="@+id/employeeListFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeListFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.EmployeeListFragment"
         android:label="Employee List  Fragment"
         tools:layout="@layout/employee_list_item" />
     <fragment
         android:id="@+id/loanFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminLoanFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.AdminLoanFragment"
         android:label="Loan Fragment"
         tools:layout="@layout/fragment_admin_loan" />
     <fragment
         android:id="@+id/adminHomeFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminHomeFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.AdminHomeFragment"
         android:label="Home Fragment"
         tools:layout="@layout/fragment_admin_home" />
     <fragment
         android:id="@+id/adminTermFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminTermAndCondition"
+        android:name="com.bdappmaniac.bdapp.fragment.AdminTermAndCondition"
         android:label="Admin Term Fragment"
         tools:layout="@layout/fragment_admin_term_and_condition" />
     <fragment
         android:id="@+id/employeeDetailFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeDetailsFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.EmployeeDetailsFragment"
         android:label="Fragment"
         tools:layout="@layout/fragment_employee_details" />
     <fragment
         android:id="@+id/registerEmployeeFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.RegisterEmployeeFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.RegisterEmployeeFragment"
         android:label="Register Fragment"
         tools:layout="@layout/fragment_register_empolyee" />
     <fragment
         android:id="@+id/employeeAttendanceFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeAttendanceFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.EmployeeAttendanceFragment"
         android:label="Fragment"
         tools:layout="@layout/fragment_employee_attendance" />
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.bdappmaniac.bdapp.employee.fragment.SettingFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.AdminSettingFragment"
         android:label="Fragment"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_home_setting" />
     <fragment
         android:id="@+id/provideLoanFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.LoanProvideFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.LoanProvideFragment"
         android:label="Fragment"
         tools:layout="@layout/fragment_loan_provide" />
     <fragment
         android:id="@+id/employeeListForLoanFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeListForLoan"
+        android:name="com.bdappmaniac.bdapp.fragment.EmployeeListForLoan"
         android:label="Fragment"
         tools:layout="@layout/fragment_employee_list_for_loan" />
     <fragment
         android:id="@+id/adminProfile"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminProfile"
+        android:name="com.bdappmaniac.bdapp.fragment.AdminProfile"
         android:label="AdminProfile"
         tools:layout="@layout/fragment_admin_profile"/>
     <fragment
         android:id="@+id/adminHolidayFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminHolidayFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.AdminHolidayFragment"
         android:label="AdminHolidayFragment"
         tools:layout="@layout/fragment_admin_holiday"/>
     <fragment
         android:id="@+id/attendanceRulesFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.AttendanceRulesFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.AttendanceRulesFragment"
         android:label="AttendanceRulesFragment"
         tools:layout="@layout/fragment_attendance_rules"/>
     <fragment
         android:id="@+id/employeeTermsAndConditionFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeTermsAndConditionFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.EmployeeTermsAndConditionFragment"
         android:label="EmployeeTermsAndConditionFragment"
         tools:layout="@layout/fragment_employee_terms_and_condition"/>
 
 
     <fragment
         android:id="@+id/toDoListFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminTodoList"
+        android:name="com.bdappmaniac.bdapp.fragment.AdminTodoList"
         android:label="ToDolLIstFragment"
         tools:layout="@layout/fragment_admin_todo_list"/>
 
     <fragment
         android:id="@+id/lockUnlockFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.AdminLockUnlock"
+        android:name="com.bdappmaniac.bdapp.fragment.AdminLockUnlock"
         android:label="LockUnlock"
         tools:layout="@layout/fragment_admin_lock_unlock"/>
     <fragment
         android:id="@+id/designationFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.DesignationFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.DesignationFragment"
         android:label="DesignationFragment"
         tools:layout="@layout/fragment_designation"/>
     <fragment
         android:id="@+id/employeeAttandenceListFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeAttandenceListFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.EmployeeAttandenceListFragment"
         android:label="EmployeeAttandenceListFragment"
         tools:layout="@layout/fragment_employee_attandence_list"/>
 
     <fragment
         android:id="@+id/employeeDesListFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeDesListFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.TasksFragment"
         android:label="EmployeeDesListFragment"
         tools:layout="@layout/fragment_employee_des_list"/>
 
     <fragment
         android:id="@+id/employeeExpensesFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeExpensesFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.EmployeeExpensesFragment"
         android:label="EmployeeExpensesFragment"
         tools:layout="@layout/fragment_employee_expenses"/>
     <fragment
         android:id="@+id/employeeToDoListFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeToDoListFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.EmployeeToDoListFragment"
         android:label="EmployeeToDoListFragment"
         tools:layout="@layout/fragment_employee_to_do_list"/>
     <fragment
         android:id="@+id/employeeExpenseDetailsFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.EmployeeExpenseDetailsFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.EmployeeExpenseDetailsFragment"
         android:label="EmployeeExpenseDetailsFragment"
         tools:layout="@layout/fragment_employee_expense_details"/>
     <fragment
         android:id="@+id/overTimeFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.OverTimeFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.OverTimeFragment"
         android:label="OverTimeFragment"
         tools:layout="@layout/fragment_over_time"/>
     <fragment
-        android:id="@+id/personalInfoFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.PersonalInfoFragment"
-        android:label="PersonalInfoFragment"
-        tools:layout="@layout/fragment_personal_info"/>
-    <fragment
-        android:id="@+id/contactInfoFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.ContactInfoFragment"
-        android:label="ContactInfoFragment"
-        tools:layout="@layout/fragment_contact_info"/>
-    <fragment
         android:id="@+id/serviceInfoFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.ServiceInfoFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.ServiceInfoFragment"
         android:label="ServiceInfoFragment"
         tools:layout="@layout/fragment_service_info"/>
     <fragment
         android:id="@+id/salaryFragment"
-        android:name="com.bdappmaniac.bdapp.admin.fragment.SalaryFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.SalaryFragment"
         android:label="SalaryFragment"
         tools:layout="@layout/fragment_salary"/>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.NotificationFragment"
+        android:label="NotificationFragment"
+        tools:layout="@layout/fragment_notification"/>
 
 </navigation>

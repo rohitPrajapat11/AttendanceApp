@@ -124,8 +124,10 @@ dependencies {
 //    advanced cardview
     implementation 'com.github.sina-seyfi:AdvancedCardView:1.0.1'
 
-    implementation'com.wefika:horizontal-picker:1.1.1'
+    implementation 'com.wefika:horizontal-picker:1.1.1'
 //    scrollview
     implementation 'com.yarolegovich:discrete-scrollview:1.5.1'
+    // browser
+    implementation 'androidx.browser:browser:1.4.0'
 
 }
