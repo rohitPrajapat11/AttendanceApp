@@ -65,7 +65,7 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
             @Override
             public void onClick(View view) {
                 if (binding.checkintxt.getText().equals("CHECK IN")){
-                    binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_out);
+                    binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gradient_in);
                     binding.checkintxt.setText("CHECK OUT");
                 }else if (binding.checkintxt.getText().equals("CHECK OUT")){
                 binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_out);

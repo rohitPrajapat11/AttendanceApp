@@ -537,7 +537,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/logOutImg"
                         app:layout_constraintStart_toEndOf="@+id/logOutImg"
                         app:layout_constraintTop_toTopOf="@+id/logOutImg"
-                        app:layout_constraintVertical_bias="0.6" />
+                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

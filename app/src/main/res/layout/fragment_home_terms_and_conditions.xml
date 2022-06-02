@@ -29,22 +29,22 @@
                 android:src="@drawable/icn_back_arrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.555" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/_172B4D"
-                android:fontFamily="@font/font_heavy"
+                android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
                 android:text="Employment Terms"
-                android:textColor="@color/_172B4D"
+                android:textColor="@color/blue_primary"
                 android:textSize="@dimen/_16sdp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/backBtn"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/secondary_color" />
 
@@ -54,7 +54,8 @@
             android:id="@+id/scrollableLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="@dimen/_10sdp"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:background="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -65,23 +66,24 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+
                     android:id="@+id/conditionsLb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_bg"
                     android:drawablePadding="@dimen/_10sdp"
                     android:drawableTint="@color/_A8A8A8"
                     android:enabled="false"
                     android:focusable="true"
-                    android:fontFamily="@font/font_heavy"
-                    android:gravity="center_vertical"
+                    android:fontFamily="@font/m_light"
+                    android:textStyle="bold"
+                    android:gravity="left"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
                     android:padding="10dp"
                     android:paddingBottom="@dimen/_10sdp"
                     android:textAllCaps="false"
-                    android:textColor="@color/_172B4D"
-                    android:textSize="@dimen/_12ssp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

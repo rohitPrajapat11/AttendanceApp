@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/_172B4D"
-                android:fontFamily="@font/font_heavy"
+                android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
                 android:text="Setting"
                 android:textColor="@color/_172B4D"

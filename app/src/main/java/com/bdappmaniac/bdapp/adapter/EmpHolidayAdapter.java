@@ -7,23 +7,27 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.AdminHistoryItemBinding;
 import com.bdappmaniac.bdapp.databinding.DesignHolidayItemsBinding;
+import com.bdappmaniac.bdapp.model.ModelChildHolidayItems;
 import com.bdappmaniac.bdapp.model.ModelHolidayItems;
 
 import java.util.ArrayList;
 
 public class EmpHolidayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<ModelHolidayItems> itemsArrayList = new ArrayList<>();
+    ArrayList<ModelHolidayItems> monthlist = new ArrayList<>();
     Context context;
 
-    public EmpHolidayAdapter(ArrayList<ModelHolidayItems> itemsArrayList, Context context) {
-        this.itemsArrayList = itemsArrayList;
+
+    public EmpHolidayAdapter(ArrayList<ModelHolidayItems> monthlist, Context context) {
+        this.monthlist = monthlist;
         this.context = context;
     }
+
 
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
         DesignHolidayItemsBinding binding = DataBindingUtil.inflate(inflater, R.layout.design_holiday_items, group, false);
@@ -39,14 +43,32 @@ public class EmpHolidayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ViewHolder vholder = (ViewHolder) holder;
-        vholder.binding.occasion.setText(itemsArrayList.get(position).getOccasion());
-        vholder.binding.date.setText(itemsArrayList.get(position).getDate());
-        vholder.binding.day.setText(itemsArrayList.get(position).getDay());
+        vholder.binding.month.setText(monthlist.get(position).getMonth());
 
+
+
+        ArrayList<ModelChildHolidayItems> holidaylist = new ArrayList<>();
+        holidaylist.add(new ModelChildHolidayItems("22","Friday","Hanuman Jayanti"));
+        holidaylist.add(new ModelChildHolidayItems("27","Friday","Holika Dahan"));
+        holidaylist.add(new ModelChildHolidayItems("29","Friday","Wasant Panchmi"));
+        holidaylist.add(new ModelChildHolidayItems("22","Friday","Hanuman Jayanti"));
+        holidaylist.add(new ModelChildHolidayItems("27","Friday","Holika Dahan"));
+        holidaylist.add(new ModelChildHolidayItems("29","Friday","Wasant Panchmi"));
+        holidaylist.add(new ModelChildHolidayItems("22","Friday","Hanuman Jayanti"));
+        holidaylist.add(new ModelChildHolidayItems("27","Friday","Holika Dahan"));
+        holidaylist.add(new ModelChildHolidayItems("29","Friday","Wasant Panchmi"));
+
+
+
+
+        childHolidayAdapter adapter = new childHolidayAdapter(holidaylist,context);
+        vholder.binding.recyclerviewHolidays.setLayoutManager(new LinearLayoutManager(context));
+        vholder.binding.recyclerviewHolidays.setAdapter(adapter);
     }
+
     @Override
     public int getItemCount() {
-        return itemsArrayList.size();
+        return monthlist.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
