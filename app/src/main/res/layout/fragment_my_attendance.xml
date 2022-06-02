@@ -28,7 +28,7 @@
                 android:id="@+id/v1"
                 android:layout_width="@dimen/_10sdp"
                 android:layout_height="@dimen/_3sdp"
-                android:background="@drawable/bg_btn_gragient_in"
+                android:background="@drawable/bg_btn_gradient_in"
                 android:elevation="@dimen/_5sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/monthpicker"
                 app:layout_constraintEnd_toEndOf="@+id/monthpicker"

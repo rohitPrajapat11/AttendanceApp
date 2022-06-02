@@ -22,6 +22,7 @@
         <entry key="app/src/main/res/drawable-xxxhdpi/ic_search_black_24dp.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable-xxxhdpi/to_do_Att_recycler_bg.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/auth_white_bg.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/bg_btn_gradient_in.xml" value="0.1805" />
         <entry key="app/src/main/res/drawable/bg_btn_gragient.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/bg_btn_gragient_out.xml" value="0.186" />
         <entry key="app/src/main/res/drawable/bg_holiday_items.xml" value="0.1875" />
@@ -121,11 +122,14 @@
         <entry key="app/src/main/res/layout/design_attendance_history.xml" value="0.33" />
         <entry key="app/src/main/res/layout/design_check_in_out_entries.xml" value="0.15" />
         <entry key="app/src/main/res/layout/design_custom_monthpicker.xml" value="0.2774690038477982" />
-        <entry key="app/src/main/res/layout/design_holiday_items.xml" value="0.3385416666666667" />
+        <entry key="app/src/main/res/layout/design_holiday_items.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/design_holidays.xml" value="0.25" />
         <entry key="app/src/main/res/layout/design_leave_item_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/design_loan_list.xml" value="0.5" />
         <entry key="app/src/main/res/layout/design_recycler_menu.xml" value="0.33" />
         <entry key="app/src/main/res/layout/design_task_items.xml" value="0.2773322076825665" />
+        <entry key="app/src/main/res/layout/design_terms.xml" value="0.28003420265070544" />
+        <entry key="app/src/main/res/layout/design_terms__and_condition.xml" value="0.33" />
         <entry key="app/src/main/res/layout/designation_dialogbox.xml" value="0.22" />
         <entry key="app/src/main/res/layout/designation_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/edit_designation_dialog.xml" value="0.11796875" />
@@ -154,7 +158,7 @@
         <entry key="app/src/main/res/layout/fragment_employee_atds.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/fragment_employee_attandence_list.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/fragment_employee_attendance.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_employee_attendance_rules.xml" value="0.11796875" />
+        <entry key="app/src/main/res/layout/fragment_employee_attendance_rules.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_employee_des_list.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_employee_detail.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/fragment_employee_details.xml" value="0.15" />

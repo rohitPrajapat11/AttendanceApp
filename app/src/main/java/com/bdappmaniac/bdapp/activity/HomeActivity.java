@@ -213,7 +213,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     void navHandel(String type) {
         switch (type) {
             case "Home":
-                binding.homeLayout.headerLayout.title.setText("Dashboard");
+                binding.homeLayout.headerLayout.title.setText("Home");
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.title.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home_select);
@@ -252,7 +252,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                 break;
             case "Profile":
-                binding.homeLayout.headerLayout.title.setText("");
+                binding.homeLayout.headerLayout.title.setText("Profile");
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
                 binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);
                 binding.homeLayout.bottomLayout.historyBtn.setImageResource(R.drawable.icn_history);
@@ -287,6 +287,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             case "Leave" :
                 binding.homeLayout.headerLayout.title.setText("Leaves");
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.VISIBLE);
+                break;
+
         }
     }
 

@@ -1,16 +1,21 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.DatePicker;
+
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.adapter.MonthPickerAdapter;
 import com.bdappmaniac.bdapp.adapter.MyAttendanceHistoryAdapter;
@@ -20,15 +25,22 @@ import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.SmoothScrolllinearSmoothScroller;
 import com.bdappmaniac.bdapp.model.ModelMyAttendenceHistory;
 import com.bdappmaniac.bdapp.model.Modelmonthpicker;
+import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 import java.util.ArrayList;
-
+import java.util.Calendar;
 
 
 public class MyAttendance extends BaseFragment {
     public FragmentMyAttendanceBinding binding;
     MonthPickerAdapter monthPickerAdapter;
+    String fromDates;
+    String toDates;
+    Calendar from = Calendar.getInstance();
+    Calendar to = Calendar.getInstance();
+    private int FYear, FMonth, FDay;
+    private int TYear, TMonth, TDay;
 
 
     MyAttendanceHistoryAdapter historyAdapter;
@@ -56,6 +68,8 @@ public class MyAttendance extends BaseFragment {
 
         MonthPickerAdapter  monthPickerAdapter= new MonthPickerAdapter(dlist,mContext);
         binding.monthpicker.setAdapter(monthPickerAdapter);
+
+
 
         ArrayList<ModelMyAttendenceHistory> HistoryList = new ArrayList<>();
         HistoryList.add(new ModelMyAttendenceHistory("FRI","23"));

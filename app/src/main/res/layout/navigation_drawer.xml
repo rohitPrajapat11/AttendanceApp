@@ -50,10 +50,8 @@
             app:layout_constraintStart_toStartOf="@+id/userName"
             app:layout_constraintTop_toBottomOf="@+id/userName" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.core.widget.NestedScrollView
-            android:layout_margin="@dimen/_12sdp"
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -540,7 +538,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/logOutImg"
                         app:layout_constraintStart_toEndOf="@+id/logOutImg"
                         app:layout_constraintTop_toTopOf="@+id/logOutImg"
-                        app:layout_constraintVertical_bias="0.6" />
+                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

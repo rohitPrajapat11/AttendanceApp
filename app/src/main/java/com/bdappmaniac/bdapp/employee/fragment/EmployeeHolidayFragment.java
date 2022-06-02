@@ -28,6 +28,7 @@ import com.bdappmaniac.bdapp.Api.response.HolidaysItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
+import com.bdappmaniac.bdapp.adapter.AllLoanAdapter;
 import com.bdappmaniac.bdapp.adapter.EmpHolidayAdapter;
 import com.bdappmaniac.bdapp.adapter.EmployeeAttendanceListAdapter;
 import com.bdappmaniac.bdapp.adapter.EmployeeHolidayAdapter;
@@ -58,7 +59,7 @@ public class EmployeeHolidayFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_holiday, container, false);
-            StatusBarUtils.statusBarColor(getActivity(), R.color.primary_color);
+            StatusBarUtils.statusBarColor(getActivity(), R.color._F4F5F7);
             monthAdapter = new EmployeeHolidayAdapter(mContext, list);
 //            binding.employeeHolidayRecyclers.setHasFixedSize(false);
 //            binding.employeeHolidayRecyclers.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -73,55 +74,35 @@ public class EmployeeHolidayFragment extends BaseFragment {
         });
 
         ArrayList<ModelHolidayItems> itemsArrayList = new ArrayList<>();
-        itemsArrayList.add(new ModelHolidayItems("Holi", "Mon", "20"));
-        itemsArrayList.add(new ModelHolidayItems("Dhanteras", "Tue", "21"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
-        itemsArrayList.add(new ModelHolidayItems("Independence Day", "Thu", "24"));
-        itemsArrayList.add(new ModelHolidayItems("Office Leave", "Fri", "25"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
-        itemsArrayList.add(new ModelHolidayItems(" Ram Navmi", "Thu", "31"));
-        itemsArrayList.add(new ModelHolidayItems("Maha Shivratri", "Fri", "1"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "4"));
-        itemsArrayList.add(new ModelHolidayItems("Wasant Pancmi", "Thu", "24"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
-        itemsArrayList.add(new ModelHolidayItems("Independence Day", "Thu", "24"));
-        itemsArrayList.add(new ModelHolidayItems("Office Leave", "Fri", "25"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
-        itemsArrayList.add(new ModelHolidayItems(" Ram Navmi", "Thu", "31"));
-        itemsArrayList.add(new ModelHolidayItems("Maha Shivratri", "Fri", "1"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "4"));
-        itemsArrayList.add(new ModelHolidayItems("Wasant Pancmi", "Thu", "24"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
-        itemsArrayList.add(new ModelHolidayItems("Independence Day", "Thu", "24"));
-        itemsArrayList.add(new ModelHolidayItems("Office Leave", "Fri", "25"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
-        itemsArrayList.add(new ModelHolidayItems(" Ram Navmi", "Thu", "31"));
-        itemsArrayList.add(new ModelHolidayItems("Maha Shivratri", "Fri", "1"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "4"));
-        itemsArrayList.add(new ModelHolidayItems("Wasant Pancmi", "Thu", "24"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
-        itemsArrayList.add(new ModelHolidayItems("Independence Day", "Thu", "24"));
-        itemsArrayList.add(new ModelHolidayItems("Office Leave", "Fri", "25"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
-        itemsArrayList.add(new ModelHolidayItems(" Ram Navmi", "Thu", "31"));
-        itemsArrayList.add(new ModelHolidayItems("Maha Shivratri", "Fri", "1"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "4"));
-        itemsArrayList.add(new ModelHolidayItems("Wasant Pancmi", "Thu", "24"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
-        itemsArrayList.add(new ModelHolidayItems("Independence Day", "Thu", "24"));
-        itemsArrayList.add(new ModelHolidayItems("Office Leave", "Fri", "25"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "22"));
-        itemsArrayList.add(new ModelHolidayItems(" Ram Navmi", "Thu", "31"));
-        itemsArrayList.add(new ModelHolidayItems("Maha Shivratri", "Fri", "1"));
-        itemsArrayList.add(new ModelHolidayItems("Goverdhan Pooja", "Wed", "4"));
-        itemsArrayList.add(new ModelHolidayItems("Wasant Pancmi", "Thu", "24"));
-        itemsArrayList.add(new ModelHolidayItems("Good Friday", "Fri", "9"));
-        itemsArrayList.add(new ModelHolidayItems("Office Holiday", "Sat", "15"));
+        itemsArrayList.add(new ModelHolidayItems("January"));
+        itemsArrayList.add(new ModelHolidayItems("February"));
+        itemsArrayList.add(new ModelHolidayItems("March"));
+        itemsArrayList.add(new ModelHolidayItems("Aprail"));
+        itemsArrayList.add(new ModelHolidayItems("January"));
+        itemsArrayList.add(new ModelHolidayItems("February"));
+        itemsArrayList.add(new ModelHolidayItems("March"));
+        itemsArrayList.add(new ModelHolidayItems("Aprail"));
+        itemsArrayList.add(new ModelHolidayItems("January"));
+        itemsArrayList.add(new ModelHolidayItems("February"));
+        itemsArrayList.add(new ModelHolidayItems("March"));
+        itemsArrayList.add(new ModelHolidayItems("Aprail"));
+        itemsArrayList.add(new ModelHolidayItems("January"));
+        itemsArrayList.add(new ModelHolidayItems("February"));
+        itemsArrayList.add(new ModelHolidayItems("March"));
+        itemsArrayList.add(new ModelHolidayItems("Aprail"));
+        itemsArrayList.add(new ModelHolidayItems("January"));
+        itemsArrayList.add(new ModelHolidayItems("February"));
+        itemsArrayList.add(new ModelHolidayItems("March"));
+        itemsArrayList.add(new ModelHolidayItems("Aprail"));
+
+
+
+
 
         binding.addBtn.setVisibility(View.GONE);
         holidayadapter = new EmpHolidayAdapter(itemsArrayList, mContext);
-        binding.recyclerHolidays.setLayoutManager(new LinearLayoutManager(mContext));
-        binding.recyclerHolidays.setAdapter(holidayadapter);
+       binding.recyclerholiday.setLayoutManager(new LinearLayoutManager(mContext));
+       binding.recyclerholiday.setAdapter(holidayadapter);
 
 //        binding.recyclerHolidays.addOnScrollListener(new RecyclerView.OnScrollListener() {
 //
@@ -144,22 +125,6 @@ public class EmployeeHolidayFragment extends BaseFragment {
 //
 //        });
 
-        binding.recyclerHolidays.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                    if (!recyclerView.canScrollVertically(1) && dy > 0)
-                    {
-                //       binding.calenderview.c
-                        Log .e("scroll","bottom");
-                        Toast.makeText(mContext, "scrolled d", Toast.LENGTH_SHORT).show();
-                    }else if (!recyclerView.canScrollVertically(-1) && dy < 0)
-                    {
-                      Toast.makeText(mContext, "scrolled u", Toast.LENGTH_SHORT).show();
-                        Log.e("scroll","top");
-                    }
-                }
-            });
 
 
         return binding.getRoot();
