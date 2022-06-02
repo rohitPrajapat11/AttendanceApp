@@ -10,6 +10,7 @@
         android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_3sdp"
+        android:elevation="@dimen/_5sdp"
         android:background="@drawable/edit_text_bg">
 
         <TextView
@@ -20,8 +21,8 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:hint="Rohit prajapat"
             android:textColor="@color/prime"
-            android:textSize="@dimen/_13sdp"
-            android:fontFamily="@font/m_semibold"
+            android:textSize="@dimen/_11ssp"
+            android:fontFamily="@font/m_medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -35,8 +36,8 @@
             android:padding="@dimen/_2sdp"
             android:gravity="center"
             android:textColor="@color/prime"
-            android:fontFamily="@font/m_semibold"
-            android:textSize="@dimen/_9sdp"
+            android:fontFamily="@font/m_medium"
+            android:textSize="@dimen/_8ssp"
             app:layout_constraintBottom_toBottomOf="@+id/switchbtn"
             app:layout_constraintEnd_toStartOf="@+id/switchbtn"
             app:layout_constraintTop_toTopOf="@+id/switchbtn" />

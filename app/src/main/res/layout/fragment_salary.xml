@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activity.AuthActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/f1f3f5">
+        android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/f1f3f5"
             android:elevation="@dimen/_1sdp"
             android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
@@ -37,11 +34,11 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/m_semibold"
+                android:fontFamily="@font/m_medium"
                 android:gravity="center"
                 android:text="Salary Report"
                 android:textColor="@color/prime"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -91,10 +88,10 @@
                     android:id="@+id/yearTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:text="2022"
                     android:textColor="@color/primary_color"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toEndOf="@+id/monthTxt"
                     app:layout_constraintStart_toStartOf="@+id/monthTxt"
                     app:layout_constraintTop_toBottomOf="@+id/monthTxt" />
@@ -103,12 +100,11 @@
                     android:id="@+id/monthTxt"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:gravity="center"
                     android:text="Month"
                     android:textColor="@color/primary_color"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toStartOf="@+id/iv_calendar_next"
                     app:layout_constraintStart_toEndOf="@+id/iv_calendar_previous"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -128,8 +124,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:elevation="1dp"
-                android:padding="@dimen/_10sdp"
+                android:elevation="5dp"
+                android:paddingBottom="@dimen/_3sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -137,8 +133,8 @@
                 <ProgressBar
                     android:id="@+id/progress_circular_id"
                     style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="250dp"
-                    android:layout_height="200dp"
+                    android:layout_width="220dp"
+                    android:layout_height="180dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/salary_shape"
                     android:elevation="5dp"
@@ -146,6 +142,7 @@
                     android:max="100"
                     android:progress="75"
                     android:progressDrawable="@drawable/salary_progress_bar"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -156,9 +153,10 @@
                     android:id="@+id/totals"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/m_medium"
                     android:text="100%"
-                    android:textColor="@color/primary_color"
-                    android:textSize="@dimen/_30sdp"
+                    android:textColor="@color/prime"
+                    android:textSize="@dimen/_20ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/progress_circular_id"
                     app:layout_constraintEnd_toEndOf="@+id/progress_circular_id"
                     app:layout_constraintStart_toStartOf="@+id/progress_circular_id"
@@ -168,7 +166,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/f1f3f5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout9">
@@ -179,11 +176,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_semibold"
                     android:text="Total Amount"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_13ssp"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -193,11 +189,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_semibold"
                     android:text="₹28,000"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_13ssp"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -206,10 +201,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:text="Basic salary 86%"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toStartOf="@+id/baseSalaryTxt"
                     app:layout_constraintStart_toStartOf="@+id/total"
                     app:layout_constraintTop_toBottomOf="@+id/total" />
@@ -219,10 +214,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:text="₹240,80"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toEndOf="@+id/totalAmount"
                     app:layout_constraintTop_toBottomOf="@+id/totalAmount" />
 
@@ -231,10 +226,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:text="HRA. 10%"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toStartOf="@+id/HraTxt"
                     app:layout_constraintStart_toStartOf="@+id/baseSalary"
                     app:layout_constraintTop_toBottomOf="@+id/baseSalary" />
@@ -244,10 +239,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:text="₹2,800"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toEndOf="@+id/baseSalaryTxt"
                     app:layout_constraintTop_toBottomOf="@+id/baseSalaryTxt" />
 
@@ -256,10 +251,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:text="Conveyance. 4%"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toStartOf="@+id/ConveyanceTxt"
                     app:layout_constraintStart_toStartOf="@+id/Hra"
                     app:layout_constraintTop_toBottomOf="@+id/Hra" />
@@ -269,10 +264,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:text="₹1,120"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toEndOf="@+id/HraTxt"
                     app:layout_constraintTop_toBottomOf="@+id/HraTxt" />
 
@@ -281,10 +276,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:text="Daily Allowance"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toStartOf="@+id/dailyAllowanceTxt"
                     app:layout_constraintStart_toStartOf="@+id/conveyance"
                     app:layout_constraintTop_toBottomOf="@+id/conveyance" />
@@ -294,10 +289,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:text="₹1,167"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toEndOf="@+id/ConveyanceTxt"
                     app:layout_constraintTop_toBottomOf="@+id/ConveyanceTxt" />
 
@@ -306,10 +301,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:text="Hourly Allowance"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toStartOf="@+id/hourlyAllowanceTxt"
                     app:layout_constraintStart_toStartOf="@+id/dailyAllowance"
                     app:layout_constraintTop_toBottomOf="@+id/dailyAllowance" />
@@ -319,10 +314,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_medium"
                     android:text="₹146"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toEndOf="@+id/dailyAllowanceTxt"
                     app:layout_constraintTop_toBottomOf="@+id/dailyAllowanceTxt" />
 
@@ -331,11 +326,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_20sdp"
-                    android:fontFamily="@font/arial_rounded_mt_bold"
+                    android:fontFamily="@font/m_semibold"
                     android:text="Deduction"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_13ssp"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/deductionTxt"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -346,11 +340,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
-                    android:fontFamily="@font/arial_rounded_mt_regular"
+                    android:fontFamily="@font/m_semibold"
                     android:text="₹0.00"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_13ssp"
-                    android:textStyle="bold"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/hourlyAllowanceTxt" />

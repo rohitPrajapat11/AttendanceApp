@@ -5,13 +5,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/mainLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/f1f3f5"
             android:elevation="1dp"
             android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
@@ -35,14 +35,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/prime"
-                android:fontFamily="@font/m_semibold"
+                android:fontFamily="@font/m_medium"
                 android:gravity="center"
-                android:text="Provide Advance Payment"
+                android:text="Advance Payment"
                 android:textColor="@color/prime"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/backBtn"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -50,7 +50,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@color/f1f3f5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +83,7 @@
                         android:fontFamily="@font/m_semibold"
                         android:text="Name"
                         android:textColor="@color/_A8A8A8"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,7 +97,8 @@
                         android:drawableStart="@drawable/icn_user"
                         android:drawablePadding="@dimen/_10sdp"
                         android:drawableTint="@color/prime"
-                        android:fontFamily="@font/m_semibold"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/m_medium"
                         android:gravity="center_vertical"
                         android:hint="Enter Name"
                         android:importantForAutofill="no"
@@ -106,7 +106,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:textAllCaps="true"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_11ssp"
+                        android:textSize="@dimen/_10ssp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/nameLb"
                         app:layout_constraintTop_toBottomOf="@+id/nameLb"
@@ -122,7 +122,7 @@
                         android:fontFamily="@font/m_semibold"
                         android:text="@string/email"
                         android:textColor="@color/_A8A8A8"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/nameTxt" />
 
@@ -136,7 +136,8 @@
                         android:drawableStart="@drawable/icn_email"
                         android:drawablePadding="@dimen/_10sdp"
                         android:drawableTint="@color/prime"
-                        android:fontFamily="@font/m_semibold"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/m_medium"
                         android:gravity="center_vertical"
                         android:hint="Enter Email"
                         android:importantForAutofill="no"
@@ -145,7 +146,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:textAllCaps="true"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_11ssp"
+                        android:textSize="@dimen/_10ssp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/emailLb"
                         app:layout_constraintTop_toBottomOf="@+id/emailLb"
@@ -155,8 +156,8 @@
                     <ImageView
                         android:id="@+id/emailValidation"
                         android:layout_width="@dimen/_16sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
                         android:layout_height="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
                         android:src="@drawable/icn_email_validation"
                         app:layout_constraintBottom_toBottomOf="@+id/emailTxt"
                         app:layout_constraintEnd_toEndOf="@+id/emailTxt"
@@ -172,7 +173,7 @@
                         android:fontFamily="@font/m_semibold"
                         android:text="Loan Amount"
                         android:textColor="@color/_A8A8A8"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/emailTxt" />
 
@@ -186,7 +187,8 @@
                         android:drawableStart="@drawable/icn_rupee"
                         android:drawablePadding="@dimen/_10sdp"
                         android:drawableTint="@color/prime"
-                        android:fontFamily="@font/m_semibold"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/m_medium"
                         android:hint="Loan Amount"
                         android:importantForAutofill="no"
                         android:inputType="number"
@@ -194,7 +196,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:textAllCaps="true"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_11ssp"
+                        android:textSize="@dimen/_10ssp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/loanAmountLb"
                         app:layout_constraintTop_toBottomOf="@+id/loanAmountLb"
@@ -210,7 +212,7 @@
                         android:fontFamily="@font/m_semibold"
                         android:text="Loan Instalment"
                         android:textColor="@color/_A8A8A8"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/loanAmountTxt" />
 
@@ -224,7 +226,8 @@
                         android:drawableStart="@drawable/icn_installment"
                         android:drawablePadding="@dimen/_10sdp"
                         android:drawableTint="@color/prime"
-                        android:fontFamily="@font/m_semibold"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/m_medium"
                         android:hint="Loan Installment"
                         android:importantForAutofill="no"
                         android:inputType="number"
@@ -232,7 +235,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:textAllCaps="true"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_11ssp"
+                        android:textSize="@dimen/_10ssp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/loanInstalmentLb"
                         app:layout_constraintTop_toBottomOf="@+id/loanInstalmentLb"
@@ -248,7 +251,7 @@
                         android:fontFamily="@font/m_semibold"
                         android:text="Loan Issue Date"
                         android:textColor="@color/_A8A8A8"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/loanInstalmentTxt" />
 
@@ -262,7 +265,8 @@
                         android:drawableStart="@drawable/icn_calendar_l"
                         android:drawablePadding="@dimen/_10sdp"
                         android:drawableTint="@color/prime"
-                        android:fontFamily="@font/m_semibold"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/m_medium"
                         android:gravity="center_vertical"
                         android:hint="Date"
                         android:importantForAutofill="no"
@@ -271,7 +275,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:textAllCaps="true"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_11ssp"
+                        android:textSize="@dimen/_10ssp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/loanInstalmentLb"
                         app:layout_constraintTop_toBottomOf="@+id/loanIssueDateLb"
@@ -288,7 +292,7 @@
                         android:fontFamily="@font/m_semibold"
                         android:text="Reason"
                         android:textColor="@color/_A8A8A8"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/loanIssueDate" />
 
@@ -303,7 +307,8 @@
                         android:drawableStart="@drawable/icn_reason"
                         android:drawablePadding="@dimen/_10sdp"
                         android:drawableTint="@color/prime"
-                        android:fontFamily="@font/m_semibold"
+                        android:elevation="5dp"
+                        android:fontFamily="@font/m_medium"
                         android:hint="Write reason for taking loan"
                         android:importantForAutofill="no"
                         android:inputType="textMultiLine"
@@ -312,7 +317,7 @@
                         android:paddingRight="@dimen/_10sdp"
                         android:textAllCaps="true"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_11ssp"
+                        android:textSize="@dimen/_10ssp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/loanReasonLb"
                         app:layout_constraintTop_toBottomOf="@+id/loanReasonLb"
@@ -327,7 +332,7 @@
                         android:fontFamily="@font/m_semibold"
                         android:text="Loan Amount"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="@+id/loanReasonTxt"
                         app:layout_constraintTop_toBottomOf="@+id/loanReasonTxt" />
 
@@ -339,7 +344,7 @@
                         android:gravity="end"
                         android:text="25,000"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_17sdp"
+                        android:textSize="@dimen/_12ssp"
                         app:layout_constraintBottom_toBottomOf="@+id/totalamountLb"
                         app:layout_constraintEnd_toEndOf="@+id/loanReasonTxt"
                         app:layout_constraintStart_toEndOf="@+id/totalamountLb"
@@ -354,7 +359,7 @@
                         android:fontFamily="@font/m_semibold"
                         android:text="Per Installment"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="@+id/totalamountLb"
                         app:layout_constraintTop_toBottomOf="@+id/totalamountLb" />
 
@@ -367,7 +372,7 @@
                         android:gravity="end"
                         android:text="5,000"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_17sdp"
+                        android:textSize="@dimen/_12ssp"
                         app:layout_constraintBottom_toBottomOf="@+id/perInstallmentLb"
                         app:layout_constraintEnd_toEndOf="@+id/totalamountTxt"
                         app:layout_constraintStart_toEndOf="@+id/perInstallmentLb"
@@ -379,8 +384,8 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_36sdp"
                         android:layout_marginTop="@dimen/_20sdp"
-                        android:background="@drawable/green_10r_bg"
-                        android:fontFamily="@font/m_bold"
+                        android:background="@drawable/light_green_15r_bg"
+                        android:fontFamily="@font/m_medium"
                         android:text="Provide Advance Payment"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
@@ -388,7 +393,6 @@
                         app:layout_constraintEnd_toEndOf="@+id/perInstallmentTxt"
                         app:layout_constraintStart_toStartOf="@+id/perInstallmentLb"
                         app:layout_constraintTop_toBottomOf="@+id/perInstallmentTxt" />
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>

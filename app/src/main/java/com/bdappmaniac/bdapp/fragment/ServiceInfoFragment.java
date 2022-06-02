@@ -59,6 +59,6 @@ public class ServiceInfoFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.f1f3f5);
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
     }
 }

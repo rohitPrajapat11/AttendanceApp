@@ -38,7 +38,6 @@ import java.util.Map;
 
 import okhttp3.RequestBody;
 
-
 public class EmployeeAttendanceFragment extends BaseFragment implements CalendarCallBack {
     FragmentEmployeeAttendanceBinding binding;
     Calendar from = Calendar.getInstance();

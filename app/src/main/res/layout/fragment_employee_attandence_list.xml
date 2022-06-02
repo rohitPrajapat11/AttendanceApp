@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/f1f3f5">
+        android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerLayout"
@@ -60,7 +60,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_13ssp"
+                android:elevation="5dp"
                 android:textColor="@color/prime"
                 android:fontFamily="@font/m_semibold"
                 android:layout_centerInParent="true"

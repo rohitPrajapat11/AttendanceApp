@@ -15,6 +15,7 @@ import com.bdappmaniac.bdapp.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentAdminLoanBinding;
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
 import com.bdappmaniac.bdapp.model.AllLoanModel;
+import com.bdappmaniac.bdapp.model.ModelAllLoans;
 import com.bdappmaniac.bdapp.utils.Constant;
 
 import java.text.SimpleDateFormat;
@@ -25,6 +26,7 @@ import java.util.Locale;
 public class AdminLoanFragment extends BaseFragment implements CalendarCallBack {
     FragmentAdminLoanBinding binding;
     ArrayList<AllLoanModel> loanStatus = new ArrayList<>();
+    ArrayList<ModelAllLoans> loanStatuss = new ArrayList<>();
     EmployeeListAdapter EmAdapter;
     AllLoanAdapter allLoanAdapter;
     Dialog addEmployeeDialog;
@@ -63,7 +65,7 @@ public class AdminLoanFragment extends BaseFragment implements CalendarCallBack 
         loanStatus.add(new AllLoanModel("Aug", "10-08-2021", "2,000"));
         loanStatus.add(new AllLoanModel("Sep", "10-09-2021", "2,000"));
         loanStatus.add(new AllLoanModel("Oct", "10-10-2021", "2,000"));
-        allLoanAdapter = new AllLoanAdapter(getContext(), loanStatus);
+        allLoanAdapter = new AllLoanAdapter(loanStatuss, getContext());
         binding.historyRecycler.setAdapter(allLoanAdapter);
         return binding.getRoot();
     }
