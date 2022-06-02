@@ -5,13 +5,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/f1f3f5"
             android:elevation="1dp"
             android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
@@ -34,11 +34,11 @@
                 android:id="@+id/titles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/m_semibold"
+                android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
                 android:text="Advance Payment"
                 android:textColor="@color/prime"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +50,6 @@
             android:id="@+id/graphLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/f1f3f5"
             android:elevation="@dimen/_1sdp"
             android:paddingBottom="@dimen/_5sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,11 +62,11 @@
                 android:layout_width="230dp"
                 android:layout_height="220dp"
                 android:layout_centerInParent="true"
-                android:background="@drawable/circular_shape"
+                android:background="@drawable/salary_shape"
                 android:indeterminate="false"
                 android:max="100"
                 android:progress="40"
-                android:progressDrawable="@drawable/circular_progress_bar"
+                android:progressDrawable="@drawable/salary_progress_bar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -283,7 +282,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:paddingBottom="@dimen/_2sdp"
-                android:background="@color/f1f3f5"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/graphLayout"
                 tools:listitem="@layout/loan_details_item" />

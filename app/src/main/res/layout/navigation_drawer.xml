@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -9,7 +8,6 @@
         android:background="@color/blue_secondry"
         android:gravity="bottom"
         android:orientation="vertical">
-
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/userProfile"
@@ -194,6 +192,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.571"
                         app:tint="@color/blue_primary" />
+                    4:20
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -436,8 +435,8 @@
                     android:id="@+id/profileBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_14sdp"
+                    android:padding="@dimen/_5sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/historyBtn">
@@ -508,8 +507,8 @@
                     android:id="@+id/logOutBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:padding="@dimen/_5sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tmcBtn">
@@ -540,8 +539,6 @@
                         app:layout_constraintTop_toTopOf="@+id/logOutImg"
                          />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

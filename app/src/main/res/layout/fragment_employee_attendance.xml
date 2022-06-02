@@ -5,13 +5,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/f1f3f5"
             android:elevation="@dimen/_1sdp"
             android:paddingTop="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/prime"
-                android:fontFamily="@font/m_bold"
+                android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
                 android:text="Attendance Report"
                 android:textColor="@color/prime"
@@ -74,7 +74,7 @@
                         android:id="@+id/formTxt"
                         android:layout_width="86dp"
                         android:layout_height="26dp"
-                        android:fontFamily="@font/font_heavy"
+                        android:fontFamily="@font/m_medium"
                         android:gravity="center"
                         android:paddingStart="@dimen/_1sdp"
                         android:text="From Date"
@@ -88,7 +88,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/arial_rounded_mt_bold"
+                        android:fontFamily="@font/m_medium"
                         android:gravity="center"
                         android:hint="DD/MM/YYYY"
                         android:textColor="@color/_172B4D"
@@ -119,7 +119,7 @@
                         android:id="@+id/ToTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_heavy"
+                        android:fontFamily="@font/m_medium"
                         android:gravity="center"
                         android:paddingStart="@dimen/_1sdp"
                         android:text="To Date"
@@ -133,7 +133,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/arial_rounded_mt_bold"
+                        android:fontFamily="@font/m_medium"
                         android:gravity="center"
                         android:hint="DD/MM/YYYY"
                         android:textColor="@color/_172B4D"
@@ -188,6 +188,7 @@
                 android:id="@+id/historyRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="@dimen/_5sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

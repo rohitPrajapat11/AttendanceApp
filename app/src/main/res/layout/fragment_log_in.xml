@@ -29,7 +29,8 @@
                 android:padding="@dimen/_3sdp"
                 android:src="@drawable/icn_back_arrow"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/prime" />
 
             <TextView
                 android:id="@+id/welcomeTxt"
@@ -37,12 +38,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/m_semibold"
                 android:paddingStart="@dimen/_10sdp"
                 android:text="Welcome,"
-                android:fontFamily="@font/m_bold"
                 android:textColor="@color/prime"
-                android:textSize="@dimen/_25ssp"
-                android:textStyle="bold"
+                android:textSize="@dimen/_23ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/backBtn" />
 
@@ -50,11 +50,11 @@
                 android:id="@+id/detailsTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/m_medium"
                 android:paddingStart="@dimen/_10sdp"
                 android:text="Sign in to continue"
-                android:textSize="@dimen/_15sdp"
-                android:fontFamily="@font/m_semibold"
                 android:textColor="@color/_A8A8A8"
+                android:textSize="@dimen/_13ssp"
                 app:layout_constraintStart_toStartOf="@+id/welcomeTxt"
                 app:layout_constraintTop_toBottomOf="@+id/welcomeTxt" />
 
@@ -74,13 +74,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:drawableTint="@color/_A8A8A8"
+                    android:fontFamily="@font/m_medium"
                     android:hint="Enter Your Email"
-                    android:fontFamily="@font/m_regular"
                     android:importantForAutofill="no"
                     android:inputType="textEmailAddress"
                     android:paddingStart="@dimen/_10sdp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textColor="@color/prime"
+                    android:textSize="@dimen/_11ssp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
@@ -109,12 +109,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:drawableTint="@color/_A8A8A8"
+                    android:fontFamily="@font/m_medium"
                     android:hint="Enter your Password"
-                    android:fontFamily="@font/m_regular"
                     android:inputType="textPassword"
                     android:paddingStart="@dimen/_10sdp"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12ssp" />
+                    android:textColor="@color/prime"
+                    android:textSize="@dimen/_11ssp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
@@ -134,12 +134,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/m_semibold"
+                android:fontFamily="@font/m_medium"
                 android:gravity="start"
                 android:paddingStart="@dimen/_10sdp"
                 android:text="Forgot Password?"
                 android:textColor="#DBA42E"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="@+id/passwordLb"
                 app:layout_constraintTop_toBottomOf="@+id/passwordLb" />
 
@@ -150,10 +150,11 @@
                 android:layout_marginTop="@dimen/_25sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:background="@drawable/emp_btn_unselect"
-                android:elevation="@dimen/_1sdp"
-                android:fontFamily="@font/m_semibold"
+                android:elevation="2dp"
+                android:fontFamily="@font/m_medium"
                 android:text="Admin"
                 android:textAllCaps="false"
+                android:textSize="@dimen/_10ssp"
                 app:layout_constraintEnd_toStartOf="@+id/btnEmp"
                 app:layout_constraintStart_toStartOf="@+id/passwordLb"
                 app:layout_constraintTop_toBottomOf="@+id/forgetPasswordBtn" />
@@ -164,10 +165,11 @@
                 android:layout_height="@dimen/_38sdp"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:background="@drawable/emp_btn_unselect"
-                android:elevation="@dimen/_1sdp"
+                android:elevation="2dp"
+                android:fontFamily="@font/m_medium"
                 android:text="Employee"
-                android:fontFamily="@font/m_semibold"
                 android:textAllCaps="false"
+                android:textSize="@dimen/_10ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/btnAdmin"
                 app:layout_constraintEnd_toEndOf="@+id/passwordLb"
                 app:layout_constraintStart_toEndOf="@+id/btnAdmin"
@@ -180,11 +182,11 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:background="@drawable/light_green_15r_bg"
-                android:fontFamily="@font/m_bold"
+                android:fontFamily="@font/m_medium"
                 android:text="Login"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_13sdp"
+                android:textSize="@dimen/_12ssp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/btnEmp"
