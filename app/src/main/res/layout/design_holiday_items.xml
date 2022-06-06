@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/m_semibold"
-            android:padding="@dimen/_8sdp"
+            android:paddingStart="@dimen/_14sdp"
             android:text="January"
             android:textSize="@dimen/_15sdp"
             android:textAllCaps="false"

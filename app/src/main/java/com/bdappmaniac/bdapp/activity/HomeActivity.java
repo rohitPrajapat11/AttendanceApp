@@ -62,7 +62,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
-        StatusBarUtils.statusBarColor(this, R.color.f1f3f5);
+        StatusBarUtils.statusBarColor(this, R.color.white);
         updateProfile();
         ConnectivityReceiver.setConnectivityListener(new OnChangeConnectivityListener() {
             @Override
@@ -197,13 +197,18 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     bottomHideShow(false);
                 } else if (destination.getId() == R.id.EmpLeavesFragment) {
                     navHandel("Leaves");
-                    headerHideShow(true);
+                    headerHideShow(false);
                     bottomHideShow(false);
                 } else if (destination.getId() == R.id.EmpExpencesfragment) {
                     Toast.makeText(HomeActivity.this, "yooooo", Toast.LENGTH_SHORT).show();
                     navHandel("Expenses");
                     headerHideShow(true);
                     bottomHideShow(false);
+                }else if (destination.getId() == R.id.profileFragment) {
+                    navHandel("Profile");
+                    headerHideShow(true);
+                    bottomHideShow(false);
+
                 }
             }
         });
@@ -215,6 +220,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             case "Home":
                 binding.homeLayout.headerLayout.title.setText("Home");
                 binding.homeLayout.headerLayout.addBtn.setVisibility(View.GONE);
+                binding.homeLayout.headerLayout.settingBtn.setVisibility(View.GONE);
                 binding.homeLayout.headerLayout.title.setVisibility(View.VISIBLE);
                 binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home_select);
                 binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);
@@ -284,14 +290,19 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
                 binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
                 break;
-            case "Leave" :
+                case "Leaves":
                 binding.homeLayout.headerLayout.title.setText("Leaves");
-                binding.homeLayout.headerLayout.addBtn.setVisibility(View.VISIBLE);
+                binding.homeLayout.bottomLayout.homeBtn.setImageResource(R.drawable.icn_home);
+                binding.homeLayout.bottomLayout.taskBtn.setImageResource(R.drawable.icn_task);
+                binding.homeLayout.bottomLayout.historyBtn.setImageResource(R.drawable.icn_history);
+                binding.homeLayout.bottomLayout.profileBtn.setImageResource(R.drawable.icn_profile_select);
+                binding.homeLayout.bottomLayout.homeIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.taskIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.historyIndicator.setVisibility(View.GONE);
+                binding.homeLayout.bottomLayout.profileIndicator.setVisibility(View.VISIBLE);
                 break;
-
         }
     }
-
     void drawerOpenCLose() {
         if (binding.mainDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.mainDrawerLayout.closeDrawer(GravityCompat.START);

@@ -7,19 +7,20 @@ import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.adapter.TaskAdapter;
+import com.bdappmaniac.bdapp.adapter.EmpTaskAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentTaskBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
-import com.bdappmaniac.bdapp.model.ModelTaskList;
+import com.bdappmaniac.bdapp.model.ModelEmpTask;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 
 import java.util.ArrayList;
 
 public class TaskFragment extends BaseFragment {
     FragmentTaskBinding binding;
-    TaskAdapter Adapter;
+    EmpTaskAdapter adapter;
+    ArrayList<ModelEmpTask> childTaskList =new ArrayList<>();
+
 
 
     @Override
@@ -38,38 +39,22 @@ public class TaskFragment extends BaseFragment {
 //            }
 //        });
 
+        ArrayList<ModelEmpTask> childTaskiLIst = new ArrayList<>();
+        childTaskiLIst.add(new ModelEmpTask("21-03-2022"));
+        childTaskiLIst.add(new ModelEmpTask("22-03-2022"));
+        childTaskiLIst.add(new ModelEmpTask("23-03-2022"));
+        childTaskiLIst.add(new ModelEmpTask("25-03-2022"));
+        childTaskiLIst.add(new ModelEmpTask("27-03-2022"));
+        childTaskiLIst.add(new ModelEmpTask("29-03-2022"));
+        childTaskiLIst.add(new ModelEmpTask("1-04-2022"));
+        childTaskiLIst.add(new ModelEmpTask("4-04-2022"));
 
-        ArrayList<ModelTaskList> taskList = new ArrayList<>();
-        taskList.add(new ModelTaskList("20-03-2022", "Fix the bug ", "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.bug, "Bug"));
-        taskList.add(new ModelTaskList("21-03-2022", "Comple the remaining screens in  time", "discription will be here in brief about the above  title complete the changes", "28-03-2022", R.drawable.task, "Task"));
-        taskList.add(new ModelTaskList("23-03-2022", "App  working flow is not correct ", "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.error, "Error"));
-        taskList.add(new ModelTaskList("26-03-2022", "Ui changes", "discription will be here in brief about the above  title ", "27-03-2022", R.drawable.warning, "Correction"));
-        taskList.add(new ModelTaskList("20-03-2022", "Ui changes", "complete the changes", "25-03-2022", R.drawable.bug, "Bug"));
-        taskList.add(new ModelTaskList("20-03-2022", "Fix the bug ", "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.bug, "Bug"));
-        taskList.add(new ModelTaskList("21-03-2022", "Comple the remaining screens in time", "discription will be here in brief about the above  title complete the changes", "28-03-2022", R.drawable.task, "Task"));
-        taskList.add(new ModelTaskList("23-03-2022", "App  working flow is not correct ", "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.error, "Error"));
-        taskList.add(new ModelTaskList("26-03-2022", "ui changes", "discription will be here in brief about the above  title ", "27-03-2022", R.drawable.warning, "Correction"));
-        taskList.add(new ModelTaskList("20-03-2022", "Ui changes", "complete the changes", "25-03-2022", R.drawable.bug, "Bug"));
-        taskList.add(new ModelTaskList("20-03-2022", "Fix the bug ", "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.bug, "Bug"));
-        taskList.add(new ModelTaskList("21-03-2022", "Comple the remaining screens in time", "discription will be here in brief about the above  title complete the changes", "28-03-2022", R.drawable.task, "Task"));
-        taskList.add(new ModelTaskList("23-03-2022", "App  working flow is not correct ", "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.error, "Error"));
-        taskList.add(new ModelTaskList("26-03-2022", "Ui changes", "discription will be here in brief about the above  title ", "27-03-2022", R.drawable.warning, "Correction"));
-        taskList.add(new ModelTaskList("20-03-2022", "ui changes", "complete the changes", "25-03-2022", R.drawable.bug, "Bug"));
-        taskList.add(new ModelTaskList("20-03-2022", "Fix the bug ", "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.bug, "Bug"));
-        taskList.add(new ModelTaskList("21-03-2022", "Comple the remaining screens in time", "discription will be here in brief about the above  title complete the changes", "28-03-2022", R.drawable.task, "Task"));
-        taskList.add(new ModelTaskList("23-03-2022", "App  working flow is not correct ", "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.error, "Error"));
-        taskList.add(new ModelTaskList("26-03-2022", "Ui changes", "discription will be here in brief about the above  title ", "27-03-2022", R.drawable.warning, "Correction"));
-        taskList.add(new ModelTaskList("20-03-2022", "Ui changes", "complete the changes", "25-03-2022", R.drawable.bug, "Bug"));
-        taskList.add(new ModelTaskList("20-03-2022", "Fix the bug ", "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.bug, "Bug"));
-        taskList.add(new ModelTaskList("21-03-2022", "Comple the remaining screens in time", "discription will be here in brief about the above  title complete the changes", "28-03-2022", R.drawable.task, "Task"));
-        taskList.add(new ModelTaskList("23-03-2022", "App  working flow is not correct ", "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.error, "Error"));
-        taskList.add(new ModelTaskList("26-03-2022", "Ui changes", "discription will be here in brief about the above  title ", "27-03-2022", R.drawable.warning, "Correction"));
-        taskList.add(new ModelTaskList("20-03-2022", "Ui changes", "complete the changes", "25-03-2022", R.drawable.bug, "Bug"));
+        EmpTaskAdapter adapter = new EmpTaskAdapter(childTaskiLIst ,mContext);
+        binding.recycleView.setLayoutManager(new LinearLayoutManager(mContext));
+        binding.recycleView.setAdapter(adapter);
 
 
-        Adapter = new TaskAdapter(mContext, taskList);
-        binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.recycleView.setAdapter(Adapter);
+
         return binding.getRoot();
     }
 

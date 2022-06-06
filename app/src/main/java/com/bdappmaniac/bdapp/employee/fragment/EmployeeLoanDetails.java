@@ -64,6 +64,13 @@ public class EmployeeLoanDetails extends Fragment {
                 "20-05-22","i will be absent today due to some personal urgent work poped up all of a sudden"));
 
 
+        binding.getLoan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.EmpGetLoanFragment);
+            }
+        });
+
         AllLoanAdapter adapter = new AllLoanAdapter(loanlist,getContext());
         binding.recyclerAllLoans.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerAllLoans.setAdapter(adapter);
