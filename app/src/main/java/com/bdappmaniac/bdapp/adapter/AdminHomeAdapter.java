@@ -58,7 +58,7 @@ public class AdminHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     Navigation.findNavController(view).navigate(R.id.employeeExpensesFragment);
                 }
                 if (position == 3) {
-                    Navigation.findNavController(view).navigate(R.id.adminHolidayFragment);
+                    Navigation.findNavController(view).navigate(R.id.testHolidayFragment);
                 }
                 if (position == 4) {
                     Navigation.findNavController(view).navigate(R.id.lockUnlockFragment);

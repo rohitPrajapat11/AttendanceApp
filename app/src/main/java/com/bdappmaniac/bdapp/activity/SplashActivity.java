@@ -42,7 +42,7 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 } else if (SharedPref.getUserDetails().getType().equals("admin")) {
-                    Intent intent = new Intent(SplashActivity.this, TestActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, AdminActivity.class);
                     startActivity(intent);
                     finish();
                 }

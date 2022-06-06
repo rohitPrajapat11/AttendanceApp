@@ -10,7 +10,7 @@
         android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginEnd="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_3sdp"
-        android:elevation="@dimen/_5sdp"
+        android:elevation="4dp"
         android:background="@drawable/edit_text_bg">
 
         <TextView

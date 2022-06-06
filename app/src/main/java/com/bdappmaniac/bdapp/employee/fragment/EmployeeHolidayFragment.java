@@ -1,36 +1,21 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.applikeysolutions.cosmocalendar.dialog.CalendarDialog;
-import com.applikeysolutions.cosmocalendar.dialog.OnDaysSelectionListener;
-import com.applikeysolutions.cosmocalendar.listeners.OnMonthChangeListener;
-import com.applikeysolutions.cosmocalendar.model.Day;
-import com.applikeysolutions.cosmocalendar.model.Month;
-import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteria;
-import com.applikeysolutions.cosmocalendar.settings.lists.DisabledDaysCriteriaType;
-import com.applikeysolutions.cosmocalendar.utils.SelectionType;
 import com.bdappmaniac.bdapp.Api.response.EmployeeHolidayResponse;
 import com.bdappmaniac.bdapp.Api.response.HolidaysItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
-import com.bdappmaniac.bdapp.adapter.AllLoanAdapter;
 import com.bdappmaniac.bdapp.adapter.EmpHolidayAdapter;
-import com.bdappmaniac.bdapp.adapter.EmployeeAttendanceListAdapter;
 import com.bdappmaniac.bdapp.adapter.EmployeeHolidayAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeHolidayBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
@@ -42,8 +27,6 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
 
 public class EmployeeHolidayFragment extends BaseFragment {
@@ -51,7 +34,6 @@ public class EmployeeHolidayFragment extends BaseFragment {
     EmployeeHolidayAdapter monthAdapter;
     ArrayList<ModelHolidayItems> itemsArrayList = new ArrayList<>();
     EmpHolidayAdapter holidayadapter;
-
     List<HolidaysItem> list = new ArrayList<>();
     List<EmployeeHolidayResponse> monthList = new ArrayList<>();
 
@@ -95,14 +77,10 @@ public class EmployeeHolidayFragment extends BaseFragment {
         itemsArrayList.add(new ModelHolidayItems("March"));
         itemsArrayList.add(new ModelHolidayItems("Aprail"));
 
-
-
-
-
         binding.addBtn.setVisibility(View.GONE);
         holidayadapter = new EmpHolidayAdapter(itemsArrayList, mContext);
-       binding.recyclerholiday.setLayoutManager(new LinearLayoutManager(mContext));
-       binding.recyclerholiday.setAdapter(holidayadapter);
+        binding.recyclerholiday.setLayoutManager(new LinearLayoutManager(mContext));
+        binding.recyclerholiday.setAdapter(holidayadapter);
 
 //        binding.recyclerHolidays.addOnScrollListener(new RecyclerView.OnScrollListener() {
 //
@@ -120,16 +98,9 @@ public class EmployeeHolidayFragment extends BaseFragment {
 //                }
 //
 //            }
-//
-//
-//
 //        });
-
-
-
         return binding.getRoot();
     }
-
 
     public void holidaysOfCurrentYearApi() {
         AppLoader.showLoaderDialog(mContext);
@@ -151,8 +122,6 @@ public class EmployeeHolidayFragment extends BaseFragment {
             }
             AppLoader.hideLoaderDialog();
         });
-
-
     }
 
     @Override

@@ -164,7 +164,7 @@ public class TestActivity extends BaseActivity implements View.OnClickListener, 
                     navHandel("Loan Details");
                     headerHideShow(false);
                     bottomHideShow(false);
-                } else if (destination.getId() == R.id.adminHolidayFragment) {
+                } else if (destination.getId() == R.id.testHolidayFragment) {
                     navHandel("Holidays");
                     headerHideShow(false);
                     bottomHideShow(false);
@@ -292,8 +292,8 @@ public class TestActivity extends BaseActivity implements View.OnClickListener, 
                 logoutDialog();
                 break;
             case R.id.addHolidayBtn:
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.adminHolidayFragment) {
-                    navController.navigate(R.id.adminHolidayFragment);
+                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.testHolidayFragment) {
+                    navController.navigate(R.id.testHolidayFragment);
                 }
                 break;
             case R.id.rulesBtn:

@@ -15,8 +15,10 @@
         <entry key="app/src/main/res/drawable/circle_solid.xml" value="0.16" />
         <entry key="app/src/main/res/drawable/circular_progress_bar.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/circular_shape.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/dialog_bg.xml" value="0.162" />
         <entry key="app/src/main/res/drawable/edit_text_bg.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/green_bg_att.xml" value="0.16" />
+        <entry key="app/src/main/res/drawable/green_round_bg.xml" value="0.16" />
         <entry key="app/src/main/res/drawable/light_green_15r_bg.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/navigation_bg.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/navigation_item_selector.xml" value="0.1" />
@@ -27,12 +29,14 @@
         <entry key="app/src/main/res/drawable/white_5r_bg.xml" value="0.1665" />
         <entry key="app/src/main/res/layout/activity_admin.xml" value="0.10486111111111111" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.10486111111111111" />
+        <entry key="app/src/main/res/layout/activity_test.xml" value="0.10486111111111111" />
         <entry key="app/src/main/res/layout/add_designation_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/admin_addholiday_dialogbox.xml" value="0.22" />
         <entry key="app/src/main/res/layout/admin_bottom_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/admin_designation_dialogbox.xml" value="0.10486111111111111" />
         <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.10486111111111111" />
         <entry key="app/src/main/res/layout/admin_edit_holiday_dilogbox.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/admin_header.xml" value="0.18" />
         <entry key="app/src/main/res/layout/admin_history_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/admin_home_layout.xml" value="0.15" />
         <entry key="app/src/main/res/layout/att_to_do_list.xml" value="0.22" />
@@ -40,6 +44,8 @@
         <entry key="app/src/main/res/layout/bottom_layout.xml" value="0.10486111111111111" />
         <entry key="app/src/main/res/layout/custom_inactive_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/desigin_lock_unlock_items.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/design_holiday_items.xml" value="0.10486111111111111" />
+        <entry key="app/src/main/res/layout/design_holidays.xml" value="0.25" />
         <entry key="app/src/main/res/layout/design_leave_item_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/design_recycler_menu.xml" value="0.10486111111111111" />
         <entry key="app/src/main/res/layout/designation_dialogbox.xml" value="0.10486111111111111" />
@@ -62,10 +68,12 @@
         <entry key="app/src/main/res/layout/fragment_employee_atds.xml" value="0.10486111111111111" />
         <entry key="app/src/main/res/layout/fragment_employee_attandence_list.xml" value="0.12" />
         <entry key="app/src/main/res/layout/fragment_employee_attendance.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_employee_attendance_rules.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_employee_des_list.xml" value="0.10486111111111111" />
         <entry key="app/src/main/res/layout/fragment_employee_details.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_employee_expense_details.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_employee_expenses.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_employee_holiday.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_employee_list.xml" value="0.12" />
         <entry key="app/src/main/res/layout/fragment_employee_list_for_loan.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_employee_loan_details.xml" value="0.12905982905982907" />
@@ -84,6 +92,8 @@
         <entry key="app/src/main/res/layout/fragment_salary.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_service_info.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.10486111111111111" />
+        <entry key="app/src/main/res/layout/fragment_task.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_test_holiday.xml" value="0.1" />
         <entry key="app/src/main/res/layout/history_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/layout_header.xml" value="0.25" />
         <entry key="app/src/main/res/layout/loader_dialog.xml" value="0.10486111111111111" />
@@ -91,7 +101,10 @@
         <entry key="app/src/main/res/layout/logout_dialogbox.xml" value="0.22" />
         <entry key="app/src/main/res/layout/navigation_drawer.xml" value="0.10486111111111111" />
         <entry key="app/src/main/res/layout/register_designation_dialogbox.xml" value="0.10486111111111111" />
+        <entry key="app/src/main/res/layout/salary_item.xml" value="0.10486111111111111" />
         <entry key="app/src/main/res/layout/task_add_dialog.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/test_design_holiday.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/test_design_holiday_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/to_do_list_employee_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/to_do_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.10486111111111111" />
@@ -99,5 +112,12 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="16" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="16" project-jdk-type="JavaSDK" />
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
+  </component>
 </project>

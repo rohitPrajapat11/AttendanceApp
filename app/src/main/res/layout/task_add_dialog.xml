@@ -36,6 +36,7 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
+                android:elevation="2dp"
                 android:background="@drawable/white_5r_bg"
                 android:fontFamily="@font/m_semibold"
                 android:importantForAutofill="no"

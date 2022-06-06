@@ -140,5 +140,10 @@
         android:name="com.bdappmaniac.bdapp.fragment.NotificationFragment"
         android:label="NotificationFragment"
         tools:layout="@layout/fragment_notification"/>
+    <fragment
+        android:id="@+id/testHolidayFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.TestHolidayFragment"
+        android:label="TestHolidayFragment"
+        tools:layout="@layout/fragment_test_holiday"/>
 
 </navigation>

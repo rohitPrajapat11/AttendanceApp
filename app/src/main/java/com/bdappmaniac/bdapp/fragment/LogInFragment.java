@@ -24,9 +24,9 @@ import androidx.navigation.Navigation;
 import com.bdappmaniac.bdapp.Api.response.LoginResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.activity.AdminActivity;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.activity.HomeActivity;
-import com.bdappmaniac.bdapp.activity.TestActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentLogInBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.SharedPref;
@@ -122,7 +122,7 @@ public class LogInFragment extends BaseFragment {
                         } else if (loginResponse.getType().equals("admin")) {
                             SharedPref.putUserDetails(loginResponse);
                             showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                            startActivity(new Intent(mContext, TestActivity.class));
+                            startActivity(new Intent(mContext, AdminActivity.class));
                             getActivity().finish();
                         }
                     } else if (!apiResponse.isSuccess() && apiResponse.getData().isJsonNull()) {
