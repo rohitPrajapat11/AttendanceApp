@@ -1,6 +1,6 @@
 package com.bdappmaniac.bdapp.model;
 
-public class ModelTaskList {
+public class ModelChildTaskList {
     private String issueDate;
     private String taskHeading;
     private String discription;
@@ -8,7 +8,7 @@ public class ModelTaskList {
     private int imgtasktype;
     private String tasktype;
 
-    public ModelTaskList(String issueDate, String taskHeading, String discription, String complitionDate, int imgtasktype, String tasktype) {
+    public ModelChildTaskList(String issueDate, String taskHeading, String discription, String complitionDate, int imgtasktype, String tasktype) {
         this.issueDate = issueDate;
         this.taskHeading = taskHeading;
         this.discription = discription;
