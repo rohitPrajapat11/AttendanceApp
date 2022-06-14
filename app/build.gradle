@@ -6,7 +6,7 @@ android {
     compileSdk 31
     defaultConfig {
         applicationId "com.bdappmaniac.bdapp"
-        minSdk 24
+        minSdk 23
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -129,5 +129,7 @@ dependencies {
     implementation 'com.yarolegovich:discrete-scrollview:1.5.1'
     // browser
     implementation 'androidx.browser:browser:1.4.0'
+
+//    implementation project(':collapsiblecalendarview2')
 
 }

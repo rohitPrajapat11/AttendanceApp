@@ -38,16 +38,14 @@ public class TaskFragment extends BaseFragment {
 //                }
 //            }
 //        });
-
         ArrayList<ModelEmpTask> childTaskiLIst = new ArrayList<>();
-        childTaskiLIst.add(new ModelEmpTask("21-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("22-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("23-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("25-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("27-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("29-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("1-04-2022"));
-        childTaskiLIst.add(new ModelEmpTask("4-04-2022"));
+        childTaskiLIst.add(new ModelEmpTask("March 20,2022"));
+        childTaskiLIst.add(new ModelEmpTask("March 22,2022"));
+        childTaskiLIst.add(new ModelEmpTask("March 23,2022"));
+        childTaskiLIst.add(new ModelEmpTask("March 26,2022"));
+        childTaskiLIst.add(new ModelEmpTask("March 28,2022"));
+        childTaskiLIst.add(new ModelEmpTask("March 29,2022"));
+
 
         EmpTaskAdapter adapter = new EmpTaskAdapter(childTaskiLIst ,mContext);
         binding.recycleView.setLayoutManager(new LinearLayoutManager(mContext));

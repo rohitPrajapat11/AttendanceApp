@@ -191,5 +191,21 @@
     <string name="todo">TODO</string>
     <string name="we">-</string>
     <string name="employee_list">Employee List</string>
+    <string name="leaves">Leaves</string>
+    <string name="reason">Reason</string>
+    <string name="single">Single</string>
+    <string name="multiple">Multiple</string>
+    <string name="date">Date</string>
+    <string name="_20_03_2022">20-03-2022</string>
+    <string name="_22_03_2022">22-03-2022</string>
+    <string name="description">Description</string>
+    <string name="urgent_piece_of_work_blah_blah_blah">Urgent piece of work blah blah blah</string>
+    <string name="active_loans">Active Loans</string>
+    <string name="approved">Approved</string>
+    <string name="expense">Expense</string>
+    <string name="amount">Amount</string>
+    <string name="done">Done</string>
+    <string name="addnext">AddNext</string>
+    <string name="note">Note</string>
 
 </resources>

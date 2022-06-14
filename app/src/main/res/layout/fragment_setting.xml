@@ -29,18 +29,19 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.555" />
+                 />
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTint="@color/_172B4D"
+                android:drawableTint="@color/blue_primary"
                 android:fontFamily="@font/m_medium"
+                android:textStyle="bold"
                 android:gravity="center_vertical"
                 android:text="Setting"
                 android:textColor="@color/_172B4D"
-                android:textSize="@dimen/_18sdp"
+                android:textSize="@dimen/_19ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +67,12 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/accountBtn"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:backgroundTint="@color/blue_secondry"
                     android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/navigation_item_selector"
+                    android:elevation="@dimen/_5sdp"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:background="@drawable/white_5r_bg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +88,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.571"
-                        app:tint="@color/_172B4D" />
+                        app:tint="@color/blue_primary" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -91,16 +96,17 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:layout_marginEnd="@dimen/_30sdp"
-                        android:fontFamily="@font/font_heavy"
+                        android:fontFamily="@font/m_medium"
                         android:text="Account"
+                        android:textStyle=""
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_14ssp"
                         app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
                         app:layout_constraintBottom_toBottomOf="@+id/homeImg"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/homeImg"
                         app:layout_constraintTop_toTopOf="@+id/homeImg"
-                        app:layout_constraintVertical_bias="0.6" />
+                      />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -108,7 +114,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/navigation_item_selector"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:elevation="@dimen/_5sdp"
+                    android:backgroundTint="@color/blue_secondry"
+                    android:background="@drawable/white_5r_bg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -125,7 +134,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.571"
-                        app:tint="@color/_172B4D" />
+                        app:tint="@color/blue_primary" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -133,10 +142,10 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:layout_marginEnd="@dimen/_30sdp"
-                        android:fontFamily="@font/font_heavy"
+                        android:fontFamily="@font/m_medium"
                         android:text="Notification"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_14ssp"
                         app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
                         app:layout_constraintBottom_toBottomOf="@+id/loanImg"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -150,7 +159,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/navigation_item_selector"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:elevation="@dimen/_5sdp"
+                    android:backgroundTint="@color/blue_secondry"
+                    android:background="@drawable/white_5r_bg"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -166,7 +178,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.571"
-                        app:tint="@color/_172B4D" />
+                        app:tint="@color/blue_primary" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -174,10 +186,10 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:layout_marginEnd="@dimen/_30sdp"
-                        android:fontFamily="@font/font_heavy"
+                        android:fontFamily="@font/m_medium"
                         android:text="Privacy &amp; Security"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_14ssp"
                         app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
                         app:layout_constraintBottom_toBottomOf="@+id/tmcImg"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -190,8 +202,13 @@
                     android:id="@+id/helpBtn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_45sdp"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/navigation_item_selector"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@drawable/white_5r_bg"
+                    android:backgroundTint="@color/blue_secondry"
+                    android:elevation="@dimen/_5sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -207,7 +224,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.571"
-                        app:tint="@color/_172B4D" />
+                        app:tint="@color/blue_primary" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -215,10 +232,10 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:layout_marginEnd="@dimen/_30sdp"
-                        android:fontFamily="@font/font_heavy"
+                        android:fontFamily="@font/m_medium"
                         android:text="Help &amp; Support"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_14ssp"
                         app:drawableEndCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
                         app:layout_constraintBottom_toBottomOf="@+id/settingImg"
                         app:layout_constraintEnd_toEndOf="parent"

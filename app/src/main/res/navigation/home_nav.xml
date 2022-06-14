@@ -66,7 +66,7 @@
 
     <fragment
         android:id="@+id/EmpLeavesFragment"
-       android:name="com.bdappmaniac.bdapp.fragment.EmpLeavesFragment"
+       android:name="com.bdappmaniac.bdapp.employee.fragment.EmpLeavesFragment"
         android:label="empLeavesFragment"
         tools:layout="@layout/fragment_emp_leaves"/>
 
@@ -75,5 +75,10 @@
        android:name="com.bdappmaniac.bdapp.employee.fragment.EmpGetLoanFragment"
         android:label="empGetLoanFragment"
         tools:layout="@layout/fragment_emp_get_loan"/>
+ <fragment
+        android:id="@+id/EmpManageLoansFragment"
+       android:name="com.bdappmaniac.bdapp.employee.fragment.EmpManageAdvanceFragment"
+        android:label="empmanageAdvanceFragment"
+        tools:layout="@layout/fragment_emp_manage_advance"/>
 
 </navigation>

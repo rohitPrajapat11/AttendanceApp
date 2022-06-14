@@ -141,13 +141,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         binding.navigationDrawer.settingBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.logOutBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.tmcBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.loanBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.holidayBtn.setOnClickListener(this::onClick);
+
         binding.navigationDrawer.rulesBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.profileBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.taskBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.MyattendanceBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.historyBtn.setOnClickListener(this::onClick);
+
         binding.navigationDrawer.leaveBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.expenceBtn.setOnClickListener(this::onClick);
 
@@ -343,13 +342,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             case R.id.logOutBtn:
                 binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 logoutDialog();
-                break;
-            case R.id.holidayBtn:
-                if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeHolidayFragment) {
-                    navController.navigate(R.id.employeeHolidayFragment);
-
-                }
-                binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
                 break;
             case R.id.rulesBtn:
                 if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeAttendanceRulesFragment) {

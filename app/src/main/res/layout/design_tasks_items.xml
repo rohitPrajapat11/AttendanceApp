@@ -5,19 +5,19 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
+    android:layout_marginTop="@dimen/_2sdp"
     android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/date"
-        android:layout_marginTop="@dimen/_5sdp"
         android:layout_width="match_parent"
+        android:padding="@dimen/_6sdp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginBottom="@dimen/_1sdp"
         android:fontFamily="@font/m_semibold"
-        android:paddingStart="@dimen/_5sdp"
-        android:paddingBottom="@dimen/_8sdp"
-        android:text="20-06-2022"
+        android:text="March 20,2022"
         android:textColor="@color/black"
         android:textSize="@dimen/_11ssp"
         app:layout_constraintEnd_toEndOf="parent"

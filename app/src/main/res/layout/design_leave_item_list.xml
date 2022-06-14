@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/leave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_4sdp"
@@ -16,6 +17,23 @@
         android:paddingTop="@dimen/_6sdp">
 
         <TextView
+            android:id="@+id/status"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:background="@drawable/design_edt_bg"
+            android:backgroundTint="@color/Redlight"
+            android:fontFamily="@font/m_medium"
+            android:gravity="center"
+            android:padding="@dimen/_4sdp"
+            android:text="@string/approved"
+            android:textColor="@color/bRed"
+            android:textSize="@dimen/_9ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
             android:id="@+id/leaveReason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +42,7 @@
             android:padding="@dimen/_1sdp"
             android:text="@string/urgent_piece_of_work"
             android:textColor="@color/black"
-            android:textSize="@dimen/_11sdp"
+            android:textSize="@dimen/_11ssp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,12 +50,12 @@
             android:id="@+id/leaveType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_3sdp"
-            android:layout_marginTop="@dimen/_7sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_1sdp"
             android:fontFamily="@font/m_semibold"
             android:text="@string/casual_leave"
-            android:textColor="@color/grey"
-            android:textSize="@dimen/_9sdp"
+            android:textColor="@color/blue_primary"
+            android:textSize="@dimen/_9ssp"
             app:layout_constraintStart_toStartOf="@+id/leaveReason"
             app:layout_constraintTop_toBottomOf="@+id/leaveReason" />
 
@@ -45,27 +63,25 @@
             android:id="@+id/imgcal"
             android:layout_width="@dimen/_14sdp"
             android:layout_height="@dimen/_14sdp"
-            android:layout_marginStart="@dimen/_120sdp"
-            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:contentDescription="@string/todo"
             android:padding="@dimen/_1sdp"
             android:src="@drawable/calendar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/leaveReason" />
+            app:layout_constraintStart_toStartOf="@+id/leaveType"
+            app:layout_constraintTop_toBottomOf="@+id/leaveType" />
+
 
         <TextView
             android:id="@+id/fromDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_4sdp"
             android:fontFamily="@font/m_semibold"
-
             android:text="@string/_20_03_22"
             android:textColor="@color/trans_black"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_7ssp"
             app:layout_constraintBottom_toBottomOf="@+id/imgcal"
             app:layout_constraintStart_toEndOf="@+id/imgcal" />
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,7 +89,7 @@
             android:fontFamily="@font/m_semibold"
             android:text="@string/from"
             android:textColor="@color/grey"
-            android:textSize="@dimen/_7sdp"
+            android:textSize="@dimen/_7ssp"
             app:layout_constraintBottom_toTopOf="@+id/fromDate"
             app:layout_constraintStart_toStartOf="@+id/fromDate" />
 
@@ -97,7 +113,7 @@
             android:fontFamily="@font/m_semibold"
             android:text="@string/to"
             android:textColor="@color/grey"
-            android:textSize="@dimen/_7sdp"
+            android:textSize="@dimen/_7ssp"
             app:layout_constraintBottom_toTopOf="@+id/tillDate"
             app:layout_constraintStart_toStartOf="@+id/tillDate" />
 
@@ -110,22 +126,10 @@
             android:fontFamily="@font/m_semibold"
             android:text="@string/_25_03_22"
             android:textColor="@color/trans_black"
-            android:textSize="@dimen/_10sdp"
+            android:textSize="@dimen/_7ssp"
             app:layout_constraintBottom_toBottomOf="@+id/ew"
             app:layout_constraintStart_toEndOf="@+id/ew"
             app:layout_constraintTop_toTopOf="@+id/ew" />
-
-        <ImageView
-            android:id="@+id/dropdown"
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_marginEnd="@dimen/_9sdp"
-            android:contentDescription="@string/todo"
-            android:padding="@dimen/_3sdp"
-            android:src="@drawable/drop_down"
-            app:layout_constraintBottom_toBottomOf="@+id/tillDate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView

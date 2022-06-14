@@ -18,13 +18,16 @@
     <color name="_FF99D131">#FFF0F1F3</color>
     <color name="prime">#265872</color>
     <color name="green">#4FF456</color>
+    <color name="greenlight">#B9B9FFB3</color>
     <color name="green1">#4CAF50</color>
     <color name="light_black">#737373</color>
     <color name="primary_color">#161B3D</color>
     <color name="light_primary_color">#71DDA4</color>
     <color name="_192d4d">#192d4d</color>
     <color name="secondary_color">#f04653</color>
+    <color name="redss">#7AFB2F3F</color>
     <color name="bRed">#FF0000</color>
+    <color name="Redlight">#D2FD9D9D</color>
     <color name="grey">#BAB9B9</color>
     <color name="grey2">#E8FFFDFD</color>
     <color name="grey1">#7A818181</color>
@@ -37,6 +40,7 @@
     <!--    color items-->
     <!--    colors play game-->
     <color name="orange">#FE940D</color>
+    <color name="orangelight">#E1FFF4AF</color>
     <color name="yellow">#A9FD2B56</color>
     <color name="_FBFBFB">#FBFBFB</color>
 
@@ -48,4 +52,7 @@
     <color name="blue_primary">#406484</color>
     <color name="blue_secondry">#EEEFFFFF</color>
     <color name="rrrr">#DF363636</color>
+    <color name="lightblue">#A7C1FF</color>
+    <color name="lightpurple">#C8B0FF</color>
+    <color name="lightpink">#FBC9E2</color>
 </resources>

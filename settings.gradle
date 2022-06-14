@@ -12,3 +12,4 @@ dependencyResolutionManagement {
 rootProject.name = "Bd App"
 include ':app'
 include ':progressviewslib'
+include ':collapsiblecalendarview2'
