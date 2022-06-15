@@ -2,7 +2,6 @@ package com.bdappmaniac.bdapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,9 +44,10 @@ public class ToDoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         vHolder.binding.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("EmployeeTaskList",(AllTaskItem) tasksList.get(position));
-                Navigation.findNavController(view).navigate(R.id.employeeToDoListFragment, bundle);
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("EmployeeTaskList",(AllTaskItem) tasksList.get(position));
+//                Navigation.findNavController(view).navigate(R.id.employeeToDoListFragment, bundle);
+                Navigation.findNavController(view).navigate(R.id.employeeToDoListFragment);
             }
         });
     }

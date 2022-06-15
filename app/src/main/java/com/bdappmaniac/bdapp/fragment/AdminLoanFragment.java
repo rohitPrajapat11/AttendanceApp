@@ -17,6 +17,7 @@ import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
 import com.bdappmaniac.bdapp.model.AllLoanModel;
 import com.bdappmaniac.bdapp.model.ModelAllLoans;
 import com.bdappmaniac.bdapp.utils.Constant;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -111,6 +112,11 @@ public class AdminLoanFragment extends BaseFragment implements CalendarCallBack 
     public void openEmployeeList() {
 //        addNewLoadDialog();
         Navigation.findNavController(binding.getRoot()).navigate(R.id.employeeListForLoanFragment);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
     }
 }

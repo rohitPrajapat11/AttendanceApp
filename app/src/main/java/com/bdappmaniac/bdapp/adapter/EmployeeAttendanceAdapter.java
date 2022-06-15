@@ -35,7 +35,6 @@ public class EmployeeAttendanceAdapter extends RecyclerView.Adapter<RecyclerView
     public EmployeeAttendanceAdapter(Context context, List<EmployeeHistoryDataItem> List) {
         this.context = context;
         this.List = (List<EmployeeHistoryDataItem>) List;
-
     }
 
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {

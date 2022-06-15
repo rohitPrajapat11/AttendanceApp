@@ -17,6 +17,7 @@ import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.adapter.LockUnlockAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentAdminLockUnlockBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -66,6 +67,7 @@ public class AdminLockUnlock extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
         allInactiveEmployeeApi();
     }
 }

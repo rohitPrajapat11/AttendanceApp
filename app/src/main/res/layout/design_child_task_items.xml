@@ -98,7 +98,7 @@
             app:layout_constraintTop_toBottomOf="@+id/taskHeading" />
 
         <ImageView
-            android:id="@+id/duretion"
+            android:id="@+id/duration"
             android:layout_width="@dimen/_16sdp"
             android:layout_height="@dimen/_16sdp"
             android:layout_margin="@dimen/_13sdp"
@@ -115,12 +115,12 @@
             android:text="Complete till :"
             android:textColor="@color/black"
             android:textSize="@dimen/_9sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/duretion"
-            app:layout_constraintStart_toEndOf="@+id/duretion"
-            app:layout_constraintTop_toTopOf="@+id/duretion" />
+            app:layout_constraintBottom_toBottomOf="@+id/duration"
+            app:layout_constraintStart_toEndOf="@+id/duration"
+            app:layout_constraintTop_toTopOf="@+id/duration" />
 
         <TextView
-            android:id="@+id/complitionDate"
+            android:id="@+id/completionDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_4sdp"

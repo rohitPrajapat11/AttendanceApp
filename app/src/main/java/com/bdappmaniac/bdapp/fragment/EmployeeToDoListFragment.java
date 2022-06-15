@@ -12,9 +12,7 @@ import android.view.Window;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.bdappmaniac.bdapp.Api.response.AllTaskItem;
 import com.bdappmaniac.bdapp.Api.response.TasksItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
@@ -23,7 +21,7 @@ import com.bdappmaniac.bdapp.adapter.EmployeeToDoListItemAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeToDoListBinding;
 import com.bdappmaniac.bdapp.databinding.TaskAddDialogBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.utils.SharedPref;
+import com.bdappmaniac.bdapp.model.ModelEmpTask;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -39,7 +37,8 @@ public class EmployeeToDoListFragment extends BaseFragment {
     FragmentEmployeeToDoListBinding binding;
     ArrayList<TasksItem> list = new ArrayList<>();
     EmployeeToDoListItemAdapter adapter;
-    AllTaskItem allTaskItem;
+    //    AllTaskItem allTaskItem;
+    ArrayList<ModelEmpTask> modelEmpTask;
     private int TYear, TMonth, TDay;
 
     @Override
@@ -47,11 +46,11 @@ public class EmployeeToDoListFragment extends BaseFragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_to_do_list, container, false);
         Bundle bundle = getArguments();
         if (bundle != null) {
-            allTaskItem = (AllTaskItem) bundle.getSerializable("EmployeeTaskList");
+//            modelEmpTask = (ModelEmpTask) bundle.getSerializable("EmployeeTaskList");
         }
-        adapter = new EmployeeToDoListItemAdapter(getContext(), allTaskItem.getTasks());
-        binding.dateRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.dateRecycleView.setAdapter(adapter);
+        adapter = new EmployeeToDoListItemAdapter(getContext(), modelEmpTask);
+//        binding.childRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+//        binding.childRecycler.setAdapter(adapter);
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();
         });
@@ -59,6 +58,20 @@ public class EmployeeToDoListFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 addTaskDialogBox();
+            }
+        });
+        binding.completeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.completeBtn.setVisibility(View.GONE);
+                binding.completedBtn.setVisibility(View.VISIBLE);
+            }
+        });
+        binding.completedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.completedBtn.setVisibility(View.GONE);
+                binding.completeBtn.setVisibility(View.VISIBLE);
             }
         });
         return binding.getRoot();
@@ -78,16 +91,17 @@ public class EmployeeToDoListFragment extends BaseFragment {
         taskBinding.submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (taskBinding.reasonTxt.getText().toString().isEmpty()) {
-                    showSnackBar(binding.getRoot(), "Field cannot stay empty");
-                } else {
-                    SharedPref.init(mContext);
-                    String emp_id = String.valueOf(allTaskItem.getEmpId());
-//                    Log.d("asdfg", list.toString());
-                    String content = taskBinding.reasonTxt.getText().toString();
-                    createTaskApi(emp_id, content);
-                    dialog.dismiss();
-                }
+//                if (taskBinding.reasonTxt.getText().toString().isEmpty()) {
+//                    showSnackBar(binding.getRoot(), "Field cannot stay empty");
+//                } else {
+//                    SharedPref.init(mContext);
+////                    String emp_id = String.valueOf(ModelEmpTask.getEmpId());
+////                    Log.d("asdfg", list.toString());
+//                    String content = taskBinding.reasonTxt.getText().toString();
+////                    createTaskApi(emp_id, content);
+//                    dialog.dismiss();
+//                }
+                dialog.dismiss();
             }
         });
         taskBinding.cancelBtn.setOnClickListener(new View.OnClickListener() {

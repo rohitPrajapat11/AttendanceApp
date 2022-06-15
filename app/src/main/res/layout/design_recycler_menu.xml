@@ -5,12 +5,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="@dimen/_130sdp"
             android:layout_height="@dimen/_130sdp"
-            android:layout_margin="@dimen/_5sdp"
+            android:layout_margin="@dimen/_10sdp"
             android:background="@drawable/white_10r_white_bg"
             android:elevation="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -24,8 +25,8 @@
 
                 <ImageView
                     android:id="@+id/icon"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_marginTop="15dp"
                     android:src="@drawable/icn_loan"
                     app:layout_constraintBottom_toTopOf="@+id/title"
@@ -39,7 +40,7 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="@dimen/_12sdp"
                     android:fontFamily="@font/m_semibold"
                     android:text="@string/holidays"
                     android:gravity="center"

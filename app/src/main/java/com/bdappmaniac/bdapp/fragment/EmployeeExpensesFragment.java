@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeExpensesBinding;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 
 public class EmployeeExpensesFragment extends BaseFragment {
@@ -28,5 +29,11 @@ public class EmployeeExpensesFragment extends BaseFragment {
             }
         });
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
     }
 }

@@ -69,6 +69,9 @@ public class AdminHomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 //                if (position == 7) {
 //                    Navigation.findNavController(view).navigate(R.id.toDoListFragment);
 //                }
+                if (position == 5) {
+                    Navigation.findNavController(view).navigate(R.id.approveLeavesFragment);
+                }
             }
         });
     }

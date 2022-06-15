@@ -17,7 +17,7 @@ import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.application.BdApp;
-import com.bdappmaniac.bdapp.databinding.ActivityTestBinding;
+import com.bdappmaniac.bdapp.databinding.ActivityAdminBinding;
 import com.bdappmaniac.bdapp.fragment.AdminHomeFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.ConnectivityReceiver;
@@ -34,14 +34,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class AdminActivity extends BaseActivity implements View.OnClickListener, CalendarCallBack {
-    ActivityTestBinding binding;
+    ActivityAdminBinding binding;
     NavController navController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_test);
-        StatusBarUtils.statusBarColor(this, R.color.f1f3f5);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_admin);
+        StatusBarUtils.statusBarColor(this, R.color.white);
         ConnectivityReceiver.setConnectivityListener(new OnChangeConnectivityListener() {
             @Override
             public void onChanged(boolean status) {
@@ -85,6 +85,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                 }
             }
         });
+        binding.headerLayout.menuBtn.setVisibility(View.GONE);
         binding.headerLayout.menuBtn.setOnClickListener(v -> {
             drawerOpenCLose();
         });
@@ -210,6 +211,11 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     headerHideShow(false);
                     bottomHideShow(false);
                 }
+                else if (destination.getId() == R.id.approveLeavesFragment) {
+                    navHandel("Leaves");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                }
             }
         });
     }
@@ -218,28 +224,41 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         switch (type) {
             case "Home":
                 binding.headerLayout.title.setText("Home");
+                binding.headerLayout.headerLayout.setPadding(0, 0, 0, 0);
+                binding.headerLayout.headerLayout.setVisibility(View.GONE);
+                binding.headerLayout.menuBtn.setVisibility(View.GONE);
+                binding.headerLayout.title.setVisibility(View.GONE);
                 binding.headerLayout.addBtn.setVisibility(View.GONE);
                 binding.headerLayout.backBtn.setVisibility(View.GONE);
-                binding.headerLayout.menuBtn.setVisibility(View.VISIBLE);
+                binding.headerLayout.menuBtn.setVisibility(View.GONE);
                 binding.headerLayout.extIcon.setVisibility(View.GONE);
                 binding.headerLayout.additionBtn.setVisibility(View.GONE);
-                binding.headerLayout.settingBtn.setVisibility(View.VISIBLE);
+                binding.headerLayout.settingBtn.setVisibility(View.GONE);
                 break;
             case "Employees":
                 binding.headerLayout.title.setText("Employees");
+                binding.headerLayout.headerLayout.setVisibility(View.VISIBLE);
+                binding.headerLayout.headerLayout.setPadding(0, 30, 0, 30);
+                binding.headerLayout.headerLayout.setBackgroundColor(getResources().getColor(R.color.white));
                 binding.headerLayout.addBtn.setVisibility(View.GONE);
+                binding.headerLayout.title.setVisibility(View.VISIBLE);
                 binding.headerLayout.backBtn.setVisibility(View.GONE);
-                binding.headerLayout.menuBtn.setVisibility(View.VISIBLE);
+                binding.headerLayout.menuBtn.setVisibility(View.GONE);
                 binding.headerLayout.extIcon.setVisibility(View.GONE);
                 binding.headerLayout.additionBtn.setVisibility(View.VISIBLE);
                 binding.headerLayout.settingBtn.setVisibility(View.GONE);
                 break;
             case "Profile":
                 binding.headerLayout.title.setText("Profile");
+                binding.headerLayout.headerLayout.setVisibility(View.VISIBLE);
                 binding.headerLayout.settingBtn.setVisibility(View.GONE);
                 break;
             case "Task":
                 binding.headerLayout.title.setText("Task");
+                binding.headerLayout.headerLayout.setVisibility(View.VISIBLE);
+                binding.headerLayout.headerLayout.setPadding(0, 30, 0, 30);
+                binding.headerLayout.headerLayout.setBackgroundColor(getResources().getColor(R.color.white));
+                binding.headerLayout.title.setVisibility(View.VISIBLE);
                 binding.headerLayout.additionBtn.setVisibility(View.GONE);
                 binding.headerLayout.settingBtn.setVisibility(View.GONE);
                 break;

@@ -145,5 +145,10 @@
         android:name="com.bdappmaniac.bdapp.fragment.TestHolidayFragment"
         android:label="TestHolidayFragment"
         tools:layout="@layout/fragment_test_holiday"/>
+    <fragment
+        android:id="@+id/approveLeavesFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.ApproveLeavesFragment"
+        android:label="ApproveLeavesFragment"
+        tools:layout="@layout/fragment_approve_leaves"/>
 
 </navigation>

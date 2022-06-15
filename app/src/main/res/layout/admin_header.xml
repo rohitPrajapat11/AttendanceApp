@@ -6,6 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
+        android:visibility="visible"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:paddingTop="@dimen/_15sdp"
@@ -124,6 +125,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/prime" />
+            app:tint="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
