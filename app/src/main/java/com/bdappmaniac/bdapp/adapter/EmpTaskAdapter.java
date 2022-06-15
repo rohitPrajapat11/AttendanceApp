@@ -43,11 +43,6 @@ public class EmpTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         EmpTaskViewHolder vholder = (EmpTaskViewHolder) holder;
         vholder.binding.date.setText(tasklist.get(position).getDate());
-
-
-
-
-
         ArrayList<ModelChildTaskList> childTaskList = new ArrayList<>();
         childTaskList.add(new ModelChildTaskList("20-03-2022", "Fix the bug ",
                 "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.bug, "Bug"));
@@ -59,11 +54,7 @@ public class EmpTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         EmpChildTaskAdapter adapter = new EmpChildTaskAdapter(context , childTaskList);
         vholder.binding.childRecycler.setLayoutManager(new LinearLayoutManager(context));
         vholder.binding.childRecycler.setAdapter(adapter);
-        
-        
-        
     }
-
     @Override
     public int getItemCount() {
         return tasklist.size();

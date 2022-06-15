@@ -5,8 +5,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,9 +41,10 @@
                 android:drawableTint="@color/green"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:text="Loans"
+                android:text="Advance Payment"
                 android:textColor="@color/blue_primary"
-                android:textSize="@dimen/_19sdp"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,13 +53,13 @@
 
             <ImageView
 
-                android:visibility="gone"
                 android:id="@+id/addBtn"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_18sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_baseline_add_24"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -98,7 +99,7 @@
                 android:layout_marginStart="@dimen/_28sdp"
                 android:layout_marginTop="@dimen/_7sdp"
                 android:fontFamily="@font/m_light"
-                android:text="Studies Loan"
+                android:text="Studies Advance"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_17sdp"
                 android:textStyle="bold"
@@ -125,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_light"
                 android:gravity="center"
-                android:text="Loan Graph"
+                android:text="payment Graph"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp"
                 android:textStyle="bold"
@@ -202,76 +203,72 @@
                 android:id="@+id/titleprg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:fontFamily="@font/m_light"
-                android:text=" Loan Program"
+                android:text=" Time Program"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_2sdp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/progressTimeProgram"
                 app:layout_constraintStart_toStartOf="@+id/progressTimeProgram"
                 app:layout_constraintTop_toBottomOf="@+id/progressTimeProgram" />
 
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:foregroundGravity="center"
+                app:layout_constraintBottom_toBottomOf="@+id/progressTimeProgram"
+                app:layout_constraintEnd_toEndOf="@+id/progressTimeProgram"
+                app:layout_constraintStart_toStartOf="@+id/progressTimeProgram"
+                app:layout_constraintTop_toTopOf="@+id/progressTimeProgram">
 
+                <TextView
+                    android:id="@+id/remainingTime"
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_9sdp"
+                    android:fontFamily="@font/m_light"
+                    android:gravity="center"
+                    android:text="6M"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/m_light"
+                    android:gravity="center"
+                    android:text="Remaing"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_7ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/remainingTime"
+                    app:layout_constraintStart_toStartOf="@+id/remainingTime"
+                    app:layout_constraintTop_toBottomOf="@+id/remainingTime" />
 
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout10"
-                            android:layout_width="wrap_content"
-                            android:foregroundGravity="center"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="@+id/progressTimeProgram"
-                            app:layout_constraintEnd_toEndOf="@+id/progressTimeProgram"
-                            app:layout_constraintStart_toStartOf="@+id/progressTimeProgram"
-                            app:layout_constraintTop_toTopOf="@+id/progressTimeProgram">
-
-                            <TextView
-                                android:id="@+id/remainingTime"
-                                android:layout_width="@dimen/_13sdp"
-                                android:layout_height="@dimen/_9sdp"
-                                android:fontFamily="@font/m_light"
-                                android:gravity="center"
-                                android:text="6M"
-                                android:textStyle="bold"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_8ssp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/m_light"
-                                android:gravity="center"
-                                android:text="Remaing"
-                                android:textStyle="bold"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_7ssp"
-                                app:layout_constraintEnd_toEndOf="@+id/remainingTime"
-                                app:layout_constraintStart_toStartOf="@+id/remainingTime"
-                                app:layout_constraintTop_toBottomOf="@+id/remainingTime" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_18sdp"
                 android:layout_marginBottom="4dp"
                 android:fontFamily="@font/m_bold"
-                android:text="Loan Details :-"
+                android:text="Advance Details :-"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9sdp"
                 app:layout_constraintBottom_toTopOf="@+id/titleAmount"
                 app:layout_constraintEnd_toEndOf="@+id/titleAmount"
                 app:layout_constraintStart_toStartOf="@+id/imageView3"
-                app:layout_constraintTop_toBottomOf="@+id/instalmentPm"
-                 />
+                app:layout_constraintTop_toBottomOf="@+id/instalmentPm" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -482,14 +479,14 @@
             android:backgroundTint="@color/blue_secondry"
             android:elevation="5dp"
             android:shadowColor="@color/primary_color"
-            app:layout_constraintEnd_toStartOf="@+id/constraintLayout11"
+            app:layout_constraintEnd_toStartOf="@+id/manageAdvance"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/graphLayout">
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_width="50dp"
+                android:layout_height="55dp"
                 android:layout_marginHorizontal="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_9sdp"
                 android:padding="@dimen/_5sdp"
@@ -505,25 +502,70 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/m_light"
-                android:textStyle="bold"
                 android:gravity="center"
-
                 android:inputType="textMultiLine"
                 android:paddingHorizontal="@dimen/_23sdp"
-                android:text="Get Loan"
+                android:text="Get Advance"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_11sdp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--            android:id="@+id/reee"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="@dimen/_90sdp"-->
+        <!--            android:layout_marginTop="@dimen/_9sdp"-->
+        <!--            android:backgroundTint="@color/white"-->
+        <!--            android:layout_marginEnd="@dimen/_11sdp"-->
+        <!--            android:background="@drawable/white_5r_bg"-->
+        <!--            android:elevation="@dimen/_8sdp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/constraintLayout11"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/graphLayout">-->
+
+        <!--            <ImageView-->
+        <!--                android:id="@+id/imageView7"-->
+        <!--                android:layout_width="@dimen/_40sdp"-->
+        <!--                android:layout_height="@dimen/_40sdp"-->
+        <!--                android:layout_marginHorizontal="@dimen/_5sdp"-->
+        <!--                android:layout_marginTop="@dimen/_12sdp"-->
+        <!--                android:padding="@dimen/_4sdp"-->
+        <!--                android:src="@drawable/my_history"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintHorizontal_bias="0.509"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent"-->
+        <!--                />-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_margin="@dimen/_9sdp"-->
+        <!--                android:layout_marginBottom="4dp"-->
+        <!--                android:fontFamily="@font/m_light"-->
+        <!--                android:textStyle="bold"-->
+        <!--                android:gravity="center"-->
+        <!--                android:paddingHorizontal="@dimen/_20sdp"-->
+        <!--                android:text="Loan History"-->
+        <!--                android:textColor="@color/black"-->
+        <!--                android:textSize="@dimen/_10sdp"-->
+        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent" />-->
+        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout11"
+            android:id="@+id/manageAdvance"
             android:layout_width="0dp"
             android:layout_height="@dimen/_90sdp"
             android:layout_margin="@dimen/_9sdp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/bg_nav_items"
             android:backgroundTint="@color/white"
             android:elevation="5dp"
@@ -552,7 +594,7 @@
                 android:fontFamily="@font/m_light"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/_20sdp"
-                android:text="Manage Loans"
+                android:text="Manage Advance"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_11sdp"
                 android:textStyle="bold"
@@ -562,59 +604,14 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/reee"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="@dimen/_90sdp"-->
-<!--            android:layout_marginTop="@dimen/_9sdp"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            android:layout_marginEnd="@dimen/_11sdp"-->
-<!--            android:background="@drawable/white_5r_bg"-->
-<!--            android:elevation="@dimen/_8sdp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/constraintLayout11"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/graphLayout">-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/imageView7"-->
-<!--                android:layout_width="@dimen/_40sdp"-->
-<!--                android:layout_height="@dimen/_40sdp"-->
-<!--                android:layout_marginHorizontal="@dimen/_5sdp"-->
-<!--                android:layout_marginTop="@dimen/_12sdp"-->
-<!--                android:padding="@dimen/_4sdp"-->
-<!--                android:src="@drawable/my_history"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.509"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                />-->
-
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/_9sdp"-->
-<!--                android:layout_marginBottom="4dp"-->
-<!--                android:fontFamily="@font/m_light"-->
-<!--                android:textStyle="bold"-->
-<!--                android:gravity="center"-->
-<!--                android:paddingHorizontal="@dimen/_20sdp"-->
-<!--                android:text="Loan History"-->
-<!--                android:textColor="@color/black"-->
-<!--                android:textSize="@dimen/_10sdp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent" />-->
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
         <TextView
             android:id="@+id/titleAllloans"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_12sdp"
             android:fontFamily="@font/m_medium"
-            android:text=" Loans History:-"
+            android:text=" Status:-"
             android:textColor="@color/black"
             android:textSize="@dimen/_14sdp"
             android:textStyle="bold"
@@ -631,7 +628,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleAllloans"
-            tools:listitem="@layout/design_leave_item_list" />
+/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

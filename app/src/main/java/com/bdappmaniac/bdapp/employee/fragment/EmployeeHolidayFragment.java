@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
@@ -99,6 +100,10 @@ public class EmployeeHolidayFragment extends BaseFragment {
 //
 //            }
 //        });
+
+        binding.collapsibleCalendar.addEventTag(2022,5,9);
+
+
         return binding.getRoot();
     }
 

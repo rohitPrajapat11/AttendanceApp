@@ -132,4 +132,6 @@ dependencies {
 
     implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
 
+//    implementation project(':collapsiblecalendarview2')
+
 }

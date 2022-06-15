@@ -14,7 +14,6 @@
             android:layout_height="0dp"
             android:fillViewport="true"
             android:paddingVertical="@dimen/_2sdp"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +97,7 @@
                         android:fontFamily="@font/m_semibold"
                         android:text="Welcome,"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_14sdp"
                         app:layout_constraintStart_toEndOf="@+id/userProfile"
                         app:layout_constraintTop_toTopOf="@+id/userProfile" />
 
@@ -189,14 +188,14 @@
                                 android:id="@+id/checkintxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="110dp"
+                                android:layout_marginBottom="@dimen/_18sdp"
                                 android:fontFamily="@font/m_medium"
                                 android:text="CHECK IN"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_9ssp"
+                                app:layout_constraintBottom_toBottomOf="@+id/imgcheckinbtn"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintStart_toStartOf="parent" />
 
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -353,12 +352,11 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/leaves"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/_130sdp"
+                        android:layout_height="@dimen/_133sdp"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginHorizontal="@dimen/_5sdp"
                         android:background="@drawable/bg_nav_items"
-
-                        android:elevation="@dimen/_8sdp"
+                        android:elevation="8dp"
                         android:padding="@dimen/_2sdp"
                         app:layout_constraintEnd_toStartOf="@id/holidays"
                         app:layout_constraintStart_toStartOf="parent"
@@ -371,7 +369,7 @@
                             android:layout_marginStart="@dimen/_7sdp"
                             android:layout_marginTop="@dimen/_7sdp"
                             android:fontFamily="@font/m_light"
-                            android:text="Leaves ..."
+                            android:text="Leaves"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp"
                             android:textStyle="bold"
@@ -384,6 +382,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/m_light"
                             android:text=" (Up coming) "
+                            android:layout_marginTop="@dimen/_2sdp"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_6ssp"
                             android:textStyle="bold"
@@ -424,7 +423,7 @@
                         android:layout_height="@dimen/_130sdp"
                         android:layout_margin="@dimen/_5sdp"
                         android:background="@drawable/bg_nav_items"
-                        android:elevation="@dimen/_8sdp"
+                        android:elevation="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/leaves"
                         app:layout_constraintTop_toTopOf="parent">
@@ -448,7 +447,8 @@
                             android:id="@+id/upcomingtitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="1dp"
+                            android:layout_marginStart="@dimen/_1sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
                             android:fontFamily="@font/m_light"
                             android:text=" (Up coming) "
                             android:textColor="@color/grey"
@@ -521,7 +521,7 @@
                         android:layout_marginEnd="@dimen/_5sdp"
                         android:layout_marginBottom="@dimen/_8sdp"
                         android:background="@drawable/bg_nav_items"
-                        android:elevation="@dimen/_8sdp"
+                        android:elevation="8dp"
                         android:padding="@dimen/_1sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/expence"
@@ -529,13 +529,13 @@
 
 
                         <TextView
-                            android:id="@+id/titleloans"
+                            android:id="@+id/titleAdvance"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_9sdp"
                             android:layout_marginTop="@dimen/_7sdp"
                             android:fontFamily="@font/m_light"
-                            android:text="Loans"
+                            android:text="Advance Payment ..."
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12ssp"
                             android:textStyle="bold"
@@ -547,13 +547,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/m_light"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:text="(Apply for loans , manage loans and history ) "
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:paddingHorizontal="@dimen/_8sdp"
+                            android:text="(Get an Advance  or manage history ) "
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_6ssp"
                             android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="@+id/titleloans"
-                            app:layout_constraintTop_toBottomOf="@+id/titleloans" />
+                            app:layout_constraintStart_toStartOf="@+id/titleAdvance"
+                            app:layout_constraintTop_toBottomOf="@+id/titleAdvance" />
 
 
                         <TextView
@@ -572,11 +573,11 @@
 
                         <TextView
                             android:id="@+id/al"
-                            android:layout_width="@dimen/_35sdp"
+                            android:layout_width="@dimen/_28sdp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_10sdp"
+                            android:layout_margin="@dimen/_9sdp"
                             android:fontFamily="@font/m_bold"
-                            android:text="Active Loans"
+                            android:text="@string/active_loans"
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_7ssp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -615,14 +616,15 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/expence"
-                        android:backgroundTint="@color/blue_secondry"
                         android:layout_width="0dp"
-                        android:layout_marginTop="@dimen/_5sdp"
                         android:layout_height="@dimen/_100sdp"
                         android:layout_marginHorizontal="@dimen/_5sdp"
+                        android:layout_marginTop="4dp"
                         android:background="@drawable/bg_nav_items"
+                        android:backgroundTint="@color/blue_secondry"
                         android:elevation="8dp"
                         app:layout_constraintEnd_toStartOf="@+id/loans"
                         app:layout_constraintStart_toStartOf="parent"
@@ -647,11 +649,13 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="@dimen/_2sdp"
+                            android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginStart="@dimen/_5sdp"
                             android:fontFamily="@font/m_light"
                             android:gravity="left"
-                            android:paddingHorizontal="@dimen/_5sdp"
-                            android:text=" ( Your Expenses  will be settle here  ) "
+                            app:layout_goneMarginTop="@dimen/_2sdp"
+                            android:paddingHorizontal="@dimen/_3sdp"
+                            android:text=" (Expenses  will be settle here) "
                             android:textColor="@color/grey"
                             android:textSize="@dimen/_6ssp"
                             android:textStyle="bold"
@@ -664,15 +668,56 @@
                             android:id="@+id/imageViewwe"
                             android:layout_width="@dimen/_20sdp"
                             android:layout_height="@dimen/_20sdp"
-                            android:padding="@dimen/_1sdp"
                             android:layout_marginStart="12dp"
-                            android:layout_marginTop="@dimen/_6sdp"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:padding="@dimen/_1sdp"
                             android:src="@drawable/wallet"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/expDiscription" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:id="@+id/totalExp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:fontFamily="@font/m_medium"
+                            android:text="1,476"
+                            android:padding="@dimen/_3sdp"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent" />
 
+                        <TextView
+                            android:id="@+id/txtTItle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/m_bold"
+                            android:text="Total"
+                            android:textColor="#725c12"
+                            android:layout_marginStart="@dimen/_2sdp"
+                            android:textSize="@dimen/_9ssp"
+                            app:layout_constraintBottom_toTopOf="@+id/totalExp"
+                            app:layout_constraintStart_toStartOf="@+id/totalExp"
+                            app:layout_constraintTop_toTopOf="@+id/totalExp" />
+
+                        <TextView
+                            android:id="@+id/TItle99"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/m_light"
+                            android:text="INR"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_7ssp"
+                            app:layout_constraintBottom_toBottomOf="@+id/totalExp"
+                            app:layout_constraintStart_toEndOf="@+id/totalExp" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.legacy.widget.Space
                         android:layout_width="match_parent"
@@ -680,8 +725,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/loans" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
