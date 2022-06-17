@@ -169,6 +169,30 @@
                 app:layout_constraintEnd_toEndOf="@+id/provideLoanBtn"
                 app:layout_constraintStart_toStartOf="@+id/provideLoanBtn"
                 app:layout_constraintTop_toBottomOf="@+id/provideLoanBtn" />
+
+            <TextView
+                android:id="@+id/leavesBtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/employee_details_bg"
+                android:drawableStart="@drawable/icn_tmc"
+                android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+                android:drawablePadding="@dimen/_15sdp"
+                android:fontFamily="@font/m_medium"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_15sdp"
+                android:text="Leaves"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp"
+                app:drawableTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tmcBtn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

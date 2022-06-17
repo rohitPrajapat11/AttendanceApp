@@ -216,6 +216,11 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
                     headerHideShow(false);
                     bottomHideShow(false);
                 }
+                else if (destination.getId() == R.id.employeeLeaveApprovalFragment) {
+                    navHandel("Taken Leaves");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                }
             }
         });
     }

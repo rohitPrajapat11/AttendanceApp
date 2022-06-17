@@ -13,7 +13,6 @@ import android.view.ViewTreeObserver;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.bdappmaniac.bdapp.R;
@@ -33,8 +32,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class AdminHomeFragment extends BaseFragment {
-    private final static float EXPAND_AVATAR_SIZE_DP = 80f;
-    private final static float COLLAPSED_AVATAR_SIZE_DP = 32f;
+    private final static float EXPAND_AVATAR_SIZE_DP = 90f;
+    private final static float COLLAPSED_AVATAR_SIZE_DP = 35f;
     private final float[] mAvatarPoint = new float[2], mSpacePoint = new float[2], mToolbarTextPoint = new float[2], mTitleTextViewPoint = new float[2];
     FragmentAdminHomeBinding binding;
     ArrayList<AdminHomeModel> itemList = new ArrayList<>();
@@ -70,7 +69,6 @@ public class AdminHomeFragment extends BaseFragment {
 //    public void setProgress() {
 //        binding.semiCircleArcProgressBar.setPercentWithAnimation(45);
 //    }
-
             binding.settingBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -125,7 +123,6 @@ public class AdminHomeFragment extends BaseFragment {
     private void setUpRecyclerView() {
         binding.recyclerMenu.setHasFixedSize(true);
         binding.recyclerMenu.setItemAnimator(new DefaultItemAnimator());
-        binding.recyclerMenu.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
     }
 
     private void setUpAmazingAvatar() {
@@ -187,12 +184,9 @@ public class AdminHomeFragment extends BaseFragment {
                     @Override
                     public void run() {
                         Glide.with(AdminHomeFragment.this).load(avatarModel.url).into(binding.imageViewAvatar);
-                        String name =
-                                String.format(Locale.getDefault(), "%s %s", avatarModel.firstName,
-                                        avatarModel.lastName);
+                        String name = String.format(Locale.getDefault(), "%s %s", avatarModel.firstName, avatarModel.lastName);
                         binding.textViewTitle.setText(name);
                         binding.textViewTitle.post(new Runnable() {
-
                             @Override
                             public void run() {
                                 resetPoints(true);
@@ -260,16 +254,9 @@ public class AdminHomeFragment extends BaseFragment {
 //        }
 //        resetPoints(false);
 //    }
-
     @Override
     public void onResume() {
         super.onResume();
         StatusBarUtils.statusBarColor(getActivity(), R.color.prime);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding.getRoot().getViewTreeObserver().removeOnWindowFocusChangeListener(null);
     }
 }

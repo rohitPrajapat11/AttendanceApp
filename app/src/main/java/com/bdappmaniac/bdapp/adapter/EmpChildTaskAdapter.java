@@ -44,7 +44,7 @@ public class EmpChildTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         vholder.binding.issueDate.setText(childTaskList.get(position).getIssueDate());
         vholder.binding.taskHeading.setText(childTaskList.get(position).getTaskHeading());
         vholder.binding.discription.setText(childTaskList.get(position).getDiscription());
-        vholder.binding.completionDate.setText(childTaskList.get(position).getComplitionDate());
+        vholder.binding.complitionDate.setText(childTaskList.get(position).getComplitionDate());
         vholder.binding.taskType.setText(childTaskList.get(position).getTasktype());
         vholder.binding.imgtasktype.setImageResource(childTaskList.get(position).getImgtasktype());
 

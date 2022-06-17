@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
@@ -16,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class SalaryFragment extends Fragment {
+public class SalaryFragment extends BaseFragment {
     FragmentSalaryBinding binding;
     SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
     Calendar cal = Calendar.getInstance(Locale.ENGLISH);

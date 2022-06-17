@@ -40,7 +40,7 @@ public class adminChildTaskAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         vHolder.binding.issueDate.setText(childTaskList.get(position).getIssueDate());
         vHolder.binding.taskHeading.setText(childTaskList.get(position).getTaskHeading());
         vHolder.binding.discription.setText(childTaskList.get(position).getDiscription());
-        vHolder.binding.completionDate.setText(childTaskList.get(position).getComplitionDate());
+        vHolder.binding.complitionDate.setText(childTaskList.get(position).getComplitionDate());
         vHolder.binding.taskType.setText(childTaskList.get(position).getTasktype());
         vHolder.binding.imgtasktype.setImageResource(childTaskList.get(position).getImgtasktype());
     }

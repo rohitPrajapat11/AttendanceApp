@@ -16,67 +16,80 @@ import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.databinding.ExpenseBottomSheetDialogBinding;
-import com.bdappmaniac.bdapp.databinding.FragmentEmployeeExpenseDetailsBinding;
+import com.bdappmaniac.bdapp.databinding.FragmentEmployeeLeaveApprovalBinding;
+import com.bdappmaniac.bdapp.databinding.LeavesBottomSheetDialogBinding;
 import com.bdappmaniac.bdapp.utils.DateUtils;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class EmployeeExpenseDetailsFragment extends BaseFragment {
-    FragmentEmployeeExpenseDetailsBinding binding;
+public class EmployeeLeaveApprovalFragment extends BaseFragment {
+    FragmentEmployeeLeaveApprovalBinding binding;
     SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
     Calendar cal = Calendar.getInstance(Locale.ENGLISH);
     Calendar to = Calendar.getInstance();
     Calendar from = Calendar.getInstance();
     String fromDates;
     String toDates;
-    private int FYear, FMonth, FDay;
     private int TYear, TMonth, TDay;
+    private int FYear, FMonth, FDay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_expense_details, container, false);
-        binding.backBtn.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigateUp();
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_leave_approval, container, false);
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(binding.getRoot()).popBackStack();
+            }
+        });
+        binding.ivCalendarNext.setOnClickListener(v -> {
+            cal.add(Calendar.MONTH, 1);
+            setUpCalendar();
+        });
+
+        binding.ivCalendarPrevious.setOnClickListener(v -> {
+            cal.add(Calendar.MONTH, -1);
+            setUpCalendar();
         });
         binding.filterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.toAndFromLayout.setVisibility(View.GONE);
                 binding.monthLayout.setVisibility(View.GONE);
-                ExpenseBottomSheetDialogBinding expBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.expense_bottom_sheet_dialog, null, false);
+                binding.toAndFromLayout.setVisibility(View.GONE);
+                LeavesBottomSheetDialogBinding levBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.leaves_bottom_sheet_dialog, null, false);
                 Dialog dialog = new Dialog(mContext);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(expBinding.getRoot());
+                dialog.setContentView(levBinding.getRoot());
                 dialog.setCancelable(false);
                 dialog.setCanceledOnTouchOutside(true);
                 dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 dialog.getWindow().setGravity(Gravity.BOTTOM);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 dialog.show();
-                expBinding.approvedBtn.setOnClickListener(new View.OnClickListener() {
+                levBinding.approvedBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
                     }
                 });
-                expBinding.pendingBtn.setOnClickListener(new View.OnClickListener() {
+                levBinding.pendingBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
                     }
                 });
-                expBinding.months.setOnClickListener(new View.OnClickListener() {
+                levBinding.months.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         binding.monthLayout.setVisibility(View.VISIBLE);
                         dialog.dismiss();
                     }
                 });
-                expBinding.dateBtn.setOnClickListener(new View.OnClickListener() {
+                levBinding.dateBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         binding.toAndFromLayout.setVisibility(View.VISIBLE);
@@ -147,16 +160,6 @@ public class EmployeeExpenseDetailsFragment extends BaseFragment {
                 }
             }
         });
-
-        binding.ivCalendarNext.setOnClickListener(v -> {
-            cal.add(Calendar.MONTH, 1);
-            setUpCalendar();
-        });
-
-        binding.ivCalendarPrevious.setOnClickListener(v -> {
-            cal.add(Calendar.MONTH, -1);
-            setUpCalendar();
-        });
         return binding.getRoot();
     }
 
@@ -164,6 +167,11 @@ public class EmployeeExpenseDetailsFragment extends BaseFragment {
         String currentString = sdf.format(cal.getTime());
         String[] separated = currentString.split(" ");
         binding.monthTxt.setText(separated[0]);
-        binding.yearTxt.setText(separated[1]);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
     }
 }

@@ -324,75 +324,21 @@
                         tools:ignore="TextFields"
                         tools:targetApi="m" />
 
-                    <TextView
-                        android:id="@+id/totalamountLb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/m_semibold"
-                        android:text="Loan Amount"
-                        android:textColor="@color/prime"
-                        android:textSize="@dimen/_11ssp"
-                        app:layout_constraintStart_toStartOf="@+id/loanReasonTxt"
-                        app:layout_constraintTop_toBottomOf="@+id/loanReasonTxt" />
-
-                    <TextView
-                        android:id="@+id/totalamountTxt"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/m_semibold"
-                        android:gravity="end"
-                        android:text="25,000"
-                        android:textColor="@color/prime"
-                        android:textSize="@dimen/_12ssp"
-                        app:layout_constraintBottom_toBottomOf="@+id/totalamountLb"
-                        app:layout_constraintEnd_toEndOf="@+id/loanReasonTxt"
-                        app:layout_constraintStart_toEndOf="@+id/totalamountLb"
-                        app:layout_constraintTop_toTopOf="@+id/totalamountLb" />
-
-
-                    <TextView
-                        android:id="@+id/perInstallmentLb"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/m_semibold"
-                        android:text="Per Installment"
-                        android:textColor="@color/prime"
-                        android:textSize="@dimen/_11ssp"
-                        app:layout_constraintStart_toStartOf="@+id/totalamountLb"
-                        app:layout_constraintTop_toBottomOf="@+id/totalamountLb" />
-
-
-                    <TextView
-                        android:id="@+id/perInstallmentTxt"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/m_semibold"
-                        android:gravity="end"
-                        android:text="5,000"
-                        android:textColor="@color/prime"
-                        android:textSize="@dimen/_12ssp"
-                        app:layout_constraintBottom_toBottomOf="@+id/perInstallmentLb"
-                        app:layout_constraintEnd_toEndOf="@+id/totalamountTxt"
-                        app:layout_constraintStart_toEndOf="@+id/perInstallmentLb"
-                        app:layout_constraintTop_toTopOf="@+id/perInstallmentLb" />
-
                     <Button
                         android:id="@+id/submitBtn"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_36sdp"
-                        android:layout_marginTop="@dimen/_20sdp"
                         android:background="@drawable/light_green_15r_bg"
                         android:fontFamily="@font/m_medium"
                         android:text="Provide Advance Payment"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
+                        android:layout_marginTop="@dimen/_20sdp"
                         android:textSize="@dimen/_12sdp"
-                        app:layout_constraintEnd_toEndOf="@+id/perInstallmentTxt"
-                        app:layout_constraintStart_toStartOf="@+id/perInstallmentLb"
-                        app:layout_constraintTop_toBottomOf="@+id/perInstallmentTxt" />
+                        app:layout_constraintEnd_toEndOf="@+id/loanReasonTxt"
+                        app:layout_constraintStart_toStartOf="@+id/loanReasonTxt"
+                        app:layout_constraintTop_toBottomOf="@+id/loanReasonTxt" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>

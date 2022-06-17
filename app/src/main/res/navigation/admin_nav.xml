@@ -76,7 +76,6 @@
         android:label="EmployeeTermsAndConditionFragment"
         tools:layout="@layout/fragment_employee_terms_and_condition"/>
 
-
     <fragment
         android:id="@+id/toDoListFragment"
         android:name="com.bdappmaniac.bdapp.fragment.AdminTodoList"
@@ -150,5 +149,10 @@
         android:name="com.bdappmaniac.bdapp.fragment.ApproveLeavesFragment"
         android:label="ApproveLeavesFragment"
         tools:layout="@layout/fragment_approve_leaves"/>
+    <fragment
+        android:id="@+id/employeeLeaveApprovalFragment"
+        android:name="com.bdappmaniac.bdapp.fragment.EmployeeLeaveApprovalFragment"
+        android:label="EmployeeLeaveApprovalFragment"
+        tools:layout="@layout/fragment_employee_leave_approval"/>
 
 </navigation>
