@@ -14,12 +14,11 @@ import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.adapter.ViewPagerAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeAttandenceListBinding;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 public class EmployeeAttandenceListFragment extends BaseFragment {
     FragmentEmployeeAttandenceListBinding binding;
-    private ViewPagerAdapter viewPagerAdapter;
     String url = ("https://docs.google.com/spreadsheets/d/1ic1AoaqBcuocW_ZL2kL52IAB8RWTs_hH8coIQYqZMFM/edit#gid=970146190");
 
     @Override
@@ -39,6 +38,17 @@ public class EmployeeAttandenceListFragment extends BaseFragment {
         return binding.getRoot();
     }
 
+    public static void openCustomTab(Activity activity, CustomTabsIntent customTabsIntent, Uri uri) {
+        String packageName = "com.android.chrome";
+        if (packageName != null) {
+            customTabsIntent.intent.setPackage(packageName);
+            customTabsIntent.launchUrl(activity, uri);
+        } else {
+            activity.startActivity(new Intent(Intent.ACTION_VIEW, uri));
+        }
+    }
+
+
     public void GetUrlFromIntent(View view) {
 //        String url = ("https://docs.google.com/spreadsheets/d/1ic1AoaqBcuocW_ZL2kL52IAB8RWTs_hH8coIQYqZMFM/edit#gid=970146190");
 //        Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -51,13 +61,9 @@ public class EmployeeAttandenceListFragment extends BaseFragment {
 //        context.startActivity(defaultBrowser);
     }
 
-    public static void openCustomTab(Activity activity, CustomTabsIntent customTabsIntent, Uri uri) {
-        String packageName = "com.android.chrome";
-        if (packageName != null) {
-            customTabsIntent.intent.setPackage(packageName);
-            customTabsIntent.launchUrl(activity, uri);
-        } else {
-            activity.startActivity(new Intent(Intent.ACTION_VIEW, uri));
-        }
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
     }
 }

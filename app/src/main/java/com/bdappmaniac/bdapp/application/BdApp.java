@@ -3,10 +3,12 @@ package com.bdappmaniac.bdapp.application;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.os.StrictMode;
 import android.util.Log;
 
 import androidx.multidex.MultiDexApplication;
 
+import com.bdappmaniac.bdapp.BuildConfig;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.helper.ConnectivityReceiver;
@@ -25,6 +27,11 @@ public class BdApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        if (BuildConfig.DEBUG) {
+            enableStrictMode();
+        }
+
         instance = this;
         registerConnectivityReceiver();
         ViewPump.init(ViewPump.builder()
@@ -72,5 +79,18 @@ public class BdApp extends MultiDexApplication {
         } catch (Exception e) {
             Log.e(TAG, Objects.requireNonNull(e.getMessage()));
         }
+    }
+
+    private void enableStrictMode() {
+        StrictMode.setThreadPolicy(
+                new StrictMode.ThreadPolicy.Builder().detectDiskReads().detectDiskWrites()
+                        .detectNetwork().penaltyLog().build());
+        StrictMode.setVmPolicy(
+                new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().penaltyLog()
+                        .penaltyDeath().build());
+    }
+
+    public BdApp() {
+        super();
     }
 }

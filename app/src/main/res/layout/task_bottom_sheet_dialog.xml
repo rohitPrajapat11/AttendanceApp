@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/holidayPopup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_cut_white_bg"
+        android:padding="@dimen/_8sdp">
+
+        <TextView
+            android:id="@+id/addTaskBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:background="@drawable/light_green_15r_bg"
+            android:fontFamily="@font/m_medium"
+            android:gravity="center"
+            android:text="Add Task"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toStartOf="@+id/dateBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dateBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:background="@drawable/light_green_15r_bg"
+            android:fontFamily="@font/m_medium"
+            android:gravity="center"
+            android:text="To And From"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/addTaskBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/addTaskBtn"
+            app:layout_constraintTop_toTopOf="@+id/addTaskBtn" />
+
+        <TextView
+            android:id="@+id/approvedBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:background="@drawable/light_green_15r_bg"
+            android:fontFamily="@font/m_medium"
+            android:gravity="center"
+            android:text="Completed"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toStartOf="@id/pendingBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addTaskBtn" />
+
+        <TextView
+            android:id="@+id/pendingBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:background="@drawable/light_green_15r_bg"
+            android:fontFamily="@font/m_medium"
+            android:gravity="center"
+            android:text="Pending"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/approvedBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/approvedBtn"
+            app:layout_constraintTop_toTopOf="@+id/approvedBtn" />
+
+        <TextView
+            android:id="@+id/months"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/light_green_15r_bg"
+            android:fontFamily="@font/m_medium"
+            android:gravity="center"
+            android:text="Months"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pendingBtn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

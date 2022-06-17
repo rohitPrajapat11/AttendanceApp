@@ -1,11 +1,14 @@
 package com.bdappmaniac.bdapp.fragment;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 
@@ -20,6 +23,7 @@ import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.adapter.EmployeeAttendanceAdapter;
+import com.bdappmaniac.bdapp.databinding.AttendenaceBottomSheetDialogBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeAttendanceBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
@@ -29,11 +33,13 @@ import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflec
 import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import okhttp3.RequestBody;
@@ -42,6 +48,8 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
     FragmentEmployeeAttendanceBinding binding;
     Calendar from = Calendar.getInstance();
     String selectedMonth = "Jan";
+    SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
+    Calendar cal = Calendar.getInstance(Locale.ENGLISH);
     EmployeeAttendanceAdapter adapter;
     List<InoutsItem> historyList = new ArrayList<>();
     List<EmployeeHistoryDataItem> List = new ArrayList<>();
@@ -70,7 +78,7 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
                     Navigation.findNavController(view).popBackStack();
                 }
             });
-            binding.fromDateLayout.setOnClickListener(v -> {
+            binding.FromDate.setOnClickListener(v -> {
                 FYear = from.get(Calendar.YEAR);
                 FMonth = from.get(Calendar.MONTH);
                 FDay = from.get(Calendar.DAY_OF_MONTH);
@@ -86,7 +94,7 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
                 datePickerDialog.getWindow().setGravity(Gravity.CENTER);
                 datePickerDialog.show();
             });
-            binding.toDateLayout.setOnClickListener(v -> {
+            binding.ToDate.setOnClickListener(v -> {
                 if (!binding.FromDate.getText().toString().isEmpty()) {
                     TYear = to.get(Calendar.YEAR);
                     TMonth = to.get(Calendar.MONTH);
@@ -132,7 +140,56 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
                 }
             });
         }
+
+        binding.filterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.toAndFromLayout.setVisibility(View.GONE);
+                binding.monthLayout.setVisibility(View.GONE);
+                AttendenaceBottomSheetDialogBinding attBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.attendenace_bottom_sheet_dialog, null, false);
+                Dialog dialog = new Dialog(mContext);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(attBinding.getRoot());
+                dialog.setCancelable(false);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                dialog.getWindow().setGravity(Gravity.BOTTOM);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.show();
+                attBinding.dateBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        binding.toAndFromLayout.setVisibility(View.VISIBLE);
+                        dialog.dismiss();
+                    }
+                });
+                attBinding.monthBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        binding.monthLayout.setVisibility(View.VISIBLE);
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+
+        binding.ivCalendarNext.setOnClickListener(v -> {
+            cal.add(Calendar.MONTH, 1);
+            setUpCalendar();
+        });
+
+        binding.ivCalendarPrevious.setOnClickListener(v -> {
+            cal.add(Calendar.MONTH, -1);
+            setUpCalendar();
+        });
         return binding.getRoot();
+    }
+
+    private void setUpCalendar() {
+        String currentString = sdf.format(cal.getTime());
+        String[] separated = currentString.split(" ");
+        binding.monthTxt.setText(separated[0]);
+        binding.yearTxt.setText(separated[1]);
     }
 
     public void selectedMonth(String date) {

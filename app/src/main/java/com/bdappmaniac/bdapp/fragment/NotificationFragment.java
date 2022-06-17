@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentNotificationBinding;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 public class NotificationFragment extends Fragment {
     FragmentNotificationBinding binding;
@@ -22,5 +23,11 @@ public class NotificationFragment extends Fragment {
             Navigation.findNavController(v).navigateUp();
         });
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
     }
 }

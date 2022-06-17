@@ -1,6 +1,8 @@
 package com.bdappmaniac.bdapp.model;
 
-public class ModelEmpTask {
+import java.io.Serializable;
+
+public class ModelEmpTask implements Serializable {
     private  String date;
 
     public ModelEmpTask(String date) {

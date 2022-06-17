@@ -22,6 +22,7 @@ import com.bdappmaniac.bdapp.databinding.FragmentHomeSettingBinding;
 import com.bdappmaniac.bdapp.databinding.LogoutDialogboxBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.SharedPref;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 public class AdminSettingFragment extends BaseFragment {
     FragmentHomeSettingBinding binding;
@@ -96,5 +97,11 @@ public class AdminSettingFragment extends BaseFragment {
             }
             AppLoader.hideLoaderDialog();
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
     }
 }

@@ -14,6 +14,7 @@ import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentAttendanceRulesBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 
 import java.io.UnsupportedEncodingException;
@@ -113,10 +114,12 @@ public class AttendanceRulesFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
         try {
             allDailyRulesApi();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
+
 }

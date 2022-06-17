@@ -22,6 +22,7 @@ import com.bdappmaniac.bdapp.adapter.DesignationAdapter;
 import com.bdappmaniac.bdapp.databinding.AddDesignationDialogBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentDesignationBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -136,7 +137,9 @@ public class DesignationFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         if(list.isEmpty()) {
+            StatusBarUtils.statusBarColor(getActivity(), R.color.white);
             allDesignationApi();
         }
     }
+
 }

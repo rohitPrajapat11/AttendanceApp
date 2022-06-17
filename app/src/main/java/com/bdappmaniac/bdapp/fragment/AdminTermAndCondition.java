@@ -14,6 +14,7 @@ import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.databinding.FragmentAdminTermAndConditionBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 
 import java.io.UnsupportedEncodingException;
@@ -115,6 +116,7 @@ public class AdminTermAndCondition extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
         try {
             allTermsAndConditionsApi();
         } catch (UnsupportedEncodingException e) {

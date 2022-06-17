@@ -29,6 +29,7 @@ import com.bdappmaniac.bdapp.databinding.FragmentTestHolidayBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.model.ModelHolidayItems;
 import com.bdappmaniac.bdapp.utils.DateUtils;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -194,6 +195,7 @@ public class TestHolidayFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
         holidaysOfCurrentYearApi();
     }
 }
