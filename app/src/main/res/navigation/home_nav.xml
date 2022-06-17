@@ -66,19 +66,19 @@
 
     <fragment
         android:id="@+id/EmpLeavesFragment"
-       android:name="com.bdappmaniac.bdapp.employee.fragment.EmpLeavesFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.EmpLeavesFragment"
         android:label="empLeavesFragment"
-        tools:layout="@layout/fragment_emp_leaves"/>
+        tools:layout="@layout/fragment_emp_leaves" />
 
- <fragment
-        android:id="@+id/EmpGetLoanFragment"
-       android:name="com.bdappmaniac.bdapp.employee.fragment.EmpGetLoanFragment"
-        android:label="empGetLoanFragment"
-        tools:layout="@layout/fragment_emp_get_loan"/>
- <fragment
+    <fragment
         android:id="@+id/EmpManageLoansFragment"
-       android:name="com.bdappmaniac.bdapp.employee.fragment.EmpManageAdvanceFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.EmpManageAdvanceFragment"
         android:label="empmanageAdvanceFragment"
-        tools:layout="@layout/fragment_emp_manage_advance"/>
+        tools:layout="@layout/fragment_emp_manage_advance" />
 
+    <fragment
+        android:id="@+id/EmpGetLoanFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.EmpGetLoanFragment"
+        android:label="EmpGetLoanFragment"
+        tools:layout="@layout/fragment_emp_get_loan" />
 </navigation>

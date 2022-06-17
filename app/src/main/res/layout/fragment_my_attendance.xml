@@ -10,8 +10,9 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card"
-            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_6sdp"
             app:cardCornerRadius="@dimen/_18sdp"
+            android:background="@drawable/white_5r_bg"
             android:elevation="@dimen/_8sdp"
             android:layout_marginHorizontal="@dimen/_55sdp"
             android:layout_width="match_parent"
@@ -23,44 +24,45 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/monthTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/m_semibold"
+                    android:gravity="center"
+                    android:text="@string/march"
+                    android:textColor="@color/blue_primary"
+                    android:textSize="@dimen/_15ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <View
-                android:id="@+id/v1"
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="@dimen/_3sdp"
-                android:background="@drawable/bg_btn_gradient_in"
-                android:elevation="@dimen/_5sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/monthpicker"
-                app:layout_constraintEnd_toEndOf="@+id/monthpicker"
-                app:layout_constraintStart_toStartOf="@+id/monthpicker" />
+                <TextView
+                    android:id="@+id/yearTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/m_semibold"
+                    android:text="@string/_2022"
+                    android:textColor="@color/blue_primary"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/monthTxt"
+                    app:layout_constraintStart_toStartOf="@+id/monthTxt"
+                    app:layout_constraintTop_toBottomOf="@id/monthTxt" />
 
-
-            <com.yarolegovich.discretescrollview.DiscreteScrollView
-                android:id="@+id/monthpicker"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_32sdp"
-                android:animation="@anim/recycler_animation"
-                android:background="@color/white"
-                android:foregroundGravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:spanCount="1"
-                tools:listitem="@layout/design_custom_monthpicker" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-
-
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_9sdp"
-            android:elevation="@dimen/_4sdp"
+            android:elevation="@dimen/_8sdp"
             android:padding="@dimen/_1sdp"
             app:cardCornerRadius="@dimen/_30sdp"
             app:layout_constraintBottom_toBottomOf="@+id/card"
+            app:layout_constraintEnd_toStartOf="@+id/card"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/card">
 
@@ -73,17 +75,16 @@
                 android:src="@drawable/left_arow" />
         </androidx.cardview.widget.CardView>
 
-
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_1sdp"
             android:layout_marginEnd="@dimen/_9sdp"
+            android:elevation="@dimen/_8sdp"
             android:padding="@dimen/_1sdp"
-            android:elevation="@dimen/_4sdp"
             app:cardCornerRadius="@dimen/_30sdp"
             app:layout_constraintBottom_toBottomOf="@+id/card"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/card"
             app:layout_constraintTop_toTopOf="@+id/card">
 
             <ImageView
@@ -92,22 +93,21 @@
                 android:layout_height="@dimen/_30sdp"
                 android:background="@drawable/ripple_loan"
                 android:padding="@dimen/_7sdp"
-                android:src="@drawable/right_arrow" />
+                android:src="@drawable/right_arrow"
+               />
         </androidx.cardview.widget.CardView>
-
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/historyRecycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_2sdp"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_3sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/card"
             tools:listitem="@layout/design_attendance_history" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>

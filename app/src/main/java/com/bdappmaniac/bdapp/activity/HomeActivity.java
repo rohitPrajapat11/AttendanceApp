@@ -134,19 +134,16 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                 }
             }
         });
-
         binding.navigationDrawer.userName.setText(SharedPref.getUserDetails().getEmployeeName());
         binding.navigationDrawer.userJobTxt.setText(SharedPref.getUserDetails().getDesignation());
         binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.settingBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.logOutBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.tmcBtn.setOnClickListener(this::onClick);
-
         binding.navigationDrawer.rulesBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.profileBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.taskBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.MyattendanceBtn.setOnClickListener(this::onClick);
-
         binding.navigationDrawer.leaveBtn.setOnClickListener(this::onClick);
         binding.navigationDrawer.expenceBtn.setOnClickListener(this::onClick);
 
@@ -177,7 +174,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     navHandel("Settings");
                     headerHideShow(false);
                     bottomHideShow(false);
-
                 } else if (destination.getId() == R.id.employeeAttendanceRulesFragment) {
                     navHandel("Attendance Rules");
                     headerHideShow(false);
@@ -199,20 +195,21 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     headerHideShow(false);
                     bottomHideShow(false);
                 } else if (destination.getId() == R.id.EmpExpencesfragment) {
-                    Toast.makeText(HomeActivity.this, "yooooo", Toast.LENGTH_SHORT).show();
                     navHandel("Expenses");
-                    headerHideShow(true);
+                    headerHideShow(false);
                     bottomHideShow(false);
                 }else if (destination.getId() == R.id.profileFragment) {
                     navHandel("Profile");
                     headerHideShow(true);
                     bottomHideShow(false);
-
+                }else if (destination.getId() == R.id.EmpGetLoanFragment) {
+                    navHandel("Get Loan");
+                    headerHideShow(false);
+                    bottomHideShow(false);
                 }
             }
         });
     }
-
     @SuppressLint("ResourceAsColor")
     void navHandel(String type) {
         switch (type) {
@@ -309,8 +306,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             binding.mainDrawerLayout.openDrawer(GravityCompat.START);
         }
     }
-
-
     @Override
     public void onClick(View v) {
         drawerOpenCLose();

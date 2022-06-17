@@ -205,7 +205,28 @@
     <string name="expense">Expense</string>
     <string name="amount">Amount</string>
     <string name="done">Done</string>
-    <string name="addnext">AddNext</string>
+    <string name="add_next">Add Next</string>
     <string name="note">Note</string>
+    <string name="office_utils">Office utils</string>
+    <string name="brought_new_chair_for_office">brought new chair for office</string>
+    <string name="_500">500</string>
+    <string name="add_new_expense">Add New Expense</string>
+    <string name="add_expense">Add Expense</string>
+    <string name="march">March</string>
+    <string name="_2022">2022</string>
+    <string name="your_emi">Your EMI</string>
+    <string name="per_month">Per Month</string>
+    <string name="_5000">5000</string>
+    <string name="loan_amount">Loan Amount</string>
+    <string name="_20_3_2022">20-3-2022</string>
+    <string name="apply">Apply</string>
+    <string name="advance_type">Advance Type</string>
+    <string name="advance_for">Advance for,.....</string>
+    <string name="advance_amount">Advance Amount</string>
+    <string name="your_emi_per_month">Your EMI Per Month</string>
+    <string name="get_advance">Get Advance</string>
+    <string name="ee">/-</string>
+    <string name="details">Details</string>
+    <string name="time_program">Time Program</string>
 
 </resources>

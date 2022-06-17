@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -14,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.adapter.EmpTaskAdapter;
-import com.bdappmaniac.bdapp.databinding.FragmentEmpLeavesBinding;
+
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeExpensesBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentExpensesEmployeeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
@@ -32,6 +33,12 @@ FragmentExpensesEmployeeBinding binding;
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_expenses_employee,container,false);
 
 
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).popBackStack();
+            }
+        });
 
         binding.newExpence.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +46,28 @@ FragmentExpensesEmployeeBinding binding;
 
                 if (binding.details.getVisibility() == VISIBLE) {
                     binding.details.setVisibility(View.GONE);
+                    binding.additem.setVisibility(VISIBLE);
                 } else {
                     binding.details.setVisibility(VISIBLE);
+                    binding.additem.setVisibility(View.GONE);
+                }
+            }
+        });
+        binding.addNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(binding.details.getVisibility()== VISIBLE){
+                    binding.details.setVisibility(View.GONE);
+                    binding.additem.setVisibility(VISIBLE);
+                }
+            }
+        });
+        binding.done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(binding.details.getVisibility()== VISIBLE){
+                    binding.details.setVisibility(View.GONE);
+                    binding.additem.setVisibility(VISIBLE);
                 }
             }
         });

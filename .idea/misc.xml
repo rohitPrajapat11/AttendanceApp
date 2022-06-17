@@ -32,6 +32,7 @@
         <entry key="app/src/main/res/drawable/bottom_10r_v2_white_bg.xml" value="0.1375" />
         <entry key="app/src/main/res/drawable/bottom_10r_white_bg.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable/bottom_cut_white_bg.xml" value="0.1665" />
+        <entry key="app/src/main/res/drawable/btn_gradient_bg.xml" value="0.162" />
         <entry key="app/src/main/res/drawable/button_bg_gradient.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/circle_solid.xml" value="0.1905" />
         <entry key="app/src/main/res/drawable/circle_stroke.xml" value="0.1875" />
@@ -75,6 +76,8 @@
         <entry key="app/src/main/res/drawable/round_green_bg.xml" value="0.11052631578947368" />
         <entry key="app/src/main/res/drawable/round_selector.xml" value="0.12203947368421053" />
         <entry key="app/src/main/res/drawable/round_white_bg.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/drawable/salary_progress_bar.xml" value="0.162" />
+        <entry key="app/src/main/res/drawable/seekbar_gradient_bg.xml" value="0.162" />
         <entry key="app/src/main/res/drawable/switch_btn.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/table_bg.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/text_bg_splash.xml" value="0.187" />
@@ -123,7 +126,7 @@
         <entry key="app/src/main/res/layout/date_picker_timeline.xml" value="0.22" />
         <entry key="app/src/main/res/layout/desigin_lock_unlock_items.xml" value="0.33" />
         <entry key="app/src/main/res/layout/design_attendance_history.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/design_check_in_out_entries.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/design_check_in_out_entries.xml" value="0.22" />
         <entry key="app/src/main/res/layout/design_child_task_items.xml" value="0.28088926891834115" />
         <entry key="app/src/main/res/layout/design_custom_monthpicker.xml" value="0.2774690038477982" />
         <entry key="app/src/main/res/layout/design_holiday_items.xml" value="0.2" />
@@ -140,7 +143,7 @@
         <entry key="app/src/main/res/layout/edit_designation_dialog.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/employee_day_attendance_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/employee_day_attendence_list.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/employee_holiday_item.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/employee_holiday_item.xml" value="0.27247451343836887" />
         <entry key="app/src/main/res/layout/employee_holiday_month_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/employee_list_item.xml" value="0.17" />
         <entry key="app/src/main/res/layout/employee_to_do_list_item.xml" value="0.15729166666666666" />
@@ -153,14 +156,17 @@
         <entry key="app/src/main/res/layout/fragment_admin_tearm_and_condtion.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_admin_term_and_condition.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_admin_todo_list.xml" value="0.19" />
+        <entry key="app/src/main/res/layout/fragment_advance_glide.xml" value="0.26849080803762293" />
+        <entry key="app/src/main/res/layout/fragment_advanve_glide.xml" value="0.2791791363830697" />
         <entry key="app/src/main/res/layout/fragment_attendance_rules.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.26849080803762293" />
         <entry key="app/src/main/res/layout/fragment_confirm_m_p_i_n.xml" value="0.17" />
         <entry key="app/src/main/res/layout/fragment_contact_info.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_create_m_p_i_n.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_date_dialog.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout/fragment_designation.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_emo_manage_advance.xml" value="0.28088926891834115" />
-        <entry key="app/src/main/res/layout/fragment_emp_get_loan.xml" value="0.28088926891834115" />
+        <entry key="app/src/main/res/layout/fragment_emp_get_loan.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_emp_leave.xml" value="0.28088926891834115" />
         <entry key="app/src/main/res/layout/fragment_emp_leaves 2.xml" value="0.17015818725951262" />
         <entry key="app/src/main/res/layout/fragment_emp_leaves.xml" value="0.25" />
@@ -181,7 +187,7 @@
         <entry key="app/src/main/res/layout/fragment_employee_loan_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_employee_terms_and_condition.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_employee_to_do_list.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_expenses_employee.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_expenses_employee.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.19" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
@@ -190,7 +196,7 @@
         <entry key="app/src/main/res/layout/fragment_loan_item.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_loan_provide.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_log_in.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_my_attendance.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_my_attendance.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_new_employee_list.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_new_password.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_o_t_p.xml" value="0.2" />
@@ -219,7 +225,7 @@
         <entry key="app/src/main/res/layout/loader_dialog.xml" value="0.16" />
         <entry key="app/src/main/res/layout/loan_details_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/logout_dialogbox.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/navigation_drawer.xml" value="0.2773322076825665" />
+        <entry key="app/src/main/res/layout/navigation_drawer.xml" value="0.1" />
         <entry key="app/src/main/res/layout/network_dialog.xml" value="0.22" />
         <entry key="app/src/main/res/layout/no_internet.xml" value="0.22" />
         <entry key="app/src/main/res/layout/no_internet_connection_dialog.xml" value="0.11796875" />
@@ -254,5 +260,12 @@
   </component>
   <component name="SuppressKotlinCodeStyleNotification">
     <option name="disableForAll" value="true" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

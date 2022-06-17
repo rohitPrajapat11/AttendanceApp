@@ -8,4 +8,7 @@
         android:endColor="#5481EC"
         android:startColor="#856AC6" />
     <corners android:radius="@dimen/_140sdp"/>
+    <stroke
+        android:width="@dimen/_3sdp"
+        android:color="@color/blue_secondry"/>
 </shape>
