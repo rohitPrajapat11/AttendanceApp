@@ -236,6 +236,7 @@
         <entry key="app/src/main/res/layout/salary_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/single_item_of_employee.xml" value="0.18" />
         <entry key="app/src/main/res/layout/task_add_dialog.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/task_bottom_sheet_dialog.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/task_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/timeline_item_layout.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/to_do_list_employee_item.xml" value="0.25" />
