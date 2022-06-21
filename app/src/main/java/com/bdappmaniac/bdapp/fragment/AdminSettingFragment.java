@@ -46,7 +46,7 @@ public class AdminSettingFragment extends BaseFragment {
             Navigation.findNavController(v).navigate(R.id.adminTermFragment);
         });
         binding.helpAndSupportBtn.setOnClickListener(v -> {
-            showToast(mContext.getString(R.string.in_progress));
+            Navigation.findNavController(v).navigate(R.id.adminHelpAndSupportFragment);
         });
         binding.logOutBtn.setOnClickListener(v -> {
             logoutDialog();

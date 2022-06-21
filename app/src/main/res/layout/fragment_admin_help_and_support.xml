@@ -25,6 +25,7 @@
                 android:layout_marginStart="@dimen/_20sdp"
                 android:contentDescription="@string/backBtn"
                 android:src="@drawable/icn_back_arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/prime" />
@@ -33,39 +34,11 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/m_semibold"
+                android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:text="Employee Attendance"
+                android:text="Help &amp; Support"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_15ssp"
-                app:layout_constraintBottom_toBottomOf="@+id/backBtn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/backBtn" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/headerLayout">
-
-            <TextView
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/edit_text_bg"
-                android:elevation="5dp"
-                android:fontFamily="@font/m_semibold"
-                android:gravity="center"
-                android:padding="@dimen/_10sdp"
-                android:text="Attendance Sheet"
-                android:textColor="@color/prime"
-                android:textSize="@dimen/_13ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

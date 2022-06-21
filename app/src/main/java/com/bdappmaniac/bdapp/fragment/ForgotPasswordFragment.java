@@ -55,7 +55,6 @@ public class ForgotPasswordFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 if (checkValidation()) {
-//                    Navigation.findNavController(v).navigate(R.id.newPasswordFragment);
                     sendMailApi(binding.emailTxt.getText().toString());
                 }
             }
@@ -144,7 +143,6 @@ public class ForgotPasswordFragment extends BaseFragment {
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
         }
 
         @Override
@@ -159,7 +157,6 @@ public class ForgotPasswordFragment extends BaseFragment {
 
         @Override
         public void afterTextChanged(Editable s) {
-
         }
     }
 }

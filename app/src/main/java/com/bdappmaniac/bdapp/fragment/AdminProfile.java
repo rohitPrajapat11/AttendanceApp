@@ -446,7 +446,7 @@ public class AdminProfile extends BaseFragment {
 
     private void setValidations() {
         if (isAllFieldFillUp()) {
-            binding.saveBtn.setBackgroundResource(R.drawable.green_10r_bg);
+            binding.saveBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
             binding.saveBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
             binding.saveBtn.setBackgroundResource(R.drawable.light_green_15r_bg);

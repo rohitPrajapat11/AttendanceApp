@@ -39,6 +39,7 @@
         <entry key="app/src/main/res/drawable/circular_progress_bar.xml" value="0.146" />
         <entry key="app/src/main/res/drawable/circular_shape.xml" value="0.146" />
         <entry key="app/src/main/res/drawable/circular_shape_time_program.xml" value="0.1925" />
+        <entry key="app/src/main/res/drawable/cursor_color.xml" value="0.1655" />
         <entry key="app/src/main/res/drawable/custom_thumb.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/des.xml" value="0.1485" />
         <entry key="app/src/main/res/drawable/design_edt_bg.xml" value="0.2135" />
@@ -111,10 +112,12 @@
         <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.22" />
         <entry key="app/src/main/res/layout/admin_edit_holiday_dilogbox.xml" value="0.18" />
         <entry key="app/src/main/res/layout/admin_emp_info.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/admin_header.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/admin_history_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/admin_history_list_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/admin_home_layout.xml" value="0.39202965708989806" />
         <entry key="app/src/main/res/layout/att_to_do_list.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/attendenace_bottom_sheet_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_dialog_register_success.xml" value="0.22" />
         <entry key="app/src/main/res/layout/bottom_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bottom_round_bg.xml" value="0.1194078947368421" />
@@ -148,9 +151,10 @@
         <entry key="app/src/main/res/layout/employee_list_item.xml" value="0.17" />
         <entry key="app/src/main/res/layout/employee_to_do_list_item.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/exit_dialogbox.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_admin_help_and_support.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/fragment_admin_holiday.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_admin_home.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_admin_loan.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_admin_loan.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_admin_lock_unlock.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_admin_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_admin_tearm_and_condtion.xml" value="0.16" />
@@ -173,7 +177,7 @@
         <entry key="app/src/main/res/layout/fragment_emp_leaves2.xml" value="0.28088926891834115" />
         <entry key="app/src/main/res/layout/fragment_emp_manage_advance.xml" value="0.28088926891834115" />
         <entry key="app/src/main/res/layout/fragment_employee_atds.xml" value="0.11796875" />
-        <entry key="app/src/main/res/layout/fragment_employee_attandence_list.xml" value="0.11796875" />
+        <entry key="app/src/main/res/layout/fragment_employee_attandence_list.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_employee_attendance.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_employee_attendance_rules.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_employee_des_list.xml" value="0.22" />
@@ -208,7 +212,7 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_register_empolyee.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_salary.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_service_info.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/fragment_service_info.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_sing_up.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_task.xml" value="0.25" />
@@ -222,6 +226,7 @@
         <entry key="app/src/main/res/layout/home_layout.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_card.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/layout_header.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/leaves_bottom_sheet_dialog.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/loader_dialog.xml" value="0.16" />
         <entry key="app/src/main/res/layout/loan_details_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/logout_dialogbox.xml" value="0.25" />
