@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/bg_nav_items"
+        android:elevation="@dimen/_12sdp"
+        android:paddingTop="@dimen/_8sdp"
+        android:paddingBottom="@dimen/_12sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/edtImg"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:padding="@dimen/_1sdp"
+            android:elevation="@dimen/_2sdp"
+            android:src="@drawable/edit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/edit_Txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="@font/m_medium"
+            android:padding="@dimen/_1sdp"
+            android:text="Edit"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_9ssp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/edtImg"
+            app:layout_constraintStart_toEndOf="@+id/edtImg"
+            app:layout_constraintTop_toTopOf="@+id/edtImg" />
+
+        <ImageView
+            android:id="@+id/rempveImg"
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:padding="@dimen/_1sdp"
+            android:src="@drawable/remove"
+            app:layout_constraintStart_toStartOf="@+id/edtImg"
+            android:elevation="@dimen/_2sdp"
+            app:layout_constraintTop_toBottomOf="@+id/edtImg" />
+
+        <TextView
+            android:id="@+id/removetxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:fontFamily="@font/m_medium"
+            android:padding="@dimen/_1sdp"
+            android:text="Delete"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_9ssp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/rempveImg"
+            app:layout_constraintStart_toEndOf="@+id/rempveImg"
+            app:layout_constraintTop_toTopOf="@+id/rempveImg" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
