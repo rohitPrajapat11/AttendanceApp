@@ -320,7 +320,7 @@
                 android:layout_marginStart="@dimen/_4sdp"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:fontFamily="@font/m_semibold"
-                android:text="@string/casual_leave"
+                android:text="@string/Casual_leave"
                 android:textColor="@color/blue_primary"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="@+id/leaveReason"

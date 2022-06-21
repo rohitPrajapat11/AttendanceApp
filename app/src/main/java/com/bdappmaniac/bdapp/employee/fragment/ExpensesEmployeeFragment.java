@@ -40,16 +40,16 @@ FragmentExpensesEmployeeBinding binding;
             }
         });
 
-        binding.newExpence.setOnClickListener(new View.OnClickListener() {
+        binding.additem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (binding.details.getVisibility() == VISIBLE) {
                     binding.details.setVisibility(View.GONE);
-                    binding.additem.setVisibility(VISIBLE);
+                    binding.additem.setImageResource(R.drawable.additem);
                 } else {
                     binding.details.setVisibility(VISIBLE);
-                    binding.additem.setVisibility(View.GONE);
+                    binding.additem.setImageResource(R.drawable.cross);
                 }
             }
         });
@@ -58,7 +58,7 @@ FragmentExpensesEmployeeBinding binding;
             public void onClick(View v) {
                 if(binding.details.getVisibility()== VISIBLE){
                     binding.details.setVisibility(View.GONE);
-                    binding.additem.setVisibility(VISIBLE);
+                    binding.additem.setImageResource(R.drawable.additem);
                 }
             }
         });
@@ -67,7 +67,7 @@ FragmentExpensesEmployeeBinding binding;
             public void onClick(View v) {
                 if(binding.details.getVisibility()== VISIBLE){
                     binding.details.setVisibility(View.GONE);
-                    binding.additem.setVisibility(VISIBLE);
+                    binding.additem.setImageResource(R.drawable.additem);
                 }
             }
         });

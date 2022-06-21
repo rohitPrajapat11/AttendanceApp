@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentEmpManageAdvanceBinding;
-import com.bdappmaniac.bdapp.databinding.FragmentEmpManageAdvanceBindingImpl;
+
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 
 public class AdvanceGlideFragment extends BaseFragment {

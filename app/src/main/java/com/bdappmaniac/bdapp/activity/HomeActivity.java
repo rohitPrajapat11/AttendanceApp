@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
+
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -32,7 +32,7 @@ import com.bdappmaniac.bdapp.databinding.ActivityHomeBinding;
 import com.bdappmaniac.bdapp.databinding.CustomInactiveDialogBinding;
 import com.bdappmaniac.bdapp.databinding.ExitDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.PresentAndAbsentDialogboxBinding;
-import com.bdappmaniac.bdapp.employee.fragment.HomeFragment;
+
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.ConnectivityReceiver;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
@@ -204,6 +204,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     bottomHideShow(false);
                 }else if (destination.getId() == R.id.EmpGetLoanFragment) {
                     navHandel("Get Loan");
+                    headerHideShow(false);
+                    bottomHideShow(false);
+                }else if (destination.getId() == R.id.EmpManageLoansFragment) {
+                    navHandel("Manage Advance");
                     headerHideShow(false);
                     bottomHideShow(false);
                 }
@@ -439,21 +443,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Fragment navHostFragment = getSupportFragmentManager().findFragmentById(R.id.auth_nav);
-        if (navHostFragment != null) {
-            List<Fragment> fragmentList = navHostFragment.getChildFragmentManager().getFragments();
-            boolean isLoginFragment = false;
-            for (Fragment fragment1 : fragmentList) {
-                if (fragment1 instanceof HomeFragment) {
-                    isLoginFragment = true;
-                    break;
-                }
-            }
-            if (isLoginFragment) {
-                finish();
-            }
+        if (binding.mainDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.mainDrawerLayout.closeDrawer(GravityCompat.START);
+        } else if (binding.mainDrawerLayout.isDrawerOpen(GravityCompat.END)) {
+            binding.mainDrawerLayout.closeDrawer(GravityCompat.END);
+        } else {
+            super.onBackPressed();
         }
+
     }
 
     private void markAttendanceByEmployeeApi(String reason) {
@@ -754,5 +751,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             }
         });
     }
+
 
 }

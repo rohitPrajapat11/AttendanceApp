@@ -18,7 +18,7 @@
 
         <TextView
             android:id="@+id/status"
-            android:layout_width="@dimen/_55sdp"
+            android:layout_width="@dimen/_45sdp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_5sdp"
             android:background="@drawable/design_edt_bg"
@@ -28,17 +28,18 @@
             android:padding="@dimen/_4sdp"
             android:text="@string/approved"
             android:textColor="@color/bRed"
-            android:textSize="@dimen/_9ssp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="@dimen/_7ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/tillDate"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
         <TextView
             android:id="@+id/leaveReason"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:fontFamily="@font/m_semibold"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/m_light"
+            android:textStyle="bold"
             android:padding="@dimen/_1sdp"
             android:text="@string/urgent_piece_of_work"
             android:textColor="@color/black"
@@ -50,10 +51,10 @@
             android:id="@+id/leaveType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_1sdp"
             android:layout_marginTop="@dimen/_1sdp"
-            android:fontFamily="@font/m_semibold"
-            android:text="@string/casual_leave"
+            android:fontFamily="@font/m_medium"
+            android:text="@string/Casual_leave"
             android:textColor="@color/blue_primary"
             android:textSize="@dimen/_9ssp"
             app:layout_constraintStart_toStartOf="@+id/leaveReason"
@@ -140,7 +141,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_3sdp"
             android:layout_marginBottom="@dimen/_2sdp"
-            android:fontFamily="@font/m_semibold"
+            android:fontFamily="@font/m_medium"
             android:padding="@dimen/_2sdp"
             android:text="@string/i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden"
             android:textColor="@color/grey"
@@ -150,5 +151,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgcal" />
+
+        <ImageView
+            android:id="@+id/more"
+            android:layout_width="@dimen/_18sdp"
+            android:padding="@dimen/_3sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:src="@drawable/icn_more_btn"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_2sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

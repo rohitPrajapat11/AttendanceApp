@@ -12,11 +12,12 @@ import android.view.ViewGroup;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentEmpGetLoanBinding;
+import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.jaygoo.widget.OnRangeChangedListener;
 import com.jaygoo.widget.RangeSeekBar;
 
 
-public class EmpGetLoanFragment extends Fragment {
+public class EmpGetLoanFragment extends BaseFragment {
 FragmentEmpGetLoanBinding binding;
     int price = 1;
 
@@ -28,10 +29,10 @@ FragmentEmpGetLoanBinding binding;
 
      binding.backBtn.setOnClickListener(new View.OnClickListener() {
          @Override
-         public void onClick(View v) {
-             Navigation.findNavController(v).popBackStack();
+         public void onClick(View v) { takeMeHome();
          }
      });
+
 
         binding.priceRange.setProgress(1000);
         binding.priceRange.setOnRangeChangedListener(new OnRangeChangedListener() {

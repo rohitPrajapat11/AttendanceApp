@@ -13,7 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
+import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.service.ForegroundService;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StringHelper;
@@ -61,6 +63,11 @@ public class BaseFragment extends Fragment {
         return requestBody;
     }
 
+    public void takeMeHome()
+    {
+        Navigation.findNavController(getView()).navigate(R.id.homeFragment);
+
+    }
     public RequestBody toRequestBodyPart(String value) {
         return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
     }

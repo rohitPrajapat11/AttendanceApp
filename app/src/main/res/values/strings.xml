@@ -181,8 +181,8 @@
     <string name="login_as">login_as</string>
     <string name="login">login</string>
     <string name="forgotten_your_password">Forgotten\nYour Password?</string>
-    <string name="urgent_piece_of_work">Urgent piece of work</string>
-    <string name="casual_leave">Casual Leave</string>
+
+    <string name="Casual_leave">Casual Leave</string>
     <string name="_20_03_22">20-03-22</string>
     <string name="from">From</string>
     <string name="to">To</string>
@@ -228,5 +228,12 @@
     <string name="ee">/-</string>
     <string name="details">Details</string>
     <string name="time_program">Time Program</string>
+    <string name="checking_in_are_you_sure_you_want_to_check_in">Checking In , Are You Sure You Want To Check In</string>
+    <string name="alert">Alert</string>
+    <string name="new_leave">New Leave</string>
+    <string name="apply_for_a_leave_or_a_vacation">Apply for a leave or a vacation</string>
+    <string name="urgent_piece_of_work">Urgent piece of work</string>
+    <string name="leave_type">Leave Type</string>
+    <string name="status">Status :</string>
 
 </resources>

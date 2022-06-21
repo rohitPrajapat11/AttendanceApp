@@ -12,8 +12,9 @@ import android.view.ViewGroup;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentEmpManageAdvanceBinding;
+import com.bdappmaniac.bdapp.fragment.BaseFragment;
 
-public class EmpManageAdvanceFragment extends Fragment {
+public class EmpManageAdvanceFragment extends BaseFragment {
 FragmentEmpManageAdvanceBinding binding;
 
 
@@ -23,12 +24,12 @@ FragmentEmpManageAdvanceBinding binding;
 
       binding = DataBindingUtil.inflate(inflater,R.layout.fragment_emp_manage_advance,container,false);
 
-//        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Navigation.findNavController(view).popBackStack();
-//            }
-//        });
+        binding.ee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               takeMeHome();
+            }
+        });
       return binding.getRoot();
     }
 }

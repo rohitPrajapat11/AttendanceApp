@@ -45,7 +45,7 @@ public class EmployeeLoanDetails extends Fragment {
         binding.manageAdvance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.EmpGetLoanFragment);
+                Navigation.findNavController(view).navigate(R.id.EmpManageLoansFragment);
             }
         });
 

@@ -133,8 +133,9 @@ dependencies {
 
     implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
 
-//    implementation project(':collapsiblecalendarview2')
 //range picker
     implementation 'com.github.Jay-Goo:RangeSeekBar:3.0.0'
-
+//blur
+    implementation 'jp.wasabeef:blurry:4.0.1'
 }
+

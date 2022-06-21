@@ -1,9 +1,13 @@
 package com.bdappmaniac.bdapp.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -11,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.L;
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.databinding.CheckinOutDialogBinding;
 import com.bdappmaniac.bdapp.databinding.DesignLeaveItemListBinding;
+import com.bdappmaniac.bdapp.databinding.DialogForLeaveItemsBinding;
 import com.bdappmaniac.bdapp.model.ModelLeaves;
 
 import java.util.ArrayList;
@@ -58,6 +64,12 @@ public class LeavesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             }
         });
 
+        vholder.binding.more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionDialog();
+            }
+        });
 
     }
     @Override
@@ -71,6 +83,20 @@ public class LeavesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             super(itemView.getRoot());
             binding = itemView;
         }
+    }
+
+    public void actionDialog(){
+         DialogForLeaveItemsBinding actiondialog = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_for_leave_items, null, false);
+        Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(actiondialog.getRoot());
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setGravity(Gravity.CENTER);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.show();
+
     }
 
 }

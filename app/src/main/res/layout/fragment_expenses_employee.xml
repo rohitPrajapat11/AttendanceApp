@@ -54,6 +54,9 @@
             android:id="@+id/coordinatorLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/headerLayout">
 
             <com.google.android.material.appbar.AppBarLayout
@@ -80,7 +83,7 @@
                             android:id="@+id/newExpence"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/_2sdp"
+                            android:layout_marginHorizontal="@dimen/_4sdp"
                             android:layout_marginVertical="@dimen/_8ssp"
                             android:background="@drawable/white_10r_white_bg"
                             android:elevation="@dimen/_5sdp"
@@ -96,6 +99,7 @@
                                 android:layout_height="@dimen/_25sdp"
                                 android:layout_marginEnd="@dimen/_2sdp"
                                 android:elevation="@dimen/_5sdp"
+                                android:padding="@dimen/_2sdp"
                                 android:src="@drawable/additem"
                                 app:layout_constraintBottom_toBottomOf="@+id/text00"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +171,6 @@
                                     android:layout_marginHorizontal="@dimen/_5sdp"
                                     android:layout_marginTop="@dimen/_2sdp"
                                     android:background="@drawable/design_edt_bg"
-                                    android:elevation="@dimen/_2sdp"
                                     android:fontFamily="@font/m_semibold"
                                     android:hint="@string/office_utils"
                                     android:inputType="text"
@@ -201,7 +204,6 @@
                                     android:layout_marginTop="@dimen/_2sdp"
                                     android:background="@drawable/design_edt_bg"
                                     android:drawablePadding="@dimen/_10sdp"
-                                    android:elevation="@dimen/_2sdp"
                                     android:fontFamily="@font/m_semibold"
                                     android:hint="@string/_500"
                                     android:inputType="number"
@@ -248,7 +250,6 @@
                                     android:layout_marginEnd="@dimen/_5sdp"
                                     android:autofillHints="gfn"
                                     android:background="@drawable/design_edt_bg"
-                                    android:elevation="@dimen/_2sdp"
                                     android:fontFamily="@font/m_semibold"
                                     android:hint="@string/_20_03_2022"
                                     android:inputType="date"
@@ -294,7 +295,6 @@
                                     android:layout_marginTop="@dimen/_2sdp"
                                     android:autofillHints="xd"
                                     android:background="@drawable/design_edt_bg"
-                                    android:elevation="@dimen/_2sdp"
                                     android:fontFamily="@font/m_semibold"
                                     android:hint="@string/brought_new_chair_for_office"
                                     android:inputType="textMultiLine"
@@ -354,14 +354,14 @@
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/scrpoll"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:background="@drawable/auth_white_bg"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/status"
