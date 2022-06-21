@@ -85,6 +85,7 @@
                         style="@style/MyTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_45sdp"
+                        android:cursorVisible="true"
                         android:fontFamily="@font/m_medium"
                         android:hint="Enter Name"
                         android:importantForAutofill="no"
@@ -93,6 +94,7 @@
                         android:textAllCaps="true"
                         android:textAppearance="@style/HintText"
                         android:textColor="@color/prime"
+                        android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="@dimen/_11ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -113,6 +115,7 @@
                         style="@style/MyTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_45sdp"
+                        android:cursorVisible="true"
                         android:fontFamily="@font/m_medium"
                         android:hint="Enter Email"
                         android:importantForAutofill="no"
@@ -122,6 +125,7 @@
                         android:textAllCaps="true"
                         android:textAppearance="@style/HintText"
                         android:textColor="@color/prime"
+                        android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="@dimen/_11ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -153,6 +157,7 @@
                         style="@style/MyTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_45sdp"
+                        android:cursorVisible="true"
                         android:fontFamily="@font/m_medium"
                         android:hint="Enter Mobile Number"
                         android:importantForAutofill="no"
@@ -163,6 +168,7 @@
                         android:textAllCaps="true"
                         android:textAppearance="@style/HintText"
                         android:textColor="@color/prime"
+                        android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="@dimen/_11ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -183,6 +189,7 @@
                         style="@style/MyTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_45sdp"
+                        android:cursorVisible="false"
                         android:editable="false"
                         android:focusableInTouchMode="false"
                         android:focusedByDefault="false"
@@ -216,6 +223,7 @@
                         style="@style/MyTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_45sdp"
+                        android:cursorVisible="false"
                         android:editable="false"
                         android:focusableInTouchMode="false"
                         android:focusedByDefault="false"
@@ -248,6 +256,7 @@
                         style="@style/MyTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_45sdp"
+                        android:cursorVisible="true"
                         android:fontFamily="@font/m_medium"
                         android:hint="Enter Password"
                         android:importantForAutofill="no"
@@ -257,6 +266,7 @@
                         android:textAllCaps="true"
                         android:textAppearance="@style/HintText"
                         android:textColor="@color/prime"
+                        android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="@dimen/_11ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -277,6 +287,7 @@
                         style="@style/MyTextInputEditText"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_45sdp"
+                        android:cursorVisible="true"
                         android:fontFamily="@font/m_medium"
                         android:hint="ReEnter Password"
                         android:importantForAutofill="no"
@@ -285,6 +296,7 @@
                         android:textAllCaps="true"
                         android:textAppearance="@style/HintText"
                         android:textColor="@color/prime"
+                        android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="@dimen/_11ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>

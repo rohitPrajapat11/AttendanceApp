@@ -1,6 +1,9 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -10,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
@@ -19,10 +24,10 @@ import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.AdminActivity;
 import com.bdappmaniac.bdapp.adapter.AdminHomeAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentAdminHomeBinding;
+import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.model.AdminHomeModel;
 import com.bdappmaniac.bdapp.utils.AppBarStateChangeListener;
-import com.bdappmaniac.bdapp.utils.AvatarCallback;
-import com.bdappmaniac.bdapp.utils.AvatarModel;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.Utils;
 import com.bumptech.glide.Glide;
@@ -42,9 +47,23 @@ public class AdminHomeFragment extends BaseFragment {
     private AppBarStateChangeListener mAppBarStateChangeListener;
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                requireActivity().finish();
+            }
+        });
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false);
+            SharedPref.init(mContext);
+            updateProfile();
+            binding.getRoot().requestFocus();
             binding.getRoot().getViewTreeObserver().addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
                 @Override
                 public void onWindowFocusChanged(final boolean hasFocus) {
@@ -69,6 +88,7 @@ public class AdminHomeFragment extends BaseFragment {
 //    public void setProgress() {
 //        binding.semiCircleArcProgressBar.setPercentWithAnimation(45);
 //    }
+            binding.textViewTitle.setText(SharedPref.getUserDetails().getEmployeeName());
             binding.settingBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -97,7 +117,7 @@ public class AdminHomeFragment extends BaseFragment {
             binding.recyclerMenu.setAdapter(adapter);
 
             setUpViews();
-            fetchAvatar();
+//            fetchAvatar();
         }
         return binding.getRoot();
     }
@@ -150,52 +170,60 @@ public class AdminHomeFragment extends BaseFragment {
         binding.imageViewAvatar.setTranslationX(xAvatarOffset);
         binding.imageViewAvatar.setTranslationY(yAvatarOffset);
 
-        float newTextSize =
-                mTitleTextSize - (mTitleTextSize - binding.toolbarTitle.getTextSize()) * offset;
+        float newTextSize = mTitleTextSize - (mTitleTextSize - binding.toolbarTitle.getTextSize()) * offset;
         Paint paint = new Paint(binding.textViewTitle.getPaint());
         paint.setTextSize(newTextSize);
         float newTextWidth = Utils.getTextWidth(paint, binding.textViewTitle.getText().toString());
         paint.setTextSize(mTitleTextSize);
         float originTextWidth = Utils.getTextWidth(paint, binding.textViewTitle.getText().toString());
-        boolean isRTL = TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) ==
-                View.LAYOUT_DIRECTION_RTL ||
-                binding.viewContainers.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
-        float xTitleOffset = ((mToolbarTextPoint[0] + (isRTL ?  binding.toolbarTitle.getWidth() : 0)) -
-                (mTitleTextViewPoint[0] + (isRTL ? binding.textViewTitle.getWidth() : 0)) -
-                (binding.toolbarTitle.getWidth() > newTextWidth ?
-                        (originTextWidth - newTextWidth) / 2f : 0)) * offset;
+        boolean isRTL = TextUtils.getLayoutDirectionFromLocale(Locale.getDefault()) == View.LAYOUT_DIRECTION_RTL || binding.viewContainers.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+        float xTitleOffset = ((mToolbarTextPoint[0] + (isRTL ?  binding.toolbarTitle.getWidth() : 0)) - (mTitleTextViewPoint[0] + (isRTL ? binding.textViewTitle.getWidth() : 0)) - (binding.toolbarTitle.getWidth() > newTextWidth ? (originTextWidth - newTextWidth) / 2f : 0)) * offset;
         float yTitleOffset = (mToolbarTextPoint[1] -mTitleTextViewPoint[1]) * offset;
         binding.textViewTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, newTextSize);
         binding.textViewTitle.setTranslationX(xTitleOffset);
         binding.textViewTitle.setTranslationY(yTitleOffset);
     }
 
-    private void fetchAvatar() {
-        NetworkHelper.getAvatar(new AvatarCallback() {
+//    private void fetchAvatar() {
+//        NetworkHelper.getAvatar(new AvatarCallback() {
+//
+//            @Override
+//            public void onSuccess(final AvatarModel avatarModel) {
+//                super.onSuccess(avatarModel);
+//                if (((AdminActivity) mContext).isFinishing()) {
+//                    return;
+//                }
+//                ((AdminActivity) mContext).runOnUiThread(new Runnable() {
+//
+//                    @Override
+//                    public void run() {
+//                        Glide.with(AdminHomeFragment.this).load(avatarModel.url).into(binding.imageViewAvatar);
+//                        String name = String.format(Locale.getDefault(), "%s %s", avatarModel.firstName, avatarModel.lastName);
+//                        binding.textViewTitle.setText(name);
+//                        binding.textViewTitle.post(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                resetPoints(true);
+//                            }
+//                        });
+//                    }
+//                });
+//            }
+//        });
+//    }
 
-            @Override
-            public void onSuccess(final AvatarModel avatarModel) {
-                super.onSuccess(avatarModel);
-                if (((AdminActivity) mContext).isFinishing()) {
-                    return;
-                }
-                ((AdminActivity) mContext).runOnUiThread(new Runnable() {
+    void textProfile() {
+        Bitmap bitmap = TextToBitmap.textToBitmap("name", mContext, 10, R.color.black);
+        Drawable d = new BitmapDrawable(getResources(), bitmap);
+        binding.imageViewAvatar.setImageDrawable(d);
+    }
 
-                    @Override
-                    public void run() {
-                        Glide.with(AdminHomeFragment.this).load(avatarModel.url).into(binding.imageViewAvatar);
-                        String name = String.format(Locale.getDefault(), "%s %s", avatarModel.firstName, avatarModel.lastName);
-                        binding.textViewTitle.setText(name);
-                        binding.textViewTitle.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                resetPoints(true);
-                            }
-                        });
-                    }
-                });
-            }
-        });
+    public void updateProfile() {
+        if (SharedPref.getUserDetails().getProfile().isEmpty()) {
+            textProfile();
+        } else {
+            Glide.with(this).load(SharedPref.getUserDetails().getProfile()).placeholder(R.drawable.user).into(binding.imageViewAvatar);
+        }
     }
 
     private void resetPoints(boolean isTextChanged) {
@@ -205,7 +233,6 @@ public class AdminHomeFragment extends BaseFragment {
         int[] avatarPoint = new int[2];
         binding.imageViewAvatar.getLocationOnScreen(avatarPoint);
         mAvatarPoint[0] = avatarPoint[0] - binding.imageViewAvatar.getTranslationX() - (expandAvatarSize - newAvatarSize) / 2f;
-        // If avatar center in vertical, just half `(expandAvatarSize - newAvatarSize)`
         mAvatarPoint[1] = avatarPoint[1] - binding.imageViewAvatar.getTranslationY() - (expandAvatarSize - newAvatarSize);
 
         int[] spacePoint = new int[2];
@@ -237,26 +264,15 @@ public class AdminHomeFragment extends BaseFragment {
         }
     }
 
-//    @Override
-//    public void addOnWindowFocusChangeListener(boolean hasFocus) {
-//        super.addOnWindowFocusChangeListener(hasFocus);
-//        if (!hasFocus) {
-//            return;
-//        }
-//        resetPoints(false);
-//    }
-//
-//    @Override
-//    public void IOnFocusListenable(boolean hasFocus) {
-//        super.IOnFocusListenable(hasFocus);
-//        if (!hasFocus) {
-//            return;
-//        }
-//        resetPoints(false);
-//    }
     @Override
     public void onResume() {
         super.onResume();
         StatusBarUtils.statusBarColor(getActivity(), R.color.prime);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        binding.getRoot().clearFocus();
     }
 }

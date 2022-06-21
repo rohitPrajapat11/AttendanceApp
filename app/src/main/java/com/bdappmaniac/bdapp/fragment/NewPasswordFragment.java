@@ -142,12 +142,8 @@ public class NewPasswordFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-//                    if(binding.newPasswordTxt.getText().toString() != binding.passwordTxt.getText().toString()) {
-//                        showSnackBar(binding.getRoot(), "Passwords Mismatch");
-//                    }
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.logInFragment);
-
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }

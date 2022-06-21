@@ -64,11 +64,7 @@ public class LogInFragment extends BaseFragment {
                 String email = binding.emailTxt.getText().toString();
                 String password = binding.passwordTxt.getText().toString();
                 if (checkValidation()) {
-                    if (Objects.equals(userType, "Admin")) {
-                        loginApi(email, password);
-                    } else if (Objects.equals(userType, "employee")) {
-                        loginApi(email, password);
-                    }
+                    loginApi(email, password);
                 }
             }
         });
@@ -114,12 +110,12 @@ public class LogInFragment extends BaseFragment {
                     LoginResponse loginResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
                     SharedPref.init(mContext);
                     if (loginResponse.getStatus().equals("active")) {
-                        if (loginResponse.getType().equals("employee")) {
+                        if (Objects.equals(userType, "employee")) {
                             SharedPref.putUserDetails(loginResponse);
                             showSnackBar(binding.getRoot(), apiResponse.getMessage());
                             startActivity(new Intent(mContext, HomeActivity.class));
                             getActivity().finish();
-                        } else if (loginResponse.getType().equals("admin")) {
+                        } else if (Objects.equals(userType, "admin")) {
                             SharedPref.putUserDetails(loginResponse);
                             showSnackBar(binding.getRoot(), apiResponse.getMessage());
                             startActivity(new Intent(mContext, AdminActivity.class));

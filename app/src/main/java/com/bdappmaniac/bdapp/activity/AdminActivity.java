@@ -63,25 +63,27 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding.bottomLayout.bottomNavBar.setOnItemSelectedListener(new ChipNavigationBar.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int i) {
-                if (R.id.homeBtns == i) {
-                    if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.adminHomeFragment) {
-                        navController.navigate(R.id.adminHomeFragment);
-                    }
-                }
-                if (R.id.employeeBtns == i) {
-                    if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeListFragment) {
-                        navController.navigate(R.id.employeeListFragment);
-                    }
-                }
-                if (R.id.taskBtns == i) {
-                    if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.toDoListFragment) {
-                        navController.navigate(R.id.toDoListFragment);
-                    }
-                }
-                if (R.id.profileBtns == i) {
-                    if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.adminProfile) {
-                        navController.navigate(R.id.adminProfile);
-                    }
+                switch (i) {
+                    case R.id.homeBtns:
+                        if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.adminHomeFragment) {
+                            navController.navigate(R.id.adminHomeFragment);
+                        }
+                        break;
+                    case R.id.employeeBtns:
+                        if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.employeeListFragment) {
+                            navController.navigate(R.id.employeeListFragment);
+                        }
+                        break;
+                    case R.id.taskBtns:
+                        if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.toDoListFragment) {
+                            navController.navigate(R.id.toDoListFragment);
+                        }
+                        break;
+                    case R.id.profileBtns:
+                        if (Objects.requireNonNull(navController.getCurrentDestination()).getId() != R.id.adminProfile) {
+                            navController.navigate(R.id.adminProfile);
+                        }
+                        break;
                 }
             }
         });
@@ -109,117 +111,139 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         });
         binding.navigationDrawer.userName.setText(SharedPref.getUserDetails().getEmployeeName());
         binding.navigationDrawer.userJobTxt.setText(SharedPref.getUserDetails().getDesignation());
-        binding.navigationDrawer.homeBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.settingBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.tmcBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.logOutBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.registerBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.profileBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.loanBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.addHolidayBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.rulesBtn.setOnClickListener(this::onClick);
-        binding.navigationDrawer.desinationBtn.setOnClickListener(this::onClick);
+        binding.navigationDrawer.homeBtn.setOnClickListener(this);
+        binding.navigationDrawer.settingBtn.setOnClickListener(this);
+        binding.navigationDrawer.tmcBtn.setOnClickListener(this);
+        binding.navigationDrawer.logOutBtn.setOnClickListener(this);
+        binding.navigationDrawer.registerBtn.setOnClickListener(this);
+        binding.navigationDrawer.profileBtn.setOnClickListener(this);
+        binding.navigationDrawer.loanBtn.setOnClickListener(this);
+        binding.navigationDrawer.addHolidayBtn.setOnClickListener(this);
+        binding.navigationDrawer.rulesBtn.setOnClickListener(this);
+        binding.navigationDrawer.desinationBtn.setOnClickListener(this);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
             @Override
             public void onDestinationChanged(@NonNull NavController controller, @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if (destination.getId() == R.id.adminHomeFragment) {
-                    navHandel("Home");
-                    headerHideShow(true);
-                    bottomHideShow(true);
-                    binding.bottomLayout.bottomNavBar.setItemSelected(R.id.homeBtns, true);
-                } else if (destination.getId() == R.id.employeeListFragment) {
-                    navHandel("Employees");
-                    headerHideShow(true);
-                    bottomHideShow(true);
-                    binding.bottomLayout.bottomNavBar.setItemSelected(R.id.employeeBtns, true);
-                } else if (destination.getId() == R.id.adminProfile) {
-                    navHandel("Profile");
-                    headerHideShow(false);
-                    bottomHideShow(true);
-                    binding.bottomLayout.bottomNavBar.setItemSelected(R.id.profileBtns, true);
-                } else if (destination.getId() == R.id.adminTermFragment) {
-                    navHandel("Employment Terms");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.employeeDetailFragment) {
-                    navHandel("Employee Detail");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.employeeAttendanceFragment) {
-                    navHandel("Employee Attendance");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.registerEmployeeFragment) {
-                    navHandel("Register Employee");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.settingFragment) {
-                    navHandel("Setting");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.employeeListForLoanFragment) {
-                    navHandel("Employee Loans");
-                    headerHideShow(true);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.provideLoanFragment) {
-                    navHandel("Loan Details");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.testHolidayFragment) {
-                    navHandel("Holidays");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.attendanceRulesFragment) {
-                    navHandel("Attendance Rules");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.lockUnlockFragment) {
-                    navHandel("Lock/Unlock");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.toDoListFragment) {
-                    navHandel("Task");
-                    headerHideShow(true);
-                    bottomHideShow(true);
-                    binding.bottomLayout.bottomNavBar.setItemSelected(R.id.taskBtns, true);
-                } else if (destination.getId() == R.id.designationFragment) {
-                    navHandel("Designation");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.employeeAttandenceListFragment) {
-                    navHandel("Employee Attandence");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.employeeDesListFragment) {
-                    navHandel("Employee List");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.employeeExpensesFragment) {
-                    navHandel("Employee Expenses");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.overTimeFragment) {
-                    navHandel("OverTime Task");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.loanFragment) {
-                    navHandel("Advance Payment");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                } else if (destination.getId() == R.id.employeeToDoListFragment) {
-                    navHandel("Employee To Do List");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                }
-                else if (destination.getId() == R.id.approveLeavesFragment) {
-                    navHandel("Leaves");
-                    headerHideShow(false);
-                    bottomHideShow(false);
-                }
-                else if (destination.getId() == R.id.employeeLeaveApprovalFragment) {
-                    navHandel("Taken Leaves");
-                    headerHideShow(false);
-                    bottomHideShow(false);
+                switch (destination.getId()) {
+                    case R.id.adminHomeFragment:
+                        navHandel("Home");
+                        headerHideShow(true);
+                        bottomHideShow(true);
+                        binding.bottomLayout.bottomNavBar.setItemSelected(R.id.homeBtns, true);
+                        break;
+                    case R.id.employeeListFragment:
+                        navHandel("Employees");
+                        headerHideShow(true);
+                        bottomHideShow(true);
+                        binding.bottomLayout.bottomNavBar.setItemSelected(R.id.employeeBtns, true);
+                        break;
+                    case R.id.adminProfile:
+                        navHandel("Profile");
+                        headerHideShow(false);
+                        bottomHideShow(true);
+                        binding.bottomLayout.bottomNavBar.setItemSelected(R.id.profileBtns, true);
+                        break;
+                    case R.id.adminTermFragment:
+                        navHandel("Employment Terms");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.employeeDetailFragment:
+                        navHandel("Employee Detail");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.employeeAttendanceFragment:
+                        navHandel("Employee Attendance");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.registerEmployeeFragment:
+                        navHandel("Register Employee");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.settingFragment:
+                        navHandel("Setting");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.employeeListForLoanFragment:
+                        navHandel("Employee Loans");
+                        headerHideShow(true);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.provideLoanFragment:
+                        navHandel("Loan Details");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.testHolidayFragment:
+                        navHandel("Holidays");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.attendanceRulesFragment:
+                        navHandel("Attendance Rules");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.lockUnlockFragment:
+                        navHandel("Lock/Unlock");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.toDoListFragment:
+                        navHandel("Task");
+                        headerHideShow(true);
+                        bottomHideShow(true);
+                        binding.bottomLayout.bottomNavBar.setItemSelected(R.id.taskBtns, true);
+                        break;
+                    case R.id.designationFragment:
+                        navHandel("Designation");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.employeeAttandenceListFragment:
+                        navHandel("Employee Attandence");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.employeeDesListFragment:
+                        navHandel("Employee List");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.employeeExpensesFragment:
+                        navHandel("Employee Expenses");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.overTimeFragment:
+                        navHandel("OverTime Task");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.loanFragment:
+                        navHandel("Advance Payment");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.employeeToDoListFragment:
+                        navHandel("Employee To Do List");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.approveLeavesFragment:
+                        navHandel("Leaves");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
+                    case R.id.employeeLeaveApprovalFragment:
+                        navHandel("Taken Leaves");
+                        headerHideShow(false);
+                        bottomHideShow(false);
+                        break;
                 }
             }
         });
@@ -367,14 +391,14 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         Fragment navHostFragment = getSupportFragmentManager().findFragmentById(R.id.adminNav);
         if (navHostFragment != null) {
             List<Fragment> fragmentList = navHostFragment.getChildFragmentManager().getFragments();
-            boolean isLoginFragment = false;
+            boolean isAdminHomeFragment = false;
             for (Fragment fragment1 : fragmentList) {
                 if (fragment1 instanceof AdminHomeFragment) {
-                    isLoginFragment = true;
+                    isAdminHomeFragment = true;
                     break;
                 }
             }
-            if (isLoginFragment) {
+            if (isAdminHomeFragment) {
                 finish();
             }
         }

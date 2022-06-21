@@ -228,6 +228,10 @@ public class RegisterEmployeeFragment extends BaseFragment {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_name));
             return false;
         }
+        if (!ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
+            showSnackBar(binding.getRoot(), mContext.getString(R.string.please_enter_valid_email));
+            return false;
+        }
         if (TextUtils.isEmpty(binding.emailTxt.getText().toString())) {
             showSnackBar(binding.getRoot(), mContext.getString(R.string.enter_email));
             return false;
@@ -295,6 +299,11 @@ public class RegisterEmployeeFragment extends BaseFragment {
 //        } else {
 //            binding.joiningDateIcn.setColorFilter(ContextCompat.getColor(mContext, (R.color._161B3D)));
 //        }
+        if (StringHelper.isEmpty(binding.emailTxt.getText().toString())) {
+            setTextViewDrawableColor(binding.emailTxt, R.color._A8A8A8);
+        } else {
+            setTextViewDrawableColor(binding.emailTxt, R.color.prime);
+        }
         if (!binding.passwordTxt.getText().toString().isEmpty() && !binding.confirmPasswordTxt.getText().toString().isEmpty()) {
             if (binding.passwordTxt.getText().toString().equals(binding.confirmPasswordTxt.getText().toString())) {
                 binding.confirmPsValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.prime));
@@ -309,7 +318,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
 
     private void setValidations() {
         if (isAllFieldFillUp()) {
-            binding.sighUpBtn.setBackgroundResource(R.drawable.green_10r_bg);
+            binding.sighUpBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
             binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         } else {
             binding.sighUpBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
@@ -365,7 +374,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
         @Override
         public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
             if (ValidationUtils.validateEmail(binding.emailTxt.getText().toString())) {
-                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.primary_color));
+                binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color.prime));
             } else {
                 binding.emailValidation.setColorFilter(ContextCompat.getColor(mContext, R.color._A8A8A8));
             }
