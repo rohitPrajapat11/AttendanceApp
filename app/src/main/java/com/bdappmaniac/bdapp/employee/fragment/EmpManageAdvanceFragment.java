@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentEmpManageAdvanceBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
-import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 public class EmpManageAdvanceFragment extends BaseFragment {
 FragmentEmpManageAdvanceBinding binding;

@@ -7,9 +7,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_3sdp"
         android:layout_marginEnd="@dimen/_8sdp"
         android:layout_marginBottom="@dimen/_1sdp"
-        android:layout_marginTop="@dimen/_3sdp"
         android:background="@drawable/edit_text_bg"
         android:elevation="3dp">
 
@@ -20,7 +20,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:fontFamily="@font/m_medium"
             android:gravity="center"
-            android:text="1"
+            android:text="@string/_1"
             android:textColor="@color/prime"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintBottom_toBottomOf="@+id/deseTxt"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/m_medium"
             android:padding="@dimen/_7sdp"
-            android:text="Android Developer"
+            android:text="@string/android_developer"
             android:textColor="@color/prime"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintBottom_toBottomOf="parent"

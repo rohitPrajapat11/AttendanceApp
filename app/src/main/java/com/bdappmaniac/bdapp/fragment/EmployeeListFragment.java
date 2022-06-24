@@ -1,5 +1,6 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +45,7 @@ public class EmployeeListFragment extends BaseFragment {
         return binding.getRoot();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void employeeListApi() {
         AppLoader.showLoaderDialog(mContext);
         MainService.employeeList(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
@@ -68,10 +70,11 @@ public class EmployeeListFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.white);
         if (employeeList != null) {
             if (employeeList.size() == 0) {
                 employeeListApi();
+                AppLoader.hideLoaderDialog();
             }
         }
 

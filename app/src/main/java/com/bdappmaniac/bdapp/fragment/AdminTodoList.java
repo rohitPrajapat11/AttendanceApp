@@ -1,10 +1,12 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,7 +31,7 @@ public class AdminTodoList extends BaseFragment {
     ToDoListAdapter adapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_todo_list, container, false);
         adapter = new ToDoListAdapter(tasksList, getContext());
         binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -39,6 +41,7 @@ public class AdminTodoList extends BaseFragment {
         return binding.getRoot();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void allTaskWithEmployeeNameApi() {
         AppLoader.showLoaderDialog(mContext);
         MainService.allTaskWithEmployeeName(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
@@ -63,6 +66,6 @@ public class AdminTodoList extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.white);
     }
 }

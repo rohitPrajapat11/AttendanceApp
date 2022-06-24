@@ -16,7 +16,6 @@
             android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -38,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:text="Employment Terms"
+                android:text="@string/employment_terms"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -51,6 +50,7 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
+                android:contentDescription="@string/editbtn"
                 android:gravity="center"
                 android:src="@drawable/ic_baseline_edit_24"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -79,8 +79,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/edit_text_bg"
                     android:drawablePadding="@dimen/_10sdp"
-                    android:enabled="false"
                     android:elevation="@dimen/_5sdp"
+                    android:enabled="false"
                     android:focusable="true"
                     android:fontFamily="@font/m_medium"
                     android:gravity="center_vertical"
@@ -101,10 +101,10 @@
                     android:id="@+id/conditionsTxt"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:elevation="@dimen/_5sdp"
                     android:background="@drawable/edit_text_bg"
                     android:drawablePadding="@dimen/_10sdp"
                     android:drawableTint="@color/_A8A8A8"
+                    android:elevation="@dimen/_5sdp"
                     android:focusable="true"
                     android:fontFamily="@font/m_medium"
                     android:gravity="center_vertical"
@@ -118,7 +118,8 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="LabelFor" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

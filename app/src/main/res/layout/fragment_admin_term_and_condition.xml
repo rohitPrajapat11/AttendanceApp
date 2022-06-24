@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center"
-                android:text="Employment Terms"
+                android:text="@string/employment_terms"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -56,7 +56,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/prime" />
+                app:tint="@color/prime"
+                android:contentDescription="@string/editbtn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
@@ -117,7 +118,8 @@
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="LabelFor" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

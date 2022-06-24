@@ -19,21 +19,14 @@ public class EmployeeExpensesFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_expenses, container, false);
-        binding.backBtn.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigateUp();
-        });
-        binding.item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.employeeExpenseDetailsFragment);
-            }
-        });
+        binding.backBtn.setOnClickListener(view -> Navigation.findNavController(view).navigateUp());
+        binding.item.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.employeeExpenseDetailsFragment));
         return binding.getRoot();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.white);
     }
 }

@@ -9,11 +9,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.DatePicker;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
@@ -119,6 +117,7 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         return requestBody;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setList(List<HolidaysItem> list) {
         this.list = list;
         notifyDataSetChanged();
@@ -136,6 +135,7 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             binding = itemView;
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         public void updateHolidayApi(int id, String name, String date) {
             AppLoader.showLoaderDialog(context);
             Map<String, RequestBody> map = new HashMap<>();
@@ -186,22 +186,16 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             binding.dateTxt.setText(date);
             binding.reasonTxt.setText(name);
             dialog.show();
-            binding.dateTxt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    final Calendar c = Calendar.getInstance();
-                    TYear = c.get(Calendar.YEAR);
-                    TMonth = c.get(Calendar.MONTH);
-                    TDay = c.get(Calendar.DAY_OF_MONTH);
-                    DatePickerDialog datePickerDialog = new DatePickerDialog(context, R.style.DatePicker,
-                            new DatePickerDialog.OnDateSetListener() {
-                                @Override
-                                public void onDateSet(DatePicker view, int year,
-                                                      int monthOfYear, int dayOfMonth) {
-                                    String s = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
-                                    binding.dateTxt.setText(DateUtils.getFormattedTime(s, DateUtils.appDateFormatTo, DateUtils.appDateFormatM));
-                                }
-                            }, TYear, TMonth, TDay);
+            binding.dateTxt.setOnClickListener(view -> {
+                final Calendar c = Calendar.getInstance();
+                TYear = c.get(Calendar.YEAR);
+                TMonth = c.get(Calendar.MONTH);
+                TDay = c.get(Calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(context, R.style.DatePicker,
+                        (view1, year, monthOfYear, dayOfMonth) -> {
+                            String s = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                            binding.dateTxt.setText(DateUtils.getFormattedTime(s, DateUtils.appDateFormatTo, DateUtils.appDateFormatM));
+                        }, TYear, TMonth, TDay);
 
 //                    DatePickerDialog datePickerDialog = new DatePickerDialog(context, R.style.DatePicker,
 //                            (view1, year, monthOfYear, dayOfMonth) ->
@@ -209,11 +203,10 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
 //                                String s = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
 //                                binding.dateTxt.setText(DateUtils.getFormattedTime(s, DateUtils.appDateFormat, DateUtils.appDateFormatM));
 //                            }, TYear, TMonth, TDay);
-                    datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-                    datePickerDialog.getWindow().setGravity(Gravity.CENTER);
-                    datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                    datePickerDialog.show();
-                }
+                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                datePickerDialog.getWindow().setGravity(Gravity.CENTER);
+                datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
+                datePickerDialog.show();
             });
             binding.updateBtn.setOnClickListener(view -> {
                 String name1 = binding.reasonTxt.getText().toString();
@@ -224,6 +217,7 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
             binding.cancelBtn.setOnClickListener(view -> dialog.dismiss());
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         public void removeHolidayApi(int id) {
             AppLoader.showLoaderDialog(context);
             MainService.removeHoliday(context, ((BaseActivity) context).getToken(), id).observe((LifecycleOwner) context, apiResponse -> {

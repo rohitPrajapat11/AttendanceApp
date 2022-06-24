@@ -4,6 +4,12 @@ import static com.bdappmaniac.bdapp.activity.BaseActivity.MOBILE;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -13,14 +19,6 @@ import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
-
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.HomeActivity;
@@ -43,25 +41,17 @@ public class OneTimeMPINFragment extends BaseFragment implements View.OnClickLis
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_one_time_m_p_i_n, container, false);
-        binding.forwardTXT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkValidation()){
-                    startActivity(new Intent(mContext, HomeActivity.class));
-                    getActivity().finish();
-                }else{
+        binding.forwardTXT.setOnClickListener(v -> {
+            if (checkValidation()){
+                startActivity(new Intent(mContext, HomeActivity.class));
+                getActivity().finish();
+            }else{
 
-                }
             }
         });
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(binding.getRoot()).popBackStack();
-            }
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(binding.getRoot()).popBackStack());
         if (getArguments() != null) {
             // From SignIn Otp Fragment For Forgot M-Pin
             mobile = getArguments().getString(MOBILE);

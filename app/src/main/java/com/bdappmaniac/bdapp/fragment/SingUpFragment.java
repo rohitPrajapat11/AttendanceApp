@@ -24,10 +24,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
@@ -57,7 +57,7 @@ public class SingUpFragment extends BaseFragment {
     private int mYear, mMonth, mDay, mHour, mMinute;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sing_up, container, false);
         StatusBarUtils.statusBarColor(requireActivity(), R.color.transparent);
         binding.nameTxt.addTextChangedListener(new TextChange(binding.emailTxt));
@@ -83,14 +83,7 @@ public class SingUpFragment extends BaseFragment {
             mMonth = c.get(Calendar.MONTH);
             mDay = c.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year,
-                                              int monthOfYear, int dayOfMonth) {
-                            binding.dobTxt.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-
-                        }
-                    }, mYear, mMonth, mDay);
+                    (view1, year, monthOfYear, dayOfMonth) -> binding.dobTxt.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year), mYear, mMonth, mDay);
             datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT,
                     WindowManager.LayoutParams.WRAP_CONTENT);
             datePickerDialog.getWindow().setGravity(Gravity.CENTER);

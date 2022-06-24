@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
@@ -45,83 +46,69 @@ public class LogInFragment extends BaseFragment {
     String userType = "";
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_log_in, container, false);
-        binding.backBtn.setOnClickListener(view -> {
-            requireActivity().finish();
-        });
-        binding.passwordShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showHidePass(view);
-            }
-        });
+        binding.backBtn.setOnClickListener(view -> requireActivity().finish());
+        binding.passwordShow.setOnClickListener(view -> showHidePass(view));
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
-        binding.signInBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = binding.emailTxt.getText().toString();
-                String password = binding.passwordTxt.getText().toString();
-                if (checkValidation()) {
-                    loginApi(email, password);
-                }
-            }
-        });
-        binding.forgetPasswordBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.forgotPasswordFragment);
-            }
-        });
-        binding.btnAdmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userType = "admin";
-                binding.btnAdmin.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.prime));
-                binding.btnEmp.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.white));
-                binding.btnAdmin.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-                binding.btnEmp.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-            }
-        });
-        binding.btnEmp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.signInBtn.setOnClickListener(v -> {
+            String email = binding.emailTxt.getText().toString();
+            String password = binding.passwordTxt.getText().toString();
+            if (binding.btnEmp.isSelected()) {
                 userType = "employee";
-                binding.btnEmp.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.prime));
-                binding.btnAdmin.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.white));
-                binding.btnAdmin.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-                binding.btnEmp.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+            } else if (binding.btnAdmin.isSelected()) {
+                userType = "admin";
             }
+            if (checkValidation()) {
+                loginApi(email, password, userType);
+            }
+        });
+
+
+        binding.forgetPasswordBtn.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.forgotPasswordFragment));
+        binding.btnAdmin.setOnClickListener(view -> {
+            userType = "admin";
+            binding.btnAdmin.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.prime));
+            binding.btnEmp.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.white));
+            binding.btnAdmin.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+            binding.btnEmp.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+        });
+        binding.btnEmp.setOnClickListener(view -> {
+            userType = "employee";
+            binding.btnEmp.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.prime));
+            binding.btnAdmin.setBackgroundTintList(mContext.getResources().getColorStateList(R.color.white));
+            binding.btnAdmin.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+            binding.btnEmp.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         });
         return binding.getRoot();
     }
 
-    private void loginApi(String email, String password) {
+    private void loginApi(String email, String password, String userType) {
         AppLoader.showLoaderDialog(mContext);
         Map<String, RequestBody> map = new HashMap<>();
         map.put("email", toRequestBody(email));
         map.put("password", toRequestBody(password));
+        map.put("type", toRequestBody(userType));
         MainService.userLogIn(mContext, map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((!apiResponse.getData().isJsonNull())) {
-                    LoginResponse loginResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
-                    SharedPref.init(mContext);
-                    if (loginResponse.getStatus().equals("active")) {
-                        if (Objects.equals(userType, "employee")) {
+                    if (apiResponse.isSuccess()) {
+                        LoginResponse loginResponse = new Gson().fromJson(apiResponse.getData(), LoginResponse.class);
+                        SharedPref.init(mContext);
+                        if (loginResponse.getStatus().equals("active")) {
                             SharedPref.putUserDetails(loginResponse);
                             showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                            startActivity(new Intent(mContext, HomeActivity.class));
-                            getActivity().finish();
-                        } else if (Objects.equals(userType, "admin")) {
-                            SharedPref.putUserDetails(loginResponse);
-                            showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                            startActivity(new Intent(mContext, AdminActivity.class));
-                            getActivity().finish();
+                            if (Objects.equals(userType, "employee")) {
+                                startActivity(new Intent(mContext, HomeActivity.class));
+                            } else if (Objects.equals(userType, "admin")) {
+                                startActivity(new Intent(mContext, AdminActivity.class));
+                            }
+                            ((BaseActivity) mContext).finish();
                         }
-                    } else if (!apiResponse.isSuccess() && apiResponse.getData().isJsonNull()) {
+                    } else {
                         showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     }
                 } else {
@@ -176,13 +163,8 @@ public class LogInFragment extends BaseFragment {
     }
 
     private void setValidations() {
-        if (isAllFieldFillUp()) {
-            binding.signInBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.signInBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-        } else {
-            binding.signInBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.signInBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-        }
+        binding.signInBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
+        binding.signInBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
     }
 
     private void setTextViewDrawableColor(TextView textView, int color) {
@@ -198,14 +180,12 @@ public class LogInFragment extends BaseFragment {
             ((ImageView) (view)).setImageResource(R.drawable.icn_show_password);
             ((ImageView) (view)).setColorFilter(ContextCompat.getColor(requireContext(), R.color._192d4d));
             binding.passwordTxt.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            binding.passwordTxt.setSelection(binding.passwordTxt.getText().length());
         } else {
             ((ImageView) (view)).setImageResource(R.drawable.icn_hide_password);
             ((ImageView) (view)).setColorFilter(ContextCompat.getColor(requireContext(), R.color._A8A8A8));
             binding.passwordTxt.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            binding.passwordTxt.setSelection(binding.passwordTxt.getText().length());
         }
-
+        binding.passwordTxt.setSelection(binding.passwordTxt.getText().length());
     }
 
     public class TextChange implements TextWatcher {

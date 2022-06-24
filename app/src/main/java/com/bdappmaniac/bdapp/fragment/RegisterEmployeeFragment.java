@@ -1,5 +1,6 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -20,10 +21,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.DatePicker;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
@@ -79,7 +80,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register_empolyee, container, false);
         binding.emailTxt.addTextChangedListener(new RegisterEmployeeFragment.TextChange(binding.emailTxt));
         binding.passwordTxt.addTextChangedListener(new RegisterEmployeeFragment.TextChange(binding.passwordTxt));
@@ -101,34 +102,24 @@ public class RegisterEmployeeFragment extends BaseFragment {
                 registerEmployee(map);
             }
         });
-        binding.backBtn.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigateUp();
-        });
-        binding.designationTxt.setOnClickListener(v -> {
-            designationDialog();
-        });
-        binding.joiningDateTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                mYear = c.get(Calendar.YEAR);
-                mMonth = c.get(Calendar.MONTH);
-                mDay = c.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                String d = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-                                joiningDate = d;
-                                binding.joiningDateTxt.setText(DateUtils.getFormattedTime(d, DateUtils.appDateFormat, DateUtils.appDateFormatTo));
-                            }
-                        }, mYear, mMonth, mDay);
-                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-                datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                datePickerDialog.getWindow().setGravity(Gravity.CENTER);
-                datePickerDialog.show();
-            }
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
+        binding.designationTxt.setOnClickListener(v -> designationDialog());
+        binding.joiningDateTxt.setOnClickListener(view -> {
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
+                    (view1, year, monthOfYear, dayOfMonth) -> {
+                        String d = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                        joiningDate = d;
+                        binding.joiningDateTxt.setText(DateUtils.getFormattedTime(d, DateUtils.appDateFormat, DateUtils.appDateFormatTo));
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+            datePickerDialog.getDatePicker().setMinDate(Long.parseLong("1396570445000"));
+            datePickerDialog.getWindow().setGravity(Gravity.CENTER);
+            datePickerDialog.show();
         });
         return binding.getRoot();
     }
@@ -317,13 +308,8 @@ public class RegisterEmployeeFragment extends BaseFragment {
     }
 
     private void setValidations() {
-        if (isAllFieldFillUp()) {
-            binding.sighUpBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-        } else {
-            binding.sighUpBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-        }
+        binding.sighUpBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
+        binding.sighUpBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
     }
 
     private void setTextViewDrawableColor(TextView textView, int color) {
@@ -334,6 +320,7 @@ public class RegisterEmployeeFragment extends BaseFragment {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void allDesignationApi() {
         AppLoader.showLoaderDialog(mContext);
         MainService.allDesignation(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {

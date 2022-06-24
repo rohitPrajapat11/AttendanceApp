@@ -30,7 +30,7 @@
             android:layout_marginBottom="@dimen/_80sdp"
             android:fontFamily="@font/m_semibold"
             android:padding="@dimen/_5sdp"
-            android:text="Get Started"
+            android:text="@string/get_started"
             android:textColor="@color/prime"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"

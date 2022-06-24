@@ -20,6 +20,7 @@ import okhttp3.ResponseBody;
 
 public class NetworkHelper {
 
+    private static final String AVATAR_URL = "https://tinyfac.es/api/users";
     private static OkHttpClient mClient;
 
     private static void init() {
@@ -35,13 +36,9 @@ public class NetworkHelper {
         return mClient;
     }
 
-    private static final String AVATAR_URL = "https://tinyfac.es/api/users";
-
     public static void getAvatar(@NonNull final AvatarCallback callback) {
         OkHttpClient client = getClient();
-
         Request request = new Request.Builder().url(AVATAR_URL).get().build();
-
         client.newCall(request).enqueue(new Callback() {
 
             @Override

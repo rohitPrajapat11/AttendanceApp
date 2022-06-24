@@ -15,7 +15,6 @@
             android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -24,12 +23,12 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
+                android:contentDescription="@string/backBtn"
                 android:src="@drawable/icn_back_arrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/prime"
-                android:contentDescription="@string/backBtn" />
+                app:tint="@color/prime" />
 
             <TextView
                 android:id="@+id/title"
@@ -88,7 +87,7 @@
                         android:layout_height="@dimen/_45sdp"
                         android:cursorVisible="true"
                         android:fontFamily="@font/m_medium"
-                        android:hint="@string/enter_name_"
+                        android:hint="@string/enter_name"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:singleLine="true"
@@ -118,7 +117,7 @@
                         android:layout_height="@dimen/_45sdp"
                         android:cursorVisible="true"
                         android:fontFamily="@font/m_medium"
-                        android:hint="@string/enter_email_"
+                        android:hint="@string/enter_email"
                         android:importantForAutofill="no"
                         android:inputType="textEmailAddress"
                         android:paddingEnd="@dimen/_12sdp"
@@ -137,12 +136,12 @@
                     android:layout_width="@dimen/_16sdp"
                     android:layout_height="@dimen/_16sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
+                    android:contentDescription="@string/validation"
                     android:src="@drawable/icn_email_validation"
                     app:layout_constraintBottom_toBottomOf="@+id/emailLb"
                     app:layout_constraintEnd_toEndOf="@+id/emailLb"
                     app:layout_constraintTop_toTopOf="@+id/emailLb"
-                    app:tint="@color/_A8A8A8"
-                    android:contentDescription="@string/validation" />
+                    app:tint="@color/_A8A8A8" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/mobilelLb"
@@ -207,8 +206,7 @@
                         android:textAllCaps="true"
                         android:textAppearance="@style/HintText"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_11ssp"
-                        tools:ignore="UnusedAttribute" />
+                        android:textSize="@dimen/_11ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -242,8 +240,7 @@
                         android:textAllCaps="true"
                         android:textAppearance="@style/HintText"
                         android:textColor="@color/prime"
-                        android:textSize="@dimen/_11ssp"
-                        tools:ignore="UnusedAttribute" />
+                        android:textSize="@dimen/_11ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

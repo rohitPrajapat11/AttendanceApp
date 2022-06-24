@@ -26,7 +26,7 @@ import java.util.List;
 
 public class EmployeeAttendanceAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    List<EmployeeHistoryDataItem> List = new ArrayList<>();
+    List<EmployeeHistoryDataItem> List;
     List<InoutsItem> historyList = new ArrayList<>();
     EmployeeAttendanceListAdapter adapter;
     String getDate, getInTime, getOutTime, getAbTxt;
@@ -53,12 +53,7 @@ public class EmployeeAttendanceAdapter extends RecyclerView.Adapter<RecyclerView
         EmployeeAttendanceAdapter.HistoryHolder vHolder = (EmployeeAttendanceAdapter.HistoryHolder) holder;
         vHolder.binding.dateText.setText(DateUtils.getFormattedTime(List.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatTo));
         vHolder.binding.dayTxt.setText(DateUtils.getDayFromDate(List.get(position).getDate()));
-        vHolder.binding.moreBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                workHistoryDialogBox(position);
-            }
-        });
+        vHolder.binding.moreBtn.setOnClickListener(view -> workHistoryDialogBox(position));
         for (int x = 0; x < List.get(position).getInouts().size(); x++) {
             if (List.get(position).getInouts().get(x).getLogIn() == null && List.get(position).getInouts().get(x).getLogOut() == null) {
                 vHolder.binding.absentTxt.setVisibility(View.VISIBLE);

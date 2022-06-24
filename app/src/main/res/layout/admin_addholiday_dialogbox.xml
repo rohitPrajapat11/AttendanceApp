@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/m_semibold"
-                android:text="Date"
+                android:text="@string/date"
                 android:textColor="@color/_A8A8A8"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,11 +38,11 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
                 android:background="@drawable/edit_text_bg"
-                android:focusable="false"
                 android:elevation="3dp"
+                android:focusable="false"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:hint="DD/MM/YYYY"
+                android:hint="@string/dd_mm_yyyy"
                 android:importantForAutofill="no"
                 android:inputType="textNoSuggestions"
                 android:paddingLeft="@dimen/_10sdp"
@@ -52,7 +52,8 @@
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/dateLb"
-                app:layout_constraintTop_toBottomOf="@+id/dateLb" />
+                app:layout_constraintTop_toBottomOf="@+id/dateLb"
+                tools:ignore="TextViewEdits" />
 
             <TextView
                 android:id="@+id/reasonLb"
@@ -61,7 +62,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/m_semibold"
-                android:text="Reason"
+                android:text="@string/reason"
                 android:textColor="@color/_A8A8A8"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,10 +76,10 @@
                 android:layout_marginEnd="@dimen/_25sdp"
                 android:background="@drawable/edit_text_bg"
                 android:drawablePadding="@dimen/_10sdp"
-                android:fontFamily="@font/m_medium"
-                android:importantForAutofill="no"
                 android:elevation="3dp"
-                android:hint="Enter the Reason"
+                android:fontFamily="@font/m_medium"
+                android:hint="@string/enter_the_reason"
+                android:importantForAutofill="no"
                 android:inputType="textNoSuggestions"
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingRight="@dimen/_10sdp"
@@ -88,8 +89,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/reasonLb"
                 app:layout_constraintTop_toBottomOf="@+id/reasonLb"
-                tools:ignore="TextFields"
-                tools:targetApi="m" />
+                tools:ignore="TextFields" />
 
             <TextView
                 android:id="@+id/submitBtn"
@@ -99,7 +99,7 @@
                 android:background="@drawable/light_green_15r_bg"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center"
-                android:text="Submit"
+                android:text="@string/submit"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="@+id/reasonTxt"
@@ -113,7 +113,7 @@
                 android:background="@drawable/red_10r_bg"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center"
-                android:text="Cancel"
+                android:text="@string/cancel"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/submitBtn"

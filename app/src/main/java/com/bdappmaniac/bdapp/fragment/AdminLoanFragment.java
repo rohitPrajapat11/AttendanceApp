@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
@@ -14,7 +15,6 @@ import com.bdappmaniac.bdapp.adapter.EmployeeListAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentAdminLoanBinding;
 import com.bdappmaniac.bdapp.interfaces.CalendarCallBack;
 import com.bdappmaniac.bdapp.model.AllLoanModel;
-import com.bdappmaniac.bdapp.utils.Constant;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 import java.text.SimpleDateFormat;
@@ -32,14 +32,9 @@ public class AdminLoanFragment extends BaseFragment implements CalendarCallBack 
     SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
     Calendar cal = Calendar.getInstance(Locale.ENGLISH);
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_loan, container, false);
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(binding.getRoot()).popBackStack();
-            }
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(binding.getRoot()).popBackStack());
         binding.ivCalendarNext.setOnClickListener(v -> {
             cal.add(Calendar.YEAR, 1);
             setUpCalendar();
@@ -115,6 +110,6 @@ public class AdminLoanFragment extends BaseFragment implements CalendarCallBack 
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.white);
     }
 }

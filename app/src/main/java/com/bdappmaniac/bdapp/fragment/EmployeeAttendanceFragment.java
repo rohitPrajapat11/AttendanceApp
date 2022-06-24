@@ -1,5 +1,6 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
@@ -10,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.DatePicker;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
@@ -61,7 +62,7 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
     private int TYear, TMonth, TDay;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_attendance, container, false);
             if (getArguments() != null) {
@@ -72,23 +73,15 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
             binding.historyRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.historyRecycler.setAdapter(adapter);
             Constant.calendarCallBack = this;
-            binding.backBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Navigation.findNavController(view).popBackStack();
-                }
-            });
+            binding.backBtn.setOnClickListener(view -> Navigation.findNavController(view).popBackStack());
             binding.FromDate.setOnClickListener(v -> {
                 FYear = from.get(Calendar.YEAR);
                 FMonth = from.get(Calendar.MONTH);
                 FDay = from.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                fromDates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-                                binding.FromDate.setText(DateUtils.getFormattedTime(fromDates, DateUtils.appDateFormat, DateUtils.appDateFormatTo));
-                            }
+                        (view, year, monthOfYear, dayOfMonth) -> {
+                            fromDates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                            binding.FromDate.setText(DateUtils.getFormattedTime(fromDates, DateUtils.appDateFormat, DateUtils.appDateFormatTo));
                         }, FYear, FMonth, FDay);
                 datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
                 datePickerDialog.getWindow().setGravity(Gravity.CENTER);
@@ -100,13 +93,10 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
                     TMonth = to.get(Calendar.MONTH);
                     TDay = to.get(Calendar.DAY_OF_MONTH);
                     DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
-                            new DatePickerDialog.OnDateSetListener() {
-                                @Override
-                                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                    toDates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-                                    binding.ToDate.setText(DateUtils.getFormattedTime(toDates, DateUtils.appDateFormat, DateUtils.appDateFormatTo));
-                                    binding.ToDate.setFocusable(false);
-                                }
+                            (view, year, monthOfYear, dayOfMonth) -> {
+                                toDates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                binding.ToDate.setText(DateUtils.getFormattedTime(toDates, DateUtils.appDateFormat, DateUtils.appDateFormatTo));
+                                binding.ToDate.setFocusable(false);
                             }, TYear, TMonth, TDay);
                     datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
                     long getFromDate = DateUtils.getTimeInMillis(DateUtils.parseStringDate(binding.FromDate.getText().toString(), "dd-MM-yyyy", "dd-MM-yyyy"), "dd-MM-yyyy");
@@ -118,59 +108,44 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
                     datePickerDialog.show();
                 }
             });
-            binding.cancelBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    binding.FromDate.setText("");
-                    binding.ToDate.setText("");
-                }
+            binding.cancelBtn.setOnClickListener(view -> {
+                binding.FromDate.setText("");
+                binding.ToDate.setText("");
             });
-            binding.findBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String fromDate = fromDates;
-                    String toDate = toDates;
-                    if (binding.FromDate.getText().toString().isEmpty()) {
-                        showSnackBar(binding.getRoot(), "From Date field is empty");
-                    } else if (binding.ToDate.getText().toString().isEmpty()) {
-                        showSnackBar(binding.getRoot(), "To Date field is empty");
-                    } else {
-                        getInAndOutsBetweenDatesApi(fromDate, toDate, IDE);
-                    }
+            binding.findBtn.setOnClickListener(view -> {
+                String fromDate = fromDates;
+                String toDate = toDates;
+                if (binding.FromDate.getText().toString().isEmpty()) {
+                    showSnackBar(binding.getRoot(), "From Date field is empty");
+                } else if (binding.ToDate.getText().toString().isEmpty()) {
+                    showSnackBar(binding.getRoot(), "To Date field is empty");
+                } else {
+                    getInAndOutsBetweenDatesApi(fromDate, toDate, IDE);
                 }
             });
         }
 
-        binding.filterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.toAndFromLayout.setVisibility(View.GONE);
-                binding.monthLayout.setVisibility(View.GONE);
-                AttendenaceBottomSheetDialogBinding attBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.attendenace_bottom_sheet_dialog, null, false);
-                Dialog dialog = new Dialog(mContext);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(attBinding.getRoot());
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(true);
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setGravity(Gravity.BOTTOM);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                dialog.show();
-                attBinding.dateBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        binding.toAndFromLayout.setVisibility(View.VISIBLE);
-                        dialog.dismiss();
-                    }
-                });
-                attBinding.monthBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        binding.monthLayout.setVisibility(View.VISIBLE);
-                        dialog.dismiss();
-                    }
-                });
-            }
+        binding.filterBtn.setOnClickListener(view -> {
+            binding.toAndFromLayout.setVisibility(View.GONE);
+            binding.monthLayout.setVisibility(View.GONE);
+            AttendenaceBottomSheetDialogBinding attBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.attendenace_bottom_sheet_dialog, null, false);
+            Dialog dialog = new Dialog(mContext);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(attBinding.getRoot());
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setGravity(Gravity.BOTTOM);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            dialog.show();
+            attBinding.dateBtn.setOnClickListener(v -> {
+                binding.toAndFromLayout.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+            });
+            attBinding.monthBtn.setOnClickListener(v -> {
+                binding.monthLayout.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+            });
         });
 
         binding.ivCalendarNext.setOnClickListener(v -> {
@@ -202,6 +177,7 @@ public class EmployeeAttendanceFragment extends BaseFragment implements Calendar
 //        binding.calendarLayout.setVisibility(View.VISIBLE);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void getInAndOutsBetweenDatesApi(String fromDate, String toDate, int emp_id) {
         AppLoader.showLoaderDialog(mContext);
         Map<String, RequestBody> map = new HashMap<>();

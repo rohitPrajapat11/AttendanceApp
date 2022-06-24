@@ -39,24 +39,11 @@ public class ForgotPasswordFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_forgot_password, container, false);
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.logInFragment);
-            }
-        });
-        binding.passwordTxtBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.logInFragment);
-            }
-        });
-        binding.sendBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkValidation()) {
-                    sendMailApi(binding.emailTxt.getText().toString());
-                }
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.logInFragment));
+        binding.passwordTxtBtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.logInFragment));
+        binding.sendBtn.setOnClickListener(v -> {
+            if (checkValidation()) {
+                sendMailApi(binding.emailTxt.getText().toString());
             }
         });
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));

@@ -28,7 +28,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/prime" />
+                app:tint="@color/prime"
+                android:contentDescription="@string/backBtn" />
 
             <TextView
                 android:id="@+id/title"
@@ -36,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:text="Designation"
+                android:text="@string/designation"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +54,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/prime" />
+                app:tint="@color/prime"
+                android:contentDescription="@string/addbtn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

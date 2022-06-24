@@ -1,5 +1,6 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
@@ -10,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.DatePicker;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
@@ -58,7 +59,7 @@ public class EmployeeToDoListFragment extends BaseFragment {
     private int FYear, FMonth, FDay;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_to_do_list, container, false);
         Bundle bundle = getArguments();
         if (bundle != null) {
@@ -67,72 +68,42 @@ public class EmployeeToDoListFragment extends BaseFragment {
         }
 //        binding.childRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
 //        binding.childRecycler.setAdapter(adapter);
-        binding.backBtn.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigateUp();
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
+        binding.filterBtn.setOnClickListener(v -> {
+            binding.toAndFromLayout.setVisibility(View.GONE);
+            binding.monthLayout.setVisibility(View.GONE);
+            TaskBottomSheetDialogBinding taskBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.task_bottom_sheet_dialog, null, false);
+            Dialog dialog = new Dialog(mContext);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(taskBinding.getRoot());
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setGravity(Gravity.BOTTOM);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            dialog.show();
+            taskBinding.addTaskBtn.setOnClickListener(view -> {
+                addTaskDialogBox();
+                dialog.dismiss();
+            });
+            taskBinding.dateBtn.setOnClickListener(view -> {
+                binding.toAndFromLayout.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+            });
+            taskBinding.months.setOnClickListener(view -> {
+                binding.monthLayout.setVisibility(View.VISIBLE);
+                dialog.dismiss();
+            });
+            taskBinding.approvedBtn.setOnClickListener(view -> dialog.dismiss());
+            taskBinding.pendingBtn.setOnClickListener(view -> dialog.dismiss());
         });
-        binding.filterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.toAndFromLayout.setVisibility(View.GONE);
-                binding.monthLayout.setVisibility(View.GONE);
-                TaskBottomSheetDialogBinding taskBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.task_bottom_sheet_dialog, null, false);
-                Dialog dialog = new Dialog(mContext);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(taskBinding.getRoot());
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(true);
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setGravity(Gravity.BOTTOM);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                dialog.show();
-                taskBinding.addTaskBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        addTaskDialogBox();
-                        dialog.dismiss();
-                    }
-                });
-                taskBinding.dateBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        binding.toAndFromLayout.setVisibility(View.VISIBLE);
-                        dialog.dismiss();
-                    }
-                });
-                taskBinding.months.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        binding.monthLayout.setVisibility(View.VISIBLE);
-                        dialog.dismiss();
-                    }
-                });
-                taskBinding.approvedBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-                taskBinding.pendingBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-            }
+        binding.completeBtn.setOnClickListener(view -> {
+            binding.completeBtn.setVisibility(View.GONE);
+            binding.completedBtn.setVisibility(View.VISIBLE);
         });
-        binding.completeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.completeBtn.setVisibility(View.GONE);
-                binding.completedBtn.setVisibility(View.VISIBLE);
-            }
-        });
-        binding.completedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.completedBtn.setVisibility(View.GONE);
-                binding.completeBtn.setVisibility(View.VISIBLE);
-            }
+        binding.completedBtn.setOnClickListener(view -> {
+            binding.completedBtn.setVisibility(View.GONE);
+            binding.completeBtn.setVisibility(View.VISIBLE);
         });
         binding.ivCalendarNext.setOnClickListener(v -> {
             cal.add(Calendar.MONTH, 1);
@@ -149,12 +120,9 @@ public class EmployeeToDoListFragment extends BaseFragment {
             FMonth = from.get(Calendar.MONTH);
             FDay = from.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                            fromDates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-                            binding.FromDate.setText(DateUtils.getFormattedTime(fromDates, DateUtils.appDateFormat, DateUtils.appDateFormatTo));
-                        }
+                    (view, year, monthOfYear, dayOfMonth) -> {
+                        fromDates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                        binding.FromDate.setText(DateUtils.getFormattedTime(fromDates, DateUtils.appDateFormat, DateUtils.appDateFormatTo));
                     }, FYear, FMonth, FDay);
             datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
             datePickerDialog.getWindow().setGravity(Gravity.CENTER);
@@ -166,13 +134,10 @@ public class EmployeeToDoListFragment extends BaseFragment {
                 TMonth = to.get(Calendar.MONTH);
                 TDay = to.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                toDates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-                                binding.ToDate.setText(DateUtils.getFormattedTime(toDates, DateUtils.appDateFormat, DateUtils.appDateFormatTo));
-                                binding.ToDate.setFocusable(false);
-                            }
+                        (view, year, monthOfYear, dayOfMonth) -> {
+                            toDates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                            binding.ToDate.setText(DateUtils.getFormattedTime(toDates, DateUtils.appDateFormat, DateUtils.appDateFormatTo));
+                            binding.ToDate.setFocusable(false);
                         }, TYear, TMonth, TDay);
                 datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
                 long getFromDate = DateUtils.getTimeInMillis(DateUtils.parseStringDate(binding.FromDate.getText().toString(), "dd-MM-yyyy", "dd-MM-yyyy"), "dd-MM-yyyy");
@@ -184,25 +149,19 @@ public class EmployeeToDoListFragment extends BaseFragment {
                 datePickerDialog.show();
             }
         });
-        binding.cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.FromDate.setText("");
-                binding.ToDate.setText("");
-            }
+        binding.cancelBtn.setOnClickListener(view -> {
+            binding.FromDate.setText("");
+            binding.ToDate.setText("");
         });
-        binding.findBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String fromDate = fromDates;
-                String toDate = toDates;
-                if (binding.FromDate.getText().toString().isEmpty()) {
-                    showSnackBar(binding.getRoot(), "From Date field is empty");
-                } else if (binding.ToDate.getText().toString().isEmpty()) {
-                    showSnackBar(binding.getRoot(), "To Date field is empty");
-                } else {
+        binding.findBtn.setOnClickListener(view -> {
+            String fromDate = fromDates;
+            String toDate = toDates;
+            if (binding.FromDate.getText().toString().isEmpty()) {
+                showSnackBar(binding.getRoot(), "From Date field is empty");
+            } else if (binding.ToDate.getText().toString().isEmpty()) {
+                showSnackBar(binding.getRoot(), "To Date field is empty");
+            } else {
 //                    getInAndOutsBetweenDatesApi(fromDate, toDate, IDE);
-                }
             }
         });
         return binding.getRoot();
@@ -226,9 +185,7 @@ public class EmployeeToDoListFragment extends BaseFragment {
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
-        taskBinding.submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        taskBinding.submitBtn.setOnClickListener(view -> {
 //                if (taskBinding.reasonTxt.getText().toString().isEmpty()) {
 //                    showSnackBar(binding.getRoot(), "Field cannot stay empty");
 //                } else {
@@ -239,17 +196,12 @@ public class EmployeeToDoListFragment extends BaseFragment {
 ////                    createTaskApi(emp_id, content);
 //                    dialog.dismiss();
 //                }
-                dialog.dismiss();
-            }
+            dialog.dismiss();
         });
-        taskBinding.cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        taskBinding.cancelBtn.setOnClickListener(view -> dialog.dismiss());
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void createTaskApi(String emp_id, String content) {
         AppLoader.showLoaderDialog(mContext);
         Map<String, RequestBody> map = new HashMap<>();

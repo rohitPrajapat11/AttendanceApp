@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
@@ -22,18 +23,13 @@ public class EmployeeAttandenceListFragment extends BaseFragment {
     String url = ("https://docs.google.com/spreadsheets/d/1ic1AoaqBcuocW_ZL2kL52IAB8RWTs_hH8coIQYqZMFM/edit#gid=970146190");
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_attandence_list, container, false);
-        binding.backBtn.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigateUp();
-        });
-        binding.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CustomTabsIntent.Builder customIntent = new CustomTabsIntent.Builder();
-                customIntent.setToolbarColor(ContextCompat.getColor(mContext, R.color.prime));
-                openCustomTab(getActivity(), customIntent.build(), Uri.parse(url));
-            }
+        binding.backBtn.setOnClickListener(view -> Navigation.findNavController(view).navigateUp());
+        binding.button.setOnClickListener(v -> {
+            CustomTabsIntent.Builder customIntent = new CustomTabsIntent.Builder();
+            customIntent.setToolbarColor(ContextCompat.getColor(mContext, R.color.prime));
+            openCustomTab(getActivity(), customIntent.build(), Uri.parse(url));
         });
         return binding.getRoot();
     }
@@ -64,6 +60,6 @@ public class EmployeeAttandenceListFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.white);
     }
 }

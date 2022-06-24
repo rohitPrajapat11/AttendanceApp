@@ -2,13 +2,10 @@ package com.bdappmaniac.bdapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +21,7 @@ import com.bdappmaniac.bdapp.utils.DateUtils;
 import java.util.ArrayList;
 
 public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<lockUnlockItems> employeeList = new ArrayList<>();
+    ArrayList<lockUnlockItems> employeeList;
     Context context;
 
     public LockUnlockAdapter(ArrayList<lockUnlockItems> employeeList, Context context) {
@@ -43,7 +40,6 @@ public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return getViewHolder(LayoutInflater.from(context), parent);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         LockUnlockAdapter.ViewHolder vHolder = (LockUnlockAdapter.ViewHolder) holder;
@@ -60,14 +56,11 @@ public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         } else if (employeeList.get(position).getStatus().equals("inactive")) {
             vHolder.binding.switchbtn.setChecked(false);
         }
-        vHolder.binding.switchbtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @RequiresApi(api = Build.VERSION_CODES.M)
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    vHolder.updateEmployeeStatusApi("active", employeeList.get(position).getId());
-                } else {
-                    vHolder.updateEmployeeStatusApi("inactive", employeeList.get(position).getId());
-                }
+        vHolder.binding.switchbtn.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                vHolder.updateEmployeeStatusApi("active", employeeList.get(position).getId());
+            } else {
+                vHolder.updateEmployeeStatusApi("inactive", employeeList.get(position).getId());
             }
         });
     }

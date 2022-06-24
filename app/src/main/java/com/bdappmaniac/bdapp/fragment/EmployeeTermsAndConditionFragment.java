@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
@@ -29,7 +30,7 @@ public class EmployeeTermsAndConditionFragment extends BaseFragment {
     int IDE;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_terms_and_condition, container, false);
         if (getArguments() != null) {
             IDE = getArguments().getInt("id");
@@ -39,15 +40,9 @@ public class EmployeeTermsAndConditionFragment extends BaseFragment {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        binding.backBtn.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigateUp();
-        });
-        binding.cancelBtn.setOnClickListener(v -> {
-            editCondition(false);
-        });
-        binding.editBtn.setOnClickListener(v -> {
-            editCondition(true);
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
+        binding.cancelBtn.setOnClickListener(v -> editCondition(false));
+        binding.editBtn.setOnClickListener(v -> editCondition(true));
         binding.saveBtn.setOnClickListener(v -> {
             if (StringHelper.isEmpty(binding.conditionsTxt.getText().toString())) {
                 showSnackBar(v, mContext.getString(R.string.write_term_and_conditions));

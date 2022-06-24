@@ -13,9 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.DatePicker;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
@@ -34,7 +34,7 @@ public class LoanProvideFragment extends BaseFragment {
     private int mYear, mMonth, mDay, mHour, mMinute;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_loan_provide, container, false);
         binding.nameTxt.addTextChangedListener(new TextChange(binding.nameTxt));
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
@@ -43,12 +43,7 @@ public class LoanProvideFragment extends BaseFragment {
         binding.loanIssueDate.addTextChangedListener(new TextChange(binding.loanIssueDate));
         binding.loanReasonTxt.addTextChangedListener(new TextChange(binding.loanReasonTxt));
 
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(binding.getRoot()).popBackStack();
-            }
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(binding.getRoot()).popBackStack());
         binding.loanIssueDate.setOnClickListener(view -> {
             // Get Current Date
             final Calendar c = Calendar.getInstance();
@@ -56,14 +51,10 @@ public class LoanProvideFragment extends BaseFragment {
             mMonth = c.get(Calendar.MONTH);
             mDay = c.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year,
-                                              int monthOfYear, int dayOfMonth) {
-                            String d = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-                            updateInCorpDate = d;
-                            binding.loanIssueDate.setText(DateUtils.getFormattedTime(d, DateUtils.appDateFormat, DateUtils.appDateFormatTos));
-                        }
+                    (view1, year, monthOfYear, dayOfMonth) -> {
+                        String d = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                        updateInCorpDate = d;
+                        binding.loanIssueDate.setText(DateUtils.getFormattedTime(d, DateUtils.appDateFormat, DateUtils.appDateFormatTos));
                     }, mYear, mMonth, mDay);
             datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
             datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());

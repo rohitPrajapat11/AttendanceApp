@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +17,7 @@
             android:background="@drawable/light_green_15r_bg"
             android:fontFamily="@font/m_medium"
             android:gravity="center"
-            android:text="Pending"
+            android:text="@string/pending"
             android:textColor="@color/white"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintEnd_toStartOf="@+id/approvedBtn"
@@ -33,7 +32,7 @@
             android:background="@drawable/light_green_15r_bg"
             android:fontFamily="@font/m_medium"
             android:gravity="center"
-            android:text="Approved"
+            android:text="@string/approved"
             android:textColor="@color/white"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintBottom_toBottomOf="@+id/pendingBtn"
@@ -50,7 +49,7 @@
             android:background="@drawable/light_green_15r_bg"
             android:fontFamily="@font/m_medium"
             android:gravity="center"
-            android:text="Months"
+            android:text="@string/month"
             android:textColor="@color/white"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -66,7 +65,7 @@
             android:background="@drawable/light_green_15r_bg"
             android:fontFamily="@font/m_medium"
             android:gravity="center"
-            android:text="To And From"
+            android:text="@string/to_and_from"
             android:textColor="@color/white"
             android:textSize="@dimen/_10ssp"
             app:layout_constraintBottom_toBottomOf="@+id/months"
