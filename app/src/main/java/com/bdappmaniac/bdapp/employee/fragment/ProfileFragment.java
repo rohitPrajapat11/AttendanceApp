@@ -44,6 +44,7 @@ import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
 import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
@@ -74,6 +75,7 @@ public class ProfileFragment extends BaseFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
         SharedPref.init(mContext);
         setResponseData(SharedPref.getUserDetails());
 

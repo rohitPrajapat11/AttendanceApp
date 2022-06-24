@@ -34,14 +34,14 @@
 
             <TextView
                 android:id="@+id/title"
-                android:textStyle="bold"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
                 android:text="Attendance Rules"
                 android:textColor="@color/blue_primary"
-                android:textSize="@dimen/_19ssp"
+                android:textSize="@dimen/_18ssp"
                 app:drawableTint="@color/_172B4D"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

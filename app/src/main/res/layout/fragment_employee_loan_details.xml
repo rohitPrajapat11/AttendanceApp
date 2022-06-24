@@ -43,8 +43,8 @@
                 android:gravity="center_vertical"
                 android:text="Advance Payment"
                 android:textColor="@color/blue_primary"
-                android:textSize="@dimen/_18ssp"
-                android:textStyle="bold"
+                android:textSize="@dimen/_15ssp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +101,7 @@
                 android:fontFamily="@font/m_light"
                 android:text="Studies Advance"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_17sdp"
+                android:textSize="@dimen/_17ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -128,7 +128,7 @@
                 android:gravity="center"
                 android:text="payment Graph"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_12ssp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/progressMain"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -149,7 +149,7 @@
                     android:fontFamily="@font/m_light"
                     android:text="87"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_17sdp"
+                    android:textSize="@dimen/_17ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -161,7 +161,7 @@
                     android:layout_marginStart="@dimen/_1sdp"
                     android:text="%"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_17sdp"
+                    android:textSize="@dimen/_17ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/progressTitle"
                     app:layout_constraintStart_toEndOf="@+id/progressTitle"
                     app:layout_constraintTop_toTopOf="@+id/progressTitle" />
@@ -175,7 +175,7 @@
                 android:fontFamily="@font/m_light"
                 android:text="Paid"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_11sdp"
+                android:textSize="@dimen/_11ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/progressMain"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/progressMain"
@@ -207,7 +207,7 @@
                 android:fontFamily="@font/m_light"
                 android:text=" Time Program"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_8sdp"
+                android:textSize="@dimen/_8ssp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/progressTimeProgram"
                 app:layout_constraintStart_toStartOf="@+id/progressTimeProgram"
@@ -264,7 +264,7 @@
                 android:fontFamily="@font/m_bold"
                 android:text="Advance Details :-"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_9sdp"
+                android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toTopOf="@+id/titleAmount"
                 app:layout_constraintEnd_toEndOf="@+id/titleAmount"
                 app:layout_constraintStart_toStartOf="@+id/imageView3"
@@ -290,7 +290,7 @@
                 android:fontFamily="@font/m_light"
                 android:text="Loan Amount"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_9sdp"
+                android:textSize="@dimen/_9ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/progressMain" />
 
@@ -303,7 +303,7 @@
                 android:fontFamily="@font/m_semibold"
                 android:text="1,00,000"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_9sdp"
+                android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/titleAmount"
                 app:layout_constraintStart_toEndOf="@+id/titleAmount"
                 app:layout_constraintTop_toTopOf="@+id/titleAmount" />
@@ -337,7 +337,7 @@
                 android:fontFamily="@font/m_light"
                 android:text="Paid Amount"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_8sdp"
+                android:textSize="@dimen/_8ssp"
                 app:layout_constraintStart_toStartOf="@+id/titleAmount"
                 app:layout_constraintTop_toBottomOf="@+id/titleAmount" />
 
@@ -349,7 +349,7 @@
                 android:fontFamily="@font/m_semibold"
                 android:text="70,000"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_9sdp"
+                android:textSize="@dimen/_9ssp"
                 app:layout_constraintEnd_toStartOf="@+id/textView6"
                 app:layout_constraintStart_toStartOf="@+id/loanAmount"
                 app:layout_constraintTop_toBottomOf="@+id/loanAmount" />
@@ -385,7 +385,7 @@
                 android:fontFamily="@font/m_light"
                 android:text="Remaining Amount"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_9sdp"
+                android:textSize="@dimen/_9ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/titlePaid"
                 app:layout_constraintTop_toBottomOf="@+id/titlePaid" />
@@ -398,7 +398,7 @@
                 android:fontFamily="@font/m_semibold"
                 android:text="30,000"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_9sdp"
+                android:textSize="@dimen/_9ssp"
                 app:layout_constraintEnd_toEndOf="@+id/paidAmount"
                 app:layout_constraintStart_toStartOf="@+id/paidAmount"
                 app:layout_constraintTop_toBottomOf="@+id/paidAmount" />
@@ -448,7 +448,7 @@
                 android:padding="@dimen/_2sdp"
                 android:text="1,476"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_22sdp"
+                android:textSize="@dimen/_22ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -507,7 +507,7 @@
                 android:paddingHorizontal="@dimen/_23sdp"
                 android:text="Get Advance"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_11sdp"
+                android:textSize="@dimen/_11ssp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -596,7 +596,7 @@
                 android:paddingHorizontal="@dimen/_20sdp"
                 android:text="Manage Advance"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_11sdp"
+                android:textSize="@dimen/_11ssp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -613,7 +613,7 @@
             android:fontFamily="@font/m_medium"
             android:text=" Status:-"
             android:textColor="@color/black"
-            android:textSize="@dimen/_14sdp"
+            android:textSize="@dimen/_14ssp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/getLoan" />

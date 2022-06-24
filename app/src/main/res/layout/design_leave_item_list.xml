@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+ >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/leave"
@@ -20,7 +20,7 @@
             android:id="@+id/status"
             android:layout_width="@dimen/_45sdp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
             android:background="@drawable/design_edt_bg"
             android:backgroundTint="@color/Redlight"
             android:fontFamily="@font/m_medium"
@@ -35,15 +35,17 @@
 
         <TextView
             android:id="@+id/leaveReason"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="@dimen/_8sdp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
             android:fontFamily="@font/m_light"
-            android:textStyle="bold"
+         android:maxLines="4"
             android:padding="@dimen/_1sdp"
             android:text="@string/urgent_piece_of_work"
             android:textColor="@color/black"
             android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/more"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -85,6 +87,7 @@
             app:layout_constraintStart_toEndOf="@+id/imgcal" />
 
         <TextView
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/m_semibold"
@@ -109,6 +112,7 @@
 
 
         <TextView
+            android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/m_semibold"
@@ -143,10 +147,9 @@
             android:layout_marginBottom="@dimen/_2sdp"
             android:fontFamily="@font/m_medium"
             android:padding="@dimen/_2sdp"
-            android:text="@string/i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden"
-            android:textColor="@color/grey"
-            android:textSize="@dimen/_9sdp"
-            android:visibility="gone"
+            android:text="@string/i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden_i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden_i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden_i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -155,13 +158,25 @@
         <ImageView
             android:id="@+id/more"
             android:layout_width="@dimen/_18sdp"
-            android:padding="@dimen/_3sdp"
             android:layout_height="@dimen/_18sdp"
-            android:src="@drawable/icn_more_btn"
             android:layout_marginTop="@dimen/_2sdp"
             android:layout_marginEnd="@dimen/_2sdp"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/icn_more_btn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/todoo" />
+
+
+        <include
+            android:id="@+id/dialog"
+            layout="@layout/dialog_for_leave_items"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="@+id/more"
+            app:layout_constraintTop_toBottomOf="@+id/more" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

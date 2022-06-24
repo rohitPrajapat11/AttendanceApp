@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bdappmaniac.bdapp.R;
@@ -30,8 +31,14 @@ public class MyAttendance extends BaseFragment {
         @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_attendance, container, false);
-        StatusBarUtils.statusBarColor(getActivity(), R.color.f1f3f5);
+            StatusBarUtils.statusBarColor(getActivity(), R.color.white);
 
+            binding.backBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(v).popBackStack();
+                }
+            });
         ArrayList<ModelMyAttendenceHistory> HistoryList = new ArrayList<>();
         HistoryList.add(new ModelMyAttendenceHistory("FRI", "23"));
         HistoryList.add(new ModelMyAttendenceHistory("THU", "15"));

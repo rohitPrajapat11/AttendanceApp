@@ -2,6 +2,7 @@ package com.bdappmaniac.bdapp.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.L;
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.databinding.CheckinOutDialogBinding;
+
 import com.bdappmaniac.bdapp.databinding.DesignLeaveItemListBinding;
 import com.bdappmaniac.bdapp.databinding.DialogForLeaveItemsBinding;
 import com.bdappmaniac.bdapp.model.ModelLeaves;
@@ -38,6 +39,8 @@ public class LeavesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return getViewHolder(LayoutInflater.from(context), parent);
+
+
     }
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
@@ -49,27 +52,34 @@ public class LeavesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         vholder.binding.discription.setText(leavelist.get(position).getDiscription());
         vholder.binding.status.setText(leavelist.get(position).getStatus());
 
-
-        vholder.binding.leave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (vholder.binding.discription.getVisibility()==View.VISIBLE){
-                    vholder.binding.discription.setVisibility(View.GONE);
-
-                }
-                else {
-                    vholder.binding.discription.setVisibility(View.VISIBLE);
-
-                }
-            }
-        });
+//
+//        vholder.binding.leave.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (vholder.binding.discription.getVisibility()==View.VISIBLE){
+//                    vholder.binding.discription.setVisibility(View.GONE);
+//
+//                }
+//                else {
+//                    vholder.binding.discription.setVisibility(View.VISIBLE);
+//
+//                }
+//            }
+//        });
 
         vholder.binding.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                actionDialog();
+                if (vholder.binding.dialog.getRoot().getVisibility()== View.VISIBLE) {
+                    vholder.binding.dialog.getRoot().setVisibility(View.GONE);
+                }
+                else{
+                    vholder.binding.dialog.getRoot().setVisibility(View.VISIBLE);
+                }
+                
             }
         });
+
 
     }
     @Override
@@ -85,18 +95,6 @@ public class LeavesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
-    public void actionDialog(){
-         DialogForLeaveItemsBinding actiondialog = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_for_leave_items, null, false);
-        Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(actiondialog.getRoot());
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.setCancelable(true);
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        dialog.getWindow().setGravity(Gravity.CENTER);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-        dialog.show();
 
-    }
 
 }

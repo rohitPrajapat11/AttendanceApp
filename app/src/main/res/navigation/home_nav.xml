@@ -80,5 +80,11 @@
         android:id="@+id/EmpGetLoanFragment"
         android:name="com.bdappmaniac.bdapp.employee.fragment.EmpGetLoanFragment"
         android:label="EmpGetLoanFragment"
-        tools:layout="@layout/fragment_emp_get_loan" />
+        tools:layout="@layout/fragment_emp_get_loan"/>
+
+    <fragment
+        android:id="@+id/FragmentGlige"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.GlideLoanSubmitFragment"
+        android:label="GlideFragment"
+        tools:layout="@layout/frgment_advance_glide" />
 </navigation>

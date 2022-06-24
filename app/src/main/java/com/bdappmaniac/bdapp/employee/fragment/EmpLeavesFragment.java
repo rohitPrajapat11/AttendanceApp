@@ -73,20 +73,20 @@ public class EmpLeavesFragment extends BaseFragment {
         });
 
         ArrayList<ModelLeaves> leavelist = new ArrayList<>();
-        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "pending"));
-        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "approved"));
+        leavelist.add(new ModelLeaves("Urgent piece of work Urgent piece of work Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now v ", "pending"));
+        leavelist.add(new ModelLeaves("Urgent piece of work Urgent piece of work Urgent piece of work Urgent piece of work", "Casual Leave", "21-03-2022", "25-03-2022", "Urgent work need to get it done right now Urgent work need to get it done right now ", "approved"));
+        leavelist.add(new ModelLeaves("Urgent piece of work Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now ", "rejected"));
+        leavelist.add(new ModelLeaves(" Urgent piece of work Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now  ", "pending"));
+        leavelist.add(new ModelLeaves("Urgent piece of work Urgent piece of work Urgent piece of work", "Casual Leave", "20-03-2022", "27-03-2022", "Urgent work need to get it done right now ", "approved"));
+        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "23-03-2022", "25-03-2022", "Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now ", "rejected"));
+        leavelist.add(new ModelLeaves("Urgent piece of work Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "pending"));
+        leavelist.add(new ModelLeaves("Urgent piece of work Urgent piece of work Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right nowUrgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now  ", "approved"));
         leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "rejected"));
-        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "pending"));
+        leavelist.add(new ModelLeaves("Urgent piece of work Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now ", "pending"));
         leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "approved"));
-        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "rejected"));
+        leavelist.add(new ModelLeaves("Urgent piece of work Urgent piece of work Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now Urgent work need to get it done right now ", "rejected"));
         leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "pending"));
-        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "approved"));
-        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "rejected"));
-        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "pending"));
-        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "approved"));
-        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "rejected"));
-        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "pending"));
-        leavelist.add(new ModelLeaves("Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "approved"));
+        leavelist.add(new ModelLeaves("Urgent piece of work Urgent piece of work Urgent piece of work", "Casual Leave", "20-03-2022", "25-03-2022", "Urgent work need to get it done right now ", "approved"));
 
         adapter = new LeavesAdapter(leavelist, getContext());
         binding.recyclerLeaves.setAdapter(adapter);

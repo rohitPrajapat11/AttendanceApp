@@ -39,10 +39,9 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/m_medium"
             android:gravity="center_vertical"
-            android:textStyle="bold"
             android:text="@string/get_advance"
             android:textColor="@color/blue_primary"
-            android:textSize="@dimen/_19ssp"
+            android:textSize="@dimen/_18ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +75,6 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:paddingBottom="@dimen/_100sdp"
                 android:layout_height="match_parent">
 
 
@@ -252,9 +250,8 @@
                         app:rsb_indicator_text_color="@color/white"
                         app:rsb_indicator_text_size="@dimen/_10ssp"
                         app:rsb_indicator_width="@dimen/_50sdp"
-                        app:rsb_max="100000"
+                        app:rsb_max="50000"
                         app:rsb_min="0"
-                        android:progress="60000"
                         app:rsb_step_auto_bonding="true"
                         app:rsb_steps="10"
                         app:rsb_step_color="@color/purple_500"
@@ -397,6 +394,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <Button
+                    android:id="@+id/applybtn"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_margin="@dimen/_22sdp"
@@ -407,7 +405,6 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_10ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/details"
                     app:layout_constraintStart_toStartOf="@+id/details"
                     app:layout_constraintTop_toBottomOf="@+id/details" />

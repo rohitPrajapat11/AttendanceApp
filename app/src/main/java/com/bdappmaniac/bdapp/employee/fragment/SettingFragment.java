@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentSettingBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 public class SettingFragment extends BaseFragment {
     FragmentSettingBinding binding;
@@ -18,6 +19,7 @@ public class SettingFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();
         });

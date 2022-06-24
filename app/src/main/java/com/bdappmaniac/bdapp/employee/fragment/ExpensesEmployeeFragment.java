@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.adapter.EmpTaskAdapter;
@@ -20,18 +23,33 @@ import com.bdappmaniac.bdapp.databinding.FragmentEmployeeExpensesBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentExpensesEmployeeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.model.ModelEmpTask;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 import java.util.ArrayList;
 
 
 public class ExpensesEmployeeFragment extends BaseFragment {
-FragmentExpensesEmployeeBinding binding;
+    FragmentExpensesEmployeeBinding binding;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_expenses_employee,container,false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_expenses_employee, container, false);
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
 
+        //spinner
+        String [] yolist = {"yoo","yoooo","yooooo"};
+        binding.spinnerExpenseType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        ArrayAdapter ad = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item,yolist);
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.spinnerExpenseType.setAdapter(ad);
 
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +61,6 @@ FragmentExpensesEmployeeBinding binding;
         binding.additem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 if (binding.details.getVisibility() == VISIBLE) {
                     binding.details.setVisibility(View.GONE);
                     binding.additem.setImageResource(R.drawable.additem);

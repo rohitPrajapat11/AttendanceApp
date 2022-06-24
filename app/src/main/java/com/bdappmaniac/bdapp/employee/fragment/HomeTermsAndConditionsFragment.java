@@ -16,6 +16,7 @@ import com.bdappmaniac.bdapp.databinding.FragmentHomeTermsAndConditionsBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.SharedPref;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -26,6 +27,7 @@ public class HomeTermsAndConditionsFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_terms_and_conditions, container, false);
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
         SharedPref.init(mContext);
         binding.backBtn.setOnClickListener(v -> {
             Navigation.findNavController(v).navigateUp();

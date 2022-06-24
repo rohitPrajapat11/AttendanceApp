@@ -63,12 +63,7 @@ public class BaseFragment extends Fragment {
         return requestBody;
     }
 
-    public void takeMeHome()
-    {
-        Navigation.findNavController(getView()).navigate(R.id.homeFragment);
+    public void takeMeHome() {Navigation.findNavController(getView()).navigate(R.id.homeFragment);}
 
-    }
-    public RequestBody toRequestBodyPart(String value) {
-        return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
-    }
+    public RequestBody toRequestBodyPart(String value) {return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;}
 }

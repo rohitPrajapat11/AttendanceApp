@@ -42,7 +42,7 @@ public class EmployeeHolidayFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_holiday, container, false);
-            StatusBarUtils.statusBarColor(getActivity(), R.color._F4F5F7);
+            StatusBarUtils.statusBarColor(getActivity(), R.color.white);
             monthAdapter = new EmployeeHolidayAdapter(mContext, list);
 //            binding.employeeHolidayRecyclers.setHasFixedSize(false);
 //            binding.employeeHolidayRecyclers.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -60,23 +60,23 @@ public class EmployeeHolidayFragment extends BaseFragment {
         itemsArrayList.add(new ModelHolidayItems("January"));
         itemsArrayList.add(new ModelHolidayItems("February"));
         itemsArrayList.add(new ModelHolidayItems("March"));
-        itemsArrayList.add(new ModelHolidayItems("Aprail"));
+        itemsArrayList.add(new ModelHolidayItems("April"));
         itemsArrayList.add(new ModelHolidayItems("January"));
         itemsArrayList.add(new ModelHolidayItems("February"));
         itemsArrayList.add(new ModelHolidayItems("March"));
-        itemsArrayList.add(new ModelHolidayItems("Aprail"));
+        itemsArrayList.add(new ModelHolidayItems("April"));
         itemsArrayList.add(new ModelHolidayItems("January"));
         itemsArrayList.add(new ModelHolidayItems("February"));
         itemsArrayList.add(new ModelHolidayItems("March"));
-        itemsArrayList.add(new ModelHolidayItems("Aprail"));
+        itemsArrayList.add(new ModelHolidayItems("April"));
         itemsArrayList.add(new ModelHolidayItems("January"));
         itemsArrayList.add(new ModelHolidayItems("February"));
         itemsArrayList.add(new ModelHolidayItems("March"));
-        itemsArrayList.add(new ModelHolidayItems("Aprail"));
+        itemsArrayList.add(new ModelHolidayItems("April"));
         itemsArrayList.add(new ModelHolidayItems("January"));
         itemsArrayList.add(new ModelHolidayItems("February"));
         itemsArrayList.add(new ModelHolidayItems("March"));
-        itemsArrayList.add(new ModelHolidayItems("Aprail"));
+        itemsArrayList.add(new ModelHolidayItems("April"));
 
         binding.addBtn.setVisibility(View.GONE);
         holidayadapter = new EmpHolidayAdapter(itemsArrayList, mContext);

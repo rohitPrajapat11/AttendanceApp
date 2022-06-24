@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentEmpManageAdvanceBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 public class EmpManageAdvanceFragment extends BaseFragment {
 FragmentEmpManageAdvanceBinding binding;
@@ -23,11 +24,11 @@ FragmentEmpManageAdvanceBinding binding;
                              Bundle savedInstanceState) {
 
       binding = DataBindingUtil.inflate(inflater,R.layout.fragment_emp_manage_advance,container,false);
-
-        binding.ee.setOnClickListener(new View.OnClickListener() {
+        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
+        binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               takeMeHome();
+              Navigation.findNavController(view).popBackStack();
             }
         });
       return binding.getRoot();

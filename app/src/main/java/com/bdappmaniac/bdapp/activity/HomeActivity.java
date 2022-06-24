@@ -156,11 +156,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     bottomHideShow(true);
                 } else if (destination.getId() == R.id.taskFragment) {
                     navHandel("Task");
-                    headerHideShow(true);
+                    headerHideShow(false);
                     bottomHideShow(true);
                 } else if (destination.getId() == R.id.loanFragment) {
                     navHandel("Loan");
-                    headerHideShow(true);
+                    headerHideShow(false);
                     bottomHideShow(true);
                 } else if (destination.getId() == R.id.homeTermsAndConditionsFragment) {
                     navHandel("TermAndConditions");
@@ -184,7 +184,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     bottomHideShow(false);
                 } else if (destination.getId() == R.id.EmpmyAttendence) {
                     navHandel("My Attendance");
-                    headerHideShow(true);
+                    headerHideShow(false);
                     bottomHideShow(false);
                 } else if (destination.getId() == R.id.empHistoryFragment) {
                     navHandel("My History");
@@ -200,7 +200,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     bottomHideShow(false);
                 }else if (destination.getId() == R.id.profileFragment) {
                     navHandel("Profile");
-                    headerHideShow(true);
+                    headerHideShow(false);
                     bottomHideShow(false);
                 }else if (destination.getId() == R.id.EmpGetLoanFragment) {
                     navHandel("Get Loan");

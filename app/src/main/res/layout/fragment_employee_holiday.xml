@@ -36,18 +36,17 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTint="@color/green"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:textStyle="bold"
                 android:text="Holidays"
                 android:textColor="@color/blue_primary"
-                android:textSize="@dimen/_19ssp"
+                android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/secondary_color" />
+                app:tint="@color/secondary_color"
+                app:drawableTint="@color/green" />
 
             <ImageView
                 android:id="@+id/addBtn"

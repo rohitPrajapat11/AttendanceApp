@@ -235,5 +235,33 @@
     <string name="urgent_piece_of_work">Urgent piece of work</string>
     <string name="leave_type">Leave Type</string>
     <string name="status">Status :</string>
+    <string name="i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden_i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden_i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden_i_will_be_absent_today_due_to_some_personal_urgent_work_poped_up_all_of_a_sudden">i will be absent today due to some personal urgent work poped up all of a sudden i will be absent today due to some personal urgent work poped up all of a sudden i will be absent today due to some personal urgent work poped up all of a sudden i will be absent today due to some personal urgent work poped up all of a sudden</string>
+    <string name="todoo">TODoo</string>
+    <string name="attendance">Attendance</string>
+    <string name="checking_out_are_you_sure_you_want_to_check_out">Checking out , Are You Sure You Want To Check Out</string>
+    <string name="rohit_bdapp_gmail_com">rohit.bdapp@gmail.com</string>
+    <string name="rohit">rohit</string>
+    <string name="_08_30">08:30</string>
+    <string name="remaining_time">Remaining Time</string>
+    <string name="check_in">CHECK IN</string>
+    <string name="_09_20">09:20</string>
+    <string name="re">--:--</string>
+    <string name="check_out">Check Out</string>
+    <string name="working_hrs">Working hrs</string>
+    <string name="check_in_lc">Check In</string>
+    <string name="up_coming">(Up coming)</string>
+    <string name="approved_leaves">Approved Leaves</string>
+    <string name="_05">05</string>
+    <string name="hanuman_jayanti">Hanuman jayanti</string>
+    <string name="saturday">Saturday</string>
+    <string name="_08">08</string>
+    <string name="march_22">March,22</string>
+    <string name="advance">Advance</string>
+    <string name="get_an_advance_or_manage_history">(Get an Advance or manage history )</string>
+    <string name="_02">02</string>
+    <string name="expenses">Expenses</string>
+    <string name="expenses_will_be_settle_here">(Expenses will be settle here)</string>
+    <string name="_1_476">1,476</string>
+    <string name="total">Total</string>
 
 </resources>

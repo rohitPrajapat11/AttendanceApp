@@ -33,15 +33,13 @@
 
             <TextView
                 android:id="@+id/title"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
                 android:text="Expense"
                 android:textColor="@color/blue_primary"
-                android:textSize="@dimen/_19ssp"
-                app:drawableTint="@color/white"
+                android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -164,8 +162,8 @@
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
-                                <EditText
-                                    android:id="@+id/expenseEdt"
+                                <Spinner
+                                    android:id="@+id/spinnerExpenseType"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="@dimen/_5sdp"
@@ -174,10 +172,9 @@
                                     android:fontFamily="@font/m_semibold"
                                     android:hint="@string/office_utils"
                                     android:inputType="text"
-                                    android:maxLength="100"
                                     android:padding="@dimen/_8sdp"
                                     android:textColor="@color/black"
-                                    android:textColorHint="@color/grey"
+                                    android:textColorHint="@color/black"
                                     android:textSize="@dimen/_10ssp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -194,7 +191,7 @@
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_9ssp"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/expenseEdt" />
+                                    app:layout_constraintTop_toBottomOf="@+id/spinnerExpenseType" />
 
                                 <EditText
                                     android:id="@+id/amount"
@@ -224,9 +221,9 @@
                                     android:elevation="@dimen/_10sdp"
                                     android:padding="@dimen/_3sdp"
                                     android:src="@drawable/drop_down"
-                                    app:layout_constraintBottom_toBottomOf="@+id/expenseEdt"
-                                    app:layout_constraintEnd_toEndOf="@+id/expenseEdt"
-                                    app:layout_constraintTop_toTopOf="@+id/expenseEdt" />
+                                    app:layout_constraintBottom_toBottomOf="@+id/spinnerExpenseType"
+                                    app:layout_constraintEnd_toEndOf="@+id/spinnerExpenseType"
+                                    app:layout_constraintTop_toTopOf="@+id/spinnerExpenseType" />
 
                                 <TextView
                                     android:id="@+id/DateT"
@@ -239,7 +236,7 @@
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_9ssp"
                                     app:layout_constraintStart_toStartOf="@+id/DateEdt"
-                                    app:layout_constraintTop_toBottomOf="@+id/expenseEdt" />
+                                    app:layout_constraintTop_toBottomOf="@+id/spinnerExpenseType" />
 
                                 <EditText
                                     android:id="@+id/DateEdt"
@@ -357,6 +354,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:background="@drawable/auth_white_bg"
+                app:layout_anchor="@+id/appBarLayout"
+                app:layout_anchorGravity="top|center"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -368,12 +367,39 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_6sdp"
-                        android:fontFamily="@font/m_semibold"
+                        android:fontFamily="@font/m_medium"
                         android:padding="@dimen/_4sdp"
                         android:text="My expenses :"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14ssp"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/totalTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/m_semibold"
+                        android:padding="@dimen/_2sdp"
+                        android:text="Total :"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_9ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/total"
+                        app:layout_constraintEnd_toStartOf="@+id/total"
+                        app:layout_constraintTop_toTopOf="@+id/total" />
+
+                    <TextView
+                        android:id="@+id/total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_4sdp"
+                        android:fontFamily="@font/m_light"
+                        android:padding="@dimen/_5sdp"
+                        android:text="1400"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -388,7 +414,6 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             </androidx.core.widget.NestedScrollView>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>

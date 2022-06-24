@@ -21,7 +21,9 @@ import androidx.navigation.Navigation;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.adapter.CalendarAdapter;
 import com.bdappmaniac.bdapp.adapter.EmpHolidayAdapter;
-import com.bdappmaniac.bdapp.databinding.CheckinOutDialogBinding;
+
+import com.bdappmaniac.bdapp.databinding.DialogCheckinBinding;
+import com.bdappmaniac.bdapp.databinding.DialogCheckoutBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentHomeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.ProgressBarAnimation;
@@ -77,10 +79,21 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
 //            binding.checkInTime.setText(SharedPref.getStringValue(CURRENT_TIME));
         }
 
+        binding.userProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.profileFragment);
+            }
+        });
         binding.imgcheckinbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CheckInOutDialog();
+                if (binding.checkintxt.getText().equals("CHECK IN")) {
+                    CheckInDialog();
+                } else if (binding.checkintxt.getText().equals("CHECK OUT")) {
+                    CheckOutDialog();
+
+                }
             }
         });
         binding.checkInOut.setOnClickListener(new View.OnClickListener() {
@@ -181,13 +194,11 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
 //        setUpCalendar();
         return binding.getRoot();
     }
-
-
-    public void CheckInOutDialog() {
-        CheckinOutDialogBinding checkInOutDialog = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.checkin_out_dialog, null, false);
+    public void CheckInDialog() {
+      DialogCheckinBinding checkInDialog = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.dialog_checkin, null, false);
         Dialog dialog = new Dialog(mContext);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(checkInOutDialog.getRoot());
+        dialog.setContentView(checkInDialog.getRoot());
         dialog.setCanceledOnTouchOutside(true);
         dialog.setCancelable(true);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -195,7 +206,7 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
 
-        checkInOutDialog.checkinBTN.setOnClickListener(new View.OnClickListener() {
+        checkInDialog.checkinBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (binding.checkintxt.getText().equals("CHECK IN")) {
@@ -210,7 +221,41 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
             }
         });
 
-        checkInOutDialog.dismise.setOnClickListener(new View.OnClickListener() {
+        checkInDialog.dismise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    public void CheckOutDialog() {
+        DialogCheckoutBinding checkOutDialog = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.dialog_checkout, null, false);
+        Dialog dialog = new Dialog(mContext);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(checkOutDialog.getRoot());
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCancelable(true);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setGravity(Gravity.CENTER);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.show();
+        checkOutDialog.checkinBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (binding.checkintxt.getText().equals("CHECK IN")) {
+                    binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gradient_in);
+                    binding.checkintxt.setText("CHECK OUT");
+                    dialog.dismiss();
+                } else if (binding.checkintxt.getText().equals("CHECK OUT")) {
+                    binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_out);
+                    binding.checkintxt.setText("CHECK IN");
+                    dialog.dismiss();
+                }
+            }
+        });
+
+        checkOutDialog.dismise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
