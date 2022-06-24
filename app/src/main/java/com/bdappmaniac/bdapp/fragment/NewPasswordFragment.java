@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
@@ -36,17 +37,12 @@ public class NewPasswordFragment extends BaseFragment {
     String email;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_new_password, container, false);
         if (getArguments() != null) {
             email = this.getArguments().getString(EMAIL, "");
         }
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.logInFragment);
-            }
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.logInFragment));
         binding.newPasswordTxt.addTextChangedListener(new TextChange(binding.newPasswordTxt));
         binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
         binding.confirmBtn.setOnClickListener(view -> {

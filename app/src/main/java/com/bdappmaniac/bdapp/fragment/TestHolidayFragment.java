@@ -1,5 +1,6 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
@@ -10,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.DatePicker;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
@@ -54,21 +55,11 @@ public class TestHolidayFragment extends BaseFragment {
     private int TYear, TMonth, TDay;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_test_holiday, container, false);
         monthAdapter = new EmployeeHolidayAdapter(mContext, list);
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).popBackStack();
-            }
-        });
-        binding.addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addHolidayDialogBox();
-            }
-        });
+        binding.backBtn.setOnClickListener(view -> Navigation.findNavController(view).popBackStack());
+        binding.addBtn.setOnClickListener(view -> addHolidayDialogBox());
 
         ArrayList<ModelHolidayItems> itemsArrayList = new ArrayList<>();
         itemsArrayList.add(new ModelHolidayItems("January"));
@@ -101,53 +92,38 @@ public class TestHolidayFragment extends BaseFragment {
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
-        adminAddholidayDialogboxBinding.dateTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                TYear = c.get(Calendar.YEAR);
-                TMonth = c.get(Calendar.MONTH);
-                TDay = c.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.DatePicker,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year,
-                                                  int monthOfYear, int dayOfMonth) {
-                                adminAddholidayDialogboxBinding.dateTxt.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                                dates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-                                monthName = DateUtils.getMonthNames(monthOfYear);
+        adminAddholidayDialogboxBinding.dateTxt.setOnClickListener(view -> {
+            final Calendar c = Calendar.getInstance();
+            TYear = c.get(Calendar.YEAR);
+            TMonth = c.get(Calendar.MONTH);
+            TDay = c.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.DatePicker,
+                    (view1, year, monthOfYear, dayOfMonth) -> {
+                        adminAddholidayDialogboxBinding.dateTxt.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                        dates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                        monthName = DateUtils.getMonthNames(monthOfYear);
 //                                binding.dateTxt.setText(new StringBuilder().append(TDay).append("-")
 //                                        .append((TMonth + 1)).append("-").append(year)
 //                                        .append(" "));
-                            }
-                        }, TYear, TMonth, TDay);
-                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-                datePickerDialog.getWindow().setGravity(Gravity.CENTER);
-                datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                datePickerDialog.show();
-            }
+                    }, TYear, TMonth, TDay);
+            datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            datePickerDialog.getWindow().setGravity(Gravity.CENTER);
+            datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
+            datePickerDialog.show();
         });
-        adminAddholidayDialogboxBinding.submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = adminAddholidayDialogboxBinding.reasonTxt.getText().toString();
-                String date = dates;
-                if (adminAddholidayDialogboxBinding.dateTxt.getText().toString().isEmpty()) {
-                    showSnackBar(binding.getRoot(), "Field cannot stay empty");
-                } else if (adminAddholidayDialogboxBinding.reasonTxt.getText().toString().isEmpty()) {
-                    showSnackBar(binding.getRoot(), "Field cannot stay empty");
-                } else {
-                    addHolidaysApi(name, date);
-                    dialog.dismiss();
-                }
-            }
-        });
-        adminAddholidayDialogboxBinding.cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        adminAddholidayDialogboxBinding.submitBtn.setOnClickListener(view -> {
+            String name = adminAddholidayDialogboxBinding.reasonTxt.getText().toString();
+            String date = dates;
+            if (adminAddholidayDialogboxBinding.dateTxt.getText().toString().isEmpty()) {
+                showSnackBar(binding.getRoot(), "Field cannot stay empty");
+            } else if (adminAddholidayDialogboxBinding.reasonTxt.getText().toString().isEmpty()) {
+                showSnackBar(binding.getRoot(), "Field cannot stay empty");
+            } else {
+                addHolidaysApi(name, date);
                 dialog.dismiss();
             }
         });
+        adminAddholidayDialogboxBinding.cancelBtn.setOnClickListener(view -> dialog.dismiss());
     }
 
     private void addHolidaysApi(String name, String date) {
@@ -171,6 +147,7 @@ public class TestHolidayFragment extends BaseFragment {
         });
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void holidaysOfCurrentYearApi() {
         AppLoader.showLoaderDialog(mContext);
         MainService.holidaysOfCurrentYear(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
@@ -195,7 +172,8 @@ public class TestHolidayFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.white);
         holidaysOfCurrentYearApi();
+        AppLoader.hideLoaderDialog();
     }
 }

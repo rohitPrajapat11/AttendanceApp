@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
@@ -21,50 +22,33 @@ public class ServiceInfoFragment extends BaseFragment {
 //    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_service_info, container, false);
             if (getArguments() != null) {
                 ID = getArguments().getInt("id");
             }
-            binding.backBtn.setOnClickListener(v -> {
-                Navigation.findNavController(v).navigateUp();
-            });
-            binding.salaryBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Navigation.findNavController(view).navigate(R.id.salaryFragment);
-                }
-            });
+            binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
+            binding.salaryBtn.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.salaryFragment));
             binding.attendanceLoanBtn.setOnClickListener(v -> {
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", ID);
                 Navigation.findNavController(v).navigate(R.id.employeeAttendanceFragment, bundle);
             });
-            binding.provideLoanBtn.setOnClickListener(v -> {
-                Navigation.findNavController(v).navigate(R.id.provideLoanFragment);
-            });
-            binding.tmcBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("id", ID);
-                    Navigation.findNavController(v).navigate(R.id.employeeTermsAndConditionFragment, bundle);
-                }
+            binding.provideLoanBtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.provideLoanFragment));
+            binding.tmcBtn.setOnClickListener(v -> {
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", ID);
+                Navigation.findNavController(v).navigate(R.id.employeeTermsAndConditionFragment, bundle);
             });
         }
-        binding.leavesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.employeeLeaveApprovalFragment);
-            }
-        });
+        binding.leavesBtn.setOnClickListener(v -> Navigation.findNavController(v).navigate(R.id.employeeLeaveApprovalFragment));
         return binding.getRoot();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.white);
     }
 }

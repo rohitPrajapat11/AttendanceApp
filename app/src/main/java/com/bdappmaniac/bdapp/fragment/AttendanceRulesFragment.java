@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
@@ -27,15 +28,12 @@ import okhttp3.RequestBody;
 
 public class AttendanceRulesFragment extends BaseFragment {
     FragmentAttendanceRulesBinding binding;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_attendance_rules, container, false);
-        binding.cancelBtn.setOnClickListener(v -> {
-            editCondition(false);
-        });
-        binding.editBtn.setOnClickListener(v -> {
-            editCondition(true);
-        });
+        binding.cancelBtn.setOnClickListener(v -> editCondition(false));
+        binding.editBtn.setOnClickListener(v -> editCondition(true));
         binding.saveBtn.setOnClickListener(v -> {
             if (StringHelper.isEmpty(binding.rulesTxt.getText().toString())) {
                 showSnackBar(v, mContext.getString(R.string.write_term_and_conditions));
@@ -50,9 +48,7 @@ public class AttendanceRulesFragment extends BaseFragment {
                 addDailyRulesApi(setCondition);
             }
         });
-        binding.backBtn.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigateUp();
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
         return binding.getRoot();
     }
 
@@ -104,7 +100,7 @@ public class AttendanceRulesFragment extends BaseFragment {
                 if ((apiResponse.getData() != null)) {
                     binding.rulesLb.setText(binding.rulesTxt.getText().toString());
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -114,7 +110,7 @@ public class AttendanceRulesFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.white);
         try {
             allDailyRulesApi();
         } catch (UnsupportedEncodingException e) {

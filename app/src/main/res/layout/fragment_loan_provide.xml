@@ -24,6 +24,7 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
+                android:contentDescription="@string/backbtn"
                 android:src="@drawable/icn_back_arrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -34,12 +35,12 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTint="@color/prime"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center"
-                android:text="Advance Payment"
+                android:text="@string/advance_payment"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_15ssp"
+                app:drawableTint="@color/prime"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_20sdp"
                         android:fontFamily="@font/m_semibold"
-                        android:text="Name"
+                        android:text="@string/name"
                         android:textColor="@color/_A8A8A8"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +101,7 @@
                         android:elevation="5dp"
                         android:fontFamily="@font/m_medium"
                         android:gravity="center_vertical"
-                        android:hint="Enter Name"
+                        android:hint="@string/enter_name"
                         android:importantForAutofill="no"
                         android:paddingLeft="@dimen/_10sdp"
                         android:paddingRight="@dimen/_10sdp"
@@ -110,8 +111,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/nameLb"
                         app:layout_constraintTop_toBottomOf="@+id/nameLb"
-                        tools:ignore="TextFields"
-                        tools:targetApi="m" />
+                        tools:ignore="TextFields" />
 
                     <TextView
                         android:id="@+id/emailLb"
@@ -139,7 +139,7 @@
                         android:elevation="5dp"
                         android:fontFamily="@font/m_medium"
                         android:gravity="center_vertical"
-                        android:hint="Enter Email"
+                        android:hint="@string/enter_email"
                         android:importantForAutofill="no"
                         android:inputType="textNoSuggestions"
                         android:paddingLeft="@dimen/_10sdp"
@@ -150,14 +150,14 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/emailLb"
                         app:layout_constraintTop_toBottomOf="@+id/emailLb"
-                        tools:ignore="TextFields"
-                        tools:targetApi="m" />
+                        tools:ignore="TextFields" />
 
                     <ImageView
                         android:id="@+id/emailValidation"
                         android:layout_width="@dimen/_16sdp"
                         android:layout_height="@dimen/_16sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
+                        android:contentDescription="@string/validation"
                         android:src="@drawable/icn_email_validation"
                         app:layout_constraintBottom_toBottomOf="@+id/emailTxt"
                         app:layout_constraintEnd_toEndOf="@+id/emailTxt"
@@ -171,7 +171,7 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/m_semibold"
-                        android:text="Loan Amount"
+                        android:text="@string/loan_amount"
                         android:textColor="@color/_A8A8A8"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -189,7 +189,7 @@
                         android:drawableTint="@color/prime"
                         android:elevation="5dp"
                         android:fontFamily="@font/m_medium"
-                        android:hint="Loan Amount"
+                        android:hint="@string/loan_amount"
                         android:importantForAutofill="no"
                         android:inputType="number"
                         android:paddingLeft="@dimen/_10sdp"
@@ -200,8 +200,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/loanAmountLb"
                         app:layout_constraintTop_toBottomOf="@+id/loanAmountLb"
-                        tools:ignore="TextFields"
-                        tools:targetApi="m" />
+                        tools:ignore="TextFields" />
 
                     <TextView
                         android:id="@+id/loanInstalmentLb"
@@ -210,7 +209,7 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/m_semibold"
-                        android:text="Loan Instalment"
+                        android:text="@string/loan_instalment"
                         android:textColor="@color/_A8A8A8"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -228,7 +227,7 @@
                         android:drawableTint="@color/prime"
                         android:elevation="5dp"
                         android:fontFamily="@font/m_medium"
-                        android:hint="Loan Installment"
+                        android:hint="@string/loan_installment"
                         android:importantForAutofill="no"
                         android:inputType="number"
                         android:paddingLeft="@dimen/_10sdp"
@@ -239,8 +238,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/loanInstalmentLb"
                         app:layout_constraintTop_toBottomOf="@+id/loanInstalmentLb"
-                        tools:ignore="TextFields"
-                        tools:targetApi="m" />
+                        tools:ignore="TextFields" />
 
                     <TextView
                         android:id="@+id/loanIssueDateLb"
@@ -249,7 +247,7 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/m_semibold"
-                        android:text="Loan Issue Date"
+                        android:text="@string/loan_issue_date"
                         android:textColor="@color/_A8A8A8"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -262,13 +260,11 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:layout_marginEnd="@dimen/_25sdp"
                         android:background="@drawable/edit_text_bg"
-                        android:drawableStart="@drawable/icn_calendar_l"
                         android:drawablePadding="@dimen/_10sdp"
-                        android:drawableTint="@color/prime"
                         android:elevation="5dp"
                         android:fontFamily="@font/m_medium"
                         android:gravity="center_vertical"
-                        android:hint="Date"
+                        android:hint="@string/date"
                         android:importantForAutofill="no"
                         android:maxLength="10"
                         android:paddingLeft="@dimen/_10sdp"
@@ -276,11 +272,12 @@
                         android:textAllCaps="true"
                         android:textColor="@color/prime"
                         android:textSize="@dimen/_10ssp"
+                        app:drawableStartCompat="@drawable/icn_calendar_l"
+                        app:drawableTint="@color/prime"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/loanInstalmentLb"
                         app:layout_constraintTop_toBottomOf="@+id/loanIssueDateLb"
-                        tools:ignore="TextFields"
-                        tools:targetApi="m" />
+                        tools:ignore="TextFields" />
 
 
                     <TextView
@@ -290,12 +287,11 @@
                         android:layout_marginStart="@dimen/_20sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/m_semibold"
-                        android:text="Reason"
+                        android:text="@string/reason"
                         android:textColor="@color/_A8A8A8"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/loanIssueDate" />
-
 
                     <EditText
                         android:id="@+id/loanReasonTxt"
@@ -309,7 +305,7 @@
                         android:drawableTint="@color/prime"
                         android:elevation="5dp"
                         android:fontFamily="@font/m_medium"
-                        android:hint="Write reason for taking loan"
+                        android:hint="@string/write_reason_for_taking_loan"
                         android:importantForAutofill="no"
                         android:inputType="textMultiLine"
                         android:maxLength="10"
@@ -321,20 +317,19 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/loanReasonLb"
                         app:layout_constraintTop_toBottomOf="@+id/loanReasonLb"
-                        tools:ignore="TextFields"
-                        tools:targetApi="m" />
+                        tools:ignore="TextFields" />
 
                     <Button
                         android:id="@+id/submitBtn"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_36sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
                         android:background="@drawable/light_green_15r_bg"
                         android:fontFamily="@font/m_medium"
-                        android:text="Provide Advance Payment"
+                        android:text="@string/provide_advance_payment"
                         android:textAllCaps="false"
                         android:textColor="@color/white"
-                        android:layout_marginTop="@dimen/_20sdp"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintEnd_toEndOf="@+id/loanReasonTxt"
                         app:layout_constraintStart_toStartOf="@+id/loanReasonTxt"

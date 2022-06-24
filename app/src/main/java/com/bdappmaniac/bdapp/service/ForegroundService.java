@@ -1,31 +1,20 @@
 package com.bdappmaniac.bdapp.service;
 
-import static android.service.notification.Condition.SCHEME;
-
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
-import android.provider.Settings;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.HomeActivity;
-import com.bdappmaniac.bdapp.helper.TextToBitmap;
 
 public class ForegroundService extends Service {
     public static final String CHANNEL_ID = "ForegroundServiceChannel";

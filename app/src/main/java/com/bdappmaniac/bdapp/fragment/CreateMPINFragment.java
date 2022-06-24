@@ -12,13 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.FragmentCreateMPINBinding;
-import com.bdappmaniac.bdapp.fragment.BaseFragment;
+
+import java.util.Objects;
 
 public class CreateMPINFragment extends BaseFragment implements View.OnClickListener {
     FragmentCreateMPINBinding binding;
@@ -37,24 +39,16 @@ public class CreateMPINFragment extends BaseFragment implements View.OnClickList
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_m_p_i_n, container, false);
-        binding.forwardTXT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle createPin = new Bundle();
-                createPin.putString(PIN_KEY, binding.pinView.getText().toString());
-                if (checkValidation()) {
-                    Navigation.findNavController(binding.getRoot()).navigate(R.id.confirmMPINFragment, createPin);
-                }
+        binding.forwardTXT.setOnClickListener(v -> {
+            Bundle createPin = new Bundle();
+            createPin.putString(PIN_KEY, Objects.requireNonNull(binding.pinView.getText()).toString());
+            if (checkValidation()) {
+                Navigation.findNavController(binding.getRoot()).navigate(R.id.confirmMPINFragment, createPin);
             }
         });
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(binding.getRoot()).popBackStack();
-            }
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(binding.getRoot()).popBackStack());
         if (getArguments() != null) {
             mobile = getArguments().getString(MOBILE);
         }

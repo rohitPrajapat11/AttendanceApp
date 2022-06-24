@@ -1,5 +1,6 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
@@ -40,25 +42,15 @@ public class DesignationFragment extends BaseFragment {
     List<DesignationItem> list = new ArrayList<>();
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_designation, container, false);
         binding.recycleView.setHasFixedSize(false);
         binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new DesignationAdapter(mContext, list);
         binding.recycleView.setAdapter(adapter);
 
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(binding.getRoot()).popBackStack();
-            }
-        });
-        binding.addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addDesignationDialogBox();
-            }
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(binding.getRoot()).popBackStack());
+        binding.addBtn.setOnClickListener(view -> addDesignationDialogBox());
         return binding.getRoot();
     }
 
@@ -73,24 +65,16 @@ public class DesignationFragment extends BaseFragment {
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
-        abinding.addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = abinding.desigTxt.getText().toString();
-                if (abinding.desigTxt.getText().toString().isEmpty()) {
-                    showSnackBar(binding.getRoot(), "The field is empty");
-                } else {
-                    addDesignationApi(name);
-                    dialog.dismiss();
-                }
-            }
-        });
-        abinding.cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        abinding.addBtn.setOnClickListener(view -> {
+            String name = abinding.desigTxt.getText().toString();
+            if (abinding.desigTxt.getText().toString().isEmpty()) {
+                showSnackBar(binding.getRoot(), "The field is empty");
+            } else {
+                addDesignationApi(name);
                 dialog.dismiss();
             }
         });
+        abinding.cancelBtn.setOnClickListener(view -> dialog.dismiss());
     }
 
     public void addDesignationApi(String name) {
@@ -112,6 +96,7 @@ public class DesignationFragment extends BaseFragment {
         });
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void allDesignationApi() {
         AppLoader.showLoaderDialog(mContext);
         MainService.allDesignation(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
@@ -136,8 +121,8 @@ public class DesignationFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        if(list.isEmpty()) {
-            StatusBarUtils.statusBarColor(getActivity(), R.color.white);
+        if (list.isEmpty()) {
+            StatusBarUtils.statusBarColor(requireActivity(), R.color.white);
             allDesignationApi();
         }
     }

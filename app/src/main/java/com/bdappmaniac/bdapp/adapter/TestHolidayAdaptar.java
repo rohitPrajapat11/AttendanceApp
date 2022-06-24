@@ -17,7 +17,7 @@ import com.bdappmaniac.bdapp.model.ModelHolidayItems;
 import java.util.ArrayList;
 
 public class TestHolidayAdaptar extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<ModelHolidayItems> months = new ArrayList<>();
+    ArrayList<ModelHolidayItems> months;
     Context context;
 
     public TestHolidayAdaptar(ArrayList<ModelHolidayItems> months, Context context) {

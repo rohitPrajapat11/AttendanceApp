@@ -1,11 +1,12 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
@@ -35,22 +36,15 @@ public class EmployeeDetailsFragment extends BaseFragment {
     ViewPagerAdapter viewPagerAdapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_details, container, false);
             if (getArguments() != null) {
                 ID = getArguments().getInt("id");
             }
             employeeDetails(ID);
-            binding.backBtn.setOnClickListener(v -> {
-                Navigation.findNavController(v).navigateUp();
-            });
-            binding.serviceInfoBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Navigation.findNavController(view).navigate(R.id.serviceInfoFragment);
-                }
-            });
+            binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
+            binding.serviceInfoBtn.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.serviceInfoFragment));
             Bundle bundle = new Bundle();
             bundle.putInt("id", ID);
 //            viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
@@ -79,6 +73,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
             AppLoader.hideLoaderDialog();
         });
     }
+    @SuppressLint("SetTextI18n")
     public void setUserData(EmployeeByIdResponse employeeByIdResponse) {
         binding.nameTxt.setText(employeeByIdResponse.getEmployeeName());
         Glide.with(mContext)
@@ -104,18 +99,15 @@ public class EmployeeDetailsFragment extends BaseFragment {
         } else {
             binding.dobTxt.setText(DateUtils.getFormattedTime(String.valueOf(employeeByIdResponse.getDob()), DateUtils.appDateFormat, DateUtils.appDateFormatTo));
         }
-        binding.switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    binding.switch1.setChecked(true);
-                    binding.statusTxt.setText("Active");
-                    updateEmployeeStatus("active");
-                } else {
-                    binding.switch1.setChecked(false);
-                    binding.statusTxt.setText("Inactive");
-                    updateEmployeeStatus("inactive");
-                }
+        binding.switch1.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                binding.switch1.setChecked(true);
+                binding.statusTxt.setText("Active");
+                updateEmployeeStatus("active");
+            } else {
+                binding.switch1.setChecked(false);
+                binding.statusTxt.setText("Inactive");
+                updateEmployeeStatus("inactive");
             }
         });
         binding.emailTxt.setText(employeeByIdResponse.getEmail());
@@ -155,6 +147,6 @@ public class EmployeeDetailsFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.prime);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.prime);
     }
 }

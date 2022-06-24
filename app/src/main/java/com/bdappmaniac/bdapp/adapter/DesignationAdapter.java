@@ -6,7 +6,6 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
@@ -25,7 +24,6 @@ import com.bdappmaniac.bdapp.databinding.HolidayBottomSheetDialogBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +33,7 @@ import okhttp3.RequestBody;
 
 public class DesignationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    List<DesignationItem> list = new ArrayList<>();
+    List<DesignationItem> list;
 
     public DesignationAdapter(Context context, List<DesignationItem> list) {
         this.context = context;
@@ -68,34 +66,28 @@ public class DesignationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         DesignationAdapter.DesignationHolder vHolder = (DesignationAdapter.DesignationHolder) holder;
         vHolder.binding.deseTxt.setText(list.get(position).getName());
         vHolder.binding.index.setText(String.valueOf(position + 1));
-        vHolder.binding.item.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                String name = vHolder.binding.deseTxt.getText().toString();
-                HolidayBottomSheetDialogBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.holiday_bottom_sheet_dialog, null, false);
-                Dialog dialog = new Dialog(context);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(binding.getRoot());
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setGravity(Gravity.BOTTOM);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                dialog.show();
-                binding.deleteBtn.setOnClickListener(view13 -> {
-                    vHolder.removeDesignationApi(list.get(position).getId());
-                    dialog.dismiss();
-                });
-                binding.editBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        vHolder.updateDesignationDialogBox(name);
-                        dialog.dismiss();
-                    }
-                });
-                binding.cancel.setOnClickListener(view1 -> dialog.dismiss());
-                return false;
-            }
+        vHolder.binding.item.setOnLongClickListener(view -> {
+            String name = vHolder.binding.deseTxt.getText().toString();
+            HolidayBottomSheetDialogBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.holiday_bottom_sheet_dialog, null, false);
+            Dialog dialog = new Dialog(context);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(binding.getRoot());
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setGravity(Gravity.BOTTOM);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            dialog.show();
+            binding.deleteBtn.setOnClickListener(view13 -> {
+                vHolder.removeDesignationApi(list.get(position).getId());
+                dialog.dismiss();
+            });
+            binding.editBtn.setOnClickListener(view12 -> {
+                vHolder.updateDesignationDialogBox(name);
+                dialog.dismiss();
+            });
+            binding.cancel.setOnClickListener(view1 -> dialog.dismiss());
+            return false;
         });
     }
 
@@ -124,6 +116,7 @@ public class DesignationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             binding = itemView;
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         public void updateDesignationApi(int id, String name) {
             AppLoader.showLoaderDialog(context);
             Map<String, RequestBody> map = new HashMap<>();
@@ -156,17 +149,15 @@ public class DesignationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
             binding.desigTxt.setText(name);
             dialog.show();
-            binding.updateBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String name1 = binding.desigTxt.getText().toString();
-                    updateDesignationApi(list.get(getAdapterPosition()).getId(), name1);
-                    dialog.dismiss();
-                }
+            binding.updateBtn.setOnClickListener(view -> {
+                String name1 = binding.desigTxt.getText().toString();
+                updateDesignationApi(list.get(getAdapterPosition()).getId(), name1);
+                dialog.dismiss();
             });
             binding.cancelBtn.setOnClickListener(view -> dialog.dismiss());
         }
 
+        @SuppressLint("NotifyDataSetChanged")
         public void removeDesignationApi(int id) {
             AppLoader.showLoaderDialog(context);
             MainService.removeDesignation(context, ((BaseActivity) context).getToken(), id).observe((LifecycleOwner) context, apiResponse -> {

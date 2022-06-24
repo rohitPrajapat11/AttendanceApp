@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
@@ -29,15 +30,11 @@ public class AdminTermAndCondition extends BaseFragment {
     FragmentAdminTermAndConditionBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_term_and_condition, container, false);
         String content = binding.conditionsLb.getText().toString();
-        binding.cancelBtn.setOnClickListener(v -> {
-            editCondition(false);
-        });
-        binding.editBtn.setOnClickListener(v -> {
-            editCondition(true);
-        });
+        binding.cancelBtn.setOnClickListener(v -> editCondition(false));
+        binding.editBtn.setOnClickListener(v -> editCondition(true));
         binding.saveBtn.setOnClickListener(v -> {
             if (StringHelper.isEmpty(binding.conditionsTxt.getText().toString())) {
                 showSnackBar(v, mContext.getString(R.string.write_term_and_conditions));
@@ -52,9 +49,7 @@ public class AdminTermAndCondition extends BaseFragment {
                 addTermsAndConditionsApi(setCondition);
             }
         });
-        binding.backBtn.setOnClickListener(v -> {
-            Navigation.findNavController(v).navigateUp();
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
         return binding.getRoot();
     }
 
@@ -88,7 +83,7 @@ public class AdminTermAndCondition extends BaseFragment {
                     binding.conditionsLb.setText(getCondition);
                     binding.conditionsTxt.setText(getCondition);
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -106,7 +101,7 @@ public class AdminTermAndCondition extends BaseFragment {
                 if ((apiResponse.getData() != null)) {
                     binding.conditionsLb.setText(binding.conditionsTxt.getText().toString());
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(),apiResponse.getMessage());
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -116,7 +111,7 @@ public class AdminTermAndCondition extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.white);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.white);
         try {
             allTermsAndConditionsApi();
         } catch (UnsupportedEncodingException e) {

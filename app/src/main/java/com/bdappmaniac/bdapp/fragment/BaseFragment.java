@@ -1,22 +1,16 @@
 package com.bdappmaniac.bdapp.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.service.ForegroundService;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StringHelper;
 import com.google.android.material.snackbar.Snackbar;
@@ -27,19 +21,23 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 public class BaseFragment extends Fragment {
-   public Context mContext;
+    public Context mContext;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        mContext=context;
+        mContext = context;
     }
+
     public void showSnackBar(View view, String msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show();
     }
+
     public void showToast(String msg) {
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }
-    public void openLinkWithColor(String str, TextView text , String color) {
+
+    public void openLinkWithColor(String str, TextView text, String color) {
         Link link = new Link(str)
                 .setTextColor(Color.parseColor(color))
                 .setHighlightAlpha(.4f);
@@ -48,10 +46,9 @@ public class BaseFragment extends Fragment {
                 .build();
     }
 
-    public String getToken()
-    {
+    public String getToken() {
         SharedPref.init(mContext);
-        String getToken = "Bearer "+SharedPref.getUserDetails().getAccessToken();
+        String getToken = "Bearer " + SharedPref.getUserDetails().getAccessToken();
         return getToken;
     }
 
@@ -63,11 +60,10 @@ public class BaseFragment extends Fragment {
         return requestBody;
     }
 
-    public void takeMeHome()
-    {
+    public void takeMeHome() {
         Navigation.findNavController(getView()).navigate(R.id.homeFragment);
-
     }
+
     public RequestBody toRequestBodyPart(String value) {
         return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
     }

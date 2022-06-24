@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.appcompat.graphics.drawable.DrawerArrowDrawable;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
@@ -133,5 +132,6 @@ public class EmployeeHolidayFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         holidaysOfCurrentYearApi();
+        AppLoader.hideLoaderDialog();
     }
 }

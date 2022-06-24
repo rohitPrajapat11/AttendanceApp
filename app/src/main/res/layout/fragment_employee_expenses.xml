@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:text="Employee Expenses"
+                android:text="@string/employee_expenses"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -63,19 +64,23 @@
                 android:background="@color/white"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:hint="Search Name.."
+                android:hint="@string/search_name"
+                android:inputType="text"
                 android:paddingStart="@dimen/_15sdp"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/search"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry"
+                android:importantForAutofill="no" />
 
             <ImageView
                 android:id="@+id/search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10sdp"
+                android:contentDescription="@string/search"
                 android:src="@drawable/icn_filter"
                 app:layout_constraintBottom_toBottomOf="@+id/searchBtn"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -101,12 +106,13 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="Chetan"
+                android:text="@string/chetan"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toStartOf="@+id/empNameTxt"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/empNameTxt"
@@ -114,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:text="100"
+                android:text="@string/_100"
                 android:textColor="@color/_A8A8A8"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/empNameLb"
@@ -131,7 +137,6 @@
             android:elevation="3dp"
             android:padding="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item">
 
@@ -141,12 +146,13 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="Vikas"
+                android:text="@string/vikas"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toStartOf="@+id/empNameTxt2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/empNameTxt2"
@@ -154,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:text=" 700"
+                android:text="@string/_700"
                 android:textColor="@color/_A8A8A8"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/empNameLb2"
@@ -171,7 +177,6 @@
             android:elevation="3dp"
             android:padding="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.461"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/item2">
 
@@ -181,12 +186,13 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="Rohit"
+                android:text="@string/rohit"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toStartOf="@+id/empNameTxt3"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/empNameTxt3"
@@ -194,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:text="190"
+                android:text="@string/_190"
                 android:textColor="@color/_A8A8A8"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintBottom_toBottomOf="@+id/empNameLb3"

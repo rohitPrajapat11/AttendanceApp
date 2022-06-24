@@ -26,10 +26,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
@@ -76,7 +76,7 @@ public class AdminProfile extends BaseFragment {
     private int mYear, mMonth, mDay, mHour, mMinute;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_profile, container, false);
         SharedPref.init(mContext);
         setResponseData(SharedPref.getUserDetails());
@@ -90,40 +90,25 @@ public class AdminProfile extends BaseFragment {
         binding.gstidTxt.addTextChangedListener(new TextChange(binding.gstidTxt));
         binding.otherNumTxt.addTextChangedListener(new TextChange(binding.otherNumTxt));
 
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(binding.getRoot()).popBackStack();
-            }
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(binding.getRoot()).popBackStack());
         binding.dobTxt.setOnClickListener(view -> {
-            // Get Current Date
             final Calendar c = Calendar.getInstance();
             mYear = c.get(Calendar.YEAR);
             mMonth = c.get(Calendar.MONTH);
             mDay = c.get(Calendar.DAY_OF_MONTH);
             DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
-                    new DatePickerDialog.OnDateSetListener() {
-                        @Override
-                        public void onDateSet(DatePicker view, int year,
-                                              int monthOfYear, int dayOfMonth) {
-                            String d = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-                            updateDobDate = d;
-                            binding.dobTxt.setText(DateUtils.getFormattedTime(d, DateUtils.appDateFormat, DateUtils.appDateFormatTos));
+                    (view1, year, monthOfYear, dayOfMonth) -> {
+                        String d = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                        updateDobDate = d;
+                        binding.dobTxt.setText(DateUtils.getFormattedTime(d, DateUtils.appDateFormat, DateUtils.appDateFormatTos));
 
-                        }
                     }, mYear, mMonth, mDay);
             datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
             datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
             datePickerDialog.getWindow().setGravity(Gravity.CENTER);
             datePickerDialog.show();
         });
-        binding.editBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onEditChange(true);
-            }
-        });
+        binding.editBtn.setOnClickListener(v -> onEditChange(true));
         binding.saveBtn.setOnClickListener(view -> {
             if (checkValidation()) {
                 if (imgPath != null) {
@@ -147,68 +132,48 @@ public class AdminProfile extends BaseFragment {
                 onEditChange(false);
             }
         });
-        binding.cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onEditChange(false);
-            }
-        });
-        binding.designationTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog dialog = new Dialog(mContext);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setCancelable(false);
-                dialog.setCanceledOnTouchOutside(true);
-                dialog.setContentView(R.layout.admin_designation_dialogbox);
-                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                dialog.getWindow().setGravity(Gravity.CENTER);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-                TextView adminTxt = dialog.findViewById(R.id.adminTxt);
-                TextView admTxt = dialog.findViewById(R.id.adminText);
-                String getAdmin = adminTxt.getText().toString();
-                String getAdm = admTxt.getText().toString();
+        binding.cancelBtn.setOnClickListener(v -> onEditChange(false));
+        binding.designationTxt.setOnClickListener(v -> {
+            Dialog dialog = new Dialog(mContext);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.setContentView(R.layout.admin_designation_dialogbox);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().setGravity(Gravity.CENTER);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            TextView adminTxt = dialog.findViewById(R.id.adminTxt);
+            TextView admTxt = dialog.findViewById(R.id.adminText);
+            String getAdmin = adminTxt.getText().toString();
+            String getAdm = admTxt.getText().toString();
 
-                adminTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getAdmin;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-                admTxt.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String s = getAdm;
-                        binding.designationTxt.setText(s);
-                        dialog.dismiss();
-                    }
-                });
-                dialog.show();
-            }
+            adminTxt.setOnClickListener(v1 -> {
+                String s = getAdmin;
+                binding.designationTxt.setText(s);
+                dialog.dismiss();
+            });
+            admTxt.setOnClickListener(v12 -> {
+                String s = getAdm;
+                binding.designationTxt.setText(s);
+                dialog.dismiss();
+            });
+            dialog.show();
         });
-        binding.incDateTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                mYear = c.get(Calendar.YEAR);
-                mMonth = c.get(Calendar.MONTH);
-                mDay = c.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                String d = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
-                                updateInCorpDate = d;
-                                binding.incDateTxt.setText(DateUtils.getFormattedTime(d, DateUtils.appDateFormat, DateUtils.appDateFormatTos));
-                            }
-                        }, mYear, mMonth, mDay);
-                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-                datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
-                datePickerDialog.getWindow().setGravity(Gravity.CENTER);
-                datePickerDialog.show();
-            }
+        binding.incDateTxt.setOnClickListener(view -> {
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,
+                    (view12, year, monthOfYear, dayOfMonth) -> {
+                        String d = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                        updateInCorpDate = d;
+                        binding.incDateTxt.setText(DateUtils.getFormattedTime(d, DateUtils.appDateFormat, DateUtils.appDateFormatTos));
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+            datePickerDialog.getWindow().setGravity(Gravity.CENTER);
+            datePickerDialog.show();
         });
         binding.cameraBtn.setOnClickListener(view -> selectImage());
         return binding.getRoot();
@@ -445,13 +410,8 @@ public class AdminProfile extends BaseFragment {
     }
 
     private void setValidations() {
-        if (isAllFieldFillUp()) {
-            binding.saveBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.saveBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-        } else {
-            binding.saveBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
-            binding.saveBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-        }
+        binding.saveBtn.setBackgroundResource(R.drawable.light_green_15r_bg);
+        binding.saveBtn.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         isFieldFillUp();
     }
 
@@ -536,6 +496,11 @@ public class AdminProfile extends BaseFragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.prime);
+    }
 
     public class TextChange implements TextWatcher {
         View view;
@@ -557,11 +522,5 @@ public class AdminProfile extends BaseFragment {
         @Override
         public void afterTextChanged(Editable s) {
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.prime);
     }
 }

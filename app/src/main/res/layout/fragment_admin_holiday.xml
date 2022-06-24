@@ -16,7 +16,6 @@
             android:paddingTop="@dimen/_15sdp"
             android:paddingBottom="@dimen/_15sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -25,6 +24,7 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_20sdp"
+                android:contentDescription="@string/backBtn"
                 android:src="@drawable/icn_back_arrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -37,19 +37,20 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:text="Holidays"
+                android:text="@string/holidays"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/addBtn"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
+                android:contentDescription="@string/addbtn"
                 android:src="@drawable/ic_baseline_add_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -86,14 +87,15 @@
                     android:inputType="text"
                     android:padding="@dimen/_2sdp"
                     android:paddingStart="@dimen/_10sdp"
-                    android:text="Holidays"
-                    android:textColor="@color/_172B4D"
+                    android:text="@string/holidays"
+                    android:textColor="@color/prime"
                     android:textSize="@dimen/_15sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/date"
                     app:layout_constraintStart_toEndOf="@+id/date"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry,TextViewEdits" />
 
                 <TextView
                     android:id="@+id/date"
@@ -104,13 +106,14 @@
                     android:inputType="textMultiLine"
                     android:padding="@dimen/_2sdp"
                     android:paddingStart="@dimen/_10sdp"
-                    android:text="Date"
-                    android:textColor="@color/_172B4D"
+                    android:text="@string/date"
+                    android:textColor="@color/prime"
                     android:textSize="@dimen/_15sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/holidays"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry,TextViewEdits" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -128,7 +131,6 @@
                 app:spanCount="1"
                 tools:itemCount="7"
                 tools:listitem="@layout/employee_holiday_item" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

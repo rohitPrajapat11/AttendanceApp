@@ -19,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
-
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
@@ -32,7 +31,6 @@ import com.bdappmaniac.bdapp.databinding.ActivityHomeBinding;
 import com.bdappmaniac.bdapp.databinding.CustomInactiveDialogBinding;
 import com.bdappmaniac.bdapp.databinding.ExitDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.PresentAndAbsentDialogboxBinding;
-
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.ConnectivityReceiver;
 import com.bdappmaniac.bdapp.helper.TextToBitmap;
@@ -47,7 +45,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -63,7 +60,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         StatusBarUtils.statusBarColor(this, R.color.white);
-        updateProfile();
         ConnectivityReceiver.setConnectivityListener(new OnChangeConnectivityListener() {
             @Override
             public void onChanged(boolean status) {
@@ -79,6 +75,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         });
         navController = Navigation.findNavController(this, R.id.nav_controller);
         SharedPref.init(this);
+        updateProfile();
         employeeStatusByIdApi(SharedPref.getUserDetails().getId());
 //        Toast.makeText(this, SharedPref.getUserDetails().getAccessToken(), Toast.LENGTH_SHORT).show();
         String dates = DateUtils.getCurrentDate();
@@ -551,7 +548,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         startService();
     }
 
-
     void exitDialog() {
         ExitDialogboxBinding exitDialogboxBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.exit_dialogbox, null, false);
         Dialog dialog = new Dialog(this);
@@ -657,7 +653,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     public void updateProfile() {
-        if (SharedPref.getUserDetails().getProfile().isEmpty()) {
+        if (SharedPref.getUserDetails().getProfile() == null) {
             textProfile();
         } else {
             Glide.with(this).load(SharedPref.getUserDetails().getProfile()).placeholder(R.drawable.user).error(R.drawable.user).into(binding.navigationDrawer.userProfile);
@@ -711,8 +707,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 //            AppLoader.hideLoaderDialog();
 //        });
 //    }
-
-
     public void employeeStatusByIdApi(int id) {
         AppLoader.showLoaderDialog(this);
         MainService.employeeStatusById(this, getToken(), id).observe((LifecycleOwner) this, apiResponse -> {
@@ -751,6 +745,4 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             }
         });
     }
-
-
 }

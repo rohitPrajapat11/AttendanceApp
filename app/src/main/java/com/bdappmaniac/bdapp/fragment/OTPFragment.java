@@ -40,25 +40,17 @@ public class OTPFragment extends BaseFragment implements View.OnClickListener {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_o_t_p, container, false);
-        binding.forwardTXT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkValidation()) {
-                    startActivity(new Intent(mContext, HomeActivity.class));
-                    getActivity().finish();
-                } else {
+        binding.forwardTXT.setOnClickListener(v -> {
+            if (checkValidation()) {
+                startActivity(new Intent(mContext, HomeActivity.class));
+                getActivity().finish();
+            } else {
 
-                }
             }
         });
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(binding.getRoot()).popBackStack();
-            }
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(binding.getRoot()).popBackStack());
         if (getArguments() != null) {
             // From SignIn Otp Fragment For Forgot M-Pin
             mobile = getArguments().getString("mobile");
@@ -121,12 +113,7 @@ public class OTPFragment extends BaseFragment implements View.OnClickListener {
                 .setTitle(mContext.getString(R.string.biometric))
                 .setNegativeButtonText(mContext.getString(R.string.cancel))
                 .build();
-        binding.fingerPrintScanner.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                prompt.authenticate(info);
-            }
-        });
+        binding.fingerPrintScanner.setOnClickListener(v -> prompt.authenticate(info));
         return binding.getRoot();
     }
 

@@ -1,10 +1,12 @@
 package com.bdappmaniac.bdapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
@@ -32,44 +34,37 @@ public class TasksFragment extends BaseFragment {
     int selectedView = 0;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_des_list, container, false);
-            binding.backBtn.setOnClickListener(view -> {
-                Navigation.findNavController(view).navigateUp();
-            });
+            binding.backBtn.setOnClickListener(view -> Navigation.findNavController(view).navigateUp());
             adapter = new EmployeeDesListAdapter(employeeList, getContext(), selectedView);
             binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.recycleView.setAdapter(adapter);
-            binding.grid.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    binding.grid.setVisibility(View.GONE);
-                    binding.list.setVisibility(View.VISIBLE);
-                    if (selectedView == 0) {
-                        selectedView = 1;
-                        adapter = new EmployeeDesListAdapter(employeeList, getContext(), 1);
-                        binding.recycleView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-                        binding.recycleView.setAdapter(adapter);
-                    }
+            binding.grid.setOnClickListener(view -> {
+                binding.grid.setVisibility(View.GONE);
+                binding.list.setVisibility(View.VISIBLE);
+                if (selectedView == 0) {
+                    selectedView = 1;
+                    adapter = new EmployeeDesListAdapter(employeeList, getContext(), 1);
+                    binding.recycleView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                    binding.recycleView.setAdapter(adapter);
                 }
             });
 
-            binding.list.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    binding.grid.setVisibility(View.VISIBLE);
-                    binding.list.setVisibility(View.GONE);
-                    selectedView = 0;
-                    adapter = new EmployeeDesListAdapter(employeeList, getContext(), 0);
-                    binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
-                    binding.recycleView.setAdapter(adapter);
-                }
+            binding.list.setOnClickListener(view -> {
+                binding.grid.setVisibility(View.VISIBLE);
+                binding.list.setVisibility(View.GONE);
+                selectedView = 0;
+                adapter = new EmployeeDesListAdapter(employeeList, getContext(), 0);
+                binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
+                binding.recycleView.setAdapter(adapter);
             });
         }
         return binding.getRoot();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void allEmpAttendanceApi() {
         AppLoader.showLoaderDialog(mContext);
         MainService.allEmpAttendance(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
@@ -96,6 +91,7 @@ public class TasksFragment extends BaseFragment {
         super.onResume();
         if (employeeList.isEmpty()) {
             allEmpAttendanceApi();
+            AppLoader.hideLoaderDialog();
         }
     }
 }

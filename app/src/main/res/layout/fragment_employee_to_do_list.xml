@@ -28,7 +28,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/prime" />
+                app:tint="@color/prime"
+                android:contentDescription="@string/backBtn" />
 
             <TextView
                 android:id="@+id/title"
@@ -36,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center"
-                android:text="Task History"
+                android:text="@string/task_history"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +54,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/title"
-                app:tint="@color/prime" />
+                app:tint="@color/prime"
+                android:contentDescription="@string/filterbtn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -94,12 +96,13 @@
                         android:fontFamily="@font/m_medium"
                         android:gravity="center"
                         android:paddingStart="@dimen/_1sdp"
-                        android:text="From - "
+                        android:text="@string/from_"
                         android:textColor="@color/prime"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="RtlSymmetry" />
 
                     <TextView
                         android:id="@+id/FromDate"
@@ -108,7 +111,7 @@
                         android:elevation="1dp"
                         android:fontFamily="@font/m_medium"
                         android:gravity="center"
-                        android:hint="dd/mm/yyyy"
+                        android:hint="@string/dd_mm_yyyy"
                         android:textColor="@color/prime"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintBottom_toBottomOf="@+id/formTxt"
@@ -135,12 +138,13 @@
                         android:fontFamily="@font/m_medium"
                         android:gravity="center"
                         android:paddingStart="@dimen/_1sdp"
-                        android:text="To - "
+                        android:text="@string/to_"
                         android:textColor="@color/prime"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/ToDate"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="RtlSymmetry" />
 
                     <TextView
                         android:id="@+id/ToDate"
@@ -148,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/m_medium"
                         android:gravity="center"
-                        android:hint="dd/mm/yyyy"
+                        android:hint="@string/dd_mm_yyyy"
                         android:textColor="@color/prime"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintBottom_toBottomOf="@+id/ToTxt"
@@ -161,7 +165,7 @@
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:fontFamily="@font/m_medium"
-                    android:text="Search"
+                    android:text="@string/search"
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:background="@drawable/light_green_15r_bg"
@@ -175,7 +179,7 @@
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:fontFamily="@font/m_medium"
-                    android:text="Clear"
+                    android:text="@string/clear"
                     android:gravity="center"
                     android:background="@drawable/red_10r_bg"
                     app:layout_constraintTop_toBottomOf="@id/findBtn"
@@ -213,7 +217,8 @@
                         android:src="@drawable/icn_previous"
                         app:layout_constraintBottom_toBottomOf="@+id/monthTxt"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/monthTxt" />
+                        app:layout_constraintTop_toTopOf="@+id/monthTxt"
+                        android:contentDescription="@string/calander" />
 
                     <ImageView
                         android:id="@+id/iv_calendar_next"
@@ -223,14 +228,15 @@
                         android:src="@drawable/icn_next"
                         app:layout_constraintBottom_toBottomOf="@+id/monthTxt"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/monthTxt" />
+                        app:layout_constraintTop_toTopOf="@+id/monthTxt"
+                        android:contentDescription="@string/calander" />
 
                     <TextView
                         android:id="@+id/yearTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/m_medium"
-                        android:text="2022"
+                        android:text="@string/_2021"
                         android:textColor="@color/primary_color"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintEnd_toEndOf="@+id/monthTxt"
@@ -243,7 +249,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/m_medium"
                         android:gravity="center"
-                        android:text="Month"
+                        android:text="@string/month"
                         android:textColor="@color/primary_color"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintEnd_toStartOf="@+id/iv_calendar_next"
@@ -268,7 +274,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_semibold"
                 android:padding="@dimen/_5sdp"
-                android:text="20 May, 2022"
+                android:text="@string/_20_may_2022"
                 android:textAllCaps="false"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_11ssp"
@@ -307,7 +313,7 @@
                     android:backgroundTint="@color/prime"
                     android:fontFamily="@font/m_medium"
                     android:gravity="center"
-                    android:text="Complete"
+                    android:text="@string/complete"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_8ssp"
@@ -328,7 +334,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/discription"
-                    app:tint="@color/prime" />
+                    app:tint="@color/prime"
+                    android:contentDescription="@string/complete" />
 
                 <ImageView
                     android:id="@+id/imgtasktype"
@@ -337,7 +344,8 @@
                     android:layout_margin="@dimen/_10sdp"
                     android:src="@drawable/bug"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/taskheadimg" />
 
                 <TextView
                     android:id="@+id/taskHeading"
@@ -346,7 +354,7 @@
                     android:fontFamily="@font/m_medium"
                     android:paddingStart="@dimen/_2sdp"
                     android:paddingEnd="@dimen/_5sdp"
-                    android:text="Change Font and Colour combination"
+                    android:text="@string/change_font_and_colours_combination"
                     android:textColor="@color/prime"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/imgtasktype"
@@ -360,7 +368,7 @@
                     android:layout_marginTop="@dimen/_12sdp"
                     android:layout_marginEnd="@dimen/_2sdp"
                     android:fontFamily="@font/m_semibold"
-                    android:text="02 March,2022"
+                    android:text="@string/_02_march_2023"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/_8sdp"
                     android:visibility="gone"
@@ -374,7 +382,7 @@
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:fontFamily="@font/m_medium"
                     android:padding="@dimen/_4sdp"
-                    android:text="All the description related to the title will be here .All the description related to the title will be here."
+                    android:text="@string/all_the_description_related_to_the_title_will_be_here_all_the_description_related_to_the_title_will_be_here"
                     android:textColor="@color/_A8A8A8"
                     android:textSize="@dimen/_9ssp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -389,7 +397,8 @@
                     android:src="@drawable/clock_his"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:tint="@color/prime" />
+                    app:tint="@color/prime"
+                    android:contentDescription="@string/time" />
 
                 <TextView
                     android:id="@+id/complete"
@@ -397,7 +406,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_3sdp"
                     android:fontFamily="@font/m_medium"
-                    android:text="Complete till :"
+                    android:text="@string/complete_till"
                     android:textColor="@color/prime"
                     android:textSize="@dimen/_8ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/duration"
@@ -411,7 +420,7 @@
                     android:layout_marginStart="@dimen/_4sdp"
                     android:fontFamily="@font/m_medium"
                     android:padding="@dimen/_2sdp"
-                    android:text="04 March, 2022"
+                    android:text="@string/_04_march_2023"
                     android:textColor="#DBA42E"
                     android:textSize="@dimen/_8ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/complete"
@@ -441,7 +450,7 @@
                     android:backgroundTint="@color/prime"
                     android:fontFamily="@font/m_medium"
                     android:gravity="center"
-                    android:text="Complete"
+                    android:text="@string/complete"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_8ssp"
@@ -457,7 +466,8 @@
                     android:layout_margin="@dimen/_10sdp"
                     android:src="@drawable/bug"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/taskheadimg" />
 
                 <TextView
                     android:id="@+id/taskTypes"
@@ -465,7 +475,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/m_medium"
-                    android:text="Task"
+                    android:text="@string/task"
                     android:textColor="@color/prime"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/imgtasktypes"
@@ -480,7 +490,7 @@
                     android:fontFamily="@font/m_medium"
                     android:paddingStart="@dimen/_2sdp"
                     android:paddingEnd="@dimen/_5sdp"
-                    android:text="Change Font and Colour combination"
+                    android:text="@string/change_font_and_colour_combination"
                     android:textColor="@color/prime"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -493,7 +503,7 @@
                     android:layout_marginTop="@dimen/_12sdp"
                     android:layout_marginEnd="@dimen/_2sdp"
                     android:fontFamily="@font/m_semibold"
-                    android:text="02 March,2022"
+                    android:text="@string/_02_march_2022"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/_8sdp"
                     android:visibility="gone"
@@ -508,7 +518,7 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:fontFamily="@font/m_medium"
                     android:padding="@dimen/_4sdp"
-                    android:text="All the description related to the title will be here .All the description related to the title will be here."
+                    android:text="@string/all_the_description_related_to_the_title_will_be_here_all_the_description_related_to_the_title_will_be_here"
                     android:textColor="@color/_A8A8A8"
                     android:textSize="@dimen/_9ssp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -523,7 +533,8 @@
                     android:src="@drawable/clock_his"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:tint="@color/prime" />
+                    app:tint="@color/prime"
+                    android:contentDescription="@string/time" />
 
                 <TextView
                     android:id="@+id/completes"
@@ -531,7 +542,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_3sdp"
                     android:fontFamily="@font/m_medium"
-                    android:text="Complete till :"
+                    android:text="@string/complete_till"
                     android:textColor="@color/prime"
                     android:textSize="@dimen/_8ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/durations"
@@ -545,14 +556,13 @@
                     android:layout_marginStart="@dimen/_4sdp"
                     android:fontFamily="@font/m_medium"
                     android:padding="@dimen/_2sdp"
-                    android:text="04 March, 2022"
+                    android:text="@string/_04_march_2022"
                     android:textColor="#DBA42E"
                     android:textSize="@dimen/_8ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/completes"
                     app:layout_constraintStart_toEndOf="@+id/completes"
                     app:layout_constraintTop_toTopOf="@+id/completes" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,7 +14,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/m_semibold"
             android:padding="@dimen/_5sdp"
-            android:text="January"
+            android:text="@string/january"
             android:textAllCaps="false"
             android:textColor="@color/prime"
             android:textSize="@dimen/_14ssp"

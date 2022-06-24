@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EmployeeDesListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<EmployeeDesItem> employeeList = new ArrayList<>();
+    ArrayList<EmployeeDesItem> employeeList;
     Context context;
     int selectedView;
 
@@ -98,13 +98,10 @@ public class EmployeeDesListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     vHolder.status.setTextColor(context.getColor(R.color.yellow));
                 }
                 vHolder.status.setText(employeeList.get(position).getAttendance());
-                vHolder.item.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("id", employeeList.get(position).getId());
-                        Navigation.findNavController(view).navigate(R.id.employeeDetailFragment, bundle);
-                    }
+                vHolder.item.setOnClickListener(view -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", employeeList.get(position).getId());
+                    Navigation.findNavController(view).navigate(R.id.employeeDetailFragment, bundle);
                 });
                 break;
 
@@ -113,17 +110,13 @@ public class EmployeeDesListAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                 vHolders.empName.setText(employeeList.get(position).getEmployeeName());
                 vHolders.designation.setText(employeeList.get(position).getDesignation());
                 Glide.with(context).load(employeeList.get(position).getProfile()).placeholder(R.drawable.user).into(vHolders.profile);
-                vHolders.item.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("id", employeeList.get(position).getId());
-                        Navigation.findNavController(view).navigate(R.id.employeeDetailFragment, bundle);
-                    }
+                vHolders.item.setOnClickListener(view -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", employeeList.get(position).getId());
+                    Navigation.findNavController(view).navigate(R.id.employeeDetailFragment, bundle);
                 });
                 break;
         }
-
     }
 
     @Override

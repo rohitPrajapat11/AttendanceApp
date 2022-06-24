@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
@@ -38,33 +39,25 @@ public class ConfirmMPINFragment extends BaseFragment implements View.OnClickLis
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_m_p_i_n, container, false);
         binding.otpTypeTxt.setText(R.string.Renter);
         if (getArguments() != null) {
             newPin = getArguments().getString(PIN_KEY, "");
         }
-        binding.forwardTXT.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (checkValidation()) {
-                    confirmPin = binding.pinView.getText().toString();
-                    if (confirmPin.equals(newPin)) {
-                        showToast(mContext.getString(R.string.correct_pin));
+        binding.forwardTXT.setOnClickListener(v -> {
+            if (checkValidation()) {
+                confirmPin = binding.pinView.getText().toString();
+                if (confirmPin.equals(newPin)) {
+                    showToast(mContext.getString(R.string.correct_pin));
 //                        Navigation.findNavController(v).navigate(R.id.singUpFragment);
-                    } else {
-                        showToast(mContext.getString(R.string.incorrect_pin));
-                    }
                 } else {
+                    showToast(mContext.getString(R.string.incorrect_pin));
                 }
+            } else {
             }
         });
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(binding.getRoot()).popBackStack();
-            }
-        });
+        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(binding.getRoot()).popBackStack());
         if (getArguments() != null) {
             // From SignIn Otp Fragment For Forgot M-Pin
             mobile = getArguments().getString(MOBILE);

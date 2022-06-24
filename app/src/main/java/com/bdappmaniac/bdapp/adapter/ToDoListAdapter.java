@@ -3,7 +3,6 @@ package com.bdappmaniac.bdapp.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 public class ToDoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    ArrayList<AllTaskItem> tasksList = new ArrayList<>();
+    ArrayList<AllTaskItem> tasksList;
 
     public ToDoListAdapter(ArrayList<AllTaskItem> tasksList, Context context) {
         this.context = context;
@@ -41,14 +40,11 @@ public class ToDoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         ToDoListAdapter.TaskViewHolder vHolder = (ToDoListAdapter.TaskViewHolder) holder;
         vHolder.binding.empName.setText(tasksList.get(position).getEmployee());
-        vHolder.binding.item.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        vHolder.binding.item.setOnClickListener(view -> {
 //                Bundle bundle = new Bundle();
 //                bundle.putSerializable("EmployeeTaskList",(AllTaskItem) tasksList.get(position));
 //                Navigation.findNavController(view).navigate(R.id.employeeToDoListFragment, bundle);
-                Navigation.findNavController(view).navigate(R.id.employeeToDoListFragment);
-            }
+            Navigation.findNavController(view).navigate(R.id.employeeToDoListFragment);
         });
     }
 

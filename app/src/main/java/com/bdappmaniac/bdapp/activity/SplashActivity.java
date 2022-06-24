@@ -3,7 +3,6 @@ package com.bdappmaniac.bdapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
@@ -32,32 +31,26 @@ public class SplashActivity extends AppCompatActivity {
         binding.logo.setAnimation(top_animation);
         binding.getStarted.setAnimation(bottom_animation);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (SharedPref.getUserDetails() == null) {
-                    callAuth();
-                } else if (SharedPref.getUserDetails().getType().equals("employee")) {
-                    Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else if (SharedPref.getUserDetails().getType().equals("admin")) {
-                    Intent intent = new Intent(SplashActivity.this, AdminActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }
-        }, 2500);
-    }
-
-    public void callAuth() {
-        binding.getStarted.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
+        new Handler().postDelayed(() -> {
+            if (SharedPref.getUserDetails() == null) {
+                callAuth();
+            } else if (SharedPref.getUserDetails().getType().equals("employee")) {
+                Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            } else if (SharedPref.getUserDetails().getType().equals("admin")) {
+                Intent intent = new Intent(SplashActivity.this, AdminActivity.class);
                 startActivity(intent);
                 finish();
             }
+        }, 2000);
+    }
+
+    public void callAuth() {
+        binding.getStarted.setOnClickListener(view -> {
+            Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 }

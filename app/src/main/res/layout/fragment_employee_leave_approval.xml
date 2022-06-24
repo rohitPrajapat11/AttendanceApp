@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
-                android:text="Leaves"
+                android:text="@string/leaves"
                 android:textColor="@color/prime"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -51,6 +51,7 @@
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
+                android:contentDescription="@string/filterbtn"
                 android:src="@drawable/icn_filter"
                 app:layout_constraintBottom_toBottomOf="@+id/title"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,8 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:elevation="1dp"
-                android:visibility="gone"
                 android:padding="@dimen/_5sdp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -95,12 +96,13 @@
                         android:fontFamily="@font/m_medium"
                         android:gravity="center"
                         android:paddingStart="@dimen/_1sdp"
-                        android:text="From - "
+                        android:text="@string/from_"
                         android:textColor="@color/prime"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="RtlSymmetry" />
 
                     <TextView
                         android:id="@+id/FromDate"
@@ -109,7 +111,7 @@
                         android:elevation="1dp"
                         android:fontFamily="@font/m_medium"
                         android:gravity="center"
-                        android:hint="dd/mm/yyyy"
+                        android:hint="@string/dd_mm_yyyy"
                         android:textColor="@color/prime"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintBottom_toBottomOf="@+id/formTxt"
@@ -136,12 +138,13 @@
                         android:fontFamily="@font/m_medium"
                         android:gravity="center"
                         android:paddingStart="@dimen/_1sdp"
-                        android:text="To - "
+                        android:text="@string/to_"
                         android:textColor="@color/prime"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/ToDate"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="RtlSymmetry" />
 
                     <TextView
                         android:id="@+id/ToDate"
@@ -149,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/m_medium"
                         android:gravity="center"
-                        android:hint="dd/mm/yyyy"
+                        android:hint="@string/dd_mm_yyyy"
                         android:textColor="@color/prime"
                         android:textSize="@dimen/_10ssp"
                         app:layout_constraintBottom_toBottomOf="@+id/ToTxt"
@@ -161,11 +164,11 @@
                     android:id="@+id/findBtn"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
-                    android:fontFamily="@font/m_medium"
-                    android:text="Search"
-                    android:gravity="center"
-                    android:textColor="@color/white"
                     android:background="@drawable/light_green_15r_bg"
+                    android:fontFamily="@font/m_medium"
+                    android:gravity="center"
+                    android:text="@string/search"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_10ssp"
                     app:layout_constraintBottom_toTopOf="@+id/cancelBtn"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -175,16 +178,16 @@
                     android:id="@+id/cancelBtn"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
-                    android:fontFamily="@font/m_medium"
-                    android:text="Clear"
-                    android:gravity="center"
                     android:background="@drawable/red_10r_bg"
-                    app:layout_constraintTop_toBottomOf="@id/findBtn"
+                    android:fontFamily="@font/m_medium"
+                    android:gravity="center"
+                    android:text="@string/clear"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_10ssp"
                     android:visibility="visible"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/findBtn" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -194,8 +197,8 @@
                 android:layout_height="wrap_content"
                 android:elevation="1dp"
                 android:paddingBottom="@dimen/_5sdp"
-                app:layout_constraintTop_toBottomOf="@id/toAndFromLayout"
-                android:visibility="gone">
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/toAndFromLayout">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/calendarChangeLayout"
@@ -210,6 +213,7 @@
                         android:id="@+id/iv_calendar_previous"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
+                        android:contentDescription="@string/calander"
                         android:padding="@dimen/_3sdp"
                         android:src="@drawable/icn_previous"
                         app:layout_constraintBottom_toBottomOf="@+id/monthTxt"
@@ -220,6 +224,7 @@
                         android:id="@+id/iv_calendar_next"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
+                        android:contentDescription="@string/calander"
                         android:padding="@dimen/_3sdp"
                         android:src="@drawable/icn_next"
                         app:layout_constraintBottom_toBottomOf="@+id/monthTxt"
@@ -231,7 +236,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/m_medium"
-                        android:text="2022"
+                        android:text="@string/_2022"
                         android:textColor="@color/primary_color"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintEnd_toEndOf="@+id/monthTxt"
@@ -244,7 +249,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/m_medium"
                         android:gravity="center"
-                        android:text="Month"
+                        android:text="@string/month"
                         android:textColor="@color/primary_color"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintEnd_toStartOf="@+id/iv_calendar_next"
@@ -260,7 +265,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/m_semibold"
             android:padding="@dimen/_5sdp"
-            android:text="20 May, 2022"
+            android:text="@string/_25_may_2022"
             android:textAllCaps="false"
             android:textColor="@color/prime"
             android:textSize="@dimen/_11ssp"
@@ -299,7 +304,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
             <TextView
                 android:id="@+id/leaveReason"
                 android:layout_width="wrap_content"
@@ -337,7 +341,6 @@
                 app:layout_constraintStart_toStartOf="@+id/leaveType"
                 app:layout_constraintTop_toBottomOf="@+id/leaveType" />
 
-
             <TextView
                 android:id="@+id/fromDate"
                 android:layout_width="wrap_content"
@@ -373,7 +376,6 @@
                 app:layout_constraintStart_toEndOf="@+id/fromDate"
                 app:layout_constraintTop_toTopOf="@+id/fromDate" />
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -383,7 +385,6 @@
                 android:textSize="@dimen/_7ssp"
                 app:layout_constraintBottom_toTopOf="@+id/tillDate"
                 app:layout_constraintStart_toStartOf="@+id/tillDate" />
-
 
             <TextView
                 android:id="@+id/tillDate"
@@ -397,7 +398,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/ew"
                 app:layout_constraintStart_toEndOf="@+id/ew"
                 app:layout_constraintTop_toTopOf="@+id/ew" />
-
 
             <TextView
                 android:id="@+id/discription"

@@ -2,13 +2,11 @@ package com.bdappmaniac.bdapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +21,7 @@ import java.util.List;
 
 public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    ArrayList<EmployeeList> list = new ArrayList<>();
+    ArrayList<EmployeeList> list;
     String from;
 
     public EmployeeListAdapter(Context context, List<EmployeeList> list, String from) {
@@ -43,7 +41,7 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
         EmployeeListItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.employee_list_item, group, false);
-        return new EmployeeListAdapter.EmployeeListHolder(binding);
+        return new EmployeeListHolder(binding);
     }
 
     @NonNull
@@ -52,7 +50,6 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return getViewHolder(LayoutInflater.from(context), parent);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         EmployeeListAdapter.EmployeeListHolder vHolders = (EmployeeListAdapter.EmployeeListHolder) holder;
@@ -78,7 +75,7 @@ public class EmployeeListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return list.size();
     }
 
-    public class EmployeeListHolder extends RecyclerView.ViewHolder {
+    public static class EmployeeListHolder extends RecyclerView.ViewHolder {
         EmployeeListItemBinding binding;
 
         public EmployeeListHolder(EmployeeListItemBinding itemView) {

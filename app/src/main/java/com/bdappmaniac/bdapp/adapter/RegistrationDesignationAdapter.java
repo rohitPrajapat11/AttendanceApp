@@ -11,15 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bdappmaniac.bdapp.Api.response.DesignationItem;
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.fragment.RegisterEmployeeFragment;
 import com.bdappmaniac.bdapp.databinding.RegisterDesignationItemBinding;
+import com.bdappmaniac.bdapp.fragment.RegisterEmployeeFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class RegistrationDesignationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    List<DesignationItem> list = new ArrayList<>();
+    List<DesignationItem> list;
     RegistrationDesignationAdapter adapter;
     RegisterEmployeeFragment registerEmployeeFragment;
 
@@ -41,7 +40,7 @@ public class RegistrationDesignationAdapter extends RecyclerView.Adapter<Recycle
 
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
         RegisterDesignationItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.register_designation_item, group, false);
-        return new RegistrationDesignationAdapter.RegisterDesignationHolder(binding);
+        return new RegisterDesignationHolder(binding);
     }
 
     @NonNull
@@ -65,7 +64,7 @@ public class RegistrationDesignationAdapter extends RecyclerView.Adapter<Recycle
         return list.size();
     }
 
-    public class RegisterDesignationHolder extends RecyclerView.ViewHolder {
+    public static class RegisterDesignationHolder extends RecyclerView.ViewHolder {
         RegisterDesignationItemBinding binding;
 
         public RegisterDesignationHolder(RegisterDesignationItemBinding itemView) {

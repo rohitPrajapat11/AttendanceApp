@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -70,6 +71,8 @@ public class BaseActivity extends AppCompatActivity {
                 if ((apiResponse.getData() != null)) {
                     SharedPref.init(this);
                     SharedPref.putUserDetails(null);
+                    startActivity(new Intent(getBaseContext(), AuthActivity.class));
+                    finish();
                 } else {
                     ((BaseActivity) this).showToast(apiResponse.getMessage());
                 }
@@ -78,7 +81,7 @@ public class BaseActivity extends AppCompatActivity {
         });
     }
 
-    void logoutDialog() {
+    public void logoutDialog() {
         LogoutDialogboxBinding logoutDialogboxBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.logout_dialogbox, null, false);
         Dialog dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -89,21 +92,11 @@ public class BaseActivity extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
-        logoutDialogboxBinding.okBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                userLogout();
-                startActivity(new Intent(getBaseContext(), AuthActivity.class));
-                finish();
-                dialog.dismiss();
-            }
+        logoutDialogboxBinding.okBtn.setOnClickListener((View.OnClickListener) view -> {
+            userLogout();
+            dialog.dismiss();
         });
-        logoutDialogboxBinding.cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-            }
-        });
+        logoutDialogboxBinding.cancelBtn.setOnClickListener((View.OnClickListener) view -> dialog.dismiss());
     }
 
 
@@ -122,8 +115,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public String getToken() {
         SharedPref.init(this);
-        String getToken = "Bearer " + SharedPref.getUserDetails().getAccessToken();
-        return getToken;
+        return "Bearer " + SharedPref.getUserDetails().getAccessToken();
     }
 
     public RequestBody toRequestBody(String val) {
@@ -151,13 +143,10 @@ public class BaseActivity extends AppCompatActivity {
                 noInternetdialog.dismiss();
                 AppLoader.hideLoaderDialog();
             });
-            sDialog.setting.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    noInternetdialog.dismiss();
-                    AppLoader.hideLoaderDialog();
-                    startActivity(new Intent(android.provider.Settings.ACTION_DATA_ROAMING_SETTINGS));
-                }
+            sDialog.setting.setOnClickListener((View.OnClickListener) view -> {
+                noInternetdialog.dismiss();
+                AppLoader.hideLoaderDialog();
+                startActivity(new Intent(Settings.ACTION_DATA_ROAMING_SETTINGS));
             });
             noInternetdialog.show();
         }

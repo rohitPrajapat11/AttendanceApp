@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class EmployeeToDoListItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
     //    List<TasksItem> list = new ArrayList<>();
-    ArrayList<ModelEmpTask> list = new ArrayList<>();
+    ArrayList<ModelEmpTask> list;
 
     public EmployeeToDoListItemAdapter(Context context, ArrayList<ModelEmpTask> list) {
         this.context = context;

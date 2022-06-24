@@ -54,7 +54,8 @@
                         android:layout_height="match_parent"
                         android:gravity="start|center_vertical"
                         android:inputType="textMultiLine"
-                        android:textAlignment="viewStart" />
+                        android:textAlignment="viewStart"
+                        tools:ignore="TextViewEdits" />
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -85,7 +86,7 @@
                         android:fontFamily="@font/m_medium"
                         android:gravity="center_vertical|start"
                         android:maxLines="1"
-                        android:hint="Enter name"
+                        android:hint="@string/enter_names"
                         android:textAlignment="viewStart"
                         android:textColor="#FFF"
                         android:textSize="@dimen/_15ssp"
@@ -106,7 +107,6 @@
                         android:layout_width="90dp"
                         android:layout_height="90dp"
                         android:background="@drawable/green_round_bg"
-                        android:padding="1dp"
                         android:src="@drawable/sample_android"
                         app:layout_constraintBottom_toTopOf="@+id/guideline"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +121,8 @@
                         android:src="@drawable/icn_setting"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/white" />
+                        app:tint="@color/white"
+                        android:contentDescription="@string/settings" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>

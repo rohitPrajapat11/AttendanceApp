@@ -11,9 +11,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
@@ -35,6 +35,7 @@ import com.google.android.material.appbar.AppBarLayout;
 
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Objects;
 
 public class AdminHomeFragment extends BaseFragment {
     private final static float EXPAND_AVATAR_SIZE_DP = 90f;
@@ -58,20 +59,17 @@ public class AdminHomeFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_home, container, false);
             SharedPref.init(mContext);
             updateProfile();
             binding.getRoot().requestFocus();
-            binding.getRoot().getViewTreeObserver().addOnWindowFocusChangeListener(new ViewTreeObserver.OnWindowFocusChangeListener() {
-                @Override
-                public void onWindowFocusChanged(final boolean hasFocus) {
-                    if (!hasFocus) {
-                        return;
-                    }
-                    resetPoints(false);
+            binding.getRoot().getViewTreeObserver().addOnWindowFocusChangeListener(hasFocus -> {
+                if (!hasFocus) {
+                    return;
                 }
+                resetPoints(false);
             });
 //           new Handler().postDelayed(new Runnable() {
 //           @Override
@@ -89,18 +87,8 @@ public class AdminHomeFragment extends BaseFragment {
 //        binding.semiCircleArcProgressBar.setPercentWithAnimation(45);
 //    }
             binding.textViewTitle.setText(SharedPref.getUserDetails().getEmployeeName());
-            binding.settingBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Navigation.findNavController(view).navigate(R.id.settingFragment);
-                }
-            });
-            binding.imageViewAvatar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Navigation.findNavController(view).navigate(R.id.adminProfile);
-                }
-            });
+            binding.settingBtn.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.settingFragment));
+            binding.imageViewAvatar.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.adminProfile));
             ArrayList<AdminHomeModel> itemList = new ArrayList<>();
             itemList.add(new AdminHomeModel(R.drawable.icn_advance_payment, "Advance Payment"));
             itemList.add(new AdminHomeModel(R.drawable.icn_attendence, "Attendance"));
@@ -135,8 +123,8 @@ public class AdminHomeFragment extends BaseFragment {
 
         ((AdminActivity)mContext).setSupportActionBar(binding.toolbars);
         if ( ((AdminActivity)mContext).getSupportActionBar() != null) {
-            ((AdminActivity)mContext).getSupportActionBar().setDisplayShowTitleEnabled(false);
-            ((AdminActivity)mContext).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            Objects.requireNonNull(((AdminActivity) mContext).getSupportActionBar()).setDisplayShowTitleEnabled(false);
+            Objects.requireNonNull(((AdminActivity) mContext).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         }
     }
 
@@ -255,19 +243,14 @@ public class AdminHomeFragment extends BaseFragment {
         mTitleTextViewPoint[1] = titleTextViewPoint[1] - binding.textViewTitle.getTranslationY();
 
         if (isTextChanged) {
-            new Handler().post(new Runnable() {
-                @Override
-                public void run() {
-                    translationView(offset);
-                }
-            });
+            new Handler().post(() -> translationView(offset));
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        StatusBarUtils.statusBarColor(getActivity(), R.color.prime);
+        StatusBarUtils.statusBarColor(requireActivity(), R.color.prime);
     }
 
     @Override
