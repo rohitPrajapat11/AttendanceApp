@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
     tools:context=".employee.fragment.EmpManageAdvanceFragment">
 
@@ -63,5 +64,186 @@
       app:layout_constraintTop_toTopOf="parent"
       app:tint="@color/green" />
  </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+ <androidx.constraintlayout.widget.ConstraintLayout
+     android:id="@+id/pendingCv"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_marginHorizontal="@dimen/_8sdp"
+     android:layout_marginTop="@dimen/_4sdp"
+     android:backgroundTint="@color/blue_secondry"
+     android:elevation="@dimen/_5sdp"
+     android:padding="@dimen/_5sdp"
+     app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+     tools:layout_editor_absoluteX="10dp">
+
+
+  <ImageView
+      android:id="@+id/pendingImg"
+      android:layout_width="@dimen/_20sdp"
+      android:layout_height="@dimen/_20sdp"
+      android:layout_marginStart="@dimen/_10sdp"
+      android:padding="@dimen/_1sdp"
+      android:src="@drawable/in_que"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+
+  <TextView
+      android:id="@+id/pendingTv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/_5sdp"
+      android:fontFamily="@font/m_semibold"
+      android:padding="@dimen/_1sdp"
+      android:text="Pending"
+      android:textColor="@color/black"
+      android:textSize="@dimen/_14ssp"
+      app:layout_constraintBottom_toTopOf="@+id/textTv"
+      app:layout_constraintStart_toEndOf="@+id/pendingImg"
+      app:layout_constraintStart_toStartOf="@+id/textTv"
+      app:layout_constraintTop_toTopOf="@+id/pendingImg" />
+
+  <TextView
+      android:id="@+id/textTv"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/_5sdp"
+      android:fontFamily="@font/m_light"
+      android:padding="@dimen/_1sdp"
+      android:text="All The Loans Which Are Not Approved Yet "
+      android:textColor="@color/grey"
+      android:textSize="@dimen/_8ssp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="@+id/pendingImg"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.2"
+      app:layout_constraintStart_toEndOf="@+id/pendingImg"
+      app:layout_constraintTop_toBottomOf="@+id/pendingTv" />
+
+ </androidx.constraintlayout.widget.ConstraintLayout>
+
+ <androidx.constraintlayout.widget.ConstraintLayout
+     android:id="@+id/approvedCv"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_marginHorizontal="@dimen/_8sdp"
+     android:background="@drawable/white_5r_bg"
+     android:backgroundTint="@color/blue_secondry"
+     android:elevation="@dimen/_5sdp"
+     android:padding="@dimen/_15sdp"
+     app:layout_constraintBottom_toTopOf="@+id/rejectedCv"
+     tools:layout_editor_absoluteX="10dp">
+
+
+  <ImageView
+      android:id="@+id/approvedImg"
+      android:layout_width="@dimen/_20sdp"
+      android:layout_height="@dimen/_20sdp"
+      android:layout_marginStart="@dimen/_10sdp"
+      android:padding="@dimen/_1sdp"
+      android:src="@drawable/check"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+
+  <TextView
+      android:id="@+id/approvedTv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/_5sdp"
+      android:fontFamily="@font/m_semibold"
+      android:padding="@dimen/_1sdp"
+      android:text="Approved"
+      android:textColor="@color/black"
+      android:textSize="@dimen/_14ssp"
+      app:layout_constraintBottom_toTopOf="@+id/text2Tv"
+      app:layout_constraintStart_toEndOf="@+id/approvedImg"
+      app:layout_constraintStart_toStartOf="@+id/text2Tv"
+      app:layout_constraintTop_toTopOf="@+id/approvedImg" />
+
+  <TextView
+      android:id="@+id/text2Tv"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/_5sdp"
+      android:fontFamily="@font/m_light"
+      android:padding="@dimen/_1sdp"
+      android:text="All The Loans Which Are Approved Yet "
+      android:textColor="@color/grey"
+      android:textSize="@dimen/_8ssp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="@+id/approvedImg"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.2"
+      app:layout_constraintStart_toEndOf="@+id/approvedImg"
+      app:layout_constraintTop_toBottomOf="@+id/approvedTv" />
+
+ </androidx.constraintlayout.widget.ConstraintLayout>
+
+ <androidx.constraintlayout.widget.ConstraintLayout
+     android:id="@+id/rejectedCv"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:layout_marginHorizontal="@dimen/_8sdp"
+     android:background="@drawable/white_5r_bg"
+     android:backgroundTint="@color/blue_secondry"
+     android:elevation="@dimen/_5sdp"
+     android:padding="@dimen/_15sdp"
+     app:layout_constraintBottom_toBottomOf="parent"
+     tools:layout_editor_absoluteX="10dp">
+
+
+  <ImageView
+      android:id="@+id/rejectedImg"
+      android:layout_width="@dimen/_20sdp"
+      android:layout_height="@dimen/_20sdp"
+      android:layout_marginStart="@dimen/_10sdp"
+      android:padding="@dimen/_1sdp"
+      android:src="@drawable/deny"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+
+  <TextView
+      android:id="@+id/rejectedTv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="@dimen/_5sdp"
+      android:fontFamily="@font/m_semibold"
+      android:padding="@dimen/_1sdp"
+      android:text="Rejected"
+      android:textColor="@color/black"
+      android:textSize="@dimen/_14ssp"
+      app:layout_constraintBottom_toTopOf="@+id/text3Tv"
+      app:layout_constraintStart_toEndOf="@+id/rejectedImg"
+      app:layout_constraintStart_toStartOf="@+id/text3Tv"
+      app:layout_constraintTop_toTopOf="@+id/rejectedImg" />
+
+  <TextView
+      android:id="@+id/text3Tv"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginHorizontal="@dimen/_5sdp"
+      android:fontFamily="@font/m_light"
+      android:padding="@dimen/_1sdp"
+      android:text="All The Loans Which Are Rejected "
+      android:textColor="@color/grey"
+      android:textSize="@dimen/_8ssp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="@+id/rejectedImg"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.2"
+      app:layout_constraintStart_toEndOf="@+id/rejectedImg"
+      app:layout_constraintTop_toBottomOf="@+id/rejectedTv" />
+
+ </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

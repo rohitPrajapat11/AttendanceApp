@@ -392,5 +392,18 @@
     <string name="oh_no">Oh no!</string>
     <string name="wifi">wifi</string>
     <string name="get_started">Get Started</string>
+    <string name="manage_advance">Manage Advance</string>
+    <string name="pm">Pm</string>
+    <string name="remaining_amount">Remaining Amount</string>
+    <string name="_70_000">70,000</string>
+    <string name="paid_amount">Paid Amount</string>
+    <string name="_1_00_000">1,00,000</string>
+    <string name="advance_details">Advance Details :-</string>
+    <string name="remaining">Remaining</string>
+    <string name="_6m">6M</string>
+    <string name="paid">Paid</string>
+    <string name="_87">87</string>
+    <string name="payment_graph">payment Graph</string>
+    <string name="studies_advance">Studies Advance</string>
 
 </resources>

@@ -18,9 +18,9 @@
         android:fontFamily="@font/m_semibold"
         android:gravity="center"
         android:padding="@dimen/_2sdp"
-        android:text="salary advance "
+        android:text="Salary Advance "
         android:textColor="@color/black"
-        android:textSize="@dimen/_11ssp"
+        android:textSize="@dimen/_10ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
