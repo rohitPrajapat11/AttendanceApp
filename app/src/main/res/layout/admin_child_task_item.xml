@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_5sdp"
         android:background="@drawable/white_10r_white_bg"
         android:elevation="5dp"
-        android:padding="@dimen/_5sdp">
+        android:padding="@dimen/_1sdp"
+        app:layout_constraintTop_toBottomOf="@+id/dateOne"
+        tools:layout_editor_absoluteX="4dp">
 
         <TextView
             android:id="@+id/completeBtn"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_27sdp"
             android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_7sdp"
             android:background="@drawable/white_10r_bg"
             android:backgroundTint="@color/prime"
             android:fontFamily="@font/m_medium"
             android:gravity="center"
-            android:text="Complete"
+            android:text="@string/complete"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_8ssp"
@@ -30,40 +34,44 @@
             app:layout_constraintTop_toBottomOf="@+id/discription" />
 
         <ImageView
+            android:id="@+id/completedBtn"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_27sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:contentDescription="@string/complete"
+            android:gravity="center"
+            android:src="@drawable/task"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/discription"
+            app:tint="@color/prime" />
+
+        <ImageView
             android:id="@+id/imgtasktype"
             android:layout_width="@dimen/_20sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_margin="@dimen/_10sdp"
+            android:contentDescription="@string/taskheadimg"
             android:src="@drawable/bug"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/taskType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:fontFamily="@font/m_medium"
-            android:text="Task"
-            android:textColor="@color/prime"
-            android:textSize="@dimen/_11ssp"
-            app:layout_constraintBottom_toBottomOf="@+id/imgtasktype"
-            app:layout_constraintStart_toEndOf="@+id/imgtasktype" />
-
-        <TextView
             android:id="@+id/taskHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_13sdp"
-            android:layout_marginTop="@dimen/_9sdp"
             android:fontFamily="@font/m_medium"
             android:paddingStart="@dimen/_2sdp"
             android:paddingEnd="@dimen/_5sdp"
-            android:text="Change Font and Colour combination"
+            android:text="@string/change_font_and_colours_combination"
             android:textColor="@color/prime"
             android:textSize="@dimen/_11ssp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/taskType" />
+            app:layout_constraintBottom_toBottomOf="@+id/imgtasktype"
+            app:layout_constraintStart_toEndOf="@+id/imgtasktype"
+            app:layout_constraintTop_toTopOf="@+id/imgtasktype" />
 
         <TextView
             android:id="@+id/issueDate"
@@ -72,7 +80,7 @@
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginEnd="@dimen/_2sdp"
             android:fontFamily="@font/m_semibold"
-            android:text="02 March,2022"
+            android:text="@string/_02_march_2023"
             android:textColor="@color/grey"
             android:textSize="@dimen/_8sdp"
             android:visibility="gone"
@@ -81,27 +89,28 @@
 
         <TextView
             android:id="@+id/discription"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:fontFamily="@font/m_medium"
             android:padding="@dimen/_4sdp"
-            android:text="All the description related to the title will be here .All the description related to the title will be here."
+            android:text="@string/all_the_description_related_to_the_title_will_be_here_all_the_description_related_to_the_title_will_be_here"
             android:textColor="@color/_A8A8A8"
             android:textSize="@dimen/_9ssp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/taskHeading"
-            app:layout_constraintTop_toBottomOf="@+id/taskHeading" />
+            app:layout_constraintStart_toStartOf="@+id/imgtasktype"
+            app:layout_constraintTop_toBottomOf="@+id/imgtasktype" />
 
         <ImageView
             android:id="@+id/duration"
             android:layout_width="@dimen/_16sdp"
             android:layout_height="@dimen/_16sdp"
             android:layout_margin="@dimen/_13sdp"
+            android:contentDescription="@string/time"
             android:src="@drawable/clock_his"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/prime" />
 
         <TextView
             android:id="@+id/complete"
@@ -109,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_3sdp"
             android:fontFamily="@font/m_medium"
-            android:text="Complete till :"
+            android:text="@string/complete_till"
             android:textColor="@color/prime"
             android:textSize="@dimen/_8ssp"
             app:layout_constraintBottom_toBottomOf="@+id/duration"
@@ -123,7 +132,7 @@
             android:layout_marginStart="@dimen/_4sdp"
             android:fontFamily="@font/m_medium"
             android:padding="@dimen/_2sdp"
-            android:text="04 March, 2022"
+            android:text="@string/_04_march_2023"
             android:textColor="#DBA42E"
             android:textSize="@dimen/_8ssp"
             app:layout_constraintBottom_toBottomOf="@+id/complete"

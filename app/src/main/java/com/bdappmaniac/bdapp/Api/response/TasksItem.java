@@ -2,40 +2,35 @@ package com.bdappmaniac.bdapp.Api.response;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-import java.util.List;
+public class TasksItem{
 
-public class TasksItem implements Serializable {
-
-	@SerializedName("date")
-	private String date;
-
-	@SerializedName("tasks")
-	private List<TasksItem> tasks;
+	@SerializedName("created_at")
+	private String createdAt;
 
 	@SerializedName("id")
 	private int id;
 
+	@SerializedName("title")
+	private String title;
+
+	@SerializedName("deadline")
+	private String deadline;
+
 	@SerializedName("content")
 	private String content;
+
+	@SerializedName("emp_id")
+	private int empId;
 
 	@SerializedName("status")
 	private String status;
 
-	public void setDate(String date){
-		this.date = date;
+	public void setCreatedAt(String createdAt){
+		this.createdAt = createdAt;
 	}
 
-	public String getDate(){
-		return date;
-	}
-
-	public void setTasks(List<TasksItem> tasks){
-		this.tasks = tasks;
-	}
-
-	public List<TasksItem> getTasks(){
-		return tasks;
+	public String getCreatedAt(){
+		return createdAt;
 	}
 
 	public void setId(int id){
@@ -46,12 +41,36 @@ public class TasksItem implements Serializable {
 		return id;
 	}
 
+	public void setTitle(String title){
+		this.title = title;
+	}
+
+	public String getTitle(){
+		return title;
+	}
+
+	public void setDeadline(String deadline){
+		this.deadline = deadline;
+	}
+
+	public String getDeadline(){
+		return deadline;
+	}
+
 	public void setContent(String content){
 		this.content = content;
 	}
 
 	public String getContent(){
 		return content;
+	}
+
+	public void setEmpId(int empId){
+		this.empId = empId;
+	}
+
+	public int getEmpId(){
+		return empId;
 	}
 
 	public void setStatus(String status){

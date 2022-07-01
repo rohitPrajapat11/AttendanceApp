@@ -51,7 +51,7 @@ public class EmployeeToDoListItemAdapter extends RecyclerView.Adapter<RecyclerVi
                 "discription will be here in brief about the above  title complete the changes", "28-03-2022", R.drawable.task, "Task"));
         childTaskList.add(new ModelChildTaskList("23-03-2022", "App  working flow is not correct ",
                 "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.error, "Error"));
-        adminChildTaskAdapter adapter = new adminChildTaskAdapter(context, childTaskList);
+        EmpChildTaskAdapter adapter = new EmpChildTaskAdapter(context, childTaskList);
         vHolder.binding.childRecycler.setLayoutManager(new LinearLayoutManager(context));
         vHolder.binding.childRecycler.setAdapter(adapter);
 //        vHolder.binding.dateText.setText(DateUtils.getFormattedTime(list.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatM));

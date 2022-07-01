@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -82,6 +83,7 @@ public class AdminActivity extends BaseActivity implements View.OnClickListener,
         binding.headerLayout.menuBtn.setOnClickListener(v -> drawerOpenCLose());
         binding.headerLayout.addBtn.setOnClickListener(v -> Constant.calendarCallBack.openEmployeeList());
         binding.headerLayout.backBtn.setOnClickListener(v -> onBackPressed());
+        binding.mainDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         binding.headerLayout.additionBtn.setOnClickListener(view -> navController.navigate(R.id.registerEmployeeFragment));
         binding.headerLayout.settingBtn.setOnClickListener(view -> navController.navigate(R.id.settingFragment));
         binding.navigationDrawer.userName.setText(SharedPref.getUserDetails().getEmployeeName());

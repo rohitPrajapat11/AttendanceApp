@@ -109,13 +109,14 @@
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/acvite_deactive_dialog.xml" value="0.22" />
         <entry key="app/src/main/res/layout/add_designation_dialog.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/admin_addholiday_dialogbox.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/admin_addholiday_dialogbox.xml" value="0.5" />
         <entry key="app/src/main/res/layout/admin_bottom_layout.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/admin_child_task_item.xml" value="0.2791791363830697" />
+        <entry key="app/src/main/res/layout/admin_child_task_item.xml" value="0.5" />
         <entry key="app/src/main/res/layout/admin_designation_dialogbox.xml" value="0.25" />
         <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.22" />
         <entry key="app/src/main/res/layout/admin_edit_holiday_dilogbox.xml" value="0.18" />
         <entry key="app/src/main/res/layout/admin_emp_info.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/admin_header.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/admin_history_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/admin_history_list_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/admin_home_layout.xml" value="0.39202965708989806" />
@@ -136,7 +137,7 @@
         <entry key="app/src/main/res/layout/desigin_lock_unlock_items.xml" value="0.33" />
         <entry key="app/src/main/res/layout/design_attendance_history.xml" value="0.33" />
         <entry key="app/src/main/res/layout/design_check_in_out_entries.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/design_child_task_items.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/design_child_task_items.xml" value="0.5" />
         <entry key="app/src/main/res/layout/design_custom_monthpicker.xml" value="0.2774690038477982" />
         <entry key="app/src/main/res/layout/design_expese_items.xml" value="0.2267361111111111" />
         <entry key="app/src/main/res/layout/design_expese_teems.xml" value="0.2791791363830697" />
@@ -163,7 +164,7 @@
         <entry key="app/src/main/res/layout/employee_to_do_list_item.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/exit_dialogbox.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_admin_holiday.xml" value="0.14" />
-        <entry key="app/src/main/res/layout/fragment_admin_home.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_admin_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_admin_loan.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_admin_lock_unlock.xml" value="0.14" />
         <entry key="app/src/main/res/layout/fragment_admin_profile.xml" value="0.25" />
@@ -203,7 +204,7 @@
         <entry key="app/src/main/res/layout/fragment_employee_list_for_loan.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/fragment_employee_loan_details.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_employee_terms_and_condition.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_employee_to_do_list.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_employee_to_do_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_expenses_employee.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.19" />
         <entry key="app/src/main/res/layout/fragment_glide_loan_submit.xml" value="0.2267361111111111" />
@@ -229,7 +230,7 @@
         <entry key="app/src/main/res/layout/fragment_service_info.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_sing_up.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_task.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_task.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_two.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/frgment_advance_glide.xml" value="0.2267361111111111" />
         <entry key="app/src/main/res/layout/header_layout.xml" value="0.25" />

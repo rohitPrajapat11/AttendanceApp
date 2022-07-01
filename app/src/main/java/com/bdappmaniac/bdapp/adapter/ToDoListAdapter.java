@@ -2,6 +2,7 @@ package com.bdappmaniac.bdapp.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -14,15 +15,15 @@ import com.bdappmaniac.bdapp.Api.response.AllTaskItem;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.ToDoListItemBinding;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ToDoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    ArrayList<AllTaskItem> tasksList;
+    List<AllTaskItem> tasksList;
 
-    public ToDoListAdapter(ArrayList<AllTaskItem> tasksList, Context context) {
+    public ToDoListAdapter(Context context, List<AllTaskItem> tasksList) {
         this.context = context;
-        this.tasksList = (ArrayList<AllTaskItem>) tasksList;
+        this.tasksList = tasksList;
     }
 
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
@@ -41,15 +42,16 @@ public class ToDoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         ToDoListAdapter.TaskViewHolder vHolder = (ToDoListAdapter.TaskViewHolder) holder;
         vHolder.binding.empName.setText(tasksList.get(position).getEmployee());
         vHolder.binding.item.setOnClickListener(view -> {
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("EmployeeTaskList",(AllTaskItem) tasksList.get(position));
-//                Navigation.findNavController(view).navigate(R.id.employeeToDoListFragment, bundle);
-            Navigation.findNavController(view).navigate(R.id.employeeToDoListFragment);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("EmployeeTaskList", (AllTaskItem) tasksList.get(position));
+            Navigation.findNavController(view).navigate(R.id.employeeToDoListFragment, bundle);
         });
     }
 
     @Override
-    public int getItemCount() { return tasksList.size(); }
+    public int getItemCount() {
+        return tasksList.size();
+    }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
         ToDoListItemBinding binding;
