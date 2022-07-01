@@ -20,6 +20,7 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +75,7 @@ public class AdminProfile extends BaseFragment {
     MultipartBody.Part fileToUpload;
     String updateDobDate, updateInCorpDate;
     private int mYear, mMonth, mDay, mHour, mMinute;
+    private int id = 30;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -89,7 +91,41 @@ public class AdminProfile extends BaseFragment {
         binding.gstinTxt.addTextChangedListener(new TextChange(binding.gstinTxt));
         binding.gstidTxt.addTextChangedListener(new TextChange(binding.gstidTxt));
         binding.otherNumTxt.addTextChangedListener(new TextChange(binding.otherNumTxt));
+        binding.profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int g;
+                switch (id) {
+                    case 10:
+                        showToast("10");
+                        g = 10;
+                        Log.e("printB", String.valueOf(g));
+                        break;
+                    case 20:
+                        showToast("20");
+                        g = 20;
+                        Log.e("printc", String.valueOf(g));
+                        break;
+                    case 30:
+                        showToast("30");
+                        g = 30;
+                        Log.e("printD", String.valueOf(g));
+                    case 40:
+                        showToast("40");
+                        g = 40;
+                        Log.e("printE", String.valueOf(g));
+                    case 50:
+                        showToast("50");
+                        g = 50;
+                        Log.e("printF", String.valueOf(g));
+                    default:
+                        showToast("100");
+                        g = 100;
+                        Log.e("printA", String.valueOf(g));
 
+                }
+            }
+        });
         binding.backBtn.setOnClickListener(v -> Navigation.findNavController(binding.getRoot()).popBackStack());
         binding.dobTxt.setOnClickListener(view -> {
             final Calendar c = Calendar.getInstance();

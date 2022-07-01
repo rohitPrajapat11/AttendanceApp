@@ -8,23 +8,23 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bdappmaniac.bdapp.Api.response.TasksItem;
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.databinding.DesignChildTaskItemsBinding;
-import com.bdappmaniac.bdapp.model.ModelChildTaskList;
+import com.bdappmaniac.bdapp.databinding.AdminChildTaskItemBinding;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class adminChildTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    ArrayList<ModelChildTaskList> childTaskList = new ArrayList<>();
+    List<TasksItem> childTaskList;
 
-    public adminChildTaskAdapter(Context context, ArrayList<ModelChildTaskList> taskList) {
+    public adminChildTaskAdapter(Context context, List<TasksItem> childTaskList) {
         this.context = context;
-        this.childTaskList = taskList;
+        this.childTaskList = childTaskList;
     }
 
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
-        DesignChildTaskItemsBinding binding = DataBindingUtil.inflate(inflater, R.layout.design_child_task_items, group, false);
+        AdminChildTaskItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.admin_child_task_item, group, false);
         return new adminChildTaskAdapter.TaskViewHolder(binding);
     }
 
@@ -37,12 +37,10 @@ public class adminChildTaskAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         adminChildTaskAdapter.TaskViewHolder vHolder = (adminChildTaskAdapter.TaskViewHolder) holder;
-        vHolder.binding.issueDate.setText(childTaskList.get(position).getIssueDate());
-        vHolder.binding.taskHeading.setText(childTaskList.get(position).getTaskHeading());
-        vHolder.binding.discription.setText(childTaskList.get(position).getDiscription());
-        vHolder.binding.complitionDate.setText(childTaskList.get(position).getComplitionDate());
-        vHolder.binding.taskType.setText(childTaskList.get(position).getTasktype());
-        vHolder.binding.imgtasktype.setImageResource(childTaskList.get(position).getImgtasktype());
+        vHolder.binding.taskHeading.setText(childTaskList.get(position).getTitle());
+        vHolder.binding.discription.setText(childTaskList.get(position).getContent());
+        vHolder.binding.completionDate.setText(childTaskList.get(position).getDeadline());
+        vHolder.binding.completeBtn.setText(childTaskList.get(position).getStatus());
     }
 
     @Override
@@ -51,9 +49,9 @@ public class adminChildTaskAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
-        DesignChildTaskItemsBinding binding;
+        AdminChildTaskItemBinding binding;
 
-        public TaskViewHolder(@NonNull DesignChildTaskItemsBinding itemView) {
+        public TaskViewHolder(@NonNull AdminChildTaskItemBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;
         }

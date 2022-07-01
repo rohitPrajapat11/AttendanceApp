@@ -16,28 +16,27 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bdappmaniac.bdapp.Api.response.AllTaskItem;
 import com.bdappmaniac.bdapp.Api.response.TasksItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
-import com.bdappmaniac.bdapp.adapter.EmployeeToDoListItemAdapter;
+import com.bdappmaniac.bdapp.adapter.adminChildTaskAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeToDoListBinding;
 import com.bdappmaniac.bdapp.databinding.TaskAddDialogBinding;
 import com.bdappmaniac.bdapp.databinding.TaskBottomSheetDialogBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.model.ModelEmpTask;
 import com.bdappmaniac.bdapp.utils.DateUtils;
-import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
+import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.google.gson.Gson;
 
-import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -46,15 +45,15 @@ import okhttp3.RequestBody;
 public class EmployeeToDoListFragment extends BaseFragment {
     FragmentEmployeeToDoListBinding binding;
     ArrayList<TasksItem> list = new ArrayList<>();
-    EmployeeToDoListItemAdapter adapter;
-    //    AllTaskItem allTaskItem;
-    ArrayList<ModelEmpTask> modelEmpTask;
+    adminChildTaskAdapter adapter;
+    AllTaskItem allTaskItem;
     SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
     Calendar cal = Calendar.getInstance(Locale.ENGLISH);
     Calendar to = Calendar.getInstance();
     Calendar from = Calendar.getInstance();
     String fromDates;
     String toDates;
+    String dates;
     private int TYear, TMonth, TDay;
     private int FYear, FMonth, FDay;
 
@@ -63,11 +62,11 @@ public class EmployeeToDoListFragment extends BaseFragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_to_do_list, container, false);
         Bundle bundle = getArguments();
         if (bundle != null) {
-//            modelEmpTask = (ModelEmpTask) bundle.getSerializable("EmployeeTaskList");
-            adapter = new EmployeeToDoListItemAdapter(getContext(), modelEmpTask);
+            allTaskItem = (AllTaskItem) bundle.getSerializable("EmployeeTaskList");
+            adapter = new adminChildTaskAdapter(getContext(), list);
         }
-//        binding.childRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-//        binding.childRecycler.setAdapter(adapter);
+        binding.childRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.childRecycler.setAdapter(adapter);
         binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
         binding.filterBtn.setOnClickListener(v -> {
             binding.toAndFromLayout.setVisibility(View.GONE);
@@ -96,14 +95,6 @@ public class EmployeeToDoListFragment extends BaseFragment {
             });
             taskBinding.approvedBtn.setOnClickListener(view -> dialog.dismiss());
             taskBinding.pendingBtn.setOnClickListener(view -> dialog.dismiss());
-        });
-        binding.completeBtn.setOnClickListener(view -> {
-            binding.completeBtn.setVisibility(View.GONE);
-            binding.completedBtn.setVisibility(View.VISIBLE);
-        });
-        binding.completedBtn.setOnClickListener(view -> {
-            binding.completedBtn.setVisibility(View.GONE);
-            binding.completeBtn.setVisibility(View.VISIBLE);
         });
         binding.ivCalendarNext.setOnClickListener(v -> {
             cal.add(Calendar.MONTH, 1);
@@ -185,39 +176,60 @@ public class EmployeeToDoListFragment extends BaseFragment {
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
+        taskBinding.timeTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                TYear = c.get(Calendar.YEAR);
+                TMonth = c.get(Calendar.MONTH);
+                TDay = c.get(Calendar.DAY_OF_MONTH);
+                @SuppressLint("SetTextI18n") DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.DatePicker,
+                        (view1, year, monthOfYear, dayOfMonth) -> {
+                            taskBinding.timeTxt.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            dates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                        }, TYear, TMonth, TDay);
+                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                datePickerDialog.getWindow().setGravity(Gravity.CENTER);
+                datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
+                datePickerDialog.show();
+            }
+        });
         taskBinding.submitBtn.setOnClickListener(view -> {
-//                if (taskBinding.reasonTxt.getText().toString().isEmpty()) {
-//                    showSnackBar(binding.getRoot(), "Field cannot stay empty");
-//                } else {
-//                    SharedPref.init(mContext);
-////                    String emp_id = String.valueOf(ModelEmpTask.getEmpId());
-////                    Log.d("asdfg", list.toString());
-//                    String content = taskBinding.reasonTxt.getText().toString();
-////                    createTaskApi(emp_id, content);
-//                    dialog.dismiss();
-//                }
-            dialog.dismiss();
+            SharedPref.init(mContext);
+            String emp_id = String.valueOf(allTaskItem.getEmpId());
+            String content = taskBinding.descriptionTxt.getText().toString();
+            String deadline = dates;
+            String title = taskBinding.reasonTxt.getText().toString();
+            if (taskBinding.reasonTxt.getText().toString().isEmpty()) {
+                showSnackBar(binding.getRoot(), "Field cannot stay empty");
+            } else if (taskBinding.descriptionTxt.getText().toString().isEmpty()) {
+                showSnackBar(binding.getRoot(), "Field cannot stay empty");
+            } else if (taskBinding.timeTxt.getText().toString().isEmpty()) {
+                showSnackBar(binding.getRoot(), "Field cannot stay empty");
+            } else {
+                createTaskApi(emp_id, content, title, deadline);
+                dialog.dismiss();
+            }
         });
         taskBinding.cancelBtn.setOnClickListener(view -> dialog.dismiss());
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void createTaskApi(String emp_id, String content) {
+    public void createTaskApi(String emp_id, String content, String title, String deadline) {
         AppLoader.showLoaderDialog(mContext);
         Map<String, RequestBody> map = new HashMap<>();
         map.put("emp_id", toRequestBody(emp_id));
         map.put("content", toRequestBody(content));
+        map.put("title", toRequestBody(title));
+        map.put("deadline", toRequestBody(deadline));
         MainService.createTask(mContext, getToken(), map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<TasksItem>>() {
-                    }.getType();
-                    List<TasksItem> List = new Gson().fromJson(apiResponse.getData(), collectionType);
+                    //Object
+                    TasksItem tasksItem = new Gson().fromJson(apiResponse.getData(), TasksItem.class);
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                    list.clear();
-                    list.addAll(List);
                     adapter.notifyDataSetChanged();
                 } else {
                     ((BaseActivity) mContext).showToast(apiResponse.getMessage());

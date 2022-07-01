@@ -33,7 +33,7 @@ public class AdminTodoList extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_todo_list, container, false);
-        adapter = new ToDoListAdapter(tasksList, getContext());
+        adapter = new ToDoListAdapter(getContext(), tasksList);
         binding.recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recycleView.setAdapter(adapter);
 

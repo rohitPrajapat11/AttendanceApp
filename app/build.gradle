@@ -125,11 +125,11 @@ dependencies {
     implementation 'com.github.z-four:segmento:1.0.3'
     //nav drawer
     implementation 'com.yarolegovich:sliding-root-nav:1.1.1'
-//    advanced cardview
+    //advanced cardview
     implementation 'com.github.sina-seyfi:AdvancedCardView:1.0.1'
 
     implementation 'com.wefika:horizontal-picker:1.1.1'
-//    scrollview
+    //scrollview
     implementation 'com.yarolegovich:discrete-scrollview:1.5.1'
     // browser
     implementation 'androidx.browser:browser:1.4.0'
@@ -138,8 +138,12 @@ dependencies {
 
     //range picker
     implementation 'com.github.Jay-Goo:RangeSeekBar:3.0.0'
-//blur
+
+    //blur
     implementation 'io.alterac.blurkit:blurkit:1.1.0'
     implementation 'jp.wasabeef:blurry:4.0.1'
+
+    //ImagePopup
+    implementation 'com.github.chathuralakmal:AndroidImagePopup:1.2.2'
 }
 
