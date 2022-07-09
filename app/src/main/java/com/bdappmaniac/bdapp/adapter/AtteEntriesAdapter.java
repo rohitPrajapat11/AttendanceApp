@@ -22,7 +22,6 @@ public class AtteEntriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     ArrayList<ModelEntries> eList = new ArrayList<>();
     Context context;
 
-
     public AtteEntriesAdapter(ArrayList<ModelEntries> eList, Context context) {
         this.eList = eList;
         this.context = context;
@@ -54,7 +53,7 @@ public class AtteEntriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         AtteEntriesAdapter.ViewHolder vholder = (AtteEntriesAdapter.ViewHolder) holder;
         vholder.binding.checkInT.setText(eList.get(position).getCheck_in());
         vholder.binding.checkOutT.setText(eList.get(position).getCheck_out());
-        vholder.binding.workingH.setText(eList.get(position).getWork_Hrs());
+
 
         Animation animation = AnimationUtils.loadAnimation(context, R.anim.itemviewanimation);
         holder.itemView.startAnimation(animation);

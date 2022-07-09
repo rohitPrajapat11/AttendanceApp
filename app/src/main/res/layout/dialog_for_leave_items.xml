@@ -19,7 +19,7 @@
         android:paddingTop="@dimen/_4sdp"
         android:paddingBottom="@dimen/_4sdp"
         app:blk_blurRadius="3"
-        app:blk_cornerRadius="@dimen/_48sdp"
+        app:blk_cornerRadius="@dimen/_38sdp"
         app:blk_downscaleFactor="0.05"
         app:blk_fps="0"
         app:layout_constraintBottom_toBottomOf="parent"

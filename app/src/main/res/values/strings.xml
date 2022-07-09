@@ -334,7 +334,7 @@
     <string name="_04_march_2022">04 March, 2022</string>
     <string name="complete_till">Complete till :</string>
     <string name="all_the_description_related_to_the_title_will_be_here_all_the_description_related_to_the_title_will_be_here">All the description related to the title will be here .All the description related to the title will be here.</string>
-    <string name="time">time</string>
+    <string name="time">Time</string>
     <string name="_02_march_2022">02 March,2022</string>
     <string name="change_font_and_colour_combination">Change Font and Colour combination</string>
     <string name="complete">Complete</string>
@@ -405,5 +405,23 @@
     <string name="_87">87</string>
     <string name="payment_graph">payment Graph</string>
     <string name="studies_advance">Studies Advance</string>
+    <string name="_60_000">60,000</string>
+    <string name="_20_months">20 months</string>
+    <string name="all_the_loans_which_are_approved_yet">All The Loans Which Are Approved Yet</string>
+    <string name="loan_title">Loan Title</string>
+    <string name="_1000">1000</string>
+    <string name="_10_m">10 M</string>
+    <string name="_10000">10000</string>
+    <string name="_10">10</string>
+    <string name="m">M</string>
+    <string name="slash">/-</string>
+    <string name="emi">EMI</string>
+    <string name="all_the_loans_which_are_not_approved_yet">All The Loans Which Are Not Approved Yet</string>
+    <string name="all_the_loans_which_are_approved">all_the_loans_which_are_approved</string>
+    <string name="all_the_loans_which_are_rejected">All The Loans Which Are Rejected</string>
+    <string name="_00_00_hr">00:00 hr</string>
+    <string name="_00_00_am">00:00 AM</string>
+    <string name="_00_00_pm">00:00 PM</string>
+    <string name="bansi_bdappmaniac_gmail_com">bansi.bdappmaniac@gmail.com</string>
 
 </resources>

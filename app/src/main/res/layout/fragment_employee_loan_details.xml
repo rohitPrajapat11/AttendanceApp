@@ -8,7 +8,6 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
@@ -573,7 +572,6 @@
             app:layout_constraintStart_toEndOf="@+id/getLoan"
             app:layout_constraintTop_toBottomOf="@+id/graphLayout">
 
-
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="@dimen/_40sdp"
@@ -601,7 +599,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -624,12 +621,10 @@
             android:layout_height="0dp"
             android:layout_margin="@dimen/_2sdp"
             android:padding="@dimen/_3sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleAllloans"
-/>
-
-
+            app:layout_constraintTop_toBottomOf="@+id/titleAllloans"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
