@@ -12,14 +12,18 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.adapter.ManageApprovedAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeLoanDetailsBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.ProgressBarAnimation;
+import com.bdappmaniac.bdapp.model.ManageApprovedModel;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
+
+import java.util.ArrayList;
 
 public class EmployeeLoanDetails extends BaseFragment {
     FragmentEmployeeLoanDetailsBinding binding;
-
+    ManageApprovedAdapter adapter;
 
 
     @Override
@@ -64,7 +68,14 @@ public class EmployeeLoanDetails extends BaseFragment {
             }
         });
 
+        ArrayList<ManageApprovedModel> advancelist = new ArrayList<>();
+        advancelist.add(new ManageApprovedModel("Salary", "1000", "10", "5000", " public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState"));
+        advancelist.add(new ManageApprovedModel("Personal ", "80000", "2", "4000", " public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState"));
+        advancelist.add(new ManageApprovedModel("Advance ", "5000", "5", "1000", " public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState"));
+        advancelist.add(new ManageApprovedModel("Others", "300", "9", "3100", " public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState"));
 
+        adapter = new ManageApprovedAdapter(advancelist, mContext);
+        binding.recyclerAllLoans.setAdapter(adapter);
         return binding.getRoot();
     }
 }

@@ -102,7 +102,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_2sdp"
             app:layout_constraintEnd_toEndOf="@+id/titleCheckout"
             app:layout_constraintStart_toStartOf="@+id/title_checkin"
             app:layout_constraintTop_toBottomOf="@+id/titleCheckout">
@@ -112,7 +111,7 @@
                 android:id="@+id/checkInT"
                 android:layout_width="@dimen/_55sdp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_margin="@dimen/_1sdp"
                 android:fontFamily="@font/m_semibold"
                 android:gravity="center"
                 android:padding="@dimen/_1sdp"
@@ -123,40 +122,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
             <TextView
                 android:id="@+id/checkOutT"
                 android:layout_width="@dimen/_55sdp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_1sdp"
                 android:layout_marginStart="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_18sdp"
                 android:fontFamily="@font/m_semibold"
                 android:gravity="center"
-                android:layout_marginEnd="@dimen/_2sdp"
                 android:padding="@dimen/_1sdp"
                 android:text="@string/_00_00_pm"
                 android:textColor="@color/grey"
                 android:textSize="@dimen/_8sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/workingH"
                 app:layout_constraintStart_toEndOf="@+id/checkInT"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/workinHrs"
-            android:layout_width="@dimen/_55sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_6sdp"
-            android:fontFamily="@font/m_semibold"
-            android:gravity="center"
-            android:padding="@dimen/_1sdp"
-            android:text="@string/_00_00_pm"
-            android:textColor="@color/grey"
-            android:textSize="@dimen/_8sdp"
-            app:layout_constraintEnd_toEndOf="@+id/titleworkingHrs"
-            app:layout_constraintStart_toStartOf="@+id/titleworkingHrs"
-            app:layout_constraintTop_toBottomOf="@+id/titleworkingHrs" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleerEntries"
@@ -169,6 +154,5 @@
             app:layout_constraintStart_toStartOf="@+id/title_checkin"
             app:layout_constraintTop_toBottomOf="@+id/titleCheckout"
             tools:listitem="@layout/design_check_in_out_entries" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -23,7 +23,6 @@
         <entry key="app/src/main/res/drawable-xxxhdpi/container_search.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable-xxxhdpi/ic_search_black_24dp.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable-xxxhdpi/to_do_Att_recycler_bg.xml" value="0.1855" />
-        <entry key="app/src/main/res/drawable/admin_task_child_bottom_sheet.xml" value="0.1655" />
         <entry key="app/src/main/res/drawable/auth_white_bg.xml" value="0.15" />
         <entry key="app/src/main/res/drawable/bg_btn_gradient_in 2.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/bg_btn_gradient_in.xml" value="0.1805" />
@@ -115,13 +114,12 @@
         <entry key="app/src/main/res/layout/admin_child_task_item.xml" value="0.5" />
         <entry key="app/src/main/res/layout/admin_designation_dialogbox.xml" value="0.25" />
         <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/admin_edit_holiday_dilogbox.xml" value="0.351981351981352" />
+        <entry key="app/src/main/res/layout/admin_edit_holiday_dilogbox.xml" value="0.18" />
         <entry key="app/src/main/res/layout/admin_emp_info.xml" value="0.2" />
         <entry key="app/src/main/res/layout/admin_header.xml" value="0.2359375" />
         <entry key="app/src/main/res/layout/admin_history_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/admin_history_list_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/admin_home_layout.xml" value="0.39202965708989806" />
-        <entry key="app/src/main/res/layout/admin_task_adapter_bottom_sheet.xml" value="0.234375" />
         <entry key="app/src/main/res/layout/approved_leaves_bottom_sheet_dialog.xml" value="0.2791791363830697" />
         <entry key="app/src/main/res/layout/att_to_do_list.xml" value="0.5" />
         <entry key="app/src/main/res/layout/attendance_item.xml" value="0.2791791363830697" />
@@ -157,8 +155,7 @@
         <entry key="app/src/main/res/layout/dialog_checkin.xml" value="0.22" />
         <entry key="app/src/main/res/layout/dialog_checkout.xml" value="0.22" />
         <entry key="app/src/main/res/layout/dialog_for_leave_items.xml" value="0.22604166666666667" />
-        <entry key="app/src/main/res/layout/edit_designation_dialog.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/edit_task_dialog.xml" value="0.351981351981352" />
+        <entry key="app/src/main/res/layout/edit_designation_dialog.xml" value="0.11796875" />
         <entry key="app/src/main/res/layout/employee_day_attendance_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/employee_day_attendence_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/employee_holiday_item.xml" value="0.27247451343836887" />
@@ -207,7 +204,7 @@
         <entry key="app/src/main/res/layout/fragment_employee_list_for_loan.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout/fragment_employee_loan_details.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_employee_terms_and_condition.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_employee_to_do_list.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_employee_to_do_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_expenses_employee.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.19" />
         <entry key="app/src/main/res/layout/fragment_glide_loan_submit.xml" value="0.2267361111111111" />
@@ -260,7 +257,7 @@
         <entry key="app/src/main/res/layout/salary_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/single_item_of_employee.xml" value="0.18" />
         <entry key="app/src/main/res/layout/spinner_layout.xml" value="0.22604166666666667" />
-        <entry key="app/src/main/res/layout/task_add_dialog.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/task_add_dialog.xml" value="0.22" />
         <entry key="app/src/main/res/layout/task_bottom_sheet_dialog.xml" value="0.2791791363830697" />
         <entry key="app/src/main/res/layout/task_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/timeline_item_layout.xml" value="0.1194078947368421" />

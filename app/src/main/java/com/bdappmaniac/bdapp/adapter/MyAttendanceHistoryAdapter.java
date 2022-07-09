@@ -50,10 +50,10 @@ public class MyAttendanceHistoryAdapter extends RecyclerView.Adapter<RecyclerVie
         vholder.binding.day.setText(HistoryList.get(position).getDay());
 
         ArrayList<ModelEntries> eList = new ArrayList<>();
-        eList.add(new ModelEntries("09:38 AM","06:40 PM","09:08 Hr"));
-        eList.add(new ModelEntries("09:38 AM","06:40 PM","09:08 Hr"));
-        eList.add(new ModelEntries("09:38 AM","06:40 PM","09:08 Hr"));
-        eList.add(new ModelEntries("09:38 AM","06:40 PM","09:08 Hr"));
+        eList.add(new ModelEntries("09:38 AM","06:40 PM"));
+        eList.add(new ModelEntries("09:38 AM","06:40 PM"));
+        eList.add(new ModelEntries("09:38 AM","06:40 PM"));
+        eList.add(new ModelEntries("09:38 AM","06:40 PM"));
 
 
         AtteEntriesAdapter adapter = new AtteEntriesAdapter(eList,context);
