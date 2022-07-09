@@ -23,20 +23,20 @@ import com.bdappmaniac.bdapp.Api.response.TasksItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
-import com.bdappmaniac.bdapp.adapter.adminChildTaskAdapter;
+import com.bdappmaniac.bdapp.adapter.AdminTaskItemAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeToDoListBinding;
 import com.bdappmaniac.bdapp.databinding.TaskAddDialogBinding;
 import com.bdappmaniac.bdapp.databinding.TaskBottomSheetDialogBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
-import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -44,8 +44,8 @@ import okhttp3.RequestBody;
 
 public class EmployeeToDoListFragment extends BaseFragment {
     FragmentEmployeeToDoListBinding binding;
-    ArrayList<TasksItem> list = new ArrayList<>();
-    adminChildTaskAdapter adapter;
+    List<TasksItem> list = new ArrayList<>();
+    AdminTaskItemAdapter adapter;
     AllTaskItem allTaskItem;
     SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
     Calendar cal = Calendar.getInstance(Locale.ENGLISH);
@@ -54,6 +54,7 @@ public class EmployeeToDoListFragment extends BaseFragment {
     String fromDates;
     String toDates;
     String dates;
+    int a;
     private int TYear, TMonth, TDay;
     private int FYear, FMonth, FDay;
 
@@ -63,10 +64,15 @@ public class EmployeeToDoListFragment extends BaseFragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             allTaskItem = (AllTaskItem) bundle.getSerializable("EmployeeTaskList");
-            adapter = new adminChildTaskAdapter(getContext(), list);
+            if (allTaskItem.getTasks() != null) {
+                list = allTaskItem.getTasks();
+                adapter = new AdminTaskItemAdapter(mContext, list);
+            } else {
+                showToast("No Task Found");
+            }
         }
-        binding.childRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.childRecycler.setAdapter(adapter);
+        binding.allTaskRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.allTaskRecycler.setAdapter(adapter);
         binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
         binding.filterBtn.setOnClickListener(v -> {
             binding.toAndFromLayout.setVisibility(View.GONE);
@@ -227,10 +233,7 @@ public class EmployeeToDoListFragment extends BaseFragment {
                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    //Object
-                    TasksItem tasksItem = new Gson().fromJson(apiResponse.getData(), TasksItem.class);
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                    adapter.notifyDataSetChanged();
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 } else {
                     ((BaseActivity) mContext).showToast(apiResponse.getMessage());
                 }

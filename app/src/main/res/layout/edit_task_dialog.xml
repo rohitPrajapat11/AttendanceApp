@@ -31,15 +31,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/reasonTxt"
+                android:id="@+id/titleTxt"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
                 android:background="@drawable/white_5r_bg"
                 android:elevation="2dp"
-                android:hint="Enter Task"
                 android:fontFamily="@font/m_medium"
+                android:hint="Enter Task"
                 android:importantForAutofill="no"
                 android:inputType="textNoSuggestions"
                 android:paddingLeft="@dimen/_10sdp"
@@ -63,7 +63,7 @@
                 android:textColor="@color/_A8A8A8"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reasonTxt" />
+                app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
 
             <EditText
                 android:id="@+id/descriptionTxt"
@@ -73,8 +73,8 @@
                 android:layout_marginEnd="@dimen/_25sdp"
                 android:background="@drawable/white_5r_bg"
                 android:elevation="2dp"
-                android:hint="Enter Task Description"
                 android:fontFamily="@font/m_medium"
+                android:hint="Enter Task Description"
                 android:importantForAutofill="no"
                 android:inputType="textNoSuggestions"
                 android:paddingLeft="@dimen/_10sdp"
@@ -99,15 +99,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionTxt" />
 
-            <EditText
-                android:id="@+id/timeTxt"
+            <TextView
+                android:id="@+id/completionDateTxt"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_25sdp"
                 android:background="@drawable/edit_text_bg"
                 android:elevation="3dp"
-                android:focusable="false"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center_vertical"
                 android:hint="@string/dd_mm_yyyy"
@@ -124,19 +123,19 @@
                 tools:ignore="LabelFor" />
 
             <TextView
-                android:id="@+id/submitBtn"
+                android:id="@+id/updateBtn"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/light_green_15r_bg"
                 android:fontFamily="@font/m_medium"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="@string/submit"
+                android:text="@string/update"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
-                app:layout_constraintEnd_toEndOf="@+id/reasonTxt"
+                app:layout_constraintEnd_toEndOf="@+id/titleTxt"
                 app:layout_constraintStart_toEndOf="@id/cancelBtn"
-                app:layout_constraintTop_toBottomOf="@+id/timeTxt" />
+                app:layout_constraintTop_toBottomOf="@+id/completionDateTxt" />
 
             <TextView
                 android:id="@+id/cancelBtn"
@@ -148,10 +147,10 @@
                 android:text="@string/cancel"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/submitBtn"
-                app:layout_constraintEnd_toStartOf="@+id/submitBtn"
-                app:layout_constraintStart_toStartOf="@+id/reasonTxt"
-                app:layout_constraintTop_toTopOf="@+id/submitBtn" />
+                app:layout_constraintBottom_toBottomOf="@+id/updateBtn"
+                app:layout_constraintEnd_toStartOf="@+id/updateBtn"
+                app:layout_constraintStart_toStartOf="@+id/titleTxt"
+                app:layout_constraintTop_toTopOf="@+id/updateBtn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

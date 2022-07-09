@@ -2,10 +2,15 @@ package com.bdappmaniac.bdapp.Api.response;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class TasksItem{
 
-	@SerializedName("created_at")
-	private String createdAt;
+	@SerializedName("date")
+	private String date;
+
+	@SerializedName("tasks")
+	private List<TasksItem> tasks;
 
 	@SerializedName("id")
 	private int id;
@@ -25,12 +30,26 @@ public class TasksItem{
 	@SerializedName("status")
 	private String status;
 
-	public void setCreatedAt(String createdAt){
-		this.createdAt = createdAt;
+	public TasksItem(String title, String deadline, String content) {
+		this.title = title;
+		this.deadline = deadline;
+		this.content = content;
 	}
 
-	public String getCreatedAt(){
-		return createdAt;
+	public void setDate(String date){
+		this.date = date;
+	}
+
+	public String getDate(){
+		return date;
+	}
+
+	public void setTasks(List<TasksItem> tasks){
+		this.tasks = tasks;
+	}
+
+	public List<TasksItem> getTasks(){
+		return tasks;
 	}
 
 	public void setId(int id){
