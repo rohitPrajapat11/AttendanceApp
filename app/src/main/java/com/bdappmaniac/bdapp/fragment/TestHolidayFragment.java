@@ -18,17 +18,15 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.bdappmaniac.bdapp.Api.response.EmployeeHolidayResponse;
+import com.bdappmaniac.bdapp.Api.response.EmployeeHoliday;
 import com.bdappmaniac.bdapp.Api.response.HolidaysItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
-import com.bdappmaniac.bdapp.adapter.EmployeeHolidayAdapter;
-import com.bdappmaniac.bdapp.adapter.TestHolidayAdaptar;
+import com.bdappmaniac.bdapp.adapter.TestHolidayAdapter;
 import com.bdappmaniac.bdapp.databinding.AdminAddholidayDialogboxBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentTestHolidayBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.model.ModelHolidayItems;
 import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
@@ -46,38 +44,22 @@ import okhttp3.RequestBody;
 public class TestHolidayFragment extends BaseFragment {
     public String monthName;
     FragmentTestHolidayBinding binding;
-    EmployeeHolidayAdapter monthAdapter;
-    TestHolidayAdaptar Adapter;
+    TestHolidayAdapter holidayAdapter;
     String dates;
-    ArrayList<ModelHolidayItems> itemsArrayList = new ArrayList<>();
+    List<EmployeeHoliday> months = new ArrayList<>();
     List<HolidaysItem> list = new ArrayList<>();
-    List<EmployeeHolidayResponse> monthList = new ArrayList<>();
     private int TYear, TMonth, TDay;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_test_holiday, container, false);
-        monthAdapter = new EmployeeHolidayAdapter(mContext, list);
         binding.backBtn.setOnClickListener(view -> Navigation.findNavController(view).popBackStack());
         binding.addBtn.setOnClickListener(view -> addHolidayDialogBox());
 
-        ArrayList<ModelHolidayItems> itemsArrayList = new ArrayList<>();
-        itemsArrayList.add(new ModelHolidayItems("January"));
-        itemsArrayList.add(new ModelHolidayItems("February"));
-        itemsArrayList.add(new ModelHolidayItems("March"));
-        itemsArrayList.add(new ModelHolidayItems("April"));
-        itemsArrayList.add(new ModelHolidayItems("May"));
-        itemsArrayList.add(new ModelHolidayItems("June"));
-        itemsArrayList.add(new ModelHolidayItems("July"));
-        itemsArrayList.add(new ModelHolidayItems("August"));
-        itemsArrayList.add(new ModelHolidayItems("September"));
-        itemsArrayList.add(new ModelHolidayItems("October"));
-        itemsArrayList.add(new ModelHolidayItems("November"));
-        itemsArrayList.add(new ModelHolidayItems("December"));
-
-        Adapter = new TestHolidayAdaptar(itemsArrayList, mContext);
+        holidayAdapter = new TestHolidayAdapter(mContext, months);
         binding.recyclerholiday.setLayoutManager(new LinearLayoutManager(mContext));
-        binding.recyclerholiday.setAdapter(Adapter);
+        binding.recyclerholiday.setAdapter(holidayAdapter);
+
         return binding.getRoot();
     }
 
@@ -113,30 +95,27 @@ public class TestHolidayFragment extends BaseFragment {
         });
         adminAddholidayDialogboxBinding.submitBtn.setOnClickListener(view -> {
             String name = adminAddholidayDialogboxBinding.reasonTxt.getText().toString();
-            String date = dates;
-            if (adminAddholidayDialogboxBinding.dateTxt.getText().toString().isEmpty()) {
-                showSnackBar(binding.getRoot(), "Field cannot stay empty");
-            } else if (adminAddholidayDialogboxBinding.reasonTxt.getText().toString().isEmpty()) {
+            if (adminAddholidayDialogboxBinding.dateTxt.getText().toString().isEmpty() || adminAddholidayDialogboxBinding.reasonTxt.getText().toString().isEmpty()) {
                 showSnackBar(binding.getRoot(), "Field cannot stay empty");
             } else {
-                addHolidaysApi(name, date);
+                addHolidaysApi(name);
                 dialog.dismiss();
             }
         });
         adminAddholidayDialogboxBinding.cancelBtn.setOnClickListener(view -> dialog.dismiss());
     }
 
-    private void addHolidaysApi(String name, String date) {
+    private void addHolidaysApi(String name) {
         AppLoader.showLoaderDialog(mContext);
         Map<String, RequestBody> map = new HashMap<>();
         map.put("name", toRequestBody(name));
-        map.put("date", toRequestBody(date));
+        map.put("date", toRequestBody(dates));
         map.put("month", toRequestBody(monthName));
         MainService.addHolidays(mContext, getToken(), map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
-                if ((apiResponse.getData() != null)) {
+                if ((apiResponse.getData() != null && apiResponse.isSuccess())) {
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     holidaysOfCurrentYearApi();
                 } else {
@@ -152,17 +131,17 @@ public class TestHolidayFragment extends BaseFragment {
         AppLoader.showLoaderDialog(mContext);
         MainService.holidaysOfCurrentYear(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
-                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+                showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
-                if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<HolidaysItem>>() {
+                if ((apiResponse.getData() != null && apiResponse.isSuccess())) {
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
+                    Type collectionType = new TypeToken<List<EmployeeHoliday>>() {
                     }.getType();
-                    List<HolidaysItem> monthList = new Gson().fromJson(apiResponse.getData(), collectionType);
-                    list.clear();
-                    list.addAll(monthList);
-                    monthAdapter.notifyDataSetChanged();
+                    months.clear();
+                    months.addAll(new Gson().fromJson(apiResponse.getData(), collectionType));
+                    holidayAdapter.setList(months);
                 } else {
-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -174,6 +153,5 @@ public class TestHolidayFragment extends BaseFragment {
         super.onResume();
         StatusBarUtils.statusBarColor(requireActivity(), R.color.white);
         holidaysOfCurrentYearApi();
-        AppLoader.hideLoaderDialog();
     }
 }

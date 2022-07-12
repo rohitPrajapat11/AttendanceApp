@@ -2,72 +2,101 @@ package com.bdappmaniac.bdapp.Api.response;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class TasksItem {
 
-	@SerializedName("id")
-	private int id;
+    @SerializedName("date")
+    private String date;
 
-	@SerializedName("title")
-	private String title;
+    @SerializedName("tasks")
+    private List<TasksItem> tasks;
 
+    @SerializedName("id")
+    private int id;
 
-	@SerializedName("deadline")
-	private String deadline;
+    @SerializedName("title")
+    private String title;
 
-	@SerializedName("content")
-	private String content;
+    @SerializedName("deadline")
+    private String deadline;
 
-	@SerializedName("emp_id")
-	private int empId;
+    @SerializedName("content")
+    private String content;
 
-	@SerializedName("status")
-	private String status;
+    @SerializedName("emp_id")
+    private int empId;
 
-	public void setId(int id){
-		this.id = id;
-	}
+    @SerializedName("status")
+    private String status;
 
-	public int getId(){
-		return id;
-	}
+    public TasksItem(String title, String content, String deadline) {
+        this.title = title;
+        this.content = content;
+        this.deadline = deadline;
+    }
 
-	public void setTitle(String title){
-		this.title = title;
-	}
+    public String getDate() {
+        return date;
+    }
 
-	public String getTitle(){
-		return title;
-	}
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-	public void setDeadline(String deadline){
-		this.deadline = deadline;
-	}
+    public List<TasksItem> getTasks() {
+        return tasks;
+    }
 
-	public String getDeadline(){
-		return deadline;
-	}
+    public void setTasks(List<TasksItem> tasks) {
+        this.tasks = tasks;
+    }
 
-	public void setContent(String content){
-		this.content = content;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getContent(){
-		return content;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setEmpId(int empId){
-		this.empId = empId;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public int getEmpId(){
-		return empId;
-	}
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-	public void setStatus(String status){
-		this.status = status;
-	}
+    public String getDeadline() {
+        return deadline;
+    }
 
-	public String getStatus(){
-		return status;
-	}
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(int empId) {
+        this.empId = empId;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

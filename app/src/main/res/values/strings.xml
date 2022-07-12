@@ -423,5 +423,9 @@
     <string name="_00_00_am">00:00 AM</string>
     <string name="_00_00_pm">00:00 PM</string>
     <string name="bansi_bdappmaniac_gmail_com">bansi.bdappmaniac@gmail.com</string>
+    <string name="march_20_2022">March 20,2022</string>
+    <string name="no_completed_task">No Completed Task Found</string>
+    <string name="no_pending_task">No Pending Task Found</string>
+    <string name="no_task_found">No Task Found</string>
 
 </resources>

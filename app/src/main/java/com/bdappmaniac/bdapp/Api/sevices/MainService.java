@@ -51,31 +51,6 @@ public class MainService {
         return data;
     }
 
-    public static LiveData<ApiResponse> employeeRegistration(Context context, Map<String, RequestBody> map) {
-        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if (!BdApp.getInstance().isInternetConnected(context)) {
-            return data;
-        }
-        Call<ApiResponse> call = apiService.employeeRegistration(map);
-        call.enqueue(new Callback<ApiResponse>() {
-            @Override
-            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                if (response.body() != null) {
-                    data.setValue(response.body());
-                } else {
-                    data.setValue(null);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ApiResponse> call, Throwable t) {
-                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
-                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
-            }
-        });
-        return data;
-    }
-
     public static LiveData<ApiResponse> employeeList(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
         if (!BdApp.getInstance().isInternetConnected(context)) {
@@ -829,12 +804,62 @@ public class MainService {
         return data;
     }
 
+    public static LiveData<ApiResponse> employeeRegistration(Context context, Map<String, RequestBody> map) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        if (!BdApp.getInstance().isInternetConnected(context)) {
+            return data;
+        }
+        Call<ApiResponse> call = apiService.employeeRegistration(map);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
+
     public static LiveData<ApiResponse> allTaskWithEmployeeName(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
+        if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;
         }
         Call<ApiResponse> call = apiService.allTaskWithEmployeeName(token);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
+
+    public static LiveData<ApiResponse> getEmployeeAllTask(Context context, String token, int id) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        if (!BdApp.getInstance().isInternetConnected(context)) {
+            return data;
+        }
+        Call<ApiResponse> call = apiService.getEmployeeAllTask(token, id);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -901,8 +926,31 @@ public class MainService {
 
             }
         });
-
         return data;
     }
 
+
+    public static LiveData<ApiResponse> getTaskByStatus(Context context, String token, int id, Map<String, RequestBody> map) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        if (!BdApp.getInstance().isInternetConnected(context)) {
+            return data;
+        }
+        Call<ApiResponse> call = apiService.getTaskByStatus(token, id, map);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+            }
+        });
+        return data;
+    }
 }

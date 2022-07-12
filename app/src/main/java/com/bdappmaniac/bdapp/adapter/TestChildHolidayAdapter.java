@@ -8,24 +8,24 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bdappmaniac.bdapp.Api.response.HolidaysItem;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.TestDesignHolidayBinding;
-import com.bdappmaniac.bdapp.model.ModelChildHolidayItems;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class TestChildHolidayeAdaptar extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<ModelChildHolidayItems> holidays = new ArrayList<>();
+public class TestChildHolidayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
+    List<HolidaysItem> holidays;
 
-    public TestChildHolidayeAdaptar(ArrayList<ModelChildHolidayItems> holidays, Context context) {
-        this.holidays = holidays;
+    public TestChildHolidayAdapter(Context context, List<HolidaysItem> holidays) {
         this.context = context;
+        this.holidays = holidays;
     }
 
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
         TestDesignHolidayBinding binding = DataBindingUtil.inflate(inflater, R.layout.test_design_holiday, group, false);
-        return new TestChildHolidayeAdaptar.ViewHolder(binding);
+        return new TestChildHolidayAdapter.ViewHolder(binding);
     }
 
     @NonNull
@@ -36,15 +36,15 @@ public class TestChildHolidayeAdaptar extends RecyclerView.Adapter<RecyclerView.
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        TestChildHolidayeAdaptar.ViewHolder vHolder = (TestChildHolidayeAdaptar.ViewHolder) holder;
-        vHolder.binding.date.setText(holidays.get(position).getDate());
-        vHolder.binding.day.setText(holidays.get(position).getDay());
-        vHolder.binding.holiday.setText(holidays.get(position).getHoliday());
+        TestChildHolidayAdapter.ViewHolder vHolder = (TestChildHolidayAdapter.ViewHolder) holder;
+        vHolder.binding.date.setText("10");
+        vHolder.binding.day.setText("Monday");
+        vHolder.binding.holiday.setText(holidays.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return holidays.size();
+        return holidays == null ? 0 : holidays.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
