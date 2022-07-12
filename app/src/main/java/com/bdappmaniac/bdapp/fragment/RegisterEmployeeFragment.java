@@ -33,7 +33,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bdappmaniac.bdapp.Api.response.DesignationItem;
-import com.bdappmaniac.bdapp.Api.response.EmpRegisterResponse;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
@@ -131,7 +130,6 @@ public class RegisterEmployeeFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    EmpRegisterResponse empRegisterResponse = new Gson().fromJson(apiResponse.getData(), EmpRegisterResponse.class);
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     Navigation.findNavController(binding.getRoot()).navigate(R.id.employeeListFragment);
                 } else {

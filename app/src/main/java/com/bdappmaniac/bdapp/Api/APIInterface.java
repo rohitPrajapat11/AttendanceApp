@@ -22,10 +22,6 @@ public interface APIInterface {
     @POST("api/login")
     Call<ApiResponse> userLogIn(@PartMap Map<String, RequestBody> map);
 
-    @Multipart
-    @POST("api/employeeRegistration")
-    Call<ApiResponse> employeeRegistration(@PartMap Map<String, RequestBody> map);
-
     @POST("api/employee/{id}")
     Call<ApiResponse> getEmployeeById(@Header("Authorization") String token, @Path("id") int id);
 
@@ -52,13 +48,6 @@ public interface APIInterface {
 
     @POST("api/checkOut")
     Call<ApiResponse> checkOutTime(@Header("Authorization") String token);
-
-    @Multipart
-    @POST("api/Add-Holiday")
-    Call<ApiResponse> addHolidays(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
-
-    @POST("api/All-holidays-of-current-year")
-    Call<ApiResponse> holidaysOfCurrentYear(@Header("Authorization") String token);
 
     @Multipart
     @POST("api/mark-absent")
@@ -105,10 +94,6 @@ public interface APIInterface {
     Call<ApiResponse> specificEmployeeTermsAndConditions(@Header("Authorization") String token, @Path("empo_id") int empo_id);
 
     @Multipart
-    @POST("api/Update-Holiday/{id}")
-    Call<ApiResponse> updateHoliday(@Header("Authorization") String token, @Path("id") int id, @PartMap Map<String, RequestBody> map);
-
-    @Multipart
     @POST("api/Add-designation")
     Call<ApiResponse> addDesignation(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
 
@@ -131,8 +116,28 @@ public interface APIInterface {
     @POST("api/update-designation/{id}")
     Call<ApiResponse> updateDesignation(@Header("Authorization") String token, @Path("id") int id, @PartMap Map<String, RequestBody> map);
 
+    @Multipart
+    @POST("api/employeeRegistration")
+    Call<ApiResponse> employeeRegistration(@PartMap Map<String, RequestBody> map);
+
+    //Holidays
+    @Multipart
+    @POST("api/Add-Holiday")
+    Call<ApiResponse> addHolidays(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+
+    @POST("api/All-holidays-of-current-year")
+    Call<ApiResponse> holidaysOfCurrentYear(@Header("Authorization") String token);
+
+    @Multipart
+    @POST("api/Update-Holiday/{id}")
+    Call<ApiResponse> updateHoliday(@Header("Authorization") String token, @Path("id") int id, @PartMap Map<String, RequestBody> map);
+
+    //Task Api
     @POST("api/all-task-with-employee-name")
     Call<ApiResponse> allTaskWithEmployeeName(@Header("Authorization") String token);
+
+    @POST("api/all-task-with-employee-name/{id}")
+    Call<ApiResponse> getEmployeeAllTask(@Header("Authorization") String token, @Path("id") int id);
 
     @Multipart
     @POST("api/create-task")
@@ -144,4 +149,8 @@ public interface APIInterface {
     @Multipart
     @POST("api/update-task/{id}")
     Call<ApiResponse> updateTask(@Header("Authorization") String token, @Path("id") int id, @PartMap Map<String, RequestBody> map);
+
+    @Multipart
+    @POST("api/tasks-by-id-status/{id}")
+    Call<ApiResponse> getTaskByStatus(@Header("Authorization") String token, @Path("id") int id, @PartMap Map<String, RequestBody> map);
 }

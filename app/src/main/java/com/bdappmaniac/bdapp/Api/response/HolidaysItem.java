@@ -7,17 +7,14 @@ public class HolidaysItem{
 	@SerializedName("date")
 	private String date;
 
+	@SerializedName("month")
+	private String month;
+
 	@SerializedName("name")
 	private String name;
 
 	@SerializedName("id")
 	private int id;
-
-	public HolidaysItem(String date, String name, int id) {
-		this.date = date;
-		this.name = name;
-		this.id = id;
-	}
 
 	public void setDate(String date){
 		this.date = date;
@@ -25,6 +22,14 @@ public class HolidaysItem{
 
 	public String getDate(){
 		return date;
+	}
+
+	public void setMonth(String month){
+		this.month = month;
+	}
+
+	public String getMonth(){
+		return month;
 	}
 
 	public void setName(String name){

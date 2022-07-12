@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bdappmaniac.bdapp.Api.response.TasksItem;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.TaskItemBinding;
-import com.bdappmaniac.bdapp.utils.DateUtils;
 
 import java.util.List;
 
@@ -39,7 +38,7 @@ public class AdminTaskItemAdapter extends RecyclerView.Adapter<RecyclerView.View
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         AdminTaskItemAdapter.ViewHolder vHolder = (AdminTaskItemAdapter.ViewHolder) holder;
-        vHolder.binding.date.setText(DateUtils.getFormattedTime(taskItem.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatTos));
+        vHolder.binding.date.setText(taskItem.get(position).getDate());
 
         adminChildTaskAdapter adapter = new adminChildTaskAdapter(context, taskItem.get(position).getTasks());
         vHolder.binding.allTaskChildRecycler.setLayoutManager(new LinearLayoutManager(context));

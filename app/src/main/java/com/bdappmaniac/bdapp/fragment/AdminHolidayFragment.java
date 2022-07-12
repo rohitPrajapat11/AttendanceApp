@@ -140,7 +140,7 @@ public class AdminHolidayFragment extends BaseFragment {
                     }.getType();
                     List<HolidaysItem> monthList = new Gson().fromJson(apiResponse.getData(), collectionType);
                     list.clear();
-                    list.add(new HolidaysItem("Saturday Holiday", "Every 1st and 3rd of the Month", -1));
+//                    list.add(new HolidaysItem("Saturday Holiday", "Every 1st and 3rd of the Month", -1));
                     list.addAll(monthList);
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     monthAdapter.setList(list);

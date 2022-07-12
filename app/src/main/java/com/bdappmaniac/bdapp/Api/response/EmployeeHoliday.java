@@ -1,6 +1,5 @@
 package com.bdappmaniac.bdapp.Api.response;
 
-import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
 public class EmployeeHoliday {
@@ -9,7 +8,7 @@ public class EmployeeHoliday {
 	private String month;
 
 	@SerializedName("holidays")
-	private List<HolidaysItem> holidays;
+	private Object holidays;
 
 	public void setMonth(String month){
 		this.month = month;
@@ -19,11 +18,11 @@ public class EmployeeHoliday {
 		return month;
 	}
 
-	public void setHolidays(List<HolidaysItem> holidays){
+	public void setHolidays(Object holidays){
 		this.holidays = holidays;
 	}
 
-	public List<HolidaysItem> getHolidays(){
+	public Object getHolidays(){
 		return holidays;
 	}
 }

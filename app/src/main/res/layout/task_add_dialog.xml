@@ -31,7 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/reasonTxt"
+                android:id="@+id/titleTxt"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_5sdp"
@@ -63,10 +63,10 @@
                 android:textColor="@color/_A8A8A8"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/reasonTxt" />
+                app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
 
             <EditText
-                android:id="@+id/descriptionTxt"
+                android:id="@+id/contentTxt"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_5sdp"
@@ -97,7 +97,7 @@
                 android:textColor="@color/_A8A8A8"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionTxt" />
+                app:layout_constraintTop_toBottomOf="@+id/contentTxt" />
 
             <EditText
                 android:id="@+id/timeTxt"
@@ -134,7 +134,7 @@
                 android:text="@string/submit"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
-                app:layout_constraintEnd_toEndOf="@+id/reasonTxt"
+                app:layout_constraintEnd_toEndOf="@+id/titleTxt"
                 app:layout_constraintStart_toEndOf="@id/cancelBtn"
                 app:layout_constraintTop_toBottomOf="@+id/timeTxt" />
 
@@ -150,7 +150,7 @@
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/submitBtn"
                 app:layout_constraintEnd_toStartOf="@+id/submitBtn"
-                app:layout_constraintStart_toStartOf="@+id/reasonTxt"
+                app:layout_constraintStart_toStartOf="@+id/titleTxt"
                 app:layout_constraintTop_toTopOf="@+id/submitBtn" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,35 +13,18 @@
             android:id="@+id/addTaskBtn"
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
-            android:layout_marginEnd="@dimen/_2sdp"
             android:background="@drawable/light_green_15r_bg"
             android:fontFamily="@font/m_medium"
             android:gravity="center"
             android:text="@string/add_task"
             android:textColor="@color/white"
             android:textSize="@dimen/_10ssp"
-            app:layout_constraintEnd_toStartOf="@+id/dateBtn"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/dateBtn"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginStart="@dimen/_3sdp"
-            android:background="@drawable/light_green_15r_bg"
-            android:fontFamily="@font/m_medium"
-            android:gravity="center"
-            android:text="@string/to_and_from"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_10ssp"
-            app:layout_constraintBottom_toBottomOf="@+id/addTaskBtn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/addTaskBtn"
-            app:layout_constraintTop_toTopOf="@+id/addTaskBtn" />
-
-        <TextView
-            android:id="@+id/approvedBtn"
+            android:id="@+id/completedBtn"
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_5sdp"
@@ -67,26 +50,10 @@
             android:text="@string/pending"
             android:textColor="@color/white"
             android:textSize="@dimen/_10ssp"
-            app:layout_constraintBottom_toBottomOf="@+id/approvedBtn"
+            app:layout_constraintBottom_toBottomOf="@+id/completedBtn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/approvedBtn"
-            app:layout_constraintTop_toTopOf="@+id/approvedBtn" />
-
-        <TextView
-            android:id="@+id/months"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@drawable/light_green_15r_bg"
-            android:fontFamily="@font/m_medium"
-            android:gravity="center"
-            android:text="@string/month"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_10ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pendingBtn" />
+            app:layout_constraintStart_toEndOf="@+id/completedBtn"
+            app:layout_constraintTop_toTopOf="@+id/completedBtn" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

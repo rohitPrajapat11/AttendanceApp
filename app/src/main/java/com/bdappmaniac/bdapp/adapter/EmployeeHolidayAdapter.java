@@ -148,7 +148,7 @@ public class EmployeeHolidayAdapter extends RecyclerView.Adapter<RecyclerView.Vi
                     if ((apiResponse.getData() != null)) {
                         ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                         String str = DateUtils.getFormattedTime(date, DateUtils.appDateFormat, DateUtils.appDateFormatM);
-                        list.set(getAdapterPosition(), new HolidaysItem(date, name, id));
+//                        list.set(getAdapterPosition(), new HolidaysItem(date, name, id));
                         notifyDataSetChanged();
                     } else {
                         ((BaseActivity) context).showToast(apiResponse.getMessage());

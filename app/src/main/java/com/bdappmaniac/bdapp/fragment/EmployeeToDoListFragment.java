@@ -30,7 +30,10 @@ import com.bdappmaniac.bdapp.databinding.TaskBottomSheetDialogBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
+import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -51,10 +54,7 @@ public class EmployeeToDoListFragment extends BaseFragment {
     Calendar cal = Calendar.getInstance(Locale.ENGLISH);
     Calendar to = Calendar.getInstance();
     Calendar from = Calendar.getInstance();
-    String fromDates;
-    String toDates;
-    String dates;
-    int a;
+    String fromDates, toDates, dates;
     private int TYear, TMonth, TDay;
     private int FYear, FMonth, FDay;
 
@@ -68,7 +68,7 @@ public class EmployeeToDoListFragment extends BaseFragment {
                 list = allTaskItem.getTasks();
                 adapter = new AdminTaskItemAdapter(mContext, list);
             } else {
-                showToast("No Task Found");
+                showToast(getString(R.string.no_task_found));
             }
         }
         binding.allTaskRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -91,16 +91,22 @@ public class EmployeeToDoListFragment extends BaseFragment {
                 addTaskDialogBox();
                 dialog.dismiss();
             });
-            taskBinding.dateBtn.setOnClickListener(view -> {
-                binding.toAndFromLayout.setVisibility(View.VISIBLE);
+            taskBinding.completedBtn.setOnClickListener(view -> {
+                if (allTaskItem.getTasks() != null) {
+                    getTaskByStatusApi(allTaskItem.getEmpId(), "Complete");
+                } else {
+                    showToast(getString(R.string.no_completed_task));
+                }
                 dialog.dismiss();
             });
-            taskBinding.months.setOnClickListener(view -> {
-                binding.monthLayout.setVisibility(View.VISIBLE);
+            taskBinding.pendingBtn.setOnClickListener(view -> {
+                if (allTaskItem.getTasks() != null) {
+                    getTaskByStatusApi(allTaskItem.getEmpId(), "Pending");
+                } else {
+                    showToast(getString(R.string.no_pending_task));
+                }
                 dialog.dismiss();
             });
-            taskBinding.approvedBtn.setOnClickListener(view -> dialog.dismiss());
-            taskBinding.pendingBtn.setOnClickListener(view -> dialog.dismiss());
         });
         binding.ivCalendarNext.setOnClickListener(v -> {
             cal.add(Calendar.MONTH, 1);
@@ -182,38 +188,27 @@ public class EmployeeToDoListFragment extends BaseFragment {
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
-        taskBinding.timeTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                TYear = c.get(Calendar.YEAR);
-                TMonth = c.get(Calendar.MONTH);
-                TDay = c.get(Calendar.DAY_OF_MONTH);
-                @SuppressLint("SetTextI18n") DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.DatePicker,
-                        (view1, year, monthOfYear, dayOfMonth) -> {
-                            taskBinding.timeTxt.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
-                            dates = (year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
-                        }, TYear, TMonth, TDay);
-                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
-                datePickerDialog.getWindow().setGravity(Gravity.CENTER);
-                datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
-                datePickerDialog.show();
-            }
+        taskBinding.timeTxt.setOnClickListener(view -> {
+            final Calendar c = Calendar.getInstance();
+            TYear = c.get(Calendar.YEAR);
+            TMonth = c.get(Calendar.MONTH);
+            TDay = c.get(Calendar.DAY_OF_MONTH);
+            @SuppressLint("SetTextI18n") DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.DatePicker,
+                    (view1, year, monthOfYear, dayOfMonth) -> {
+                        dates = (year + "-" + (monthOfYear + 01) + "-" + dayOfMonth);
+                        taskBinding.timeTxt.setText(DateUtils.getFormattedTime(dates, DateUtils.appDateFormat, DateUtils.appDateFormatTos));
+                    }, TYear, TMonth, TDay);
+            datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            datePickerDialog.getWindow().setGravity(Gravity.CENTER);
+            datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
+            datePickerDialog.show();
         });
         taskBinding.submitBtn.setOnClickListener(view -> {
             SharedPref.init(mContext);
-            String emp_id = String.valueOf(allTaskItem.getEmpId());
-            String content = taskBinding.descriptionTxt.getText().toString();
-            String deadline = dates;
-            String title = taskBinding.reasonTxt.getText().toString();
-            if (taskBinding.reasonTxt.getText().toString().isEmpty()) {
-                showSnackBar(binding.getRoot(), "Field cannot stay empty");
-            } else if (taskBinding.descriptionTxt.getText().toString().isEmpty()) {
-                showSnackBar(binding.getRoot(), "Field cannot stay empty");
-            } else if (taskBinding.timeTxt.getText().toString().isEmpty()) {
+            if (taskBinding.titleTxt.getText().toString().isEmpty() || taskBinding.contentTxt.getText().toString().isEmpty() || taskBinding.timeTxt.getText().toString().isEmpty()) {
                 showSnackBar(binding.getRoot(), "Field cannot stay empty");
             } else {
-                createTaskApi(emp_id, content, title, deadline);
+                createTaskApi(taskBinding.titleTxt.getText().toString(), taskBinding.contentTxt.getText().toString());
                 dialog.dismiss();
             }
         });
@@ -221,21 +216,67 @@ public class EmployeeToDoListFragment extends BaseFragment {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void createTaskApi(String emp_id, String content, String title, String deadline) {
+    public void createTaskApi(String title, String content) {
         AppLoader.showLoaderDialog(mContext);
         Map<String, RequestBody> map = new HashMap<>();
-        map.put("emp_id", toRequestBody(emp_id));
-        map.put("content", toRequestBody(content));
+        map.put("emp_id", toRequestBody(String.valueOf(allTaskItem.getEmpId())));
         map.put("title", toRequestBody(title));
-        map.put("deadline", toRequestBody(deadline));
+        map.put("content", toRequestBody(content));
+        map.put("deadline", toRequestBody(dates));
         MainService.createTask(mContext, getToken(), map).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
+                    getEmployeeAllTaskApi(allTaskItem.getEmpId());
                 } else {
                     ((BaseActivity) mContext).showToast(apiResponse.getMessage());
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
+    }
+
+    public void getTaskByStatusApi(int id, String status) {
+        AppLoader.showLoaderDialog(mContext);
+        Map<String, RequestBody> map = new HashMap<>();
+        map.put("status", toRequestBody(status));
+        MainService.getTaskByStatus(mContext, ((BaseActivity) mContext).getToken(), id, map).observe((LifecycleOwner) mContext, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
+                    Type collectionType = new TypeToken<List<TasksItem>>() {
+                    }.getType();
+                    list.clear();
+                    if (status.equals("Pending")) {
+                        list.addAll(new Gson().fromJson(apiResponse.getData(), collectionType));
+                    }
+                    adapter.notifyDataSetChanged();
+                } else {
+                    ((BaseActivity) mContext).showToast(apiResponse.getMessage());
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
+    }
+
+    private void getEmployeeAllTaskApi(int empId) {
+        AppLoader.showLoaderDialog(mContext);
+        MainService.getEmployeeAllTask(mContext, getToken(), empId).observe((LifecycleOwner) mContext, apiResponse -> {
+            if (apiResponse == null) {
+                showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    Type collectionType = new TypeToken<List<TasksItem>>() {
+                    }.getType();
+                    list.clear();
+                    list.addAll(new Gson().fromJson(apiResponse.getData(), collectionType));
+                    adapter.notifyDataSetChanged();
+                } else {
+                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
             }
             AppLoader.hideLoaderDialog();

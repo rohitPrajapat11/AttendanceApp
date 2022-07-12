@@ -1,18 +1,19 @@
 package com.bdappmaniac.bdapp.Api.response;
 
-import java.util.List;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class EmployeeHolidayResponse{
 
 	@SerializedName("data")
-	private List<EmployeeHolidayList> data;
+	private List<HolidaysItem> data;
 
-	public void setData(List<EmployeeHolidayList> data){
+	public void setData(List<HolidaysItem> data){
 		this.data = data;
 	}
 
-	public List<EmployeeHolidayList> getData(){
+	public List<HolidaysItem> getData(){
 		return data;
 	}
 }
