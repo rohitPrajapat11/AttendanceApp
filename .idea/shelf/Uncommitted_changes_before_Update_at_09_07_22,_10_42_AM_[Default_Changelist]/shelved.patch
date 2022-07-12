@@ -1,0 +1,957 @@
+Index: app/src/main/res/layout/task_item.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<layout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\">\n\n    <androidx.constraintlayout.widget.ConstraintLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\">\n\n        <TextView\n            android:id=\"@+id/date\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:fontFamily=\"@font/m_semibold\"\n            android:padding=\"@dimen/_10sdp\"\n            android:text=\"March 20,2022\"\n            android:textColor=\"@color/black\"\n            android:textSize=\"@dimen/_11ssp\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\" />\n\n        <androidx.recyclerview.widget.RecyclerView\n            android:id=\"@+id/childRecycler\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"0dp\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@+id/date\"\n            tools:listitem=\"@layout/admin_child_task_item\" />\n\n    </androidx.constraintlayout.widget.ConstraintLayout>\n</layout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/task_item.xml b/app/src/main/res/layout/task_item.xml
+--- a/app/src/main/res/layout/task_item.xml	(revision 7a12d974bad388669090867cf559d9f8fc3e49d5)
++++ b/app/src/main/res/layout/task_item.xml	(date 1657343528357)
+@@ -5,26 +5,28 @@
+ 
+     <androidx.constraintlayout.widget.ConstraintLayout
+         android:layout_width="match_parent"
+-        android:layout_height="match_parent">
++        android:layout_height="wrap_content">
+ 
+         <TextView
+             android:id="@+id/date"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:fontFamily="@font/m_semibold"
+-            android:padding="@dimen/_10sdp"
+-            android:text="March 20,2022"
+-            android:textColor="@color/black"
++            android:padding="@dimen/_8sdp"
++            android:text="@string/march_20_2022"
++            android:textColor="@color/prime"
+             android:textSize="@dimen/_11ssp"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent" />
+ 
+         <androidx.recyclerview.widget.RecyclerView
+-            android:id="@+id/childRecycler"
++            android:id="@+id/allTaskChildRecycler"
+             android:layout_width="match_parent"
+-            android:layout_height="0dp"
+-            app:layout_constraintBottom_toBottomOf="parent"
++            android:layout_height="wrap_content"
++            tools:itemCount="2"
++            android:paddingStart="@dimen/_8sdp"
++            android:paddingEnd="@dimen/_8sdp"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toBottomOf="@+id/date"
+Index: app/src/main/java/com/bdappmaniac/bdapp/Api/APIInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bdappmaniac.bdapp.Api;\n\nimport com.bdappmaniac.bdapp.Api.response.ApiResponse;\n\nimport java.util.Map;\n\nimport okhttp3.MultipartBody;\nimport okhttp3.RequestBody;\nimport retrofit2.Call;\nimport retrofit2.http.Field;\nimport retrofit2.http.FormUrlEncoded;\nimport retrofit2.http.Header;\nimport retrofit2.http.Multipart;\nimport retrofit2.http.POST;\nimport retrofit2.http.Part;\nimport retrofit2.http.PartMap;\nimport retrofit2.http.Path;\n\npublic interface APIInterface {\n\n    @Multipart\n    @POST(\"api/login\")\n    Call<ApiResponse> userLogIn(@PartMap Map<String, RequestBody> map);\n\n    @Multipart\n    @POST(\"api/employeeRegistration\")\n    Call<ApiResponse> employeeRegistration(@PartMap Map<String, RequestBody> map);\n\n    @POST(\"api/employee/{id}\")\n    Call<ApiResponse> getEmployeeById(@Header(\"Authorization\") String token, @Path(\"id\") int id);\n\n    @POST(\"api/allemployees\")\n    Call<ApiResponse> employeeList(@Header(\"Authorization\") String token);\n\n    @FormUrlEncoded\n    @POST(\"api/updateProfileByAdmin/{id}\")\n    Call<ApiResponse> updateProfileByAdmin(@Header(\"Authorization\") String token, @Path(\"id\") int id, @Field(\"status\") String status);\n\n    @POST(\"api/logout\")\n    Call<ApiResponse> userLogout(@Header(\"Authorization\") String token);\n\n    @Multipart\n    @POST(\"api/updateProfile\")\n    Call<ApiResponse> updateEmployeeProfile(@Header(\"Authorization\") String token, @PartMap Map<String, RequestBody> map, @Part MultipartBody.Part filePart);\n\n    @Multipart\n    @POST(\"api/sendMail\")\n    Call<ApiResponse> sendMail(@PartMap Map<String, RequestBody> map);\n\n    @POST(\"api/checkIn\")\n    Call<ApiResponse> checkInTime(@Header(\"Authorization\") String token);\n\n    @POST(\"api/checkOut\")\n    Call<ApiResponse> checkOutTime(@Header(\"Authorization\") String token);\n\n    @Multipart\n    @POST(\"api/Add-Holiday\")\n    Call<ApiResponse> addHolidays(@Header(\"Authorization\") String token, @PartMap Map<String, RequestBody> map);\n\n    @POST(\"api/All-holidays-of-current-year\")\n    Call<ApiResponse> holidaysOfCurrentYear(@Header(\"Authorization\") String token);\n\n    @Multipart\n    @POST(\"api/mark-absent\")\n    Call<ApiResponse> markAttendanceByEmployee(@Header(\"Authorization\") String token, @PartMap Map<String, RequestBody> map);\n\n    @Multipart\n    @POST(\"api/workedHoursOnDate\")\n    Call<ApiResponse> workedHoursOnGivenDay(@Header(\"Authorization\") String token, @PartMap Map<String, RequestBody> map);\n\n    @POST(\"api/remove-holiday/{id}\")\n    Call<ApiResponse> removeHoliday(@Header(\"Authorization\") String token, @Path(\"id\") int id);\n\n    @Multipart\n    @POST(\"api/getInoutsOfLastGivenDays\")\n    Call<ApiResponse> inAndOutsBetweenDates(@Header(\"Authorization\") String token, @PartMap Map<String, RequestBody> map);\n\n    @Multipart\n    @POST(\"api/resetPassword\")\n    Call<ApiResponse> resetPassword(@PartMap Map<String, RequestBody> map);\n\n    @Multipart\n    @POST(\"api/getInOutsBwDates/{emp_id}\")\n    Call<ApiResponse> getInAndOutsBetweenDates(@Header(\"Authorization\") String token, @PartMap Map<String, RequestBody> map, @Path(\"emp_id\") int emp_id);\n\n    @Multipart\n    @POST(\"api/add-condition\")\n    Call<ApiResponse> addTermsAndConditions(@Header(\"Authorization\") String token, @PartMap Map<String, RequestBody> map);\n\n    @POST(\"api/all-terms-and-conditions\")\n    Call<ApiResponse> allTermsAndConditions(@Header(\"Authorization\") String token);\n\n    @Multipart\n    @POST(\"api/add-daily-rules\")\n    Call<ApiResponse> addDailyRules(@Header(\"Authorization\") String token, @PartMap Map<String, RequestBody> map);\n\n    @POST(\"api/daily-rules\")\n    Call<ApiResponse> allDailyRules(@Header(\"Authorization\") String token);\n\n    @Multipart\n    @POST(\"api/add-employee-term-and-conditions\")\n    Call<ApiResponse> addEmployeeTermAndConditions(@Header(\"Authorization\") String token, @PartMap Map<String, RequestBody> map);\n\n    @POST(\"api/employee/terms-and-conditions/{empo_id}\")\n    Call<ApiResponse> specificEmployeeTermsAndConditions(@Header(\"Authorization\") String token, @Path(\"empo_id\") int empo_id);\n\n    @Multipart\n    @POST(\"api/Update-Holiday/{id}\")\n    Call<ApiResponse> updateHoliday(@Header(\"Authorization\") String token, @Path(\"id\") int id, @PartMap Map<String, RequestBody> map);\n\n    @Multipart\n    @POST(\"api/Add-designation\")\n    Call<ApiResponse> addDesignation(@Header(\"Authorization\") String token, @PartMap Map<String, RequestBody> map);\n\n    @POST(\"api/All-designation\")\n    Call<ApiResponse> allDesignation(@Header(\"Authorization\") String token);\n\n    @POST(\"api/remove-designation/{id}\")\n    Call<ApiResponse> removeDesignation(@Header(\"Authorization\") String token, @Path(\"id\") int id);\n\n    @POST(\"api/all-emp-attend-of-today\")\n    Call<ApiResponse> allEmpAttendance(@Header(\"Authorization\") String token);\n\n    @POST(\"api/all-inactive-employee\")\n    Call<ApiResponse> allInactiveEmployee(@Header(\"Authorization\") String token);\n\n    @POST(\"api/employee-status-by-id/{id}\")\n    Call<ApiResponse> employeeStatusById(@Header(\"Authorization\") String token, @Path(\"id\") int id);\n\n    @Multipart\n    @POST(\"api/update-designation/{id}\")\n    Call<ApiResponse> updateDesignation(@Header(\"Authorization\") String token, @Path(\"id\") int id, @PartMap Map<String, RequestBody> map);\n\n    @POST(\"api/all-task-with-employee-name\")\n    Call<ApiResponse> allTaskWithEmployeeName(@Header(\"Authorization\") String token);\n\n    @Multipart\n    @POST(\"api/create-task\")\n    Call<ApiResponse> createTask(@Header(\"Authorization\") String token, @PartMap Map<String, RequestBody> map);\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/bdappmaniac/bdapp/Api/APIInterface.java b/app/src/main/java/com/bdappmaniac/bdapp/Api/APIInterface.java
+--- a/app/src/main/java/com/bdappmaniac/bdapp/Api/APIInterface.java	(revision 7a12d974bad388669090867cf559d9f8fc3e49d5)
++++ b/app/src/main/java/com/bdappmaniac/bdapp/Api/APIInterface.java	(date 1657343528347)
+@@ -137,4 +137,11 @@
+     @Multipart
+     @POST("api/create-task")
+     Call<ApiResponse> createTask(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
++
++    @POST("api/remove-task/{id}")
++    Call<ApiResponse> removeTask(@Header("Authorization") String token, @Path("id") int id);
++
++    @Multipart
++    @POST("api/update-task/{id}")
++    Call<ApiResponse> updateTask(@Header("Authorization") String token, @Path("id") int id, @PartMap Map<String, RequestBody> map);
+ }
+Index: app/src/main/res/layout/task_add_dialog.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<layout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\">\n\n    <androidx.constraintlayout.widget.ConstraintLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\">\n\n        <androidx.constraintlayout.widget.ConstraintLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:layout_margin=\"@dimen/_10sdp\"\n            android:background=\"@drawable/edit_text_bg\"\n            android:padding=\"@dimen/_10sdp\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\">\n\n            <TextView\n                android:id=\"@+id/reasonLb\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginStart=\"16dp\"\n                android:fontFamily=\"@font/m_semibold\"\n                android:text=\"@string/task\"\n                android:textColor=\"@color/_A8A8A8\"\n                android:textSize=\"@dimen/_12ssp\"\n                app:layout_constraintStart_toStartOf=\"parent\"\n                app:layout_constraintTop_toTopOf=\"parent\" />\n\n            <EditText\n                android:id=\"@+id/reasonTxt\"\n                android:layout_width=\"0dp\"\n                android:layout_height=\"@dimen/_40sdp\"\n                android:layout_marginTop=\"@dimen/_5sdp\"\n                android:layout_marginEnd=\"@dimen/_25sdp\"\n                android:background=\"@drawable/white_5r_bg\"\n                android:elevation=\"2dp\"\n                android:fontFamily=\"@font/m_medium\"\n                android:importantForAutofill=\"no\"\n                android:inputType=\"textNoSuggestions\"\n                android:paddingLeft=\"@dimen/_10sdp\"\n                android:paddingRight=\"@dimen/_10sdp\"\n                android:textColor=\"@color/prime\"\n                android:textSize=\"@dimen/_11ssp\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintStart_toStartOf=\"@+id/reasonLb\"\n                app:layout_constraintTop_toBottomOf=\"@+id/reasonLb\"\n                tools:ignore=\"LabelFor,TextFields\" />\n\n\n            <TextView\n                android:id=\"@+id/descriptionLb\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginStart=\"16dp\"\n                android:layout_marginTop=\"@dimen/_10sdp\"\n                android:fontFamily=\"@font/m_semibold\"\n                android:text=\"@string/description\"\n                android:textColor=\"@color/_A8A8A8\"\n                android:textSize=\"@dimen/_12ssp\"\n                app:layout_constraintStart_toStartOf=\"parent\"\n                app:layout_constraintTop_toBottomOf=\"@+id/reasonTxt\" />\n\n            <EditText\n                android:id=\"@+id/descriptionTxt\"\n                android:layout_width=\"0dp\"\n                android:layout_height=\"@dimen/_40sdp\"\n                android:layout_marginTop=\"@dimen/_5sdp\"\n                android:layout_marginEnd=\"@dimen/_25sdp\"\n                android:background=\"@drawable/white_5r_bg\"\n                android:elevation=\"2dp\"\n                android:fontFamily=\"@font/m_medium\"\n                android:importantForAutofill=\"no\"\n                android:inputType=\"textNoSuggestions\"\n                android:paddingLeft=\"@dimen/_10sdp\"\n                android:paddingRight=\"@dimen/_10sdp\"\n                android:textColor=\"@color/prime\"\n                android:textSize=\"@dimen/_11ssp\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintStart_toStartOf=\"@+id/descriptionLb\"\n                app:layout_constraintTop_toBottomOf=\"@+id/descriptionLb\"\n                tools:ignore=\"LabelFor\" />\n\n            <TextView\n                android:id=\"@+id/timeLb\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginStart=\"16dp\"\n                android:layout_marginTop=\"@dimen/_10sdp\"\n                android:fontFamily=\"@font/m_semibold\"\n                android:text=\"@string/date\"\n                android:textColor=\"@color/_A8A8A8\"\n                android:textSize=\"@dimen/_12ssp\"\n                app:layout_constraintStart_toStartOf=\"parent\"\n                app:layout_constraintTop_toBottomOf=\"@+id/descriptionTxt\" />\n\n            <EditText\n                android:id=\"@+id/timeTxt\"\n                android:layout_width=\"0dp\"\n                android:layout_height=\"@dimen/_40sdp\"\n                android:layout_marginTop=\"@dimen/_5sdp\"\n                android:layout_marginEnd=\"@dimen/_25sdp\"\n                android:background=\"@drawable/edit_text_bg\"\n                android:elevation=\"3dp\"\n                android:focusable=\"false\"\n                android:fontFamily=\"@font/m_medium\"\n                android:gravity=\"center_vertical\"\n                android:hint=\"@string/dd_mm_yyyy\"\n                android:importantForAutofill=\"no\"\n                android:inputType=\"textNoSuggestions\"\n                android:paddingLeft=\"@dimen/_10sdp\"\n                android:paddingRight=\"@dimen/_10sdp\"\n                android:textAllCaps=\"true\"\n                android:textColor=\"@color/prime\"\n                android:textSize=\"@dimen/_10ssp\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintStart_toStartOf=\"@+id/timeLb\"\n                app:layout_constraintTop_toBottomOf=\"@+id/timeLb\"\n                tools:ignore=\"LabelFor\" />\n\n            <TextView\n                android:id=\"@+id/submitBtn\"\n                android:layout_width=\"@dimen/_100sdp\"\n                android:layout_height=\"@dimen/_35sdp\"\n                android:background=\"@drawable/light_green_15r_bg\"\n                android:fontFamily=\"@font/m_medium\"\n                android:gravity=\"center\"\n                android:layout_marginTop=\"@dimen/_10sdp\"\n                android:text=\"@string/submit\"\n                android:textColor=\"@color/white\"\n                android:textSize=\"@dimen/_12sdp\"\n                app:layout_constraintEnd_toEndOf=\"@+id/reasonTxt\"\n                app:layout_constraintStart_toEndOf=\"@id/cancelBtn\"\n                app:layout_constraintTop_toBottomOf=\"@+id/timeTxt\" />\n\n            <TextView\n                android:id=\"@+id/cancelBtn\"\n                android:layout_width=\"@dimen/_100sdp\"\n                android:layout_height=\"@dimen/_35sdp\"\n                android:background=\"@drawable/red_10r_bg\"\n                android:fontFamily=\"@font/m_medium\"\n                android:gravity=\"center\"\n                android:text=\"@string/cancel\"\n                android:textColor=\"@color/white\"\n                android:textSize=\"@dimen/_12sdp\"\n                app:layout_constraintBottom_toBottomOf=\"@+id/submitBtn\"\n                app:layout_constraintEnd_toStartOf=\"@+id/submitBtn\"\n                app:layout_constraintStart_toStartOf=\"@+id/reasonTxt\"\n                app:layout_constraintTop_toTopOf=\"@+id/submitBtn\" />\n        </androidx.constraintlayout.widget.ConstraintLayout>\n    </androidx.constraintlayout.widget.ConstraintLayout>\n</layout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/task_add_dialog.xml b/app/src/main/res/layout/task_add_dialog.xml
+--- a/app/src/main/res/layout/task_add_dialog.xml	(revision 7a12d974bad388669090867cf559d9f8fc3e49d5)
++++ b/app/src/main/res/layout/task_add_dialog.xml	(date 1657343528356)
+@@ -38,6 +38,7 @@
+                 android:layout_marginEnd="@dimen/_25sdp"
+                 android:background="@drawable/white_5r_bg"
+                 android:elevation="2dp"
++                android:hint="Enter Task"
+                 android:fontFamily="@font/m_medium"
+                 android:importantForAutofill="no"
+                 android:inputType="textNoSuggestions"
+@@ -72,6 +73,7 @@
+                 android:layout_marginEnd="@dimen/_25sdp"
+                 android:background="@drawable/white_5r_bg"
+                 android:elevation="2dp"
++                android:hint="Enter Task Description"
+                 android:fontFamily="@font/m_medium"
+                 android:importantForAutofill="no"
+                 android:inputType="textNoSuggestions"
+Index: app/src/main/java/com/bdappmaniac/bdapp/adapter/adminChildTaskAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bdappmaniac.bdapp.adapter;\n\nimport android.content.Context;\nimport android.view.LayoutInflater;\nimport android.view.ViewGroup;\n\nimport androidx.annotation.NonNull;\nimport androidx.databinding.DataBindingUtil;\nimport androidx.recyclerview.widget.RecyclerView;\n\nimport com.bdappmaniac.bdapp.Api.response.TasksItem;\nimport com.bdappmaniac.bdapp.R;\nimport com.bdappmaniac.bdapp.databinding.AdminChildTaskItemBinding;\n\nimport java.util.List;\n\npublic class adminChildTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {\n    Context context;\n    List<TasksItem> childTaskList;\n\n    public adminChildTaskAdapter(Context context, List<TasksItem> childTaskList) {\n        this.context = context;\n        this.childTaskList = childTaskList;\n    }\n\n    private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {\n        AdminChildTaskItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.admin_child_task_item, group, false);\n        return new adminChildTaskAdapter.TaskViewHolder(binding);\n    }\n\n    @NonNull\n    @Override\n    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\n        return getViewHolder(LayoutInflater.from(context), parent);\n    }\n\n    @Override\n    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {\n        adminChildTaskAdapter.TaskViewHolder vHolder = (adminChildTaskAdapter.TaskViewHolder) holder;\n        vHolder.binding.taskHeading.setText(childTaskList.get(position).getTitle());\n        vHolder.binding.discription.setText(childTaskList.get(position).getContent());\n        vHolder.binding.completionDate.setText(childTaskList.get(position).getDeadline());\n        vHolder.binding.completeBtn.setText(childTaskList.get(position).getStatus());\n    }\n\n    @Override\n    public int getItemCount() {\n        return childTaskList.size();\n    }\n\n    public static class TaskViewHolder extends RecyclerView.ViewHolder {\n        AdminChildTaskItemBinding binding;\n\n        public TaskViewHolder(@NonNull AdminChildTaskItemBinding itemView) {\n            super(itemView.getRoot());\n            binding = itemView;\n        }\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/bdappmaniac/bdapp/adapter/adminChildTaskAdapter.java b/app/src/main/java/com/bdappmaniac/bdapp/adapter/adminChildTaskAdapter.java
+--- a/app/src/main/java/com/bdappmaniac/bdapp/adapter/adminChildTaskAdapter.java	(revision 7a12d974bad388669090867cf559d9f8fc3e49d5)
++++ b/app/src/main/java/com/bdappmaniac/bdapp/adapter/adminChildTaskAdapter.java	(date 1657343528350)
+@@ -1,26 +1,48 @@
+ package com.bdappmaniac.bdapp.adapter;
+ 
++import android.annotation.SuppressLint;
++import android.app.DatePickerDialog;
++import android.app.Dialog;
+ import android.content.Context;
++import android.graphics.drawable.ColorDrawable;
++import android.view.Gravity;
+ import android.view.LayoutInflater;
++import android.view.View;
+ import android.view.ViewGroup;
++import android.view.Window;
++import android.view.WindowManager;
+ 
+ import androidx.annotation.NonNull;
+ import androidx.databinding.DataBindingUtil;
++import androidx.lifecycle.LifecycleOwner;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
+ import com.bdappmaniac.bdapp.Api.response.TasksItem;
++import com.bdappmaniac.bdapp.Api.sevices.MainService;
+ import com.bdappmaniac.bdapp.R;
++import com.bdappmaniac.bdapp.activity.BaseActivity;
+ import com.bdappmaniac.bdapp.databinding.AdminChildTaskItemBinding;
++import com.bdappmaniac.bdapp.databinding.AdminTaskAdapterBottomSheetBinding;
++import com.bdappmaniac.bdapp.databinding.EditTaskDialogBinding;
++import com.bdappmaniac.bdapp.helper.AppLoader;
++import com.bdappmaniac.bdapp.utils.StringHelper;
+ 
++import java.util.Calendar;
++import java.util.HashMap;
+ import java.util.List;
++import java.util.Map;
++
++import okhttp3.MediaType;
++import okhttp3.RequestBody;
+ 
+ public class adminChildTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+     Context context;
+-    List<TasksItem> childTaskList;
++    List<TasksItem> taskItem;
++    private int TYear, TMonth, TDay;
+ 
+-    public adminChildTaskAdapter(Context context, List<TasksItem> childTaskList) {
++    public adminChildTaskAdapter(Context context, List<TasksItem> taskItem) {
+         this.context = context;
+-        this.childTaskList = childTaskList;
++        this.taskItem = taskItem;
+     }
+ 
+     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
+@@ -35,26 +57,148 @@
+     }
+ 
+     @Override
+-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
++    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+         adminChildTaskAdapter.TaskViewHolder vHolder = (adminChildTaskAdapter.TaskViewHolder) holder;
+-        vHolder.binding.taskHeading.setText(childTaskList.get(position).getTitle());
+-        vHolder.binding.discription.setText(childTaskList.get(position).getContent());
+-        vHolder.binding.completionDate.setText(childTaskList.get(position).getDeadline());
+-        vHolder.binding.completeBtn.setText(childTaskList.get(position).getStatus());
++        vHolder.binding.taskHeading.setText(taskItem.get(position).getTitle());
++        vHolder.binding.discription.setText(taskItem.get(position).getContent());
++        vHolder.binding.completionDate.setText(taskItem.get(position).getDeadline());
++        vHolder.binding.completeBtn.setText(taskItem.get(position).getStatus());
++
++        vHolder.binding.item.setOnLongClickListener(new View.OnLongClickListener() {
++            @Override
++            public boolean onLongClick(View view) {
++                AdminTaskAdapterBottomSheetBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.admin_task_adapter_bottom_sheet, null, false);
++                Dialog dialog = new Dialog(context);
++                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
++                dialog.setContentView(binding.getRoot());
++                dialog.setCancelable(false);
++                dialog.setCanceledOnTouchOutside(false);
++                dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
++                dialog.getWindow().setGravity(Gravity.BOTTOM);
++                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
++                dialog.show();
++                binding.editBtn.setOnClickListener(new View.OnClickListener() {
++                    @Override
++                    public void onClick(View view) {
++                        vHolder.updateTaskDialogBox();
++                        dialog.dismiss();
++                    }
++                });
++                binding.deleteBtn.setOnClickListener(new View.OnClickListener() {
++                    @Override
++                    public void onClick(View view) {
++                        dialog.dismiss();
++                        vHolder.removeTaskApi(taskItem.get(position).getId());
++                    }
++                });
++                binding.cancel.setOnClickListener(new View.OnClickListener() {
++                    @Override
++                    public void onClick(View view) {
++                        dialog.dismiss();
++                    }
++                });
++                return false;
++            }
++        });
+     }
+ 
+     @Override
+     public int getItemCount() {
+-        return childTaskList.size();
++        return taskItem == null ? 0 : taskItem.size();
+     }
+ 
+-    public static class TaskViewHolder extends RecyclerView.ViewHolder {
++    public class TaskViewHolder extends RecyclerView.ViewHolder {
+         AdminChildTaskItemBinding binding;
+ 
+         public TaskViewHolder(@NonNull AdminChildTaskItemBinding itemView) {
+             super(itemView.getRoot());
+             binding = itemView;
+         }
++
++        public void updateTaskApi(int id, String title, String content, String deadline) {
++            AppLoader.showLoaderDialog(context);
++            Map<String, RequestBody> map = new HashMap<>();
++            map.put("title", toRequestBody(title));
++            map.put("content", toRequestBody(content));
++            map.put("deadline", toRequestBody(deadline));
++            MainService.updateTask(context, ((BaseActivity) context).getToken(), id, map).observe((LifecycleOwner) context, apiResponse -> {
++                if (apiResponse == null) {
++                    ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
++                } else {
++                    if ((apiResponse.getData() != null)) {
++                        ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
++                        taskItem.set(getAdapterPosition(), new TasksItem(title, content, deadline));
++                        notifyDataSetChanged();
++                    } else {
++                        ((BaseActivity) context).showToast(apiResponse.getMessage());
++                    }
++                }
++                AppLoader.hideLoaderDialog();
++            });
++        }
++
++        public void updateTaskDialogBox() {
++            EditTaskDialogBinding taskBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.edit_task_dialog, null, false);
++            Dialog dialog = new Dialog(context);
++            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
++            dialog.setContentView(taskBinding.getRoot());
++            dialog.setCancelable(false);
++            dialog.setCanceledOnTouchOutside(false);
++            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
++            dialog.getWindow().setGravity(Gravity.CENTER);
++            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
++            dialog.show();
++            taskBinding.titleTxt.setText(binding.taskHeading.getText().toString());
++            taskBinding.descriptionTxt.setText(binding.discription.getText().toString());
++            taskBinding.completionDateTxt.setText(binding.completionDate.getText().toString());
++            taskBinding.completionDateTxt.setOnClickListener(view -> {
++                final Calendar c = Calendar.getInstance();
++                TYear = c.get(Calendar.YEAR);
++                TMonth = c.get(Calendar.MONTH);
++                TDay = c.get(Calendar.DAY_OF_MONTH);
++                DatePickerDialog datePickerDialog = new DatePickerDialog(context, R.style.DatePicker, (view1, year, monthOfYear, dayOfMonth) -> {
++                    taskBinding.completionDateTxt.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
++                }, TYear, TMonth, TDay);
++                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
++                datePickerDialog.getWindow().setGravity(Gravity.CENTER);
++                datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());
++                datePickerDialog.show();
++            });
++            taskBinding.updateBtn.setOnClickListener(view -> {
++                updateTaskApi(taskItem.get(getAdapterPosition()).getId(), taskBinding.titleTxt.getText().toString(), taskBinding.descriptionTxt.getText().toString(), taskBinding.completionDateTxt.getText().toString());
++                dialog.dismiss();
++            });
++            taskBinding.cancelBtn.setOnClickListener(view -> dialog.dismiss());
++        }
++
++        private void removeTaskApi(int id) {
++            AppLoader.showLoaderDialog(context);
++            MainService.removeTask(context, ((BaseActivity) context).getToken(), id).observe((LifecycleOwner) context, apiResponse -> {
++                if (apiResponse == null) {
++                    ((BaseActivity) context).showSnackBar(binding.getRoot(), context.getString(R.string.something_went_wrong));
++                } else {
++                    if ((apiResponse.getData() != null)) {
++                        taskItem.remove(getAdapterPosition());
++                        notifyDataSetChanged();
++                    } else {
++                        ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
++                    }
++                }
++                AppLoader.hideLoaderDialog();
++            });
++        }
++
++        public RequestBody toRequestBody(String val) {
++            RequestBody requestBody = null;
++            if (context != null) {
++                requestBody = toRequestBodyPart(val);
++            }
++            return requestBody;
++        }
++
++        public RequestBody toRequestBodyPart(String value) {
++            return !StringHelper.isEmpty(value) ? RequestBody.create(MediaType.parse("text/plain"), value) : null;
++        }
+     }
+ }
+ 
+Index: app/src/main/java/com/bdappmaniac/bdapp/Api/response/AllTaskItem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bdappmaniac.bdapp.Api.response;\n\nimport com.google.gson.annotations.SerializedName;\n\nimport java.io.Serializable;\nimport java.util.List;\n\npublic class AllTaskItem implements Serializable {\n\n    @SerializedName(\"employee\")\n    private String employee;\n\n    @SerializedName(\"tasks\")\n    private List<TasksItem> tasks;\n\n    @SerializedName(\"emp_id\")\n    private int empId;\n\n    public void setEmployee(String employee) {\n        this.employee = employee;\n    }\n\n    public String getEmployee() {\n        return employee;\n    }\n\n    public void setTasks(List<TasksItem> tasks) {\n        this.tasks = tasks;\n    }\n\n    public List<TasksItem> getTasks() {\n        return tasks;\n    }\n\n    public void setEmpId(int empId) {\n        this.empId = empId;\n    }\n\n    public int getEmpId() {\n        return empId;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/bdappmaniac/bdapp/Api/response/AllTaskItem.java b/app/src/main/java/com/bdappmaniac/bdapp/Api/response/AllTaskItem.java
+--- a/app/src/main/java/com/bdappmaniac/bdapp/Api/response/AllTaskItem.java	(revision 7a12d974bad388669090867cf559d9f8fc3e49d5)
++++ b/app/src/main/java/com/bdappmaniac/bdapp/Api/response/AllTaskItem.java	(date 1657343528348)
+@@ -7,36 +7,36 @@
+ 
+ public class AllTaskItem implements Serializable {
+ 
+-    @SerializedName("employee")
+-    private String employee;
++	@SerializedName("employee")
++	private String employee;
+ 
+-    @SerializedName("tasks")
+-    private List<TasksItem> tasks;
++	@SerializedName("tasks")
++	private List<TasksItem> tasks;
+ 
+-    @SerializedName("emp_id")
+-    private int empId;
++	@SerializedName("emp_id")
++	private int empId;
+ 
+-    public void setEmployee(String employee) {
+-        this.employee = employee;
+-    }
++	public void setEmployee(String employee){
++		this.employee = employee;
++	}
+ 
+-    public String getEmployee() {
+-        return employee;
+-    }
++	public String getEmployee(){
++		return employee;
++	}
+ 
+-    public void setTasks(List<TasksItem> tasks) {
+-        this.tasks = tasks;
+-    }
++	public void setTasks(List<TasksItem> tasks){
++		this.tasks = tasks;
++	}
+ 
+-    public List<TasksItem> getTasks() {
+-        return tasks;
+-    }
++	public List<TasksItem> getTasks(){
++		return tasks;
++	}
+ 
+-    public void setEmpId(int empId) {
+-        this.empId = empId;
+-    }
++	public void setEmpId(int empId){
++		this.empId = empId;
++	}
+ 
+-    public int getEmpId() {
+-        return empId;
+-    }
+-}
++	public int getEmpId(){
++		return empId;
++	}
++}
+\ No newline at end of file
+Index: app/src/main/res/layout/fragment_employee_to_do_list.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<layout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\">\n\n    <androidx.constraintlayout.widget.ConstraintLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n        android:background=\"@color/white\">\n\n        <androidx.constraintlayout.widget.ConstraintLayout\n            android:id=\"@+id/headerLayout\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:elevation=\"1dp\"\n            android:paddingTop=\"@dimen/_15sdp\"\n            android:paddingBottom=\"@dimen/_15sdp\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\">\n\n            <ImageView\n                android:id=\"@+id/backBtn\"\n                android:layout_width=\"@dimen/_25sdp\"\n                android:layout_height=\"@dimen/_20sdp\"\n                android:layout_marginStart=\"@dimen/_20sdp\"\n                android:contentDescription=\"@string/backBtn\"\n                android:src=\"@drawable/icn_back_arrow\"\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintStart_toStartOf=\"parent\"\n                app:layout_constraintTop_toTopOf=\"parent\"\n                app:tint=\"@color/prime\" />\n\n            <TextView\n                android:id=\"@+id/title\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:fontFamily=\"@font/m_medium\"\n                android:gravity=\"center\"\n                android:text=\"@string/task_history\"\n                android:textColor=\"@color/prime\"\n                android:textSize=\"@dimen/_15ssp\"\n                app:layout_constraintBottom_toBottomOf=\"parent\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintStart_toStartOf=\"parent\"\n                app:layout_constraintTop_toTopOf=\"parent\" />\n\n            <ImageView\n                android:id=\"@+id/filterBtn\"\n                android:layout_width=\"@dimen/_20sdp\"\n                android:layout_height=\"@dimen/_20sdp\"\n                android:layout_marginEnd=\"@dimen/_20sdp\"\n                android:contentDescription=\"@string/filterbtn\"\n                android:src=\"@drawable/icn_filter\"\n                app:layout_constraintBottom_toBottomOf=\"@+id/title\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintTop_toTopOf=\"@+id/title\"\n                app:tint=\"@color/prime\" />\n\n        </androidx.constraintlayout.widget.ConstraintLayout>\n\n        <androidx.constraintlayout.widget.ConstraintLayout\n            android:id=\"@+id/head\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:background=\"@drawable/bottom_cut_bg\"\n            android:elevation=\"1dp\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@id/headerLayout\">\n\n            <androidx.constraintlayout.widget.ConstraintLayout\n                android:id=\"@+id/toAndFromLayout\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:elevation=\"1dp\"\n                android:padding=\"@dimen/_5sdp\"\n                android:visibility=\"gone\"\n                app:layout_constraintEnd_toEndOf=\"parent\"\n                app:layout_constraintStart_toStartOf=\"parent\"\n                app:layout_constraintTop_toTopOf=\"parent\">\n\n                <androidx.constraintlayout.widget.ConstraintLayout\n                    android:id=\"@+id/constraintLayout11\"\n                    android:layout_width=\"wrap_content\"\n                    android:layout_height=\"@dimen/_30sdp\"\n                    android:elevation=\"1dp\"\n                    android:padding=\"@dimen/_5sdp\"\n                    app:layout_constraintStart_toStartOf=\"parent\"\n                    app:layout_constraintTop_toTopOf=\"parent\">\n\n                    <TextView\n                        android:id=\"@+id/formTxt\"\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:fontFamily=\"@font/m_medium\"\n                        android:gravity=\"center\"\n                        android:paddingStart=\"@dimen/_1sdp\"\n                        android:text=\"@string/from_\"\n                        android:textColor=\"@color/prime\"\n                        android:textSize=\"@dimen/_11ssp\"\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\n                        app:layout_constraintStart_toStartOf=\"parent\"\n                        app:layout_constraintTop_toTopOf=\"parent\"\n                        tools:ignore=\"RtlSymmetry\" />\n\n                    <TextView\n                        android:id=\"@+id/FromDate\"\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:elevation=\"1dp\"\n                        android:fontFamily=\"@font/m_medium\"\n                        android:gravity=\"center\"\n                        android:hint=\"@string/dd_mm_yyyy\"\n                        android:textColor=\"@color/prime\"\n                        android:textSize=\"@dimen/_10ssp\"\n                        app:layout_constraintBottom_toBottomOf=\"@+id/formTxt\"\n                        app:layout_constraintStart_toEndOf=\"@+id/formTxt\"\n                        app:layout_constraintTop_toTopOf=\"@+id/formTxt\" />\n\n                </androidx.constraintlayout.widget.ConstraintLayout>\n\n                <androidx.constraintlayout.widget.ConstraintLayout\n                    android:id=\"@+id/constraintLayout12\"\n                    android:layout_width=\"0dp\"\n                    android:layout_height=\"@dimen/_30sdp\"\n                    android:elevation=\"1dp\"\n                    android:padding=\"@dimen/_5sdp\"\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\n                    app:layout_constraintEnd_toEndOf=\"@+id/constraintLayout11\"\n                    app:layout_constraintStart_toStartOf=\"parent\"\n                    app:layout_constraintTop_toBottomOf=\"@+id/constraintLayout11\">\n\n                    <TextView\n                        android:id=\"@+id/ToTxt\"\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:fontFamily=\"@font/m_medium\"\n                        android:gravity=\"center\"\n                        android:paddingStart=\"@dimen/_1sdp\"\n                        android:text=\"@string/to_\"\n                        android:textColor=\"@color/prime\"\n                        android:textSize=\"@dimen/_11ssp\"\n                        app:layout_constraintBottom_toBottomOf=\"parent\"\n                        app:layout_constraintEnd_toStartOf=\"@+id/ToDate\"\n                        app:layout_constraintTop_toTopOf=\"parent\"\n                        tools:ignore=\"RtlSymmetry\" />\n\n                    <TextView\n                        android:id=\"@+id/ToDate\"\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:fontFamily=\"@font/m_medium\"\n                        android:gravity=\"center\"\n                        android:hint=\"@string/dd_mm_yyyy\"\n                        android:textColor=\"@color/prime\"\n                        android:textSize=\"@dimen/_10ssp\"\n                        app:layout_constraintBottom_toBottomOf=\"@+id/ToTxt\"\n                        app:layout_constraintEnd_toEndOf=\"parent\"\n                        app:layout_constraintTop_toTopOf=\"@+id/ToTxt\" />\n                </androidx.constraintlayout.widget.ConstraintLayout>\n\n                <TextView\n                    android:id=\"@+id/findBtn\"\n                    android:layout_width=\"@dimen/_60sdp\"\n                    android:layout_height=\"@dimen/_25sdp\"\n                    android:background=\"@drawable/light_green_15r_bg\"\n                    android:fontFamily=\"@font/m_medium\"\n                    android:gravity=\"center\"\n                    android:text=\"@string/search\"\n                    android:textColor=\"@color/white\"\n                    android:textSize=\"@dimen/_10ssp\"\n                    app:layout_constraintBottom_toTopOf=\"@+id/cancelBtn\"\n                    app:layout_constraintEnd_toEndOf=\"parent\"\n                    app:layout_constraintTop_toTopOf=\"parent\" />\n\n                <TextView\n                    android:id=\"@+id/cancelBtn\"\n                    android:layout_width=\"@dimen/_60sdp\"\n                    android:layout_height=\"@dimen/_25sdp\"\n                    android:background=\"@drawable/red_10r_bg\"\n                    android:fontFamily=\"@font/m_medium\"\n                    android:gravity=\"center\"\n                    android:text=\"@string/clear\"\n                    android:textColor=\"@color/white\"\n                    android:textSize=\"@dimen/_10ssp\"\n                    android:visibility=\"visible\"\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\n                    app:layout_constraintEnd_toEndOf=\"parent\"\n                    app:layout_constraintTop_toBottomOf=\"@id/findBtn\" />\n\n            </androidx.constraintlayout.widget.ConstraintLayout>\n\n            <androidx.constraintlayout.widget.ConstraintLayout\n                android:id=\"@+id/monthLayout\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:elevation=\"1dp\"\n                android:paddingBottom=\"@dimen/_5sdp\"\n                android:visibility=\"gone\"\n                app:layout_constraintTop_toBottomOf=\"@id/toAndFromLayout\">\n\n                <androidx.constraintlayout.widget.ConstraintLayout\n                    android:id=\"@+id/calendarChangeLayout\"\n                    android:layout_width=\"@dimen/_130sdp\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginTop=\"@dimen/_5sdp\"\n                    app:layout_constraintEnd_toEndOf=\"parent\"\n                    app:layout_constraintStart_toStartOf=\"parent\"\n                    app:layout_constraintTop_toTopOf=\"parent\">\n\n                    <ImageView\n                        android:id=\"@+id/iv_calendar_previous\"\n                        android:layout_width=\"@dimen/_20sdp\"\n                        android:layout_height=\"@dimen/_20sdp\"\n                        android:contentDescription=\"@string/calander\"\n                        android:padding=\"@dimen/_3sdp\"\n                        android:src=\"@drawable/icn_previous\"\n                        app:layout_constraintBottom_toBottomOf=\"@+id/monthTxt\"\n                        app:layout_constraintStart_toStartOf=\"parent\"\n                        app:layout_constraintTop_toTopOf=\"@+id/monthTxt\" />\n\n                    <ImageView\n                        android:id=\"@+id/iv_calendar_next\"\n                        android:layout_width=\"@dimen/_20sdp\"\n                        android:layout_height=\"@dimen/_20sdp\"\n                        android:contentDescription=\"@string/calander\"\n                        android:padding=\"@dimen/_3sdp\"\n                        android:src=\"@drawable/icn_next\"\n                        app:layout_constraintBottom_toBottomOf=\"@+id/monthTxt\"\n                        app:layout_constraintEnd_toEndOf=\"parent\"\n                        app:layout_constraintTop_toTopOf=\"@+id/monthTxt\" />\n\n                    <TextView\n                        android:id=\"@+id/yearTxt\"\n                        android:layout_width=\"wrap_content\"\n                        android:layout_height=\"wrap_content\"\n                        android:fontFamily=\"@font/m_medium\"\n                        android:text=\"@string/_2021\"\n                        android:textColor=\"@color/primary_color\"\n                        android:textSize=\"@dimen/_11ssp\"\n                        app:layout_constraintEnd_toEndOf=\"@+id/monthTxt\"\n                        app:layout_constraintStart_toStartOf=\"@+id/monthTxt\"\n                        app:layout_constraintTop_toBottomOf=\"@+id/monthTxt\" />\n\n                    <TextView\n                        android:id=\"@+id/monthTxt\"\n                        android:layout_width=\"0dp\"\n                        android:layout_height=\"wrap_content\"\n                        android:fontFamily=\"@font/m_medium\"\n                        android:gravity=\"center\"\n                        android:text=\"@string/month\"\n                        android:textColor=\"@color/primary_color\"\n                        android:textSize=\"@dimen/_11ssp\"\n                        app:layout_constraintEnd_toStartOf=\"@+id/iv_calendar_next\"\n                        app:layout_constraintStart_toEndOf=\"@+id/iv_calendar_previous\"\n                        app:layout_constraintTop_toTopOf=\"parent\" />\n                </androidx.constraintlayout.widget.ConstraintLayout>\n            </androidx.constraintlayout.widget.ConstraintLayout>\n        </androidx.constraintlayout.widget.ConstraintLayout>\n\n        <androidx.recyclerview.widget.RecyclerView\n            android:id=\"@+id/childRecycler\"\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"0dp\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@+id/head\"\n            tools:listitem=\"@layout/task_item\" />\n    </androidx.constraintlayout.widget.ConstraintLayout>\n</layout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_employee_to_do_list.xml b/app/src/main/res/layout/fragment_employee_to_do_list.xml
+--- a/app/src/main/res/layout/fragment_employee_to_do_list.xml	(revision 7a12d974bad388669090867cf559d9f8fc3e49d5)
++++ b/app/src/main/res/layout/fragment_employee_to_do_list.xml	(date 1657343528355)
+@@ -260,7 +260,7 @@
+         </androidx.constraintlayout.widget.ConstraintLayout>
+ 
+         <androidx.recyclerview.widget.RecyclerView
+-            android:id="@+id/childRecycler"
++            android:id="@+id/allTaskRecycler"
+             android:layout_width="match_parent"
+             android:layout_height="0dp"
+             app:layout_constraintBottom_toBottomOf="parent"
+Index: app/src/main/res/layout/edit_task_dialog.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/edit_task_dialog.xml b/app/src/main/res/layout/edit_task_dialog.xml
+new file mode 100644
+--- /dev/null	(date 1657343528354)
++++ b/app/src/main/res/layout/edit_task_dialog.xml	(date 1657343528354)
+@@ -0,0 +1,156 @@
++<?xml version="1.0" encoding="utf-8"?>
++<layout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools">
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++
++        <androidx.constraintlayout.widget.ConstraintLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_margin="@dimen/_10sdp"
++            android:background="@drawable/edit_text_bg"
++            android:padding="@dimen/_10sdp"
++            app:layout_constraintBottom_toBottomOf="parent"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent">
++
++            <TextView
++                android:id="@+id/reasonLb"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_marginStart="16dp"
++                android:fontFamily="@font/m_semibold"
++                android:text="@string/task"
++                android:textColor="@color/_A8A8A8"
++                android:textSize="@dimen/_12ssp"
++                app:layout_constraintStart_toStartOf="parent"
++                app:layout_constraintTop_toTopOf="parent" />
++
++            <EditText
++                android:id="@+id/titleTxt"
++                android:layout_width="0dp"
++                android:layout_height="@dimen/_40sdp"
++                android:layout_marginTop="@dimen/_5sdp"
++                android:layout_marginEnd="@dimen/_25sdp"
++                android:background="@drawable/white_5r_bg"
++                android:elevation="2dp"
++                android:fontFamily="@font/m_medium"
++                android:hint="Enter Task"
++                android:importantForAutofill="no"
++                android:inputType="textNoSuggestions"
++                android:paddingLeft="@dimen/_10sdp"
++                android:paddingRight="@dimen/_10sdp"
++                android:textColor="@color/prime"
++                android:textSize="@dimen/_11ssp"
++                app:layout_constraintEnd_toEndOf="parent"
++                app:layout_constraintStart_toStartOf="@+id/reasonLb"
++                app:layout_constraintTop_toBottomOf="@+id/reasonLb"
++                tools:ignore="LabelFor,TextFields" />
++
++
++            <TextView
++                android:id="@+id/descriptionLb"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_marginStart="16dp"
++                android:layout_marginTop="@dimen/_10sdp"
++                android:fontFamily="@font/m_semibold"
++                android:text="@string/description"
++                android:textColor="@color/_A8A8A8"
++                android:textSize="@dimen/_12ssp"
++                app:layout_constraintStart_toStartOf="parent"
++                app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
++
++            <EditText
++                android:id="@+id/descriptionTxt"
++                android:layout_width="0dp"
++                android:layout_height="@dimen/_40sdp"
++                android:layout_marginTop="@dimen/_5sdp"
++                android:layout_marginEnd="@dimen/_25sdp"
++                android:background="@drawable/white_5r_bg"
++                android:elevation="2dp"
++                android:fontFamily="@font/m_medium"
++                android:hint="Enter Task Description"
++                android:importantForAutofill="no"
++                android:inputType="textNoSuggestions"
++                android:paddingLeft="@dimen/_10sdp"
++                android:paddingRight="@dimen/_10sdp"
++                android:textColor="@color/prime"
++                android:textSize="@dimen/_11ssp"
++                app:layout_constraintEnd_toEndOf="parent"
++                app:layout_constraintStart_toStartOf="@+id/descriptionLb"
++                app:layout_constraintTop_toBottomOf="@+id/descriptionLb"
++                tools:ignore="LabelFor" />
++
++            <TextView
++                android:id="@+id/timeLb"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_marginStart="16dp"
++                android:layout_marginTop="@dimen/_10sdp"
++                android:fontFamily="@font/m_semibold"
++                android:text="@string/date"
++                android:textColor="@color/_A8A8A8"
++                android:textSize="@dimen/_12ssp"
++                app:layout_constraintStart_toStartOf="parent"
++                app:layout_constraintTop_toBottomOf="@+id/descriptionTxt" />
++
++            <TextView
++                android:id="@+id/completionDateTxt"
++                android:layout_width="0dp"
++                android:layout_height="@dimen/_40sdp"
++                android:layout_marginTop="@dimen/_5sdp"
++                android:layout_marginEnd="@dimen/_25sdp"
++                android:background="@drawable/edit_text_bg"
++                android:elevation="3dp"
++                android:fontFamily="@font/m_medium"
++                android:gravity="center_vertical"
++                android:hint="@string/dd_mm_yyyy"
++                android:importantForAutofill="no"
++                android:inputType="textNoSuggestions"
++                android:paddingLeft="@dimen/_10sdp"
++                android:paddingRight="@dimen/_10sdp"
++                android:textAllCaps="true"
++                android:textColor="@color/prime"
++                android:textSize="@dimen/_10ssp"
++                app:layout_constraintEnd_toEndOf="parent"
++                app:layout_constraintStart_toStartOf="@+id/timeLb"
++                app:layout_constraintTop_toBottomOf="@+id/timeLb"
++                tools:ignore="LabelFor" />
++
++            <TextView
++                android:id="@+id/updateBtn"
++                android:layout_width="@dimen/_100sdp"
++                android:layout_height="@dimen/_35sdp"
++                android:layout_marginTop="@dimen/_10sdp"
++                android:background="@drawable/light_green_15r_bg"
++                android:fontFamily="@font/m_medium"
++                android:gravity="center"
++                android:text="@string/update"
++                android:textColor="@color/white"
++                android:textSize="@dimen/_12sdp"
++                app:layout_constraintEnd_toEndOf="@+id/titleTxt"
++                app:layout_constraintStart_toEndOf="@id/cancelBtn"
++                app:layout_constraintTop_toBottomOf="@+id/completionDateTxt" />
++
++            <TextView
++                android:id="@+id/cancelBtn"
++                android:layout_width="@dimen/_100sdp"
++                android:layout_height="@dimen/_35sdp"
++                android:background="@drawable/red_10r_bg"
++                android:fontFamily="@font/m_medium"
++                android:gravity="center"
++                android:text="@string/cancel"
++                android:textColor="@color/white"
++                android:textSize="@dimen/_12sdp"
++                app:layout_constraintBottom_toBottomOf="@+id/updateBtn"
++                app:layout_constraintEnd_toStartOf="@+id/updateBtn"
++                app:layout_constraintStart_toStartOf="@+id/titleTxt"
++                app:layout_constraintTop_toTopOf="@+id/updateBtn" />
++        </androidx.constraintlayout.widget.ConstraintLayout>
++    </androidx.constraintlayout.widget.ConstraintLayout>
++</layout>
+\ No newline at end of file
+Index: app/src/main/java/com/bdappmaniac/bdapp/fragment/EmployeeToDoListFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bdappmaniac.bdapp.fragment;\n\nimport android.annotation.SuppressLint;\nimport android.app.DatePickerDialog;\nimport android.app.Dialog;\nimport android.graphics.drawable.ColorDrawable;\nimport android.os.Bundle;\nimport android.view.Gravity;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\nimport android.view.Window;\nimport android.view.WindowManager;\n\nimport androidx.annotation.NonNull;\nimport androidx.databinding.DataBindingUtil;\nimport androidx.lifecycle.LifecycleOwner;\nimport androidx.navigation.Navigation;\nimport androidx.recyclerview.widget.LinearLayoutManager;\n\nimport com.bdappmaniac.bdapp.Api.response.AllTaskItem;\nimport com.bdappmaniac.bdapp.Api.response.TasksItem;\nimport com.bdappmaniac.bdapp.Api.sevices.MainService;\nimport com.bdappmaniac.bdapp.R;\nimport com.bdappmaniac.bdapp.activity.BaseActivity;\nimport com.bdappmaniac.bdapp.adapter.adminChildTaskAdapter;\nimport com.bdappmaniac.bdapp.databinding.FragmentEmployeeToDoListBinding;\nimport com.bdappmaniac.bdapp.databinding.TaskAddDialogBinding;\nimport com.bdappmaniac.bdapp.databinding.TaskBottomSheetDialogBinding;\nimport com.bdappmaniac.bdapp.helper.AppLoader;\nimport com.bdappmaniac.bdapp.utils.DateUtils;\nimport com.bdappmaniac.bdapp.utils.SharedPref;\nimport com.google.gson.Gson;\n\nimport java.text.SimpleDateFormat;\nimport java.util.ArrayList;\nimport java.util.Calendar;\nimport java.util.Date;\nimport java.util.HashMap;\nimport java.util.Locale;\nimport java.util.Map;\n\nimport okhttp3.RequestBody;\n\npublic class EmployeeToDoListFragment extends BaseFragment {\n    FragmentEmployeeToDoListBinding binding;\n    ArrayList<TasksItem> list = new ArrayList<>();\n    adminChildTaskAdapter adapter;\n    AllTaskItem allTaskItem;\n    SimpleDateFormat sdf = new SimpleDateFormat(\"MMMM yyyy\", Locale.ENGLISH);\n    Calendar cal = Calendar.getInstance(Locale.ENGLISH);\n    Calendar to = Calendar.getInstance();\n    Calendar from = Calendar.getInstance();\n    String fromDates;\n    String toDates;\n    String dates;\n    private int TYear, TMonth, TDay;\n    private int FYear, FMonth, FDay;\n\n    @Override\n    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {\n        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_to_do_list, container, false);\n        Bundle bundle = getArguments();\n        if (bundle != null) {\n            allTaskItem = (AllTaskItem) bundle.getSerializable(\"EmployeeTaskList\");\n            adapter = new adminChildTaskAdapter(getContext(), list);\n        }\n        binding.childRecycler.setLayoutManager(new LinearLayoutManager(getContext()));\n        binding.childRecycler.setAdapter(adapter);\n        binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());\n        binding.filterBtn.setOnClickListener(v -> {\n            binding.toAndFromLayout.setVisibility(View.GONE);\n            binding.monthLayout.setVisibility(View.GONE);\n            TaskBottomSheetDialogBinding taskBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.task_bottom_sheet_dialog, null, false);\n            Dialog dialog = new Dialog(mContext);\n            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);\n            dialog.setContentView(taskBinding.getRoot());\n            dialog.setCancelable(false);\n            dialog.setCanceledOnTouchOutside(true);\n            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);\n            dialog.getWindow().setGravity(Gravity.BOTTOM);\n            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));\n            dialog.show();\n            taskBinding.addTaskBtn.setOnClickListener(view -> {\n                addTaskDialogBox();\n                dialog.dismiss();\n            });\n            taskBinding.dateBtn.setOnClickListener(view -> {\n                binding.toAndFromLayout.setVisibility(View.VISIBLE);\n                dialog.dismiss();\n            });\n            taskBinding.months.setOnClickListener(view -> {\n                binding.monthLayout.setVisibility(View.VISIBLE);\n                dialog.dismiss();\n            });\n            taskBinding.approvedBtn.setOnClickListener(view -> dialog.dismiss());\n            taskBinding.pendingBtn.setOnClickListener(view -> dialog.dismiss());\n        });\n        binding.ivCalendarNext.setOnClickListener(v -> {\n            cal.add(Calendar.MONTH, 1);\n            setUpCalendar();\n        });\n\n        binding.ivCalendarPrevious.setOnClickListener(v -> {\n            cal.add(Calendar.MONTH, -1);\n            setUpCalendar();\n        });\n\n        binding.FromDate.setOnClickListener(v -> {\n            FYear = from.get(Calendar.YEAR);\n            FMonth = from.get(Calendar.MONTH);\n            FDay = from.get(Calendar.DAY_OF_MONTH);\n            DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,\n                    (view, year, monthOfYear, dayOfMonth) -> {\n                        fromDates = (year + \"-\" + (monthOfYear + 1) + \"-\" + dayOfMonth);\n                        binding.FromDate.setText(DateUtils.getFormattedTime(fromDates, DateUtils.appDateFormat, DateUtils.appDateFormatTo));\n                    }, FYear, FMonth, FDay);\n            datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);\n            datePickerDialog.getWindow().setGravity(Gravity.CENTER);\n            datePickerDialog.show();\n        });\n        binding.ToDate.setOnClickListener(v -> {\n            if (!binding.FromDate.getText().toString().isEmpty()) {\n                TYear = to.get(Calendar.YEAR);\n                TMonth = to.get(Calendar.MONTH);\n                TDay = to.get(Calendar.DAY_OF_MONTH);\n                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext, R.style.DatePicker,\n                        (view, year, monthOfYear, dayOfMonth) -> {\n                            toDates = (year + \"-\" + (monthOfYear + 1) + \"-\" + dayOfMonth);\n                            binding.ToDate.setText(DateUtils.getFormattedTime(toDates, DateUtils.appDateFormat, DateUtils.appDateFormatTo));\n                            binding.ToDate.setFocusable(false);\n                        }, TYear, TMonth, TDay);\n                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);\n                long getFromDate = DateUtils.getTimeInMillis(DateUtils.parseStringDate(binding.FromDate.getText().toString(), \"dd-MM-yyyy\", \"dd-MM-yyyy\"), \"dd-MM-yyyy\");\n                if (!binding.FromDate.getText().toString().isEmpty()) {\n                    datePickerDialog.getDatePicker().setMinDate(getFromDate);\n                }\n                datePickerDialog.getDatePicker().setMaxDate(new Date().getTime());\n                datePickerDialog.getWindow().setGravity(Gravity.CENTER);\n                datePickerDialog.show();\n            }\n        });\n        binding.cancelBtn.setOnClickListener(view -> {\n            binding.FromDate.setText(\"\");\n            binding.ToDate.setText(\"\");\n        });\n        binding.findBtn.setOnClickListener(view -> {\n            String fromDate = fromDates;\n            String toDate = toDates;\n            if (binding.FromDate.getText().toString().isEmpty()) {\n                showSnackBar(binding.getRoot(), \"From Date field is empty\");\n            } else if (binding.ToDate.getText().toString().isEmpty()) {\n                showSnackBar(binding.getRoot(), \"To Date field is empty\");\n            } else {\n//                    getInAndOutsBetweenDatesApi(fromDate, toDate, IDE);\n            }\n        });\n        return binding.getRoot();\n    }\n\n    private void setUpCalendar() {\n        String currentString = sdf.format(cal.getTime());\n        String[] separated = currentString.split(\" \");\n        binding.monthTxt.setText(separated[0]);\n        binding.yearTxt.setText(separated[1]);\n    }\n\n    public void addTaskDialogBox() {\n        TaskAddDialogBinding taskBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.task_add_dialog, null, false);\n        Dialog dialog = new Dialog(mContext);\n        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);\n        dialog.setContentView(taskBinding.getRoot());\n        dialog.setCancelable(false);\n        dialog.setCanceledOnTouchOutside(false);\n        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);\n        dialog.getWindow().setGravity(Gravity.CENTER);\n        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));\n        dialog.show();\n        taskBinding.timeTxt.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View view) {\n                final Calendar c = Calendar.getInstance();\n                TYear = c.get(Calendar.YEAR);\n                TMonth = c.get(Calendar.MONTH);\n                TDay = c.get(Calendar.DAY_OF_MONTH);\n                @SuppressLint(\"SetTextI18n\") DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.DatePicker,\n                        (view1, year, monthOfYear, dayOfMonth) -> {\n                            taskBinding.timeTxt.setText(dayOfMonth + \"-\" + (monthOfYear + 1) + \"-\" + year);\n                            dates = (year + \"-\" + (monthOfYear + 1) + \"-\" + dayOfMonth);\n                        }, TYear, TMonth, TDay);\n                datePickerDialog.getWindow().setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);\n                datePickerDialog.getWindow().setGravity(Gravity.CENTER);\n                datePickerDialog.getDatePicker().setMinDate(c.getTimeInMillis());\n                datePickerDialog.show();\n            }\n        });\n        taskBinding.submitBtn.setOnClickListener(view -> {\n            SharedPref.init(mContext);\n            String emp_id = String.valueOf(allTaskItem.getEmpId());\n            String content = taskBinding.descriptionTxt.getText().toString();\n            String deadline = dates;\n            String title = taskBinding.reasonTxt.getText().toString();\n            if (taskBinding.reasonTxt.getText().toString().isEmpty()) {\n                showSnackBar(binding.getRoot(), \"Field cannot stay empty\");\n            } else if (taskBinding.descriptionTxt.getText().toString().isEmpty()) {\n                showSnackBar(binding.getRoot(), \"Field cannot stay empty\");\n            } else if (taskBinding.timeTxt.getText().toString().isEmpty()) {\n                showSnackBar(binding.getRoot(), \"Field cannot stay empty\");\n            } else {\n                createTaskApi(emp_id, content, title, deadline);\n                dialog.dismiss();\n            }\n        });\n        taskBinding.cancelBtn.setOnClickListener(view -> dialog.dismiss());\n    }\n\n    @SuppressLint(\"NotifyDataSetChanged\")\n    public void createTaskApi(String emp_id, String content, String title, String deadline) {\n        AppLoader.showLoaderDialog(mContext);\n        Map<String, RequestBody> map = new HashMap<>();\n        map.put(\"emp_id\", toRequestBody(emp_id));\n        map.put(\"content\", toRequestBody(content));\n        map.put(\"title\", toRequestBody(title));\n        map.put(\"deadline\", toRequestBody(deadline));\n        MainService.createTask(mContext, getToken(), map).observe((LifecycleOwner) mContext, apiResponse -> {\n            if (apiResponse == null) {\n                ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));\n            } else {\n                if ((apiResponse.getData() != null)) {\n                    //Object\n                    TasksItem tasksItem = new Gson().fromJson(apiResponse.getData(), TasksItem.class);\n                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());\n                    adapter.notifyDataSetChanged();\n                } else {\n                    ((BaseActivity) mContext).showToast(apiResponse.getMessage());\n                }\n            }\n            AppLoader.hideLoaderDialog();\n        });\n    }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/bdappmaniac/bdapp/fragment/EmployeeToDoListFragment.java b/app/src/main/java/com/bdappmaniac/bdapp/fragment/EmployeeToDoListFragment.java
+--- a/app/src/main/java/com/bdappmaniac/bdapp/fragment/EmployeeToDoListFragment.java	(revision 7a12d974bad388669090867cf559d9f8fc3e49d5)
++++ b/app/src/main/java/com/bdappmaniac/bdapp/fragment/EmployeeToDoListFragment.java	(date 1657343528352)
+@@ -23,20 +23,20 @@
+ import com.bdappmaniac.bdapp.Api.sevices.MainService;
+ import com.bdappmaniac.bdapp.R;
+ import com.bdappmaniac.bdapp.activity.BaseActivity;
+-import com.bdappmaniac.bdapp.adapter.adminChildTaskAdapter;
++import com.bdappmaniac.bdapp.adapter.AdminTaskItemAdapter;
+ import com.bdappmaniac.bdapp.databinding.FragmentEmployeeToDoListBinding;
+ import com.bdappmaniac.bdapp.databinding.TaskAddDialogBinding;
+ import com.bdappmaniac.bdapp.databinding.TaskBottomSheetDialogBinding;
+ import com.bdappmaniac.bdapp.helper.AppLoader;
+ import com.bdappmaniac.bdapp.utils.DateUtils;
+ import com.bdappmaniac.bdapp.utils.SharedPref;
+-import com.google.gson.Gson;
+ 
+ import java.text.SimpleDateFormat;
+ import java.util.ArrayList;
+ import java.util.Calendar;
+ import java.util.Date;
+ import java.util.HashMap;
++import java.util.List;
+ import java.util.Locale;
+ import java.util.Map;
+ 
+@@ -44,8 +44,8 @@
+ 
+ public class EmployeeToDoListFragment extends BaseFragment {
+     FragmentEmployeeToDoListBinding binding;
+-    ArrayList<TasksItem> list = new ArrayList<>();
+-    adminChildTaskAdapter adapter;
++    List<TasksItem> list = new ArrayList<>();
++    AdminTaskItemAdapter adapter;
+     AllTaskItem allTaskItem;
+     SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
+     Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+@@ -54,6 +54,7 @@
+     String fromDates;
+     String toDates;
+     String dates;
++    int a;
+     private int TYear, TMonth, TDay;
+     private int FYear, FMonth, FDay;
+ 
+@@ -63,10 +64,15 @@
+         Bundle bundle = getArguments();
+         if (bundle != null) {
+             allTaskItem = (AllTaskItem) bundle.getSerializable("EmployeeTaskList");
+-            adapter = new adminChildTaskAdapter(getContext(), list);
++            if (allTaskItem.getTasks() != null) {
++                list = allTaskItem.getTasks();
++                adapter = new AdminTaskItemAdapter(mContext, list);
++            } else {
++                showToast("No Task Found");
++            }
+         }
+-        binding.childRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+-        binding.childRecycler.setAdapter(adapter);
++        binding.allTaskRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
++        binding.allTaskRecycler.setAdapter(adapter);
+         binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
+         binding.filterBtn.setOnClickListener(v -> {
+             binding.toAndFromLayout.setVisibility(View.GONE);
+@@ -227,10 +233,7 @@
+                 ((BaseActivity) mContext).showToast(mContext.getString(R.string.something_went_wrong));
+             } else {
+                 if ((apiResponse.getData() != null)) {
+-                    //Object
+-                    TasksItem tasksItem = new Gson().fromJson(apiResponse.getData(), TasksItem.class);
+-                    ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
+-                    adapter.notifyDataSetChanged();
++                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
+                 } else {
+                     ((BaseActivity) mContext).showToast(apiResponse.getMessage());
+                 }
+Index: app/src/main/java/com/bdappmaniac/bdapp/adapter/AdminTaskItemAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/bdappmaniac/bdapp/adapter/AdminTaskItemAdapter.java b/app/src/main/java/com/bdappmaniac/bdapp/adapter/AdminTaskItemAdapter.java
+new file mode 100644
+--- /dev/null	(date 1657343528350)
++++ b/app/src/main/java/com/bdappmaniac/bdapp/adapter/AdminTaskItemAdapter.java	(date 1657343528350)
+@@ -0,0 +1,62 @@
++package com.bdappmaniac.bdapp.adapter;
++
++import android.content.Context;
++import android.view.LayoutInflater;
++import android.view.ViewGroup;
++
++import androidx.annotation.NonNull;
++import androidx.databinding.DataBindingUtil;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++
++import com.bdappmaniac.bdapp.Api.response.TasksItem;
++import com.bdappmaniac.bdapp.R;
++import com.bdappmaniac.bdapp.databinding.TaskItemBinding;
++import com.bdappmaniac.bdapp.utils.DateUtils;
++
++import java.util.List;
++
++public class AdminTaskItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
++    Context context;
++    List<TasksItem> taskItem;
++
++    public AdminTaskItemAdapter(Context context, List<TasksItem> taskItem) {
++        this.context = context;
++        this.taskItem = taskItem;
++    }
++
++    private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
++        TaskItemBinding binding = DataBindingUtil.inflate(inflater, R.layout.task_item, group, false);
++        return new AdminTaskItemAdapter.ViewHolder(binding);
++    }
++
++    @NonNull
++    @Override
++    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
++        return getViewHolder(LayoutInflater.from(context), parent);
++    }
++
++    @Override
++    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
++        AdminTaskItemAdapter.ViewHolder vHolder = (AdminTaskItemAdapter.ViewHolder) holder;
++        vHolder.binding.date.setText(DateUtils.getFormattedTime(taskItem.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatTos));
++
++        adminChildTaskAdapter adapter = new adminChildTaskAdapter(context, taskItem.get(position).getTasks());
++        vHolder.binding.allTaskChildRecycler.setLayoutManager(new LinearLayoutManager(context));
++        vHolder.binding.allTaskChildRecycler.setAdapter(adapter);
++    }
++
++    @Override
++    public int getItemCount() {
++        return taskItem.size();
++    }
++
++    public static class ViewHolder extends RecyclerView.ViewHolder {
++        TaskItemBinding binding;
++
++        public ViewHolder(@NonNull TaskItemBinding itemView) {
++            super(itemView.getRoot());
++            binding = itemView;
++        }
++    }
++}
+Index: app/src/main/res/layout/admin_task_adapter_bottom_sheet.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/admin_task_adapter_bottom_sheet.xml b/app/src/main/res/layout/admin_task_adapter_bottom_sheet.xml
+new file mode 100644
+--- /dev/null	(date 1657343528353)
++++ b/app/src/main/res/layout/admin_task_adapter_bottom_sheet.xml	(date 1657343528353)
+@@ -0,0 +1,65 @@
++<?xml version="1.0" encoding="utf-8"?>
++<layout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools">
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:id="@+id/holidayPopup"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:background="@drawable/bottom_cut_white_bg"
++        android:padding="@dimen/_5sdp">
++
++        <TextView
++            android:id="@+id/deleteBtn"
++            android:layout_width="0dp"
++            android:layout_height="@dimen/_40sdp"
++            android:layout_marginEnd="@dimen/_2sdp"
++            android:background="@drawable/light_green_15r_bg"
++            android:fontFamily="@font/m_medium"
++            android:gravity="center"
++            android:paddingStart="@dimen/_5sdp"
++            android:text="@string/remove"
++            android:textColor="@color/white"
++            android:textSize="@dimen/_12ssp"
++            app:layout_constraintEnd_toStartOf="@id/editBtn"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent"
++            tools:ignore="RtlSymmetry" />
++
++        <TextView
++            android:id="@+id/editBtn"
++            android:layout_width="0dp"
++            android:layout_height="@dimen/_40sdp"
++            android:layout_marginStart="@dimen/_3sdp"
++            android:background="@drawable/light_green_15r_bg"
++            android:fontFamily="@font/m_medium"
++            android:gravity="center"
++            android:paddingStart="@dimen/_5sdp"
++            android:text="@string/edit"
++            android:textColor="@color/white"
++            android:textSize="@dimen/_12ssp"
++            app:layout_constraintBottom_toBottomOf="@+id/deleteBtn"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toEndOf="@+id/deleteBtn"
++            app:layout_constraintTop_toTopOf="@+id/deleteBtn"
++            tools:ignore="RtlSymmetry" />
++
++        <TextView
++            android:id="@+id/cancel"
++            android:layout_width="0dp"
++            android:layout_height="@dimen/_40sdp"
++            android:layout_marginTop="@dimen/_5sdp"
++            android:background="@drawable/red_10r_bg"
++            android:fontFamily="@font/m_medium"
++            android:gravity="center"
++            android:text="@string/cancel"
++            android:textColor="@color/white"
++            android:textSize="@dimen/_12ssp"
++            app:layout_constraintBottom_toBottomOf="parent"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toBottomOf="@+id/editBtn" />
++
++    </androidx.constraintlayout.widget.ConstraintLayout>
++</layout>
+\ No newline at end of file
+Index: app/src/main/java/com/bdappmaniac/bdapp/Api/sevices/MainService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bdappmaniac.bdapp.Api.sevices;\n\nimport android.content.Context;\n\nimport androidx.annotation.NonNull;\nimport androidx.lifecycle.LiveData;\nimport androidx.lifecycle.MutableLiveData;\n\nimport com.bdappmaniac.bdapp.Api.APIInterface;\nimport com.bdappmaniac.bdapp.Api.response.ApiResponse;\nimport com.bdappmaniac.bdapp.R;\nimport com.bdappmaniac.bdapp.activity.BaseActivity;\nimport com.bdappmaniac.bdapp.application.BdApp;\n\nimport java.util.Map;\n\nimport okhttp3.MultipartBody;\nimport okhttp3.RequestBody;\nimport retrofit2.Call;\nimport retrofit2.Callback;\nimport retrofit2.Response;\n\npublic class MainService {\n    //    private static final APIInterface apiService = RetrofitClient.getRetrofitInstance().create(APIInterface.class);\n    private static final APIInterface apiService = BaseService.getAPIClient(\"\").create(APIInterface.class);\n\n    @NonNull\n    public static LiveData<ApiResponse> userLogIn(Context context, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.userLogIn(map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> employeeRegistration(Context context, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.employeeRegistration(map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> employeeList(Context context, String token) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.employeeList(token);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> getEmployeeById(Context context, String token, int id) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.getEmployeeById(token, id);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> updateProfileByAdmin(Context context, String token, int id, String status) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.updateProfileByAdmin(token, id, status);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> userLogout(Context context, String token) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.userLogout(token);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> updateEmployeeProfile(Context context, String token, Map<String, RequestBody> map, MultipartBody.Part fileToUpload) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.updateEmployeeProfile(token, map, fileToUpload);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> sendMail(Context context, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.sendMail(map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> checkInTime(Context context, String token) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.checkInTime(token);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> checkOutTime(Context context, String token) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.checkOutTime(token);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> addHolidays(Context context, String token, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.addHolidays(token, map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> markAttendanceByEmployee(Context context, String token, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.markAttendanceByEmployee(token, map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> holidaysOfCurrentYear(Context context, String token) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.holidaysOfCurrentYear(token);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> workedHoursOnGivenDay(Context context, String token, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.workedHoursOnGivenDay(token, map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> removeHoliday(Context context, String token, int id) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.removeHoliday(token, id);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> inAndOutsBetweenDates(Context context, String token, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.inAndOutsBetweenDates(token, map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> resetPassword(Context context, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.resetPassword(map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> getInAndOutsBetweenDates(Context context, String token, Map<String, RequestBody> map, int emp_id) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.getInAndOutsBetweenDates(token, map, emp_id);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> addTermsAndConditions(Context context, String token, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.addTermsAndConditions(token, map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> allTermsAndConditions(Context context, String token) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.allTermsAndConditions(token);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> addDailyRules(Context context, String token, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.addDailyRules(token, map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> allDailyRules(Context context, String token) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.allDailyRules(token);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> addEmployeeTermAndConditions(Context context, String token, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.addEmployeeTermAndConditions(token, map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> specificEmployeeTermsAndConditions(Context context, String token, int empo_id) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.specificEmployeeTermsAndConditions(token, empo_id);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> updateHoliday(Context context, String token, int id, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.updateHoliday(token, id, map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> addDesignation(Context context, String token, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.addDesignation(token, map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> allDesignation(Context context, String token) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.allDesignation(token);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> removeDesignation(Context context, String token, int id) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.removeDesignation(token, id);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> allEmpAttendance(Context context, String token) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.allEmpAttendance(token);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> updateDesignation(Context context, String token, int id, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.updateDesignation(token, id, map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> allInactiveEmployee(Context context, String token) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.allInactiveEmployee(token);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    @NonNull\n    public static LiveData<ApiResponse> employeeStatusById(Context context, String token, int id) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.employeeStatusById(token, id);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> allTaskWithEmployeeName(Context context, String token) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if(!BdApp.getInstance().isInternetConnected(context)){\n            return data;\n        }\n        Call<ApiResponse> call = apiService.allTaskWithEmployeeName(token);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n\n    public static LiveData<ApiResponse> createTask(Context context, String token, Map<String, RequestBody> map) {\n        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();\n        if (!BdApp.getInstance().isInternetConnected(context)) {\n            return data;\n        }\n        Call<ApiResponse> call = apiService.createTask(token, map);\n        call.enqueue(new Callback<ApiResponse>() {\n            @Override\n            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {\n                if (response.body() != null) {\n                    data.setValue(response.body());\n                } else {\n                    data.setValue(null);\n                }\n            }\n\n            @Override\n            public void onFailure(Call<ApiResponse> call, Throwable t) {\n                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));\n                //Log.e(\"LOGIN API FAILED\",t.getLocalizedMessage());\n            }\n        });\n        return data;\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/bdappmaniac/bdapp/Api/sevices/MainService.java b/app/src/main/java/com/bdappmaniac/bdapp/Api/sevices/MainService.java
+--- a/app/src/main/java/com/bdappmaniac/bdapp/Api/sevices/MainService.java	(revision 7a12d974bad388669090867cf559d9f8fc3e49d5)
++++ b/app/src/main/java/com/bdappmaniac/bdapp/Api/sevices/MainService.java	(date 1657343528349)
+@@ -870,6 +870,57 @@
+                 }
+             }
+ 
++            @Override
++            public void onFailure(Call<ApiResponse> call, Throwable t) {
++                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
++                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
++            }
++        });
++        return data;
++    }
++
++    @NonNull
++    public static LiveData<ApiResponse> removeTask(Context context, String token, int id) {
++        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
++        if (!BdApp.getInstance().isInternetConnected(context)) {
++            return data;
++        }
++        Call<ApiResponse> call = apiService.removeTask(token, id);
++        call.enqueue(new Callback<ApiResponse>() {
++            @Override
++            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
++                if (response.body() != null) {
++                    data.setValue(response.body());
++                } else {
++                    data.setValue(null);
++                }
++            }
++
++            @Override
++            public void onFailure(Call<ApiResponse> call, Throwable t) {
++                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
++                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
++            }
++        });
++        return data;
++    }
++
++    public static LiveData<ApiResponse> updateTask(Context context, String token, int id, Map<String, RequestBody> map) {
++        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
++        if (!BdApp.getInstance().isInternetConnected(context)) {
++            return data;
++        }
++        Call<ApiResponse> call = apiService.updateTask(token, id, map);
++        call.enqueue(new Callback<ApiResponse>() {
++            @Override
++            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
++                if (response.body() != null) {
++                    data.setValue(response.body());
++                } else {
++                    data.setValue(null);
++                }
++            }
++
+             @Override
+             public void onFailure(Call<ApiResponse> call, Throwable t) {
+                 ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+Index: app/src/main/res/layout/admin_child_task_item.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<layout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\">\n\n    <androidx.constraintlayout.widget.ConstraintLayout\n        android:id=\"@+id/one\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"@dimen/_5sdp\"\n        android:background=\"@drawable/white_10r_white_bg\"\n        android:elevation=\"5dp\"\n        android:padding=\"@dimen/_1sdp\"\n        app:layout_constraintTop_toBottomOf=\"@+id/dateOne\"\n        tools:layout_editor_absoluteX=\"4dp\">\n\n        <TextView\n            android:id=\"@+id/completeBtn\"\n            android:layout_width=\"@dimen/_70sdp\"\n            android:layout_height=\"@dimen/_27sdp\"\n            android:layout_marginTop=\"@dimen/_8sdp\"\n            android:layout_marginEnd=\"@dimen/_5sdp\"\n            android:layout_marginBottom=\"@dimen/_7sdp\"\n            android:background=\"@drawable/white_10r_bg\"\n            android:backgroundTint=\"@color/prime\"\n            android:fontFamily=\"@font/m_medium\"\n            android:gravity=\"center\"\n            android:text=\"@string/complete\"\n            android:textAllCaps=\"false\"\n            android:textColor=\"@color/white\"\n            android:textSize=\"@dimen/_8ssp\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@+id/discription\" />\n\n        <ImageView\n            android:id=\"@+id/completedBtn\"\n            android:layout_width=\"@dimen/_70sdp\"\n            android:layout_height=\"@dimen/_27sdp\"\n            android:layout_marginTop=\"@dimen/_8sdp\"\n            android:layout_marginEnd=\"@dimen/_5sdp\"\n            android:layout_marginBottom=\"@dimen/_7sdp\"\n            android:contentDescription=\"@string/complete\"\n            android:gravity=\"center\"\n            android:src=\"@drawable/task\"\n            android:visibility=\"gone\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@+id/discription\"\n            app:tint=\"@color/prime\" />\n\n        <ImageView\n            android:id=\"@+id/imgtasktype\"\n            android:layout_width=\"@dimen/_20sdp\"\n            android:layout_height=\"@dimen/_20sdp\"\n            android:layout_margin=\"@dimen/_10sdp\"\n            android:contentDescription=\"@string/taskheadimg\"\n            android:src=\"@drawable/bug\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\" />\n\n        <TextView\n            android:id=\"@+id/taskHeading\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:fontFamily=\"@font/m_medium\"\n            android:paddingStart=\"@dimen/_2sdp\"\n            android:paddingEnd=\"@dimen/_5sdp\"\n            android:text=\"@string/change_font_and_colours_combination\"\n            android:textColor=\"@color/prime\"\n            android:textSize=\"@dimen/_11ssp\"\n            app:layout_constraintBottom_toBottomOf=\"@+id/imgtasktype\"\n            app:layout_constraintStart_toEndOf=\"@+id/imgtasktype\"\n            app:layout_constraintTop_toTopOf=\"@+id/imgtasktype\" />\n\n        <TextView\n            android:id=\"@+id/issueDate\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginTop=\"@dimen/_12sdp\"\n            android:layout_marginEnd=\"@dimen/_2sdp\"\n            android:fontFamily=\"@font/m_semibold\"\n            android:text=\"@string/_02_march_2023\"\n            android:textColor=\"@color/grey\"\n            android:textSize=\"@dimen/_8sdp\"\n            android:visibility=\"gone\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\" />\n\n        <TextView\n            android:id=\"@+id/discription\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginEnd=\"@dimen/_20sdp\"\n            android:fontFamily=\"@font/m_medium\"\n            android:padding=\"@dimen/_4sdp\"\n            android:text=\"@string/all_the_description_related_to_the_title_will_be_here_all_the_description_related_to_the_title_will_be_here\"\n            android:textColor=\"@color/_A8A8A8\"\n            android:textSize=\"@dimen/_9ssp\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"@+id/imgtasktype\"\n            app:layout_constraintTop_toBottomOf=\"@+id/imgtasktype\" />\n\n        <ImageView\n            android:id=\"@+id/duration\"\n            android:layout_width=\"@dimen/_16sdp\"\n            android:layout_height=\"@dimen/_16sdp\"\n            android:layout_margin=\"@dimen/_13sdp\"\n            android:contentDescription=\"@string/time\"\n            android:src=\"@drawable/clock_his\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:tint=\"@color/prime\" />\n\n        <TextView\n            android:id=\"@+id/complete\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginStart=\"@dimen/_3sdp\"\n            android:fontFamily=\"@font/m_medium\"\n            android:text=\"@string/complete_till\"\n            android:textColor=\"@color/prime\"\n            android:textSize=\"@dimen/_8ssp\"\n            app:layout_constraintBottom_toBottomOf=\"@+id/duration\"\n            app:layout_constraintStart_toEndOf=\"@+id/duration\"\n            app:layout_constraintTop_toTopOf=\"@+id/duration\" />\n\n        <TextView\n            android:id=\"@+id/completionDate\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginStart=\"@dimen/_4sdp\"\n            android:fontFamily=\"@font/m_medium\"\n            android:padding=\"@dimen/_2sdp\"\n            android:text=\"@string/_04_march_2023\"\n            android:textColor=\"#DBA42E\"\n            android:textSize=\"@dimen/_8ssp\"\n            app:layout_constraintBottom_toBottomOf=\"@+id/complete\"\n            app:layout_constraintStart_toEndOf=\"@+id/complete\"\n            app:layout_constraintTop_toTopOf=\"@+id/complete\" />\n    </androidx.constraintlayout.widget.ConstraintLayout>\n</layout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/admin_child_task_item.xml b/app/src/main/res/layout/admin_child_task_item.xml
+--- a/app/src/main/res/layout/admin_child_task_item.xml	(revision 7a12d974bad388669090867cf559d9f8fc3e49d5)
++++ b/app/src/main/res/layout/admin_child_task_item.xml	(date 1657343528353)
+@@ -4,15 +4,14 @@
+     xmlns:tools="http://schemas.android.com/tools">
+ 
+     <androidx.constraintlayout.widget.ConstraintLayout
+-        android:id="@+id/one"
++        android:id="@+id/item"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_margin="@dimen/_5sdp"
+         android:background="@drawable/white_10r_white_bg"
+         android:elevation="5dp"
+         android:padding="@dimen/_1sdp"
+-        app:layout_constraintTop_toBottomOf="@+id/dateOne"
+-        tools:layout_editor_absoluteX="4dp">
++        app:layout_constraintTop_toBottomOf="@+id/dateOne">
+ 
+         <TextView
+             android:id="@+id/completeBtn"
+Index: app/src/main/java/com/bdappmaniac/bdapp/Api/response/TasksItem.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.bdappmaniac.bdapp.Api.response;\n\nimport com.google.gson.annotations.SerializedName;\n\npublic class TasksItem{\n\n\t@SerializedName(\"created_at\")\n\tprivate String createdAt;\n\n\t@SerializedName(\"id\")\n\tprivate int id;\n\n\t@SerializedName(\"title\")\n\tprivate String title;\n\n\t@SerializedName(\"deadline\")\n\tprivate String deadline;\n\n\t@SerializedName(\"content\")\n\tprivate String content;\n\n\t@SerializedName(\"emp_id\")\n\tprivate int empId;\n\n\t@SerializedName(\"status\")\n\tprivate String status;\n\n\tpublic void setCreatedAt(String createdAt){\n\t\tthis.createdAt = createdAt;\n\t}\n\n\tpublic String getCreatedAt(){\n\t\treturn createdAt;\n\t}\n\n\tpublic void setId(int id){\n\t\tthis.id = id;\n\t}\n\n\tpublic int getId(){\n\t\treturn id;\n\t}\n\n\tpublic void setTitle(String title){\n\t\tthis.title = title;\n\t}\n\n\tpublic String getTitle(){\n\t\treturn title;\n\t}\n\n\tpublic void setDeadline(String deadline){\n\t\tthis.deadline = deadline;\n\t}\n\n\tpublic String getDeadline(){\n\t\treturn deadline;\n\t}\n\n\tpublic void setContent(String content){\n\t\tthis.content = content;\n\t}\n\n\tpublic String getContent(){\n\t\treturn content;\n\t}\n\n\tpublic void setEmpId(int empId){\n\t\tthis.empId = empId;\n\t}\n\n\tpublic int getEmpId(){\n\t\treturn empId;\n\t}\n\n\tpublic void setStatus(String status){\n\t\tthis.status = status;\n\t}\n\n\tpublic String getStatus(){\n\t\treturn status;\n\t}\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/bdappmaniac/bdapp/Api/response/TasksItem.java b/app/src/main/java/com/bdappmaniac/bdapp/Api/response/TasksItem.java
+--- a/app/src/main/java/com/bdappmaniac/bdapp/Api/response/TasksItem.java	(revision 7a12d974bad388669090867cf559d9f8fc3e49d5)
++++ b/app/src/main/java/com/bdappmaniac/bdapp/Api/response/TasksItem.java	(date 1657343528348)
+@@ -2,10 +2,15 @@
+ 
+ import com.google.gson.annotations.SerializedName;
+ 
++import java.util.List;
++
+ public class TasksItem{
+ 
+-	@SerializedName("created_at")
+-	private String createdAt;
++	@SerializedName("date")
++	private String date;
++
++	@SerializedName("tasks")
++	private List<TasksItem> tasks;
+ 
+ 	@SerializedName("id")
+ 	private int id;
+@@ -25,12 +30,26 @@
+ 	@SerializedName("status")
+ 	private String status;
+ 
+-	public void setCreatedAt(String createdAt){
+-		this.createdAt = createdAt;
++	public TasksItem(String title, String deadline, String content) {
++		this.title = title;
++		this.deadline = deadline;
++		this.content = content;
++	}
++
++	public void setDate(String date){
++		this.date = date;
++	}
++
++	public String getDate(){
++		return date;
+ 	}
+ 
+-	public String getCreatedAt(){
+-		return createdAt;
++	public void setTasks(List<TasksItem> tasks){
++		this.tasks = tasks;
++	}
++
++	public List<TasksItem> getTasks(){
++		return tasks;
+ 	}
+ 
+ 	public void setId(int id){
