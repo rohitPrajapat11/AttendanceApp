@@ -11,9 +11,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bdappmaniac.bdapp.Api.response.TasksItem;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.DesignTasksItemsBinding;
-import com.bdappmaniac.bdapp.model.ModelChildTaskList;
 import com.bdappmaniac.bdapp.model.ModelEmpTask;
 
 import java.util.ArrayList;
@@ -44,16 +44,12 @@ public class EmployeeToDoListItemAdapter extends RecyclerView.Adapter<RecyclerVi
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         EmployeeToDoListItemAdapter.ViewHolder vHolder = (EmployeeToDoListItemAdapter.ViewHolder) holder;
         vHolder.binding.date.setText(list.get(position).getDate());
-        ArrayList<ModelChildTaskList> childTaskList = new ArrayList<>();
-        childTaskList.add(new ModelChildTaskList("20-03-2022", "Fix the bug ",
-                "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.bug, "Bug"));
-        childTaskList.add(new ModelChildTaskList("21-03-2022", "Comple the remaining screens in  time",
-                "discription will be here in brief about the above  title complete the changes", "28-03-2022", R.drawable.task, "Task"));
-        childTaskList.add(new ModelChildTaskList("23-03-2022", "App  working flow is not correct ",
-                "discription will be here in brief about the above  title ", "25-03-2022", R.drawable.error, "Error"));
+
+        ArrayList<TasksItem> childTaskList = new ArrayList<>();
         EmpChildTaskAdapter adapter = new EmpChildTaskAdapter(context, childTaskList);
         vHolder.binding.childRecycler.setLayoutManager(new LinearLayoutManager(context));
         vHolder.binding.childRecycler.setAdapter(adapter);
+
 //        vHolder.binding.dateText.setText(DateUtils.getFormattedTime(list.get(position).getDate(), DateUtils.appDateFormat, DateUtils.appDateFormatM));
 ////        vHolder.binding.dateText.setText(DateUtils.getDateCurrentTimeZone(Long.parseLong(list.get(position).getCreated_at())));
 ////        Calendar cal = Calendar.getInstance(Locale.ENGLISH);

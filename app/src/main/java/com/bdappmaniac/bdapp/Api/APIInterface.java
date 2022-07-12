@@ -137,4 +137,7 @@ public interface APIInterface {
     @Multipart
     @POST("api/create-task")
     Call<ApiResponse> createTask(@Header("Authorization") String token, @PartMap Map<String, RequestBody> map);
+
+    @POST("api/get-task-of-employee")
+    Call<ApiResponse> employeeTasksApi(@Header("Authorization") String token);
 }

@@ -5,7 +5,6 @@ import static android.view.View.VISIBLE;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -14,15 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 
+import com.bdappmaniac.bdapp.Api.response.TasksItem;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.adapter.EmpTaskAdapter;
 
-import com.bdappmaniac.bdapp.databinding.FragmentEmployeeExpensesBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentExpensesEmployeeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
-import com.bdappmaniac.bdapp.model.ModelEmpTask;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
 import java.util.ArrayList;
@@ -89,19 +86,12 @@ public class ExpensesEmployeeFragment extends BaseFragment {
             }
         });
 
-        ArrayList<ModelEmpTask> childTaskiLIst = new ArrayList<>();
-        childTaskiLIst.add(new ModelEmpTask("21-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("22-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("23-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("25-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("27-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("29-03-2022"));
-        childTaskiLIst.add(new ModelEmpTask("1-04-2022"));
-        childTaskiLIst.add(new ModelEmpTask("4-04-2022"));
+        ArrayList<TasksItem> childTaskiLIst = new ArrayList<>();
 
-        EmpTaskAdapter adapter = new EmpTaskAdapter(childTaskiLIst ,mContext);
-        binding.recyclereee.setLayoutManager(new LinearLayoutManager(mContext));
-        binding.recyclereee.setAdapter(adapter);
+
+//        EmpTaskAdapter adapter = new EmpTaskAdapter(childTaskiLIst ,mContext);
+//        binding.recyclereee.setLayoutManager(new LinearLayoutManager(mContext));
+//        binding.recyclereee.setAdapter(adapter);
          return binding.getRoot();
     }
 }
