@@ -6,22 +6,19 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bdappmaniac.bdapp.Api.response.AllTaskItem;
-import com.bdappmaniac.bdapp.Api.response.TasksItem;
+import com.bdappmaniac.bdapp.Api.response.EmployeeTaskDataItem;
+import com.bdappmaniac.bdapp.Api.response.EmployeeTasksItem;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.DesignTasksItemsBinding;
-import com.google.gson.JsonElement;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EmpTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<AllTaskItem> tasklist;
+   List<EmployeeTaskDataItem> tasklist;
     Context context;
-    public EmpTaskAdapter(ArrayList<AllTaskItem> tasklist, Context context) {
+    public EmpTaskAdapter(List<EmployeeTaskDataItem> tasklist, Context context) {
         this.tasklist = tasklist;
         this.context = context;
     }
@@ -43,9 +40,9 @@ public class EmpTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         EmpTaskViewHolder vholder = (EmpTaskViewHolder) holder;
 
-//        vholder.binding.date.setText(tasklist.get(position).getDate());
-        EmpChildTaskAdapter adapter = new EmpChildTaskAdapter(context , (ArrayList<TasksItem>) tasklist.get(position).getTasks());
-        vholder.binding.childRecycler.setLayoutManager(new LinearLayoutManager(context));
+        vholder.binding.date.setText(tasklist.get(position).getDate());
+
+        EmpTaskChildAdapter adapter = new EmpTaskChildAdapter(context , (List<EmployeeTasksItem>) tasklist.get(position).getTasks());
         vholder.binding.childRecycler.setAdapter(adapter);
     }
     @Override
@@ -53,9 +50,7 @@ public class EmpTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return tasklist.size();
     }
 
-    public void setTasklist(ArrayList<AllTaskItem>list){
-        this.tasklist = list;
-    }
+
 
     public static class EmpTaskViewHolder extends RecyclerView.ViewHolder {
         DesignTasksItemsBinding binding;

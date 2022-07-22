@@ -427,5 +427,9 @@
     <string name="no_completed_task">No Completed Task Found</string>
     <string name="no_pending_task">No Pending Task Found</string>
     <string name="no_task_found">No Task Found</string>
+    <string name="no_holidays_in_this_month">No Holidays In This Month</string>
+    <string name="_00">00</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="_08_59_59">08:59:59</string>
 
 </resources>

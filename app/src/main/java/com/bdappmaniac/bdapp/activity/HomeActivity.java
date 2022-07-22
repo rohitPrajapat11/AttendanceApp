@@ -50,14 +50,14 @@ import java.util.Objects;
 
 import okhttp3.RequestBody;
 
-public class HomeActivity extends BaseActivity implements View.OnClickListener, CalendarCallBack {
+public class HomeActivity extends BaseActivity implements View.OnClickListener, CalendarCallBack{
     ActivityHomeBinding binding;
     NavController navController;
     Button button;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
         StatusBarUtils.statusBarColor(this, R.color.white);
         ConnectivityReceiver.setConnectivityListener(new OnChangeConnectivityListener() {
@@ -487,7 +487,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                             presentAndAbsentDialog();
                         }
                     } else {
-                        checkInTimeApi();
+//                        CheckInApiCallBack();
                     }
                 } else {
                     ((BaseActivity) this).showSnackBar(binding.getRoot(), apiResponse.getMessage());
@@ -512,23 +512,6 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 //                            binding.homeLayout.headerLayout.extIcon.setVisibility(View.GONE);
                         }
                     }
-                } else {
-                    ((BaseActivity) this).showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                }
-            }
-            AppLoader.hideLoaderDialog();
-        });
-    }
-
-    private void checkInTimeApi() {
-        AppLoader.showLoaderDialog(this);
-        MainService.checkInTime(this, getToken()).observe((LifecycleOwner) this, apiResponse -> {
-            if (apiResponse == null) {
-                ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
-            } else {
-                if ((apiResponse.getData() != null)) {
-                    workingStart();
-                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 } else {
                     ((BaseActivity) this).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
@@ -563,7 +546,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
-                checkOutTimeApi();
+//                checkOutTimeApi();
             }
         });
         exitDialogboxBinding.cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -575,24 +558,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
         });
     }
 
-    private void checkOutTimeApi() {
-        AppLoader.showLoaderDialog(this);
-        MainService.checkOutTime(this, getToken()).observe((LifecycleOwner) this, apiResponse -> {
-            if (apiResponse == null) {
-                ((BaseActivity) this).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
-            } else {
-                if ((apiResponse.getData() != null)) {
-                    showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                    SharedPref.write(USER_WORK, false);
-                    stopService();
-//                    binding.timeStatusLayout.setVisibility(View.GONE);
-                } else {
-                    ((BaseActivity) this).showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                }
-            }
-            AppLoader.hideLoaderDialog();
-        });
-    }
+
 
     void presentAndAbsentDialog() {
         button = null;
@@ -631,7 +597,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
             public void onClick(View view) {
                 if (button == presentAndAbsentDialogboxBinding.presentBtn) {
                     showSnackBar(binding.getRoot(), getString(R.string.working_time_has_started));
-                    checkInTimeApi();
+//                    CheckInApiCallBack();
                     dialog.dismiss();
                 } else if (button == presentAndAbsentDialogboxBinding.absentBtn) {
                     if (presentAndAbsentDialogboxBinding.absentReasonTxt.getText().toString().isEmpty()) {

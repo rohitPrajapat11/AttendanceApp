@@ -10,12 +10,12 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:fontFamily="@font/m_semibold"
             android:id="@+id/month"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/m_medium"
-            android:textStyle="bold"
-            android:paddingStart="@dimen/_14sdp"
+
+            android:paddingStart="@dimen/_10sdp"
             android:text="January"
             android:textSize="@dimen/_15ssp"
             android:textAllCaps="false"
@@ -28,12 +28,45 @@
             android:id="@+id/recyclerviewHolidays"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="@dimen/_8sdp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/month"
             tools:listitem="@layout/design_holidays" />
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/noHolidaysTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginVertical="@dimen/_4sdp"
+            android:background="@drawable/white_5r_bg"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_1sdp"
+            android:padding="@dimen/_2sdp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/month">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:fontFamily="@font/m_semibold"
+                android:gravity="center"
+                android:padding="@dimen/_4sdp"
+                android:text="@string/no_holidays_in_this_month"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

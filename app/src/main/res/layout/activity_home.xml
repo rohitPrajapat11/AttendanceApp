@@ -28,11 +28,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
-                android:background="@drawable/navigation_bg">
+                android:elevation="@dimen/_20sdp"
+                android:background="@drawable/navigation_drawer_bg">
 
                 <include
                     android:id="@+id/navigationDrawer"
                     layout="@layout/navigation_drawer" />
+
             </com.google.android.material.navigation.NavigationView>
         </androidx.drawerlayout.widget.DrawerLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

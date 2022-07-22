@@ -4,28 +4,33 @@ import static com.bdappmaniac.bdapp.activity.BaseActivity.USER_WORK;
 
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.os.CountDownTimer;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 
+import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
+import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.adapter.CalendarAdapter;
 import com.bdappmaniac.bdapp.adapter.EmpHolidayAdapter;
-
 import com.bdappmaniac.bdapp.databinding.DialogCheckinBinding;
 import com.bdappmaniac.bdapp.databinding.DialogCheckoutBinding;
 import com.bdappmaniac.bdapp.databinding.FragmentHomeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
+import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.helper.ProgressBarAnimation;
 import com.bdappmaniac.bdapp.interfaces.TimeLayoutCallBack;
 import com.bdappmaniac.bdapp.model.CalendarDateModel;
@@ -42,7 +47,8 @@ import java.util.Locale;
 
 public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
     public FragmentHomeBinding binding;
-
+    ProgressBarAnimation mProgressAnimation;
+    CountDownTimer countDownTimer;
     ArrayList<ModelHolidayItems> itemsArrayList = new ArrayList<>();
     EmpHolidayAdapter holidayadapter;
     CalendarAdapter adapter;
@@ -52,9 +58,11 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
     ArrayList<CalendarDateModel> calendarList2 = new ArrayList<>();
     int todayDate = Integer.parseInt(new SimpleDateFormat("dd", Locale.getDefault()).format(new Date()));
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         requireActivity().getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
@@ -65,12 +73,14 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+//        HomeActivity.getTime = this;
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         StatusBarUtils.statusBarColor(getActivity(), R.color.white);
 
-        ProgressBarAnimation mProgressAnimation = new ProgressBarAnimation(binding.progressTime, 3500);
-        mProgressAnimation.setProgress(90);
+        binding.progressTime.setMax(32400000);
+
+
+//        mProgressAnimation.setProgress();
 
         Constant.timeLayoutCallBack = this;
         SharedPref.init(mContext);
@@ -126,6 +136,10 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
                 Navigation.findNavController(binding.getRoot()).navigate(R.id.EmpLeavesFragment);
             }
         });
+        binding.username.setText(SharedPref.getUserDetails().getEmployeeName());
+        binding.userEmail.setText(SharedPref.getUserDetails().getEmail());
+        binding.userDesignation.setText(SharedPref.getUserDetails().getDesignation());
+//        binding.userProfile.setImageResource(SharedPref.getUserDetails().getProfile());
 //        }else if(SharedPref.read(USER_WORK, false)) {
 //            binding.timeStatusLayout.setVisibility(View.GONE);
 //        }
@@ -206,12 +220,14 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
 
-        checkInDialog.checkinBTN.setOnClickListener(new View.OnClickListener() {
+        checkInDialog.checkinBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (binding.checkintxt.getText().equals("CHECK IN")) {
                     binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gradient_in);
                     binding.checkintxt.setText("CHECK OUT");
+                    CheckInApi();
+                    WorkingHrsManager();
                     dialog.dismiss();
                 } else if (binding.checkintxt.getText().equals("CHECK OUT")) {
                     binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_out);
@@ -220,7 +236,6 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
                 }
             }
         });
-
         checkInDialog.dismise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -240,7 +255,7 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
         dialog.getWindow().setGravity(Gravity.CENTER);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.show();
-        checkOutDialog.checkinBTN.setOnClickListener(new View.OnClickListener() {
+        checkOutDialog.checkoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (binding.checkintxt.getText().equals("CHECK IN")) {
@@ -250,17 +265,75 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
                 } else if (binding.checkintxt.getText().equals("CHECK OUT")) {
                     binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_out);
                     binding.checkintxt.setText("CHECK IN");
+                    CheckOutApi();
+                    countDownTimer.cancel();
                     dialog.dismiss();
                 }
             }
         });
-
         checkOutDialog.dismise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
             }
         });
+    }
+
+    private void CheckInApi() {
+        AppLoader.showLoaderDialog(mContext);
+        MainService.checkInTime(mContext, getToken()).observe((LifecycleOwner) this, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    Toast.makeText(mContext, apiResponse.getMessage() ,Toast.LENGTH_SHORT).show();
+                    binding.checkOutTime.setText("");
+                    binding.checkInTime.setText(apiResponse.getData().getAsJsonObject().get("time").getAsString());
+                } else {
+                    Toast.makeText(mContext, apiResponse.getMessage() ,Toast.LENGTH_SHORT).show();
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
+    }
+
+    private void CheckOutApi() {
+        AppLoader.showLoaderDialog(mContext);
+        MainService.checkOutTime(mContext, getToken()).observe((LifecycleOwner) this, apiResponse -> {
+            if (apiResponse == null) {
+                ((BaseActivity) mContext).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
+            } else {
+                if ((apiResponse.getData() != null)) {
+                    Toast.makeText(mContext, apiResponse.getMessage() ,Toast.LENGTH_SHORT).show();
+                    SharedPref.write(USER_WORK, false);
+
+                    binding.checkOutTime.setText(apiResponse.getData().getAsJsonObject().get("time").getAsString());
+//                    binding.timeStatusLayout.setVisibility(View.GONE);
+                } else {
+                    Toast.makeText(mContext, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            AppLoader.hideLoaderDialog();
+        });
+    }
+
+    private void WorkingHrsManager() {
+        countDownTimer = new CountDownTimer(32400000, 1000) {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onTick(long millisUntilFinished) {
+                int miliseconds = (int) (millisUntilFinished);
+                int seconds = (int) (millisUntilFinished/1000)% 60;
+                int minutes = (int) (millisUntilFinished / (1000 * 60)) % 60;
+                int hrs = (int) (millisUntilFinished / (1000 * 60 * 60)) % 24;
+                binding.remainTimeTv.setText(String.valueOf(String.format("%02d", hrs)+":"+String.format("%02d", minutes)+":"+String.format("%02d", seconds)));
+//                = new ProgressBarAnimation(binding.progressTime.setProgress(), 3500);
+                binding.progressTime.setProgress(32400000-miliseconds);
+            }
+            @Override
+            public void onFinish() {
+            }
+        }.start();
     }
 
     //    public void showTime(TextView textView) {
@@ -330,40 +403,20 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
 //        adapter.setData(calendarList);
 //        binding.calendarRecycler.scrollToPosition(adapter.getItemCount() - 1);
 //    }
+
     public void getSelectedCalItem(String date) {
         selectedDateByCalendar = date;
     }
+
     @Override
     public void TimeStatusLayoutCallBack() {
 //        binding.timeStatusLayout.setVisibility(View.VISIBLE);
     }
-
     @Override
     public void CheckInTimeCallBack() {
 //        binding.checkInTime.setText(SharedPref.getStringValue(CURRENT_TIME));
     }
-    public class TextChange implements TextWatcher {
-        View view;
 
-        private TextChange(View v) {
-            view = v;
-        }
-
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-
-    }
 
 
 }

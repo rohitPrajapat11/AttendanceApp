@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/taskFragment"
-        android:name="com.bdappmaniac.bdapp.employee.fragment.TaskFragment"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.EmpTaskFragment"
         android:label="Task Fragment"
         tools:layout="@layout/fragment_task" />
     <fragment

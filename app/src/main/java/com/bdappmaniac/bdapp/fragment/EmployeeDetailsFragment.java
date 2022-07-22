@@ -47,7 +47,7 @@ public class EmployeeDetailsFragment extends BaseFragment {
             binding.serviceInfoBtn.setOnClickListener(view -> Navigation.findNavController(view).navigate(R.id.serviceInfoFragment));
             Bundle bundle = new Bundle();
             bundle.putInt("id", ID);
-//            viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
+//            viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());~~
 //            viewPagerAdapter.add(new PersonalInfoFragment(ID), "Personal Info");
 //            viewPagerAdapter.add(new ContactInfoFragment(ID), "Contact");
 //            viewPagerAdapter.add(new ServiceInfoFragment(ID), "Services");

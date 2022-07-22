@@ -8,20 +8,21 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bdappmaniac.bdapp.Api.response.EmpHolidaysItem;
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.databinding.DesignHolidayItemsBinding;
 import com.bdappmaniac.bdapp.databinding.DesignHolidaysBinding;
 import com.bdappmaniac.bdapp.model.ModelChildHolidayItems;
-import com.bdappmaniac.bdapp.model.ModelHolidayItems;
+import com.bdappmaniac.bdapp.utils.DateUtils;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class childHolidayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    ArrayList<ModelChildHolidayItems> holidaylist = new ArrayList<>();
+public class EmpHolidayChildAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    List<EmpHolidaysItem> holidaylist ;
     Context context;
 
 
-    public childHolidayAdapter(ArrayList<ModelChildHolidayItems> holidaylist, Context context) {
+    public EmpHolidayChildAdapter(List<EmpHolidaysItem> holidaylist, Context context) {
         this.holidaylist = holidaylist;
         this.context = context;
     }
@@ -29,23 +30,22 @@ public class childHolidayAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     private RecyclerView.ViewHolder getViewHolder(LayoutInflater inflater, ViewGroup group) {
         DesignHolidaysBinding binding = DataBindingUtil.inflate(inflater, R.layout.design_holidays, group, false);
-        return new childHolidayAdapter.ViewHolder(binding);
+        return new EmpHolidayChildAdapter.ViewHolder(binding);
     }
-
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return getViewHolder(LayoutInflater.from(context), parent);
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ViewHolder vholder = (ViewHolder) holder;
-        vholder.binding.date.setText(holidaylist.get(position).getDate());
-        vholder.binding.day.setText(holidaylist.get(position).getDay());
-        vholder.binding.holiday.setText(holidaylist.get(position).getHoliday());
-
-
+        EmpHolidayChildAdapter.ViewHolder vholder = (EmpHolidayChildAdapter.ViewHolder) holder;
+        EmpHolidaysItem data =  holidaylist.get(position);
+        vholder.binding.date.setText(DateUtils.getFormattedTime(data.getDate(),"yyyy-MM-dd","dd"));
+        vholder.binding.day.setText(String.valueOf(data.getId()));
+        vholder.binding.holiday.setText(data.getName());
+        holder.getAdapterPosition();
+        holder.setIsRecyclable(false);
     }
 
     @Override
@@ -55,7 +55,6 @@ public class childHolidayAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         DesignHolidaysBinding binding;
-
         public ViewHolder(@NonNull DesignHolidaysBinding itemView) {
             super(itemView.getRoot());
             binding = itemView;

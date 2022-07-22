@@ -18,8 +18,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.bdappmaniac.bdapp.Api.response.EmployeeHolidayResponse;
-import com.bdappmaniac.bdapp.Api.response.HolidaysItem;
+import com.bdappmaniac.bdapp.Api.response.EmpHolidaysItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
@@ -45,8 +44,8 @@ public class AdminHolidayFragment extends BaseFragment {
     FragmentAdminHolidayBinding binding;
     String dates;
     EmployeeHolidayAdapter monthAdapter;
-    List<HolidaysItem> list = new ArrayList<>();
-    List<EmployeeHolidayResponse> monthList = new ArrayList<>();
+    List<EmpHolidaysItem> list = new ArrayList<>();
+
     private int TYear, TMonth, TDay;
 
     @Override
@@ -136,11 +135,11 @@ public class AdminHolidayFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<HolidaysItem>>() {
+                    Type collectionType = new TypeToken<List<EmpHolidaysItem>>() {
                     }.getType();
-                    List<HolidaysItem> monthList = new Gson().fromJson(apiResponse.getData(), collectionType);
+                    List<EmpHolidaysItem> monthList = new Gson().fromJson(apiResponse.getData(), collectionType);
                     list.clear();
-//                    list.add(new HolidaysItem("Saturday Holiday", "Every 1st and 3rd of the Month", -1));
+//                    list.add(new EmpHolidaysItem("Saturday Holiday", "Every 1st and 3rd of the Month", -1));
                     list.addAll(monthList);
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
                     monthAdapter.setList(list);

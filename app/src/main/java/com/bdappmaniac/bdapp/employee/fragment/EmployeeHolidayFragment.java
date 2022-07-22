@@ -1,26 +1,27 @@
 package com.bdappmaniac.bdapp.employee.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.bdappmaniac.bdapp.Api.response.EmployeeHolidayResponse;
-import com.bdappmaniac.bdapp.Api.response.HolidaysItem;
+import com.bdappmaniac.bdapp.Api.response.EmpHolidayDataItems;
+import com.bdappmaniac.bdapp.Api.response.EmployeeTaskDataItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.adapter.EmpHolidayAdapter;
-import com.bdappmaniac.bdapp.adapter.EmployeeHolidayAdapter;
 import com.bdappmaniac.bdapp.databinding.FragmentEmployeeHolidayBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
 import com.bdappmaniac.bdapp.helper.AppLoader;
-import com.bdappmaniac.bdapp.model.ModelHolidayItems;
+import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -31,56 +32,25 @@ import java.util.List;
 
 public class EmployeeHolidayFragment extends BaseFragment {
     FragmentEmployeeHolidayBinding binding;
-    EmployeeHolidayAdapter monthAdapter;
-    ArrayList<ModelHolidayItems> itemsArrayList = new ArrayList<>();
-    EmpHolidayAdapter holidayadapter;
-    List<HolidaysItem> list = new ArrayList<>();
-    List<EmployeeHolidayResponse> monthList = new ArrayList<>();
+    ArrayList<EmpHolidayDataItems> monthlist = new ArrayList<>();
+    EmpHolidayAdapter adapter;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (binding == null) {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_employee_holiday, container, false);
             StatusBarUtils.statusBarColor(getActivity(), R.color.white);
-            monthAdapter = new EmployeeHolidayAdapter(mContext, list);
-//            binding.employeeHolidayRecyclers.setHasFixedSize(false);
-//            binding.employeeHolidayRecyclers.setLayoutManager(new LinearLayoutManager(getContext()));
-//            binding.employeeHolidayRecyclers.setAdapter(monthAdapter);
-        }
-        binding.backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            binding.backBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Navigation.findNavController(view).popBackStack();
+                }
+            });
 
-                Navigation.findNavController(view).popBackStack();
-            }
-        });
-
-        ArrayList<ModelHolidayItems> itemsArrayList = new ArrayList<>();
-        itemsArrayList.add(new ModelHolidayItems("January"));
-        itemsArrayList.add(new ModelHolidayItems("February"));
-        itemsArrayList.add(new ModelHolidayItems("March"));
-        itemsArrayList.add(new ModelHolidayItems("April"));
-        itemsArrayList.add(new ModelHolidayItems("January"));
-        itemsArrayList.add(new ModelHolidayItems("February"));
-        itemsArrayList.add(new ModelHolidayItems("March"));
-        itemsArrayList.add(new ModelHolidayItems("April"));
-        itemsArrayList.add(new ModelHolidayItems("January"));
-        itemsArrayList.add(new ModelHolidayItems("February"));
-        itemsArrayList.add(new ModelHolidayItems("March"));
-        itemsArrayList.add(new ModelHolidayItems("April"));
-        itemsArrayList.add(new ModelHolidayItems("January"));
-        itemsArrayList.add(new ModelHolidayItems("February"));
-        itemsArrayList.add(new ModelHolidayItems("March"));
-        itemsArrayList.add(new ModelHolidayItems("April"));
-        itemsArrayList.add(new ModelHolidayItems("January"));
-        itemsArrayList.add(new ModelHolidayItems("February"));
-        itemsArrayList.add(new ModelHolidayItems("March"));
-        itemsArrayList.add(new ModelHolidayItems("April"));
-
-        binding.addBtn.setVisibility(View.GONE);
-        holidayadapter = new EmpHolidayAdapter(itemsArrayList, mContext);
-        binding.recyclerholiday.setLayoutManager(new LinearLayoutManager(mContext));
-        binding.recyclerholiday.setAdapter(holidayadapter);
+            adapter= new EmpHolidayAdapter(monthlist,mContext);
+            binding.recyclerholiday.setAdapter(adapter);
 
 //        binding.recyclerHolidays.addOnScrollListener(new RecyclerView.OnScrollListener() {
 //
@@ -99,10 +69,9 @@ public class EmployeeHolidayFragment extends BaseFragment {
 //
 //            }
 //        });
-
-        binding.collapsibleCalendar.addEventTag(2022,5,9);
-
-
+            binding.collapsibleCalendar.addEventTag(2022, 5, 9);
+            
+        }
         return binding.getRoot();
     }
 
@@ -113,13 +82,12 @@ public class EmployeeHolidayFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<HolidaysItem>>() {
+                    Type collectionType = new TypeToken<List<EmpHolidayDataItems>>() {
                     }.getType();
-                    List<HolidaysItem> monthList = new Gson().fromJson(apiResponse.getData(), collectionType);
-                    list.clear();
-                    list.addAll(monthList);
+                    monthlist.clear();
+                    monthlist.addAll(new Gson().fromJson(apiResponse.getData(), collectionType));
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                    monthAdapter.notifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
                 } else {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
                 }
@@ -128,10 +96,11 @@ public class EmployeeHolidayFragment extends BaseFragment {
         });
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
-        holidaysOfCurrentYearApi();
         AppLoader.hideLoaderDialog();
+        holidaysOfCurrentYearApi();
     }
 }

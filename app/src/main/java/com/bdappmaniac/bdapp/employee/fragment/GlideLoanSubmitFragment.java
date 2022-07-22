@@ -5,10 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
@@ -34,7 +36,7 @@ public class GlideLoanSubmitFragment extends BaseFragment {
     FragmentGlideLoanSubmitBinding binding;
     private Object GifDrawable;
     private Object GlideLoanSubmitFragment;
-
+    CountDownTimer countDownTimer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,13 +59,12 @@ public class GlideLoanSubmitFragment extends BaseFragment {
                     public void onAnimationEnd(Drawable drawable) {
                         //do whatever after specified number of loops complete
                         Navigation.findNavController(getView()).navigate(R.id.empLoanfragment);
-
                     }
                 });
                 return false;
             }
         }).into(binding.image);
-
+        hPointCounter();
 
 //
 //        Handler handler = new Handler();
@@ -77,6 +78,17 @@ public class GlideLoanSubmitFragment extends BaseFragment {
 
         return binding.getRoot();
 
-
+    }
+    private void hPointCounter() {
+        countDownTimer = new CountDownTimer(2000, 100) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                int seconds = (int) (millisUntilFinished / 1000);
+            }
+            @Override
+            public void onFinish() {
+               binding.appliedTv.setVisibility(View.VISIBLE);
+            }
+        }.start();
     }
 }

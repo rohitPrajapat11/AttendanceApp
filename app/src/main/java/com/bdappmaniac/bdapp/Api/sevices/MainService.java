@@ -953,4 +953,55 @@ public class MainService {
         });
         return data;
     }
+
+    @NonNull
+    public static LiveData<ApiResponse> removeTask(Context context, String token, int id) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        if (!BdApp.getInstance().isInternetConnected(context)) {
+            return data;
+        }
+        Call<ApiResponse> call = apiService.removeTask(token, id);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
+
+    public static LiveData<ApiResponse> updateTask(Context context, String token, int id, Map<String, RequestBody> map) {
+        final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+        if (!BdApp.getInstance().isInternetConnected(context)) {
+            return data;
+        }
+        Call<ApiResponse> call = apiService.updateTask(token, id, map);
+        call.enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body() != null) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+            }
+        });
+        return data;
+    }
 }

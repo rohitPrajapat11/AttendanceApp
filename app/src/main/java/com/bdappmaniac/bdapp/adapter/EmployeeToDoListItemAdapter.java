@@ -11,16 +11,17 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bdappmaniac.bdapp.Api.response.TasksItem;
+import com.bdappmaniac.bdapp.Api.response.EmployeeTasksItem;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.DesignTasksItemsBinding;
 import com.bdappmaniac.bdapp.model.ModelEmpTask;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EmployeeToDoListItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    //    List<TasksItem> list = new ArrayList<>();
+    //    List<AdminTasksItem> list = new ArrayList<>();
     ArrayList<ModelEmpTask> list;
 
     public EmployeeToDoListItemAdapter(Context context, ArrayList<ModelEmpTask> list) {
@@ -45,8 +46,8 @@ public class EmployeeToDoListItemAdapter extends RecyclerView.Adapter<RecyclerVi
         EmployeeToDoListItemAdapter.ViewHolder vHolder = (EmployeeToDoListItemAdapter.ViewHolder) holder;
         vHolder.binding.date.setText(list.get(position).getDate());
 
-        ArrayList<TasksItem> childTaskList = new ArrayList<>();
-        EmpChildTaskAdapter adapter = new EmpChildTaskAdapter(context, childTaskList);
+        List<EmployeeTasksItem> childTaskList = new ArrayList<>();
+        EmpTaskChildAdapter adapter = new EmpTaskChildAdapter(context, childTaskList);
         vHolder.binding.childRecycler.setLayoutManager(new LinearLayoutManager(context));
         vHolder.binding.childRecycler.setAdapter(adapter);
 

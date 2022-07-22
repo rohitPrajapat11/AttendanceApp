@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bdappmaniac.bdapp.Api.response.TasksItem;
+import com.bdappmaniac.bdapp.Api.response.AdminTasksItem;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.TaskItemBinding;
 
@@ -17,9 +17,9 @@ import java.util.List;
 
 public class AdminTaskItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    List<TasksItem> taskItem;
+    List<AdminTasksItem> taskItem;
 
-    public AdminTaskItemAdapter(Context context, List<TasksItem> taskItem) {
+    public AdminTaskItemAdapter(Context context, List<AdminTasksItem> taskItem) {
         this.context = context;
         this.taskItem = taskItem;
     }

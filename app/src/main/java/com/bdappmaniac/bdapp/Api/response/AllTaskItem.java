@@ -11,7 +11,7 @@ public class AllTaskItem implements Serializable {
     private String employee;
 
     @SerializedName("tasks")
-    private List<TasksItem> tasks;
+    private List<AdminTasksItem> tasks;
 
     @SerializedName("emp_id")
     private int empId;
@@ -24,11 +24,11 @@ public class AllTaskItem implements Serializable {
         return employee;
     }
 
-    public void setTasks(List<TasksItem> tasks) {
+    public void setTasks(List<AdminTasksItem> tasks) {
         this.tasks = tasks;
     }
 
-    public List<TasksItem> getTasks() {
+    public List<AdminTasksItem> getTasks() {
         return tasks;
     }
 

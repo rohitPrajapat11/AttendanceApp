@@ -51,6 +51,7 @@ public class AtteEntriesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         AtteEntriesAdapter.ViewHolder vholder = (AtteEntriesAdapter.ViewHolder) holder;
+
         vholder.binding.checkInT.setText(eList.get(position).getCheck_in());
         vholder.binding.checkOutT.setText(eList.get(position).getCheck_out());
 

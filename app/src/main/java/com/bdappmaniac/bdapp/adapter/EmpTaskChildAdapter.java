@@ -8,18 +8,18 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bdappmaniac.bdapp.Api.response.TasksItem;
+import com.bdappmaniac.bdapp.Api.response.EmployeeTasksItem;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.DesignChildTaskItemsBinding;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class EmpChildTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class EmpTaskChildAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    ArrayList<TasksItem> childTaskList;
+    List<EmployeeTasksItem> childTaskList;
 
 
-    public EmpChildTaskAdapter(Context context, ArrayList<TasksItem> childTaskList) {
+    public EmpTaskChildAdapter(Context context, List<EmployeeTasksItem> childTaskList) {
         this.context = context;
         this.childTaskList = childTaskList;
     }
@@ -37,23 +37,11 @@ public class EmpChildTaskAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        EmpChildTaskAdapter.TaskViewHolder vholder = (EmpChildTaskAdapter.TaskViewHolder) holder;
-        TasksItem data = childTaskList.get(position);
+        EmpTaskChildAdapter.TaskViewHolder vholder = (EmpTaskChildAdapter.TaskViewHolder) holder;
+        EmployeeTasksItem data = childTaskList.get(position);
         vholder.binding.taskHeading.setText(data.getTitle());
         vholder.binding.complitionDate.setText(data.getDeadline());
         vholder.binding.discription.setText(data.getContent());
-
-//        MealDetails recordData=logsList.get(position);
-//        viewHolder.binding.dateTv.setText(DateUtils.getFormattedTime(recordData.getMealDate(),DateUtils.appDateFormat,DateUtils.dateFormat2));
-//        viewHolder.binding.dayTv.setText(", "+StringUtill.capitalize(recordData.getMealDay()));
-//        viewHolder.binding.mealLogRv.setAdapter(new MealLogItemAdapter(context,recordData.getMealList()));
-
-//        vholder.binding.issueDate.setText(childTaskList.get(position).getIssueDate());
-//        vholder.binding.taskHeading.setText(childTaskList.get(position).getTaskHeading());
-//        vholder.binding.discription.setText(childTaskList.get(position).getDiscription());
-//        vholder.binding.complitionDate.setText(childTaskList.get(position).getComplitionDate());
-//        vholder.binding.taskType.setText(childTaskList.get(position).getTasktype());
-//        vholder.binding.imgtasktype.setImageResource(childTaskList.get(position).getImgtasktype());
 
     }
 

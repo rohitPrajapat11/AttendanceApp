@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="@dimen/_3sdp"
-        android:layout_marginHorizontal="@dimen/_3sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
         android:layout_marginVertical="@dimen/_4sdp"
         android:background="@drawable/white_5r_bg"
         android:backgroundTint="@color/white"
@@ -15,7 +15,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/dateDay"
-            android:layout_margin="@dimen/_5sdp"
+            android:layout_margin="@dimen/_4sdp"
             android:elevation="@dimen/_1sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,32 +27,31 @@
 
             <TextView
                 android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_6sdp"
+                android:gravity="center"
+                android:layout_width="@dimen/_22sdp"
+                android:layout_height="@dimen/_22sdp"
+                android:layout_margin="@dimen/_5sdp"
                 android:fontFamily="@font/m_semibold"
-                android:text="00"
+                android:text="@string/_00"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_14sdp"
+                android:textSize="@dimen/_14ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/holiday"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
-            android:fontFamily="@font/m_semibold"
-            android:padding="@dimen/_2sdp"
-            android:text="Hanuman Jayanti"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/m_medium"
+            android:padding="@dimen/_1sdp"
+            android:text="@string/hanuman_jayanti"
             android:textAllCaps="false"
             android:textColor="@color/trans_black"
-            android:textSize="@dimen/_11sdp"
+            android:textSize="@dimen/_13ssp"
             app:layout_constraintStart_toEndOf="@+id/dateDay"
             app:layout_constraintTop_toTopOf="@+id/dateDay" />
 
@@ -61,12 +60,12 @@
             android:id="@+id/day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_1sdp"
             android:fontFamily="@font/m_semibold"
-
-            android:text="Monday"
+            android:padding="@dimen/_1sdp"
+            android:text="@string/monday"
             android:textColor="#725c12"
-            android:textSize="@dimen/_9sdp"
+            android:textSize="@dimen/_9ssp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/holiday"
             app:layout_constraintTop_toBottomOf="@+id/holiday" />

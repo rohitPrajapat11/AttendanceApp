@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class TasksItem {
+public class AdminTasksItem {
 
     @SerializedName("date")
     private String date;
 
     @SerializedName("tasks")
-    private List<TasksItem> tasks;
+    private List<AdminTasksItem> tasks;
 
     @SerializedName("id")
     private int id;
@@ -30,7 +30,7 @@ public class TasksItem {
     @SerializedName("status")
     private String status;
 
-    public TasksItem(String title, String content, String deadline) {
+    public AdminTasksItem(String title, String content, String deadline) {
         this.title = title;
         this.content = content;
         this.deadline = deadline;
@@ -44,11 +44,11 @@ public class TasksItem {
         this.date = date;
     }
 
-    public List<TasksItem> getTasks() {
+    public List<AdminTasksItem> getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<TasksItem> tasks) {
+    public void setTasks(List<AdminTasksItem> tasks) {
         this.tasks = tasks;
     }
 

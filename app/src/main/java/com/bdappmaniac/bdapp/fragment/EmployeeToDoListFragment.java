@@ -19,7 +19,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bdappmaniac.bdapp.Api.response.AllTaskItem;
-import com.bdappmaniac.bdapp.Api.response.TasksItem;
+import com.bdappmaniac.bdapp.Api.response.AdminTasksItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
@@ -47,7 +47,7 @@ import okhttp3.RequestBody;
 
 public class EmployeeToDoListFragment extends BaseFragment {
     FragmentEmployeeToDoListBinding binding;
-    List<TasksItem> list = new ArrayList<>();
+    List<AdminTasksItem> list = new ArrayList<>();
     AdminTaskItemAdapter adapter;
     AllTaskItem allTaskItem;
     SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
@@ -248,7 +248,7 @@ public class EmployeeToDoListFragment extends BaseFragment {
             } else {
                 if ((apiResponse.getData() != null)) {
                     ((BaseActivity) mContext).showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                    Type collectionType = new TypeToken<List<TasksItem>>() {
+                    Type collectionType = new TypeToken<List<AdminTasksItem>>() {
                     }.getType();
                     list.clear();
                     if (status.equals("Pending")) {
@@ -270,7 +270,7 @@ public class EmployeeToDoListFragment extends BaseFragment {
                 showSnackBar(binding.getRoot(), mContext.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<TasksItem>>() {
+                    Type collectionType = new TypeToken<List<AdminTasksItem>>() {
                     }.getType();
                     list.clear();
                     list.addAll(new Gson().fromJson(apiResponse.getData(), collectionType));

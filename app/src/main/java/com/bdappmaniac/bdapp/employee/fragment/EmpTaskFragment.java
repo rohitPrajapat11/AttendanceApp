@@ -8,10 +8,8 @@ import android.view.ViewGroup;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.bdappmaniac.bdapp.Api.response.AllTaskItem;
-import com.bdappmaniac.bdapp.Api.response.TasksItem;
+import com.bdappmaniac.bdapp.Api.response.EmployeeTaskDataItem;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.activity.BaseActivity;
@@ -25,21 +23,22 @@ import com.google.gson.Gson;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class TaskFragment extends BaseFragment {
+public class EmpTaskFragment extends BaseFragment {
     FragmentTaskBinding binding;
     EmpTaskAdapter adapter;
-    ArrayList<AllTaskItem> tasklist = new ArrayList<>();
-
+    ArrayList<EmployeeTaskDataItem> tasklist = new ArrayList<>();
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_task, container, false);
         StatusBarUtils.statusBarColor(getActivity(), R.color.white);
-        employeeTasksApi();
+
+        adapter = new EmpTaskAdapter(tasklist, mContext);
+        binding.recycleView.setAdapter(adapter);
+
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,11 +58,9 @@ public class TaskFragment extends BaseFragment {
 //            }
 //        });
 
-        adapter = new EmpTaskAdapter(tasklist,mContext);
-        binding.recycleView.setLayoutManager(new LinearLayoutManager(mContext));
-        binding.recycleView.setAdapter(adapter);
         return binding.getRoot();
     }
+
     public void employeeTasksApi(){
         AppLoader.showLoaderDialog(mContext);
         MainService.employeeTasksApi(mContext, getToken()).observe((LifecycleOwner) this, apiResponse -> {
@@ -71,11 +68,9 @@ public class TaskFragment extends BaseFragment {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Type collectionType = new TypeToken<List<TasksItem>>() {
+                    Type collectionType = new TypeToken<List<EmployeeTaskDataItem>>() {
                     }.getType();
-                    ArrayList<AllTaskItem> taskItemlist = new Gson().fromJson(apiResponse.getData(),collectionType);
-                    taskItemlist.addAll(taskItemlist);
-                    adapter.setTasklist(taskItemlist);
+                    tasklist.addAll(new Gson().fromJson(apiResponse.getData(), collectionType));
                     adapter.notifyDataSetChanged();
 //                  adapter= new EmpTaskAdapter(apiResponse.getData());
                     showSnackBar(binding.getRoot(), apiResponse.getMessage());
@@ -86,5 +81,9 @@ public class TaskFragment extends BaseFragment {
             AppLoader.hideLoaderDialog();
         });
     }
-
+    @Override
+    public void onResume() {
+        employeeTasksApi();
+        super.onResume();
+    }
 }

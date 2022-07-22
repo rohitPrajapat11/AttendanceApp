@@ -86,7 +86,7 @@
                 app:buttonRight_drawableTintColor="@color/blue_primary"
                 app:eventColor="@color/blue_primary"
                 app:expandIconColor="@color/blue_primary"
-                app:firstDayOfWeek="sunday"
+                app:firstDayOfWeek="monday"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,17 +94,19 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:primaryColor="@color/blue_secondry"
                 app:selectedItem_background="@drawable/circle_solid"
-                app:selectedItem_textColor="@color/green"
+                app:selectedItem_textColor="@color/blue_secondry"
                 app:showWeek="true"
                 app:textColor="@android:color/black"
                 app:todayItem_background="@drawable/circle_stroke"
-                app:todayItem_textColor="@color/green1" />
+                app:todayItem_textColor="@color/blue_primary" />
         </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerholiday"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

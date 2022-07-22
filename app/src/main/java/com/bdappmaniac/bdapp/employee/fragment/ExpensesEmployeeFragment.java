@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,9 +13,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
-import com.bdappmaniac.bdapp.Api.response.TasksItem;
+import com.bdappmaniac.bdapp.Api.response.AdminTasksItem;
 import com.bdappmaniac.bdapp.R;
-import com.bdappmaniac.bdapp.adapter.EmpTaskAdapter;
 
 import com.bdappmaniac.bdapp.databinding.FragmentExpensesEmployeeBinding;
 import com.bdappmaniac.bdapp.fragment.BaseFragment;
@@ -86,7 +84,7 @@ public class ExpensesEmployeeFragment extends BaseFragment {
             }
         });
 
-        ArrayList<TasksItem> childTaskiLIst = new ArrayList<>();
+        ArrayList<AdminTasksItem> childTaskiLIst = new ArrayList<>();
 
 
 //        EmpTaskAdapter adapter = new EmpTaskAdapter(childTaskiLIst ,mContext);

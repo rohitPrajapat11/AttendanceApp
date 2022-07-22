@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bdappmaniac.bdapp.Api.response.TasksItem;
+import com.bdappmaniac.bdapp.Api.response.AdminTasksItem;
 import com.bdappmaniac.bdapp.R;
 import com.bdappmaniac.bdapp.databinding.ToDoListEmployeeItemBinding;
 
@@ -17,9 +17,9 @@ import java.util.List;
 
 public class EmployeeToDoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     Context context;
-    List<TasksItem> list = new ArrayList<>();
+    List<AdminTasksItem> list = new ArrayList<>();
 
-    public EmployeeToDoListAdapter(Context context, List<TasksItem> list) {
+    public EmployeeToDoListAdapter(Context context, List<AdminTasksItem> list) {
         this.context = context;
         this.list = list;
     }
