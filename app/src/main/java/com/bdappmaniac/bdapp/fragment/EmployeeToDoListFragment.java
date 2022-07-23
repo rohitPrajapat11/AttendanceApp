@@ -71,8 +71,8 @@ public class EmployeeToDoListFragment extends BaseFragment {
                 showToast(getString(R.string.no_task_found));
             }
         }
-        binding.allTaskRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.allTaskRecycler.setAdapter(adapter);
+//        binding.allTaskRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+//        binding.allTaskRecycler.setAdapter(adapter);
         binding.backBtn.setOnClickListener(v -> Navigation.findNavController(v).navigateUp());
         binding.filterBtn.setOnClickListener(v -> {
             binding.toAndFromLayout.setVisibility(View.GONE);

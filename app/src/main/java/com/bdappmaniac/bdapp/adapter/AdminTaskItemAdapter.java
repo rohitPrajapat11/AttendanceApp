@@ -41,8 +41,8 @@ public class AdminTaskItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         vHolder.binding.date.setText(taskItem.get(position).getDate());
 
         adminChildTaskAdapter adapter = new adminChildTaskAdapter(context, taskItem.get(position).getTasks());
-        vHolder.binding.allTaskChildRecycler.setLayoutManager(new LinearLayoutManager(context));
-        vHolder.binding.allTaskChildRecycler.setAdapter(adapter);
+//        vHolder.binding.allTaskChildRecycler.setLayoutManager(new LinearLayoutManager(context));
+//        vHolder.binding.allTaskChildRecycler.setAdapter(adapter);
     }
 
     @Override

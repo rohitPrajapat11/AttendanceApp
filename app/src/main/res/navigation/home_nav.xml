@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_nav"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/fragVp">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -87,4 +87,9 @@
         android:name="com.bdappmaniac.bdapp.employee.fragment.GlideLoanSubmitFragment"
         android:label="GlideFragment"
         tools:layout="@layout/frgment_advance_glide" />
+    <fragment
+        android:id="@+id/fragVp"
+        android:name="com.bdappmaniac.bdapp.employee.fragment.Vpfragment"
+        android:label="GlideFragment"
+        tools:layout="@layout/fragment_vpfragment" />
 </navigation>
