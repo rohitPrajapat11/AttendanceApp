@@ -207,6 +207,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
                     navHandel("Manage Advance");
                     headerHideShow(false);
                     bottomHideShow(false);
+                }else if (destination.getId() == R.id.fragVp) {
+                    navHandel("View Pager");
+                    headerHideShow(true);
+                    bottomHideShow(false);
                 }
             }
         });

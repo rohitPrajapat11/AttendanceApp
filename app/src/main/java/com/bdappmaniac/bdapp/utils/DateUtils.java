@@ -315,6 +315,7 @@ public class DateUtils {
         return false;
     }
 
+
     public static String getPrettyDate(String date_time, String inputFormat, String outputFormat) {
         if (isYesterday(date_time, inputFormat)) {
             return "Yesterday";

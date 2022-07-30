@@ -32,8 +32,7 @@ public class ConnectivityReceiver extends BroadcastReceiver {
                     (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
             assert cm != null;
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-            boolean isConnected = activeNetwork != null &&
-                    activeNetwork.isConnectedOrConnecting();
+            boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
             if (onChangeConnectivity != null) {
                 onChangeConnectivity.onChanged(isConnected && isInternetAvailable());

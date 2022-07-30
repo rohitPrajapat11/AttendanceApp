@@ -10,6 +10,11 @@ public class SharedPref {
 
     private static SharedPreferences mSharedPref;
     public static final String USER_DETAILS = "user_details";
+    public static final String STATUS = "status";
+    public static final String ON_STOP_TIME ="on_stop_time";
+    public static final String ON_STOP_TIMER ="on_stop_timer";
+    public static final String CHECK_IN_TIME = "checkIn_time";
+    public static final String CHECK_OUT_TIME = "checkout_time";
 
     public static void init(Context context) {
         if (mSharedPref == null)
@@ -70,4 +75,7 @@ public class SharedPref {
         String json = getStringValue(USER_DETAILS);
         return gson.fromJson(json, LoginResponse.class);
     }
+
+
+
 }

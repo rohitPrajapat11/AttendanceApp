@@ -36,6 +36,7 @@ import com.bdappmaniac.bdapp.interfaces.TimeLayoutCallBack;
 import com.bdappmaniac.bdapp.model.CalendarDateModel;
 import com.bdappmaniac.bdapp.model.ModelHolidayItems;
 import com.bdappmaniac.bdapp.utils.Constant;
+import com.bdappmaniac.bdapp.utils.DateUtils;
 import com.bdappmaniac.bdapp.utils.SharedPref;
 import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 
@@ -208,8 +209,9 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
 //        setUpCalendar();
         return binding.getRoot();
     }
+
     public void CheckInDialog() {
-      DialogCheckinBinding checkInDialog = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.dialog_checkin, null, false);
+        DialogCheckinBinding checkInDialog = DataBindingUtil.inflate(LayoutInflater.from(mContext), R.layout.dialog_checkin, null, false);
         Dialog dialog = new Dialog(mContext);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(checkInDialog.getRoot());
@@ -286,11 +288,18 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Toast.makeText(mContext, apiResponse.getMessage() ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     binding.checkOutTime.setText("");
+                    SharedPref.write(SharedPref.CHECK_IN_TIME, apiResponse.getData().getAsJsonObject().get("time").getAsString());
                     binding.checkInTime.setText(apiResponse.getData().getAsJsonObject().get("time").getAsString());
+                    if (apiResponse.getMessage().equals("Check in")) {
+                        SharedPref.write(SharedPref.STATUS, true);
+
+                    } else {
+                        SharedPref.write(SharedPref.STATUS, false);
+                    }
                 } else {
-                    Toast.makeText(mContext, apiResponse.getMessage() ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
             AppLoader.hideLoaderDialog();
@@ -304,9 +313,9 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
             } else {
                 if ((apiResponse.getData() != null)) {
-                    Toast.makeText(mContext, apiResponse.getMessage() ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     SharedPref.write(USER_WORK, false);
-
+                    SharedPref.write(SharedPref.CHECK_OUT_TIME, apiResponse.getData().getAsJsonObject().get("time").getAsString());
                     binding.checkOutTime.setText(apiResponse.getData().getAsJsonObject().get("time").getAsString());
 //                    binding.timeStatusLayout.setVisibility(View.GONE);
                 } else {
@@ -323,13 +332,14 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
             @Override
             public void onTick(long millisUntilFinished) {
                 int miliseconds = (int) (millisUntilFinished);
-                int seconds = (int) (millisUntilFinished/1000)% 60;
+                int seconds = (int) (millisUntilFinished / 1000) % 60;
                 int minutes = (int) (millisUntilFinished / (1000 * 60)) % 60;
                 int hrs = (int) (millisUntilFinished / (1000 * 60 * 60)) % 24;
-                binding.remainTimeTv.setText(String.valueOf(String.format("%02d", hrs)+":"+String.format("%02d", minutes)+":"+String.format("%02d", seconds)));
+                binding.remainTimeTv.setText(String.valueOf(String.format("%02d", hrs) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds)));
 //                = new ProgressBarAnimation(binding.progressTime.setProgress(), 3500);
-                binding.progressTime.setProgress(32400000-miliseconds);
+                binding.progressTime.setProgress(32400000 - miliseconds);
             }
+
             @Override
             public void onFinish() {
             }
@@ -412,11 +422,40 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
     public void TimeStatusLayoutCallBack() {
 //        binding.timeStatusLayout.setVisibility(View.VISIBLE);
     }
+
     @Override
     public void CheckInTimeCallBack() {
 //        binding.checkInTime.setText(SharedPref.getStringValue(CURRENT_TIME));
     }
 
+    @Override
+    public void onStop() {
+        TimeManagerGetter();
+        super.onStop();
+    }
 
+    @Override
+    public void onResume() {
+        TimeManagerSetter();
+        super.onResume();
+    }
+
+    public void TimeManagerGetter() {
+        SharedPref.write(SharedPref.ON_STOP_TIME, DateUtils.getDate(System.currentTimeMillis(), DateUtils.timeFormat2));
+        SharedPref.write(SharedPref.ON_STOP_TIMER, binding.remainTimeTv.getText().toString());
+    }
+
+    public void TimeManagerSetter() {
+        if (SharedPref.read(SharedPref.STATUS, false)) {
+//            Integer i;
+//            i = (Integer.parseInt(SharedPref.read(SharedPref.ON_STOP_TIMER, "")) - Integer.parseInt(DateUtils.getDate(System.currentTimeMillis(), DateUtils.timeFormat2)));
+            binding.remainTimeTv.setText(SharedPref.read(SharedPref.ON_STOP_TIMER,""));
+
+            binding.checkInTime.setText(SharedPref.read(SharedPref.CHECK_IN_TIME, ""));
+            binding.checkOutTime.setText(SharedPref.read(SharedPref.CHECK_OUT_TIME, ""));
+
+        }
+
+    }
 
 }

@@ -151,6 +151,7 @@ public class ProfileFragment extends BaseFragment {
                 onEditChange(false);
             }
         });
+
 //        binding.designationTxt.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -214,6 +215,7 @@ public class ProfileFragment extends BaseFragment {
 //                dialog.show();
 //            }
 //        });
+
         binding.cameraBtn.setOnClickListener(view -> selectImage());
         return binding.getRoot();
     }
@@ -484,7 +486,6 @@ public class ProfileFragment extends BaseFragment {
             }
         }
     }
-
     void textProfile() {
         Bitmap bitmap = TextToBitmap.textToBitmap(binding.nameTxt.getText().toString(), mContext, 10, R.color.black);
         Drawable d = new BitmapDrawable(getResources(), bitmap);
