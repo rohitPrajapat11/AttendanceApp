@@ -101,7 +101,10 @@ public class MainService {
         return data;
     }
 
-    public static LiveData<ApiResponse> updateProfileByAdmin(Context context, String token, int id, String status) {
+    public static LiveData<ApiResponse>
+
+
+    updateProfileByAdmin(Context context, String token, int id, String status) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
         if (!BdApp.getInstance().isInternetConnected(context)) {
             return data;

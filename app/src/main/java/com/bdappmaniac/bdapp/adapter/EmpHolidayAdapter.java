@@ -62,6 +62,12 @@ public class EmpHolidayAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         holder.getAdapterPosition();
         holder.setIsRecyclable(false);
     }
+
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
     @Override
     public int getItemCount() {
         return monthlist.size();

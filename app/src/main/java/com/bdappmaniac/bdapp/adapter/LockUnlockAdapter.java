@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bdappmaniac.bdapp.Api.response.ResponselockUnlock;
 import com.bdappmaniac.bdapp.Api.response.lockUnlockItems;
 import com.bdappmaniac.bdapp.Api.sevices.MainService;
 import com.bdappmaniac.bdapp.R;
@@ -17,8 +18,12 @@ import com.bdappmaniac.bdapp.activity.BaseActivity;
 import com.bdappmaniac.bdapp.databinding.DesiginLockUnlockItemsBinding;
 import com.bdappmaniac.bdapp.helper.AppLoader;
 import com.bdappmaniac.bdapp.utils.DateUtils;
+import com.google.firebase.crashlytics.buildtools.reloc.com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     ArrayList<lockUnlockItems> employeeList;
@@ -56,13 +61,22 @@ public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         } else if (employeeList.get(position).getStatus().equals("inactive")) {
             vHolder.binding.switchbtn.setChecked(false);
         }
-        vHolder.binding.switchbtn.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
+        vHolder.binding.switchbtn.setOnClickListener(view -> {
+            if ( vHolder.binding.switchbtn.isChecked()) {
                 vHolder.updateEmployeeStatusApi("active", employeeList.get(position).getId());
             } else {
                 vHolder.updateEmployeeStatusApi("inactive", employeeList.get(position).getId());
             }
         });
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return (position);
+    }
+    @Override
+    public long getItemId(int position) {
+        return (position);
     }
 
     @Override
@@ -85,15 +99,21 @@ public class LockUnlockAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                     ((BaseActivity) context).showSnackBar(binding.getRoot(), context.getString(R.string.something_went_wrong));
                 } else {
                     if ((apiResponse.getData() != null)) {
-                        if (status.equals("active")) {
-                            ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
-                        } else if (status.equals("inactive")) {
-                            ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
+                        ResponselockUnlock locklist=  new Gson().fromJson(apiResponse.getData(),ResponselockUnlock.class);
+                        int i;
+                        for (i=0;i<employeeList.size();i++){
+                            if (employeeList.get(i).getId() == id){
+                                lockUnlockItems items = employeeList.get(i);
+                                items.setStatus(locklist.getStatus());
+                                employeeList.set(i, items);
+                                break;
+                            }
                         }
+                        notifyDataSetChanged();
                     }
-//                    else {
-//                        ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
-//                    }
+                    else {
+                        ((BaseActivity) context).showSnackBar(binding.getRoot(), apiResponse.getMessage());
+                    }
                 }
                 AppLoader.hideLoaderDialog();
             });

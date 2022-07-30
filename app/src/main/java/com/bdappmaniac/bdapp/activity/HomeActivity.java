@@ -673,6 +673,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
 //            AppLoader.hideLoaderDialog();
 //        });
 //    }
+
     public void employeeStatusByIdApi(int id) {
         AppLoader.showLoaderDialog(this);
         MainService.employeeStatusById(this, getToken(), id).observe((LifecycleOwner) this, apiResponse -> {

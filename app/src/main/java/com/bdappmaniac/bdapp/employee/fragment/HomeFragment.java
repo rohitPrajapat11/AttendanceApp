@@ -227,7 +227,7 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
                     binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gradient_in);
                     binding.checkintxt.setText("CHECK OUT");
                     CheckInApi();
-                    WorkingHrsManager();
+                    WorkingHrsTimer();
                     dialog.dismiss();
                 } else if (binding.checkintxt.getText().equals("CHECK OUT")) {
                     binding.imgcheckinbtn.setBackgroundResource(R.drawable.bg_btn_gragient_out);
@@ -317,7 +317,7 @@ public class HomeFragment extends BaseFragment implements TimeLayoutCallBack {
         });
     }
 
-    private void WorkingHrsManager() {
+    private void WorkingHrsTimer() {
         countDownTimer = new CountDownTimer(32400000, 1000) {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override

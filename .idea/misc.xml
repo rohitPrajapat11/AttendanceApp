@@ -24,6 +24,7 @@
         <entry key="app/src/main/res/drawable-xxxhdpi/ic_search_black_24dp.xml" value="0.12960526315789472" />
         <entry key="app/src/main/res/drawable-xxxhdpi/to_do_Att_recycler_bg.xml" value="0.1855" />
         <entry key="app/src/main/res/drawable/auth_white_bg.xml" value="0.15" />
+        <entry key="app/src/main/res/drawable/background_edt.xml" value="0.1375" />
         <entry key="app/src/main/res/drawable/bg_btn_gradient_in 2.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/bg_btn_gradient_in.xml" value="0.1805" />
         <entry key="app/src/main/res/drawable/bg_btn_gragient.xml" value="0.1855" />
@@ -118,7 +119,7 @@
         <entry key="app/src/main/res/layout/admin_drawer.xml" value="0.22" />
         <entry key="app/src/main/res/layout/admin_edit_holiday_dilogbox.xml" value="0.18" />
         <entry key="app/src/main/res/layout/admin_emp_info.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/admin_history_item.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/admin_history_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/admin_history_list_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/admin_home_layout.xml" value="0.39202965708989806" />
         <entry key="app/src/main/res/layout/admin_task_adapter_bottom_sheet.xml" value="0.2778965369816161" />
