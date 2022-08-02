@@ -45,17 +45,6 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-
-                        <TextView
-                            android:id="@+id/test_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="terst text "
-                            android:textSize="@dimen/_15sdp"
-                            android:textColor="@color/black"
-                            app:layout_constraintEnd_toStartOf="@+id/progressTime"
-                            app:layout_constraintTop_toBottomOf="@+id/progressTime" />
-
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/userProfile"
                             android:layout_width="@dimen/_38sdp"
@@ -318,7 +307,7 @@
                                 android:contentDescription="@string/todo" />
 
                             <TextView
-                                android:id="@+id/workTime"
+                                android:id="@+id/workingHrs"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/_1sdp"
@@ -343,9 +332,9 @@
                                 android:textColor="@color/grey"
                                 android:textSize="@dimen/_8ssp"
                                 app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/workTime"
-                                app:layout_constraintStart_toStartOf="@+id/workTime"
-                                app:layout_constraintTop_toBottomOf="@+id/workTime" />
+                                app:layout_constraintEnd_toEndOf="@+id/workingHrs"
+                                app:layout_constraintStart_toStartOf="@+id/workingHrs"
+                                app:layout_constraintTop_toBottomOf="@+id/workingHrs" />
 
                             <TextView
                                 android:layout_width="wrap_content"

@@ -103,14 +103,12 @@ public class CalendarAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 currentPos = position;
                 notifyDataSetChanged();
                 String date = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(list.get(position).getDates());
-                homeFragment.getSelectedCalItem(date);
+
                 Toast.makeText(context, "Get Date : " + date, Toast.LENGTH_SHORT).show();
             });
         }
     }
 
-    void dataSelect() {
-    }
 
     @SuppressLint("NotifyDataSetChanged")
     public void setData(ArrayList<CalendarDateModel> calendarList) {
