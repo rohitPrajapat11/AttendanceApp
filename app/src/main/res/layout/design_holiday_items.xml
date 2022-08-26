@@ -14,7 +14,6 @@
             android:id="@+id/month"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:paddingStart="@dimen/_10sdp"
             android:text="January"
             android:textSize="@dimen/_15ssp"
@@ -26,9 +25,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewHolidays"
-            android:padding="@dimen/_2sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="visible"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,30 +38,32 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/noHolidaysTv"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_5sdp"
             android:layout_marginVertical="@dimen/_4sdp"
+            android:layout_marginStart="4dp"
             android:background="@drawable/white_5r_bg"
             android:backgroundTint="@color/white"
             android:elevation="@dimen/_1sdp"
             android:padding="@dimen/_2sdp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/month">
+            app:layout_constraintTop_toBottomOf="@+id/month"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/_100sdp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_8sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
                 android:fontFamily="@font/m_semibold"
                 android:gravity="center"
                 android:padding="@dimen/_4sdp"
                 android:text="@string/no_holidays_in_this_month"
                 android:textColor="@color/grey"
-                android:textSize="@dimen/_8ssp"
+                android:textSize="@dimen/_10ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

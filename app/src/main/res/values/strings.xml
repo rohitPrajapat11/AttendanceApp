@@ -432,5 +432,7 @@
     <string name="_00_00_00">00:00:00</string>
     <string name="_08_59_59">08:59:59</string>
     <string name="get_date">Get Date</string>
+    <string name="work_hrs">Work Hrs.</string>
+    <string name="mon">mon</string>
 
 </resources>
