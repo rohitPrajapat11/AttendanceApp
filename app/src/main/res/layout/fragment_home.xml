@@ -122,6 +122,7 @@
                             android:elevation="5dp"
                             android:indeterminate="false"
                             android:min="0"
+
                             android:progressBackgroundTint="@color/blue_primary"
                             android:progressDrawable="@drawable/circular_progress_bar_timke_p"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -254,7 +255,6 @@
                                 app:layout_constraintStart_toStartOf="@+id/imgCheckIn"
                                 app:layout_constraintTop_toBottomOf="@+id/imgCheckIn" />
 
-
                             <ImageView
                                 android:id="@+id/imgcheckOut"
                                 android:layout_width="@dimen/_20sdp"
@@ -349,9 +349,6 @@
                                 app:layout_constraintTop_toBottomOf="@+id/checkInTime" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.appbar.CollapsingToolbarLayout>

@@ -3,72 +3,153 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="@dimen/_3sdp"
-        android:layout_marginHorizontal="@dimen/_5sdp"
-        android:layout_marginVertical="@dimen/_4sdp"
-        android:background="@drawable/white_5r_bg"
+        android:id="@+id/holidays"
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="@dimen/_110sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/bg_nav_items"
         android:backgroundTint="@color/white"
-        android:padding="@dimen/_2sdp">
+        android:elevation="8dp"
+        android:padding="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/leaves"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/dateDay"
-            android:layout_margin="@dimen/_4sdp"
-            android:elevation="@dimen/_1sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/white_5r_bg"
-            android:backgroundTint="@color/blue_secondry"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/date"
-                android:gravity="center"
-                android:layout_width="@dimen/_22sdp"
-                android:layout_height="@dimen/_22sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:fontFamily="@font/m_semibold"
-                android:text="@string/_00"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/holiday"
-            android:layout_width="wrap_content"
-            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_width="@dimen/_89sdp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/m_medium"
             android:padding="@dimen/_1sdp"
+            android:fontFamily="@font/m_medium"
             android:text="@string/hanuman_jayanti"
-            android:textAllCaps="false"
-            android:textColor="@color/trans_black"
-            android:textSize="@dimen/_13ssp"
-            app:layout_constraintStart_toEndOf="@+id/dateDay"
-            app:layout_constraintTop_toTopOf="@+id/dateDay" />
-
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_1sdp"
-            android:fontFamily="@font/m_semibold"
-            android:padding="@dimen/_1sdp"
-            android:text="@string/monday"
+            android:fontFamily="@font/m_medium"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:text="@string/saturday"
             android:textColor="#725c12"
-            android:textSize="@dimen/_9ssp"
-            android:textStyle="bold"
+            android:padding="@dimen/_1sdp"
+            android:textSize="@dimen/_11ssp"
             app:layout_constraintStart_toStartOf="@+id/holiday"
             app:layout_constraintTop_toBottomOf="@+id/holiday" />
 
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/m_medium"
+            android:text="@string/_08"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_26ssp"
+            app:layout_constraintBottom_toTopOf="@+id/month"
+            app:layout_constraintEnd_toEndOf="@+id/month"
+            app:layout_constraintStart_toStartOf="@+id/month" />
+
+        <TextView
+            android:id="@+id/month"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/m_bold"
+            android:padding="@dimen/_1sdp"
+            android:text="@string/march_22"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_8ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:elevation="@dimen/_3sdp"-->
+<!--        android:layout_marginHorizontal="@dimen/_5sdp"-->
+<!--        android:layout_marginVertical="@dimen/_4sdp"-->
+<!--        android:background="@drawable/bg_nav_items"-->
+<!--        android:backgroundTint="@color/white"-->
+<!--        android:padding="@dimen/_2sdp">-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/dateDay"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="@dimen/_10sdp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:background="@drawable/white_5r_bg"-->
+<!--            android:backgroundTint="@color/blue_secondry"-->
+<!--            android:elevation="@dimen/_1sdp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/date"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginHorizontal="@dimen/_25sdp"-->
+<!--                android:fontFamily="@font/m_semibold"-->
+<!--                android:gravity="center"-->
+<!--                android:padding="@dimen/_5sdp"-->
+<!--                android:text="@string/_00"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="@dimen/_22ssp"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/day"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:fontFamily="@font/m_semibold"-->
+<!--                android:padding="@dimen/_3sdp"-->
+<!--                android:text="@string/monday"-->
+<!--                android:textColor="#725c12"-->
+<!--                android:textSize="@dimen/_9ssp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/date"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/date"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/date" />-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/holiday"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="@dimen/_4sdp"-->
+<!--            android:layout_marginTop="@dimen/_12sdp"-->
+<!--            android:layout_marginBottom="@dimen/_8sdp"-->
+<!--            android:fontFamily="@font/m_light"-->
+<!--            android:padding="@dimen/_1sdp"-->
+<!--            android:text="@string/hanuman_jayanti"-->
+<!--            android:textAllCaps="false"-->
+<!--            android:gravity="center"-->
+<!--            android:inputType="textMultiLine"-->
+<!--            android:textColor="@color/trans_black"-->
+<!--            android:textSize="@dimen/_13ssp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="@+id/dateDay"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/dateDay"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/dateDay" />-->
+
+
+
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 </layout>

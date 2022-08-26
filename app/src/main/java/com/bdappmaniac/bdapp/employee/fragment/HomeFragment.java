@@ -283,7 +283,7 @@ public class HomeFragment extends BaseFragment {
 
     private void CheckInApi() {
         AppLoader.showLoaderDialog(mContext);
-        MainService.checkInTime(mContext, getToken()).observe((LifecycleOwner) this, apiResponse -> {
+        MainService.checkInTime(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
             } else {
@@ -308,7 +308,7 @@ public class HomeFragment extends BaseFragment {
 
     private void CheckOutApi() {
         AppLoader.showLoaderDialog(mContext);
-        MainService.checkOutTime(mContext, getToken()).observe((LifecycleOwner) this, apiResponse -> {
+        MainService.checkOutTime(mContext, getToken()).observe((LifecycleOwner) mContext, apiResponse -> {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
             } else {
@@ -390,7 +390,7 @@ public class HomeFragment extends BaseFragment {
             if (apiResponse == null) {
                 ((BaseActivity) mContext).showSnackBar(binding.getRoot(), this.getString(R.string.something_went_wrong));
             } else {
-                if ((apiResponse.getData() != null)) {
+                if (apiResponse.getData() != null) {
                     JsonObject jsonObject = new Gson().fromJson(apiResponse.getData(), JsonObject.class);
                     binding.workingHrs.setText(jsonObject.get("worked_hours").getAsString());
                 } else {

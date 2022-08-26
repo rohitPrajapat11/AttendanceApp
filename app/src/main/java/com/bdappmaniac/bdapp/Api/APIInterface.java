@@ -156,4 +156,8 @@ public interface APIInterface {
 
     @POST("api/get-task-of-employee")
     Call<ApiResponse> employeeTasksApi(@Header("Authorization") String token);
+
+    @POST("api/current-year-att-for-employee")
+    Call<ApiResponse>myAttendance(@Header("Authorization")String token);
+
 }

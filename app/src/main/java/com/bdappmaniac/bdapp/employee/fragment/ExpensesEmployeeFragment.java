@@ -33,7 +33,7 @@ public class ExpensesEmployeeFragment extends BaseFragment {
         StatusBarUtils.statusBarColor(getActivity(), R.color.white);
 
         //spinner
-        String [] yolist = {"yoo","yoooo","yooooo"};
+        String [] list = {"object1","object2","object 3","object4"};
         binding.spinnerExpenseType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -42,7 +42,7 @@ public class ExpensesEmployeeFragment extends BaseFragment {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-        ArrayAdapter ad = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item,yolist);
+        ArrayAdapter ad = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item,list);
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerExpenseType.setAdapter(ad);
 

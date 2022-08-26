@@ -30,7 +30,6 @@ public class EmpTaskFragment extends BaseFragment {
     EmpTaskAdapter adapter;
     ArrayList<EmployeeTaskDataItem> tasklist = new ArrayList<>();
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_task, container, false);
@@ -86,4 +85,5 @@ public class EmpTaskFragment extends BaseFragment {
         employeeTasksApi();
         super.onResume();
     }
+
 }

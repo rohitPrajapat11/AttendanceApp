@@ -905,24 +905,25 @@ public class MainService {
     }
 
 
-    public static  LiveData <ApiResponse> employeeTasksApi(Context context, String token) {
+    public static LiveData<ApiResponse> employeeTasksApi(Context context, String token) {
         final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
-        if(!BdApp.getInstance().isInternetConnected(context)){
-        return data;
-    }
-    Call<ApiResponse> call = apiService.employeeTasksApi(token);
+        if (!BdApp.getInstance().isInternetConnected(context)) {
+            return data;
+        }
+        Call<ApiResponse> call = apiService.employeeTasksApi(token);
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
-                if (response.body() != null){
+                if (response.body() != null) {
                     data.setValue(response.body());
-                }else {
+                } else {
                     data.setValue(null);
                 }
             }
+
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
-                ((BaseActivity)context).showToast(context.getString(R.string.something_went_wrong));
+                ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
 
             }
         });
@@ -999,9 +1000,36 @@ public class MainService {
             @Override
             public void onFailure(Call<ApiResponse> call, Throwable t) {
                 ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
-                //Log.e("LOGIN API FAILED",t.getLocalizedMessage());
+
             }
         });
         return data;
     }
+
+public static LiveData<ApiResponse> myAttendanceApi(Context context, String token) {
+    final MutableLiveData<ApiResponse> data = new MutableLiveData<>();
+    if (!BdApp.getInstance().isInternetConnected(context)) {
+        return data;
+    }
+    Call<ApiResponse> call = apiService.myAttendance(token);
+    call.enqueue(new Callback<ApiResponse>() {
+        @Override
+        public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+            if (response.body() != null) {
+                data.setValue(response.body());
+            } else {
+                data.setValue(null);
+            }
+        }
+        @Override
+        public void onFailure(Call<ApiResponse> call, Throwable t) {
+            ((BaseActivity) context).showToast(context.getString(R.string.something_went_wrong));
+
+        }
+    });
+    return data;
 }
+
+
+}
+

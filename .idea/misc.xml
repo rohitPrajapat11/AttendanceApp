@@ -95,7 +95,7 @@
         <entry key="app/src/main/res/drawable/white_round_bg.xml" value="0.19322916666666667" />
         <entry key="app/src/main/res/drawable/white_round_bgs.xml" value="0.1665" />
         <entry key="app/src/main/res/drawable/yellow_10r_bg.xml" value="0.12203947368421053" />
-        <entry key="app/src/main/res/layout-land/design_attendance_history.xml" value="0.15833333333333333" />
+        <entry key="app/src/main/res/layout-land/design_attendance_history.xml" value="0.33" />
         <entry key="app/src/main/res/layout-v23/activity_auth.xml" value="0.17708333333333334" />
         <entry key="app/src/main/res/layout-v23/fragment_admin_term_and_condition.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/layout-v26/fragment_register_empolyee.xml" value="0.22" />
@@ -136,7 +136,7 @@
         <entry key="app/src/main/res/layout/date_picker_timeline.xml" value="0.22" />
         <entry key="app/src/main/res/layout/desigin_lock_unlock_items.xml" value="0.33" />
         <entry key="app/src/main/res/layout/design_attendance_history.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/design_check_in_out_entries.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/design_check_in_out_entries.xml" value="0.67" />
         <entry key="app/src/main/res/layout/design_child_task_items.xml" value="0.33" />
         <entry key="app/src/main/res/layout/design_custom_monthpicker.xml" value="0.2774690038477982" />
         <entry key="app/src/main/res/layout/design_expese_items.xml" value="0.2267361111111111" />
@@ -216,7 +216,7 @@
         <entry key="app/src/main/res/layout/fragment_loan_item.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_loan_provide.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_log_in.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_my_attendance.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_my_attendance.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_new_employee_list.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_new_password.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_o_t_p.xml" value="0.2" />

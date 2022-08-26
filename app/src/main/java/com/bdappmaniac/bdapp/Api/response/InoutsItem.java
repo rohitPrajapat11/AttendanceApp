@@ -11,10 +11,10 @@ public class InoutsItem{
 	private Object absentReason;
 
 	@SerializedName("logIn")
-	private Object logIn;
+	private String logIn;
 
 	@SerializedName("logOut")
-	private Object logOut;
+	private String logOut;
 
 	@SerializedName("emp_id")
 	private int empId;
@@ -35,19 +35,19 @@ public class InoutsItem{
 		return absentReason;
 	}
 
-	public void setLogIn(Object logIn){
+	public void setLogIn(String logIn){
 		this.logIn = logIn;
 	}
 
-	public Object getLogIn(){
+	public String getLogIn(){
 		return logIn;
 	}
 
-	public void setLogOut(Object logOut){
+	public void setLogOut(String logOut){
 		this.logOut = logOut;
 	}
 
-	public Object getLogOut(){
+	public String getLogOut(){
 		return logOut;
 	}
 
