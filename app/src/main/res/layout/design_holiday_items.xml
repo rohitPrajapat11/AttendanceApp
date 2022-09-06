@@ -35,7 +35,6 @@
             app:layout_constraintTop_toBottomOf="@+id/month"
             tools:listitem="@layout/design_holidays" />
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/noHolidaysTv"
             android:layout_width="wrap_content"
@@ -43,10 +42,6 @@
             android:layout_marginHorizontal="@dimen/_5sdp"
             android:layout_marginVertical="@dimen/_4sdp"
             android:layout_marginStart="4dp"
-            android:background="@drawable/white_5r_bg"
-            android:backgroundTint="@color/white"
-            android:elevation="@dimen/_1sdp"
-            android:padding="@dimen/_2sdp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,10 +49,9 @@
             app:layout_constraintVertical_bias="0.0">
 
             <TextView
-                android:layout_width="@dimen/_100sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_margin="@dimen/_2sdp"
                 android:fontFamily="@font/m_semibold"
                 android:gravity="center"
                 android:padding="@dimen/_4sdp"

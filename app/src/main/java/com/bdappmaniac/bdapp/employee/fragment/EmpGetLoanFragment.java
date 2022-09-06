@@ -17,6 +17,8 @@ import com.bdappmaniac.bdapp.utils.StatusBarUtils;
 import com.jaygoo.widget.OnRangeChangedListener;
 import com.jaygoo.widget.RangeSeekBar;
 
+import java.util.ArrayList;
+
 
 public class EmpGetLoanFragment extends BaseFragment {
 FragmentEmpGetLoanBinding binding;
@@ -76,6 +78,9 @@ FragmentEmpGetLoanBinding binding;
             public void onStopTrackingTouch(RangeSeekBar view, boolean isLeft) {
             }
         });
+
+
+
     return binding.getRoot();
     }
 }

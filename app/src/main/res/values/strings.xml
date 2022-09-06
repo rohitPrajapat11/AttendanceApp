@@ -434,5 +434,6 @@
     <string name="get_date">Get Date</string>
     <string name="work_hrs">Work Hrs.</string>
     <string name="mon">mon</string>
+    <string name="account_has_been_inactivated_by_the_admin_contact_admin_for_activation_and_further_action_will_be_taken_by_the_admin_only">Account has been inactivated by the admin . contact admin for Activation and further Action will be taken by the admin only...</string>
 
 </resources>

@@ -48,11 +48,13 @@ import com.google.gson.JsonObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 import okhttp3.RequestBody;
 
@@ -60,7 +62,6 @@ public class HomeFragment extends BaseFragment {
     public FragmentHomeBinding binding;
     CountDownTimer countDownTimer;
     Long CurrentTimerMills;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,13 +74,12 @@ public class HomeFragment extends BaseFragment {
             }
         });
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         StatusBarUtils.statusBarColor(getActivity(), R.color.white);
-
         binding.progressTime.setMax(32400000);
-
 
         SharedPref.init(mContext);
         if (SharedPref.read(USER_WORK, false)) {
@@ -137,8 +137,6 @@ public class HomeFragment extends BaseFragment {
         binding.username.setText(SharedPref.getUserDetails().getEmployeeName());
         binding.userEmail.setText(SharedPref.getUserDetails().getEmail());
         binding.userDesignation.setText(SharedPref.getUserDetails().getDesignation());
-
-
 
 //        binding.userProfile.setImageResource(SharedPref.getUserDetails().getProfile());
 //        }else if(SharedPref.read(USER_WORK, false)) {

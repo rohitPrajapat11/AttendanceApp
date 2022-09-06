@@ -132,7 +132,7 @@
         <entry key="app/src/main/res/layout/check_in_and_out_dialog.xml" value="0.33" />
         <entry key="app/src/main/res/layout/checkin_out_dialog.xml" value="0.24722222222222223" />
         <entry key="app/src/main/res/layout/circular_progress_bar.xml" value="0.15729166666666666" />
-        <entry key="app/src/main/res/layout/custom_inactive_dialog.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/custom_inactive_dialog.xml" value="0.33" />
         <entry key="app/src/main/res/layout/date_picker_timeline.xml" value="0.22" />
         <entry key="app/src/main/res/layout/desigin_lock_unlock_items.xml" value="0.33" />
         <entry key="app/src/main/res/layout/design_attendance_history.xml" value="0.25" />
@@ -262,6 +262,8 @@
         <entry key="app/src/main/res/layout/task_add_dialog.xml" value="0.22" />
         <entry key="app/src/main/res/layout/task_bottom_sheet_dialog.xml" value="0.2791791363830697" />
         <entry key="app/src/main/res/layout/task_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/test_design_holiday.xml" value="0.2787516032492518" />
+        <entry key="app/src/main/res/layout/test_design_holiday_item.xml" value="0.2787516032492518" />
         <entry key="app/src/main/res/layout/timeline_item_layout.xml" value="0.1194078947368421" />
         <entry key="app/src/main/res/layout/to_do_list_employee_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/to_do_list_item.xml" value="0.11796875" />

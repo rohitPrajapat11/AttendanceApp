@@ -397,11 +397,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     void bottomHideShow(boolean check) {
+
 //        if (check) {
 //            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.VISIBLE);
 //        } else {
 //            binding.homeLayout.bottomLayout.dashboardBottom.setVisibility(View.GONE);
 //        }
+
     }
 
 //    private void setUpCalendar() {
