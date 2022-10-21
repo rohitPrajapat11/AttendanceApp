@@ -205,6 +205,7 @@ public class HomeFragment extends BaseFragment {
 //        binding.cancelBtn.addTextChangedListener(new TextChange(binding.cancelBtn));
 //        binding.saveBtn.addTextChangedListener(new TextChange(binding.saveBtn));
 //
+
         return binding.getRoot();
     }
 

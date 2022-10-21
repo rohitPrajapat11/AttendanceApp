@@ -43,7 +43,7 @@ public class ExpensesEmployeeFragment extends BaseFragment {
             }
         });
         ArrayAdapter ad = new ArrayAdapter(mContext, android.R.layout.simple_spinner_item,list);
-        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ad.setDropDownViewResource(R.layout.spinner_layout);
         binding.spinnerExpenseType.setAdapter(ad);
 
         binding.backBtn.setOnClickListener(new View.OnClickListener() {

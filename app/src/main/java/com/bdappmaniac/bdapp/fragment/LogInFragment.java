@@ -52,6 +52,7 @@ public class LogInFragment extends BaseFragment {
         binding.passwordShow.setOnClickListener(view -> showHidePass(view));
         binding.emailTxt.addTextChangedListener(new TextChange(binding.emailTxt));
         binding.passwordTxt.addTextChangedListener(new TextChange(binding.passwordTxt));
+
         binding.signInBtn.setOnClickListener(v -> {
             String email = binding.emailTxt.getText().toString();
             String password = binding.passwordTxt.getText().toString();
